@@ -17,4 +17,4 @@
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     <?php endif; ?>
 <?php endif; ?>
-<?php /**PATH C:\xampp\htdocs\e-NITT-2\Modules/LandingPage\Resources/views/layouts/buttons.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp-server\htdocs\e-NITT\Modules/LandingPage\Resources/views/layouts/buttons.blade.php ENDPATH**/ ?>

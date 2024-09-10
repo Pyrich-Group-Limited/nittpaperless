@@ -46,7 +46,7 @@ use App\Models\Utility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Session;
 class DashboardController extends Controller
 {
     /**
@@ -63,14 +63,36 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     public function unit_dashboard(){
+        return view('dashboard.unit-dashboard');
+     }
+
+     public function liason_dashboard(){
+        return view('dashboard.liason-dashboard');
+     }
+
     public function account_dashboard_index()
     {
+
+
+        // Session::flush();
+
+
 
         if(Auth::check())
         {
            if(Auth::user()->type == 'client')
             {
                 return redirect()->route('client.dashboard.view');
+            }
+            elseif(Auth::user()->type == 'unit head')
+            {
+                return redirect()->route('unit.dashboard');
+            }
+            elseif(Auth::user()->type == 'liason office head')
+            {
+                return redirect()->route('liason.dashboard');
             }
             else
             {
@@ -502,6 +524,7 @@ class DashboardController extends Controller
     public function filterView(Request $request)
     {
         $usr   = Auth::user();
+        dd($usr);
         $users = User::where('id', '!=', $usr->id);
 
         if($request->ajax())

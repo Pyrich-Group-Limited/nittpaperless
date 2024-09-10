@@ -983,6 +983,11 @@
 
             @if((\Auth::user()->type == 'client')) <!-- HRM -->
                 <ul class="dash-navbar">
+                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'dashboard')?'active':''}}">
+                        <a href="{{route('client.dashboard.view')}}" class="dash-link">
+                            <span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext">{{__('Dashboard')}}</span>
+                        </a>
+                    </li>
                                             <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
                             || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''}}">
                             <a href="#!" class="dash-link {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''}}"
