@@ -270,7 +270,7 @@ class DashboardController extends Controller
             if(\Auth::user()->can('show hrm dashboard'))
             {
                 $user = Auth::user();
-                if($user->type != 'client' && $user->type != 'company')
+                if($user->type != 'client' && $user->type != 'super admin')
                 {
                     $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -340,10 +340,10 @@ class DashboardController extends Controller
                     $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->where('created_by', '=', \Auth::user()->creatorId())->get();
 
 
-                    $emp           = User::where('type', '!=', 'client')->where('type', '!=', 'company')->where('created_by', '=', \Auth::user()->creatorId())->get();
+                    $emp           = User::where('type', '!=', 'client')->where('type', '!=', 'super admin')->where('created_by', '=', \Auth::user()->creatorId())->get();
                     $countEmployee = count($emp);
 
-                    $user      = User::where('type', '!=', 'client')->where('type', '!=', 'company')->where('created_by', '=', \Auth::user()->creatorId())->get();
+                    $user      = User::where('type', '!=', 'client')->where('type', '!=', 'super admin')->where('created_by', '=', \Auth::user()->creatorId())->get();
                     $countUser = count($user);
 
 

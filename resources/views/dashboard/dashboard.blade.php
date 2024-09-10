@@ -99,7 +99,7 @@
     $setting = \App\Models\Utility::settings();
 @endphp
 @section('content')
-    @if(\Auth::user()->type != 'client' && \Auth::user()->type != 'company')
+    @if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin')
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">

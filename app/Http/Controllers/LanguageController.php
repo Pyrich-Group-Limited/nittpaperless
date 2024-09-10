@@ -41,7 +41,7 @@ class LanguageController extends Controller
 
     public function manageLanguage($currantLang)
     {
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $languages = Language::pluck('full_name','code');
             $settings = \App\Models\Utility::settings();
@@ -86,7 +86,7 @@ class LanguageController extends Controller
     public function storeLanguageData(Request $request, $currantLang)
     {
 
-        if(\Auth::user()->type=='company')
+        if(\Auth::user()->type=='super admin')
         {
             $Filesystem = new Filesystem();
             $dir        = base_path() . '/resources/lang/';
@@ -155,7 +155,7 @@ class LanguageController extends Controller
     public function storeLanguage(Request $request)
     {
 
-        if(\Auth::user()->type=='company')
+        if(\Auth::user()->type=='super admin')
         {
             $Filesystem = new Filesystem();
             $langCode   = strtolower($request->code);
@@ -222,7 +222,7 @@ class LanguageController extends Controller
     {
 
 
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $settings = Utility::settings();
             $disablelang  = '';

@@ -14,7 +14,7 @@ class DucumentUploadController extends Controller
     {
         if(\Auth::user()->can('manage document'))
         {
-            if(\Auth::user()->type == 'company')
+            if(\Auth::user()->type == 'super admin')
             {
                 $documents = DucumentUpload::where('created_by', \Auth::user()->creatorId())->get();
             }

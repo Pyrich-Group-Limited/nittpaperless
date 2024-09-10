@@ -103,7 +103,7 @@ class LeadController extends Controller
 
         if(\Auth::user()->can('create lead'))
         {
-            $users = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'company')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
+            $users = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'super admin')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
             $users->prepend(__('Select User'), '');
 
             return view('leads.create', compact('users'));
@@ -338,7 +338,7 @@ class LeadController extends Controller
                 $pipelines->prepend(__('Select Pipeline'), '');
                 $sources        = Source::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
                 $products       = ProductService::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
-                $users          = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'company')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
+                $users          = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'super admin')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
                 $lead->sources  = explode(',', $lead->sources);
                 $lead->products = explode(',', $lead->products);
 
@@ -720,7 +720,7 @@ class LeadController extends Controller
 
             if($lead->created_by == \Auth::user()->creatorId())
             {
-                $users = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'company')->whereNOTIn(
+                $users = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'super admin')->whereNOTIn(
                     'id', function ($q) use ($lead){
                     $q->select('user_id')->from('user_leads')->where('lead_id', '=', $lead->id);
                 }

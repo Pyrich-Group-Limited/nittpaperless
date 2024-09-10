@@ -13,7 +13,7 @@ class ContractTypeController extends Controller
     {
         if(\Auth::user()->can('manage contract type'))
         {
-            if(\Auth::user()->type == 'company')
+            if(\Auth::user()->type == 'super admin')
             {
                 $types = ContractType::where('created_by', '=', \Auth::user()->creatorId())->get();
                 return view('contractType.index', compact('types'));

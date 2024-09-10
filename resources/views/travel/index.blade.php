@@ -28,7 +28,7 @@
                     <table class="table datatable">
                             <thead>
                             <tr>
-                                @role('company')
+                                @role('super admin')
                                 <th>{{__('Employee Name')}}</th>
                                 @endrole
                                 <th>{{__('Start Date')}}</th>
@@ -44,7 +44,7 @@
                             <tbody class="font-style">
                             @foreach ($travels as $travel)
                                 <tr>
-                                    @role('company')
+                                    @role('super admin')
                                     <td>{{ !empty($travel->employee())?$travel->employee()->name:'' }}</td>
                                     @endrole
                                     <td>{{ \Auth::user()->dateFormat( $travel->start_date) }}</td>

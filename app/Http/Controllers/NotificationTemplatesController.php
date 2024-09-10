@@ -13,7 +13,7 @@ class NotificationTemplatesController extends Controller
     public function index($id = null, $lang = 'en')
     {
 
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
 
             if($id != null)

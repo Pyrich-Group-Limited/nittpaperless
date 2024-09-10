@@ -29,7 +29,7 @@
                         <table class="table datatable">
                             <thead>
                             <tr>
-                                @role('company')
+                                @role('super admin')
                                 <th>{{__('Employee Name')}}</th>
                                 @endrole
                                 <th>{{__('Termination Type')}}</th>
@@ -44,7 +44,7 @@
                             <tbody class="font-style">
                             @foreach ($terminations as $termination)
                                 <tr>
-                                    @role('company')
+                                    @role('super admin')
                                     <td>{{ !empty($termination->employee())?$termination->employee()->name:'' }}</td>
                                     @endrole
 

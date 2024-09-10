@@ -3061,88 +3061,37 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [
+                'name' => 'show profile',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'manage user',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'manage role',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'manage client',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ];
 
         Permission::insert($arrPermissions);
 
-        // Super admin
 
-        $superAdminRole        = Role::create(
-            [
-                'name' => 'super admin',
-                'created_by' => 0,
-            ]
-        );
-        $superAdminPermissions = [
-            ['name' => 'manage super admin dashboard'],
-            ['name' => 'manage user'],
-            ['name' => 'create user'],
-            ['name' => 'edit user'],
-            ['name' => 'delete user'],
-            ['name' => 'create language'],
-            ['name' => 'manage system settings'],
-            ['name' => 'manage stripe settings'],
-            ['name' => 'manage role'],
-            ['name' => 'create role'],
-            ['name' => 'edit role'],
-            ['name' => 'delete role'],
-            ['name' => 'manage permission'],
-            ['name' => 'create permission'],
-            ['name' => 'edit permission'],
-            ['name' => 'delete permission'],
-            ['name' => 'manage plan'],
-            ['name' => 'create plan'],
-            ['name' => 'edit plan'],
-            ['name' => 'manage order'],
-            ['name' => 'manage coupon'],
-            ['name' => 'create coupon'],
-            ['name' => 'edit coupon'],
-            ['name' => 'delete coupon'],
-        ];
-
-
-
-        // custome
-        $customerRole       = Role::create(
-            [
-                'name' => 'customer',
-                'created_by' => 0,
-            ]
-        );
-        $customerPermission = [
-            ['name' => 'manage customer payment'],
-            ['name' => 'manage customer transaction'],
-            ['name' => 'manage customer invoice'],
-            ['name' => 'show invoice'],
-            ['name' => 'show proposal'],
-            ['name' => 'manage customer proposal'],
-            ['name' => 'show customer'],
-        ];
-        $customerRole->givePermissionTo($customerPermission);
-
-        // vender
-        $venderRole       = Role::create(
-            [
-                'name' => 'vender',
-                'created_by' => 0,
-            ]
-        );
-        $venderPermission = [
-            ['name' => 'vender manage bill'],
-            ['name' => 'manage vender bill'],
-            ['name' => 'manage vender payment'],
-            ['name' => 'manage vender transaction'],
-            ['name' => 'show vender'],
-            ['name' => 'show bill'],
-        ];
-
-        $venderRole->givePermissionTo($venderPermission);
-
-        // company
+        // Super Admin
 
         $companyRole = Role::create(
             [
-                'name' => 'company',
+                'name' => 'super admin',
                 'created_by' => 0,
             ]
         );
@@ -3644,10 +3593,10 @@ class UsersTableSeeder extends Seeder
 
         $company = User::create(
             [
-                'name' => 'company',
-                'email' => 'company@example.com',
+                'name' => 'SuperAdmin/Paperless',
+                'email' => 'spadmin@example.com',
                 'password' => Hash::make('1234'),
-                'type' => 'company',
+                'type' => 'super admin',
                 'default_pipeline' => 1,
                 'plan' => 1,
                 'lang' => 'en',
@@ -3656,6 +3605,206 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $company->assignRole($companyRole);
+
+
+        // user
+        $userRole       = Role::create(
+            [
+                'name' => 'user',
+                'created_by' => 0,
+            ]
+        );
+        $userPermission = [
+            ['name' => 'show invoice'],
+            ['name' => 'show proposal'],
+            ['name' => 'show profile'],
+        ];
+        $userRole->givePermissionTo($userPermission);
+
+        $user = User::create(
+            [
+                'name' => 'User',
+                'email' => 'user@example.com',
+                'password' => Hash::make('1234'),
+                'type' => 'user',
+                'default_pipeline' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => $company->id,
+            ]
+        );
+        $user->assignRole($userRole);
+
+
+        // supervisor
+        $supervisorRole = Role::create(
+            [
+                'name' => 'supervisor',
+                'created_by' => 0,
+            ]
+        );
+        $supervisorPermission = [
+            ['name' => 'show invoice'],
+            ['name' => 'show proposal'],
+            ['name' => 'show profile'],
+            ['name' => 'manage client dashboard'],
+            ['name' => 'manage bug report'],
+            ['name' => 'create bug report'],
+            ['name' => 'edit bug report'],
+            ['name' => 'delete bug report'],
+            ['name' => 'move bug report'],
+            ['name' => 'view deal'],
+            ['name' => 'manage deal'],
+            ['name' => 'manage project'],
+            ['name' => 'view project'],
+            ['name' => 'view grant chart'],
+            ['name' => 'view timesheet'],
+            ['name' => 'manage timesheet'],
+            ['name' => 'manage project task'],
+            ['name' => 'create project task'],
+            ['name' => 'edit project task'],
+            ['name' => 'view project task'],
+            ['name' => 'delete project task'],
+            ['name' => 'view activity'],
+            ['name' => 'view task'],
+            ['name' => 'manage pipeline'],
+            ['name' => 'manage lead stage'],
+            ['name' => 'manage label'],
+            ['name' => 'manage source'],
+            ['name' => 'move deal'],
+            ['name' => 'manage stage'],
+            ['name' => 'manage contract'],
+            ['name' => 'show contract'],
+        ];
+        $supervisorRole->givePermissionTo($supervisorPermission);
+
+        $supervisor = User::create(
+            [
+                'name' => 'Supervisor',
+                'email' => 'supervisor@example.com',
+                'password' => Hash::make('1234'),
+                'type' => 'supervisor',
+                'default_pipeline' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => $company->id,
+            ]
+        );
+        $supervisor->assignRole($supervisorRole);
+
+
+         // Liason office head
+         $liasonRole = Role::create(
+            [
+                'name' => 'liason office head',
+                'created_by' => 0,
+            ]
+        );
+        $liasonPermission = [
+            ['name' => 'show invoice'],
+            ['name' => 'show proposal'],
+            ['name' => 'show profile'],
+            ['name' => 'manage client dashboard'],
+            ['name' => 'manage bug report'],
+            ['name' => 'create bug report'],
+            ['name' => 'edit bug report'],
+            ['name' => 'delete bug report'],
+            ['name' => 'move bug report'],
+            ['name' => 'view deal'],
+            ['name' => 'manage deal'],
+            ['name' => 'manage project'],
+            ['name' => 'view project'],
+            ['name' => 'view grant chart'],
+            ['name' => 'view timesheet'],
+            ['name' => 'manage timesheet'],
+            ['name' => 'manage project task'],
+            ['name' => 'create project task'],
+            ['name' => 'edit project task'],
+            ['name' => 'view project task'],
+            ['name' => 'delete project task'],
+            ['name' => 'view activity'],
+            ['name' => 'view task'],
+            ['name' => 'manage pipeline'],
+            ['name' => 'manage lead stage'],
+            ['name' => 'manage label'],
+            ['name' => 'manage source'],
+            ['name' => 'move deal'],
+            ['name' => 'manage stage'],
+            ['name' => 'manage contract'],
+            ['name' => 'show contract'],
+        ];
+        $liasonRole->givePermissionTo($liasonPermission);
+
+        $liason = User::create(
+            [
+                'name' => 'Head of Liason Office',
+                'email' => 'liason@example.com',
+                'password' => Hash::make('1234'),
+                'type' => 'liason office head',
+                'default_pipeline' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => $company->id,
+            ]
+        );
+        $liason->assignRole($liasonRole);
+
+
+
+         // unit head
+         $unitHeadRole       = Role::create(
+            [
+                'name' => 'unit head',
+                'created_by' => $company->id,
+            ]
+        );
+        $unitHeadPermission = [
+            ['name' => 'manage client dashboard'],
+            ['name' => 'manage bug report'],
+            ['name' => 'create bug report'],
+            ['name' => 'edit bug report'],
+            ['name' => 'delete bug report'],
+            ['name' => 'move bug report'],
+            ['name' => 'view deal'],
+            ['name' => 'manage deal'],
+            ['name' => 'manage project'],
+            ['name' => 'view project'],
+            ['name' => 'view grant chart'],
+            ['name' => 'view timesheet'],
+            ['name' => 'manage timesheet'],
+            ['name' => 'manage project task'],
+            ['name' => 'create project task'],
+            ['name' => 'edit project task'],
+            ['name' => 'view project task'],
+            ['name' => 'delete project task'],
+            ['name' => 'view activity'],
+            ['name' => 'view task'],
+            ['name' => 'manage pipeline'],
+            ['name' => 'manage lead stage'],
+            ['name' => 'manage label'],
+            ['name' => 'manage source'],
+            ['name' => 'move deal'],
+            ['name' => 'manage stage'],
+            ['name' => 'manage contract'],
+            ['name' => 'show contract'],
+        ];
+
+        $unitHeadRole->givePermissionTo($unitHeadPermission);
+
+        $unitHead = User::create(
+            [
+                'name' => 'Unit Head',
+                'email' => 'unit@example.com',
+                'password' => Hash::make('1234'),
+                'type' => 'unit head',
+                'default_pipeline' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => $company->id,
+            ]
+        );
+        $unitHead->assignRole($unitHeadRole);
+
 
         // accountant
         $accountantRole       = Role::create(
@@ -3798,7 +3947,7 @@ class UsersTableSeeder extends Seeder
 
         $accountant = User::create(
             [
-                'name' => 'accountant',
+                'name' => 'Accountant/ Bursar',
                 'email' => 'accountant@example.com',
                 'password' => Hash::make('1234'),
                 'type' => 'accountant',
@@ -3830,6 +3979,9 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $clientPermission = [
+            ['name' => 'manage user'],
+            ['name' => 'manage role'],
+            ['name' => 'manage client'],
             ['name' => 'manage client dashboard'],
             ['name' => 'manage bug report'],
             ['name' => 'create bug report'],
@@ -3864,8 +4016,8 @@ class UsersTableSeeder extends Seeder
 
         $client = User::create(
             [
-                'name' => 'client',
-                'email' => 'client@example.com',
+                'name' => 'HRM/Registra',
+                'email' => 'hrm@example.com',
                 'password' => Hash::make('1234'),
                 'type' => 'client',
                 'default_pipeline' => 1,

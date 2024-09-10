@@ -13,7 +13,7 @@
         </div>
     @endif
     {{-- end for ai module--}}
-    @if(\Auth::user()->type =='company' || \Auth::user()->type =='HR')
+    @if(\Auth::user()->type =='super admin' || \Auth::user()->type =='HR')
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">

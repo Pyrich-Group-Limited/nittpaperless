@@ -523,7 +523,7 @@ class JobApplicationController extends Controller
             return redirect()->back()->withInput()->with('error', $messages->first());
         }
         $objUser = \Auth::user();
-        $employees        = User::where('type','!=','client')->where('type','!=','company')->where('created_by',\Auth::user()->creatorId())->get();
+        $employees        = User::where('type','!=','client')->where('type','!=','super admin')->where('created_by',\Auth::user()->creatorId())->get();
 
         $total_employee = $employees->count();
         $user = User::create(

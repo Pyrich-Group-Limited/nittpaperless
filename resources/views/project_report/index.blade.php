@@ -30,7 +30,7 @@
 @endpush
 
 @section('content')
-    @if(Auth::user()->type == 'company')
+    @if(Auth::user()->type == 'super admin')
         <div class="row">
             <div class="col-sm-12">
                 <div class="mt-2 " >

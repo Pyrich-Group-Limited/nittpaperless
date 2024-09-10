@@ -13,7 +13,7 @@
         <a href="{{ route('contract.grid') }}"  data-bs-toggle="tooltip" title="{{__('Grid View')}}" class="btn btn-sm btn-primary">
             <i class="ti ti-layout-grid"></i>
         </a>
-        @if(\Auth::user()->type == 'company')
+        @if(\Auth::user()->type == 'super admin')
             <a href="#" data-size="md" data-url="{{ route('contract.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create New Contract')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-plus"></i>
             </a>
@@ -67,7 +67,7 @@
                                     {{--                                    </td>--}}
 
                                     <td class="action ">
-                                        @if(\Auth::user()->type=='company')
+                                        @if(\Auth::user()->type=='super admin')
                                             @if($contract->status=='accept')
                                                 <div class="action-btn bg-primary ms-2">
                                                     <a href="#" data-size="lg"

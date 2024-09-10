@@ -112,7 +112,7 @@
                             </a>
                         @endforeach
                         <h></h>
-                            @if(\Auth::user()->type=='company')
+                            @if(\Auth::user()->type=='super admin')
                             <a  data-url="{{ route('create.language') }}" class="dropdown-item text-primary"  data-ajax-popup="true" data-title="{{__('Create New Language')}}">
                                 {{ __('Create Language') }}
                             </a>

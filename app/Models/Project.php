@@ -389,7 +389,7 @@ class Project extends Model
     {
 
         $projectData = [];
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $on_going  = Project::where('status', '=', 'in_progress')->where('created_by', '=', \Auth::user()->id)->count();
             $on_hold   = Project::where('status', '=', 'on_hold')->where('created_by', '=', \Auth::user()->id)->count();

@@ -28,7 +28,7 @@
                         <table class="table datatable">
                             <thead>
                             <tr>
-                                @role('company')
+                                @role('super admin')
                                 <th>{{__('Employee Name')}}</th>
                                 @endrole
                                 <th>{{__('Branch')}}</th>
@@ -43,7 +43,7 @@
                             <tbody class="font-style">
                             @foreach ($transfers as $transfer)
                                 <tr>
-                                    @role('company')
+                                    @role('super admin')
                                     <td>{{ !empty($transfer->employee())?$transfer->employee()->name:'' }}</td>
                                     @endrole
                                     <td>{{ !empty($transfer->branch())?$transfer->branch()->name:'' }}</td>

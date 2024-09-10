@@ -19,7 +19,7 @@ class Activity extends Model
                 $result =['name' => $contact->name];
             }
         }
-        elseif($module_type=='company')
+        elseif($module_type=='super admin')
         {
             $company= Company::where('id',$module_id)->orderBy('id','desc')->first();
             if($company)
