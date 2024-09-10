@@ -23,7 +23,7 @@ class ContractController extends Controller
         if(\Auth::user()->can('manage contract'))
         {
 
-            if(\Auth::user()->type=='company')
+            if(\Auth::user()->type=='super admin')
             {
 
                 $contracts   = Contract::where('created_by', '=', \Auth::user()->creatorId())->get();
@@ -293,9 +293,9 @@ class ContractController extends Controller
 
     public function grid()
     {
-        if(\Auth::user()->type == 'company' || \Auth::user()->type == 'client')
+        if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'client')
         {
-            if(\Auth::user()->type == 'company')
+            if(\Auth::user()->type == 'super admin')
             {
                 $contracts = Contract::where('created_by', '=', \Auth::user()->creatorId())->get();
             }
@@ -321,7 +321,7 @@ class ContractController extends Controller
     public function fileUpload($id, Request $request)
     {
 
-        if(\Auth::user()->type == 'company' || \Auth::user()->type == 'client' )
+        if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'client' )
         {
             $contract = Contract::find($id);
             $request->validate(['file' => 'required']);
@@ -379,7 +379,7 @@ class ContractController extends Controller
     {
 
         $contract        =Contract::find($id);
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $file = Contract_attachment::find($file_id);
             if($file)
@@ -455,7 +455,7 @@ class ContractController extends Controller
 
     public function contract_descriptionStore($id, Request $request)
     {
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $contract        =Contract::find($id);
             if($contract->created_by == \Auth::user()->creatorId())
@@ -583,7 +583,7 @@ class ContractController extends Controller
     public function copycontractstore(Request $request)
     {
 
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $rules = [
                 'client' => 'required',
@@ -698,7 +698,7 @@ class ContractController extends Controller
     {
         $contract              = Contract::find($request->contract_id);
 
-        if(\Auth::user()->type == 'company'){
+        if(\Auth::user()->type == 'super admin'){
             $contract->company_signature       = $request->company_signature;
         }
         if(\Auth::user()->type == 'client'){

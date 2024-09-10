@@ -41,7 +41,7 @@ $SITE_RTL = !empty($settings['SITE_RTL'] ) ? $settings['SITE_RTL']  : 'off';
     <div class="row justify-content-center mb-3">
         <div class="col-sm-9 text-end me-2">
             <div class="all-button-box ">
-            @if(((\Auth::user()->type =='company') && ($contract->company_signature == '')||(\Auth::user()->type =='client') && ($contract->client_signature == ''))&&$contract->status == 'Start')
+            @if(((\Auth::user()->type =='super admin') && ($contract->company_signature == '')||(\Auth::user()->type =='client') && ($contract->client_signature == ''))&&$contract->status == 'Start')
                     <a href="#" class="btn btn-sm btn-primary btn-icon m-" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" data-size="md" data-url="{{ route('signature',$contract->id) }}"
                         data-bs-whatever="{{__('signature')}}" > <span class="text-white"> <i

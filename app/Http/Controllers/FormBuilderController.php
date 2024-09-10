@@ -509,7 +509,7 @@ class FormBuilderController extends Controller
     public function formFieldBind($form_id)
     {
         $usr = \Auth::user();
-        if($usr->type == 'company')
+        if($usr->type == 'super admin')
         {
             $form = FormBuilder::find($form_id);
 
@@ -543,7 +543,7 @@ class FormBuilderController extends Controller
     {
 
         $usr = Auth::user();
-        if($usr->type == 'company')
+        if($usr->type == 'super admin')
         {
             $form                 = FormBuilder::find($id);
             $form->is_lead_active = $request->is_lead_active;

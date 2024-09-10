@@ -246,7 +246,7 @@
             <i class="ti ti-eye text-white" data-bs-toggle="tooltip" data-bs-original-title="{{ __('PreView') }}"> </i>
         </a>
 
-        @if((\Auth::user()->type=='company'))
+        @if((\Auth::user()->type=='super admin'))
             <a href="{{route('send.mail.contract',$contract->id)}}" class="btn btn-sm btn-primary btn-icon m-1" data-bs-toggle="tooltip" data-bs-original-title="{{__('Send Email')}}"  >
                 <i class="ti ti-mail text-white"></i>
             </a>
@@ -257,7 +257,7 @@
 
         @endif
 
-        @if((\Auth::user()->type=='company'))
+        @if((\Auth::user()->type=='super admin'))
             <a href="#" class="btn btn-sm btn-primary btn-icon m-1" data-size="lg" data-url="{{ route('signature',$contract->id) }}"
                data-ajax-popup="true" data-bs-toggle="tooltip" data-title="{{__('Add signature')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-pencil text-white"></i>
@@ -406,7 +406,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            @if(\Auth::user()->type=='company')
+                            @if(\Auth::user()->type=='super admin')
                                 <div class="col-md-12 dropzone top-5-scroll browse-file" id="dropzonewidget"></div>
 
                             @elseif(\Auth::user()->type == 'client' && $contract->status=='accept' )
@@ -438,7 +438,7 @@
                                                     </a>
                                                 </div>
 
-                                                @if ((\Auth::user()->type == 'company' && $contract->status == 'accept') || \Auth::user()->id == $file->user_id)
+                                                @if ((\Auth::user()->type == 'super admin' && $contract->status == 'accept') || \Auth::user()->id == $file->user_id)
 
                                                     <div class="col-auto actions">
                                                         <div class="action-btn bg-danger ">
@@ -468,7 +468,7 @@
                         <h5 class="mb-0">{{ __('Comments') }}</h5>
                     </div>
                     <div class="card-body">
-                        @if(\Auth::user()->type == 'company')
+                        @if(\Auth::user()->type == 'super admin')
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
                                     <form method="post" class="card-comment-box" id="form-comment" data-action="{{route('comment.store', [$contract->id])}}">
@@ -508,7 +508,7 @@
                                             <small class="d-block">{{$comment->created_at->diffForHumans()}}</small>
                                         </div>
 
-                                        @if ((\Auth::user()->type == 'company' && $contract->status == 'accept') || \Auth::user()->id == $comment->user_id)
+                                        @if ((\Auth::user()->type == 'super admin' && $contract->status == 'accept') || \Auth::user()->id == $comment->user_id)
                                             <div class="col-auto actions">
                                                 <div class="action-btn bg-danger ms-2">
                                                     {!! Form::open(['method' => 'DELETE', 'route' => ['comment_store.destroy',  $comment->id]]) !!}
@@ -548,7 +548,7 @@
                     </div>
 
                     <div class="card-body">
-                        @if(\Auth::user()->type == 'company')
+                        @if(\Auth::user()->type == 'super admin')
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
                                     {{ Form::open(['route' => ['note_store.store', $contract->id]]) }}
@@ -596,7 +596,7 @@
                                             <small class="d-block">{{$note->created_at->diffForHumans()}}</small>
                                         </div>
 
-                                        @if ((\Auth::user()->type == 'company' && $contract->status == 'accept') || \Auth::user()->id == $note->user_id)
+                                        @if ((\Auth::user()->type == 'super admin' && $contract->status == 'accept') || \Auth::user()->id == $note->user_id)
 
                                             <div class="col-auto actions">
                                                 <div class="action-btn bg-danger ms-2">

@@ -71,7 +71,7 @@ class IndicatorController extends Controller
 
             $indicator->rating      = json_encode($request->rating, true);
 
-            if(\Auth::user()->type == 'company')
+            if(\Auth::user()->type == 'super admin')
             {
                 $indicator->created_user = \Auth::user()->creatorId();
             }

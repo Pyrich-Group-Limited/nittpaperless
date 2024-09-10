@@ -27,7 +27,7 @@ class AttendanceEmployeeController extends Controller
             $department = Department::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
             $department->prepend('Select Department', '');
 
-            if(\Auth::user()->type != 'client' && \Auth::user()->type != 'company')
+            if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin')
             {
                 $emp = !empty(\Auth::user()->employee) ? \Auth::user()->employee->id : 0;
 
@@ -254,7 +254,7 @@ class AttendanceEmployeeController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (\Auth::user()->type == 'company' || \Auth::user()->type == 'HR') {
+        if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'HR') {
             $employeeId      = AttendanceEmployee::where('employee_id', $request->employee_id)->first();
             $check = AttendanceEmployee::where('employee_id', '=', $request->employee_id)->where('date', $request->date)->first();
             // dd($check->date);

@@ -16,7 +16,7 @@ class SupportController extends Controller
 {
     public function index()
     {
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $supports = Support::where('created_by', \Auth::user()->creatorId())->get();
             $countTicket      = Support::where('created_by', '=', \Auth::user()->creatorId())->count();
@@ -289,7 +289,7 @@ class SupportController extends Controller
     public function grid()
     {
 
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $supports = Support::where('created_by', \Auth::user()->creatorId())->get();
 

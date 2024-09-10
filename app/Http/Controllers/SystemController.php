@@ -1413,7 +1413,7 @@ class SystemController extends Controller
 
     public function savePusherSettings(Request $request)
     {
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $request->validate(
                 [
@@ -2229,7 +2229,7 @@ class SystemController extends Controller
 
     public function updateIp(Request $request, $id)
     {
-        if (\Auth::user()->type == 'company' || \Auth::user()->type == 'super admin') {
+        if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'super admin') {
             $validator = \Validator::make(
                 $request->all(),
                 [
@@ -2254,7 +2254,7 @@ class SystemController extends Controller
 
     public function destroyIp($id)
     {
-        if (\Auth::user()->type == 'company' || \Auth::user()->type == 'super admin') {
+        if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'super admin') {
             $ip = IpRestrict::find($id);
             $ip->delete();
 

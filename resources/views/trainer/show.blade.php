@@ -4,7 +4,7 @@
             <table class="footable-details table table-striped table-hover toggle-circle">
                 <tbody>
                 <tr>
-                    <td class="text-dark">{{__('Company')}}</td>
+                    <td class="text-dark">{{__('super admin')}}</td>
                     <td style="display: table-cell;"> {{ !empty($trainer->branches)?$trainer->branches->name:'' }}</td>
                 </tr>
                 <tr>

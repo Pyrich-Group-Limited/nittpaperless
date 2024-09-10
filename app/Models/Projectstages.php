@@ -17,7 +17,7 @@ class Projectstages extends Model
 
     public function tasks($project_id)
     {
-        if(\Auth::user()->type == 'client' || \Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'client' || \Auth::user()->type == 'super admin')
         {
             return Task::where('stage', '=', $this->id)->where('project_id', '=', $project_id)->orderBy('order')->get();
         }
@@ -48,7 +48,7 @@ class Projectstages extends Model
         $arrTask = [];
 
         $i = 0;
-        if($usr->type == 'company')
+        if($usr->type == 'super admin')
         {
             foreach($stages as $key => $stage)
             {

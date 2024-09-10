@@ -321,7 +321,7 @@
                                                     <a class="dash-link" href="{{ route('time.tracker') }}">{{__('Tracker')}}</a>
                                                 </li>
                                             @endif
-                                                @if (\Auth::user()->type == 'company')
+                                                @if (\Auth::user()->type == 'super admin')
                                                     <li class="dash-item  {{(Request::route()->getName() == 'project_report.index' || Request::route()->getName() == 'project_report.show') ? 'active' : ''}}">
                                                         <a class="dash-link" href="{{route('project_report.index') }}">{{__('Project Report')}}</a>
                                                     </li>
@@ -551,7 +551,7 @@
                                     @endcan
 
 
-                                    @if (\Auth::user()->type == 'company' || \Auth::user()->type == 'HR')
+                                    @if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'HR')
                                     <li class="dash-item {{ (Request::segment(1) == 'leavetype' || Request::segment(1) == 'document' || Request::segment(1) == 'performanceType' || Request::segment(1) == 'branch' || Request::segment(1) == 'department'
                                                               || Request::segment(1) == 'designation' || Request::segment(1) == 'job-stage'|| Request::segment(1) == 'performanceType'  || Request::segment(1) == 'job-category' || Request::segment(1) == 'terminationtype' ||
                                                                Request::segment(1) == 'awardtype' || Request::segment(1) == 'trainingtype' || Request::segment(1) == 'goaltype' || Request::segment(1) == 'paysliptype' ||
@@ -670,7 +670,7 @@
                                                 </ul>
                                             </li>
                                         @endif
-                                        @if(\Auth::user()->type =='company')
+                                        @if(\Auth::user()->type =='super admin')
                                             <li class="dash-item {{ (Request::segment(1) == 'budget')?'active':''}}">
                                                 <a class="dash-link" href="{{ route('budget.index') }}">{{__('Budget Planner')}}</a>
                                             </li>
@@ -725,7 +725,7 @@
                                             <a class="dash-link" href="{{route('form_builder.index')}}">{{__('Form Builder')}}</a>
                                         </li>
                                     @endcan
-                                    @if(\Auth::user()->type=='company' || \Auth::user()->type=='client')
+                                    @if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client')
                                         <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
                                             <a class="dash-link" href="{{route('contract.index')}}">{{__('Contract')}}</a>
                                         </li>
@@ -785,7 +785,7 @@
                                             <a class="dash-link" href="{{ route('time.tracker') }}">{{__('Tracker')}}</a>
                                         </li>
                                     @endif
-                                        @if (\Auth::user()->type == 'company')
+                                        @if (\Auth::user()->type == 'super admin')
                                             <li class="dash-item  {{(Request::route()->getName() == 'project_report.index' || Request::route()->getName() == 'project_report.show') ? 'active' : ''}}">
                                                 <a class="dash-link" href="{{route('project_report.index') }}">{{__('Project Report')}}</a>
                                             </li>
@@ -943,7 +943,7 @@
                             </a>
                         </li>
 
-                        @if(\Auth::user()->type =='company')
+                        @if(\Auth::user()->type =='super admin')
                             {{-- <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'notification-templates')?'active':''}}">
                                 <a href="{{route('notification_templates.index')}}" class="dash-link">
                                     <span class="dash-micon"><i class="ti ti-notification"></i></span><span class="dash-mtext">{{__('Notification Template')}}</span>

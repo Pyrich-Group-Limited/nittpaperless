@@ -33,8 +33,8 @@
                 </small>
                 @enderror
             </div>
-        @elseif(\Auth::user()->type == 'company')
-            {!! Form::hidden('role', 'company', null,array('class' => 'form-control select2','required'=>'required')) !!}
+        @elseif(\Auth::user()->type == 'super admin')
+            {!! Form::hidden('role', 'super admin', null,array('class' => 'form-control select2','required'=>'required')) !!}
         @endif
         <div class="col-md-6">
             <div class="form-group">

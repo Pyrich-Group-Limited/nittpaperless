@@ -143,7 +143,7 @@ class  UserController extends Controller
 
         if(\Auth::user()->can('edit user'))
         {
-            if(\Auth::user()->type == 'company')
+            if(\Auth::user()->type == 'super admin')
             {
                 $user = User::findOrFail($id);
                 $validator = \Validator::make(
@@ -213,7 +213,7 @@ class  UserController extends Controller
             $user = User::find($id);
             if($user)
             {
-                if(\Auth::user()->type == 'company')
+                if(\Auth::user()->type == 'super admin')
                 {
                     if($user->delete_status == 0)
                     {
@@ -225,7 +225,7 @@ class  UserController extends Controller
                     }
                     $user->save();
                 }
-                if(\Auth::user()->type == 'company')
+                if(\Auth::user()->type == 'super admin')
                 {
                     $employee = Employee::where(['user_id' => $user->id])->delete();
                     if($employee){

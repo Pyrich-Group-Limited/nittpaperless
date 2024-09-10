@@ -65,7 +65,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-             'type' => 'company',
+             'type' => 'super admin',
              'default_pipeline' => 1,
               'plan' => 1,
               'lang' => Utility::getValByName('default_language'),
@@ -74,7 +74,7 @@ class RegisteredUserController extends Controller
         ]);
 
 
-        $role_r = Role::findByName('company');
+        $role_r = Role::findByName('super admin');
         $user->assignRole($role_r);
         Utility::chartOfAccountTypeData($user->id);
         Utility::chartOfAccountData($user);

@@ -42,7 +42,7 @@
                         <table class="table datatable">
                             <thead>
                             <tr>
-                                @role('company')
+                                @role('super admin')
                                 <th>{{__('Employee')}}</th>
                                 @endrole
                                 <th>{{__('Award Type')}}</th>
@@ -58,7 +58,7 @@
                             @foreach ($awards as $award)
                                 <tr>
 
-                                    @role('company')
+                                    @role('super admin')
                                     <td>{{!empty( $award->employee())? $award->employee()->name:'' }}</td>
                                     @endrole
                                     <td>{{ !empty($award->awardType())?$award->awardType()->name:'' }}</td>

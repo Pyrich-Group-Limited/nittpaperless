@@ -10,11 +10,11 @@ class LandingPageSectionController extends Controller
 
     public function index()
     {
-        
+
         if (!auth()->check()) {
             return redirect()->route('login');
         }
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $get_section = LandingPageSection::orderBy('section_order', 'ASC')->get();
 
@@ -27,7 +27,7 @@ class LandingPageSectionController extends Controller
     public function setConetent(Request $request)
     {
 
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $id                = $request->id;
             $section_type      = $request->section_type;
@@ -560,7 +560,7 @@ class LandingPageSectionController extends Controller
 
     public function removeSection($id)
     {
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $Landing_page_section     = LandingPageSection::findOrfail($id);
             $get_alredy_exist_section = LandingPageSection::where(['section_type' => $Landing_page_section->section_type])->whereNotIn('id', [$id])->get();
@@ -580,7 +580,7 @@ class LandingPageSectionController extends Controller
 
     public function setOrder(Request $request)
     {
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $element_array = $request->element_array;
             $order         = 1;
@@ -603,7 +603,7 @@ class LandingPageSectionController extends Controller
 
     public function copySection(Request $request)
     {
-        if(\Auth::user()->type == 'company')
+        if(\Auth::user()->type == 'super admin')
         {
             $id = $request->id;
 

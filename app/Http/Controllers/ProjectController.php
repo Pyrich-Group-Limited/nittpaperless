@@ -103,7 +103,7 @@ class ProjectController extends Controller
             $project['copylinksetting']   = '{"member":"on","milestone":"off","basic_details":"on","activity":"off","attachment":"on","bug_report":"on","task":"off","tracker_details":"off","timesheet":"off" ,"password_protected":"off"}';
 
             $project->save();
-            if(\Auth::user()->type=='company'){
+            if(\Auth::user()->type=='super admin'){
 
                 ProjectUser::create(
                     [
@@ -804,7 +804,7 @@ class ProjectController extends Controller
             if(!empty($project) && $project->created_by == Auth::user()->creatorId())
             {
 
-                if($user->type != 'company')
+                if($user->type != 'super admin')
                 {
                     if(\Auth::user()->type == 'client'){
                       $bugs = Bug::where('project_id',$project->id)->get();
@@ -813,7 +813,7 @@ class ProjectController extends Controller
                     }
                 }
 
-                if($user->type == 'company')
+                if($user->type == 'super admin')
                 {
                     $bugs = Bug::where('project_id', '=', $project_id)->get();
                 }
@@ -1027,12 +1027,12 @@ class ProjectController extends Controller
 
             if(!empty($project) && $project->created_by == $user->creatorId())
             {
-                if($user->type != 'company')
+                if($user->type != 'super admin')
                 {
                     $bugStatus = BugStatus::where('created_by', '=', Auth::user()->creatorId())->orderBy('order', 'ASC')->get();
                 }
 
-                if($user->type == 'company' || $user->type == 'client')
+                if($user->type == 'super admin' || $user->type == 'client')
                 {
                     $bugStatus = BugStatus::where('created_by', '=', Auth::user()->creatorId())->orderBy('order', 'ASC')->get();
                 }

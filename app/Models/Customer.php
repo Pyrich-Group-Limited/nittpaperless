@@ -57,7 +57,7 @@ class Customer extends Authenticatable
 
     public function creatorId()
     {
-        if($this->type == 'company' || $this->type == 'super admin')
+        if($this->type == 'super admin' || $this->type == 'super admin')
         {
             return $this->id;
         }

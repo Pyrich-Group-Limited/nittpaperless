@@ -492,7 +492,7 @@ class InvoiceController extends Controller
             {
                 return view('invoice.view', compact('invoice', 'customer', 'iteams', 'user'));
             }
-            elseif($user->type == 'company')
+            elseif($user->type == 'super admin')
             {
                 return view('invoice.customer_invoice', compact('invoice', 'customer', 'iteams', 'user'));
             }
