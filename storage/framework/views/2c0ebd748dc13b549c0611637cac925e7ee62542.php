@@ -1,22 +1,21 @@
-@extends('layouts.admin')
+<?php $__env->startSection('title'); ?>
+    <?php echo e(__('Dashboard')); ?>
 
-@section('title')
-    {{ __('Dashboard')}}
-@endsection
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('HRM')}}</li>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
+    <li class="breadcrumb-item"><?php echo e(__('HRM')); ?></li>
+<?php $__env->stopSection(); ?>
 
-@push('theme-script')
-    <script src="{{ asset('assets/js/plugins/apexcharts.min.js') }}"></script>
-@endpush
+<?php $__env->startPush('theme-script'); ?>
+    <script src="<?php echo e(asset('assets/js/plugins/apexcharts.min.js')); ?>"></script>
+<?php $__env->stopPush(); ?>
 
-@push('script-page')
+<?php $__env->startPush('script-page'); ?>
 
 
     <script>
-            @if($calenderTasks)
+            <?php if($calenderTasks): ?>
             (function () {
                 var etitle;
                 var etype;
@@ -28,7 +27,7 @@
                         right: 'dayGridMonth,timeGridWeek,timeGridDay'
                     },
                     themeSystem: 'bootstrap',
-                    initialDate: '{{ $transdate }}',
+                    initialDate: '<?php echo e($transdate); ?>',
                     slotDuration: '00:10:00',
                     navLinks: true,
                     droppable: true,
@@ -37,12 +36,12 @@
                     editable: true,
                     dayMaxEvents: true,
                     handleWindowResize: true,
-                    events:{!! json_encode($calenderTasks) !!},
+                    events:<?php echo json_encode($calenderTasks); ?>,
 
                 });
                 calendar.render();
             })();
-        @endif
+        <?php endif; ?>
 
         $(document).on('click', '.fc-day-grid-event', function (e) {
             if (!$(this).hasClass('deal')) {
@@ -76,7 +75,7 @@
 
         (function () {
             var chartBarOptions = {
-                series: {!! json_encode($taskData['dataset']) !!},
+                series: <?php echo json_encode($taskData['dataset']); ?>,
 
 
                 chart: {
@@ -107,9 +106,9 @@
                     align: 'left'
                 },
                 xaxis: {
-                    categories:{!! json_encode($taskData['label']) !!},
+                    categories:<?php echo json_encode($taskData['label']); ?>,
                     title: {
-                        text: "{{__('Days')}}"
+                        text: "<?php echo e(__('Days')); ?>"
                     }
                 },
                 colors: ['#6fd944', '#883617','#4e37b9','#8f841b'],
@@ -131,7 +130,7 @@
                 // },
                 yaxis: {
                     title: {
-                        text: "{{__('Amount')}}"
+                        text: "<?php echo e(__('Amount')); ?>"
                     },
 
                 }
@@ -159,9 +158,9 @@
                         }
                     }
                 },
-                series: {!! json_encode(array_values($projectData)) !!},
+                series: <?php echo json_encode(array_values($projectData)); ?>,
                 colors:["#bd9925", "#2f71bd", "#720d3a","#ef4917"],
-                labels:   {!! json_encode($project_status) !!},
+                labels:   <?php echo json_encode($project_status); ?>,
                 legend: {
                     show: true
                 }
@@ -170,10 +169,10 @@
             chart.render();
         })();
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@section('content')
-@php
+<?php $__env->startSection('content'); ?>
+<?php
 
   $project_task_percentage = $project['project_task_percentage'];
   $label='';
@@ -211,35 +210,35 @@
       } else {
         $label2='bg-success';
       }
-@endphp
+?>
 
     <div class="row">
-        @if(!empty($arrErr))
+        <?php if(!empty($arrErr)): ?>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                @if(!empty($arrErr['system']))
+                <?php if(!empty($arrErr['system'])): ?>
                     <div class="alert alert-danger text-xs">
-                         {{ __('are required in') }} <a href="{{ route('settings') }}" class=""><u> {{ __('System Setting') }}</u></a>
+                         <?php echo e(__('are required in')); ?> <a href="<?php echo e(route('settings')); ?>" class=""><u> <?php echo e(__('System Setting')); ?></u></a>
                     </div>
-                @endif
-                @if(!empty($arrErr['user']))
+                <?php endif; ?>
+                <?php if(!empty($arrErr['user'])): ?>
                     <div class="alert alert-danger text-xs">
-                         <a href="{{ route('users') }}" class=""><u>{{ __('here') }}</u></a>
+                         <a href="<?php echo e(route('users')); ?>" class=""><u><?php echo e(__('here')); ?></u></a>
                     </div>
-                @endif
-                @if(!empty($arrErr['role']))
+                <?php endif; ?>
+                <?php if(!empty($arrErr['role'])): ?>
                     <div class="alert alert-danger text-xs">
-                         <a href="{{ route('roles.index') }}" class=""><u>{{ __('here') }}</u></a>
+                         <a href="<?php echo e(route('roles.index')); ?>" class=""><u><?php echo e(__('here')); ?></u></a>
                     </div>
-                @endif
+                <?php endif; ?>
             </div>
-        @endif
+        <?php endif; ?>
     </div>
 
 <div class="col-sm-12">
     <div class="row">
         <div class="col-xxl-6">
             <div class="row">
-                @if(isset($arrCount['deal']))
+                <?php if(isset($arrCount['deal'])): ?>
                     <div class="col-lg-6 col-md-6">
                         <div class="card">
                             <div class="card-body">
@@ -250,20 +249,20 @@
                                                 <i class="ti ti-cast"></i>
                                             </div>
                                             <div class="ms-3">
-                                                <small class="text-muted">{{__('Total')}}</small>
-                                                <h6 class="m-0">{{__('Deal')}}</h6>
+                                                <small class="text-muted"><?php echo e(__('Total')); ?></small>
+                                                <h6 class="m-0"><?php echo e(__('Deal')); ?></h6>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-auto text-end">
-                                        <h5 class="m-0">{{ $arrCount['deal'] }}</h5>
+                                        <h5 class="m-0"><?php echo e($arrCount['deal']); ?></h5>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endif
-                @if(isset($arrCount['task']))
+                <?php endif; ?>
+                <?php if(isset($arrCount['task'])): ?>
                         <div class="col-lg-6 col-md-6">
                                         <div class="card">
                                             <div class="card-body">
@@ -274,24 +273,24 @@
                                                                 <i class="ti ti-list"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <small class="text-muted">{{__('Total')}}</small>
-                                                                <h6 class="m-0">{{__('Deal Task')}}</h6>
+                                                                <small class="text-muted"><?php echo e(__('Total')); ?></small>
+                                                                <h6 class="m-0"><?php echo e(__('Deal Task')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-auto text-end">
-                                                        <h5 class="m-0">{{ $arrCount['task'] }}</h5>
+                                                        <h5 class="m-0"><?php echo e($arrCount['task']); ?></h5>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                    @endif
+                    <?php endif; ?>
 
                 <div class="col-xxl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{ __('Calendar') }}</h5>
+                            <h5><?php echo e(__('Calendar')); ?></h5>
                         </div>
                         <div class="card-body">
                             <div id='calendar' class='calendar'></div>
@@ -309,10 +308,10 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="align-items-start">
                                             <div class="ms-2">
-                                                <p class="text-muted text-sm mb-0">{{__('Total Project')}}</p>
-                                                <h3 class="mb-0 text-warning">{{$project['project_percentage']}}%</h3>
+                                                <p class="text-muted text-sm mb-0"><?php echo e(__('Total Project')); ?></p>
+                                                <h3 class="mb-0 text-warning"><?php echo e($project['project_percentage']); ?>%</h3>
                                                 <div class="progress mb-0">
-                                                    <div class="progress-bar bg-{{$label1}}" style="width: {{$project['project_percentage']}}%;"></div>
+                                                    <div class="progress-bar bg-<?php echo e($label1); ?>" style="width: <?php echo e($project['project_percentage']); ?>%;"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -320,10 +319,10 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="align-items-start">
                                             <div class="ms-2">
-                                                <p class="text-muted text-sm mb-0">{{__('Total Project Tasks')}}</p>
-                                                <h3 class="mb-0 text-info">{{$project['projects_tasks_count']}}%</h3>
+                                                <p class="text-muted text-sm mb-0"><?php echo e(__('Total Project Tasks')); ?></p>
+                                                <h3 class="mb-0 text-info"><?php echo e($project['projects_tasks_count']); ?>%</h3>
                                                 <div class="progress mb-0">
-                                                    <div class="progress-bar bg-{{$label1}}" style="width: {{$project['project_task_percentage']}}%;"></div>
+                                                    <div class="progress-bar bg-<?php echo e($label1); ?>" style="width: <?php echo e($project['project_task_percentage']); ?>%;"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -333,10 +332,10 @@
 
                                             <div class="ms-2">
 
-                                                <p class="text-muted text-sm mb-0">{{__('Total Bugs')}}</p>
-                                                <h3 class="mb-0 text-danger">{{$project['projects_bugs_count']}}%</h3>
+                                                <p class="text-muted text-sm mb-0"><?php echo e(__('Total Bugs')); ?></p>
+                                                <h3 class="mb-0 text-danger"><?php echo e($project['projects_bugs_count']); ?>%</h3>
                                                 <div class="progress mb-0">
-                                                    <div class="progress-bar bg-{{$label1}}" style="width: {{$project['project_bug_percentage']}}%;"></div>
+                                                    <div class="progress-bar bg-<?php echo e($label1); ?>" style="width: <?php echo e($project['project_bug_percentage']); ?>%;"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -348,8 +347,8 @@
                 <div class="col-xxl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{__('Tasks Overview')}}</h5>
-                            <h6 class="last-day-text">{{__('Last 7 Days')}}</h6>
+                            <h5><?php echo e(__('Tasks Overview')); ?></h5>
+                            <h6 class="last-day-text"><?php echo e(__('Last 7 Days')); ?></h6>
                         </div>
                         <div class="card-body">
                             <div id="chart-sales" height="200" class="p-3"></div>
@@ -359,8 +358,9 @@
                 <div class="col-xxl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{__('Project Status')}}
-                                <span class="float-end text-muted">{{__('Year').' - '.$currentYear}}</span>
+                            <h5><?php echo e(__('Project Status')); ?>
+
+                                <span class="float-end text-muted"><?php echo e(__('Year').' - '.$currentYear); ?></span>
                             </h5>
 
                         </div>
@@ -374,25 +374,25 @@
     </div>
 
     <div class="row">
-        <div class="{{ (Auth::user()->type =='super admin' || Auth::user()->type =='client') ? 'col-xl-6 col-lg-6 col-md-6' : 'col-xl-8 col-lg-8 col-md-8' }} col-sm-12">
+        <div class="<?php echo e((Auth::user()->type =='super admin' || Auth::user()->type =='client') ? 'col-xl-6 col-lg-6 col-md-6' : 'col-xl-8 col-lg-8 col-md-8'); ?> col-sm-12">
             <div class="card bg-none min-410 mx-410">
                 <div class="card-header">
-                    <h5>{{ __('Top Due Project') }}</h5>
+                    <h5><?php echo e(__('Top Due Project')); ?></h5>
                 </div>
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
                     <table class="table align-items-center mb-0">
                         <thead>
                         <tr>
-                            <th>{{__('Task Name')}}</th>
-                            <th>{{__('Remain Task')}}</th>
-                            <th>{{__('Due Date')}}</th>
-                            <th>{{__('Action')}}</th>
+                            <th><?php echo e(__('Task Name')); ?></th>
+                            <th><?php echo e(__('Remain Task')); ?></th>
+                            <th><?php echo e(__('Due Date')); ?></th>
+                            <th><?php echo e(__('Action')); ?></th>
                         </tr>
                         </thead>
                         <tbody class="list">
-                        @forelse($project['projects'] as $project)
-                            @php
+                        <?php $__empty_1 = true; $__currentLoopData = $project['projects']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <?php
                                 $datetime1 = new DateTime($project->due_date);
                                 $datetime2 = new DateTime(date('Y-m-d'));
                                 $interval = $datetime1->diff($datetime2);
@@ -402,24 +402,25 @@
                                 $total_task = $project->project_total_task($project->id);
                                 $completed_task=$project->project_complete_task($project->id,$project_last_stage);
                                 $remain_task=$total_task-$completed_task;
-                            @endphp
+                            ?>
                             <tr>
                                 <td class="id-web">
-                                    {{$project->project_name}}
+                                    <?php echo e($project->project_name); ?>
+
                                 </td>
-                                <td>{{$remain_task }}</td>
-                                <td>{{ Auth::user()->dateFormat($project->end_date) }}</td>
+                                <td><?php echo e($remain_task); ?></td>
+                                <td><?php echo e(Auth::user()->dateFormat($project->end_date)); ?></td>
                                 <td>
                                     <div class="action-btn bg-primary ms-2">
-                                        <a href="{{ route('projects.show',$project->id) }}" class="mx-3 btn btn-sm align-items-center"><i class="ti ti-eye text-white"></i></a>
+                                        <a href="<?php echo e(route('projects.show',$project->id)); ?>" class="mx-3 btn btn-sm align-items-center"><i class="ti ti-eye text-white"></i></a>
                                     </div>
                                 </td>
                             </tr>
-                        @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <tr class="text-center">
-                                <td colspan="4">{{__('No Data Found.!')}}</td>
+                                <td colspan="4"><?php echo e(__('No Data Found.!')); ?></td>
                             </tr>
-                        @endforelse
+                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -429,55 +430,57 @@
         <div class="col-xxl-6">
             <div class="card bg-none min-410 mx-410">
                 <div class="card-header">
-                    <h5>{{ __('Top Due Task') }}</h5>
+                    <h5><?php echo e(__('Top Due Task')); ?></h5>
                 </div>
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
                     <table class="table align-items-center mb-0">
                         <thead>
                         <tr>
-                            <th>{{__('Task Name')}}</th>
-                            <th>{{__('Assign To')}}</th>
-                            <th>{{__('Task Stage')}}</th>
+                            <th><?php echo e(__('Task Name')); ?></th>
+                            <th><?php echo e(__('Assign To')); ?></th>
+                            <th><?php echo e(__('Task Stage')); ?></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($top_tasks as $top_task)
+                        <?php $__empty_1 = true; $__currentLoopData = $top_tasks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $top_task): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <tr>
                                 <td class="id-web">
-                                    {{$top_task->name}}
+                                    <?php echo e($top_task->name); ?>
+
                                 </td>
                                 <td>
                                     <div class="avatar-group">
-                                        @if($top_task->users()->count() > 0)
-                                            @if($users = $top_task->users())
-                                                @foreach($users as $key => $user)
-                                                    @if($key<3)
+                                        <?php if($top_task->users()->count() > 0): ?>
+                                            <?php if($users = $top_task->users()): ?>
+                                                <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if($key<3): ?>
                                                         <a href="#" class="avatar rounded-circle avatar-sm">
-                                                            <img data-original-title="{{(!empty($user)?$user->name:'')}}" @if($user->avatar) src="{{asset('/storage/uploads/avatar/'.$user->avatar)}}" @else src="{{asset('assets/img/avatar/avatar-1.png')}}" @endif title="{{ $user->name }}" class="hweb">
+                                                            <img data-original-title="<?php echo e((!empty($user)?$user->name:'')); ?>" <?php if($user->avatar): ?> src="<?php echo e(asset('/storage/uploads/avatar/'.$user->avatar)); ?>" <?php else: ?> src="<?php echo e(asset('assets/img/avatar/avatar-1.png')); ?>" <?php endif; ?> title="<?php echo e($user->name); ?>" class="hweb">
                                                         </a>
-                                                    @else
-                                                        @break
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                            @if(count($users) > 3)
+                                                    <?php else: ?>
+                                                        <?php break; ?>
+                                                    <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php endif; ?>
+                                            <?php if(count($users) > 3): ?>
                                                 <a href="#" class="avatar rounded-circle avatar-sm">
-                                                    <img  data-original-title="{{(!empty($user)?$user->name:'')}}" @if($user->avatar) src="{{asset('/storage/uploads/avatar/'.$user->avatar)}}" @else src="{{asset('assets/img/avatar/avatar-1.png')}}" @endif class="hweb">
+                                                    <img  data-original-title="<?php echo e((!empty($user)?$user->name:'')); ?>" <?php if($user->avatar): ?> src="<?php echo e(asset('/storage/uploads/avatar/'.$user->avatar)); ?>" <?php else: ?> src="<?php echo e(asset('assets/img/avatar/avatar-1.png')); ?>" <?php endif; ?> class="hweb">
                                                 </a>
-                                            @endif
-                                        @else
-                                            {{ __('-') }}
-                                        @endif
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <?php echo e(__('-')); ?>
+
+                                        <?php endif; ?>
                                     </div>
                                 </td>
-                                <td><span class="p-2 px-3 rounded badge bg-">{{ $top_task->stage->name }}</span></td>
+                                <td><span class="p-2 px-3 rounded badge bg-"><?php echo e($top_task->stage->name); ?></span></td>
                             </tr>
-                        @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <tr class="text-center">
-                                <td colspan="4">{{__('No Data Found.!')}}</td>
+                                <td colspan="4"><?php echo e(__('No Data Found.!')); ?></td>
                             </tr>
-                        @endforelse
+                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -487,4 +490,6 @@
     </div>
 
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp-server\htdocs\e-NITT\resources\views/dashboard/clientView.blade.php ENDPATH**/ ?>

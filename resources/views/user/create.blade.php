@@ -23,7 +23,7 @@
                 @enderror
             </div>
         </div>
-        @if(\Auth::user()->type != 'super admin')
+        @if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'hrm')
             <div class="form-group col-md-6">
                 {{ Form::label('role', __('User Role'),['class'=>'form-label']) }}
                 {!! Form::select('role', $roles, null,array('class' => 'form-control select','required'=>'required')) !!}
@@ -33,7 +33,7 @@
                 </small>
                 @enderror
             </div>
-        @elseif(\Auth::user()->type == 'super admin')
+        @else
             {!! Form::hidden('role', 'super admin', null,array('class' => 'form-control select2','required'=>'required')) !!}
         @endif
         <div class="col-md-6">
