@@ -69,7 +69,17 @@ class DashboardController extends Controller
      }
 
      public function liason_dashboard(){
-        return view('dashboard.liason-dashboard');
+
+        $pos_data=[];
+                $pos_data['monthlyPosAmount'] = Pos::totalPosAmount(true);
+                $pos_data['totalPosAmount'] = Pos::totalPosAmount();
+                $pos_data['monthlyPurchaseAmount'] = Purchase::totalPurchaseAmount(true);
+                $pos_data['totalPurchaseAmount'] = Purchase::totalPurchaseAmount();
+
+                $purchasesArray = Purchase::getPurchaseReportChart();
+                $posesArray = Pos::getPosReportChart();
+
+        return view('dashboard.liason-dashboard',compact('pos_data','purchasesArray','posesArray'));
      }
 
      public function user_dashboard(){
