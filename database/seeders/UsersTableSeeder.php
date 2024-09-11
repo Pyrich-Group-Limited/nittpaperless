@@ -3821,6 +3821,11 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
+            ['name' => 'manage purchase'],
+            ['name' => 'manage pos'],
+            ['name' => 'manage warehouse'],
+            ['name' => 'create barcode'],
+            ['name' => 'manage pos'],
             ['name' => 'show account dashboard'],
             ['name' => 'manage expense'],
             ['name' => 'create expense'],

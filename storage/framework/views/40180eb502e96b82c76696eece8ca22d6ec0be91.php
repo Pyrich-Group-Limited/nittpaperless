@@ -694,4 +694,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\e-NITT-2\Modules/LandingPage\Resources/views/layouts/landingpage.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp-server\htdocs\e-NITT\Modules/LandingPage\Resources/views/layouts/landingpage.blade.php ENDPATH**/ ?>

@@ -217,4 +217,4 @@ Zaria, Nigeria
 <?php endif; ?>
 </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\e-NITT-2\resources\views/layouts/auth.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp-server\htdocs\e-NITT\resources\views/layouts/auth.blade.php ENDPATH**/ ?>

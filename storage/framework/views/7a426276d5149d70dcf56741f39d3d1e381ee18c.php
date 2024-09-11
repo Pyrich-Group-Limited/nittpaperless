@@ -160,4 +160,4 @@
 
             });
 </script>
-<?php /**PATH C:\xampp\htdocs\e-NITT-2\resources\views/layouts/cookie_consent.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp-server\htdocs\e-NITT\resources\views/layouts/cookie_consent.blade.php ENDPATH**/ ?>

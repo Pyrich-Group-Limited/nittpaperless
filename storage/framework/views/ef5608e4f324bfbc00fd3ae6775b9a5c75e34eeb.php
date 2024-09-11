@@ -1,3 +1,4 @@
+
 <?php
     $logo=asset(Storage::url('uploads/logo/'));
     $company_logo=Utility::getValByName('company_logo');
@@ -121,4 +122,4 @@ unset($__errorArgs, $__bag); ?>
 </script>
 
 
-<?php echo $__env->make('layouts.auth', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\e-NITT-2\resources\views/auth/login.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.auth', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp-server\htdocs\e-NITT\resources\views/auth/login.blade.php ENDPATH**/ ?>
