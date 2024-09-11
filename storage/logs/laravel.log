@@ -7614,7 +7614,7 @@ Did you mean this?
 #58 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #59 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #60 {main}
-"} 
+"}
 [2024-09-11 06:18:29] local.ERROR: Undefined variable $supports {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\dashboard\\account-dashboard.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-2017993500 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2920</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -7956,7 +7956,7 @@ Did you mean this?
 #58 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #59 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #60 {main}
-"} 
+"}
 [2024-09-11 06:51:27] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -7982,7 +7982,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:31] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -8008,7 +8008,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:37] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -8034,7 +8034,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:39] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -8060,7 +8060,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:41] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -8086,7 +8086,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:43] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -8112,7 +8112,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:44] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -8138,7 +8138,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:45] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -8164,7 +8164,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:47] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -8190,7 +8190,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:48] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -8216,7 +8216,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:51] local.ERROR: Class "Account" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"Account\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('Account')
@@ -8242,7 +8242,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:55] local.ERROR: Class "Accountand" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"Accountand\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('Accountand')
@@ -8268,7 +8268,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:56] local.ERROR: Class "Accountant" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"Accountant\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('Accountant')
@@ -8294,7 +8294,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:51:57] local.ERROR: Class "Accountant" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"Accountant\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('Accountant')
@@ -8320,7 +8320,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:52:00] local.ERROR: Class "AccountantDash" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDash\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDash')
@@ -8346,7 +8346,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:52:04] local.ERROR: Class "AccountantDashContr" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDashContr\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDashC...')
@@ -8372,7 +8372,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:52:08] local.ERROR: syntax error, unexpected token "@", expecting "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"@\", expecting \"]\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(503): Illuminate\\Routing\\RouteFileRegistrar->register('C:\\\\xampp\\\\htdocs...')
@@ -8402,7 +8402,7 @@ Did you mean this?
 #24 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #25 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #26 {main}
-"} 
+"}
 [2024-09-11 06:52:10] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8433,7 +8433,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:16] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8464,7 +8464,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:20] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8495,7 +8495,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:20] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8526,7 +8526,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:22] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8557,7 +8557,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:27] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8588,7 +8588,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:28] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8619,7 +8619,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:29] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8650,7 +8650,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:31] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8681,7 +8681,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:34] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8712,7 +8712,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:34] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8743,7 +8743,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:35] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8774,7 +8774,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:40] local.ERROR: Undefined constant "AccountantDashControl" {"exception":"[object] (Error(code: 0): Undefined constant \"AccountantDashControl\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:293)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require()
@@ -8805,7 +8805,7 @@ Did you mean this?
 #25 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #26 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
-"} 
+"}
 [2024-09-11 06:52:48] local.ERROR: Class "AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDashC...')
@@ -8831,7 +8831,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:52:54] local.ERROR: Class "AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDashC...')
@@ -8857,7 +8857,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:52:55] local.ERROR: Class "AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDashC...')
@@ -8883,7 +8883,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:52:56] local.ERROR: Class "AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDashC...')
@@ -8909,7 +8909,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:52:57] local.ERROR: Class "AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDashC...')
@@ -8935,7 +8935,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:01] local.ERROR: Class "AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDashC...')
@@ -8961,7 +8961,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:02] local.ERROR: Class "AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDashC...')
@@ -8987,7 +8987,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:04] local.ERROR: Class "AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDashC...')
@@ -9013,7 +9013,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:05] local.ERROR: Class "AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('AccountantDashC...')
@@ -9039,7 +9039,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:16] local.ERROR: syntax error, unexpected identifier "Route", expecting "," or ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"Route\", expecting \",\" or \";\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:160)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(503): Illuminate\\Routing\\RouteFileRegistrar->register('C:\\\\xampp\\\\htdocs...')
@@ -9069,7 +9069,7 @@ Did you mean this?
 #24 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #25 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #26 {main}
-"} 
+"}
 [2024-09-11 06:53:21] local.ERROR: syntax error, unexpected identifier "Route", expecting "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"Route\", expecting \"{\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:160)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(503): Illuminate\\Routing\\RouteFileRegistrar->register('C:\\\\xampp\\\\htdocs...')
@@ -9099,7 +9099,7 @@ Did you mean this?
 #24 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #25 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #26 {main}
-"} 
+"}
 [2024-09-11 06:53:21] local.ERROR: syntax error, unexpected identifier "Route", expecting "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"Route\", expecting \"{\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:160)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(503): Illuminate\\Routing\\RouteFileRegistrar->register('C:\\\\xampp\\\\htdocs...')
@@ -9129,7 +9129,7 @@ Did you mean this?
 #24 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #25 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #26 {main}
-"} 
+"}
 [2024-09-11 06:53:21] local.ERROR: syntax error, unexpected identifier "Route", expecting "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"Route\", expecting \"{\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:160)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(503): Illuminate\\Routing\\RouteFileRegistrar->register('C:\\\\xampp\\\\htdocs...')
@@ -9159,7 +9159,7 @@ Did you mean this?
 #24 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #25 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #26 {main}
-"} 
+"}
 [2024-09-11 06:53:25] local.ERROR: syntax error, unexpected identifier "Route", expecting "," or ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"Route\", expecting \",\" or \";\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:160)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(503): Illuminate\\Routing\\RouteFileRegistrar->register('C:\\\\xampp\\\\htdocs...')
@@ -9189,7 +9189,7 @@ Did you mean this?
 #24 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #25 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #26 {main}
-"} 
+"}
 [2024-09-11 06:53:27] local.ERROR: syntax error, unexpected identifier "Route", expecting "," or ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"Route\", expecting \",\" or \";\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:160)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(503): Illuminate\\Routing\\RouteFileRegistrar->register('C:\\\\xampp\\\\htdocs...')
@@ -9219,7 +9219,7 @@ Did you mean this?
 #24 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #25 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #26 {main}
-"} 
+"}
 [2024-09-11 06:53:32] local.ERROR: syntax error, unexpected identifier "Route", expecting "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"Route\", expecting \"{\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:160)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(503): Illuminate\\Routing\\RouteFileRegistrar->register('C:\\\\xampp\\\\htdocs...')
@@ -9249,7 +9249,7 @@ Did you mean this?
 #24 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #25 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #26 {main}
-"} 
+"}
 [2024-09-11 06:53:32] local.ERROR: syntax error, unexpected identifier "Route", expecting "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"Route\", expecting \"{\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:160)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(503): Illuminate\\Routing\\RouteFileRegistrar->register('C:\\\\xampp\\\\htdocs...')
@@ -9279,7 +9279,7 @@ Did you mean this?
 #24 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #25 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #26 {main}
-"} 
+"}
 [2024-09-11 06:53:33] local.ERROR: syntax error, unexpected identifier "Route", expecting "," or ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"Route\", expecting \",\" or \";\" at C:\\xampp\\htdocs\\e-NITT-2\\routes\\web.php:160)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(503): Illuminate\\Routing\\RouteFileRegistrar->register('C:\\\\xampp\\\\htdocs...')
@@ -9309,7 +9309,7 @@ Did you mean this?
 #24 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #25 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #26 {main}
-"} 
+"}
 [2024-09-11 06:53:35] local.ERROR: Class "App\Http\Cntrollers\Accountant\AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"App\\Http\\Cntrollers\\Accountant\\AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('App\\\\Http\\\\Cntrol...')
@@ -9335,7 +9335,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:36] local.ERROR: Class "App\Http\Cntrollers\Accountant\AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"App\\Http\\Cntrollers\\Accountant\\AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('App\\\\Http\\\\Cntrol...')
@@ -9361,7 +9361,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:38] local.ERROR: Class "App\Http\Cntrollers\Accountant\AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"App\\Http\\Cntrollers\\Accountant\\AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('App\\\\Http\\\\Cntrol...')
@@ -9387,7 +9387,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:39] local.ERROR: Class "App\Http\Cntrollers\Accountant\AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"App\\Http\\Cntrollers\\Accountant\\AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('App\\\\Http\\\\Cntrol...')
@@ -9413,7 +9413,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:40] local.ERROR: Class "App\Http\Cntrollers\Accountant\AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"App\\Http\\Cntrollers\\Accountant\\AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('App\\\\Http\\\\Cntrol...')
@@ -9439,7 +9439,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:41] local.ERROR: Class "App\Http\Cntrollers\Accountant\AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"App\\Http\\Cntrollers\\Accountant\\AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('App\\\\Http\\\\Cntrol...')
@@ -9465,7 +9465,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:43] local.ERROR: Class "App\Http\Cotrollers\Accountant\AccountantDashControl" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"App\\Http\\Cotrollers\\Accountant\\AccountantDashControl\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('App\\\\Http\\\\Cotrol...')
@@ -9491,7 +9491,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:45] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9517,7 +9517,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:47] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9543,7 +9543,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:49] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9569,7 +9569,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:51] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9595,7 +9595,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:53:52] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9621,7 +9621,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 06:55:37] local.ERROR: Class "App\Http\Controllers\Accountant\ProductServiceCategory" not found {"userId":6,"exception":"[object] (Error(code: 0): Class \"App\\Http\\Controllers\\Accountant\\ProductServiceCategory\" not found at C:\\xampp\\htdocs\\e-NITT-2\\app\\Http\\Controllers\\Accountant\\AccountantDashControl.php:15)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\Accountant\\AccountantDashControl->index(Object(Illuminate\\Http\\Request))
@@ -9670,7 +9670,7 @@ Did you mean this?
 #43 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #44 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #45 {main}
-"} 
+"}
 [2024-09-11 07:04:56] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9696,7 +9696,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:04:57] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9722,7 +9722,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:02] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9748,7 +9748,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:05] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9774,7 +9774,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:09] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9800,7 +9800,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:11] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9826,7 +9826,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:14] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9852,7 +9852,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:16] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9878,7 +9878,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:17] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9904,7 +9904,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:24] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9930,7 +9930,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:26] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9956,7 +9956,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:27] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -9982,7 +9982,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:32] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10008,7 +10008,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:05:33] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10034,7 +10034,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:07:59] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10060,7 +10060,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:08:01] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10086,7 +10086,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:08:03] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10112,7 +10112,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:08:06] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10138,7 +10138,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:08:13] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10164,7 +10164,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:08:14] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10190,7 +10190,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:08:16] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10216,7 +10216,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:08:17] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10242,7 +10242,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:08:19] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10268,7 +10268,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:08:28] local.ERROR: Undefined variable $productServices {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\accountant\\purchase-requisition.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-144355725 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2962</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -10388,7 +10388,7 @@ Did you mean this?
 #52 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #54 {main}
-"} 
+"}
 [2024-09-11 07:10:47] local.ERROR: syntax error, unexpected token "endforeach", expecting end of file {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\accountant\\purchase-requisition.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1939278033 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2962</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -10502,7 +10502,7 @@ Did you mean this?
 #49 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #50 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #51 {main}
-"} 
+"}
 [2024-09-11 07:11:02] local.ERROR: Undefined variable $productService {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\accountant\\purchase-requisition.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-618495667 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2962</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -10622,7 +10622,7 @@ Did you mean this?
 #52 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #54 {main}
-"} 
+"}
 [2024-09-11 07:11:27] local.ERROR: Undefined variable $productService {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\accountant\\purchase-requisition.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-632963974 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2962</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -10742,7 +10742,7 @@ Did you mean this?
 #52 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #54 {main}
-"} 
+"}
 [2024-09-11 07:11:43] local.ERROR: Undefined variable $productService {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\accountant\\purchase-requisition.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-279223217 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2962</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -10862,7 +10862,7 @@ Did you mean this?
 #52 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #54 {main}
-"} 
+"}
 [2024-09-11 07:24:12] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10888,7 +10888,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:24:17] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10914,7 +10914,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:24:18] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10940,7 +10940,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:24:19] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10966,7 +10966,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:24:22] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -10992,7 +10992,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:24:26] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11018,7 +11018,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:24:28] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11044,7 +11044,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:24:29] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11070,7 +11070,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:19] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11096,7 +11096,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:27] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11122,7 +11122,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:31] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11148,7 +11148,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:38] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11174,7 +11174,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:39] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11200,7 +11200,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:43] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11226,7 +11226,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:44] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11252,7 +11252,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:46] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11278,7 +11278,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:47] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11304,7 +11304,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:48] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11330,7 +11330,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:50] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11356,7 +11356,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 07:27:51] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11382,7 +11382,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:25:06] local.ERROR: Undefined variable $calenderTasks {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\dashboard\\liason-dashboard.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-19956975 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2928</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -11506,7 +11506,7 @@ Did you mean this?
 #54 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #56 {main}
-"} 
+"}
 [2024-09-11 09:35:32] local.ERROR: Undefined variable $calenderTasks {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\dashboard\\liason-dashboard.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1416358324 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2928</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -11630,7 +11630,7 @@ Did you mean this?
 #54 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #56 {main}
-"} 
+"}
 [2024-09-11 09:38:14] local.ERROR: Route [unit.dashboard] not defined. {"userId":5,"exception":"[object] (Symfony\\Component\\Routing\\Exception\\RouteNotFoundException(code: 0): Route [unit.dashboard] not defined. at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\UrlGenerator.php:467)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Redirector.php(167): Illuminate\\Routing\\UrlGenerator->route('unit.dashboard', Array)
@@ -11689,7 +11689,7 @@ Did you mean this?
 #53 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #54 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #55 {main}
-"} 
+"}
 [2024-09-11 09:41:20] local.ERROR: Route [unit.dashboard] not defined. {"userId":5,"exception":"[object] (Symfony\\Component\\Routing\\Exception\\RouteNotFoundException(code: 0): Route [unit.dashboard] not defined. at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\UrlGenerator.php:467)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Redirector.php(167): Illuminate\\Routing\\UrlGenerator->route('unit.dashboard', Array)
@@ -11748,7 +11748,7 @@ Did you mean this?
 #53 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #54 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #55 {main}
-"} 
+"}
 [2024-09-11 09:42:13] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11774,7 +11774,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:42:21] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11800,7 +11800,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:42:23] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -11826,7 +11826,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:43:44] local.ERROR: Undefined variable $currentYear {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\dashboard\\unit-dashboard.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1861024842 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2927</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -11950,7 +11950,7 @@ Did you mean this?
 #54 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #56 {main}
-"} 
+"}
 [2024-09-11 09:44:07] local.ERROR: Undefined variable $bankAccountDetail {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\dashboard\\unit-dashboard.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1689191997 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2927</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -12074,7 +12074,7 @@ Did you mean this?
 #54 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #56 {main}
-"} 
+"}
 [2024-09-11 09:44:35] local.ERROR: Undefined variable $latestIncome {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\dashboard\\unit-dashboard.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-2092067822 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2927</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -12198,7 +12198,7 @@ Did you mean this?
 #54 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #56 {main}
-"} 
+"}
 [2024-09-11 09:45:24] local.ERROR: Undefined variable $recentInvoice {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\dashboard\\unit-dashboard.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-91571240 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2927</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -12322,7 +12322,7 @@ Did you mean this?
 #54 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #56 {main}
-"} 
+"}
 [2024-09-11 09:45:53] local.ERROR: Undefined variable $currentYear {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\dashboard\\unit-dashboard.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1656067108 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2927</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -12446,11 +12446,11 @@ Did you mean this?
 #54 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #56 {main}
-"} 
+"}
 [2024-09-11 09:51:45] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:1190)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-09-11 09:54:26] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12476,7 +12476,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:34] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12502,7 +12502,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:40] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12528,7 +12528,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:43] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12554,7 +12554,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:48] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12580,7 +12580,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:51] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12606,7 +12606,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:52] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12632,7 +12632,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:53] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12658,7 +12658,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:54] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12684,7 +12684,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:56] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12710,7 +12710,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:57] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12736,7 +12736,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:54:58] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12762,7 +12762,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:55:01] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -12788,7 +12788,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 09:55:52] local.ERROR: Trying to access array offset on value of type bool {"userId":2,"exception":"[object] (ErrorException(code: 0): Trying to access array offset on value of type bool at C:\\xampp\\htdocs\\e-NITT-2\\app\\Http\\Controllers\\SystemController.php:2063)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Trying to acces...', 'C:\\\\xampp\\\\htdocs...', 2063)
@@ -12839,7 +12839,7 @@ Did you mean this?
 #45 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #46 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #47 {main}
-"} 
+"}
 [2024-09-11 10:05:15] local.ERROR: Attempt to read property "id" on null {"view":{"view":"C:\\xampp\\htdocs\\e-NITT-2\\resources\\views\\layouts\\auth.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1858623591 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2915</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -13154,7 +13154,7 @@ Did you mean this?
 #63 C:\\xampp\\htdocs\\e-NITT-2\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #64 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #65 {main}
-"} 
+"}
 [2024-09-11 10:09:40] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13180,7 +13180,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:09:43] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13206,7 +13206,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:09:45] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13232,7 +13232,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:09:48] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13258,7 +13258,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:09:49] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13284,7 +13284,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:09:51] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13310,7 +13310,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:09:57] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13336,7 +13336,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:09:59] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13362,7 +13362,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:10:00] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13388,7 +13388,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:10:02] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13414,7 +13414,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:10:04] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13440,7 +13440,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:10:06] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13466,7 +13466,7 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-09-11 10:10:07] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('PlanRequestCont...')
@@ -13492,4 +13492,155 @@ Did you mean this?
 #20 C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\e-NITT-2\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
+[2024-09-11 07:15:53] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:740)
+[stacktrace]
+#0 {main}
+"}
+[2024-09-11 07:16:58] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasAttributes.php:859)
+[stacktrace]
+#0 {main}
+"}
+[2024-09-11 07:17:59] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:186)
+[stacktrace]
+#0 {main}
+"}
+[2024-09-11 07:18:59] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Collections\\Collection.php:42)
+[stacktrace]
+#0 {main}
+"}
+[2024-09-11 07:20:00] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:207)
+[stacktrace]
+#0 {main}
+"}
+[2024-09-11 07:21:00] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:855)
+[stacktrace]
+#0 {main}
+"}
+[2024-09-11 07:22:00] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\spatie\\laravel-permission\\src\\Guard.php:52)
+[stacktrace]
+#0 {main}
+"}
+[2024-09-11 07:27:45] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\AuthManager.php:70)
+[stacktrace]
+#0 {main}
+"}
+[2024-09-11 07:29:01] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasAttributes.php:1511)
+[stacktrace]
+#0 {main}
+"}
+[2024-09-11 07:30:06] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Collections\\Arr.php:177)
+[stacktrace]
+#0 {main}
+"}
+[2024-09-11 07:30:08] local.ERROR: Method Illuminate\Session\Store::destroy does not exist. {"userId":2,"exception":"[object] (BadMethodCallException(code: 0): Method Illuminate\\Session\\Store::destroy does not exist. at C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Macroable\\Traits\\Macroable.php:113)
+[stacktrace]
+#0 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Manager.php(191): Illuminate\\Session\\Store->__call('destroy', Array)
+#1 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Support\\Manager->__call('destroy', Array)
+#2 C:\\xampp-server\\htdocs\\e-NITT\\app\\Http\\Controllers\\DashboardController.php(286): Illuminate\\Support\\Facades\\Facade::__callStatic('destroy', Array)
+#3 C:\\xampp-server\\htdocs\\e-NITT\\app\\Http\\Controllers\\DashboardController.php(157): App\\Http\\Controllers\\DashboardController->hrm_dashboard_index()
+#4 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\DashboardController->account_dashboard_index()
+#5 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('account_dashboa...', Array)
+#6 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\DashboardController), 'account_dashboa...')
+#7 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#8 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#9 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#10 C:\\xampp-server\\htdocs\\e-NITT\\app\\Http\\Middleware\\RevalidateBackHistory.php(18): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\RevalidateBackHistory->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#12 C:\\xampp-server\\htdocs\\e-NITT\\app\\Http\\Middleware\\XSS.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#13 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#14 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#16 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#22 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#29 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#30 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#31 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#50 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp-server\\htdocs\\e-NITT\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
+#53 {main}
+"}
+[2024-09-11 07:30:57] local.ERROR: Call to undefined function App\Http\Controllers\reidrect() {"userId":2,"exception":"[object] (Error(code: 0): Call to undefined function App\\Http\\Controllers\\reidrect() at C:\\xampp-server\\htdocs\\e-NITT\\app\\Http\\Controllers\\DashboardController.php:287)
+[stacktrace]
+#0 C:\\xampp-server\\htdocs\\e-NITT\\app\\Http\\Controllers\\DashboardController.php(157): App\\Http\\Controllers\\DashboardController->hrm_dashboard_index()
+#1 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\DashboardController->account_dashboard_index()
+#2 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('account_dashboa...', Array)
+#3 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\DashboardController), 'account_dashboa...')
+#4 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#5 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#6 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#7 C:\\xampp-server\\htdocs\\e-NITT\\app\\Http\\Middleware\\RevalidateBackHistory.php(18): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#8 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\RevalidateBackHistory->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#9 C:\\xampp-server\\htdocs\\e-NITT\\app\\Http\\Middleware\\XSS.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#10 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#11 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#12 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#13 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#14 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#15 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#19 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#26 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#27 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#28 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#47 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp-server\\htdocs\\e-NITT\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp-server\\htdocs\\e-NITT\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
+#50 {main}
+"}

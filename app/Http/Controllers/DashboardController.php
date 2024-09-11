@@ -83,11 +83,6 @@ class DashboardController extends Controller
     public function account_dashboard_index()
     {
 
-
-        // Session::flush();
-
-
-
         if(Auth::check())
         {
            if(Auth::user()->type == 'client')
@@ -303,6 +298,7 @@ class DashboardController extends Controller
 
     public function hrm_dashboard_index()
     {
+
         if(Auth::check())
         {
             if(\Auth::user()->can('show hrm dashboard'))
