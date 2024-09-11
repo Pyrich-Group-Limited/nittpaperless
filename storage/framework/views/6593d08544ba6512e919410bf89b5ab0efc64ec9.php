@@ -201,63 +201,7 @@
             <div class="row">
                 <div class="col-xxl-7">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-lg-3 col-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="theme-avtar bg-primary">
-                                                <i class="ti ti-users"></i>
-                                            </div>
-                                            <p class="text-muted text-sm mt-4 mb-2"><?php echo e(__('Total')); ?></p>
-                                            <h6 class="mb-3"><?php echo e(__('Reports')); ?></h6>
-                                            <h3 class="mb-0"><?php echo e(\Auth::user()->countCustomers()); ?>
-
-
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="theme-avtar bg-info">
-                                                <i class="ti ti-users"></i>
-                                            </div>
-                                            <p class="text-muted text-sm mt-4 mb-2"><?php echo e(__('Total')); ?></p>
-                                            <h6 class="mb-3"><?php echo e(__('Vendors')); ?></h6>
-                                            <h3 class="mb-0"><?php echo e(\Auth::user()->countVenders()); ?>
-
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="theme-avtar bg-warning">
-                                                <i class="ti ti-report-money"></i>
-                                            </div>
-                                            <p class="text-muted text-sm mt-4 mb-2"><?php echo e(__('Total')); ?></p>
-                                            <h6 class="mb-3"><?php echo e(__('Invoices')); ?></h6>
-                                            <h3 class="mb-0"><?php echo e(\Auth::user()->countInvoices()); ?> </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="theme-avtar bg-danger">
-                                                <i class="ti ti-report-money"></i>
-                                            </div>
-                                            <p class="text-muted text-sm mt-4 mb-2"><?php echo e(__('Total')); ?></p>
-                                            <h6 class="mb-3"><?php echo e(__('Bills')); ?></h6>
-                                            <h3 class="mb-0"><?php echo e(\Auth::user()->countBills()); ?> </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php echo $__env->make('accountant.includes.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-header">

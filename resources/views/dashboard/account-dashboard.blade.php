@@ -197,61 +197,7 @@
             <div class="row">
                 <div class="col-xxl-7">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-lg-3 col-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="theme-avtar bg-primary">
-                                                <i class="ti ti-users"></i>
-                                            </div>
-                                            <p class="text-muted text-sm mt-4 mb-2">{{__('Total')}}</p>
-                                            <h6 class="mb-3">{{__('Reports')}}</h6>
-                                            <h3 class="mb-0">{{\Auth::user()->countCustomers()}}
-
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="theme-avtar bg-info">
-                                                <i class="ti ti-users"></i>
-                                            </div>
-                                            <p class="text-muted text-sm mt-4 mb-2">{{__('Total')}}</p>
-                                            <h6 class="mb-3">{{__('Vendors')}}</h6>
-                                            <h3 class="mb-0">{{\Auth::user()->countVenders()}}
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="theme-avtar bg-warning">
-                                                <i class="ti ti-report-money"></i>
-                                            </div>
-                                            <p class="text-muted text-sm mt-4 mb-2">{{__('Total')}}</p>
-                                            <h6 class="mb-3">{{__('Invoices')}}</h6>
-                                            <h3 class="mb-0">{{\Auth::user()->countInvoices()}} </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="theme-avtar bg-danger">
-                                                <i class="ti ti-report-money"></i>
-                                            </div>
-                                            <p class="text-muted text-sm mt-4 mb-2">{{__('Total')}}</p>
-                                            <h6 class="mb-3">{{__('Bills')}}</h6>
-                                            <h3 class="mb-0">{{\Auth::user()->countBills()}} </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @include('accountant.includes.nav')
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-header">

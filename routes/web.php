@@ -134,6 +134,8 @@ use App\Http\Controllers\AamarpayController;
 use App\Http\Controllers\PaytrController;
 use App\Http\Controllers\WarehouseTransferController;
 
+use App\Http\Controllers\Accountant\AccountantDashControl;
+
 
 
 
@@ -289,6 +291,13 @@ Route::get('productservice/{id}/detail', [ProductServiceController::class, 'ware
 Route::post('empty-cart', [ProductServiceController::class, 'emptyCart'])->middleware(['auth', 'XSS']);
 Route::post('warehouse-empty-cart', [ProductServiceController::class, 'warehouseemptyCart'])->name('warehouse-empty-cart')->middleware(['auth', 'XSS']);
 Route::resource('productservice', ProductServiceController::class)->middleware(['auth', 'XSS', 'revalidate']);
+
+
+Route::get('set-budget/index', [AccountantDashControl::class, 'index'])->name('setbudget.index');
+Route::get('purchase-requisition/index', [AccountantDashControl::class, 'purchase'])->name('purchase.requisition');
+Route::get('store-requisition/index', [AccountantDashControl::class, 'storeReq'])->name('store.requisition');
+Route::get('leave/index', [AccountantDashControl::class, 'leave'])->name('leave');
+
 
 
 
