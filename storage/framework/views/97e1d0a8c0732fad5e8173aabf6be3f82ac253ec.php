@@ -129,7 +129,7 @@
                         NIGERIA INSTITUTE OF TECHNOLOGY
                         </h2>
                         <p class="text-white">
-                        
+
 Zaria, Nigeria
                         </p>
                     </div>
