@@ -162,6 +162,9 @@ Route::get('/', function () {
 });
 
 require __DIR__.'/auth.php';
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
 //
 //Route::get('/', ['as' => 'home','uses' =>'HomeController@index'])->middleware(['XSS']);
