@@ -197,7 +197,10 @@ Route::get('/pos-dashboard', [DashboardController::class, 'pos_dashboard_index']
 Route::get('/unit-head-dashboard', [DashboardController::class, 'unit_dashboard'])->name('unit.dashboard')->middleware(['auth']);
 Route::get('/liason-head-dashboard', [DashboardController::class, 'liason_dashboard'])->name('liason.dashboard')->middleware(['auth']);
 
-Route::get('/unit-head-dashboard', [DashboardController::class, 'unithead_dashboard_index'])->name('unithead.dashboard')->middleware(['auth','XSS', 'revalidate']);
+Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard')->middleware(['auth']);
+Route::get('/store-keeper-dashboard', [DashboardController::class, 'store_dashboard'])->name('store.dashboard')->middleware(['auth']);
+
+// Route::get('/unit-head-dashboard', [DashboardController::class, 'unithead_dashboard_index'])->name('unithead.dashboard')->middleware(['auth','XSS', 'revalidate']);
 
 
 Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware(['auth','XSS', 'revalidate']);
