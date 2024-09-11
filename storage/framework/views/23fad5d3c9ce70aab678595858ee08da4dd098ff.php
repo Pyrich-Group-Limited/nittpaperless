@@ -12,11 +12,9 @@
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('script-page'); ?>
-
-
     <script>
-            <?php if($calenderTasks): ?>
-            (function () {
+        <?php if($calenderTasks): ?>
+            (function() {
                 var etitle;
                 var etype;
                 var etypeclass;
@@ -36,14 +34,14 @@
                     editable: true,
                     dayMaxEvents: true,
                     handleWindowResize: true,
-                    events:<?php echo json_encode($calenderTasks); ?>,
+                    events: <?php echo json_encode($calenderTasks); ?>,
 
                 });
                 calendar.render();
             })();
         <?php endif; ?>
 
-        $(document).on('click', '.fc-day-grid-event', function (e) {
+        $(document).on('click', '.fc-day-grid-event', function(e) {
             if (!$(this).hasClass('deal')) {
                 e.preventDefault();
                 var event = $(this);
@@ -55,25 +53,20 @@
 
                 $.ajax({
                     url: url,
-                    success: function (data) {
+                    success: function(data) {
                         $('#commonModal .modal-body').html(data);
                         $("#commonModal").modal('show');
                     },
-                    error: function (data) {
+                    error: function(data) {
                         data = data.responseJSON;
                         show_toastr('error', data.error, 'error')
                     }
                 });
             }
         });
-
-
-
     </script>
     <script>
-
-
-        (function () {
+        (function() {
             var chartBarOptions = {
                 series: <?php echo json_encode($taskData['dataset']); ?>,
 
@@ -106,12 +99,12 @@
                     align: 'left'
                 },
                 xaxis: {
-                    categories:<?php echo json_encode($taskData['label']); ?>,
+                    categories: <?php echo json_encode($taskData['label']); ?>,
                     title: {
                         text: "<?php echo e(__('Days')); ?>"
                     }
                 },
-                colors: ['#6fd944', '#883617','#4e37b9','#8f841b'],
+                colors: ['#6fd944', '#883617', '#4e37b9', '#8f841b'],
 
                 grid: {
                     strokeDashArray: 4,
@@ -142,7 +135,7 @@
 
 
 
-        (function () {
+        (function() {
             var options = {
                 chart: {
                     height: 140,
@@ -159,8 +152,8 @@
                     }
                 },
                 series: <?php echo json_encode(array_values($projectData)); ?>,
-                colors:["#bd9925", "#2f71bd", "#720d3a","#ef4917"],
-                labels:   <?php echo json_encode($project_status); ?>,
+                colors: ["#bd9925", "#2f71bd", "#720d3a", "#ef4917"],
+                labels: <?php echo json_encode($project_status); ?>,
                 legend: {
                     show: true
                 }
@@ -172,370 +165,294 @@
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
-<?php
+    <?php
 
-  $project_task_percentage = $project['project_task_percentage'];
-  $label='';
-        if($project_task_percentage<=15){
-            $label='bg-danger';
-        }else if ($project_task_percentage > 15 && $project_task_percentage <= 33) {
-            $label='bg-warning';
-        } else if ($project_task_percentage > 33 && $project_task_percentage <= 70) {
-            $label='bg-primary';
+        $project_task_percentage = $project['project_task_percentage'];
+        $label = '';
+        if ($project_task_percentage <= 15) {
+            $label = 'bg-danger';
+        } elseif ($project_task_percentage > 15 && $project_task_percentage <= 33) {
+            $label = 'bg-warning';
+        } elseif ($project_task_percentage > 33 && $project_task_percentage <= 70) {
+            $label = 'bg-primary';
         } else {
-            $label='bg-success';
+            $label = 'bg-success';
         }
 
-
-  $project_percentage = $project['project_percentage'];
-  $label1='';
-        if($project_percentage<=15){
-            $label1='bg-danger';
-        }else if ($project_percentage > 15 && $project_percentage <= 33) {
-            $label1='bg-warning';
-        } else if ($project_percentage > 33 && $project_percentage <= 70) {
-            $label1='bg-primary';
+        $project_percentage = $project['project_percentage'];
+        $label1 = '';
+        if ($project_percentage <= 15) {
+            $label1 = 'bg-danger';
+        } elseif ($project_percentage > 15 && $project_percentage <= 33) {
+            $label1 = 'bg-warning';
+        } elseif ($project_percentage > 33 && $project_percentage <= 70) {
+            $label1 = 'bg-primary';
         } else {
-            $label1='bg-success';
+            $label1 = 'bg-success';
         }
 
-  $project_bug_percentage = $project['project_bug_percentage'];
-  $label2='';
-      if($project_bug_percentage<=15){
-        $label2='bg-danger';
-      }else if ($project_bug_percentage > 15 && $project_bug_percentage <= 33) {
-        $label2='bg-warning';
-      } else if ($project_bug_percentage > 33 && $project_bug_percentage <= 70) {
-        $label2='bg-primary';
-      } else {
-        $label2='bg-success';
-      }
-?>
+        $project_bug_percentage = $project['project_bug_percentage'];
+        $label2 = '';
+        if ($project_bug_percentage <= 15) {
+            $label2 = 'bg-danger';
+        } elseif ($project_bug_percentage > 15 && $project_bug_percentage <= 33) {
+            $label2 = 'bg-warning';
+        } elseif ($project_bug_percentage > 33 && $project_bug_percentage <= 70) {
+            $label2 = 'bg-primary';
+        } else {
+            $label2 = 'bg-success';
+        }
+    ?>
 
     <div class="row">
         <?php if(!empty($arrErr)): ?>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <?php if(!empty($arrErr['system'])): ?>
                     <div class="alert alert-danger text-xs">
-                         <?php echo e(__('are required in')); ?> <a href="<?php echo e(route('settings')); ?>" class=""><u> <?php echo e(__('System Setting')); ?></u></a>
+                        <?php echo e(__('are required in')); ?> <a href="<?php echo e(route('settings')); ?>" class=""><u>
+                                <?php echo e(__('System Setting')); ?></u></a>
                     </div>
                 <?php endif; ?>
                 <?php if(!empty($arrErr['user'])): ?>
                     <div class="alert alert-danger text-xs">
-                         <a href="<?php echo e(route('users')); ?>" class=""><u><?php echo e(__('here')); ?></u></a>
+                        <a href="<?php echo e(route('users')); ?>" class=""><u><?php echo e(__('here')); ?></u></a>
                     </div>
                 <?php endif; ?>
                 <?php if(!empty($arrErr['role'])): ?>
                     <div class="alert alert-danger text-xs">
-                         <a href="<?php echo e(route('roles.index')); ?>" class=""><u><?php echo e(__('here')); ?></u></a>
+                        <a href="<?php echo e(route('roles.index')); ?>" class=""><u><?php echo e(__('here')); ?></u></a>
                     </div>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
     </div>
 
-<div class="col-sm-12">
-    <div class="row">
-        <div class="col-xxl-6">
-            <div class="row">
-                <?php if(isset($arrCount['deal'])): ?>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col-auto mb-3 mb-sm-0">
-                                        <div class="d-flex align-items-center">
-                                            
-                                            <div class="ms-3">
-                                                <h6 class="m-0"><?php echo e(__('Departmental Budget')); ?></h6>
-                                            </div>
-                                        </div>
+    <div class="col-sm-12">
+        <div class="row">
+            <?php echo $__env->make('hrm.includes.dash-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <div class="col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Today&#039;s Not Clock In</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row g-3 flex-nowrap team-lists horizontal-scroll-cards">
+                                    <div class="col-auto">
+                                        <img src="http://localhost/storage/avatar.png" alt="">
+                                        <p class="mt-2">Accountant/ Bursar</p>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
                     </div>
-                <?php endif; ?>
-                <?php if(isset($arrCount['task'])): ?>
-                        <div class="col-lg-2 col-md-6">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row align-items-center justify-content-between">
-                                                    <div class="col-auto mb-3 mb-sm-0">
-                                                        <div class="d-flex align-items-center">
-                                                            
-                                                            <div class="ms-3">
-                                                                
-                                                                <h6 class="m-0"><?php echo e(__('Query')); ?></h6>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="row">
+                    
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5><?php echo e(__('Tasks Overview')); ?></h5>
+                                <h6 class="last-day-text"><?php echo e(__('Last 7 Days')); ?></h6>
+                            </div>
+                            <div class="card-body">
+                                <div id="chart-sales" height="200" class="p-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-xxl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>Staff</h5>
+                                    <div class="row  mt-4">
+                                        <div class="col-md-12 col-sm-6">
+                                            <div class="d-flex align-items-start mb-3">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-users"></i>
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="text-muted text-sm mb-0">Total Staff</p>
+                                                    <h4 class="mb-0 text-success">7</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-6 my-3 my-sm-0">
+                                            <div class="d-flex align-items-start mb-3">
+                                                <div class="theme-avtar bg-info">
+                                                    <i class="ti ti-user"></i>
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="text-muted text-sm mb-0">Total Employee</p>
+                                                    <h4 class="mb-0 text-primary">6</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-6">
+                                            <div class="d-flex align-items-start mb-3">
+                                                <div class="theme-avtar bg-danger">
+                                                    <i class="ti ti-user"></i>
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="text-muted text-sm mb-0">Total Client</p>
+                                                    <h4 class="mb-0 text-danger">1</h4>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-xxl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>Training</h5>
+                                    <div class="row  mt-4">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="d-flex align-items-start mb-3">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-users"></i>
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="text-muted text-sm mb-0">Total Training</p>
+                                                    <h4 class="mb-0 text-success">0</h4>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 my-3 my-sm-0">
+                                            <div class="d-flex align-items-start mb-3">
+                                                <div class="theme-avtar bg-info">
+                                                    <i class="ti ti-user"></i>
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="text-muted text-sm mb-0">Trainer</p>
+                                                    <h4 class="mb-0 text-primary">0</h4>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="d-flex align-items-start mb-3">
+                                                <div class="theme-avtar bg-danger">
+                                                    <i class="ti ti-user-check"></i>
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="text-muted text-sm mb-0">Active Training</p>
+                                                    <h4 class="mb-0 text-danger">0</h4>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="d-flex align-items-start mb-3">
+                                                <div class="theme-avtar bg-secondary">
+                                                    <i class="ti ti-user-minus"></i>
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="text-muted text-sm mb-0">Done Training</p>
+                                                    <h4 class="mb-0 text-secondary">0</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="col-xxl-6">
+                            <div class="row">
+                                <div class="col--xxl-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row ">
+                                                <div class="col-md-4 col-sm-6">
+                                                    <div class="align-items-start">
+                                                        <div class="ms-2">
+                                                            <p class="text-muted text-sm mb-0"><?php echo e(__('Total Project')); ?>
+
+                                                            </p>
+                                                            <h3 class="mb-0 text-warning">
+                                                                <?php echo e($project['project_percentage']); ?>%</h3>
+                                                            <div class="progress mb-0">
+                                                                <div class="progress-bar bg-<?php echo e($label1); ?>"
+                                                                    style="width: <?php echo e($project['project_percentage']); ?>%;">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                    <?php endif; ?>
-
-                    <div class="col-lg-2 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col-auto mb-3 mb-sm-0">
-                                        <div class="d-flex align-items-center">
-                                            
-                                            <div class="ms-3">
-                                                
-                                                <h6 class="m-0"><?php echo e(__('Leave')); ?></h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col-auto mb-3 mb-sm-0">
-                                        <div class="d-flex align-items-center">
-                                            
-                                            <div class="ms-3">
-                                                
-                                                <h6 class="m-0"><?php echo e(__('DTA')); ?></h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col-auto mb-3 mb-sm-0">
-                                        <div class="d-flex align-items-center">
-                                            
-                                            <div class="ms-3">
-                                                
-                                                <h6 class="m-0"><?php echo e(__('Memo')); ?></h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                <div class="col-xxl-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5><?php echo e(__('Calendar')); ?></h5>
-                        </div>
-                        <div class="card-body">
-                            <div id='calendar' class='calendar'></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xxl-6">
-            <div class="row">
-                <div class="col--xxl-12">
-                    <div class="card">
-                            <div class="card-body">
-                                <div class="row ">
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="align-items-start">
-                                            <div class="ms-2">
-                                                <p class="text-muted text-sm mb-0"><?php echo e(__('Total Project')); ?></p>
-                                                <h3 class="mb-0 text-warning"><?php echo e($project['project_percentage']); ?>%</h3>
-                                                <div class="progress mb-0">
-                                                    <div class="progress-bar bg-<?php echo e($label1); ?>" style="width: <?php echo e($project['project_percentage']); ?>%;"></div>
+                                                <div class="col-md-4 col-sm-6">
+                                                    <div class="align-items-start">
+                                                        <div class="ms-2">
+                                                            <p class="text-muted text-sm mb-0">
+                                                                <?php echo e(__('Total Project Tasks')); ?></p>
+                                                            <h3 class="mb-0 text-info">
+                                                                <?php echo e($project['projects_tasks_count']); ?>%</h3>
+                                                            <div class="progress mb-0">
+                                                                <div class="progress-bar bg-<?php echo e($label1); ?>"
+                                                                    style="width: <?php echo e($project['project_task_percentage']); ?>%;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="align-items-start">
-                                            <div class="ms-2">
-                                                <p class="text-muted text-sm mb-0"><?php echo e(__('Total Project Tasks')); ?></p>
-                                                <h3 class="mb-0 text-info"><?php echo e($project['projects_tasks_count']); ?>%</h3>
-                                                <div class="progress mb-0">
-                                                    <div class="progress-bar bg-<?php echo e($label1); ?>" style="width: <?php echo e($project['project_task_percentage']); ?>%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="align-items-start">
+                                                <div class="col-md-4 col-sm-6">
+                                                    <div class="align-items-start">
 
-                                            <div class="ms-2">
+                                                        <div class="ms-2">
 
-                                                <p class="text-muted text-sm mb-0"><?php echo e(__('Total Bugs')); ?></p>
-                                                <h3 class="mb-0 text-danger"><?php echo e($project['projects_bugs_count']); ?>%</h3>
-                                                <div class="progress mb-0">
-                                                    <div class="progress-bar bg-<?php echo e($label1); ?>" style="width: <?php echo e($project['project_bug_percentage']); ?>%;"></div>
+                                                            <p class="text-muted text-sm mb-0"><?php echo e(__('Total Bugs')); ?></p>
+                                                            <h3 class="mb-0 text-danger">
+                                                                <?php echo e($project['projects_bugs_count']); ?>%</h3>
+                                                            <div class="progress mb-0">
+                                                                <div class="progress-bar bg-<?php echo e($label1); ?>"
+                                                                    style="width: <?php echo e($project['project_bug_percentage']); ?>%;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-xxl-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5><?php echo e(__('Project Status')); ?>
+
+                                                <span
+                                                    class="float-end text-muted"><?php echo e(__('Year') . ' - ' . $currentYear); ?></span>
+                                            </h5>
+
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="chart-doughnut"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                </div>
-                <div class="col-xxl-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5><?php echo e(__('Tasks Overview')); ?></h5>
-                            <h6 class="last-day-text"><?php echo e(__('Last 7 Days')); ?></h6>
-                        </div>
-                        <div class="card-body">
-                            <div id="chart-sales" height="200" class="p-3"></div>
-                        </div>
                     </div>
-                </div>
-                <div class="col-xxl-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5><?php echo e(__('Project Status')); ?>
 
-                                <span class="float-end text-muted"><?php echo e(__('Year').' - '.$currentYear); ?></span>
-                            </h5>
 
-                        </div>
-                        <div class="card-body">
-                            <div id="chart-doughnut"></div>
-                        </div>
-                    </div>
+                    
                 </div>
+
+
             </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="<?php echo e((Auth::user()->type =='super admin' || Auth::user()->type =='client') ? 'col-xl-6 col-lg-6 col-md-6' : 'col-xl-8 col-lg-8 col-md-8'); ?> col-sm-12">
-            <div class="card bg-none min-410 mx-410">
-                <div class="card-header">
-                    <h5><?php echo e(__('Top Due Project')); ?></h5>
-                </div>
-                <div class="card-body table-border-style">
-                    <div class="table-responsive">
-                    <table class="table align-items-center mb-0">
-                        <thead>
-                        <tr>
-                            <th><?php echo e(__('Task Name')); ?></th>
-                            <th><?php echo e(__('Remain Task')); ?></th>
-                            <th><?php echo e(__('Due Date')); ?></th>
-                            <th><?php echo e(__('Action')); ?></th>
-                        </tr>
-                        </thead>
-                        <tbody class="list">
-                        <?php $__empty_1 = true; $__currentLoopData = $project['projects']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <?php
-                                $datetime1 = new DateTime($project->due_date);
-                                $datetime2 = new DateTime(date('Y-m-d'));
-                                $interval = $datetime1->diff($datetime2);
-                                $days = $interval->format('%a');
-
-                                 $project_last_stage = ($project->project_last_stage($project->id))?$project->project_last_stage($project->id)->id:'';
-                                $total_task = $project->project_total_task($project->id);
-                                $completed_task=$project->project_complete_task($project->id,$project_last_stage);
-                                $remain_task=$total_task-$completed_task;
-                            ?>
-                            <tr>
-                                <td class="id-web">
-                                    <?php echo e($project->project_name); ?>
-
-                                </td>
-                                <td><?php echo e($remain_task); ?></td>
-                                <td><?php echo e(Auth::user()->dateFormat($project->end_date)); ?></td>
-                                <td>
-                                    <div class="action-btn bg-primary ms-2">
-                                        <a href="<?php echo e(route('projects.show',$project->id)); ?>" class="mx-3 btn btn-sm align-items-center"><i class="ti ti-eye text-white"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                            <tr class="text-center">
-                                <td colspan="4"><?php echo e(__('No Data Found.!')); ?></td>
-                            </tr>
-                        <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xxl-6">
-            <div class="card bg-none min-410 mx-410">
-                <div class="card-header">
-                    <h5><?php echo e(__('Top Due Task')); ?></h5>
-                </div>
-                <div class="card-body table-border-style">
-                    <div class="table-responsive">
-                    <table class="table align-items-center mb-0">
-                        <thead>
-                        <tr>
-                            <th><?php echo e(__('Task Name')); ?></th>
-                            <th><?php echo e(__('Assign To')); ?></th>
-                            <th><?php echo e(__('Task Stage')); ?></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php $__empty_1 = true; $__currentLoopData = $top_tasks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $top_task): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <tr>
-                                <td class="id-web">
-                                    <?php echo e($top_task->name); ?>
-
-                                </td>
-                                <td>
-                                    <div class="avatar-group">
-                                        <?php if($top_task->users()->count() > 0): ?>
-                                            <?php if($users = $top_task->users()): ?>
-                                                <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <?php if($key<3): ?>
-                                                        <a href="#" class="avatar rounded-circle avatar-sm">
-                                                            <img data-original-title="<?php echo e((!empty($user)?$user->name:'')); ?>" <?php if($user->avatar): ?> src="<?php echo e(asset('/storage/uploads/avatar/'.$user->avatar)); ?>" <?php else: ?> src="<?php echo e(asset('assets/img/avatar/avatar-1.png')); ?>" <?php endif; ?> title="<?php echo e($user->name); ?>" class="hweb">
-                                                        </a>
-                                                    <?php else: ?>
-                                                        <?php break; ?>
-                                                    <?php endif; ?>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            <?php endif; ?>
-                                            <?php if(count($users) > 3): ?>
-                                                <a href="#" class="avatar rounded-circle avatar-sm">
-                                                    <img  data-original-title="<?php echo e((!empty($user)?$user->name:'')); ?>" <?php if($user->avatar): ?> src="<?php echo e(asset('/storage/uploads/avatar/'.$user->avatar)); ?>" <?php else: ?> src="<?php echo e(asset('assets/img/avatar/avatar-1.png')); ?>" <?php endif; ?> class="hweb">
-                                                </a>
-                                            <?php endif; ?>
-                                        <?php else: ?>
-                                            <?php echo e(__('-')); ?>
-
-                                        <?php endif; ?>
-                                    </div>
-                                </td>
-                                <td><span class="p-2 px-3 rounded badge bg-"><?php echo e($top_task->stage->name); ?></span></td>
-                            </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                            <tr class="text-center">
-                                <td colspan="4"><?php echo e(__('No Data Found.!')); ?></td>
-                            </tr>
-                        <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-<?php $__env->stopSection(); ?>
+        <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\e-NITT-2\resources\views/dashboard/clientView.blade.php ENDPATH**/ ?>

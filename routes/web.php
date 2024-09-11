@@ -134,7 +134,8 @@ use App\Http\Controllers\AamarpayController;
 use App\Http\Controllers\PaytrController;
 use App\Http\Controllers\WarehouseTransferController;
 
-use App\Http\Controllers\Accountant\AccountantDashControl;
+use App\Http\Controllers\DashControls\AccountantDashControl;
+use App\Http\Controllers\DashControls\HrmDashControl;
 
 
 
@@ -300,6 +301,12 @@ Route::get('set-budget/index', [AccountantDashControl::class, 'index'])->name('s
 Route::get('purchase-requisition/index', [AccountantDashControl::class, 'purchase'])->name('purchase.requisition');
 Route::get('store-requisition/index', [AccountantDashControl::class, 'storeReq'])->name('store.requisition');
 Route::get('leave/index', [AccountantDashControl::class, 'leave'])->name('leave');
+
+Route::get('hrm-budget/index', [HrmDashControl::class, 'budget'])->name('hrm.budget');
+Route::get('hrm-query/index', [HrmDashControl::class, 'hrmQuery'])->name('hrm.query');
+Route::get('hrm-leave/index', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
+Route::get('hrm-dta/index', [HrmDashControl::class, 'hrmDta'])->name('hrm.dta');
+Route::get('hrm-memo/index', [HrmDashControl::class, 'hrmMemo'])->name('hrm.memo');
 
 
 
