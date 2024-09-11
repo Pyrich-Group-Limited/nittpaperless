@@ -237,7 +237,7 @@
 <div class="col-sm-12">
     <div class="row">
         <div class="col-xxl-6">
-            <div class="row offset-0.5">
+            <div class="row">
                 <?php if(isset($arrCount['deal'])): ?>
                     <div class="col-lg-3 col-md-6">
                         <div class="card">

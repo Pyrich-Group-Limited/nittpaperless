@@ -40,7 +40,7 @@
                         text: '{{ __('Days') }}'
                     }
                 },
-                colors: ['#ff3a6e', '#6fd943'],
+                colors: ['#ff3a6e', '#0C7885'],
 
                 grid: {
                     strokeDashArray: 4,

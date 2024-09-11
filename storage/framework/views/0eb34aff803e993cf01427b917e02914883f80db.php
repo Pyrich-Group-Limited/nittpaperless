@@ -26,13 +26,13 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                
+
                                                                 <h6 class="m-0"><?php echo e(__('Purchase Requisition')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </a>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@
                                                         </div>
                                                     </a>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -74,7 +74,7 @@
                                                         </div>
                                                     </a>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@
                                                         </div>
                                                     </a>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
