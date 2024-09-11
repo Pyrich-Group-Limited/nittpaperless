@@ -35,7 +35,7 @@
         <div class="navbar-content">
 
 
-            @if(\Auth::user()->type != 'client')
+            @if(\Auth::user()->type != 'client' || \Auth::user()->type == 'client')
                 <ul class="dash-navbar">
 
                     <!--------------------- Start Dashboard ----------------------------------->
@@ -1016,12 +1016,7 @@
 
             @if((\Auth::user()->type == 'client')) <!-- HRM -->
                 <ul class="dash-navbar">
-                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'dashboard')?'active':''}}">
-                        <a href="{{route('client.dashboard.view')}}" class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext">{{__('Dashboard')}}</span>
-                        </a>
-                    </li>
-                            <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
+                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
                             || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''}}">
                             <a href="#!" class="dash-link {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''}}"
                             ><span class="dash-micon"><i class="ti ti-users"></i></span
@@ -1046,12 +1041,41 @@
                                 @endcan
                             </ul>
                         </li>
-                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'support')?'active':''}}">
-                            <a href="{{route('support.index')}}" class="dash-link">
-                                <span class="dash-micon"><i class="ti ti-headphones"></i></span><span class="dash-mtext">{{__('Servicon')}}</span>
+                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
+                            <a href="#" class="dash-link">
+                                <span class="dash-micon"><i class="fa fa-envelope-open"></i></span><span class="dash-mtext">{{__('Memo/Letters')}}</span>
                             </a>
                         </li>
-
+                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
+                            <a href="#" class="dash-link">
+                                <span class="dash-micon"><i class="fa fa-circle-o-notch"></i></span><span class="dash-mtext">{{__('Department Budget')}}</span>
+                            </a>
+                        </li>
+                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
+                            || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''}}">
+                            <a href="#!" class="dash-link {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''}}"
+                            ><span class="dash-micon"><i class="ti ti-repeat"></i></span
+                                ><span class="dash-mtext">{{__('Internal Process')}}</span
+                                ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                ></a>
+                            <ul class="dash-submenu">
+                                @can('manage user')
+                                    <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
+                                        <a class="dash-link" href="">{{__('Leave')}}</a>
+                                    </li>
+                                @endcan
+                                @can('manage role')
+                                    <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }} ">
+                                        <a class="dash-link" href="">{{__('DTA')}}</a>
+                                    </li>
+                                @endcan
+                                @can('manage client')
+                                    <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
+                                        <a class="dash-link" href="">{{__('Query')}}</a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </li>
                 </ul>
             @endif
 

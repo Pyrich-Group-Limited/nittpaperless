@@ -4047,6 +4047,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $clientPermission = [
+            ['name' => 'show hrm dashboard'],
+            ['name' => 'manage report'],
             ['name' => 'manage user'],
             ['name' => 'manage role'],
             ['name' => 'manage client'],
