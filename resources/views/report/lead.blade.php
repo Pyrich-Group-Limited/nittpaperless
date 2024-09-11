@@ -349,7 +349,7 @@
                 type: 'pie',
             },
 
-            colors: ["#35abb6","#ffa21d","#ff3a6e","#6fd943","#5c636a","#181e28","#0288d1"],
+            colors: ["#35abb6","#ffa21d","#ff3a6e","#0C7885","#5c636a","#181e28","#0288d1"],
             labels: {!! json_encode($devicearray['label']) !!},
             responsive: [{
                 breakpoint: 480,
