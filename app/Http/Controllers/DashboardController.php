@@ -72,13 +72,12 @@ class DashboardController extends Controller
         return view('dashboard.liason-dashboard');
      }
 
+     public function user_dashboard(){
+        return view('dashboard.user-dashboard');
+     }
+
     public function account_dashboard_index()
     {
-
-
-        // Session::flush();
-
-
 
         if(Auth::check())
         {
@@ -93,6 +92,10 @@ class DashboardController extends Controller
             elseif(Auth::user()->type == 'liason office head')
             {
                 return redirect()->route('liason.dashboard');
+            }
+            elseif(Auth::user()->type == 'user')
+            {
+                return redirect()->route('user.dashboard');
             }
             else
             {
@@ -287,6 +290,7 @@ class DashboardController extends Controller
 
     public function hrm_dashboard_index()
     {
+
         if(Auth::check())
         {
             if(\Auth::user()->can('show hrm dashboard'))
