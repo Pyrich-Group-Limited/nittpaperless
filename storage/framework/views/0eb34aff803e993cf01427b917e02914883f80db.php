@@ -5,7 +5,7 @@
 
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
-    <li class="breadcrumb-item"><?php echo e(__('Unit Head')); ?></li>
+    <li class="breadcrumb-item"><?php echo e(__('User')); ?></li>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <div class="row">
@@ -27,7 +27,7 @@
                                                             </div>
                                                             <div class="ms-3">
                                                                 
-                                                                <h6 class="m-0"><?php echo e(__('DTA')); ?></h6>
+                                                                <h6 class="m-0"><?php echo e(__('Purchase Requisition')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -48,7 +48,7 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0"><?php echo e(__('Leave')); ?></h6>
+                                                                <h6 class="m-0"><?php echo e(__('Store Requisition Note')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -69,7 +69,7 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0"><?php echo e(__('Query')); ?></h6>
+                                                                <h6 class="m-0"><?php echo e(__('Goods Recieved')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -90,7 +90,7 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0"><?php echo e(__('Memo')); ?></h6>
+                                                                <h6 class="m-0"><?php echo e(__('Inventory/Assets')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </a>
