@@ -47,6 +47,24 @@
                 @enderror
             </div>
         </div>
+        <div class="form-group col-md-6">
+            {{ Form::label('designation', __('Designation'),['class'=>'form-label']) }}
+            {!! Form::select('designation', $roles, null,array('class' => 'form-control select','required'=>'required')) !!}
+            @error('designation')
+            <small class="invalid-role" role="alert">
+                <strong class="text-danger">{{ $message }}</strong>
+            </small>
+            @enderror
+        </div>
+        <div class="form-group col-md-6">
+            {{ Form::label('location', __('Location'),['class'=>'form-label']) }}
+            {!! Form::select('location', $roles, null,array('class' => 'form-control select','required'=>'required')) !!}
+            @error('location')
+            <small class="invalid-role" role="alert">
+                <strong class="text-danger">{{ $message }}</strong>
+            </small>
+            @enderror
+        </div>
         @if(!$customFields->isEmpty())
             <div class="col-md-6">
                 <div class="tab-pane fade show" id="tab-2" role="tabpanel">
