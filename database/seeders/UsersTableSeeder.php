@@ -36,6 +36,12 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+                'name' => 'show unithead dashboard',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
                 'name' => 'show hrm dashboard',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -3759,6 +3765,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $unitHeadPermission = [
+            ['name' => 'show unithead dashboard'],
             ['name' => 'manage client dashboard'],
             ['name' => 'manage bug report'],
             ['name' => 'create bug report'],
