@@ -1,13 +1,13 @@
-@extends('layouts.admin')
-@section('page-title')
-    {{__('Dashboard')}}
-@endsection
+<?php $__env->startSection('page-title'); ?>
+    <?php echo e(__('Dashboard')); ?>
 
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Liason Office')}}</li>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
+    <li class="breadcrumb-item"><?php echo e(__('Liason Office')); ?></li>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-sm-12">
             <div class="row">
@@ -26,15 +26,13 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                {{-- <small class="text-muted">{{__('Total')}}</small> --}}
-                                                                <h6 class="m-0">{{__('Set Budget')}}</h6>
+                                                                
+                                                                <h6 class="m-0"><?php echo e(__('Set Budget')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </a>
                                                 </div>
-                                                {{-- <div class="col-auto text-end">
-                                                    <h3 class="m-0">0</h3>
-                                                </div> --}}
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -50,14 +48,12 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0">{{__('Leave Request')}}</h6>
+                                                                <h6 class="m-0"><?php echo e(__('Leave Request')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </a>
                                                 </div>
-                                                {{-- <div class="col-auto text-end">
-                                                    <h3 class="m-0">0</h3>
-                                                </div> --}}
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -73,14 +69,12 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0">{{__('DTA')}}</h6>
+                                                                <h6 class="m-0"><?php echo e(__('DTA')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </a>
                                                 </div>
-                                                {{-- <div class="col-auto text-end">
-                                                    <h3 class="m-0">0</h3>
-                                                </div> --}}
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -96,14 +90,12 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0">{{__('Query')}}</h6>
+                                                                <h6 class="m-0"><?php echo e(__('Query')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </a>
                                                 </div>
-                                                {{-- <div class="col-auto text-end">
-                                                    <h3 class="m-0">0</h3>
-                                                </div> --}}
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -114,16 +106,16 @@
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="mt-1 mb-0">{{__('Latest Income')}}</h5>
+                                    <h5 class="mt-1 mb-0"><?php echo e(__('Latest Income')); ?></h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>{{__('Date')}}</th>
-                                                <th>{{__('Customer')}}</th>
-                                                <th>{{__('Amount Due')}}</th>
+                                                <th><?php echo e(__('Date')); ?></th>
+                                                <th><?php echo e(__('Customer')); ?></th>
+                                                <th><?php echo e(__('Amount Due')); ?></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -136,7 +128,7 @@
                                                 <tr>
                                                     <td colspan="4">
                                                         <div class="text-center">
-                                                            <h6>{{__('there is no latest income')}}</h6>
+                                                            <h6><?php echo e(__('there is no latest income')); ?></h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -155,4 +147,6 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\e-NITT-2\resources\views/dashboard/liason-dashboard.blade.php ENDPATH**/ ?>

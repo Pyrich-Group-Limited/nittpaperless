@@ -5,7 +5,7 @@
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Liason Office')}}</li>
+    <li class="breadcrumb-item">{{__('Supervisor')}}</li>
 @endsection
 @section('content')
     <div class="row">
@@ -27,7 +27,7 @@
                                                             </div>
                                                             <div class="ms-3">
                                                                 {{-- <small class="text-muted">{{__('Total')}}</small> --}}
-                                                                <h6 class="m-0">{{__('Set Budget')}}</h6>
+                                                                <h6 class="m-0">{{__('Purchase Requisition')}}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -50,7 +50,7 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0">{{__('Leave Request')}}</h6>
+                                                                <h6 class="m-0">{{__('Store Requisition Note')}}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -73,7 +73,7 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0">{{__('DTA')}}</h6>
+                                                                <h6 class="m-0">{{__('Goods Recieved')}}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -96,7 +96,7 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0">{{__('Query')}}</h6>
+                                                                <h6 class="m-0">{{__('Inventory/Assets')}}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
