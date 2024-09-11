@@ -3813,6 +3813,62 @@ class UsersTableSeeder extends Seeder
         $unitHead->assignRole($unitHeadRole);
 
 
+         // store/assets
+         $storeKeeperRole       = Role::create(
+            [
+                'name' => 'store keeper',
+                'created_by' => $company->id,
+            ]
+        );
+        $storePermission = [
+            ['name' => 'show unithead dashboard'],
+            ['name' => 'manage client dashboard'],
+            ['name' => 'manage bug report'],
+            ['name' => 'create bug report'],
+            ['name' => 'edit bug report'],
+            ['name' => 'delete bug report'],
+            ['name' => 'move bug report'],
+            ['name' => 'view deal'],
+            ['name' => 'manage deal'],
+            ['name' => 'manage project'],
+            ['name' => 'view project'],
+            ['name' => 'view grant chart'],
+            ['name' => 'view timesheet'],
+            ['name' => 'manage timesheet'],
+            ['name' => 'manage project task'],
+            ['name' => 'create project task'],
+            ['name' => 'edit project task'],
+            ['name' => 'view project task'],
+            ['name' => 'delete project task'],
+            ['name' => 'view activity'],
+            ['name' => 'view task'],
+            ['name' => 'manage pipeline'],
+            ['name' => 'manage lead stage'],
+            ['name' => 'manage label'],
+            ['name' => 'manage source'],
+            ['name' => 'move deal'],
+            ['name' => 'manage stage'],
+            ['name' => 'manage contract'],
+            ['name' => 'show contract'],
+        ];
+
+        $storeKeeperRole->givePermissionTo($storePermission);
+
+        $storeKeeper = User::create(
+            [
+                'name' => 'Store / Assets',
+                'email' => 'store@example.com',
+                'password' => Hash::make('1234'),
+                'type' => 'store keeper',
+                'default_pipeline' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => $company->id,
+            ]
+        );
+        $storeKeeper->assignRole($storeKeeperRole);
+
+
         // accountant
         $accountantRole       = Role::create(
             [

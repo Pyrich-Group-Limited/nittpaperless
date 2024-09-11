@@ -239,53 +239,99 @@
         <div class="col-xxl-6">
             <div class="row">
                 <?php if(isset($arrCount['deal'])): ?>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-auto mb-3 mb-sm-0">
                                         <div class="d-flex align-items-center">
-                                            <div class="theme-avtar bg-primary">
-                                                <i class="ti ti-cast"></i>
-                                            </div>
+                                            
                                             <div class="ms-3">
-                                                <small class="text-muted"><?php echo e(__('Total')); ?></small>
-                                                <h6 class="m-0"><?php echo e(__('Deal')); ?></h6>
+                                                <h6 class="m-0"><?php echo e(__('Departmental Budget')); ?></h6>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-auto text-end">
-                                        <h5 class="m-0"><?php echo e($arrCount['deal']); ?></h5>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 <?php endif; ?>
                 <?php if(isset($arrCount['task'])): ?>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-2 col-md-6">
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="row align-items-center justify-content-between">
                                                     <div class="col-auto mb-3 mb-sm-0">
                                                         <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-primary">
-                                                                <i class="ti ti-list"></i>
-                                                            </div>
+                                                            
                                                             <div class="ms-3">
-                                                                <small class="text-muted"><?php echo e(__('Total')); ?></small>
-                                                                <h6 class="m-0"><?php echo e(__('Deal Task')); ?></h6>
+                                                                
+                                                                <h6 class="m-0"><?php echo e(__('Query')); ?></h6>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-auto text-end">
-                                                        <h5 class="m-0"><?php echo e($arrCount['task']); ?></h5>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                     <?php endif; ?>
+
+                    <div class="col-lg-2 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <div class="d-flex align-items-center">
+                                            
+                                            <div class="ms-3">
+                                                
+                                                <h6 class="m-0"><?php echo e(__('Leave')); ?></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <div class="d-flex align-items-center">
+                                            
+                                            <div class="ms-3">
+                                                
+                                                <h6 class="m-0"><?php echo e(__('DTA')); ?></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <div class="d-flex align-items-center">
+                                            
+                                            <div class="ms-3">
+                                                
+                                                <h6 class="m-0"><?php echo e(__('Memo')); ?></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 <div class="col-xxl-12">
                     <div class="card">
