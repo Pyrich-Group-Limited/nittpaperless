@@ -5,7 +5,7 @@
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('User')}}</li>
+    <li class="breadcrumb-item">{{__('Supervisor')}}</li>
 @endsection
 @section('content')
     <div class="row">

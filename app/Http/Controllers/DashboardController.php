@@ -80,6 +80,10 @@ class DashboardController extends Controller
         return view('dashboard.store-dashboard');
      }
 
+     public function supervisor_dashboard(){
+        return view('dashboard.supervisor-dashboard');
+     }
+
     public function account_dashboard_index()
     {
 
