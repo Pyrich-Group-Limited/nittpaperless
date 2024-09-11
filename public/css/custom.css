@@ -137,7 +137,7 @@ a.b-brand {
 
 .choose-files div {
     color: #fff;
-    background: #584ED2 !important;
+    background: #0C7885 !important;
     border: none;
     border-radius: 10px;
     padding: 8px 15px;
@@ -999,8 +999,8 @@ body.theme-2 .cat-list-btn .btn-primary {
     border-color: #fff !important;
 }
 body.theme-2 .cat-list-btn .cat-active .btn-primary {
-    background-color: #584ED2 !important;
-    border-color: #584ED2 !important;
+    background-color: #0C7885 !important;
+    border-color: #0C7885 !important;
     color: #fff !important;
 }
 

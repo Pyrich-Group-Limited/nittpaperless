@@ -61,7 +61,7 @@
             @elseif($color=='theme-3')
                 background :  linear-gradient(141.55deg, #6fd943 3.46%, #6fd943 99.86%), #6fd943;
             @elseif($color=='theme-4')
-                background :  linear-gradient(141.55deg, rgba(104, 94, 229, 0) 3.46%, #685ee5 99.86%), #584ed2;
+                background :  linear-gradient(141.55deg, rgba(104, 94, 229, 0) 3.46%, #685ee5 99.86%), #0C7885;
         @endif
 }
     </style>
