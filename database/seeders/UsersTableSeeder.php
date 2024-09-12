@@ -3600,7 +3600,7 @@ class UsersTableSeeder extends Seeder
         $company = User::create(
             [
                 'name' => 'SuperAdmin/Paperless',
-                'email' => 'spadmin@example.com',
+                'email' => 'spadmin@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'super admin',
                 'default_pipeline' => 1,
@@ -3630,7 +3630,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create(
             [
                 'name' => 'User',
-                'email' => 'user@example.com',
+                'email' => 'user@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'user',
                 'default_pipeline' => 1,
@@ -3687,7 +3687,7 @@ class UsersTableSeeder extends Seeder
         $supervisor = User::create(
             [
                 'name' => 'Supervisor',
-                'email' => 'supervisor@example.com',
+                'email' => 'supervisor@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'supervisor',
                 'default_pipeline' => 1,
@@ -3744,7 +3744,7 @@ class UsersTableSeeder extends Seeder
         $liason = User::create(
             [
                 'name' => 'Head of Liason Office',
-                'email' => 'liason@example.com',
+                'email' => 'liason@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'liason office head',
                 'default_pipeline' => 1,
@@ -3801,7 +3801,7 @@ class UsersTableSeeder extends Seeder
         $unitHead = User::create(
             [
                 'name' => 'Unit Head',
-                'email' => 'unit@example.com',
+                'email' => 'unit@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'unit head',
                 'default_pipeline' => 1,
@@ -3857,7 +3857,7 @@ class UsersTableSeeder extends Seeder
         $storeKeeper = User::create(
             [
                 'name' => 'Store / Assets',
-                'email' => 'store@example.com',
+                'email' => 'store@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'store keeper',
                 'default_pipeline' => 1,
@@ -4016,7 +4016,7 @@ class UsersTableSeeder extends Seeder
         $accountant = User::create(
             [
                 'name' => 'Accountant/ Bursar',
-                'email' => 'accountant@example.com',
+                'email' => 'accountant@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'accountant',
                 'default_pipeline' => 1,
@@ -4115,7 +4115,7 @@ class UsersTableSeeder extends Seeder
         $client = User::create(
             [
                 'name' => 'HRM/Registra',
-                'email' => 'hrm@example.com',
+                'email' => 'hrm@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'client',
                 'default_pipeline' => 1,
