@@ -962,7 +962,7 @@
 
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'support')?'active':''}}">
                             <a href="{{route('support.index')}}" class="dash-link">
-                                <span class="dash-micon"><i class="ti ti-headphones"></i></span><span class="dash-mtext">{{__('Servicon')}}</span>
+                                <span class="dash-micon"><i class="ti ti-headphones"></i></span><span class="dash-mtext">{{__('Servicom')}}</span>
                             </a>
                         </li>
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'zoom-meeting' || Request::segment(1) == 'zoom-meeting-calender')?'active':''}}">
@@ -1042,13 +1042,13 @@
                             </ul>
                         </li>
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
-                            <a href="#" class="dash-link">
-                                <span class="dash-micon"><i class="fa fa-envelope-open"></i></span><span class="dash-mtext">{{__('Memo/Letters')}}</span>
+                            <a href="{{ route('hrm.memo') }}" class="dash-link">
+                                <span class="dash-micon"><i class="ti ti-list"></i></span><span class="dash-mtext">{{__('Memo/Letters')}}</span>
                             </a>
                         </li>
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
-                            <a href="#" class="dash-link">
-                                <span class="dash-micon"><i class="fa fa-circle-o-notch"></i></span><span class="dash-mtext">{{__('Department Budget')}}</span>
+                            <a href="{{ route('hrm.budget') }}" class="dash-link">
+                                <span class="dash-micon"><i class="ti ti-cast"></i></span><span class="dash-mtext">{{__('Department Budget')}}</span>
                             </a>
                         </li>
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
@@ -1061,17 +1061,17 @@
                             <ul class="dash-submenu">
                                 @can('manage user')
                                     <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
-                                        <a class="dash-link" href="">{{__('Leave')}}</a>
+                                        <a class="dash-link" href="{{ route('hrm.leave') }}">{{__('Leave')}}</a>
                                     </li>
                                 @endcan
                                 @can('manage role')
                                     <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }} ">
-                                        <a class="dash-link" href="">{{__('DTA')}}</a>
+                                        <a class="dash-link" href="{{ route('hrm.dta') }}">{{__('DTA')}}</a>
                                     </li>
                                 @endcan
                                 @can('manage client')
                                     <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
-                                        <a class="dash-link" href="">{{__('Query')}}</a>
+                                        <a class="dash-link" href="{{ route('hrm.query') }}">{{__('Query')}}</a>
                                     </li>
                                 @endcan
                             </ul>

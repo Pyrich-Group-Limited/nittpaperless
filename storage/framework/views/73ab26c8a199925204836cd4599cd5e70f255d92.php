@@ -781,7 +781,7 @@
 
                         <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'support')?'active':''); ?>">
                             <a href="<?php echo e(route('support.index')); ?>" class="dash-link">
-                                <span class="dash-micon"><i class="ti ti-headphones"></i></span><span class="dash-mtext"><?php echo e(__('Servicon')); ?></span>
+                                <span class="dash-micon"><i class="ti ti-headphones"></i></span><span class="dash-mtext"><?php echo e(__('Servicom')); ?></span>
                             </a>
                         </li>
                         <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'zoom-meeting' || Request::segment(1) == 'zoom-meeting-calender')?'active':''); ?>">
@@ -857,13 +857,13 @@
                             </ul>
                         </li>
                         <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'chats')?'active':''); ?>">
-                            <a href="#" class="dash-link">
-                                <span class="dash-micon"><i class="fa fa-envelope-open"></i></span><span class="dash-mtext"><?php echo e(__('Memo/Letters')); ?></span>
+                            <a href="<?php echo e(route('hrm.memo')); ?>" class="dash-link">
+                                <span class="dash-micon"><i class="ti ti-list"></i></span><span class="dash-mtext"><?php echo e(__('Memo/Letters')); ?></span>
                             </a>
                         </li>
                         <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'chats')?'active':''); ?>">
-                            <a href="#" class="dash-link">
-                                <span class="dash-micon"><i class="fa fa-circle-o-notch"></i></span><span class="dash-mtext"><?php echo e(__('Department Budget')); ?></span>
+                            <a href="<?php echo e(route('hrm.budget')); ?>" class="dash-link">
+                                <span class="dash-micon"><i class="ti ti-cast"></i></span><span class="dash-mtext"><?php echo e(__('Department Budget')); ?></span>
                             </a>
                         </li>
                         <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'users' || Request::segment(1) == 'roles'
@@ -876,17 +876,17 @@
                             <ul class="dash-submenu">
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage user')): ?>
                                     <li class="dash-item <?php echo e((Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : ''); ?>">
-                                        <a class="dash-link" href=""><?php echo e(__('Leave')); ?></a>
+                                        <a class="dash-link" href="<?php echo e(route('hrm.leave')); ?>"><?php echo e(__('Leave')); ?></a>
                                     </li>
                                 <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage role')): ?>
                                     <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?> ">
-                                        <a class="dash-link" href=""><?php echo e(__('DTA')); ?></a>
+                                        <a class="dash-link" href="<?php echo e(route('hrm.dta')); ?>"><?php echo e(__('DTA')); ?></a>
                                     </li>
                                 <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage client')): ?>
                                     <li class="dash-item <?php echo e((Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : ''); ?>">
-                                        <a class="dash-link" href=""><?php echo e(__('Query')); ?></a>
+                                        <a class="dash-link" href="<?php echo e(route('hrm.query')); ?>"><?php echo e(__('Query')); ?></a>
                                     </li>
                                 <?php endif; ?>
                             </ul>
