@@ -3707,6 +3707,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liasonPermission = [
+            ['name' => 'create budget plan'],
             ['name' => 'show invoice'],
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
@@ -3794,6 +3795,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage stage'],
             ['name' => 'manage contract'],
             ['name' => 'show contract'],
+            ['name' => 'view budget plan'],
         ];
 
         $unitHeadRole->givePermissionTo($unitHeadPermission);
@@ -3821,6 +3823,13 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $storePermission = [
+            ['name' => 'manage product & service'],
+            ['name' => 'manage warehouse'],
+            ['name' => 'manage purchase'],
+            ['name' => 'manage pos'],
+            ['name' => 'manage warehouse'],
+            ['name' => 'create barcode'],
+            ['name' => 'manage pos'],
             ['name' => 'show unithead dashboard'],
             ['name' => 'manage client dashboard'],
             ['name' => 'manage bug report'],

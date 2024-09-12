@@ -33,7 +33,17 @@
             </a>
         </div>
         <div class="navbar-content">
+            @if((\Auth::user()->type != 'client') && \Auth::user()->type != 'hrm' && \Auth::user()->type != 'super admin')
+            <ul class="dash-navbar">
 
+                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'dashboard') ? ' active' : '' }}">
+                        <a href="{{ route('dashboard') }}" class="dash-link">
+                            <span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext">{{__('Dashboard')}}</span>
+                        </a>
+                    </li>
+
+            </ul>
+            @endif
 
             @if(\Auth::user()->type != 'client' || \Auth::user()->type == 'client')
                 <ul class="dash-navbar">
@@ -911,11 +921,13 @@
                             @endcan
                             </ul>
                         </li>
+                        @can('manage budgets')
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
                             <a href="{{ route('hrm.budget') }}" class="dash-link">
                                 <span class="dash-micon"><i class="ti ti-cast"></i></span><span class="dash-mtext">{{__('Budgets')}}</span>
                             </a>
                         </li>
+                        @endcan
 
                     @endif
 
@@ -925,6 +937,25 @@
                             <span class="dash-micon"><i class="ti ti-list"></i></span><span class="dash-mtext">{{__('Memo/Letters')}}</span>
                         </a>
                     </li>
+
+                    @if(\Auth::user()->type == 'liason office head' || \Auth::user()->type == 'unit head')
+                        @can('create budget plan')
+                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
+                            <a href="{{ route('budget.create')}}" class="dash-link">
+                                <span class="dash-micon"><i class="ti ti-list"></i></span><span class="dash-mtext">{{__('Set Budget')}}</span>
+                            </a>
+                        </li>
+                        @endcan
+
+                        @can('view budget plan')
+                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
+                            <a href="{{ route('budget.index')}}" class="dash-link">
+                                <span class="dash-micon"><i class="ti ti-list"></i></span><span class="dash-mtext">{{__('View Budget')}}</span>
+                            </a>
+                        </li>
+                        @endcan
+                    @endif
+
                     <ul class="dash-navbar">
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
                         || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''}}">
@@ -934,21 +965,15 @@
                             ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                             ></a>
                         <ul class="dash-submenu">
-                            @can('manage user')
                                 <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('hrm.leave') }}">{{__('Leave')}}</a>
                                 </li>
-                            @endcan
-                            @can('manage role')
                                 <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }} ">
                                     <a class="dash-link" href="{{ route('hrm.dta') }}">{{__('DTA')}}</a>
                                 </li>
-                            @endcan
-                            @can('manage client')
                                 <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('hrm.query') }}">{{__('Query')}}</a>
                                 </li>
-                            @endcan
                         </ul>
                     </li>
                     </ul>
