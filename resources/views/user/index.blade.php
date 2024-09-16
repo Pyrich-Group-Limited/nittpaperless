@@ -79,7 +79,8 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                             </div>
                             <div class="card-body full-card">
                                 <div class="img-fluid rounded-circle card-avatar">
-                                    <img src="{{(!empty($user->avatar))? asset(Storage::url("uploads/avatar/".$user->avatar)): asset(Storage::url("uploads/avatar/avatar.png"))}}"  class="img-user wid-80 rounded-circle">
+                                    {{-- <img src="{{(!empty($user->avatar))? asset(Storage::url("uploads/avatar/".$user->avatar)): asset(Storage::url("uploads/avatar/avatar.png"))}}"  class="img-user wid-80 rounded-circle"> --}}
+                                    <img src="{{(!empty($user->avatar))? asset(Storage::url("uploads/avatar/".$user->avatar)): (asset("assets/images/user/avatar.png"))}}"  class="img-user wid-80 rounded-circle">
                                 </div>
                                 <h4 class=" mt-2 text-primary">{{ $user->name }}</h4>
                                 <small class="text-primary">{{ $user->email }}</small>
