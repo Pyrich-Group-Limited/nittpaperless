@@ -6,7 +6,8 @@
 @endpush
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Requisition List')}}</li>
+    <li class="breadcrumb-item"><a href="{{route('purchase.requisition')}}">{{__('Purchase Requisition')}}</a></li>
+    <li class="breadcrumb-item"><a href="">{{__('Requisition List')}}</a></li>
 @endsection
 
 @section('content')

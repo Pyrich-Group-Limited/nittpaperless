@@ -864,6 +864,40 @@
                         <!--------------------- End User Managaement System----------------------------------->
 
 
+                        <!--------------------- Start File Managaement----------------------------------->
+                        <li class="dash-item dash-hasmenu active dash-trigger ">
+                            <a href="#!" class="dash-link active dash-trigger"
+                            ><span class="dash-micon"><i class="ti ti-files"></i></span
+                                ><span class="dash-mtext">{{__('File Management')}}</span
+                                ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                ></a>
+                            <ul class="dash-submenu">
+                                    <li class="dash-item">
+                                        <a class="dash-link" href="{{ route('file.index') }}">{{__('Files')}}</a>
+                                    </li>
+                                    <li class="dash-item">
+                                        <a class="dash-link" href="#">{{__('New Files')}}</a>
+                                    </li>
+                                    <li class="dash-item ">
+                                        <a class="dash-link" href="#">{{__('This Month')}}</a>
+                                    </li>
+                                    <li class="dash-item ">
+                                        <a class="dash-link" href="#">{{__('Older Files')}}</a>
+                                    </li>
+                                    <li class="dash-item ">
+                                        <a class="dash-link" href="#">{{__('Starred')}}</a>
+                                    </li>
+                                    <li class="dash-item ">
+                                        <a class="dash-link" href="#">{{__('Shared')}}</a>
+                                    </li>
+                                    <li class="dash-item ">
+                                        <a class="dash-link" href="#">{{__('Recovery')}}</a>
+                                    </li>
+                            </ul>
+                        </li>
+                        <!--------------------- End File Managaement----------------------------------->
+
+
                         <!--------------------- Start Products System ----------------------------------->
 
                         @if( Gate::check('manage product & service') || Gate::check('manage product & service'))
@@ -957,25 +991,32 @@
                     @endif
 
                     <ul class="dash-navbar">
-                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
-                        || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''}}">
-                        <a href="#!" class="dash-link {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''}}"
-                        ><span class="dash-micon"><i class="ti ti-repeat"></i></span
-                            ><span class="dash-mtext">{{__('Internal Process')}}</span
-                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
-                            ></a>
-                        <ul class="dash-submenu">
+                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
+                            || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''}}">
+                            <a href="#!" class="dash-link {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''}}"
+                            ><span class="dash-micon"><i class="ti ti-repeat"></i></span
+                                ><span class="dash-mtext">{{__('Internal Process')}}</span
+                                ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                ></a>
+                            <ul class="dash-submenu">
                                 <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('hrm.leave') }}">{{__('Leave')}}</a>
                                 </li>
+                                @if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'liason office head' || \Auth::user()->type == 'unit head' || \Auth::user()->type == 'client')
+                                    @can('view leave report')
+                                        <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
+                                            <a class="dash-link" href="{{ route('report.leave') }}">{{__('Leave Report')}}</a>
+                                        </li>
+                                    @endcan
+                                @endif
                                 <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }} ">
                                     <a class="dash-link" href="{{ route('hrm.dta') }}">{{__('DTA')}}</a>
                                 </li>
                                 <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('hrm.query') }}">{{__('Query')}}</a>
                                 </li>
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
                     </ul>
                         <!--------------------- End Products System ----------------------------------->
 
@@ -1199,9 +1240,6 @@
                             <span class="dash-micon"><i class="ti ti-headphones"></i></span><span class="dash-mtext">{{__('Support')}}</span>
                         </a>
                     </li>
-
-
-
                 </ul>
             @endif --}}
 

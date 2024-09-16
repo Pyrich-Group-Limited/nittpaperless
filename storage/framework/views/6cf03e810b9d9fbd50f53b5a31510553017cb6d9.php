@@ -6,7 +6,8 @@
 <?php $__env->stopPush(); ?>
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
-    <li class="breadcrumb-item"><?php echo e(__('Store Requisition List')); ?></li>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('store.requisition')); ?>"><?php echo e(__('Store Requisition')); ?></a></li>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('req.list')); ?>"><?php echo e(__('Store Requisition List')); ?></a></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>

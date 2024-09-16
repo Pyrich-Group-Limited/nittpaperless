@@ -719,6 +719,40 @@
                         <!--------------------- End User Managaement System----------------------------------->
 
 
+                        <!--------------------- Start File Managaement----------------------------------->
+                        <li class="dash-item dash-hasmenu active dash-trigger ">
+                            <a href="#!" class="dash-link active dash-trigger"
+                            ><span class="dash-micon"><i class="ti ti-files"></i></span
+                                ><span class="dash-mtext"><?php echo e(__('File Management')); ?></span
+                                ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                ></a>
+                            <ul class="dash-submenu">
+                                    <li class="dash-item">
+                                        <a class="dash-link" href="<?php echo e(route('file.index')); ?>"><?php echo e(__('Files')); ?></a>
+                                    </li>
+                                    <li class="dash-item">
+                                        <a class="dash-link" href="#"><?php echo e(__('New Files')); ?></a>
+                                    </li>
+                                    <li class="dash-item ">
+                                        <a class="dash-link" href="#"><?php echo e(__('This Month')); ?></a>
+                                    </li>
+                                    <li class="dash-item ">
+                                        <a class="dash-link" href="#"><?php echo e(__('Older Files')); ?></a>
+                                    </li>
+                                    <li class="dash-item ">
+                                        <a class="dash-link" href="#"><?php echo e(__('Starred')); ?></a>
+                                    </li>
+                                    <li class="dash-item ">
+                                        <a class="dash-link" href="#"><?php echo e(__('Shared')); ?></a>
+                                    </li>
+                                    <li class="dash-item ">
+                                        <a class="dash-link" href="#"><?php echo e(__('Recovery')); ?></a>
+                                    </li>
+                            </ul>
+                        </li>
+                        <!--------------------- End File Managaement----------------------------------->
+
+
                         <!--------------------- Start Products System ----------------------------------->
 
                         <?php if( Gate::check('manage product & service') || Gate::check('manage product & service')): ?>
@@ -808,25 +842,32 @@
                     <?php endif; ?>
 
                     <ul class="dash-navbar">
-                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'users' || Request::segment(1) == 'roles'
-                        || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''); ?>">
-                        <a href="#!" class="dash-link <?php echo e((Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''); ?>"
-                        ><span class="dash-micon"><i class="ti ti-repeat"></i></span
-                            ><span class="dash-mtext"><?php echo e(__('Internal Process')); ?></span
-                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
-                            ></a>
-                        <ul class="dash-submenu">
+                        <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'users' || Request::segment(1) == 'roles'
+                            || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''); ?>">
+                            <a href="#!" class="dash-link <?php echo e((Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''); ?>"
+                            ><span class="dash-micon"><i class="ti ti-repeat"></i></span
+                                ><span class="dash-mtext"><?php echo e(__('Internal Process')); ?></span
+                                ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                ></a>
+                            <ul class="dash-submenu">
                                 <li class="dash-item <?php echo e((Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : ''); ?>">
                                     <a class="dash-link" href="<?php echo e(route('hrm.leave')); ?>"><?php echo e(__('Leave')); ?></a>
                                 </li>
+                                <?php if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'liason office head' || \Auth::user()->type == 'unit head' || \Auth::user()->type == 'client'): ?>
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view leave report')): ?>
+                                        <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?>">
+                                            <a class="dash-link" href="<?php echo e(route('report.leave')); ?>"><?php echo e(__('Leave Report')); ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                                 <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?> ">
                                     <a class="dash-link" href="<?php echo e(route('hrm.dta')); ?>"><?php echo e(__('DTA')); ?></a>
                                 </li>
                                 <li class="dash-item <?php echo e((Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : ''); ?>">
                                     <a class="dash-link" href="<?php echo e(route('hrm.query')); ?>"><?php echo e(__('Query')); ?></a>
                                 </li>
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
                     </ul>
                         <!--------------------- End Products System ----------------------------------->
 
