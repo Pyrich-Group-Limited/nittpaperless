@@ -18,78 +18,44 @@
             <div class="card">
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
+                        <div class="table-head col-xl-12 mt-2" style="text-align: right;">
+                            <a href="#" class="btn btn-primary" data-url="{{ route('hrm.applyLeave') }}" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>New</a>
+                        </div>
                         <table class="table datatable">
                             <thead>
                             <tr>
+                                <th>{{__('SN')}}</th>
+                                <th>{{__('Date')}}</th>
                                 <th>{{__('Name')}}</th>
-                                <th>{{__('Sku')}}</th>
-                                <th>{{__('Sale Price')}}</th>
-                                <th>{{__('Purchase Price')}}</th>
-                                <th>{{__('Tax')}}</th>
-                                <th>{{__('Category')}}</th>
-                                <th>{{__('Unit')}}</th>
-                                <th>{{__('Quantity')}}</th>
-                                <th>{{__('Type')}}</th>
+                                <th>{{__('Rank')}}</th>
+                                <th>{{__('Section')}}</th>
+                                <th>{{__('Department')}}</th>
+                                <th>{{__('Location')}}</th>
+                                <th>{{__('Requisition Note No.')}}</th>
                                 <th>{{__('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {{-- @foreach ($productServices as $productService) --}}
                                 <tr class="font-style">
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>
-                                        {{-- @if(!empty($productService->tax_id))
-                                            @php
-                                                $taxes=\App\Models\Utility::tax($productService->tax_id);
-                                            @endphp
-
-                                            @foreach($taxes as $tax)
-                                                <span class="">{{!empty($tax)?$tax->name:'' .' ('.$tax->rate .'%)'}}</span><br>
-
-                                            @endforeach
-                                        @else
-                                            -
-                                        @endif --}}
-                                        -
-                                    </td>
                                     <td></td>
                                     <td></td>
-
                                     <td>-</td>
-
                                     <td></td>
 
-                                    @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
                                         <td class="Action">
 
                                             <div class="action-btn bg-warning ms-2">
-                                                <a href="#" class="mx-3 btn btn-sm align-items-center" data-url=""
-                                                   data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Warehouse Details')}}" data-title="{{__('Warehouse Details')}}">
+                                                <a href="{{ route('storeReq.list') }}" class="mx-3 btn btn-sm align-items-center" data-url="#"
+                                                   data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('View Details')}}" data-title="{{__('View Details')}}">
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>
-
-                                            @can('edit product & service')
-                                                <div class="action-btn bg-info ms-2">
-                                                    <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Edit')}}"  data-title="{{__('Edit Product')}}">
-                                                        <i class="ti ti-pencil text-white"></i>
-                                                    </a>
-                                                </div>
-                                            @endcan
-                                            @can('delete product & service')
-                                                <div class="action-btn bg-danger ms-2">
-                                                    {{-- {!! Form::open(['method' => 'DELETE', 'route' => ['productservice.destroy', $productService->id],'id'=>'delete-form-'.$productService->id]) !!}
-                                                    <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}" ><i class="ti ti-trash text-white"></i></a>
-                                                    {!! Form::close() !!} --}}
-                                                </div>
-                                            @endcan
                                         </td>
-                                    @endif
                                 </tr>
-                            {{-- @endforeach --}}
 
                             </tbody>
                         </table>

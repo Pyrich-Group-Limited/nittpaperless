@@ -82,11 +82,13 @@
             <div class="container-fluid pe-2">
                 <a class="navbar-brand" href="#">
                     @if($setting['cust_darklayout'] && $setting['cust_darklayout'] == 'on' )
-                        <img src="{{ $logo . '/' . (isset($company_logos) && !empty($company_logos) ? $company_logos : 'logo-dark.png') }}"
-                             alt="{{ config('app.name', 'ERPGo') }}" class="logo">
+                        {{-- <img src="{{ $logo . '/' . (isset($company_logos) && !empty($company_logos) ? $company_logos : 'assets/images/logo-dark.png') }}" --}}
+                        <img src="{{  asset('assets/images/logo-dark.png') }}" style="width: 70px;"
+                             alt="{{ config('app.name', 'NITT') }}" class="logo">
                     @else
-                        <img src="{{ $logo . '/' . (isset($company_logo) && !empty($company_logo) ? $company_logo : 'logo-dark.png') }}"
-                             alt="{{ config('app.name', 'ERPGo') }}" class="logo">
+                        {{-- <img src="{{ $logo . '/' . (isset($company_logo) && !empty($company_logo) ? $company_logo : 'assets/images/logo-dark.png') }}" --}}
+                        <img src="{{  asset('assets/images/logo-dark.png') }}" style="width: 70px;"
+                             alt="{{ config('app.name', 'NITT') }}" class="logo">
                     @endif
                 </a>
                 <button

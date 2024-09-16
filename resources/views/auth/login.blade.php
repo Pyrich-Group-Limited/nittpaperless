@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 @php
     $logo=asset(Storage::url('uploads/logo/'));
-    $company_logo=Utility::getValByName('company_logo');
+    $company_logo=Utility::getValByName('logo-dark');
     $settings = Utility::settings();
 
 @endphp

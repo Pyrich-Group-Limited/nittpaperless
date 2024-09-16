@@ -9,16 +9,6 @@
     <li class="breadcrumb-item"><?php echo e(__('DTA Requests')); ?></li>
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('action-btn'); ?>
-    <div class="float-end">
-        <a href="#" data-size="lg" data-url="#" data-ajax-popup="true"
-            data-bs-toggle="tooltip" title="<?php echo e(__('New DTA Request')); ?>" data-title="<?php echo e(__('New DTA Request')); ?>"
-            class="btn btn-sm btn-primary">Add New
-            <i class="ti ti-plus"></i>
-        </a>
-    </div>
-<?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('content'); ?>
         <?php echo $__env->make('hrm.includes.dash-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="row">
@@ -26,6 +16,9 @@
             <div class="card">
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
+                        <div class="table-head col-xl-12 mt-2" style="text-align: right;">
+                            <a href="#" class="btn btn-primary" data-url="<?php echo e(route('hrm.applyDta')); ?>" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>Apply DTA</a>
+                        </div>
                         <table class="table datatable">
                             <thead>
                             <tr>
