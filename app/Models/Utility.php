@@ -2824,7 +2824,7 @@ class Utility extends Model
     {
         $stages = [
             'Applied',
-            'Phone Screen',
+            // 'Phone Screen',
             'Interview',
             'Hired',
             'Rejected',

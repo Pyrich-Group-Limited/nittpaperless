@@ -18,6 +18,9 @@
             <div class="card">
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
+                        <div class="table-head col-xl-12 mt-2" style="text-align: right;">
+                            <a href="#" class="btn btn-primary" data-url="<?php echo e(route('hrm.applyQuery')); ?>" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>Apply</a>
+                        </div>
                         <table class="table datatable">
                             <thead>
                             <tr>

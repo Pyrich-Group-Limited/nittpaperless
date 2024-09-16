@@ -9,16 +9,6 @@
     <li class="breadcrumb-item">{{__('DTA Requests')}}</li>
 @endsection
 
-@section('action-btn')
-    <div class="float-end">
-        <a href="#" data-size="lg" data-url="#" data-ajax-popup="true"
-            data-bs-toggle="tooltip" title="{{ __('New DTA Request') }}" data-title="{{ __('New DTA Request') }}"
-            class="btn btn-sm btn-primary">Add New
-            <i class="ti ti-plus"></i>
-        </a>
-    </div>
-@endsection
-
 @section('content')
         @include('hrm.includes.dash-nav')
     <div class="row">
@@ -26,6 +16,9 @@
             <div class="card">
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
+                        <div class="table-head col-xl-12 mt-2" style="text-align: right;">
+                            <a href="#" class="btn btn-primary" data-url="{{ route('hrm.applyDta') }}" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>Apply DTA</a>
+                        </div>
                         <table class="table datatable">
                             <thead>
                             <tr>

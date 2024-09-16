@@ -29,4 +29,19 @@ class HrmDashControl extends Controller
     {
         return view('hrm.memo');
     }
+
+    public function applyLeave(Request $request)
+    {
+        return view('hrm.modals.apply-leave');
+    }
+
+    public function applyQuery(Request $request)
+    {
+        return view('hrm.modals.apply-query');
+    }
+
+    public function applyDta(Request $request)
+    {
+        return view('hrm.modals.apply-dta');
+    }
 }

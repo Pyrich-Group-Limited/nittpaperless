@@ -19,13 +19,17 @@
     </div>
 @endsection --}}
 
+
 @section('content')
         @include('hrm.includes.dash-nav')
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
-                <div class="card-body table-border-style">
+                <div class="card-body table-border-style" >
                     <div class="table-responsive">
+                        <div class="table-head col-xl-12 mt-2" style="text-align: right;">
+                            <a href="#" class="btn btn-primary" data-url="{{ route('hrm.applyLeave') }}" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>Apply for Leave</a>
+                        </div>
                         <table class="table datatable">
                             <thead>
                             <tr>

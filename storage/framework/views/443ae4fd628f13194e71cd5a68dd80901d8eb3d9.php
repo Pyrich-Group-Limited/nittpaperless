@@ -1,5 +1,5 @@
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Manage Product & Services')); ?>
+    <?php echo e(__('Assets/Inventory/Stock')); ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('script-page'); ?>
@@ -34,12 +34,13 @@
 
                         <div class="d-flex align-items-center justify-content-end">
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                                <div class="btn-box">
-                                    <?php echo e(Form::label('category', __('Category'),['class'=>'form-label'])); ?>
-
-                                    <?php echo e(Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required'])); ?>
-
-                                </div>
+                                <label for="">Filter</label>
+                                <select name="" id="" class="form-control">
+                                    <option value="">--Select Filter--</option>
+                                    <option value="">Asset Type</option>
+                                    <option value="">Asset Code</option>
+                                </select>
+                                
                             </div>
                             <div class="col-auto float-end ms-2 mt-4">
                                 <a href="#" class="btn btn-sm btn-primary"
@@ -47,7 +48,7 @@
                                    data-bs-toggle="tooltip" title="<?php echo e(__('apply')); ?>">
                                     <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
                                 </a>
-                                <a href="<?php echo e(route('productservice.index')); ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
                                    title="<?php echo e(__('Reset')); ?>">
                                     <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
                                 </a>
@@ -69,15 +70,18 @@
                         <table class="table datatable">
                             <thead>
                             <tr>
-                                <th><?php echo e(__('Name')); ?></th>
-                                <th><?php echo e(__('Sku')); ?></th>
-                                <th><?php echo e(__('Sale Price')); ?></th>
-                                <th><?php echo e(__('Purchase Price')); ?></th>
-                                <th><?php echo e(__('Tax')); ?></th>
-                                <th><?php echo e(__('Category')); ?></th>
-                                <th><?php echo e(__('Unit')); ?></th>
-                                <th><?php echo e(__('Quantity')); ?></th>
-                                <th><?php echo e(__('Type')); ?></th>
+                                <th><?php echo e(__('SN')); ?></th>
+                                <th><?php echo e(__('Asset Identification Code')); ?></th>
+                                <th><?php echo e(__('Asset Type')); ?></th>
+                                <th><?php echo e(__('Asset Description')); ?></th>
+                                <th><?php echo e(__('Location')); ?></th>
+                                <th><?php echo e(__('No. of Units')); ?></th>
+                                <th><?php echo e(__('Model Number')); ?></th>
+                                <th><?php echo e(__('Year of Manufacture')); ?></th>
+                                <th><?php echo e(__('Serial No./Other')); ?></th>
+                                <th><?php echo e(__('Date of Purchase')); ?></th>
+                                <th><?php echo e(__('Initial Cost (₦)')); ?></th>
+                                <th><?php echo e(__('Measure improvement of asset (if any)')); ?></th>
                                 <th><?php echo e(__('Action')); ?></th>
                             </tr>
                             </thead>
@@ -110,6 +114,9 @@
                                         <td>-</td>
                                     <?php endif; ?>
                                     <td><?php echo e(ucwords($productService->type)); ?></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
 
                                     <?php if(Gate::check('edit product & service') || Gate::check('delete product & service')): ?>
                                         <td class="Action">

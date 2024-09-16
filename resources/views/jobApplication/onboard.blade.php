@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{__('Manage Job On-boarding')}}
+    {{__('Manage Employee On-boarding')}}
 @endsection
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Job On-boarding')}}</li>
+    <li class="breadcrumb-item">{{__('Employee On-boarding')}}</li>
 @endsection
 @section('action-btn')
     <div class="float-end">
     @can('create interview schedule')
 
-            <a href="#" data-url="{{ route('job.on.board.create',0)}}"  data-bs-toggle="tooltip" title="{{__('Create')}}" data-ajax-popup="true" class="btn btn-sm btn-primary" data-title="{{__('Create New Job OnBoard')}}">
+            <a href="#" data-url="{{ route('job.on.board.create',0)}}"  data-bs-toggle="tooltip" title="{{__('Create')}}" data-ajax-popup="true" class="btn btn-sm btn-primary" data-title="{{__('Create New Employee OnBoard')}}">
             <i class="ti ti-plus"></i>
         </a>
         @endcan

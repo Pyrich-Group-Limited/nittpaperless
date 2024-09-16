@@ -22,7 +22,23 @@ class AccountantDashControl extends Controller
         return view('accountant.store-requisition');
     }
 
+    public function storeReqList(Request $request){
+        return view('accountant.store-req-list');
+    }
+
     public function leave(Request $request){
         return view('accountant.leave');
+    }
+
+    public function reqDetails(Request $request){
+        return view('accountant.req-details');
+    }
+
+    public function reqList(Request $request){
+        return view('accountant.requisition-list');
+    }
+
+    public function newPurchaseReq(Request $request){
+        return view('accountant.modals.new-purchase-req');
     }
 }

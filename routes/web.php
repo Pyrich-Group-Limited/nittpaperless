@@ -301,12 +301,19 @@ Route::get('set-budget/index', [AccountantDashControl::class, 'index'])->name('s
 Route::get('purchase-requisition/index', [AccountantDashControl::class, 'purchase'])->name('purchase.requisition');
 Route::get('store-requisition/index', [AccountantDashControl::class, 'storeReq'])->name('store.requisition');
 Route::get('leave/index', [AccountantDashControl::class, 'leave'])->name('leave');
+Route::get('requisition/details', [AccountantDashControl::class, 'reqDetails'])->name('req.details');
+Route::get('requisition-list', [AccountantDashControl::class, 'reqList'])->name('req.list');
+Route::get('new-purchase-requisition', [AccountantDashControl::class, 'newPurchaseReq'])->name('requisition.new');
+Route::get('store-requisition-list', [AccountantDashControl::class, 'storeReqList'])->name('storeReq.list');
 
 Route::get('hrm-budget/index', [HrmDashControl::class, 'budget'])->name('hrm.budget');
 Route::get('hrm-query/index', [HrmDashControl::class, 'hrmQuery'])->name('hrm.query');
 Route::get('hrm-leave/index', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
 Route::get('hrm-dta/index', [HrmDashControl::class, 'hrmDta'])->name('hrm.dta');
 Route::get('hrm-memo/index', [HrmDashControl::class, 'hrmMemo'])->name('hrm.memo');
+Route::get('hrm-apply-leave', [HrmDashControl::class, 'applyLeave'])->name('hrm.applyLeave');
+Route::get('hrm-apply-query', [HrmDashControl::class, 'applyQuery'])->name('hrm.applyQuery');
+Route::get('hrm-apply-dta', [HrmDashControl::class, 'applyDta'])->name('hrm.applyDta');
 
 
 
