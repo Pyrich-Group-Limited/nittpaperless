@@ -13,4 +13,12 @@ class Unit extends Model
         'name',
         'department_id'
     ];
+
+    public function subunits(){
+        return $this->hasMany(Subunit::class);
+    }
+
+    public function department(){
+        return $this->belongsTo(Department::class,'department_id');
+    }
 }

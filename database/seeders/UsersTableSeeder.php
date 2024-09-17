@@ -7,6 +7,10 @@ use App\Models\JoiningLetter;
 use App\Models\NOC;
 use App\Models\User;
 use App\Models\Utility;
+use App\Models\Designation;
+use App\Models\Department;
+use App\Models\Unit;
+use App\Models\Subunit;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
@@ -3607,6 +3611,10 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'SuperAdmin/Paperless',
                 'email' => 'spadmin@nitt.com',
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
                 'password' => Hash::make('1234'),
                 'type' => 'super admin',
                 'default_pipeline' => 1,
@@ -3638,6 +3646,10 @@ class UsersTableSeeder extends Seeder
                 'name' => 'User',
                 'email' => 'user@nitt.com',
                 'password' => Hash::make('1234'),
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
                 'type' => 'user',
                 'default_pipeline' => 1,
                 'lang' => 'en',
@@ -3700,6 +3712,10 @@ class UsersTableSeeder extends Seeder
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $supervisor->assignRole($supervisorRole);
@@ -3759,6 +3775,10 @@ class UsersTableSeeder extends Seeder
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $liason->assignRole($liasonRole);
@@ -3819,6 +3839,10 @@ class UsersTableSeeder extends Seeder
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $unitHead->assignRole($unitHeadRole);
@@ -3882,6 +3906,10 @@ class UsersTableSeeder extends Seeder
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $storeKeeper->assignRole($storeKeeperRole);
@@ -4041,6 +4069,10 @@ class UsersTableSeeder extends Seeder
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $accountant->assignRole($accountantRole);
@@ -4141,6 +4173,10 @@ class UsersTableSeeder extends Seeder
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $client->assignRole($clientRole);

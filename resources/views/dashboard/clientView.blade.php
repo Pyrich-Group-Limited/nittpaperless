@@ -242,7 +242,7 @@
                                 <div class="row g-3 flex-nowrap team-lists horizontal-scroll-cards">
                                     <div class="col-auto">
                                         <img src="http://localhost/storage/avatar.png" alt="">
-                                        <p class="mt-2">Accountant/ Bursar</p>
+                                        <p class="mt-2"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")" }}</p>
                                     </div>
                                 </div>
                             </div>
