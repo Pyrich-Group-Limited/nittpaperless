@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         { */
             $this->call(UsersTableSeeder::class);
             $this->call(AiTemplateSeeder::class);
+            $this->call(DesignationSeeder::class);
+            $this->call(DepartmentSeeder::class);
 
        /*  }else{
             Utility::languagecreate();

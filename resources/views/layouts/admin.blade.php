@@ -265,5 +265,6 @@
 
 @include('partials.admin.footer')
 @include('Chatify::layouts.footerLinks')
+
 </body>
 </html>

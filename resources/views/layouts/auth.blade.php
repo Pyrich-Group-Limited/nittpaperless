@@ -83,7 +83,7 @@
     <div class="auth-content">
         {{-- <nav class="navbar navbar-expand-md navbar-light default">
             <div class="container-fluid pe-2">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ route('dashboard')}}">
                     @if($setting['cust_darklayout'] && $setting['cust_darklayout'] == 'on' )
                         <img src="{{  asset('assets/images/logo-dark.png') }}" style="width: 70px;"
                              alt="{{ config('app.name', 'NITT') }}" class="logo">

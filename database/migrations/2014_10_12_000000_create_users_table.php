@@ -34,6 +34,11 @@ class CreateUsersTable extends Migration
             $table->boolean('dark_mode')->default(0);
             $table->integer('is_active')->default(1);
             $table->datetime('last_login_at')->nullable();
+            $table->string('designation');
+            $table->string('level');
+            $table->integer('department_id');
+            $table->integer('unit_id');
+            $table->integer('sub_unit_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         }

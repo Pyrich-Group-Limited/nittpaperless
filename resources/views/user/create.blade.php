@@ -49,17 +49,39 @@
         </div>
         <div class="form-group col-md-6">
             {{ Form::label('designation', __('Designation'),['class'=>'form-label']) }}
-            {!! Form::select('designation', $roles, null,array('class' => 'form-control select','required'=>'required')) !!}
+            {!! Form::select('designation', $designations, null,array('class' => 'form-control select','required'=>'required')) !!}
             @error('designation')
             <small class="invalid-role" role="alert">
                 <strong class="text-danger">{{ $message }}</strong>
             </small>
             @enderror
         </div>
+
+
         <div class="form-group col-md-6">
-            {{ Form::label('location', __('Location'),['class'=>'form-label']) }}
-            {!! Form::select('location', $roles, null,array('class' => 'form-control select','required'=>'required')) !!}
-            @error('location')
+            {{ Form::label('level', __('Level'),['class'=>'form-label']) }}
+            {!! Form::select('level', ['Level 07','Level 08','Level 09','Level 11','Level 12','Level 13','Level 14','Level 15'], null,array('class' => 'form-control select','required'=>'required')) !!}
+            @error('Level')
+            <small class="invalid-role" role="alert">
+                <strong class="text-danger">{{ $message }}</strong>
+            </small>
+            @enderror
+        </div>
+
+        <div class="form-group col-md-6">
+            {{ Form::label('department', __('Department'),['class'=>'form-label']) }}
+            {!! Form::select('department', $departments, null,array('class' => 'form-control select','required'=>'required','id' =>'sel_department')) !!}
+            @error('Department')
+            <small class="invalid-role" role="alert">
+                <strong class="text-danger">{{ $message }}</strong>
+            </small>
+            @enderror
+        </div>
+
+        <div class="form-group col-md-6">
+            {{ Form::label('unit', __('Unit'),['class'=>'form-label']) }}
+            {!! Form::select('unit', $roles, null,array('class' => 'form-control select','required'=>'required','id'=>'department_units')) !!}
+            @error('Unit')
             <small class="invalid-role" role="alert">
                 <strong class="text-danger">{{ $message }}</strong>
             </small>
@@ -80,5 +102,5 @@
     <input type="button" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
     <input type="submit" value="{{__('Create')}}" class="btn  btn-primary">
 </div>
-
 {{Form::close()}}
+
