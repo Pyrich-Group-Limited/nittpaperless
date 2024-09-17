@@ -8,8 +8,7 @@
     <div class="footer-wrapper">
         <div class="py-1">
             <p class="mb-0 text-muted"> &copy;
-                <?php echo e(date('Y')); ?> <?php echo e(Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'ENITT')); ?>
-
+                <?php echo e(date('Y')); ?> <?php echo e(Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'NITT')); ?>. All rights reserved
             </p>
         </div>
 

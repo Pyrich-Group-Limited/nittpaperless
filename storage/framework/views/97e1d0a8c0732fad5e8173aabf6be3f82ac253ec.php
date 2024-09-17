@@ -52,7 +52,10 @@
     <meta name="author" content="NITT"/>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="<?php echo e($logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')); ?>" type="image/x-icon"/>
+   <link rel="icon" href="<?php echo e(asset('assets/images/favicon.png')); ?>" type="image/x-icon"/>
+
+    <!-- Favicon icon -->
+    
 
     <!-- font css -->
     <link rel="stylesheet" href="<?php echo e(asset('assets/fonts/tabler-icons.min.css')); ?>">
@@ -106,8 +109,7 @@
                 <div class="row">
                     <div class="col-6">
                         <p class="mb-0"> &copy;
-                            <?php echo e(date('Y')); ?> <?php echo e(Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'NITT')); ?>
-
+                            <?php echo e(date('Y')); ?> <?php echo e(Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'NITT')); ?>. All rights reserved
                         </p>
                     </div>
 
