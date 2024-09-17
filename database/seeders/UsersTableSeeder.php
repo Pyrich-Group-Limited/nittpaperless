@@ -3088,6 +3088,11 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [   'name' => 'view leave report',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ];
 
         Permission::insert($arrPermissions);
@@ -3103,6 +3108,7 @@ class UsersTableSeeder extends Seeder
         );
 
         $companyPermissions = [
+            ['name' => 'view leave report'],
             ['name' => 'show pos dashboard'],
             ['name' => 'show crm dashboard'],
             ['name' => 'show hrm dashboard'],
@@ -3707,6 +3713,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liasonPermission = [
+            ['name' => 'view leave report'],
             ['name' => 'create budget plan'],
             ['name' => 'show invoice'],
             ['name' => 'show proposal'],
@@ -3766,6 +3773,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $unitHeadPermission = [
+            ['name' => 'view leave report'],
             ['name' => 'show unithead dashboard'],
             ['name' => 'manage client dashboard'],
             ['name' => 'manage bug report'],
@@ -4057,6 +4065,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $clientPermission = [
+            ['name' => 'view leave report'],
             ['name' => 'show hrm dashboard'],
             ['name' => 'manage employee'],
             ['name' => 'manage leave'],
