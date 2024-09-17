@@ -974,6 +974,8 @@ Route::post('/profile', [UserController::class, 'updateProfile'])->name('update.
 Route::get('user/info/{id}', [UserController::class, 'userInfo'])->name('users.info')->middleware(['auth', 'XSS']);
 Route::get('user/{id}/info/{type}', [UserController::class, 'getProjectTask'])->name('user.info.popup')->middleware(['auth', 'XSS']);
 Route::delete('users/{id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware(['auth', 'XSS']);
+Route::get('get-department-units/{id}', [UserController::class, 'getDepartments']);
+Route::get('get-unit-subunits/{id}', [UserController::class, 'getSubUnits']);
 
 
 // End User Module

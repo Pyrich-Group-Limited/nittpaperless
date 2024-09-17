@@ -80,13 +80,13 @@
     <div class="auth-content">
         <nav class="navbar navbar-expand-md navbar-light default">
             <div class="container-fluid pe-2">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="<?php echo e(route('dashboard')); ?>">
                     <?php if($setting['cust_darklayout'] && $setting['cust_darklayout'] == 'on' ): ?>
-                        <img src="<?php echo e($logo . '/' . (isset($company_logos) && !empty($company_logos) ? $company_logos : 'logo-dark.png')); ?>"
-                             alt="<?php echo e(config('app.name', 'ERPGo')); ?>" class="logo">
+                        <img src="<?php echo e(asset('assets/images/logo-light.png')); ?>" width="40"
+                             alt="<?php echo e(config('app.name', 'NITT')); ?>" class="logo">
                     <?php else: ?>
-                        <img src="<?php echo e($logo . '/' . (isset($company_logo) && !empty($company_logo) ? $company_logo : 'logo-dark.png')); ?>"
-                             alt="<?php echo e(config('app.name', 'ERPGo')); ?>" class="logo">
+                        <img src="<?php echo e(asset('assets/images/logo-light.png')); ?>"
+                             alt="<?php echo e(config('app.name', 'NITT')); ?>" class="logo">
                     <?php endif; ?>
                 </a>
                 <button

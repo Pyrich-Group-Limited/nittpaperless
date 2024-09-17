@@ -3796,6 +3796,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage contract'],
             ['name' => 'show contract'],
             ['name' => 'view budget plan'],
+            ['name' => 'manage report'],
         ];
 
         $unitHeadRole->givePermissionTo($unitHeadPermission);

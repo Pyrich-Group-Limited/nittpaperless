@@ -58,7 +58,7 @@
     <?php echo $__env->make('layouts.cookie_consent', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php endif; ?>
 <?php echo $__env->yieldPushContent('script-page'); ?>
-
+<?php echo $__env->yieldPushContent('script'); ?>
 
 <script>
 

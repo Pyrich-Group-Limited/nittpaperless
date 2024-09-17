@@ -22,11 +22,11 @@
                 <!-- @if($setting['cust_darklayout'] && $setting['cust_darklayout'] == 'on' )
 
                     <img src="{{ $logo . '/' . (isset($company_logos) && !empty($company_logos) ? $company_logos : 'logo-dark.png') }}"
-                         alt="{{ config('app.name', 'ERPGo') }}" class="logo logo-lg">
+                         alt="{{ config('app.name', 'NITT') }}" class="logo logo-lg">
                 @else
 
                     <img src="{{ $logo . '/' . (isset($company_logo) && !empty($company_logo) ? $company_logo : 'logo-dark.png') }}"
-                         alt="{{ config('app.name', 'ERPGo') }}" class="logo logo-lg">
+                         alt="{{ config('app.name', 'NITT') }}" class="logo logo-lg">
                 @endif -->
                 <img src="{{  'logo-dark.png' }}"
                          alt="NITT" class="logo logo-lg">
@@ -35,14 +35,30 @@
         <div class="navbar-content">
             @if((\Auth::user()->type != 'client') && \Auth::user()->type != 'hrm' && \Auth::user()->type != 'super admin')
             <ul class="dash-navbar">
+                <li class="dash-item dash-hasmenu ">
+                    <a href="#!" class="dash-link {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''}}"
+                    ><span class="dash-micon"><i class="ti ti-home"></i></span
+                        ><span class="dash-mtext">{{__('Overview')}}</span
+                        ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                        ></a>
+                    <ul class="dash-submenu">
+                        <li class="dash-item {{ request()->is('dashboard') ? 'active' : '' }}">
+                            <a class="dash-link" href="{{ route('dashboard') }}">{{__('Dashbaord')}}</a>
+                        </li>
+                        <li class="dash-item {{ request()->is('reports-monthly-attendance') ? 'active' : '' }}">
+                            <a class="dash-link" href="{{ route('report.monthly.attendance') }}">{{ __('Monthly Attendance') }}</a>
+                        </li>
 
-                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'dashboard') ? ' active' : '' }}">
-                        <a href="{{ route('dashboard') }}" class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext">{{__('Dashboard')}}</span>
-                        </a>
-                    </li>
+                    </ul>
+                </li>
 
-            </ul>
+                <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
+                    <a href="{{ route('hrm.budget') }}" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-cast"></i></span><span class="dash-mtext">{{__('Departmental Budgets')}}</span>
+                    </a>
+                </li>
+
+        </ul>
             @endif
 
             @if(\Auth::user()->type != 'client' || \Auth::user()->type == 'client')
@@ -57,7 +73,7 @@
                                  Request::segment(1) == 'reports-monthly-attendance'|| Request::segment(1) == 'reports-lead' || Request::segment(1) == 'reports-deal'
                                  || Request::segment(1) == 'pos-dashboard'|| Request::segment(1) == 'reports-warehouse' || Request::segment(1) == 'reports-daily-purchase'
                                 || Request::segment(1) == 'reports-monthly-purchase' || Request::segment(1) == 'reports-daily-pos' ||Request::segment(1) == 'reports-monthly-pos' ||Request::segment(1) == 'reports-pos-vs-purchase') ?'active dash-trigger':''}}">
-                            <a href="#!" class="dash-link"><span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext">{{__('Dashboard')}}</span>
+                            <a href="#!" class="dash-link"><span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext">{{__('Overview')}}</span>
                                 <span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                             <ul class="dash-submenu">
                                 @if(\Auth::user()->show_account() == 1 && Gate::check('show account dashboard'))
@@ -299,7 +315,7 @@
                                     @if(\Auth::user()->show_project() == 1)
                                         @if( Gate::check('manage project'))
                                         <li class="dash-item dash-hasmenu  {{ (Request::segment(1) == 'setsalary' || Request::segment(1) == 'payslip') ? 'active dash-trigger' : ''}}">
-                                        <a class="dash-link" href="#">{{__('Project System')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                        <a class="dash-link" href="#">{{__('Project Management')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu">
                                             @can('manage project')
                                                 <li class="dash-item  {{Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' ||Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : ''}}">
@@ -388,7 +404,7 @@
 
                                     @if( Gate::check('manage indicator') || Gate::check('manage appraisal') || Gate::check('manage goal tracking'))
                                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'active dash-trigger' : ''}}" href="#navbar-performance" data-toggle="collapse" role="button" aria-expanded="{{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'true' : 'false'}}">
-                                        <a class="dash-link" href="#">{{__('Performance Setup')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                        <a class="dash-link" href="#">{{__('Performance Management')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu {{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'show' : 'collapse'}}">
                                             @can('manage indicator')
                                                 <li class="dash-item {{ (request()->is('indicator*') ? 'active' : '')}}">
@@ -1123,7 +1139,7 @@
 
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'dashboard') ? ' active' : '' }}">
                             <a href="{{ route('client.dashboard.view') }}" class="dash-link">
-                                <span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext">{{__('Dashboard')}}</span>
+                                <span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext">{{__('Overview')}}</span>
                             </a>
                         </li>
 

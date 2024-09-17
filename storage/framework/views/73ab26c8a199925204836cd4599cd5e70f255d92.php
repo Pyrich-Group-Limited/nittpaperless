@@ -22,11 +22,11 @@
                 <!-- <?php if($setting['cust_darklayout'] && $setting['cust_darklayout'] == 'on' ): ?>
 
                     <img src="<?php echo e($logo . '/' . (isset($company_logos) && !empty($company_logos) ? $company_logos : 'logo-dark.png')); ?>"
-                         alt="<?php echo e(config('app.name', 'ERPGo')); ?>" class="logo logo-lg">
+                         alt="<?php echo e(config('app.name', 'NITT')); ?>" class="logo logo-lg">
                 <?php else: ?>
 
                     <img src="<?php echo e($logo . '/' . (isset($company_logo) && !empty($company_logo) ? $company_logo : 'logo-dark.png')); ?>"
-                         alt="<?php echo e(config('app.name', 'ERPGo')); ?>" class="logo logo-lg">
+                         alt="<?php echo e(config('app.name', 'NITT')); ?>" class="logo logo-lg">
                 <?php endif; ?> -->
                 <img src="<?php echo e('logo-dark.png'); ?>"
                          alt="NITT" class="logo logo-lg">
@@ -35,14 +35,30 @@
         <div class="navbar-content">
             <?php if((\Auth::user()->type != 'client') && \Auth::user()->type != 'hrm' && \Auth::user()->type != 'super admin'): ?>
             <ul class="dash-navbar">
+                <li class="dash-item dash-hasmenu ">
+                    <a href="#!" class="dash-link <?php echo e((Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''); ?>"
+                    ><span class="dash-micon"><i class="ti ti-home"></i></span
+                        ><span class="dash-mtext"><?php echo e(__('Overview')); ?></span
+                        ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                        ></a>
+                    <ul class="dash-submenu">
+                        <li class="dash-item <?php echo e(request()->is('dashboard') ? 'active' : ''); ?>">
+                            <a class="dash-link" href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashbaord')); ?></a>
+                        </li>
+                        <li class="dash-item <?php echo e(request()->is('reports-monthly-attendance') ? 'active' : ''); ?>">
+                            <a class="dash-link" href="<?php echo e(route('report.monthly.attendance')); ?>"><?php echo e(__('Monthly Attendance')); ?></a>
+                        </li>
 
-                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'dashboard') ? ' active' : ''); ?>">
-                        <a href="<?php echo e(route('dashboard')); ?>" class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext"><?php echo e(__('Dashboard')); ?></span>
-                        </a>
-                    </li>
+                    </ul>
+                </li>
 
-            </ul>
+                <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'chats')?'active':''); ?>">
+                    <a href="<?php echo e(route('hrm.budget')); ?>" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-cast"></i></span><span class="dash-mtext"><?php echo e(__('Departmental Budgets')); ?></span>
+                    </a>
+                </li>
+
+        </ul>
             <?php endif; ?>
 
             <?php if(\Auth::user()->type != 'client' || \Auth::user()->type == 'client'): ?>
@@ -57,7 +73,7 @@
                                  Request::segment(1) == 'reports-monthly-attendance'|| Request::segment(1) == 'reports-lead' || Request::segment(1) == 'reports-deal'
                                  || Request::segment(1) == 'pos-dashboard'|| Request::segment(1) == 'reports-warehouse' || Request::segment(1) == 'reports-daily-purchase'
                                 || Request::segment(1) == 'reports-monthly-purchase' || Request::segment(1) == 'reports-daily-pos' ||Request::segment(1) == 'reports-monthly-pos' ||Request::segment(1) == 'reports-pos-vs-purchase') ?'active dash-trigger':''); ?>">
-                            <a href="#!" class="dash-link"><span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext"><?php echo e(__('Dashboard')); ?></span>
+                            <a href="#!" class="dash-link"><span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext"><?php echo e(__('Overview')); ?></span>
                                 <span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                             <ul class="dash-submenu">
                                 <?php if(\Auth::user()->show_account() == 1 && Gate::check('show account dashboard')): ?>
@@ -260,7 +276,7 @@
                                     <?php if(\Auth::user()->show_project() == 1): ?>
                                         <?php if( Gate::check('manage project')): ?>
                                         <li class="dash-item dash-hasmenu  <?php echo e((Request::segment(1) == 'setsalary' || Request::segment(1) == 'payslip') ? 'active dash-trigger' : ''); ?>">
-                                        <a class="dash-link" href="#"><?php echo e(__('Project System')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                        <a class="dash-link" href="#"><?php echo e(__('Project Management')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu">
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project')): ?>
                                                 <li class="dash-item  <?php echo e(Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' ||Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : ''); ?>">
@@ -349,7 +365,7 @@
 
                                     <?php if( Gate::check('manage indicator') || Gate::check('manage appraisal') || Gate::check('manage goal tracking')): ?>
                                         <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'active dash-trigger' : ''); ?>" href="#navbar-performance" data-toggle="collapse" role="button" aria-expanded="<?php echo e((Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'true' : 'false'); ?>">
-                                        <a class="dash-link" href="#"><?php echo e(__('Performance Setup')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                        <a class="dash-link" href="#"><?php echo e(__('Performance Management')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu <?php echo e((Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'show' : 'collapse'); ?>">
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage indicator')): ?>
                                                 <li class="dash-item <?php echo e((request()->is('indicator*') ? 'active' : '')); ?>">

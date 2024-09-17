@@ -80,13 +80,13 @@
     <div class="auth-content">
         <nav class="navbar navbar-expand-md navbar-light default">
             <div class="container-fluid pe-2">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ route('dashboard')}}">
                     @if($setting['cust_darklayout'] && $setting['cust_darklayout'] == 'on' )
-                        <img src="{{ $logo . '/' . (isset($company_logos) && !empty($company_logos) ? $company_logos : 'logo-dark.png') }}"
-                             alt="{{ config('app.name', 'ERPGo') }}" class="logo">
+                        <img src="{{ asset('assets/images/logo-light.png')}}" width="40"
+                             alt="{{ config('app.name', 'NITT') }}" class="logo">
                     @else
-                        <img src="{{ $logo . '/' . (isset($company_logo) && !empty($company_logo) ? $company_logo : 'logo-dark.png') }}"
-                             alt="{{ config('app.name', 'ERPGo') }}" class="logo">
+                        <img src="{{ asset('assets/images/logo-light.png')}}"
+                             alt="{{ config('app.name', 'NITT') }}" class="logo">
                     @endif
                 </a>
                 <button

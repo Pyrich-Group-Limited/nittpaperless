@@ -57,7 +57,7 @@
     @include('layouts.cookie_consent')
 @endif
 @stack('script-page')
-
+@stack('script')
 
 <script>
 
