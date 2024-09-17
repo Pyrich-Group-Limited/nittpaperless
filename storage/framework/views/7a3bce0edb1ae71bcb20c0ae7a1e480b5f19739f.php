@@ -1,8 +1,9 @@
-@extends('layouts.admin')
-@section('page-title')
-    {{__('Dashboard')}}
-@endsection
-@push('script-page')
+
+<?php $__env->startSection('page-title'); ?>
+    <?php echo e(__('Dashboard')); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('script-page'); ?>
     <script>
         (function () {
             var options = {
@@ -22,10 +23,11 @@
                 },
                 series: [{
                     name: 'Refferal',
-                    data:{!! json_encode(array_values($home_data['task_overview'])) !!}
+                    data:<?php echo json_encode(array_values($home_data['task_overview'])); ?>
+
                 },],
                 xaxis: {
-                    categories:{!! json_encode(array_keys($home_data['task_overview'])) !!},
+                    categories:<?php echo json_encode(array_keys($home_data['task_overview'])); ?>,
                 },
                 colors: ['#3ec9d6'],
                 fill: {
@@ -89,10 +91,11 @@
                     strokeDashArray: 4,
                 },
                 series: [{
-                    data: {!! json_encode(array_values($home_data['timesheet_logged'])) !!}
+                    data: <?php echo json_encode(array_values($home_data['timesheet_logged'])); ?>
+
                 }],
                 xaxis: {
-                    categories: {!! json_encode(array_keys($home_data['timesheet_logged'])) !!},
+                    categories: <?php echo json_encode(array_keys($home_data['timesheet_logged'])); ?>,
                 },
             };
             var chart = new ApexCharts(document.querySelector("#timesheet_logged"), options);
@@ -100,12 +103,12 @@
         })();
 
     </script>
-@endpush
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")" }}</li>
-@endsection
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
+    <li class="breadcrumb-item"><?php echo e(__('Project')); ?></li>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row">
 
         <div class="col-lg-4 col-md-6">
@@ -118,14 +121,14 @@
                                     <i class="ti ti-cast"></i>
                                 </div>
                                 <div class="ms-3">
-                                    <small class="text-muted">{{__('Total')}}</small>
-                                    <h6 class="m-0">{{__('Projects')}}</h6>
+                                    <small class="text-muted"><?php echo e(__('Total')); ?></small>
+                                    <h6 class="m-0"><?php echo e(__('Projects')); ?></h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-auto text-end">
-                            <h4 class="m-0">{{ $home_data['total_project']['total'] }}</h4>
-                            <small class="text-muted"><span class="text-success">{{ $home_data['total_project']['percentage'] }}%</span> {{__('completd')}}</small>
+                            <h4 class="m-0"><?php echo e($home_data['total_project']['total']); ?></h4>
+                            <small class="text-muted"><span class="text-success"><?php echo e($home_data['total_project']['percentage']); ?>%</span> <?php echo e(__('completd')); ?></small>
                         </div>
                     </div>
                 </div>
@@ -141,14 +144,14 @@
                                     <i class="ti ti-activity"></i>
                                 </div>
                                 <div class="ms-3">
-                                    <small class="text-muted">{{__('Total')}}</small>
-                                    <h6 class="m-0">{{__('Tasks')}}</h6>
+                                    <small class="text-muted"><?php echo e(__('Total')); ?></small>
+                                    <h6 class="m-0"><?php echo e(__('Tasks')); ?></h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-auto text-end">
-                            <h4 class="m-0">{{ $home_data['total_task']['total'] }}</h4>
-                            <small class="text-muted"><span class="text-success">{{ $home_data['total_task']['percentage'] }}%</span> {{__('completd')}}</small>
+                            <h4 class="m-0"><?php echo e($home_data['total_task']['total']); ?></h4>
+                            <small class="text-muted"><span class="text-success"><?php echo e($home_data['total_task']['percentage']); ?>%</span> <?php echo e(__('completd')); ?></small>
                         </div>
                     </div>
                 </div>
@@ -164,14 +167,14 @@
                                     <i class="ti ti-report-money"></i>
                                 </div>
                                 <div class="ms-3">
-                                    <small class="text-muted">{{__('Total')}}</small>
-                                    <h6 class="m-0">{{__('Expense')}}</h6>
+                                    <small class="text-muted"><?php echo e(__('Total')); ?></small>
+                                    <h6 class="m-0"><?php echo e(__('Expense')); ?></h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-auto text-end">
-                            <h4 class="m-0">{{ $home_data['total_expense']['total'] }}</h4>
-                            <small class="text-muted"><span class="text-success">{{ $home_data['total_expense']['percentage'] }}%</span> {{__('expense')}}</small>
+                            <h4 class="m-0"><?php echo e($home_data['total_expense']['total']); ?></h4>
+                            <small class="text-muted"><span class="text-success"><?php echo e($home_data['total_expense']['percentage']); ?>%</span> <?php echo e(__('expense')); ?></small>
                         </div>
                     </div>
                 </div>
@@ -182,24 +185,24 @@
             <div class="card">
                 <div class="card-header">
 
-                    <h5>{{__('Project Status')}}</h5>
+                    <h5><?php echo e(__('Project Status')); ?></h5>
                 </div>
                 <div class="card-body">
                     <div class="row ">
-                        @foreach($home_data['project_status'] as $status => $val)
+                        <?php $__currentLoopData = $home_data['project_status']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $status => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-md-6 col-sm-6 mb-5">
                                 <div class="align-items-start">
 
                                     <div class="ms-2">
-                                        <p class="text-muted text-sm mb-0">{{__(\App\Models\Project::$project_status[$status])}}</p>
-                                        <h3 class="mb-0 text-{{ \App\Models\Project::$status_color[$status] }}">{{ $val['total'] }}%</h3>
+                                        <p class="text-muted text-sm mb-0"><?php echo e(__(\App\Models\Project::$project_status[$status])); ?></p>
+                                        <h3 class="mb-0 text-<?php echo e(\App\Models\Project::$status_color[$status]); ?>"><?php echo e($val['total']); ?>%</h3>
                                         <div class="progress mb-0">
-                                            <div class="progress-bar bg-{{ \App\Models\Project::$status_color[$status] }}" style="width: {{$val['percentage']}}%;"></div>
+                                            <div class="progress-bar bg-<?php echo e(\App\Models\Project::$status_color[$status]); ?>" style="width: <?php echo e($val['percentage']); ?>%;"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </div>
@@ -207,7 +210,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
-                    <h5>{{__('Tasks Overview')}} <span class="float-end"> <small class="text-muted">{{__('Total Completed task in last 7 days')}}</small></span></h5>
+                    <h5><?php echo e(__('Tasks Overview')); ?> <span class="float-end"> <small class="text-muted"><?php echo e(__('Total Completed task in last 7 days')); ?></small></span></h5>
 
                 </div>
                 <div class="card-body">
@@ -219,45 +222,45 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    <h5>{{__('Top Due Projects')}}</h5>
+                    <h5><?php echo e(__('Top Due Projects')); ?></h5>
                 </div>
                 <div class="card-body project_table">
                     <div class="table-responsive ">
                         <table class="table table-hover mb-0">
                             <thead>
                             <tr>
-                                <th>{{__('Name')}}</th>
-                                <th>{{__('End Date')}}</th>
-                                <th class="text-end">{{__('Status')}}</th>
+                                <th><?php echo e(__('Name')); ?></th>
+                                <th><?php echo e(__('End Date')); ?></th>
+                                <th class="text-end"><?php echo e(__('Status')); ?></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @if($home_data['due_project']->count() > 0)
-                                @foreach($home_data['due_project'] as $due_project)
+                            <?php if($home_data['due_project']->count() > 0): ?>
+                                <?php $__currentLoopData = $home_data['due_project']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $due_project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="{{asset(Storage::url('/'.$due_project->project_image ))}}"
+                                                <img src="<?php echo e(asset(Storage::url('/'.$due_project->project_image ))); ?>"
                                                      class="wid-40 rounded-circle me-3" alt="avatar image">
                                                 <div>
-                                                    <h6 class="mb-0">{{ $due_project->project_name }}</h6>
-                                                    <p class="mb-0"><span class="text-success">{{ \Auth::user()->priceFormat($due_project->budget) }}</p>
+                                                    <h6 class="mb-0"><?php echo e($due_project->project_name); ?></h6>
+                                                    <p class="mb-0"><span class="text-success"><?php echo e(\Auth::user()->priceFormat($due_project->budget)); ?></p>
 
                                                 </div>
                                             </div>
                                         </td>
-                                        <td >{{  Utility::getDateFormated($due_project->end_date) }}</td>
+                                        <td ><?php echo e(Utility::getDateFormated($due_project->end_date)); ?></td>
                                         <td class="">
-                                            <span class="status_badge p-2 px-3 rounded badge bg-{{\App\Models\Project::$status_color[$due_project->status]}}">{{ __(\App\Models\Project::$project_status[$due_project->status]) }}</span>
+                                            <span class="status_badge p-2 px-3 rounded badge bg-<?php echo e(\App\Models\Project::$status_color[$due_project->status]); ?>"><?php echo e(__(\App\Models\Project::$project_status[$due_project->status])); ?></span>
 
                                         </td>
                                     </tr>
-                                @endforeach
-                            @else
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php else: ?>
                                 <tr class="py-5">
-                                    <td class="text-center mb-0" colspan="3">{{__('No Due Projects Found.')}}</td>
+                                    <td class="text-center mb-0" colspan="3"><?php echo e(__('No Due Projects Found.')); ?></td>
                                 </tr>
-                            @endif
+                            <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -267,7 +270,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h5>{{__('Timesheet Logged Hours')}} <span>  <small class="float-end text-muted flo">{{__('Last 7 days')}}</small></span></h5>
+                    <h5><?php echo e(__('Timesheet Logged Hours')); ?> <span>  <small class="float-end text-muted flo"><?php echo e(__('Last 7 days')); ?></small></span></h5>
                 </div>
                 <div class="card-body project_table">
                     <div id="timesheet_logged"></div>
@@ -277,40 +280,40 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>{{__('Top Due Tasks')}}</h5>
+                    <h5><?php echo e(__('Top Due Tasks')); ?></h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                            @foreach($home_data['due_tasks'] as $due_task)
+                            <?php $__currentLoopData = $home_data['due_tasks']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $due_task): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="">
-                                                <small class="text-muted">{{__('Task')}}:</small>
-                                                <h6 class="m-0"><a href="{{ route('projects.tasks.index',$due_task->project->id) }}" class="name mb-0 h6 text-sm">{{ $due_task->name }}</a></h6>
+                                                <small class="text-muted"><?php echo e(__('Task')); ?>:</small>
+                                                <h6 class="m-0"><a href="<?php echo e(route('projects.tasks.index',$due_task->project->id)); ?>" class="name mb-0 h6 text-sm"><?php echo e($due_task->name); ?></a></h6>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <small class="text-muted">{{__('Project')}}:</small>
-                                        <h6 class="m-0 h6 text-sm">{{$due_task->project->project_name}}</h6>
+                                        <small class="text-muted"><?php echo e(__('Project')); ?>:</small>
+                                        <h6 class="m-0 h6 text-sm"><?php echo e($due_task->project->project_name); ?></h6>
                                     </td>
                                     <td>
 
-                                        <small class="text-muted">{{__('Stage')}}:</small>
+                                        <small class="text-muted"><?php echo e(__('Stage')); ?>:</small>
                                         <div class="d-flex align-items-center h6 text-sm mt-2">
-                                            <span class="full-circle bg-{{ \App\Models\ProjectTask::$priority_color[$due_task->priority] }}"></span>
-                                            <span class="ms-1">{{ \App\Models\ProjectTask::$priority[$due_task->priority] }}</span>
+                                            <span class="full-circle bg-<?php echo e(\App\Models\ProjectTask::$priority_color[$due_task->priority]); ?>"></span>
+                                            <span class="ms-1"><?php echo e(\App\Models\ProjectTask::$priority[$due_task->priority]); ?></span>
                                         </div>
                                     </td>
                                     <td>
-                                        <small class="text-muted">{{__('Completion')}}:</small>
-                                        <h6 class="m-0 h6 text-sm">{{ $due_task->taskProgress()['percentage'] }}</h6>
+                                        <small class="text-muted"><?php echo e(__('Completion')); ?>:</small>
+                                        <h6 class="m-0 h6 text-sm"><?php echo e($due_task->taskProgress()['percentage']); ?></h6>
                                     </td>
                                 </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
@@ -319,4 +322,6 @@
         </div>
 
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp-server\htdocs\e-NITT\resources\views/dashboard/project-dashboard.blade.php ENDPATH**/ ?>

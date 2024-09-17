@@ -14,4 +14,8 @@ class Subunit extends Model
         'name',
         'unit_id'
     ];
+
+    public function subunit(){
+        return $this->belongsTo(Unit::class,'unit_id');
+    }
 }
