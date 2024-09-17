@@ -200,7 +200,7 @@
                                     <?php if(\Auth::user()->show_pos() == 1): ?>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('show pos dashboard')): ?>
                                         <li class="dash-item dash-hasmenu <?php echo e(( Request::segment(1) == 'pos-dashboard'  || Request::segment(1) == 'reports-warehouse' || Request::segment(1) == 'reports-daily-purchase' || Request::segment(1) == 'reports-monthly-purchase' || Request::segment(1) == 'reports-daily-pos' || Request::segment(1) == 'reports-monthly-pos'||Request::segment(1) == 'reports-pos-vs-purchase') ? ' active dash-trigger' : ''); ?>">
-                                            <a class="dash-link" href="#"><?php echo e(__('POS')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                            <a class="dash-link" href="#"><?php echo e(__('Assets/Stock/Inventory')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                             <ul class="dash-submenu">
                                                 <li class="dash-item <?php echo e((\Request::route()->getName()=='pos.dashboard') ? ' active' : ''); ?>">
                                                     <a class="dash-link" href="<?php echo e(route('pos.dashboard')); ?>"><?php echo e(__(' Overview')); ?></a>
@@ -217,10 +217,10 @@
                                                             <a class="dash-link" href="<?php echo e(route('report.daily.purchase')); ?>"><?php echo e(__('Purchase Daily/Monthly Report')); ?></a>
                                                         </li>
                                                         <li class="dash-item <?php echo e(request()->is('reports-daily-pos') || request()->is('reports-monthly-pos') ? 'active' : ''); ?>">
-                                                            <a class="dash-link" href="<?php echo e(route('report.daily.pos')); ?>"><?php echo e(__('POS Daily/Monthly Report')); ?></a>
+                                                            <a class="dash-link" href="<?php echo e(route('report.daily.pos')); ?>"><?php echo e(__('Stock/Inventory Daily/Monthly Report')); ?></a>
                                                         </li>
                                                         <li class="dash-item <?php echo e(request()->is('reports-pos-vs-purchase') ? 'active' : ''); ?>">
-                                                            <a class="dash-link" href="<?php echo e(route('report.pos.vs.purchase')); ?>"><?php echo e(__('Pos VS Purchase Report')); ?></a>
+                                                            <a class="dash-link" href="<?php echo e(route('report.pos.vs.purchase')); ?>"><?php echo e(__('Stock/Inventory VS Purchase Report')); ?></a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -802,7 +802,7 @@
                                 </li>
 
                                 <li class="dash-item <?php echo e((Request::route()->getName() == 'pos.report' || Request::route()->getName() == 'pos.show') ? ' active' : ''); ?>">
-                                    <a class="dash-link" href="<?php echo e(route('pos.report')); ?>"><?php echo e(__('POS')); ?></a>
+                                    <a class="dash-link" href="<?php echo e(route('pos.report')); ?>"><?php echo e(__('Stock/Inventory')); ?></a>
                                 </li>
                             <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage warehouse')): ?>

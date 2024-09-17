@@ -224,7 +224,7 @@
                                     @if(\Auth::user()->show_pos() == 1)
                                         @can('show pos dashboard')
                                         <li class="dash-item dash-hasmenu {{ ( Request::segment(1) == 'pos-dashboard'  || Request::segment(1) == 'reports-warehouse' || Request::segment(1) == 'reports-daily-purchase' || Request::segment(1) == 'reports-monthly-purchase' || Request::segment(1) == 'reports-daily-pos' || Request::segment(1) == 'reports-monthly-pos'||Request::segment(1) == 'reports-pos-vs-purchase') ? ' active dash-trigger' : ''}}">
-                                            <a class="dash-link" href="#">{{__('POS')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                            <a class="dash-link" href="#">{{__('Assets/Stock/Inventory')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                             <ul class="dash-submenu">
                                                 <li class="dash-item {{ (\Request::route()->getName()=='pos.dashboard') ? ' active' : '' }}">
                                                     <a class="dash-link" href="{{route('pos.dashboard')}}">{{__(' Overview')}}</a>
@@ -241,10 +241,10 @@
                                                             <a class="dash-link" href="{{ route('report.daily.purchase') }}">{{__('Purchase Daily/Monthly Report')}}</a>
                                                         </li>
                                                         <li class="dash-item {{ request()->is('reports-daily-pos') || request()->is('reports-monthly-pos') ? 'active' : '' }}">
-                                                            <a class="dash-link" href="{{ route('report.daily.pos') }}">{{__('POS Daily/Monthly Report')}}</a>
+                                                            <a class="dash-link" href="{{ route('report.daily.pos') }}">{{__('Stock/Inventory Daily/Monthly Report')}}</a>
                                                         </li>
                                                         <li class="dash-item {{ request()->is('reports-pos-vs-purchase') ? 'active' : '' }}">
-                                                            <a class="dash-link" href="{{ route('report.pos.vs.purchase') }}">{{__('Pos VS Purchase Report')}}</a>
+                                                            <a class="dash-link" href="{{ route('report.pos.vs.purchase') }}">{{__('Stock/Inventory VS Purchase Report')}}</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -951,7 +951,7 @@
                                 </li>
 
                                 <li class="dash-item {{ (Request::route()->getName() == 'pos.report' || Request::route()->getName() == 'pos.show') ? ' active' : '' }}">
-                                    <a class="dash-link" href="{{ route('pos.report') }}">{{__('POS')}}</a>
+                                    <a class="dash-link" href="{{ route('pos.report') }}">{{__('Stock/Inventory')}}</a>
                                 </li>
                             @endcan
                                 @can('manage warehouse')
