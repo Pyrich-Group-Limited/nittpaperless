@@ -10,9 +10,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <div class="row">
-        <?php echo $__env->make('accountant.includes.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    </div>
+    
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -40,10 +38,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>
-                                        
-                                        -
-                                    </td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
 
@@ -66,11 +61,6 @@
                                                     <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Edit')); ?>"  data-title="<?php echo e(__('Edit Product')); ?>">
                                                         <i class="ti ti-pencil text-white"></i>
                                                     </a>
-                                                </div>
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete product & service')): ?>
-                                                <div class="action-btn bg-danger ms-2">
-                                                    
                                                 </div>
                                             <?php endif; ?>
                                         </td>

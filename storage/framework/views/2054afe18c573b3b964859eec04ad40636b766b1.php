@@ -5,10 +5,6 @@
 <?php $__env->startPush('script-page'); ?>
 <?php $__env->stopPush(); ?>
 
-<?php $__env->startPush('script'); ?>
-    <?php echo $__env->make('accountant.modals.comment', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php $__env->stopPush(); ?>
-
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
     <li class="breadcrumb-item"><a href="<?php echo e(route('storeVoucher.list')); ?>"><?php echo e(__('Store Issued Voucher')); ?></a></li>
@@ -16,9 +12,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <div class="row">
-        <?php echo $__env->make('accountant.includes.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    </div>
+    
     <div class="row">
         <div class="col-xl-12">
             <div class="card">

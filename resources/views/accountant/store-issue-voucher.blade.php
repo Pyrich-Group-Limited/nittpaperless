@@ -46,7 +46,7 @@
                                     <td class="Action">
                                         <div class="action-btn bg-warning ms-2">
                                             <a href="{{ route('storeVoucher.details') }}" class="mx-3 btn btn-sm align-items-center"
-                                                data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('View Details')}}" data-title="{{__('View Details')}}">
+                                                data-ajax-popup="false" data-bs-toggle="tooltip" title="{{__('View Details')}}" data-title="{{__('View Details')}}">
                                                 <i class="ti ti-eye text-white"></i>
                                             </a>
                                         </div>

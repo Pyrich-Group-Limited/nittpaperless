@@ -65,7 +65,9 @@
     </div>
 </div>
 <div class="modal-footer">
-    <input type="button" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light" data-bs-dismiss="modal">
-    <input type="submit" value="<?php echo e(__('Approve')); ?>" class="btn  btn-primary">
+    <input type="button" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light btn-sm" data-bs-dismiss="modal">
+    <input type="submit" value="<?php echo e(__('Approve')); ?>" class="btn  btn-primary btn-sm">
+    <input type="submit" value="<?php echo e(__('Reject')); ?>" class="btn  btn-danger btn-sm">
+    <input type="submit" value="<?php echo e(__('Revert')); ?>" class="btn  btn-secondary btn-sm">
 </div>
 <?php /**PATH C:\xampp\htdocs\e-NITT-2\resources\views/accountant/req-details.blade.php ENDPATH**/ ?>

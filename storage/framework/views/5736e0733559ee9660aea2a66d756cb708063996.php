@@ -2,6 +2,7 @@
     $users=\Auth::user();
     //$profile=asset(Storage::url('uploads/avatar/'));
     $profile=\App\Models\Utility::get_file('uploads/avatar/');
+    // $profile=\App\Models\Utility::get_file('assets/images/user/avatar.png');
     $languages=\App\Models\Utility::languages();
    $lang = isset($users->lang)?$users->lang:'en';
     if ($lang == null) {

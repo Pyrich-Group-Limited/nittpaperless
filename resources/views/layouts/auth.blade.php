@@ -49,7 +49,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="description" content="Dashboard Template Description"/>
     <meta name="keywords" content="Dashboard Template"/>
-    <meta name="author" content="Rajodiya Infotech"/>
+    <meta name="author" content="NITT"/>
 
     <!-- Favicon icon -->
     <link rel="icon" href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}" type="image/x-icon"/>
@@ -78,15 +78,13 @@
 <div class="auth-wrapper auth-v3">
     <div class="bg-auth-side bg-primary"></div>
     <div class="auth-content">
-        <nav class="navbar navbar-expand-md navbar-light default">
+        {{-- <nav class="navbar navbar-expand-md navbar-light default">
             <div class="container-fluid pe-2">
                 <a class="navbar-brand" href="#">
                     @if($setting['cust_darklayout'] && $setting['cust_darklayout'] == 'on' )
-                        {{-- <img src="{{ $logo . '/' . (isset($company_logos) && !empty($company_logos) ? $company_logos : 'assets/images/logo-dark.png') }}" --}}
                         <img src="{{  asset('assets/images/logo-dark.png') }}" style="width: 70px;"
                              alt="{{ config('app.name', 'NITT') }}" class="logo">
                     @else
-                        {{-- <img src="{{ $logo . '/' . (isset($company_logo) && !empty($company_logo) ? $company_logo : 'assets/images/logo-dark.png') }}" --}}
                         <img src="{{  asset('assets/images/logo-dark.png') }}" style="width: 70px;"
                              alt="{{ config('app.name', 'NITT') }}" class="logo">
                     @endif
@@ -112,7 +110,7 @@
 
                 </div>
             </div>
-        </nav>
+        </nav> --}}
         <div class="card">
             <div class="row align-items-center text-start">
                 <div class="col-xl-6">
@@ -130,10 +128,7 @@
                         <h2 class="text-white mb-4 mt-5">
                         NIGERIA INSTITUTE OF TECHNOLOGY
                         </h2>
-                        <p class="text-white">
-
-Zaria, Nigeria
-                        </p>
+                        <p class="text-white">Zaria, Nigeria</p>
                     </div>
                 </div>
             </div>
@@ -143,7 +138,7 @@ Zaria, Nigeria
                 <div class="row">
                     <div class="col-6">
                         <p class="mb-0"> &copy;
-                            {{ date('Y') }} {{ Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'ERPGo') }}
+                            {{ date('Y') }} {{ Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'NITT') }}
                         </p>
                     </div>
 

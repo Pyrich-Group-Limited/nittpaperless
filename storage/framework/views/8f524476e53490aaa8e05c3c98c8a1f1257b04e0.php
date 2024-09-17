@@ -53,7 +53,7 @@
                                     <td class="Action">
                                         <div class="action-btn bg-warning ms-2">
                                             <a href="<?php echo e(route('goodsReceived.details')); ?>" class="mx-3 btn btn-sm align-items-center"
-                                                data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('View Details')); ?>" data-title="<?php echo e(__('View Details')); ?>">
+                                                data-ajax-popup="false" data-bs-toggle="tooltip" title="<?php echo e(__('View Details')); ?>" data-title="<?php echo e(__('View Details')); ?>">
                                                 <i class="ti ti-eye text-white"></i>
                                             </a>
                                         </div>

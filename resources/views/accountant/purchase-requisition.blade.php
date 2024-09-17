@@ -10,11 +10,9 @@
 @endsection
 
 @section('content')
-    <div class="row">
+    {{-- <div class="row">
         @include('accountant.includes.nav')
-    </div>
-
-
+    </div> --}}
 
     <div class="row">
         <div class="col-xl-12">
@@ -47,7 +45,7 @@
                                     <td class="Action">
                                         <div class="action-btn bg-warning ms-2">
                                             <a href="{{ route('req.list') }}" class="mx-3 btn btn-sm align-items-center"
-                                                data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('View Details')}}" data-title="{{__('View Details')}}">
+                                                data-ajax-popup="false" data-bs-toggle="tooltip" title="{{__('View Details')}}" data-title="{{__('View Details')}}">
                                                 <i class="ti ti-eye text-white"></i>
                                             </a>
                                         </div>

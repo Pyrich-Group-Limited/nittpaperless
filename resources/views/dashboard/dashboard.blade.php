@@ -245,7 +245,7 @@
                                 <div class="row g-3 flex-nowrap team-lists horizontal-scroll-cards">
                                     @foreach($notClockIns as $notClockIn)
                                         <div class="col-auto">
-                                            <img src="{{(!empty($notClockIn->user))? $notClockIn->user->profile : asset(Storage::url('uploads/avatar/avatar.png'))}}" alt="">
+                                            <img src="{{(!empty($notClockIn->user))? $notClockIn->user->profile : 'assets/images/user/avatar.png'}}" alt="">
                                             <p class="mt-2">{{ $notClockIn->name }}</p>
                                         </div>
                                     @endforeach

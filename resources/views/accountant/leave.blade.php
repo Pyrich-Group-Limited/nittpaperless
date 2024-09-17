@@ -10,9 +10,9 @@
 @endsection
 
 @section('content')
-    <div class="row">
+    {{-- <div class="row">
         @include('accountant.includes.nav')
-    </div>
+    </div> --}}
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -40,21 +40,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>
-                                        {{-- @if(!empty($productService->tax_id))
-                                            @php
-                                                $taxes=\App\Models\Utility::tax($productService->tax_id);
-                                            @endphp
-
-                                            @foreach($taxes as $tax)
-                                                <span class="">{{!empty($tax)?$tax->name:'' .' ('.$tax->rate .'%)'}}</span><br>
-
-                                            @endforeach
-                                        @else
-                                            -
-                                        @endif --}}
-                                        -
-                                    </td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
 
@@ -77,13 +63,6 @@
                                                     <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Edit')}}"  data-title="{{__('Edit Product')}}">
                                                         <i class="ti ti-pencil text-white"></i>
                                                     </a>
-                                                </div>
-                                            @endcan
-                                            @can('delete product & service')
-                                                <div class="action-btn bg-danger ms-2">
-                                                    {{-- {!! Form::open(['method' => 'DELETE', 'route' => ['productservice.destroy', $productService->id],'id'=>'delete-form-'.$productService->id]) !!}
-                                                    <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}" ><i class="ti ti-trash text-white"></i></a>
-                                                    {!! Form::close() !!} --}}
                                                 </div>
                                             @endcan
                                         </td>
