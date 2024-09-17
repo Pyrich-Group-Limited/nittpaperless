@@ -69,7 +69,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
         <div class="col-xxl-12">
             <div class="row">
                 
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-2 mb-4">
                         <div class="card text-center card-2">
                             <div class="card-header border-0 pb-0">
                                 <div class="card-header-right">
@@ -111,12 +111,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             </g>
                                         </svg>
                                     </span>
+                                    <h6 class=" mt-4 text-primary">Folder 1</h6>
                                 </div>
-                                <h4 class=" mt-2 text-primary">Folder 1</h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-2 mb-4">
                         <div class="card text-center card-2">
                             <div class="card-header border-0 pb-0">
                                 <div class="card-header-right">
@@ -158,12 +158,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             </g>
                                         </svg>
                                     </span>
+                                    <h6 class=" mt-4 text-primary">Folder 2</h6>
                                 </div>
-                                <h4 class=" mt-2 text-primary">Folder 2</h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-2 mb-4">
                         <div class="card text-center card-2">
                             <div class="card-header border-0 pb-0">
                                 <div class="card-header-right">
@@ -210,12 +210,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             </g>
                                         </svg>
                                     </span>
+                                    <h6 class=" mt-4 text-primary">work.zip</h6>
                                 </div>
-                                <h4 class=" mt-2 text-primary">work.zip</h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-2 mb-4">
                         <div class="card text-center card-2">
                             <div class="card-header border-0 pb-0">
                                 <div class="card-header-right">
@@ -255,11 +255,109 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             <path d="M42,31H30a3.0033,3.0033,0,0,0-3,3V45a3.0033,3.0033,0,0,0,3,3H42a3.0033,3.0033,0,0,0,3-3V34A3.0033,3.0033,0,0,0,42,31ZM29,38h6v3H29Zm8,0h6v3H37Zm6-4v2H37V33h5A1.001,1.001,0,0,1,43,34ZM30,33h5v3H29V34A1.001,1.001,0,0,1,30,33ZM29,45V43h6v3H30A1.001,1.001,0,0,1,29,45Zm13,1H37V43h6v2A1.001,1.001,0,0,1,42,46Z" style="fill:#36c684" />
                                         </svg>
                                     </span>
+                                    <h6 class=" mt-4 text-primary">Reports.xlsx</h6>
                                 </div>
-                                <h4 class=" mt-2 text-primary">Reports.xlsx</h4>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-2 mb-4">
+                        <div class="card text-center card-2">
+                            <div class="card-header border-0 pb-0">
+                                <div class="card-header-right">
+                                    <div class="btn-group card-option">
+                                        <button type="button" class="btn dropdown-toggle"
+                                                data-bs-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i class="ti ti-dots-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a href="#!" data-size="lg" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
+                                                <i class="ti ti-pencil"></i>
+                                                <span><?php echo e(__('Edit')); ?></span>
+                                            </a>
+                                            <a href="#!"  class="dropdown-item bs-pass-para">
+                                                <i class="ti ti-archive"></i>
+                                                <span> <?php echo e(__('Delete')); ?> </span>
+                                            </a>
+                                            <a href="#!"  class="dropdown-item bs-pass-para">
+                                                <i class="ti ti-archive"></i>
+                                                <span><?php echo e(__('Restore')); ?> </span>
+                                            </a>
+                                            <?php echo Form::close(); ?>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body full-card">
+                                <div class="img-fluid rounded-circle card-avatar">
+                                    <span class="nk-file-icon-type">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+                                            <g>
+                                                <path d="M49,61H23a5.0147,5.0147,0,0,1-5-5V16a5.0147,5.0147,0,0,1,5-5H40.9091L54,22.1111V56A5.0147,5.0147,0,0,1,49,61Z" style="fill:#e3edfc" />
+                                                <path d="M54,22.1111H44.1818a3.3034,3.3034,0,0,1-3.2727-3.3333V11s1.8409.2083,6.9545,4.5833C52.8409,20.0972,54,22.1111,54,22.1111Z" style="fill:#b7d0ea" />
+                                                <path d="M19.03,59A4.9835,4.9835,0,0,0,23,61H49a4.9835,4.9835,0,0,0,3.97-2Z" style="fill:#c4dbf2" />
+                                                <rect x="27" y="31" width="18" height="2" rx="1" ry="1" style="fill:#599def" />
+                                                <rect x="27" y="36" width="18" height="2" rx="1" ry="1" style="fill:#599def" />
+                                                <rect x="27" y="41" width="18" height="2" rx="1" ry="1" style="fill:#599def" />
+                                                <rect x="27" y="46" width="12" height="2" rx="1" ry="1" style="fill:#599def" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <h6 class=" mt-4 text-primary">Quotation.doc</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <div class="card text-center card-2">
+                            <div class="card-header border-0 pb-0">
+                                <div class="card-header-right">
+                                    <div class="btn-group card-option">
+                                        <button type="button" class="btn dropdown-toggle"
+                                                data-bs-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i class="ti ti-dots-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a href="#!" data-size="lg" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
+                                                <i class="ti ti-pencil"></i>
+                                                <span><?php echo e(__('Edit')); ?></span>
+                                            </a>
+                                            <a href="#!"  class="dropdown-item bs-pass-para">
+                                                <i class="ti ti-archive"></i>
+                                                <span> <?php echo e(__('Delete')); ?> </span>
+                                            </a>
+                                            <a href="#!"  class="dropdown-item bs-pass-para">
+                                                <i class="ti ti-archive"></i>
+                                                <span><?php echo e(__('Restore')); ?> </span>
+                                            </a>
+                                            <?php echo Form::close(); ?>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body full-card">
+                                <div class="img-fluid rounded-circle card-avatar">
+                                    <span class="nk-file-icon-type">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+                                            <path d="M49,61H23a5.0147,5.0147,0,0,1-5-5V16a5.0147,5.0147,0,0,1,5-5H40.9091L54,22.1111V56A5.0147,5.0147,0,0,1,49,61Z" style="fill:#e3edfc" />
+                                            <path d="M54,22.1111H44.1818a3.3034,3.3034,0,0,1-3.2727-3.3333V11s1.8409.2083,6.9545,4.5833C52.8409,20.0972,54,22.1111,54,22.1111Z" style="fill:#b7d0ea" />
+                                            <path d="M19.03,59A4.9835,4.9835,0,0,0,23,61H49a4.9835,4.9835,0,0,0,3.97-2Z" style="fill:#c4dbf2" />
+                                            <rect x="27" y="31" width="18" height="2" rx="1" ry="1" style="fill:#7e95c4" />
+                                            <rect x="27" y="35" width="18" height="2" rx="1" ry="1" style="fill:#7e95c4" />
+                                            <rect x="27" y="39" width="18" height="2" rx="1" ry="1" style="fill:#7e95c4" />
+                                            <rect x="27" y="43" width="14" height="2" rx="1" ry="1" style="fill:#7e95c4" />
+                                            <rect x="27" y="47" width="8" height="2" rx="1" ry="1" style="fill:#7e95c4" />
+                                        </svg>
+                                    </span>
+                                    <h6 class=" mt-4 text-primary">work.txt</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 
             </div>

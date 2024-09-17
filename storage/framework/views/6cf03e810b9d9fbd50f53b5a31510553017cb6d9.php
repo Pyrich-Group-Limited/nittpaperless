@@ -12,12 +12,6 @@
 
 <?php $__env->startSection('content'); ?>
     <div class="row">
-        <?php echo $__env->make('accountant.includes.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    </div>
-
-
-
-    <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body table-border-style">

@@ -11,23 +11,35 @@
     <?php endif; ?>
 <?php $__env->stopPush(); ?>
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Login')); ?>
+    <?php echo e(__('Authorized Access')); ?>
 
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('auth-topbar'); ?>
-    <li class="nav-item">
-        <select class="btn btn-primary ms-2 me-2 language_option_bg text-center" style="text-align-last: center;" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" id="language">
-            <?php $__currentLoopData = Utility::languages(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $code =>  $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <option class="text-center" <?php if($lang == $code): ?> selected <?php endif; ?> value="<?php echo e(route('login',$code)); ?>"><?php echo e(ucfirst($language)); ?></option>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </select>
-    </li>
-<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
+<style>
+   .logo{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+   }
+   .log-txt{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        text-align: center
+   }
+</style>
     <div class="">
-        <h2 class="mb-3 f-w-600"><?php echo e(__('Login')); ?></h2>
+        <a href="#">
+            <img src="<?php echo e(asset('assets/images/logo-dark.png')); ?>" style="width: 100px;"
+                    alt="<?php echo e(config('app.name', 'NITT')); ?>" class="logo">
+        </a>
+        <h3 class="mb-3 f-w-600 log-txt"><?php echo e(__('Authorized Access')); ?></h3>
     </div>
+    <hr>
     <?php echo e(Form::open(array('route'=>'login','method'=>'post','id'=>'loginForm' ))); ?>
 
     <?php echo csrf_field(); ?>

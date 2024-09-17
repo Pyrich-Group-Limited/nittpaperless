@@ -65,6 +65,8 @@
     </div>
 </div>
 <div class="modal-footer">
-    <input type="button" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
-    <input type="submit" value="{{__('Approve')}}" class="btn  btn-primary">
+    <input type="button" value="{{__('Cancel')}}" class="btn  btn-light btn-sm" data-bs-dismiss="modal">
+    <input type="submit" value="{{__('Approve')}}" class="btn  btn-primary btn-sm">
+    <input type="submit" value="{{__('Reject')}}" class="btn  btn-danger btn-sm">
+    <input type="submit" value="{{__('Revert')}}" class="btn  btn-secondary btn-sm">
 </div>

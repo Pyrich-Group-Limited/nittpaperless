@@ -49,7 +49,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="description" content="Dashboard Template Description"/>
     <meta name="keywords" content="Dashboard Template"/>
-    <meta name="author" content="Rajodiya Infotech"/>
+    <meta name="author" content="NITT"/>
 
     <!-- Favicon icon -->
     <link rel="icon" href="<?php echo e($logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')); ?>" type="image/x-icon"/>
@@ -78,41 +78,7 @@
 <div class="auth-wrapper auth-v3">
     <div class="bg-auth-side bg-primary"></div>
     <div class="auth-content">
-        <nav class="navbar navbar-expand-md navbar-light default">
-            <div class="container-fluid pe-2">
-                <a class="navbar-brand" href="#">
-                    <?php if($setting['cust_darklayout'] && $setting['cust_darklayout'] == 'on' ): ?>
-                        
-                        <img src="<?php echo e(asset('assets/images/logo-dark.png')); ?>" style="width: 70px;"
-                             alt="<?php echo e(config('app.name', 'NITT')); ?>" class="logo">
-                    <?php else: ?>
-                        
-                        <img src="<?php echo e(asset('assets/images/logo-dark.png')); ?>" style="width: 70px;"
-                             alt="<?php echo e(config('app.name', 'NITT')); ?>" class="logo">
-                    <?php endif; ?>
-                </a>
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo01"
-                    aria-controls="navbarTogglerDemo01"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01" style="flex-grow: 0;">
-                    <ul class="navbar-nav align-items-center ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <?php echo $__env->make('landingpage::layouts.buttons', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                        </li>
-                        <?php echo $__env->yieldContent('auth-topbar'); ?>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
+        
         <div class="card">
             <div class="row align-items-center text-start">
                 <div class="col-xl-6">
@@ -130,10 +96,7 @@
                         <h2 class="text-white mb-4 mt-5">
                         NIGERIA INSTITUTE OF TECHNOLOGY
                         </h2>
-                        <p class="text-white">
-
-Zaria, Nigeria
-                        </p>
+                        <p class="text-white">Zaria, Nigeria</p>
                     </div>
                 </div>
             </div>
@@ -143,7 +106,7 @@ Zaria, Nigeria
                 <div class="row">
                     <div class="col-6">
                         <p class="mb-0"> &copy;
-                            <?php echo e(date('Y')); ?> <?php echo e(Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'ERPGo')); ?>
+                            <?php echo e(date('Y')); ?> <?php echo e(Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'NITT')); ?>
 
                         </p>
                     </div>

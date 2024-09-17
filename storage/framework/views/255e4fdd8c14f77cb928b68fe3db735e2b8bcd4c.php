@@ -10,11 +10,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <div class="row">
-        <?php echo $__env->make('accountant.includes.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    </div>
-
-
+    
 
     <div class="row">
         <div class="col-xl-12">
@@ -47,7 +43,7 @@
                                     <td class="Action">
                                         <div class="action-btn bg-warning ms-2">
                                             <a href="<?php echo e(route('req.list')); ?>" class="mx-3 btn btn-sm align-items-center"
-                                                data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('View Details')); ?>" data-title="<?php echo e(__('View Details')); ?>">
+                                                data-ajax-popup="false" data-bs-toggle="tooltip" title="<?php echo e(__('View Details')); ?>" data-title="<?php echo e(__('View Details')); ?>">
                                                 <i class="ti ti-eye text-white"></i>
                                             </a>
                                         </div>
