@@ -18,7 +18,7 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         $department = Department::create([
-            'name' => "Bursry",
+            'name' => "Bursry Department",
         ]);
 
             Unit::create([
@@ -58,7 +58,7 @@ class DepartmentSeeder extends Seeder
 
 
         $department = Department::create([
-            'name' => "Registry",
+            'name' => "Registry Department",
         ]);
 
             Unit::create([
@@ -82,7 +82,7 @@ class DepartmentSeeder extends Seeder
             ]);
 
         $department = Department::create([
-            'name' => "Audit",
+            'name' => "Audit Department",
         ]);
 
             Unit::create([
@@ -105,7 +105,7 @@ class DepartmentSeeder extends Seeder
             ]);
 
         $department = Department::create([
-            'name' => "Library and Information",
+            'name' => "Library and Information Department",
         ]);
 
             Unit::create([
@@ -129,7 +129,7 @@ class DepartmentSeeder extends Seeder
             ]);
 
         $department = Department::create([
-            'name' => "Consultancy",
+            'name' => "Consultancy Department",
         ]);
 
             Unit::create([
@@ -162,7 +162,7 @@ class DepartmentSeeder extends Seeder
             ]);
 
         $department = Department::create([
-            'name' => "Transport School",
+            'name' => "Transport School Department",
         ]);
 
             $unit = Unit::create([
@@ -247,7 +247,7 @@ class DepartmentSeeder extends Seeder
                 ]);
 
         $department = Department::create([
-            'name' => "Transport Technology Center",
+            'name' => "Transport Technology Center Department",
         ]);
 
             Unit::create([
