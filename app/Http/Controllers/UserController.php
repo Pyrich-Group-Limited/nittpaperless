@@ -7,6 +7,11 @@ use App\Models\Employee;
 use App\Models\LoginDetail;
 use App\Models\User;
 use App\Models\UserCompany;
+use App\Models\Branch;
+use App\Models\Unit;
+use App\Models\Department;
+use App\Models\Designation;
+// use App\Models\Designation;
 use Auth;
 use File;
 use App\Models\Utility;
@@ -45,9 +50,21 @@ class  UserController extends Controller
         $customFields = CustomField::where('created_by', '=', \Auth::user()->creatorId())->where('module', '=', 'user')->get();
         $user  = \Auth::user();
         $roles = Role::all()->pluck('name', 'id');
+        
+        $branchs = Branch::all()->pluck('name', 'id');
+        $departments = Department::all()->pluck('name', 'id');
+        $units = Unit::all()->pluck('name', 'id');
+        $designations = Designation::all()->pluck('name', 'id');
+
         if(\Auth::user()->can('create user'))
         {
-            return view('user.create', compact('roles', 'customFields'));
+            return view('user.create', compact(
+                'roles', 
+                'units', 
+                'departments', 
+                'designations', 
+                'customFields', 
+                'branchs'));
         }
         else
         {
@@ -77,9 +94,22 @@ class  UserController extends Controller
 
             $objUser    = \Auth::user();
             $role_r                = Role::findById($request->role);
+
+            $branch                = Branch::where('id', $request->branch_id)->first();
+            $department            = Department::where('id', $request->department_id)->first();
+            $unit                  = Unit::where('id', $request->unit_id)->first();
+            $designation           = Designation::where('id', $request->designation_id)->first();
+
             $psw                   = $request->password;
             $request['password']   = Hash::make($request->password);
             $request['type']       = $role_r->name;
+
+            $request['branch']         = $branch->name;
+            $request['department']     = $department->name;
+            $request['unit']           = $unit->name;
+            $request['designation']    = $designation->name;
+
+
             $request['lang']       = !empty($default_language) ? $default_language->value : 'en';
             $request['created_by'] = \Auth::user()->creatorId();
             $user = User::create($request->all());

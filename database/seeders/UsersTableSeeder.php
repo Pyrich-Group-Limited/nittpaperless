@@ -3593,6 +3593,12 @@ class UsersTableSeeder extends Seeder
             ['name' => 'create webhook'],
             ['name' => 'edit webhook'],
             ['name' => 'delete webhook'],
+            ['name' => 'manage permission'],
+            ['name' => 'manage employee'],
+            ['name' => 'create employee'],
+            ['name' => 'edit employee'],
+            ['name' => 'delete employee'],
+            // ['name' => 'show employee'],
         ];
 
         $companyRole->givePermissionTo($companyPermissions);

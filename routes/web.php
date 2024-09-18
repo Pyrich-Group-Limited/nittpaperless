@@ -45,6 +45,7 @@ use App\Http\Controllers\EmailTemplateController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\PayslipTypeController;
@@ -769,6 +770,8 @@ Route::resource('department', DepartmentController::class)->middleware(['auth', 
 Route::resource('designation', DesignationController::class)->middleware(['auth', 'XSS']);
 Route::resource('document', DocumentController::class)->middleware(['auth', 'XSS']);
 Route::resource('branch', BranchController::class)->middleware(['auth', 'XSS']);
+
+Route::resource('unit', UnitController::class)->middleware(['auth', 'XSS']);
 
 
 // Hrm EmployeeController

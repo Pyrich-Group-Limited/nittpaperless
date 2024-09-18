@@ -38,6 +38,11 @@ class User extends Authenticatable
         'requested_plan',
         'last_login_at',
         'created_by',
+
+        'branch',
+        'department',
+        'unit',
+        'designation'
     ];
 
     protected $hidden = [
