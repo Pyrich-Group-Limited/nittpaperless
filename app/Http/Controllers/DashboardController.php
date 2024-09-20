@@ -69,7 +69,17 @@ class DashboardController extends Controller
      }
 
      public function liason_dashboard(){
-        return view('dashboard.liason-dashboard');
+
+        $pos_data=[];
+                $pos_data['monthlyPosAmount'] = Pos::totalPosAmount(true);
+                $pos_data['totalPosAmount'] = Pos::totalPosAmount();
+                $pos_data['monthlyPurchaseAmount'] = Purchase::totalPurchaseAmount(true);
+                $pos_data['totalPurchaseAmount'] = Purchase::totalPurchaseAmount();
+
+                $purchasesArray = Purchase::getPurchaseReportChart();
+                $posesArray = Pos::getPosReportChart();
+
+        return view('dashboard.liason-dashboard',compact('pos_data','purchasesArray','posesArray'));
      }
 
      public function user_dashboard(){
@@ -78,6 +88,10 @@ class DashboardController extends Controller
 
      public function store_dashboard(){
         return view('dashboard.store-dashboard');
+     }
+
+     public function supervisor_dashboard(){
+        return view('dashboard.supervisor-dashboard');
      }
 
     public function account_dashboard_index()
@@ -189,8 +203,10 @@ class DashboardController extends Controller
 
                 if ($settings['display_landing_page'] == 'on' && \Schema::hasTable('landing_page_settings'))
                 {
+                    return redirect('login');
 
-                    return view('landingpage::layouts.landingpage', compact('settings'));
+
+                    //return view('landingpage::layouts.landingpage', compact('settings'));
                 }
                 else
                 {

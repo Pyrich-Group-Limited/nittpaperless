@@ -93,5 +93,48 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mb-3 mb-sm-0">
+                            <a href="{{ route('storeVoucher.list') }}">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-primary">
+                                        <i class="ti ti-cast"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="m-0">{{__('Store Issue Voucher')}}</h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mb-3 mb-sm-0">
+                            <a href="{{ route('goodsReceived.list') }}">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-primary">
+                                        <i class="ti ti-cast"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="m-0">{{__('Goods Received Notes')}}</h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

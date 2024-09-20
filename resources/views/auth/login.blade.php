@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 @php
     $logo=asset(Storage::url('uploads/logo/'));
-    $company_logo=Utility::getValByName('company_logo');
+    $company_logo=Utility::getValByName('logo-dark');
     $settings = Utility::settings();
 
 @endphp
@@ -11,10 +11,10 @@
     @endif
 @endpush
 @section('page-title')
-    {{__('Login')}}
+    {{__('Authorized Access')}}
 @endsection
 
-@section('auth-topbar')
+{{-- @section('auth-topbar')
     <li class="nav-item">
         <select class="btn btn-primary ms-2 me-2 language_option_bg text-center" style="text-align-last: center;" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" id="language">
             @foreach(Utility::languages() as $code =>  $language)
@@ -22,11 +22,31 @@
             @endforeach
         </select>
     </li>
-@endsection
+@endsection --}}
 @section('content')
+<style>
+   .logo{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+   }
+   .log-txt{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        text-align: center
+   }
+</style>
     <div class="">
-        <h2 class="mb-3 f-w-600">{{__('Login')}}</h2>
+        <a href="#">
+            <img src="{{  asset('assets/images/logo-dark.png') }}" style="width: 100px;"
+                    alt="{{ config('app.name', 'NITT') }}" class="logo">
+        </a>
+        <h3 class="mb-3 f-w-600 log-txt">{{__('Authorized Access')}}</h3>
     </div>
+    <hr>
     {{Form::open(array('route'=>'login','method'=>'post','id'=>'loginForm' ))}}
     @csrf
     <div class="">

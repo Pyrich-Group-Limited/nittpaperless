@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 [2024-05-21 23:31:39] local.ERROR: SQLSTATE[HY000] [1045] Access denied for user 'nitt_db'@'localhost' (using password: YES) (SQL: select * from information_schema.tables where table_schema = test and table_name = migrations and table_type = 'BASE TABLE') {"exception":"[object] (Illuminate\\Database\\QueryException(code: 1045): SQLSTATE[HY000] [1045] Access denied for user 'nitt_db'@'localhost' (using password: YES) (SQL: select * from information_schema.tables where table_schema = test and table_name = migrations and table_type = 'BASE TABLE') at C:\\xampp\\htdocs\\nitt erp\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nitt erp\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select * from i...', Array, Object(Closure))
@@ -15138,6 +15140,7 @@ Did you mean one of these?
 [2024-09-11 07:17:51] local.ERROR: Allowed memory size of 536870912 bytes exhausted (tried to allocate 262144 bytes) {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Allowed memory size of 536870912 bytes exhausted (tried to allocate 262144 bytes) at C:\\laragon\\www\\nittdig\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:746)
 [stacktrace]
 #0 {main}
+<<<<<<< HEAD
 =======
 [2024-09-11 10:53:25] local.ERROR: Class "PlanRequestController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"PlanRequestController\" does not exist at C:\\xampp\\htdocs\\e-NITT-2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
@@ -15426,3 +15429,7 @@ Did you mean one of these?
 #22 {main}
 >>>>>>> d2b5e49 (a fix)
 "} 
+=======
+"} 
+>>>>>>> 145fa0c (update)
+>>>>>>> repoB-branch

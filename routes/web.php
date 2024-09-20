@@ -134,7 +134,10 @@ use App\Http\Controllers\AamarpayController;
 use App\Http\Controllers\PaytrController;
 use App\Http\Controllers\WarehouseTransferController;
 
-use App\Http\Controllers\Accountant\AccountantDashControl;
+use App\Http\Controllers\DashControls\AccountantDashControl;
+use App\Http\Controllers\DashControls\HrmDashControl;
+
+use App\Http\Controllers\FileManagement\FilesController;
 
 
 
@@ -203,6 +206,10 @@ Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->n
 
 Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard')->middleware(['auth']);
 Route::get('/store-keeper-dashboard', [DashboardController::class, 'store_dashboard'])->name('store.dashboard')->middleware(['auth']);
+<<<<<<< HEAD
+=======
+Route::get('/supervisor-dashboard', [DashboardController::class, 'supervisor_dashboard'])->name('supervisor.dashboard')->middleware(['auth']);
+>>>>>>> repoB-branch
 
 
 Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware(['auth','XSS', 'revalidate']);
@@ -302,6 +309,35 @@ Route::get('set-budget/index', [AccountantDashControl::class, 'index'])->name('s
 Route::get('purchase-requisition/index', [AccountantDashControl::class, 'purchase'])->name('purchase.requisition');
 Route::get('store-requisition/index', [AccountantDashControl::class, 'storeReq'])->name('store.requisition');
 Route::get('leave/index', [AccountantDashControl::class, 'leave'])->name('leave');
+Route::get('requisition/details', [AccountantDashControl::class, 'reqDetails'])->name('req.details');
+Route::get('requisition-list', [AccountantDashControl::class, 'reqList'])->name('req.list');
+Route::get('new-purchase-requisition', [AccountantDashControl::class, 'newPurchaseReq'])->name('requisition.new');
+Route::get('store-requisition-list', [AccountantDashControl::class, 'storeReqList'])->name('storeReq.list');
+
+Route::get('store-issued-vouchers', [AccountantDashControl::class, 'storeIssuedVoucher'])->name('storeVoucher.list');
+Route::get('store-issued-vouchers/create', [AccountantDashControl::class, 'newStoreIssuedVoucher'])->name('storeVoucher.add');
+Route::get('store-issued-voucher/details', [AccountantDashControl::class, 'storeIssuedVoucherDetails'])->name('storeVoucher.details');
+
+Route::get('goods-received-notes', [AccountantDashControl::class, 'goodsReceivedNotes'])->name('goodsReceived.list');
+Route::get('goods-received-note/create', [AccountantDashControl::class, 'newGoodsReceived'])->name('goodsReceived.add');
+Route::get('goods-received-note/details', [AccountantDashControl::class, 'goodsReceivedNoteDetails'])->name('goodsReceived.details');
+
+Route::get('comment', [AccountantDashControl::class, 'commentModal'])->name('comment.modal');
+
+Route::get('hrm-budget/index', [HrmDashControl::class, 'budget'])->name('hrm.budget');
+Route::get('hrm-query/index', [HrmDashControl::class, 'hrmQuery'])->name('hrm.query');
+Route::get('hrm-leave/index', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
+Route::get('hrm-dta/index', [HrmDashControl::class, 'hrmDta'])->name('hrm.dta');
+Route::get('hrm-memo/index', [HrmDashControl::class, 'hrmMemo'])->name('hrm.memo');
+Route::get('hrm-apply-leave', [HrmDashControl::class, 'applyLeave'])->name('hrm.applyLeave');
+Route::get('hrm-apply-query', [HrmDashControl::class, 'applyQuery'])->name('hrm.applyQuery');
+Route::get('hrm-apply-dta', [HrmDashControl::class, 'applyDta'])->name('hrm.applyDta');
+
+// file management
+Route::get('files/index',[FilesController::class, 'filesIndex'])->name('file.index');
+Route::get('file-upload',[FilesController::class, 'filesUpload'])->name('file.upload');
+Route::get('create-file',[FilesController::class, 'createFile'])->name('file.create');
+Route::get('create-folder',[FilesController::class, 'createFolder'])->name('folder.create');
 
 
 
@@ -969,6 +1005,8 @@ Route::post('/profile', [UserController::class, 'updateProfile'])->name('update.
 Route::get('user/info/{id}', [UserController::class, 'userInfo'])->name('users.info')->middleware(['auth', 'XSS']);
 Route::get('user/{id}/info/{type}', [UserController::class, 'getProjectTask'])->name('user.info.popup')->middleware(['auth', 'XSS']);
 Route::delete('users/{id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware(['auth', 'XSS']);
+Route::get('get-department-units/{id}', [UserController::class, 'getDepartments']);
+Route::get('get-unit-subunits/{id}', [UserController::class, 'getSubUnits']);
 
 
 // End User Module

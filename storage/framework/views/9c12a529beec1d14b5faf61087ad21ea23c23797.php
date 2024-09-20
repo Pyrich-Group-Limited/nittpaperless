@@ -1,7 +1,7 @@
 <?php
     $users=\Auth::user();
     //$profile=asset(Storage::url('uploads/avatar/'));
-    $profile=\App\Models\Utility::get_file('uploads/avatar/');
+    $profile=\App\Models\Utility::get_file('uploads/');
     $languages=\App\Models\Utility::languages();
    $lang = isset($users->lang)?$users->lang:'en';
     if ($lang == null) {
@@ -46,7 +46,7 @@
                         aria-expanded="false"
                     >
                         <span class="theme-avtar">
-                             <img src="<?php echo e(!empty(\Auth::user()->avatar) ? $profile . \Auth::user()->avatar :  $profile.'avatar.png'); ?>" class="img-fluid rounded-circle">
+                             <img src="<?php echo e(!empty(\Auth::user()->avatar) ? $profile . \Auth::user()->avatar :  asset('uploads/user.png')); ?>" class="img-fluid rounded-circle">
                         </span>
                         <span class="hide-mob ms-2"><?php echo e(__('Hi, ')); ?><?php echo e(\Auth::user()->name); ?> !</span>
                         <i class="ti ti-chevron-down drp-arrow nocolor hide-mob"></i>

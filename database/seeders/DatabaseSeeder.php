@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
 
        /*  if(\Request::route()->getName()!='LaravelUpdater::database')
         { */
+            $this->call(DesignationSeeder::class);
+            $this->call(DepartmentSeeder::class);
             $this->call(UsersTableSeeder::class);
             $this->call(AiTemplateSeeder::class);
 
