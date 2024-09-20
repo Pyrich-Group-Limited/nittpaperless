@@ -80,7 +80,6 @@ class LeaveController extends Controller
                 return redirect()->back()->with('error', $messages->first());
             }
 
-
             $employee = Employee::where('user_id', '=', Auth::user()->id)->first();
             $leave_type = LeaveType::find($request->leave_type_id);
             $startDate = new \DateTime($request->start_date);
