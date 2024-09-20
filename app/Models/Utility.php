@@ -34,19 +34,19 @@ class Utility extends Model
 
 
         $settings = [
-            "site_currency" => "USD",
-            "site_currency_symbol" => "$",
+            "site_currency" => "NGN",
+            "site_currency_symbol" => "₦",
             "site_currency_symbol_position" => "pre",
             "site_date_format" => "M j, Y",
             "site_time_format" => "g:i A",
-            "company_name" => "",
-            "company_address" => "",
-            "company_city" => "",
-            "company_state" => "",
+            "company_name" => "NITT",
+            "company_address" => "NITT",
+            "company_city" => "Zaria",
+            "company_state" => "Kaduna",
             "company_zipcode" => "",
-            "company_country" => "",
+            "company_country" => "Nigeria",
             "company_telephone" => "",
-            "company_email" => "",
+            "company_email" => "info@nitt.com",
             "company_email_from_name" => "",
             "invoice_prefix" => "#INVO",
             "invoice_color" => "ffffff",
@@ -200,20 +200,20 @@ class Utility extends Model
 
         $data =DB::table('settings')->where('created_by', '=', $user_id )->get();
         $settings = [
-            "site_currency" => "USD",
-            "site_currency_symbol" => "$",
+            "site_currency" => "NGN",
+            "site_currency_symbol" => "₦",
             "site_currency_symbol_position" => "pre",
             "site_date_format" => "M j, Y",
             "site_time_format" => "g:i A",
-            "company_name" => "",
-            "company_address" => "",
-            "company_city" => "",
-            "company_state" => "",
-            "company_zipcode" => "",
-            "company_country" => "",
-            "company_telephone" => "",
-            "company_email" => "",
-            "company_email_from_name" => "",
+            "company_name" => "Nigeria Institude of Transport and Technology",
+            "company_address" => "Basawa Road, Zaria, Kaduna State Nigeria",
+            "company_city" => "Zaria",
+            "company_state" => "Kaduna",
+            "company_zipcode" => "810106",
+            "company_country" => "Nigeria",
+            "company_telephone" => "+234-803-058-2989",
+            "company_email" => "info@nitt.gov.ng",
+            "company_email_from_name" => "info@nitt.gov.ng",
             "invoice_prefix" => "#INVO",
             "journal_prefix" => "#JUR",
             "invoice_color" => "ffffff",
@@ -224,8 +224,8 @@ class Utility extends Model
             "bill_color" => "ffffff",
             "customer_prefix" => "#CUST",
             "vender_prefix" => "#VEND",
-            "footer_title" => "",
-            "footer_notes" => "",
+            "footer_title" => "NITT PAPERLESS",
+            "footer_notes" => "nitt.gov.ng",
             "invoice_template" => "template1",
             "bill_template" => "template1",
             "proposal_template" => "template1",
@@ -264,7 +264,7 @@ class Utility extends Model
             "company_logo_light" => "logo-light.png",
             "company_logo_dark" =>  "logo-dark.png",
             "company_favicon" => "favicon.png",
-            "cust_theme_bg" => "on",
+            "cust_theme_bg" => "off",
             "cust_darklayout" => "off",
             "color" => "",
             "SITE_RTL" => "off",
@@ -808,6 +808,16 @@ class Utility extends Model
         return rmdir($dir);
     }
 
+    // public static $chartOfAccountType = [
+    //     'assets' => 'Assets',
+    //     'liabilities' => 'Liabilities',
+    //     'equity' => 'Equity',
+    //     'income' => 'Income',
+    //     'costs of goods sold' => 'Costs of Goods Sold',
+    //     'expenses' => 'Expenses',
+
+    // ];
+
     public static $chartOfAccountType = [
         'assets' => 'Assets',
         'liabilities' => 'Liabilities',
@@ -879,26 +889,26 @@ class Utility extends Model
     public static $chartOfAccount = array(
 
         [
-            'code' => '1060',
-            'name' => 'Checking Account',
+            'code' => '11010101',
+            'name' => 'FEDERAL GOVERNMENT SHARE OF FAAC',
             'type' => 1,
             'sub_type' => 1,
         ],
         [
-            'code' => '1065',
-            'name' => 'Petty Cash',
+            'code' => '11010102',
+            'name' => 'FAAC DIRECT ALLOCATION TO FIRS',
             'type' => 1,
             'sub_type' => 1,
         ],
         [
-            'code' => '1200',
-            'name' => 'Account Receivables',
+            'code' => '11010103',
+            'name' => 'FAAC DIRECT ALLOCATION TO CUSTOMS',
             'type' => 1,
             'sub_type' => 1,
         ],
         [
-            'code' => '1205',
-            'name' => 'Allowance for doubtful accounts',
+            'code' => '11010104',
+            'name' => 'FAAC SPECIAL ALLOCATIONS',
             'type' => 1,
             'sub_type' => 1,
         ],
@@ -3390,7 +3400,7 @@ class Utility extends Model
         $color = env('THEME_COLOR');
         if($color == "" || $color == null)
         {
-            $color = 'blue';
+            $color = 'magenta';
         }
 
         return $color;
