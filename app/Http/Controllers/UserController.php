@@ -21,11 +21,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Session;
 use Spatie\Permission\Models\Role;
+use App\Services\DataService;
 
 
 
 class  UserController extends Controller
 {
+    private $dataService;
+    public function __construct(DataService $dataService)
+    {
+        $this->dataService = $dataService;
+    }
 
     public function index()
     {
@@ -38,7 +44,18 @@ class  UserController extends Controller
             $roles = Role::all()->pluck('name', 'id');
             $departments = Department::all()->pluck('name', 'id');
             $designations = Designation::all()->pluck('name', 'id');
-            return view('user.index',compact('designations','roles','departments','customFields'))->with('users', $users);
+            $liasons = $this->dataService->getLiasons();
+            $headquaters = $this->dataService->getHeadquaters();
+            $directorates = $this->dataService->getDirectorates();
+            return view('user.index',compact(
+                'designations',
+                'roles',
+                'departments',
+                'customFields', 
+                'liasons',
+                'headquaters',
+                'directorates'
+                ))->with('users', $users);
         }
         else
         {
@@ -70,9 +87,10 @@ class  UserController extends Controller
         $roles = Role::all()->pluck('name', 'id');
         $departments = Department::all()->pluck('name', 'id');
         $designations = Designation::all()->pluck('name', 'id');
+        $liasons = $this->dataService->getLiasons();
         if(\Auth::user()->can('create user'))
         {
-            return view('user.create', compact('roles', 'customFields','departments','designations'));
+            return view('user.create', compact('roles', 'customFields','departments','designations', 'liasons'));
         }
         else
         {
@@ -106,6 +124,12 @@ class  UserController extends Controller
 
             $objUser    = \Auth::user();
             $role_r                = Role::findById($request->role);
+
+            $branch                = Branch::where('id', $request->branch_id)->first();
+            $department            = Department::where('id', $request->department_id)->first();
+            $unit                  = Unit::where('id', $request->unit_id)->first();
+            $designation           = Designation::where('id', $request->designation_id)->first();
+
             $psw                   = $request->password;
             $request['password']   = Hash::make($request->password);
             $request['type']       = $role_r->name;

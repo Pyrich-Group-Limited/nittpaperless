@@ -192,11 +192,11 @@
 @endsection
 @section('content')
     <div class="row">
+        @include('accountant.includes.nav')
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-xxl-7">
                     <div class="row">
-                        @include('accountant.includes.nav')
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-header">
@@ -394,7 +394,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-xxl-5">
@@ -773,11 +772,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
             </div>
         </div>
     </div>

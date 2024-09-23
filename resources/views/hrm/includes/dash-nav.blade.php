@@ -1,6 +1,6 @@
-<div class="col-xxl-6">
+<div class="">
     <div class="row">
-        <div class="col-lg-3 col-md-6">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-6">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
@@ -47,8 +47,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-2 col-md-6">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
@@ -71,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-6">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
@@ -94,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">

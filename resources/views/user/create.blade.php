@@ -34,7 +34,7 @@
                 @enderror
             </div>
         @else
-            {!! Form::hidden('role', 'super admin', null,array('class' => 'form-control select2','required'=>'required')) !!}
+        {!! Form::hidden('role', 'super admin', null,array('class' => 'form-control select2','required'=>'required')) !!}
         @endif
         <div class="col-md-6">
             <div class="form-group">
@@ -56,9 +56,7 @@
             </small>
             @enderror
         </div>
-
-
-        <div class="form-group col-md-6">
+        <!-- <div class="form-group col-md-6">
             {{ Form::label('level', __('Level'),['class'=>'form-label']) }}
             {!! Form::select('level', ['Level 07','Level 08','Level 09','Level 11','Level 12','Level 13','Level 14','Level 15'], null,array('class' => 'form-control select','required'=>'required')) !!}
             @error('Level')
@@ -67,7 +65,6 @@
             </small>
             @enderror
         </div>
-
         <div class="form-group col-md-6">
             {{ Form::label('department', __('Department'),['class'=>'form-label']) }}
             {!! Form::select('department', $departments, null,array('class' => 'form-control select','required'=>'required','id' =>'sel_department')) !!}
@@ -76,9 +73,8 @@
                 <strong class="text-danger">{{ $message }}</strong>
             </small>
             @enderror
-        </div>
-
-        <div class="form-group col-md-6">
+        </div> -->
+        <!-- <div class="form-group col-md-6">
             {{ Form::label('unit', __('Unit'),['class'=>'form-label']) }}
             {!! Form::select('unit', $roles, null,array('class' => 'form-control select','required'=>'required','id'=>'department_units')) !!}
             @error('Unit')
@@ -86,14 +82,14 @@
                 <strong class="text-danger">{{ $message }}</strong>
             </small>
             @enderror
-        </div>
-        @if(!$customFields->isEmpty())
+        </div> -->
+        <!-- @if(!$customFields->isEmpty())
             <div class="col-md-6">
                 <div class="tab-pane fade show" id="tab-2" role="tabpanel">
                     @include('customFields.formBuilder')
                 </div>
             </div>
-        @endif
+        @endif -->
     </div>
 
 </div>

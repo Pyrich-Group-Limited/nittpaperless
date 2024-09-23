@@ -34,7 +34,6 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="btn-box">
-                                        {{-- <label for="">Search</label> --}}
                                         <input type="text" class="form-control" placeholder="Search files, folder">
                                     </div>
                                 </div>
@@ -91,6 +90,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             <a href="#!" data-size="lg" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
                                                 <i class="ti ti-pencil"></i>
                                                 <span>{{__('Edit')}}</span>
+                                            </a>
+                                            <a href="#!"  class="dropdown-item bs-pass-para">
+                                                <i class="ti ti-share"></i>
+                                                <span> {{__('Share')}}</span>
                                             </a>
                                             <a href="#!"  class="dropdown-item bs-pass-para">
                                                 <i class="ti ti-archive"></i>

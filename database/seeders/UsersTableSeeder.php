@@ -3603,6 +3603,12 @@ class UsersTableSeeder extends Seeder
             ['name' => 'create webhook'],
             ['name' => 'edit webhook'],
             ['name' => 'delete webhook'],
+            ['name' => 'manage permission'],
+            ['name' => 'manage employee'],
+            ['name' => 'create employee'],
+            ['name' => 'edit employee'],
+            ['name' => 'delete employee'],
+            // ['name' => 'show employee'],
         ];
 
         $companyRole->givePermissionTo($companyPermissions);
@@ -3611,14 +3617,13 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'SuperAdmin/Paperless',
                 'email' => 'spadmin@nitt.com',
-<<<<<<< HEAD
-=======
+
                 'designation' => Designation::first()->name,
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 08",
                 'email' => 'spadmin@nitt.com',
->>>>>>> repoB-branch
+
                 'password' => Hash::make('1234'),
                 'type' => 'super admin',
                 'default_pipeline' => 1,
@@ -3710,10 +3715,6 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Supervisor',
                 'email' => 'supervisor@nitt.com',
-<<<<<<< HEAD
-=======
-                'email' => 'supervisor@nitt.com',
->>>>>>> repoB-branch
                 'password' => Hash::make('1234'),
                 'type' => 'supervisor',
                 'default_pipeline' => 1,
@@ -3777,10 +3778,6 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Head of Liason Office',
                 'email' => 'liason@nitt.com',
-<<<<<<< HEAD
-=======
-                'email' => 'liason@nitt.com',
->>>>>>> repoB-branch
                 'password' => Hash::make('1234'),
                 'type' => 'liason office head',
                 'default_pipeline' => 1,
@@ -3845,10 +3842,6 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Unit Head',
                 'email' => 'unit@nitt.com',
-<<<<<<< HEAD
-=======
-                'email' => 'unit@nitt.com',
->>>>>>> repoB-branch
                 'password' => Hash::make('1234'),
                 'type' => 'unit head',
                 'default_pipeline' => 1,
@@ -4079,10 +4072,6 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Accountant/ Bursar',
                 'email' => 'accountant@nitt.com',
-<<<<<<< HEAD
-=======
-                'email' => 'accountant@nitt.com',
->>>>>>> repoB-branch
                 'password' => Hash::make('1234'),
                 'type' => 'accountant',
                 'default_pipeline' => 1,
@@ -4187,10 +4176,6 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'HRM/Registra',
                 'email' => 'hrm@nitt.com',
-<<<<<<< HEAD
-=======
-                'email' => 'hrm@nitt.com',
->>>>>>> repoB-branch
                 'password' => Hash::make('1234'),
                 'type' => 'client',
                 'default_pipeline' => 1,

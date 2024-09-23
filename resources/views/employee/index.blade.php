@@ -9,6 +9,11 @@
 
 @section('action-btn')
     <div class="float-end">
+        @can('create employee')
+            <a href="#" data-size="lg" data-url="{{ route('employee.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create')}}" data-title="{{__('Create Employee')}}" class="btn btn-sm btn-primary">
+                <i class="ti ti-plus"></i>
+            </a>
+        @endcan
         <a href="#" data-size="md"  data-bs-toggle="tooltip" title="{{__('Import')}}" data-url="{{ route('employee.file.import') }}" data-ajax-popup="true" data-title="{{__('Import employee CSV file')}}" class="btn btn-sm btn-primary">
             <i class="ti ti-file-import"></i>
         </a>

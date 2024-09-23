@@ -45,6 +45,7 @@ use App\Http\Controllers\EmailTemplateController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\PayslipTypeController;
@@ -189,9 +190,11 @@ Route::get('/login/{lang?}', [AuthenticatedSessionController::class, 'showLoginF
 // Route::get('/password/resets/{lang?}', 'Auth\AuthenticatedSessionController@showLinkRequestForm')->name('change.langPass');
 // Route::get('/password/resets/{lang?}', 'Auth\LoginController@showLinkRequestForm')->name('change.langPass');
 
-Route::get('/', [DashboardController::class, 'account_dashboard_index'])->name('dashboard')->middleware(['XSS', 'revalidate',]);
+Route::get('/account-dashboard', [DashboardController::class, 'account_dashboard_index'])->name('account-dashboard')->middleware(['XSS', 'revalidate',]);
 
-Route::get('/account-dashboard', [DashboardController::class, 'account_dashboard_index'])->name('dashboard')->middleware(['auth','XSS', 'revalidate']);
+Route::get('/', [DashboardController::class, 'dashboard_index'])->name('dashboard')->middleware(['XSS', 'revalidate',]);
+
+// Route::get('/account-dashboard', [DashboardController::class, 'account_dashboard_index'])->name('dashboard')->middleware(['auth','XSS', 'revalidate']);
 
 Route::get('/project-dashboard', [DashboardController::class, 'project_dashboard_index'])->name('project.dashboard')->middleware(['auth','XSS', 'revalidate']);
 
@@ -206,11 +209,8 @@ Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->n
 
 Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard')->middleware(['auth']);
 Route::get('/store-keeper-dashboard', [DashboardController::class, 'store_dashboard'])->name('store.dashboard')->middleware(['auth']);
-<<<<<<< HEAD
-=======
-Route::get('/supervisor-dashboard', [DashboardController::class, 'supervisor_dashboard'])->name('supervisor.dashboard')->middleware(['auth']);
->>>>>>> repoB-branch
 
+Route::get('/supervisor-dashboard', [DashboardController::class, 'supervisor_dashboard'])->name('supervisor.dashboard')->middleware(['auth']);
 
 Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware(['auth','XSS', 'revalidate']);
 
@@ -324,11 +324,11 @@ Route::get('goods-received-note/details', [AccountantDashControl::class, 'goodsR
 
 Route::get('comment', [AccountantDashControl::class, 'commentModal'])->name('comment.modal');
 
-Route::get('hrm-budget/index', [HrmDashControl::class, 'budget'])->name('hrm.budget');
-Route::get('hrm-query/index', [HrmDashControl::class, 'hrmQuery'])->name('hrm.query');
-Route::get('hrm-leave/index', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
-Route::get('hrm-dta/index', [HrmDashControl::class, 'hrmDta'])->name('hrm.dta');
-Route::get('hrm-memo/index', [HrmDashControl::class, 'hrmMemo'])->name('hrm.memo');
+Route::get('hrm-budget', [HrmDashControl::class, 'budget'])->name('hrm.budget');
+Route::get('hrm-query', [HrmDashControl::class, 'hrmQuery'])->name('hrm.query');
+Route::get('hrm-leave', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
+Route::get('hrm-dta', [HrmDashControl::class, 'hrmDta'])->name('hrm.dta');
+Route::get('hrm-memo', [HrmDashControl::class, 'hrmMemo'])->name('hrm.memo');
 Route::get('hrm-apply-leave', [HrmDashControl::class, 'applyLeave'])->name('hrm.applyLeave');
 Route::get('hrm-apply-query', [HrmDashControl::class, 'applyQuery'])->name('hrm.applyQuery');
 Route::get('hrm-apply-dta', [HrmDashControl::class, 'applyDta'])->name('hrm.applyDta');
@@ -803,6 +803,8 @@ Route::resource('department', DepartmentController::class)->middleware(['auth', 
 Route::resource('designation', DesignationController::class)->middleware(['auth', 'XSS']);
 Route::resource('document', DocumentController::class)->middleware(['auth', 'XSS']);
 Route::resource('branch', BranchController::class)->middleware(['auth', 'XSS']);
+
+Route::resource('unit', UnitController::class)->middleware(['auth', 'XSS']);
 
 
 // Hrm EmployeeController

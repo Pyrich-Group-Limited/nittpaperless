@@ -1,4 +1,4 @@
-@php
+<!-- @php
     use App\Models\Utility;
     $settings = \Modules\LandingPage\Entities\LandingPageSetting::settings();
     $logo  =  Utility::get_file('uploads/landing_page_image');
@@ -16,7 +16,7 @@
     $SITE_RTL = Utility::getValByName('SITE_RTL');
     $color = (!empty($setting['color'])) ? $setting['color'] : 'theme-3';
 
-@endphp
+@endphp -->
 <!DOCTYPE html>
 <html lang="en"  dir="{{$setting['SITE_RTL'] == 'on'?'rtl':''}}">
 
