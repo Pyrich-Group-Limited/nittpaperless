@@ -170,14 +170,13 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                 <div id="directorateTog" style="display: none;" class="form-group col-md-6">
                                     {{ Form::label('directorate', __('Directorate'),['class'=>'form-label']) }}
                                     {!! Form::select('directorate', ['' => 'Select a Directorate'] + $directorates, null, ['class' => 'form-control select', 'required' => 'required']) !!}
-                                    <!-- {!! Form::select('directorate', $directorates, null,array('class' => 'form-control select','required'=>'required')) !!} -->
                                     @error('directorate')
                                     <small class="invalid-role" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
                                     </small>
                                     @enderror
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div id="departmentTog" style="display: none;" class="form-group col-md-6">
                                     {{ Form::label('department', __('Department'),['class'=>'form-label']) }}
                                     {!! Form::select('department', $departments, null,array('class' => 'form-control select','required'=>'required','id' =>'sel_department')) !!}
                                     @error('Department')
@@ -274,10 +273,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 $('#liasonTog, #headquarterTog').hide();
                 if (selectedValue == 1) {
                     $('#liasonTog').show();
+                    $('#departmentTog').show();
                 } else if (selectedValue == 0) {
                     $('#headquarterTog').show();
                 }
-                // alert("The text has been changed. " + $(this).val());
             })
             $('#select_headquater').on('change', function(){
                 var selectedValue = $(this).val();
@@ -287,7 +286,6 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 } else if (selectedValue == 0) {
                     $('#directorateTog').show();
                 }
-                // alert("The text has been changed. " + $(this).val());
             })
             //get department units
             $('#sel_department').on('change',function(){

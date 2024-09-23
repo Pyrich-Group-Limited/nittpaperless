@@ -230,7 +230,6 @@ unset($__errorArgs, $__bag); ?>
 
                                     <?php echo Form::select('directorate', ['' => 'Select a Directorate'] + $directorates, null, ['class' => 'form-control select', 'required' => 'required']); ?>
 
-                                    <!-- <?php echo Form::select('directorate', $directorates, null,array('class' => 'form-control select','required'=>'required')); ?> -->
                                     <?php $__errorArgs = ['directorate'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -244,7 +243,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div id="departmentTog" style="display: none;" class="form-group col-md-6">
                                     <?php echo e(Form::label('department', __('Department'),['class'=>'form-label'])); ?>
 
                                     <?php echo Form::select('department', $departments, null,array('class' => 'form-control select','required'=>'required','id' =>'sel_department')); ?>
@@ -397,10 +396,10 @@ unset($__errorArgs, $__bag); ?>
                 $('#liasonTog, #headquarterTog').hide();
                 if (selectedValue == 1) {
                     $('#liasonTog').show();
+                    $('#departmentTog').show();
                 } else if (selectedValue == 0) {
                     $('#headquarterTog').show();
                 }
-                // alert("The text has been changed. " + $(this).val());
             })
             $('#select_headquater').on('change', function(){
                 var selectedValue = $(this).val();
@@ -410,7 +409,6 @@ unset($__errorArgs, $__bag); ?>
                 } else if (selectedValue == 0) {
                     $('#directorateTog').show();
                 }
-                // alert("The text has been changed. " + $(this).val());
             })
             //get department units
             $('#sel_department').on('change',function(){
