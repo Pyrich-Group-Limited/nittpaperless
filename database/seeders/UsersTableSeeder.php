@@ -3617,11 +3617,13 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'SuperAdmin/Paperless',
                 'email' => 'spadmin@nitt.com',
+
                 'designation' => Designation::first()->name,
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 08",
                 'email' => 'spadmin@nitt.com',
+
                 'password' => Hash::make('1234'),
                 'type' => 'super admin',
                 'default_pipeline' => 1,
@@ -3713,7 +3715,6 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Supervisor',
                 'email' => 'supervisor@nitt.com',
-                'email' => 'supervisor@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'supervisor',
                 'default_pipeline' => 1,
@@ -3776,7 +3777,6 @@ class UsersTableSeeder extends Seeder
         $liason = User::create(
             [
                 'name' => 'Head of Liason Office',
-                'email' => 'liason@nitt.com',
                 'email' => 'liason@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'liason office head',
@@ -3841,7 +3841,6 @@ class UsersTableSeeder extends Seeder
         $unitHead = User::create(
             [
                 'name' => 'Unit Head',
-                'email' => 'unit@nitt.com',
                 'email' => 'unit@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'unit head',
@@ -4073,7 +4072,6 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Accountant/ Bursar',
                 'email' => 'accountant@nitt.com',
-                'email' => 'accountant@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'accountant',
                 'default_pipeline' => 1,
@@ -4177,7 +4175,6 @@ class UsersTableSeeder extends Seeder
         $client = User::create(
             [
                 'name' => 'HRM/Registra',
-                'email' => 'hrm@nitt.com',
                 'email' => 'hrm@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'client',
