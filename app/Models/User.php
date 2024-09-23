@@ -37,13 +37,15 @@ class User extends Authenticatable
         'plan_expire_date',
         'requested_plan',
         'last_login_at',
-        'created_by',
-
-        'branch',
-        'department',
-        'unit',
-        'designation'
+        'department_id',
+        'unit_id',
+        'subunit_id',
+        'level',
     ];
+
+    public function department(){
+        return $this->belongsTo(Department::class);
+    }
 
     protected $hidden = [
         'password',

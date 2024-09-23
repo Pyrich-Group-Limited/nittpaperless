@@ -6,12 +6,11 @@ use App\Models\CustomField;
 use App\Models\Employee;
 use App\Models\LoginDetail;
 use App\Models\User;
-use App\Models\UserCompany;
-use App\Models\Branch;
-use App\Models\Unit;
 use App\Models\Department;
+use App\Models\UserCompany;
 use App\Models\Designation;
-// use App\Models\Designation;
+use App\Models\Unit;
+use App\Models\Subunit;
 use Auth;
 use File;
 use App\Models\Utility;
@@ -22,11 +21,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Session;
 use Spatie\Permission\Models\Role;
+use App\Services\DataService;
 
 
 
 class  UserController extends Controller
 {
+    private $dataService;
+    public function __construct(DataService $dataService)
+    {
+        $this->dataService = $dataService;
+    }
 
     public function index()
     {
@@ -34,8 +39,23 @@ class  UserController extends Controller
         if(\Auth::user()->can('manage user'))
         {
             $users = User::where('created_by', '=', $user->creatorId())->where('type', '!=', 'client')->get();
-
-            return view('user.index')->with('users', $users);
+            $customFields = CustomField::where('created_by', '=', \Auth::user()->creatorId())->where('module', '=', 'user')->get();
+            $user  = \Auth::user();
+            $roles = Role::all()->pluck('name', 'id');
+            $departments = Department::all()->pluck('name', 'id');
+            $designations = Designation::all()->pluck('name', 'id');
+            $liasons = $this->dataService->getLiasons();
+            $headquaters = $this->dataService->getHeadquaters();
+            $directorates = $this->dataService->getDirectorates();
+            return view('user.index',compact(
+                'designations',
+                'roles',
+                'departments',
+                'customFields', 
+                'liasons',
+                'headquaters',
+                'directorates'
+                ))->with('users', $users);
         }
         else
         {
@@ -44,27 +64,33 @@ class  UserController extends Controller
 
     }
 
+    public function getDepartments($id){
+         echo $units = json_encode(Unit::where('department_id',$id)->get());
+        //  return $units;
+    }
+
+    public function getSubUnits($id){
+        $subunits = Subunit::where('unit_id',$id)->get();
+
+        if(count($subunits)>0){
+            echo json_encode($subunits);
+        }else{
+            echo 0;
+        }
+   }
+
     public function create()
     {
 
         $customFields = CustomField::where('created_by', '=', \Auth::user()->creatorId())->where('module', '=', 'user')->get();
         $user  = \Auth::user();
         $roles = Role::all()->pluck('name', 'id');
-        
-        $branchs = Branch::all()->pluck('name', 'id');
         $departments = Department::all()->pluck('name', 'id');
-        $units = Unit::all()->pluck('name', 'id');
         $designations = Designation::all()->pluck('name', 'id');
-
+        $liasons = $this->dataService->getLiasons();
         if(\Auth::user()->can('create user'))
         {
-            return view('user.create', compact(
-                'roles', 
-                'units', 
-                'departments', 
-                'designations', 
-                'customFields', 
-                'branchs'));
+            return view('user.create', compact('roles', 'customFields','departments','designations', 'liasons'));
         }
         else
         {
@@ -83,6 +109,10 @@ class  UserController extends Controller
                                    'email' => 'required|email|unique:users',
                                    'password' => 'required|min:6',
                                    'role' => 'required',
+                                   'designation' => 'required',
+                                   'department' => 'required',
+                                   'unit' => 'required',
+                                   'level' => 'required',
                                ]
             );
             if($validator->fails())
@@ -103,13 +133,10 @@ class  UserController extends Controller
             $psw                   = $request->password;
             $request['password']   = Hash::make($request->password);
             $request['type']       = $role_r->name;
-
-            $request['branch']         = $branch->name;
-            $request['department']     = $department->name;
-            $request['unit']           = $unit->name;
-            $request['designation']    = $designation->name;
-
-
+            $request['designation']       = $request->designation;
+            $request['department_id']       = $request->department;
+            $request['unit_id']       = $request->unit;
+            $request['level']       = $request->level;
             $request['lang']       = !empty($default_language) ? $default_language->value : 'en';
             $request['created_by'] = \Auth::user()->creatorId();
             $user = User::create($request->all());

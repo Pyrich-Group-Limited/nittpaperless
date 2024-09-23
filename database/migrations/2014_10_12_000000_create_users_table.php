@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('plan')->nullable();
             $table->date('plan_expire_date')->nullable();
             $table->string('type', 20)->nullable();
-            $table->string('avatar')->default(config('chatify.user_avatar.default'));
+            $table->string('avatar')->default('');
             $table->string('messenger_color')->default('#2180f3');
             $table->string('lang', 100)->nullable();
             $table->integer('created_by')->default(0);
@@ -34,6 +34,11 @@ class CreateUsersTable extends Migration
             $table->boolean('dark_mode')->default(0);
             $table->integer('is_active')->default(1);
             $table->datetime('last_login_at')->nullable();
+            $table->string('designation');
+            $table->string('level');
+            $table->integer('department_id');
+            $table->integer('unit_id');
+            $table->integer('sub_unit_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         }

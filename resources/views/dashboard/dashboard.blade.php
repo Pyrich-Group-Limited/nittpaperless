@@ -93,7 +93,7 @@
 @endpush
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('HRM')}}</li>
+    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")" }}</li>
 @endsection
 @php
     $setting = \App\Models\Utility::settings();
@@ -245,7 +245,7 @@
                                 <div class="row g-3 flex-nowrap team-lists horizontal-scroll-cards">
                                     @foreach($notClockIns as $notClockIn)
                                         <div class="col-auto">
-                                            <img src="{{(!empty($notClockIn->user))? $notClockIn->user->profile : asset(Storage::url('uploads/avatar/avatar.png'))}}" alt="">
+                                            <img src="{{(!empty($notClockIn->user))? $notClockIn->user->profile : 'assets/images/user/avatar.png'}}" alt="">
                                             <p class="mt-2">{{ $notClockIn->name }}</p>
                                         </div>
                                     @endforeach

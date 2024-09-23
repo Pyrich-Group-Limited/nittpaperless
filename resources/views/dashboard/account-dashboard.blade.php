@@ -188,16 +188,15 @@
     </script>
 @endpush
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Account')}}</li>
+    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")" }}</li>
 @endsection
 @section('content')
     <div class="row">
+        @include('accountant.includes.nav')
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-xxl-7">
                     <div class="row">
-                        @include('accountant.includes.nav')
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-header">
@@ -395,7 +394,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-xxl-5">
@@ -774,11 +772,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
             </div>
         </div>
     </div>

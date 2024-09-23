@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{__('Manage Product & Services')}}
+    {{__('Assets/Inventory/Stock')}}
 @endsection
 @push('script-page')
 @endpush
@@ -33,10 +33,16 @@
                         {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
                         <div class="d-flex align-items-center justify-content-end">
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                                <div class="btn-box">
-                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
-                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
-                                </div>
+                                <label for="">Filter</label>
+                                <select name="" id="" class="form-control">
+                                    <option value="">--Select Filter--</option>
+                                    <option value="">Asset Type</option>
+                                    <option value="">Asset Code</option>
+                                </select>
+                                {{-- <div class="btn-box">
+                                    {{ Form::label('category', __('Filter'),['class'=>'form-label']) }}
+                                    {{ Form::select('assets', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div> --}}
                             </div>
                             <div class="col-auto float-end ms-2 mt-4">
                                 <a href="#" class="btn btn-sm btn-primary"
@@ -44,7 +50,7 @@
                                    data-bs-toggle="tooltip" title="{{ __('apply') }}">
                                     <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
                                 </a>
-                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
                                    title="{{ __('Reset') }}">
                                     <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
                                 </a>
@@ -65,15 +71,18 @@
                         <table class="table datatable">
                             <thead>
                             <tr>
-                                <th>{{__('Name')}}</th>
-                                <th>{{__('Sku')}}</th>
-                                <th>{{__('Sale Price')}}</th>
-                                <th>{{__('Purchase Price')}}</th>
-                                <th>{{__('Tax')}}</th>
-                                <th>{{__('Category')}}</th>
-                                <th>{{__('Unit')}}</th>
-                                <th>{{__('Quantity')}}</th>
-                                <th>{{__('Type')}}</th>
+                                <th>{{__('SN')}}</th>
+                                <th>{{__('Asset Identification Code')}}</th>
+                                <th>{{__('Asset Type')}}</th>
+                                <th>{{__('Asset Description')}}</th>
+                                <th>{{__('Location')}}</th>
+                                <th>{{__('No. of Units')}}</th>
+                                <th>{{__('Model Number')}}</th>
+                                <th>{{__('Year of Manufacture')}}</th>
+                                <th>{{__('Serial No./Other')}}</th>
+                                <th>{{__('Date of Purchase')}}</th>
+                                <th>{{__('Initial Cost (₦)')}}</th>
+                                <th>{{__('Measure improvement of asset (if any)')}}</th>
                                 <th>{{__('Action')}}</th>
                             </tr>
                             </thead>
@@ -106,6 +115,9 @@
                                         <td>-</td>
                                     @endif
                                     <td>{{ucwords($productService->type)}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
 
                                     @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
                                         <td class="Action">

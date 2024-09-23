@@ -34,7 +34,7 @@
                 @enderror
             </div>
         @else
-            {!! Form::hidden('role', 'super admin', null,array('class' => 'form-control select2','required'=>'required')) !!}
+        {!! Form::hidden('role', 'super admin', null,array('class' => 'form-control select2','required'=>'required')) !!}
         @endif
         <div class="col-md-6">
             <div class="form-group">
@@ -48,48 +48,48 @@
             </div>
         </div>
         <div class="form-group col-md-6">
-            {{ Form::label('designation_id', __('Designation'),['class'=>'form-label']) }}
-            {!! Form::select('designation_id', $designations, null,array('class' => 'form-control select','required'=>'required')) !!}
+            {{ Form::label('designation', __('Designation'),['class'=>'form-label']) }}
+            {!! Form::select('designation', $designations, null,array('class' => 'form-control select','required'=>'required')) !!}
             @error('designation')
             <small class="invalid-role" role="alert">
                 <strong class="text-danger">{{ $message }}</strong>
             </small>
             @enderror
         </div>
-        <div class="form-group col-md-6">
-            {{ Form::label('branch_id', __('Branch'),['class'=>'form-label']) }}
-            {!! Form::select('branch_id', $branchs, null,array('class' => 'form-control select','required'=>'required')) !!}
-            @error('branch')
+        <!-- <div class="form-group col-md-6">
+            {{ Form::label('level', __('Level'),['class'=>'form-label']) }}
+            {!! Form::select('level', ['Level 07','Level 08','Level 09','Level 11','Level 12','Level 13','Level 14','Level 15'], null,array('class' => 'form-control select','required'=>'required')) !!}
+            @error('Level')
             <small class="invalid-role" role="alert">
                 <strong class="text-danger">{{ $message }}</strong>
             </small>
             @enderror
         </div>
         <div class="form-group col-md-6">
-            {{ Form::label('department_id', __('Department'),['class'=>'form-label']) }}
-            {!! Form::select('department_id', $departments, null,array('class' => 'form-control select','required'=>'required')) !!}
-            @error('department')
+            {{ Form::label('department', __('Department'),['class'=>'form-label']) }}
+            {!! Form::select('department', $departments, null,array('class' => 'form-control select','required'=>'required','id' =>'sel_department')) !!}
+            @error('Department')
             <small class="invalid-role" role="alert">
                 <strong class="text-danger">{{ $message }}</strong>
             </small>
             @enderror
-        </div>
-        <div class="form-group col-md-6">
-            {{ Form::label('unit_id', __('Unit'),['class'=>'form-label']) }}
-            {!! Form::select('unit_id', $units, null,array('class' => 'form-control select','required'=>'required')) !!}
-            @error('unit')
+        </div> -->
+        <!-- <div class="form-group col-md-6">
+            {{ Form::label('unit', __('Unit'),['class'=>'form-label']) }}
+            {!! Form::select('unit', $roles, null,array('class' => 'form-control select','required'=>'required','id'=>'department_units')) !!}
+            @error('Unit')
             <small class="invalid-role" role="alert">
                 <strong class="text-danger">{{ $message }}</strong>
             </small>
             @enderror
-        </div>
-        @if(!$customFields->isEmpty())
+        </div> -->
+        <!-- @if(!$customFields->isEmpty())
             <div class="col-md-6">
                 <div class="tab-pane fade show" id="tab-2" role="tabpanel">
                     @include('customFields.formBuilder')
                 </div>
             </div>
-        @endif
+        @endif -->
     </div>
 
 </div>
@@ -98,5 +98,5 @@
     <input type="button" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
     <input type="submit" value="{{__('Create')}}" class="btn  btn-primary">
 </div>
-
 {{Form::close()}}
+

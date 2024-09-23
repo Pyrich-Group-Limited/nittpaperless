@@ -7,6 +7,10 @@ use App\Models\JoiningLetter;
 use App\Models\NOC;
 use App\Models\User;
 use App\Models\Utility;
+use App\Models\Designation;
+use App\Models\Department;
+use App\Models\Unit;
+use App\Models\Subunit;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
@@ -3088,6 +3092,11 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [   'name' => 'view leave report',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ];
 
         Permission::insert($arrPermissions);
@@ -3103,6 +3112,7 @@ class UsersTableSeeder extends Seeder
         );
 
         $companyPermissions = [
+            ['name' => 'view leave report'],
             ['name' => 'show pos dashboard'],
             ['name' => 'show crm dashboard'],
             ['name' => 'show hrm dashboard'],
@@ -3607,6 +3617,11 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'SuperAdmin/Paperless',
                 'email' => 'spadmin@nitt.com',
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
+                'email' => 'spadmin@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'super admin',
                 'default_pipeline' => 1,
@@ -3638,6 +3653,10 @@ class UsersTableSeeder extends Seeder
                 'name' => 'User',
                 'email' => 'user@nitt.com',
                 'password' => Hash::make('1234'),
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
                 'type' => 'user',
                 'default_pipeline' => 1,
                 'lang' => 'en',
@@ -3694,12 +3713,17 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Supervisor',
                 'email' => 'supervisor@nitt.com',
+                'email' => 'supervisor@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'supervisor',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $supervisor->assignRole($supervisorRole);
@@ -3713,6 +3737,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liasonPermission = [
+            ['name' => 'view leave report'],
+            ['name' => 'create budget plan'],
             ['name' => 'show invoice'],
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
@@ -3751,12 +3777,17 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Head of Liason Office',
                 'email' => 'liason@nitt.com',
+                'email' => 'liason@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'liason office head',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $liason->assignRole($liasonRole);
@@ -3771,6 +3802,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $unitHeadPermission = [
+            ['name' => 'view leave report'],
             ['name' => 'show unithead dashboard'],
             ['name' => 'manage client dashboard'],
             ['name' => 'manage bug report'],
@@ -3800,6 +3832,8 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage stage'],
             ['name' => 'manage contract'],
             ['name' => 'show contract'],
+            ['name' => 'view budget plan'],
+            ['name' => 'manage report'],
         ];
 
         $unitHeadRole->givePermissionTo($unitHeadPermission);
@@ -3808,12 +3842,17 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Unit Head',
                 'email' => 'unit@nitt.com',
+                'email' => 'unit@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'unit head',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $unitHead->assignRole($unitHeadRole);
@@ -3827,6 +3866,13 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $storePermission = [
+            ['name' => 'manage product & service'],
+            ['name' => 'manage warehouse'],
+            ['name' => 'manage purchase'],
+            ['name' => 'manage pos'],
+            ['name' => 'manage warehouse'],
+            ['name' => 'create barcode'],
+            ['name' => 'manage pos'],
             ['name' => 'show unithead dashboard'],
             ['name' => 'manage client dashboard'],
             ['name' => 'manage bug report'],
@@ -3863,13 +3909,17 @@ class UsersTableSeeder extends Seeder
         $storeKeeper = User::create(
             [
                 'name' => 'Store / Assets',
-                'email' => 'store@example.com',
+                'email' => 'store@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'store keeper',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $storeKeeper->assignRole($storeKeeperRole);
@@ -4023,12 +4073,17 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Accountant/ Bursar',
                 'email' => 'accountant@nitt.com',
+                'email' => 'accountant@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'accountant',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $accountant->assignRole($accountantRole);
@@ -4053,6 +4108,37 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $clientPermission = [
+            ['name' => 'view leave report'],
+            ['name' => 'show hrm dashboard'],
+            ['name' => 'manage employee'],
+            ['name' => 'manage leave'],
+            ['name' => 'manage indicator'],
+            ['name' => 'manage appraisal'],
+            ['name' => 'manage goal tracking'],
+            ['name' => 'manage training'],
+            ['name' => 'manage job'],
+            ['name' => 'create job'],
+            ['name' => 'manage job application'],
+            ['name' => 'manage custom question'],
+            ['name' => 'show interview schedule'],
+            ['name' => 'manage award'],
+            ['name' => 'manage transfer'],
+            ['name' => 'manage resignation'],
+            ['name' => 'manage travel'],
+            ['name' => 'manage promotion'],
+            ['name' => 'manage complaint'],
+            ['name' => 'manage warning'],
+            ['name' => 'manage termination'],
+            ['name' => 'manage announcement'],
+            ['name' => 'manage holiday'],
+            ['name' => 'manage event'],
+            ['name' => 'manage meeting'],
+            ['name' => 'manage assets'],
+            ['name' => 'manage document'],
+            ['name' => 'manage company policy'],
+
+            ['name' => 'show career'],
+            ['name' => 'manage report'],
             ['name' => 'manage user'],
             ['name' => 'manage role'],
             ['name' => 'manage client'],
@@ -4092,12 +4178,17 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'HRM/Registra',
                 'email' => 'hrm@nitt.com',
+                'email' => 'hrm@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'client',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 08",
             ]
         );
         $client->assignRole($clientRole);

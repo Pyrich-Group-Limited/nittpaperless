@@ -9,16 +9,16 @@ class Unit extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillalbe = [
         'name',
-        'created_by',
+        'department_id'
     ];
 
-    public function branch(){
-        return $this->hasOne('App\Models\Branch','id','branch_id');
+    public function subunits(){
+        return $this->hasMany(Subunit::class);
     }
 
     public function department(){
-        return $this->hasOne('App\Models\Department','id','department_id');
+        return $this->belongsTo(Department::class,'department_id');
     }
 }

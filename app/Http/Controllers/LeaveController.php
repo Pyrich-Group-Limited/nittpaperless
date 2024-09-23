@@ -238,9 +238,7 @@ class LeaveController extends Controller
 
     public function changeaction(Request $request)
     {
-
         $leave = Leave::find($request->leave_id);
-
         $leave->status = $request->status;
         if($leave->status == 'Approval')
         {
@@ -250,41 +248,27 @@ class LeaveController extends Controller
             $leave->total_leave_days = $total_leave_days;
             $leave->status           = 'Approved';
         }
-
         $leave->save();
-
-        //Send Email
         $setings = Utility::settings();
         if(!empty($employee->id))
         {
             if($setings['leave_status'] == 1)
             {
-
                 $employee     = Employee::where('id', $leave->employee_id)->where('created_by', '=', \Auth::user()->creatorId())->first();
                 $leave->name  = !empty($employee->name) ? $employee->name : '';
                 $leave->email = !empty($employee->email) ? $employee->email : '';
-//            dd($leave);
-
                 $actionArr = [
-
                     'leave_name'=> !empty($employee->name) ? $employee->name : '',
                     'leave_status' => $leave->status,
                     'leave_reason' =>  $leave->leave_reason,
                     'leave_start_date' => $leave->start_date,
                     'leave_end_date' => $leave->end_date,
                     'total_leave_days' => $leave->total_leave_days,
-
                 ];
-//            dd($actionArr);
                 $resp = Utility::sendEmailTemplate('leave_action_sent', [$employee->id => $employee->email], $actionArr);
-
-
                 return redirect()->route('leave.index')->with('success', __('Leave status successfully updated.') .(($resp['is_success'] == false && !empty($resp['error'])) ? '<br> <span class="text-danger">' . $resp['error'] . '</span>' : ''));
-
             }
-
         }
-
         return redirect()->route('leave.index')->with('success', __('Leave status successfully updated.'));
     }
 
