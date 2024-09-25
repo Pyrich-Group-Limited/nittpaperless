@@ -3792,16 +3792,61 @@ class UsersTableSeeder extends Seeder
         );
         $liason->assignRole($liasonRole);
 
+        // Create an array to store all unit head roles
+        $unitHeadRoles = [];
 
-
-         // unit head
-         $unitHeadRole       = Role::create(
-            [
-                'name' => 'unit head',
-                'created_by' => $company->id,
-            ]
+        // Create and assign roles to all unit heads
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Revenue Unit Head', 'created_by' => $company->id]
         );
-        $unitHeadPermission = [
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Asset Management Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Stores Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Personnel Enrollment Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Loan and Advances Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Expenditure Control Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Personnel Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Academic Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Administrative Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Student Affairs Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Prepayment Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Postpayment Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Software Development Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Internet Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Maintenance Unit Head', 'created_by' => $company->id]
+        );
+        $unitHeadRoles[] = Role::create(
+            ['name' => 'Library Unit Head', 'created_by' => $company->id]
+        );
+
+        // Define the permissions for the unit head role
+        $unitHeadPermissions = [
             ['name' => 'view leave report'],
             ['name' => 'show unithead dashboard'],
             ['name' => 'manage client dashboard'],
@@ -3836,8 +3881,18 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage report'],
         ];
 
-        $unitHeadRole->givePermissionTo($unitHeadPermission);
+        // Loop through each unit head role and assign permissions
+        foreach ($unitHeadRoles as $role) {
+            $role->givePermissionTo($unitHeadPermissions);
+        }
 
+        $unitHeadRole       = Role::create(
+            [
+                'name' => 'Unit Head',
+                'created_by' => $company->id,
+            ],
+        );
+        
         $unitHead = User::create(
             [
                 'name' => 'Unit Head',

@@ -94,7 +94,6 @@ class DashboardController extends Controller
         return view('dashboard.supervisor-dashboard');
      }
 
-<<<<<<< HEAD
      public function dashboard_index()
     {
 
@@ -218,8 +217,6 @@ class DashboardController extends Controller
         }
     }
 
-=======
->>>>>>> 88d8d7da0b84115db655fe18cc8b55d07f28d477
     public function account_dashboard_index()
     {
 
