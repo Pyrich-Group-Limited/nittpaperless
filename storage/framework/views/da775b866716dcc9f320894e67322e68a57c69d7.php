@@ -8,8 +8,7 @@
     <div class="footer-wrapper">
         <div class="py-1">
             <p class="mb-0 text-muted"> &copy;
-                <?php echo e(date('Y')); ?> <?php echo e(Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'ERPGo')); ?>
-
+                <?php echo e(date('Y')); ?> <?php echo e(Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'NITT')); ?>. All rights reserved
             </p>
         </div>
 
@@ -58,7 +57,7 @@
     <?php echo $__env->make('layouts.cookie_consent', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php endif; ?>
 <?php echo $__env->yieldPushContent('script-page'); ?>
-
+<?php echo $__env->yieldPushContent('script'); ?>
 
 <script>
 
