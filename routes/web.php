@@ -194,7 +194,7 @@ Route::get('/account-dashboard', [DashboardController::class, 'account_dashboard
 
 Route::get('/', [DashboardController::class, 'dashboard_index'])->name('dashboard')->middleware(['XSS', 'revalidate',]);
 
-// Route::get('/account-dashboard', [DashboardController::class, 'account_dashboard_index'])->name('dashboard')->middleware(['auth','XSS', 'revalidate']);
+Route::get('/business-dashboard', [DashboardController::class, 'business_dashboard_index'])->name('business-dashboard')->middleware(['auth','XSS', 'revalidate']);
 
 Route::get('/project-dashboard', [DashboardController::class, 'project_dashboard_index'])->name('project.dashboard')->middleware(['auth','XSS', 'revalidate']);
 

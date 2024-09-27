@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{__('Manage Invoices')}}
+    {{__('Manage Invoices/Voucher')}}
 @endsection
 @push('script-page')
     <script>
