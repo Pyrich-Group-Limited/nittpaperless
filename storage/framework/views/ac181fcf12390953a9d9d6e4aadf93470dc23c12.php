@@ -52,7 +52,7 @@
     <link rel="icon" href="<?php echo e($logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')); ?>" type="image" sizes="16x16">
 
     <!-- Favicon icon -->
-
+   <link rel="icon" href="<?php echo e(asset('assets/images/favicon.png')); ?>" type="image/x-icon"/>
     <!-- Calendar-->
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/main.css')); ?>">
 
@@ -265,6 +265,7 @@
 
 <?php echo $__env->make('partials.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('Chatify::layouts.footerLinks', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 </body>
 </html>
 <?php /**PATH C:\laragon\www\nittdig\resources\views/layouts/admin.blade.php ENDPATH**/ ?>

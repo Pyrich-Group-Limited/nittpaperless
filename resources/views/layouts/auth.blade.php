@@ -129,7 +129,7 @@
                             class="img-fluid"
                         />
                         <h2 class="text-white mb-4 mt-5">
-                        NIGERIA INSTITUTE OF TECHNOLOGY
+                        Nigerian Institute of Transport Technology
                         </h2>
                         <p class="text-white">Zaria, Nigeria</p>
                     </div>

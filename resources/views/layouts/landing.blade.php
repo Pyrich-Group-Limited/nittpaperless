@@ -120,13 +120,15 @@
                 </div>
                 <div class="col-xl-6 img-card-side">
                     <div class="auth-img-content">
+                        {{-- src="{{ asset('assets/images/auth/img-auth-3.svg') }}" --}}
                         <img
-                            src="{{ asset('assets/images/auth/img-auth-3.svg') }}"
+                            
+                             src="{{ asset('assets/images/auth/img-auth-43.png') }}"
                             alt=""
                             class="img-fluid"
                         />
                         <h2 class="text-white mb-4 mt-5">
-                        NIGERIA INSTITUTE OF TECHNOLOGY
+                        Nigerian Institute of Transport Technology
                         </h2>
                         <p class="text-white">
 
