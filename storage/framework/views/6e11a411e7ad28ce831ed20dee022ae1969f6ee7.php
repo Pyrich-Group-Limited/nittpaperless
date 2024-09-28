@@ -949,11 +949,6 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'business')?'active':''); ?>">
-                        <a href="" class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-wallet"></i></span><span class="dash-mtext"><?php echo e(__('Business Intelligence')); ?></span>
-                        </a>
-                    </li> -->
                     <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'stages' || Request::segment(1) == 'labels' || Request::segment(1) == 'sources' || Request::segment(1) == 'lead_stages' || Request::segment(1) == 'pipelines' || Request::segment(1) == 'deals' || Request::segment(1) == 'leads'  || Request::segment(1) == 'form_builder' || Request::segment(1) == 'form_response' || Request::segment(1) == 'contract') ?' active dash-trigger':''); ?>">
                         <a href="#!" class="dash-link"
                         ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
@@ -1022,16 +1017,6 @@
                             <span class="dash-micon"><i class="ti ti-message-circle"></i></span><span class="dash-mtext"><?php echo e(__('Messenger')); ?></span>
                         </a>
                     </li>
-
-                        <!-- <?php if(\Auth::user()->type =='super admin'): ?>
-                            
-                            <li class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'email_template' || Request::route()->getName() == 'manage.email.language' ? ' active dash-trigger' : 'collapsed'); ?>">
-                                <a href="<?php echo e(route('manage.email.language',[$emailTemplate ->id,\Auth::user()->lang])); ?>" class="dash-link">
-                                    <span class="dash-micon"><i class="ti ti-template"></i></span>
-                                    <span class="dash-mtext"><?php echo e(__('Email Template')); ?></span></a>
-                            </li>
-                            
-                        <?php endif; ?> -->
                 </ul>
             <?php endif; ?>
 
