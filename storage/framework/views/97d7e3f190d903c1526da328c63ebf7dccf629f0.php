@@ -2200,7 +2200,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="tab-pane fade" id="hrmpermission" role="tabpanel" aria-labelledby="pills-contact-tab">
                     <?php
-                        $modules=['hrm dashboard','employee','employee profile','department','designation','branch','document type','document','payslip type','allowance','commission','allowance option','loan option','deduction option','loan','saturation deduction','other payment','overtime','set salary','pay slip','company policy','appraisal','goal tracking','goal type','indicator','event','meeting','training','trainer','training type','award','award type','resignation','travel','promotion','complaint','warning','termination','termination type','job application','job application note','job onBoard','job category','job','job stage','custom question','interview schedule','estimation','holiday','transfer','announcement','leave','leave type','attendance'];
+                        $modules=['hrm dashboard','payroll','reports/analytics','performance management','HRM system setup','employee info management','training setup','recruitment and onboarding','HR/employee benefits','employee assests setup','document setup','company policy'];
                     ?>
 
                     <div class="col-md-12">
@@ -2238,7 +2238,7 @@ unset($__errorArgs, $__bag); ?>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
 
-                                                    <?php if(in_array('add '.$module,(array) $permissions)): ?>
+                                                    <!-- <?php if(in_array('add '.$module,(array) $permissions)): ?>
                                                         <?php if($key = array_search('add '.$module,$permissions)): ?>
                                                             <div class="col-md-3 custom-control custom-checkbox">
                                                                 <?php echo e(Form::checkbox('permissions[]',$key,false, ['class'=>'form-check-input isscheck hrm_checkall isscheck_'.str_replace(' ', '', $module),'id' =>'permission'.$key])); ?>
@@ -2432,7 +2432,7 @@ unset($__errorArgs, $__bag); ?>
                                                                 <?php echo e(Form::label('permission'.$key,'Trial Balance',['class'=>'custom-control-label'])); ?><br>
                                                             </div>
                                                         <?php endif; ?>
-                                                    <?php endif; ?>
+                                                    <?php endif; ?> -->
                                                 </div>
                                             </td>
                                         </tr>
@@ -2445,7 +2445,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="pills-contact-tab">
                     <?php
-                        $modules=['account dashboard','proposal','invoice','bill','revenue','payment','proposal product','invoice product','bill product','goal','credit note','debit note','bank account','bank transfer','transaction','customer','vender','constant custom field','assets','chart of account','journal entry','report'];
+                        $modules=['overview','reports','banking','voucher','purchases','double entry','budget planner','financial goal','accounting setup','print settings'];
                     ?>
                     <div class="col-md-12">
                         <div class="form-group">
@@ -2478,7 +2478,6 @@ unset($__errorArgs, $__bag); ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
-
                                                     <?php if(in_array('add '.$module,(array) $permissions)): ?>
                                                         <?php if($key = array_search('add '.$module,$permissions)): ?>
                                                             <div class="col-md-3 custom-control custom-checkbox">
@@ -2488,7 +2487,6 @@ unset($__errorArgs, $__bag); ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
-
                                                     <?php if(in_array('move '.$module,(array) $permissions)): ?>
                                                         <?php if($key = array_search('move '.$module,$permissions)): ?>
                                                             <div class="col-md-3 custom-control custom-checkbox">
@@ -2498,7 +2496,6 @@ unset($__errorArgs, $__bag); ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
-
                                                     <?php if(in_array('manage '.$module,(array) $permissions)): ?>
                                                         <?php if($key = array_search('manage '.$module,$permissions)): ?>
                                                             <div class="col-md-3 custom-control custom-checkbox">
@@ -2544,8 +2541,6 @@ unset($__errorArgs, $__bag); ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
-
-
                                                     <?php if(in_array('send '.$module,(array) $permissions)): ?>
                                                         <?php if($key = array_search('send '.$module,$permissions)): ?>
                                                             <div class="col-md-3 custom-control custom-checkbox">
@@ -2555,7 +2550,6 @@ unset($__errorArgs, $__bag); ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
-
                                                     <?php if(in_array('create payment '.$module,(array) $permissions)): ?>
                                                         <?php if($key = array_search('create payment '.$module,$permissions)): ?>
                                                             <div class="col-md-3 custom-control custom-checkbox">
@@ -2619,7 +2613,6 @@ unset($__errorArgs, $__bag); ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
-
                                                     <?php if(in_array('invoice '.$module,(array) $permissions)): ?>
                                                         <?php if($key = array_search('invoice '.$module,$permissions)): ?>
                                                             <div class="col-md-3 custom-control custom-checkbox">
@@ -2818,7 +2811,6 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
