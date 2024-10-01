@@ -139,6 +139,7 @@ use App\Http\Controllers\DashControls\AccountantDashControl;
 use App\Http\Controllers\DashControls\HrmDashControl;
 
 use App\Http\Controllers\FileManagement\FilesController;
+use App\Http\Controllers\FileManagement\FolderController;
 
 
 
@@ -334,10 +335,28 @@ Route::get('hrm-apply-query', [HrmDashControl::class, 'applyQuery'])->name('hrm.
 Route::get('hrm-apply-dta', [HrmDashControl::class, 'applyDta'])->name('hrm.applyDta');
 
 // file management
-Route::get('files/index',[FilesController::class, 'filesIndex'])->name('file.index');
-Route::get('file-upload',[FilesController::class, 'filesUpload'])->name('file.upload');
+Route::get('/files',[FilesController::class, 'index'])->name('file.index');
 Route::get('create-file',[FilesController::class, 'createFile'])->name('file.create');
+Route::post('/store-files', [FilesController::class, 'store'])->name('files.store');
+Route::patch('/files/{file}/rename', [FilesController::class, 'rename'])->name('files.rename');
+
+Route::get('/this-month-files', [FilesController::class, 'thisMonthFiles'])->name('files.thisMonth');
+Route::get('/new-files', [FilesController::class, 'newFiles'])->name('files.newFile');
+
+
+// Route::get('/share-file/{id}', [FilesController::class, 'shareFileModal'])->name('file.shareModal');
+Route::post('/files/{file}/share', [FilesController::class, 'share'])->name('files.share');
+
+Route::get('/shared-files', [FilesController::class, 'sharedFiles'])->name('sharedfiles.index');
+
 Route::get('create-folder',[FilesController::class, 'createFolder'])->name('folder.create');
+Route::get('/folders', [FolderController::class, 'index'])->name('folders.index');
+Route::post('/folders', [FolderController::class, 'store'])->name('folders.store');
+Route::patch('/folders/{folder}/rename', [FolderController::class, 'rename'])->name('folders.rename');
+
+
+
+Route::get('file-upload',[FilesController::class, 'filesUpload'])->name('file.upload');
 
 
 

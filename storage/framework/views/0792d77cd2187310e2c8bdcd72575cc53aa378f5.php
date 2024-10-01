@@ -1,4 +1,4 @@
-@php
+<?php
     $users=\Auth::user();
     //$profile=asset(Storage::url('uploads/avatar/'));
     $profile=\App\Models\Utility::get_file('uploads/');
@@ -13,15 +13,15 @@
 
 
     $unseenCounter=App\Models\ChMessage::where('to_id', Auth::user()->id)->where('seen', 0)->count();
-@endphp
+?>
 
-{{--<header class="dash-header  {{(isset($mode_setting['cust_theme_bg']) && $mode_setting['cust_theme_bg'] == 'on')?'transprent-bg':''}}">--}}
 
-@if (isset($setting['cust_theme_bg']) && $setting['cust_theme_bg'] == 'on')
+
+<?php if(isset($setting['cust_theme_bg']) && $setting['cust_theme_bg'] == 'on'): ?>
     <header class="dash-header transprent-bg">
-        @else
+        <?php else: ?>
             <header class="dash-header">
-                @endif
+                <?php endif; ?>
 
     <div class="header-wrapper">
         <div class="me-auto dash-mob-drp">
@@ -46,34 +46,35 @@
                         aria-expanded="false"
                     >
                         <span class="theme-avtar">
-                             <img src="{{ !empty(\Auth::user()->avatar) ? $profile . \Auth::user()->avatar :  asset('uploads/user.png')}}" class="img-fluid rounded-circle">
+                             <img src="<?php echo e(!empty(\Auth::user()->avatar) ? $profile . \Auth::user()->avatar :  asset('uploads/user.png')); ?>" class="img-fluid rounded-circle">
                         </span>
-                        <span class="hide-mob ms-2">{{__('Hi, ')}}{{\Auth::user()->name }} !</span>
+                        <span class="hide-mob ms-2"><?php echo e(__('Hi, ')); ?><?php echo e(\Auth::user()->name); ?> !</span>
                         <i class="ti ti-chevron-down drp-arrow nocolor hide-mob"></i>
                     </a>
                     <div class="dropdown-menu dash-h-dropdown">
 
-                        <!-- <a href="{{ route('change.mode') }}" class="dropdown-item">
+                        <!-- <a href="<?php echo e(route('change.mode')); ?>" class="dropdown-item">
                             <i class="ti ti-circle-plus"></i>
-                            <span>{{(Auth::user()->mode == 'light') ? __('Dark Mode') : __('Light Mode')}}</span>
+                            <span><?php echo e((Auth::user()->mode == 'light') ? __('Dark Mode') : __('Light Mode')); ?></span>
                         </a> -->
 
-                        <a href="{{route('profile')}}" class="dropdown-item">
+                        <a href="<?php echo e(route('profile')); ?>" class="dropdown-item">
                             <i class="ti ti-user"></i>
-                            <span>{{__('Profile')}}</span>
+                            <span><?php echo e(__('Profile')); ?></span>
                         </a>
 
-                        <a href="{{route('file.index')}}" class="dropdown-item">
+                        <a href="<?php echo e(route('file.index')); ?>" class="dropdown-item">
                             <i class="ti ti-files"></i>
-                            <span>{{__('My files')}}</span>
+                            <span><?php echo e(__('My files')); ?></span>
                         </a>
 
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="dropdown-item">
+                        <a href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="dropdown-item">
                             <i class="ti ti-power"></i>
-                            <span>{{__('Logout')}}</span>
+                            <span><?php echo e(__('Logout')); ?></span>
                         </a>
-                        <form id="frm-logout" action="{{ route('logout') }}" method="POST" class="d-none">
-                            {{ csrf_field() }}
+                        <form id="frm-logout" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                            <?php echo e(csrf_field()); ?>
+
                         </form>
 
                     </div>
@@ -83,17 +84,17 @@
         </div>
         <div class="ms-auto">
             <ul class="list-unstyled">
-                @if( \Auth::user()->type !='client' && \Auth::user()->type !='super admin' )
+                <?php if( \Auth::user()->type !='client' && \Auth::user()->type !='super admin' ): ?>
                         <li class="dropdown dash-h-item drp-notification">
-                            <a class="dash-head-link arrow-none me-0" href="{{ url('chats') }}" aria-haspopup="false"
+                            <a class="dash-head-link arrow-none me-0" href="<?php echo e(url('chats')); ?>" aria-haspopup="false"
                                aria-expanded="false">
                                 <i class="ti ti-brand-hipchat"></i>
-                                <span class="bg-danger dash-h-badge message-toggle-msg  message-counter custom_messanger_counter beep"> {{ $unseenCounter }}<span
+                                <span class="bg-danger dash-h-badge message-toggle-msg  message-counter custom_messanger_counter beep"> <?php echo e($unseenCounter); ?><span
                                         class="sr-only"></span></span>
                             </a>
 
                         </li>
-                    @endif
+                    <?php endif; ?>
 
                     <li class="dropdown dash-h-item drp-language">
                     <a
@@ -105,27 +106,29 @@
                         aria-expanded="false"
                     >
                         <i class="ti ti-world nocolor"></i>
-                        <span class="drp-text hide-mob">{{ucfirst($LangName->full_name)}}</span>
+                        <span class="drp-text hide-mob"><?php echo e(ucfirst($LangName->full_name)); ?></span>
                         <i class="ti ti-chevron-down drp-arrow nocolor"></i>
                     </a>
                     <div class="dropdown-menu dash-h-dropdown dropdown-menu-end">
 
-                        @foreach (App\Models\Utility::languages() as $code => $language)
-                            <a href="{{ route('change.language', $code) }}"
-                               class="dropdown-item {{ $lang == $code ? 'text-primary' : '' }}">
-                                <span>{{ucFirst($language)}}</span>
+                        <?php $__currentLoopData = App\Models\Utility::languages(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $code => $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <a href="<?php echo e(route('change.language', $code)); ?>"
+                               class="dropdown-item <?php echo e($lang == $code ? 'text-primary' : ''); ?>">
+                                <span><?php echo e(ucFirst($language)); ?></span>
                             </a>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <h></h>
-                            @if(\Auth::user()->type=='super admin')
-                            <a  data-url="{{ route('create.language') }}" class="dropdown-item text-primary"  data-ajax-popup="true" data-title="{{__('Create New Language')}}">
-                                {{ __('Create Language') }}
+                            <?php if(\Auth::user()->type=='super admin'): ?>
+                            <a  data-url="<?php echo e(route('create.language')); ?>" class="dropdown-item text-primary"  data-ajax-popup="true" data-title="<?php echo e(__('Create New Language')); ?>">
+                                <?php echo e(__('Create Language')); ?>
+
                             </a>
-                            <a class="dropdown-item text-primary" href="{{route('manage.language',[isset($lang)?$lang:'english'])}}">{{ __('Manage Language') }}</a>
-                            @endif
+                            <a class="dropdown-item text-primary" href="<?php echo e(route('manage.language',[isset($lang)?$lang:'english'])); ?>"><?php echo e(__('Manage Language')); ?></a>
+                            <?php endif; ?>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
 </header>
+<?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/partials/admin/header.blade.php ENDPATH**/ ?>
