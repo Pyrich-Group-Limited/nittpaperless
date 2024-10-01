@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-@php
+<?php
     // $logo=asset(Storage::url('uploads/logo/'));
   $logo=\App\Models\Utility::get_file('uploads/logo/');
   $company_logo=Utility::getValByName('company_logo_dark');
@@ -22,27 +22,27 @@
   $meta_logo = isset($getseo['meta_image'])?$getseo['meta_image']:'';
   $get_cookie = \App\Models\Utility::getCookieSetting();
 
-@endphp
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{isset($setting['SITE_RTL']) && $setting['SITE_RTL'] == 'on' ? 'rtl' : '' }}">
+?>
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>" dir="<?php echo e(isset($setting['SITE_RTL']) && $setting['SITE_RTL'] == 'on' ? 'rtl' : ''); ?>">
 <head>
-    <title>{{(Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'ERPGO')}} - @yield('page-title')</title>
+    <title><?php echo e((Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'ERPGO')); ?> - <?php echo $__env->yieldContent('page-title'); ?></title>
 
-    <meta name="title" content="{{$metatitle}}">
-    <meta name="description" content="{{$metsdesc}}">
+    <meta name="title" content="<?php echo e($metatitle); ?>">
+    <meta name="description" content="<?php echo e($metsdesc); ?>">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ env('APP_URL') }}">
-    <meta property="og:title" content="{{$metatitle}}">
-    <meta property="og:description" content="{{$metsdesc}}">
-    <meta property="og:image" content="{{$meta_image.$meta_logo}}">
+    <meta property="og:url" content="<?php echo e(env('APP_URL')); ?>">
+    <meta property="og:title" content="<?php echo e($metatitle); ?>">
+    <meta property="og:description" content="<?php echo e($metsdesc); ?>">
+    <meta property="og:image" content="<?php echo e($meta_image.$meta_logo); ?>">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ env('APP_URL') }}">
-    <meta property="twitter:title" content="{{$metatitle}}">
-    <meta property="twitter:description" content="{{$metsdesc}}">
-    <meta property="twitter:image" content="{{$meta_image.$meta_logo}}">
+    <meta property="twitter:url" content="<?php echo e(env('APP_URL')); ?>">
+    <meta property="twitter:title" content="<?php echo e($metatitle); ?>">
+    <meta property="twitter:description" content="<?php echo e($metsdesc); ?>">
+    <meta property="twitter:image" content="<?php echo e($meta_image.$meta_logo); ?>">
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"/>
@@ -52,79 +52,47 @@
     <meta name="author" content="NITT"/>
 
     <!-- Favicon icon -->
-   <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon"/>
+   <link rel="icon" href="<?php echo e(asset('assets/images/favicon.png')); ?>" type="image/x-icon"/>
 
     <!-- Favicon icon -->
-    {{-- <link rel="icon" href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}" type="image/x-icon"/> --}}
+    
 
     <!-- font css -->
-    <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/feather.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/material.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/fonts/tabler-icons.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/fonts/feather.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/fonts/fontawesome.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/fonts/material.css')); ?>">
 
-    @if ( $setting['SITE_RTL'] == 'on')
-        <link rel="stylesheet" href="{{ asset('assets/css/style-rtl.css')}}" id="main-style-link">
-    @endif
-    @if($setting['cust_darklayout']=='on')
-        <link rel="stylesheet" href="{{ asset('assets/css/style-dark.css')}}">
-    @else
-        <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}" id="main-style-link">
-    @endif
-    <link rel="stylesheet" href="{{ asset('assets/css/customizer.css') }}">
+    <?php if( $setting['SITE_RTL'] == 'on'): ?>
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/style-rtl.css')); ?>" id="main-style-link">
+    <?php endif; ?>
+    <?php if($setting['cust_darklayout']=='on'): ?>
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/style-dark.css')); ?>">
+    <?php else: ?>
+        <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>" id="main-style-link">
+    <?php endif; ?>
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/customizer.css')); ?>">
 
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/custom.css')); ?>">
 
 </head>
 
-<body class="{{ $color }}">
+<body class="<?php echo e($color); ?>">
 <div class="auth-wrapper auth-v3">
     <div class="bg-auth-side bg-primary"></div>
     <div class="auth-content">
-        {{-- <nav class="navbar navbar-expand-md navbar-light default">
-            <div class="container-fluid pe-2">
-                <a class="navbar-brand" href="{{ route('dashboard')}}">
-                    @if($setting['cust_darklayout'] && $setting['cust_darklayout'] == 'on' )
-                        <img src="{{  asset('assets/images/logo-dark.png') }}" style="width: 70px;"
-                             alt="{{ config('app.name', 'NITT') }}" class="logo">
-                    @else
-                        <img src="{{  asset('assets/images/logo-dark.png') }}" style="width: 70px;"
-                             alt="{{ config('app.name', 'NITT') }}" class="logo">
-                    @endif
-                </a>
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo01"
-                    aria-controls="navbarTogglerDemo01"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01" style="flex-grow: 0;">
-                    <ul class="navbar-nav align-items-center ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            @include('landingpage::layouts.buttons')
-                        </li>
-                        @yield('auth-topbar')
-                    </ul>
-
-                </div>
-            </div>
-        </nav> --}}
+        
         <div class="card">
             <div class="row align-items-center text-start">
                 <div class="col-xl-6">
                     <div class="card-body">
-                        @yield('content')
+                        <?php echo $__env->yieldContent('content'); ?>
                     </div>
                 </div>
                 <div class="col-xl-6 img-card-side">
                     <div class="auth-img-content">
                         <img
-                            src="{{ asset('assets/images/auth/nitt-auth-img.png') }}"
+                            src="<?php echo e(asset('assets/images/auth/nitt-auth-img.png')); ?>"
                             alt=""
                             class="img-fluid"
                         />
@@ -141,7 +109,7 @@
                 <div class="row">
                     <div class="col-6">
                         <p class="mb-0"> &copy;
-                            {{ date('Y') }} {{ Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'NITT') }}. All rights reserved
+                            <?php echo e(date('Y')); ?> <?php echo e(Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'NITT')); ?>. All rights reserved
                         </p>
                     </div>
 
@@ -153,20 +121,20 @@
 <!-- [ auth-signup ] end -->
 
 <!-- Required Js -->
-<script src="{{ asset('assets/js/vendor-all.js') }}"></script>
-<script src="{{ asset('assets/js/plugins/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/js/plugins/feather.min.js') }}"></script>
+<script src="<?php echo e(asset('assets/js/vendor-all.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/js/plugins/bootstrap.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/js/plugins/feather.min.js')); ?>"></script>
 <script>
     feather.replace();
 </script>
 
-@if (\App\Models\Utility::getValByName('cust_darklayout') == 'on')
+<?php if(\App\Models\Utility::getValByName('cust_darklayout') == 'on'): ?>
     <style>
         .g-recaptcha {
             filter: invert(1) hue-rotate(180deg) !important;
         }
     </style>
-@endif
+<?php endif; ?>
 
 
 <script>
@@ -210,9 +178,10 @@
         }
     }
 </script>
-@stack('custom-scripts')
-@if($get_cookie['enable_cookie'] == 'on')
-    @include('layouts.cookie_consent')
-@endif
+<?php echo $__env->yieldPushContent('custom-scripts'); ?>
+<?php if($get_cookie['enable_cookie'] == 'on'): ?>
+    <?php echo $__env->make('layouts.cookie_consent', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php endif; ?>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/layouts/auth.blade.php ENDPATH**/ ?>

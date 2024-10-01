@@ -47,6 +47,17 @@ class User extends Authenticatable
         return $this->belongsTo(Department::class);
     }
 
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
+
+    public function sharedFiles()
+    {
+        return $this->belongsToMany(File::class, 'file_user');
+    }
+
+
     protected $hidden = [
         'password',
         'remember_token',
