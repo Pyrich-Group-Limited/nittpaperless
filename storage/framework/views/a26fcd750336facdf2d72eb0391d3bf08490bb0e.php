@@ -34,15 +34,15 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             <div class="dropdown-menu dropdown-menu-end">
                                                 <a href="#!" data-size="lg" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
                                                     <i class="ti ti-pencil"></i>
-                                                    <span><?php echo e(__('Edit')); ?></span>
+                                                    <span><?php echo e(__('Rename')); ?></span>
+                                                </a>
+                                                <a href="#!"  class="dropdown-item bs-pass-para">
+                                                    <i class="ti ti-download"></i>
+                                                    <span> <?php echo e(__('Download')); ?> </span>
                                                 </a>
                                                 <a href="#!"  class="dropdown-item bs-pass-para">
                                                     <i class="ti ti-archive"></i>
-                                                    <span> <?php echo e(__('Delete')); ?> </span>
-                                                </a>
-                                                <a href="#!"  class="dropdown-item bs-pass-para">
-                                                    <i class="ti ti-archive"></i>
-                                                    <span><?php echo e(__('Restore')); ?> </span>
+                                                    <span> <?php echo e(__('Archive')); ?> </span>
                                                 </a>
                                                 <?php echo Form::close(); ?>
 

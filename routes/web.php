@@ -339,6 +339,7 @@ Route::get('/files',[FilesController::class, 'index'])->name('file.index');
 Route::get('create-file',[FilesController::class, 'createFile'])->name('file.create');
 Route::post('/store-files', [FilesController::class, 'store'])->name('files.store');
 Route::patch('/files/{file}/rename', [FilesController::class, 'rename'])->name('files.rename');
+Route::get('/files/{file}/download', [FilesController::class, 'download'])->name('files.download');
 
 Route::get('/this-month-files', [FilesController::class, 'thisMonthFiles'])->name('files.thisMonth');
 Route::get('/new-files', [FilesController::class, 'newFiles'])->name('files.newFile');

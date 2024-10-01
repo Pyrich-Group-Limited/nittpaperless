@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\FileManagement;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\File;
@@ -45,6 +47,23 @@ class FilesController extends Controller
 
         return redirect()->back()->with('success', 'File uploaded successfully.');
     }
+
+
+    // Method to download the file
+    public function download(File $file)
+    {
+        // Get the file's path from the database
+        $filePath = $file->path;
+        // Check if the file exists in storage
+        if (Storage::exists($filePath)) {
+            // Return the file for download
+            return Storage::download($filePath, $file->file_name);
+        } else {
+            // Return a 404 response if the file doesn't exist
+            abort(404, 'File not found.');
+        }
+    }
+
 
     //function for renaming a file
     public function rename(File $file, Request $request)
@@ -108,6 +127,8 @@ class FilesController extends Controller
                     ->get();
         return view('filemanagement.new-files',compact('newFiles'));
     }
+
+
 
 
     public function filesUpload(Request $request){

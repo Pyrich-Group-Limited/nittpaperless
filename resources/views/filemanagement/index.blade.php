@@ -94,11 +94,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                         <span> {{__('Share')}} </span>
                                                     </a>
 
-                                                    <a href={{ route('files.rename',$file) }} data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                                    <a href="#!" data-url="{{ route('files.rename',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
                                                         <i class="ti ti-pencil"></i>
                                                         <span>{{__('Rename')}}</span>
                                                     </a>
-                                                    <a href="#!"  class="dropdown-item bs-pass-para">
+                                                    <a href="{{ route('files.download',$file->id) }}"  class="dropdown-item">
                                                         <i class="ti ti-download"></i>
                                                         <span> {{__('Download')}} </span>
                                                     </a>

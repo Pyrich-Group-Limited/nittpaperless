@@ -91,11 +91,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                         <span> <?php echo e(__('Share')); ?> </span>
                                                     </a>
 
-                                                    <a href=<?php echo e(route('files.rename',$file)); ?> data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
+                                                    <a href="#!" data-url="<?php echo e(route('files.rename',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
                                                         <i class="ti ti-pencil"></i>
                                                         <span><?php echo e(__('Rename')); ?></span>
                                                     </a>
-                                                    <a href="#!"  class="dropdown-item bs-pass-para">
+                                                    <a href="<?php echo e(route('files.download',$file->id)); ?>"  class="dropdown-item">
                                                         <i class="ti ti-download"></i>
                                                         <span> <?php echo e(__('Download')); ?> </span>
                                                     </a>
