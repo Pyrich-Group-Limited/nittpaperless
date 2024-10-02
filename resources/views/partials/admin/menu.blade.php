@@ -36,9 +36,9 @@
                             <a href="#!" class="dash-link"><span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext">{{__('Overview')}}</span>
                                 <span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                             <ul class="dash-submenu">
-                                <li class="dash-item {{ ( Request::segment(1) == null || Request::segment(1) == 'dashboard') ? ' active' : '' }}">
+                                <!-- <li class="dash-item {{ ( Request::segment(1) == null || Request::segment(1) == 'dashboard') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{route('dashboard')}}">{{__(' Dashboard')}}</a>
-                                </li>
+                                </li> -->
                                 <li class="dash-item {{ ( Request::segment(1) == null || Request::segment(1) == 'dashboard') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{route('business-dashboard')}}">{{__(' Advance Planning')}}</a>
                                 </li>
@@ -184,11 +184,6 @@
                                                 </li>
                                             @endcan
                                             @can('manage job application')
-                                                <li class="dash-item {{ (request()->is('candidates-job-applications') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('job.application.candidate')}}">{{__('Job Applicants')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage job application')
                                                 <li class="dash-item {{ (request()->is('job-onboard*') ? 'active' : '')}}">
                                                     <a class="dash-link" href="{{route('job.on.board')}}">{{__('Employee Onboarding')}}</a>
                                                 </li>
@@ -253,11 +248,6 @@
                                             <a class="dash-link" href="{{route('account-assets.index')}}">{{__('Employees Asset Setup ')}}</a>
                                         </li>
                                     @endcan
-                                    @can('manage document')
-                                        <li class="dash-item {{ (request()->is('document-upload*') ? 'active' : '')}}">
-                                            <a class="dash-link" href="{{route('document-upload.index')}}">{{__('Document Setup')}}</a>
-                                        </li>
-                                    @endcan
                                     @can('manage company policy')
                                         <li class="dash-item {{ (request()->is('company-policy*') ? 'active' : '')}}">
                                             <a class="dash-link" href="{{route('company-policy.index')}}">{{__('Company policy')}}</a>
@@ -305,19 +295,10 @@
                                     ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                                     ></a>
                                 <ul class="dash-submenu {{ (Request::segment(1) == 'stages' || Request::segment(1) == 'labels' || Request::segment(1) == 'sources' || Request::segment(1) == 'lead_stages' || Request::segment(1) == 'leads'  || Request::segment(1) == 'form_builder' || Request::segment(1) == 'form_response' || Request::segment(1) == 'deals' || Request::segment(1) == 'pipelines')?'show':''}}">
-                                    @can('manage client')
-                                        <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
-                                            <a class="dash-link" href="{{ route('clients.index') }}">{{__('Client')}}</a>
-                                        </li>
-                                    @endcan
+                                    
                                     <li class="dash-item {{ (Request::segment(1) == 'chats')?'active':'' }}">
                                         <a class="dash-link" href="{{route('chats')}}">{{__('Talk To')}}</a>
                                     </li>
-                                    @if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client')
-                                        <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
-                                            <a class="dash-link" href="{{route('contract.index')}}">{{__('Contract')}}</a>
-                                        </li>
-                                    @endif
                                 </ul>
                             </li>
                         @endif
@@ -532,7 +513,17 @@
                                             <a class="dash-link" href="{{route('projects.index')}}">{{__('Projects')}}</a>
                                         </li>
                                     @endcan
-                                    @can('manage project task')
+                                    @can('manage client')
+                                        <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
+                                            <a class="dash-link" href="{{ route('clients.index') }}">{{__('Client')}}</a>
+                                        </li>
+                                    @endcan
+                                    @if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client')
+                                        <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
+                                            <a class="dash-link" href="{{route('contract.index')}}">{{__('Contract')}}</a>
+                                        </li>
+                                    @endif
+                                    <!-- @can('manage project task')
                                         <li class="dash-item {{ (request()->is('taskboard*') ? 'active' : '')}}">
                                             <a class="dash-link" href="{{ route('taskBoard.view', 'list') }}">{{__('Tasks')}}</a>
                                         </li>
@@ -546,7 +537,7 @@
                                         <li class="dash-item {{ (request()->is('calendar*') ? 'active' : '')}}">
                                             <a class="dash-link" href="{{ route('task.calendar',['all']) }}">{{__('Task Calendar')}}</a>
                                         </li>
-                                    @endcan
+                                    @endcan -->
                                     @if(\Auth::user()->type!='super admin')
                                         <li class="dash-item  {{ (Request::segment(1) == 'time-tracker')?'active open':''}}">
                                             <a class="dash-link" href="{{ route('time.tracker') }}">{{__('Tracker')}}</a>
@@ -557,7 +548,7 @@
                                             <a class="dash-link" href="{{route('project_report.index') }}">{{__('Project Report')}}</a>
                                         </li>
                                     @endif
-                                    @if(Gate::check('manage project task stage') || Gate::check('manage bug status'))
+                                    <!-- @if(Gate::check('manage project task stage') || Gate::check('manage bug status'))
                                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages') ? 'active dash-trigger' : ''}}">
                                             <a class="dash-link" href="#">{{__('Project System Setup')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                             <ul class="dash-submenu">
@@ -568,7 +559,7 @@
                                                 @endcan
                                             </ul>
                                         </li>
-                                    @endif
+                                    @endif -->
                                 </ul>
                             </li>
                         @endif
@@ -577,7 +568,7 @@
                             || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''}}">
                         <a href="#!" class="dash-link active dash-trigger"
                         ><span class="dash-micon"><i class="ti ti-files"></i></span
-                            ><span class="dash-mtext">{{__('Document Mngmt')}}</span
+                            ><span class="dash-mtext">{{__('Document Mgt')}}</span
                             ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                             ></a>
                             <ul class="dash-submenu">
@@ -624,7 +615,7 @@
                     @if( Gate::check('manage product & service') || Gate::check('manage product & service'))
                         <li class="dash-item dash-hasmenu">
                             <a href="#!" class="dash-link ">
-                                <span class="dash-micon"><i class="ti ti-shopping-cart"></i></span><span class="dash-mtext">{{__('Inventory Mngmt')}}</span><span class="dash-arrow">
+                                <span class="dash-micon"><i class="ti ti-shopping-cart"></i></span><span class="dash-mtext">{{__('Inventory Mgt')}}</span><span class="dash-arrow">
                                         <i data-feather="chevron-right"></i></span>
                             </a>
                             <ul class="dash-submenu">
@@ -634,22 +625,11 @@
                                         </a>
                                     </li>
                                 @endif
-                                {{-- @if(Gate::check('manage product & service'))
-                                    <li class="dash-item {{ (Request::segment(1) == 'productstock')?'active':''}}">
-                                        <a href="{{ route('productstock.index') }}" class="dash-link">{{__('Store Stock')}}
-                                        </a>
-                                    </li>
-                                @endif --}}
                                 @can('manage warehouse')
-                                <li class="dash-item {{ (Request::route()->getName() == 'warehouse.index' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}"><a class="dash-link" href="{{ route('warehouse.index') }}">{{__('Location')}}</a>
-                                </li>
-                            @endcan
-
-                            @can('manage purchase')
-                                <li class="dash-item {{ (Request::route()->getName() == 'purchase.index' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                    <a class="dash-link" href="{{ route('purchase.index') }}">{{__('Purchase')}}</a>
-                                </li>
-                            @endcan
+                                    <li class="dash-item {{ (Request::route()->getName() == 'warehouse.index' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
+                                        <a class="dash-link" href="{{ route('warehouse.index') }}">{{__('Location')}}</a>
+                                    </li>
+                                @endcan
                             @can('manage pos')
                                 <li class="dash-item {{ (Request::route()->getName() == 'pos.index' ) ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('pos.index') }}">{{__(' Add Assets')}}</a>
@@ -798,52 +778,11 @@
                                     <i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="dash-submenu">
-                            @if(Gate::check('manage product & service'))
-                                <li class="dash-item {{ (Request::segment(1) == 'productservice')?'active':''}}">
-                                    <a href="{{ route('productservice.index') }}" class="dash-link">{{__('Assets/Inventory/Stocks')}}
-                                    </a>
-                                </li>
-                            @endif
-                            {{-- @if(Gate::check('manage product & service'))
-                                <li class="dash-item {{ (Request::segment(1) == 'productstock')?'active':''}}">
-                                    <a href="{{ route('productstock.index') }}" class="dash-link">{{__('Store Stock')}}
-                                    </a>
-                                </li>
-                            @endif --}}
-                            @can('manage warehouse')
-                            <li class="dash-item {{ (Request::route()->getName() == 'warehouse.index' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}"><a class="dash-link" href="{{ route('warehouse.index') }}">{{__('Location')}}</a>
-                            </li>
-                        @endcan
-
-                        @can('manage purchase')
-                            <li class="dash-item {{ (Request::route()->getName() == 'purchase.index' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('purchase.index') }}">{{__('Purchase')}}</a>
-                            </li>
-                        @endcan
-                        @can('manage pos')
-                            <li class="dash-item {{ (Request::route()->getName() == 'pos.index' ) ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('pos.index') }}">{{__(' Add Assets')}}</a>
-                            </li>
-
-                            <li class="dash-item {{ (Request::route()->getName() == 'pos.report' || Request::route()->getName() == 'pos.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('pos.report') }}">{{__('Stock/Inventory')}}</a>
-                            </li>
-                        @endcan
-                            @can('manage warehouse')
-                                <li class="dash-item {{ (Request::route()->getName() == 'warehouse-transfer.index' || Request::route()->getName() == 'warehouse-transfer.show') ? ' active' : '' }}">
-                                    <a class="dash-link" href="{{ route('warehouse-transfer.index') }}">{{__('Transfer')}}</a>
+                            @can('manage purchase')
+                                <li class="dash-item {{ (Request::route()->getName() == 'purchase.index' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                    <a class="dash-link" href="{{ route('purchase.index') }}">{{__('Purchase')}}</a>
                                 </li>
                             @endcan
-                        @can('create barcode')
-                            <li class="dash-item {{ (Request::route()->getName() == 'pos.barcode'  || Request::route()->getName() == 'pos.print') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('pos.barcode') }}">{{__('Print Barcode')}}</a>
-                            </li>
-                        @endcan
-                        @can('manage pos')
-                            <li class="dash-item {{ (Request::route()->getName() == 'pos-print-setting') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('pos.print.setting') }}">{{__('Print Settings')}}</a>
-                            </li>
-                        @endcan
                         </ul>
                     </li>
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'procurement')?'active':''}}">
@@ -853,7 +792,7 @@
                     </li>
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'procurement')?'active':''}}">
                         <a href="" class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-pulse"></i></span><span class="dash-mtext">{{__('Risk Mngmt')}}</span>
+                            <span class="dash-micon"><i class="ti ti-pulse"></i></span><span class="dash-mtext">{{__('Risk Mgt')}}</span>
                         </a>
                     </li>
                     <li class="dash-item dash-hasmenu ">
