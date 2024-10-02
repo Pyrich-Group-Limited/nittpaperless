@@ -32,11 +32,15 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                 <i class="ti ti-dots-vertical"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end">
-                                                <a href="#!" data-size="lg" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
+                                                <a href="#!" data-size="lg" data-url="<?php echo e(route('file.shareModal',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Share File')); ?>">
+                                                    <i class="ti ti-share"></i>
+                                                    <span><?php echo e(__('Share')); ?></span>
+                                                </a>
+                                                <a href="#!" data-url="<?php echo e(route('file.renameModal',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Rename File')); ?>">
                                                     <i class="ti ti-pencil"></i>
                                                     <span><?php echo e(__('Rename')); ?></span>
                                                 </a>
-                                                <a href="#!"  class="dropdown-item bs-pass-para">
+                                                <a href="<?php echo e(route('files.download',$file->id)); ?>"  class="dropdown-item">
                                                     <i class="ti ti-download"></i>
                                                     <span> <?php echo e(__('Download')); ?> </span>
                                                 </a>

@@ -25,12 +25,16 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="btn-box">
-                                        <input type="text" class="form-control" placeholder="Search files, folder">
+                                        <form action="{{ route('file.index') }}" method="GET">
+                                            <input type="text" name="search" class="form-control" placeholder="Search files or folders" value="{{ request('search') }}">
+                                            <button type="submit" class="btn btn-primary btn-sm" hidden>Search</button>
+                                        </form>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto mt-2">
+                        <div class="col-auto">
                             <div class="row">
                                 <div class="col-auto">
                                     <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
@@ -46,9 +50,9 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         </a>
                                     </div>
 
-                                    <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('file.upload') }}" data-ajax-popup="true"
+                                    {{-- <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('file.upload') }}" data-ajax-popup="true"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Upload Files') }}"><i class="ti ti-cloud-upload"></i> Upload
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
                         </div>
@@ -69,7 +73,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     </h4>
 
                     @if($folder->files->count() > 0)
-                        @foreach($folder->files as $file)
+                        @foreach($folder->files as $file )
                             <div class="col-md-2 mb-4">
                                 <div class="card text-center card-2">
                                     <div class="card-header border-0 pb-0">
@@ -81,20 +85,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                     <i class="ti ti-dots-vertical"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    {{-- <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Share File')}}">
+                                                    <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Share File')}}">
                                                         <i class="ti ti-share"></i>
                                                         <span>{{__('Share')}}</span>
-                                                    </a> --}}
-                                                    {{-- <button class="btn btn-primary btn-share-file" data-file-id="{{ $file->id }}" data-file-name="{{ $file->file_name }}" data-toggle="modal" data-target="#shareFileModal">
-                                                        Share
-                                                    </button> --}}
-
-                                                    <a href="#!"  class="dropdown-item btn-share-file" data-file-id="{{ $file->id }}" data-file-name="{{ $file->file_name }}" data-toggle="modal" data-target="#shareFileModal" >
-                                                        <i class="ti ti-share"></i>
-                                                        <span> {{__('Share')}} </span>
                                                     </a>
-
-                                                    <a href="#!" data-url="{{ route('files.rename',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                                    <a href="#!" data-url="{{ route('file.renameModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Rename File')}}">
                                                         <i class="ti ti-pencil"></i>
                                                         <span>{{__('Rename')}}</span>
                                                     </a>
@@ -102,14 +97,18 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                         <i class="ti ti-download"></i>
                                                         <span> {{__('Download')}} </span>
                                                     </a>
-                                                    <a href="#!"  class="dropdown-item bs-pass-para">
+                                                    <form action="{{ route('files.archive', $file->id) }}" method="POST" style="display:inline;">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-white dropdown-item"><i class="ti ti-archive"></i>Archive</button>
+                                                    </form>
+                                                    {{-- <a href="{{ route('files.archive', $file->id) }}"  class="dropdown-item">
                                                         <i class="ti ti-archive"></i>
                                                         <span> {{__('Archive')}} </span>
-                                                    </a>
-                                                    <a href="#!"  class="dropdown-item bs-pass-para">
+                                                    </a> --}}
+                                                    {{-- <a href="#!"  class="dropdown-item bs-pass-para">
                                                         <i class="ti ti-adjustments"></i>
                                                         <span>{{__('Restore')}} </span>
-                                                    </a>
+                                                    </a> --}}
                                                     {!! Form::close() !!}
                                                 </div>
                                             </div>
@@ -206,6 +205,5 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 
             </div>
         </div>
-        @include('filemanagement.modals.share-modal')
     </div>
 @endsection

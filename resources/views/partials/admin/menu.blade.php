@@ -602,16 +602,17 @@
                                         <li class="dash-item ">
                                             <a class="dash-link" href="{{ route('files.thisMonth') }}">{{__('This Month')}}</a>
                                         </li>
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href="#">{{__('Older Files')}}</a>
-                                        </li>
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href="#">{{__('Starred')}}</a>
-                                        </li>
 
                                         <li class="dash-item ">
-                                            <a class="dash-link" href="#">{{__('Recovery')}}</a>
+                                            <a class="dash-link" href="{{ route('files.archived') }}">{{__('Archived')}}</a>
                                         </li>
+
+                                       {{-- <li class="dash-item ">
+                                            <a class="dash-link" href="#">{{__('Older Files')}}</a>
+                                        </li>
+                                         <li class="dash-item ">
+                                            <a class="dash-link" href="#">{{__('Recovery')}}</a>
+                                        </li> --}}
                                     </ul>
                                 </li>
                                 @can('manage document')

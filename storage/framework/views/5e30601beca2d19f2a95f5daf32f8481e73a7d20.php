@@ -62,6 +62,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
         <div class="col-xxl-12">
             <div class="row">
                 <h2>My Folders</h2>
+                <?php if($folders->count() > 0): ?>
                     <?php $__currentLoopData = $folders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $folder): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-2 mb-4">
                         <div class="card text-center card-2">
@@ -73,15 +74,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                 aria-expanded="false">
                                             <i class="ti ti-dots-vertical"></i>
                                         </button>
-
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a href="#!" data-size="lg" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
+                                            <a href="#!" data-size="md" data-url="<?php echo e(route('folder.renameModal',$folder->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Rename Folder')); ?>">
                                                 <i class="ti ti-pencil"></i>
                                                 <span><?php echo e(__('Rename')); ?></span>
                                             </a>
-                                            <a href="#!"  class="dropdown-item bs-pass-para">
+                                            <a href="<?php echo e(route('folder.details',$folder->id)); ?>"  class="dropdown-item">
                                                 <i class="ti ti-eye"></i>
-                                                <span> <?php echo e(__('View')); ?></span>
+                                                <span> <?php echo e(__('View Details')); ?></span>
                                             </a>
                                             <a href="#!"  class="dropdown-item bs-pass-para">
                                                 <i class="ti ti-share"></i>
@@ -119,6 +119,9 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         </div>
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php else: ?>
+                    <p>No folders created.</p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
