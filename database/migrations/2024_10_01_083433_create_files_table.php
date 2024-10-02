@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('path');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('folder_id')->nullable()->constrained()->onDelete('cascade');
+            $table->boolean('is_archived')->default(0);  // 0 for active, 1 for archived
             $table->timestamps();
         });
     }

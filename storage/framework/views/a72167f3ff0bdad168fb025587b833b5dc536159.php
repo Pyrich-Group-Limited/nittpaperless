@@ -600,16 +600,12 @@
                                         <li class="dash-item ">
                                             <a class="dash-link" href="<?php echo e(route('files.thisMonth')); ?>"><?php echo e(__('This Month')); ?></a>
                                         </li>
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href="#"><?php echo e(__('Older Files')); ?></a>
-                                        </li>
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href="#"><?php echo e(__('Starred')); ?></a>
-                                        </li>
 
                                         <li class="dash-item ">
-                                            <a class="dash-link" href="#"><?php echo e(__('Recovery')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('files.archived')); ?>"><?php echo e(__('Archived')); ?></a>
                                         </li>
+
+                                       
                                     </ul>
                                 </li>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage document')): ?>

@@ -339,22 +339,27 @@ Route::get('hrm-apply-dta', [HrmDashControl::class, 'applyDta'])->name('hrm.appl
 Route::get('/files',[FilesController::class, 'index'])->name('file.index');
 Route::get('create-file',[FilesController::class, 'createFile'])->name('file.create');
 Route::post('/store-files', [FilesController::class, 'store'])->name('files.store');
-Route::patch('/files/{file}/rename', [FilesController::class, 'rename'])->name('files.rename');
 Route::get('/files/{file}/download', [FilesController::class, 'download'])->name('files.download');
-
 Route::get('/this-month-files', [FilesController::class, 'thisMonthFiles'])->name('files.thisMonth');
 Route::get('/new-files', [FilesController::class, 'newFiles'])->name('files.newFile');
 
+Route::get('/rename-file/{id}', [FilesController::class, 'renameFileModal'])->name('file.renameModal');
+Route::patch('/files/{file}/rename', [FilesController::class, 'rename'])->name('files.rename');
 
-// Route::get('/share-file/{id}', [FilesController::class, 'shareFileModal'])->name('file.shareModal');
+Route::get('/share-file/{id}', [FilesController::class, 'shareFileModal'])->name('file.shareModal');
 Route::post('/files/{file}/share', [FilesController::class, 'share'])->name('files.share');
-
 Route::get('/shared-files', [FilesController::class, 'sharedFiles'])->name('sharedfiles.index');
+
+Route::post('/files/{file}/archive', [FilesController::class, 'archive'])->name('files.archive'); // Archive a file
+Route::get('/files/archived', [FilesController::class, 'archived'])->name('files.archived'); // List archived files
 
 Route::get('create-folder',[FilesController::class, 'createFolder'])->name('folder.create');
 Route::get('/folders', [FolderController::class, 'index'])->name('folders.index');
 Route::post('/folders', [FolderController::class, 'store'])->name('folders.store');
+Route::get('/rename-folder/{id}', [FolderController::class, 'renameFolderModal'])->name('folder.renameModal');
 Route::patch('/folders/{folder}/rename', [FolderController::class, 'rename'])->name('folders.rename');
+
+Route::get('/folder/{folder}/details', [FolderController::class, 'show'])->name('folder.details');
 
 
 
