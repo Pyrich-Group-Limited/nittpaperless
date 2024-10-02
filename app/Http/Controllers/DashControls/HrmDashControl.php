@@ -35,6 +35,17 @@ class HrmDashControl extends Controller
         return view('hrm.modals.apply-leave');
     }
 
+
+    public function applyLeavePost(Request $request){
+        $data =  $request->validate([
+            'name' => ['required','string'],
+            'deoartment' => ['required','string'],
+            'type_of_leave' => ['required','string'],
+            'leave_date' => ['required','string'],
+            'duration' => ['required','string'],
+            'resumption_date' => ['required','string'],
+        ]);
+    }
     public function applyQuery(Request $request)
     {
         return view('hrm.modals.apply-query');
