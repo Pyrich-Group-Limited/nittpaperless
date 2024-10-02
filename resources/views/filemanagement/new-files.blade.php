@@ -32,18 +32,22 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                 <i class="ti ti-dots-vertical"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end">
-                                                <a href="#!" data-size="lg" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                                <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Share File')}}">
+                                                    <i class="ti ti-share"></i>
+                                                    <span>{{__('Share')}}</span>
+                                                </a>
+                                                <a href="#!" data-url="{{ route('file.renameModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Rename File')}}">
                                                     <i class="ti ti-pencil"></i>
                                                     <span>{{__('Rename')}}</span>
                                                 </a>
-                                                <a href="#!"  class="dropdown-item bs-pass-para">
+                                                <a href="{{ route('files.download',$file->id) }}"  class="dropdown-item">
                                                     <i class="ti ti-download"></i>
                                                     <span> {{__('Download')}} </span>
                                                 </a>
-                                                <a href="#!"  class="dropdown-item bs-pass-para">
-                                                    <i class="ti ti-archive"></i>
-                                                    <span> {{__('Archive')}} </span>
-                                                </a>
+                                                <form action="{{ route('files.archive', $file->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-white dropdown-item"><i class="ti ti-archive"></i>Archive</button>
+                                                </form>
                                                 {!! Form::close() !!}
                                             </div>
                                         </div>

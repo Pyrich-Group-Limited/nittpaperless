@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->belongsTo(Department::class);
     }
 
+    public function folders()
+    {
+        return $this->hasMany(Folder::class);
+    }
+
     public function files()
     {
         return $this->hasMany(File::class);
