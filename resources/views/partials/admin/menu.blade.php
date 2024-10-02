@@ -48,7 +48,7 @@
                             </ul>
                         </li>
                     @endif
-                    
+
                     @if(\Auth::user()->show_crm() == 1)
                         @if( Gate::check('manage lead') || Gate::check('manage deal') || Gate::check('manage form builder') || Gate::check('manage contract'))
                             <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'holiday-calender' || Request::segment(1) == 'reports-monthly-attendance' ||
@@ -224,7 +224,7 @@
                                                     <a class="dash-link" href="{{route('resignation.index')}}">{{__('Resignation')}}</a>
                                                 </li>
                                             @endcan
-                                            
+
                                             @can('manage promotion')
                                                 <li class="dash-item {{ (request()->is('promotion*') ? 'active' : '')}}">
                                                     <a class="dash-link" href="{{route('promotion.index')}}">{{__('Promotion')}}</a>
@@ -579,13 +579,19 @@
                                     <a class="dash-link" href="#">{{__('Files')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                     <ul class="dash-submenu">
                                         <li class="dash-item">
-                                            <a class="dash-link" href="{{ route('file.index') }}">{{__('Files')}}</a>
+                                            <a class="dash-link" href="{{ route('folders.index') }}">{{__('File Folders')}}</a>
                                         </li>
                                         <li class="dash-item">
-                                            <a class="dash-link" href="#">{{__('New Files')}}</a>
+                                            <a class="dash-link" href="{{ route('file.index') }}">{{__('Files')}}</a>
                                         </li>
                                         <li class="dash-item ">
-                                            <a class="dash-link" href="#">{{__('This Month')}}</a>
+                                            <a class="dash-link" href={{ route('sharedfiles.index') }}>{{__('Shared')}}</a>
+                                        </li>
+                                        <li class="dash-item">
+                                            <a class="dash-link" href="{{ route('files.newFile') }}">{{__('New Files')}}</a>
+                                        </li>
+                                        <li class="dash-item ">
+                                            <a class="dash-link" href="{{ route('files.thisMonth') }}">{{__('This Month')}}</a>
                                         </li>
                                         <li class="dash-item ">
                                             <a class="dash-link" href="#">{{__('Older Files')}}</a>
@@ -593,9 +599,7 @@
                                         <li class="dash-item ">
                                             <a class="dash-link" href="#">{{__('Starred')}}</a>
                                         </li>
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href="#">{{__('Shared')}}</a>
-                                        </li>
+
                                         <li class="dash-item ">
                                             <a class="dash-link" href="#">{{__('Recovery')}}</a>
                                         </li>
@@ -660,7 +664,7 @@
                             </li>
                         @endcan
                     @endif
-                        
+
                     @if(\Auth::user()->type == 'liason office head' || \Auth::user()->type == 'unit head')
                         @can('create budget plan')
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
@@ -696,7 +700,7 @@
                                                     <a class="dash-link" href="{{route('leave.index')}}">{{__('Manage Leave')}}</a>
                                                 </li>
                                             @endcan
-                                           
+
                                             <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
                                                 <a class="dash-link" href="{{ route('hrm.leave') }}">{{__('Leave')}}</a>
                                             </li>

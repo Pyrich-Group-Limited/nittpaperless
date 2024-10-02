@@ -1,20 +1,20 @@
-@extends('layouts.admin')
-@php
+<?php
  //   $profile=asset(Storage::url('uploads/avatar/'));
 $profile=\App\Models\Utility::get_file('uploads/avatar');
-@endphp
-@section('page-title')
-    {{__('Files')}}
-@endsection
-@push('script-page')
+?>
+<?php $__env->startSection('page-title'); ?>
+    <?php echo e(__('Files')); ?>
 
-@endpush
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Files')}}</li>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('script-page'); ?>
 
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
+    <li class="breadcrumb-item"><?php echo e(__('Files')); ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col-sm-12">
         <div class="mt-2 " id="multiCollapseExample1">
@@ -36,25 +36,26 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                     <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
                                     <div class="dropdown-menu dropdown-menu-end">
 
-                                        <a href="#!" data-size="lg" data-url="{{ route('file.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create File')}}">
+                                        <a href="#!" data-size="lg" data-url="<?php echo e(route('file.create')); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Create File')); ?>">
                                             <i class="ti ti-file-plus"></i>
-                                            <span>{{__('Create File')}}</span>
+                                            <span><?php echo e(__('Create File')); ?></span>
                                         </a>
-                                        <a href="#!" data-url="{{ route('folder.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create Folder')}}">
+                                        <a href="#!" data-url="<?php echo e(route('folder.create')); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Create Folder')); ?>">
                                             <i class="ti ti-folder-plus"></i>
-                                            <span>  {{__('Create Folder')}}</span>
+                                            <span>  <?php echo e(__('Create Folder')); ?></span>
                                         </a>
                                     </div>
 
-                                    <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('file.upload') }}" data-ajax-popup="true"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Upload Files') }}"><i class="ti ti-cloud-upload"></i> Upload
+                                    <a href="#" class="btn btn-primary btn-sm" data-url="<?php echo e(route('file.upload')); ?>" data-ajax-popup="true"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo e(__('Upload Files')); ?>"><i class="ti ti-cloud-upload"></i> Upload
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{ Form::close() }}
+                <?php echo e(Form::close()); ?>
+
             </div>
         </div>
     </div>
@@ -62,14 +63,15 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">
-                @foreach($folders as $folder)
+                <?php $__currentLoopData = $folders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $folder): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <h4>
                         <i class="ti ti-folder"></i>
-                        {{ $folder->folder_name }}
+                        <?php echo e($folder->folder_name); ?>
+
                     </h4>
 
-                    @if($folder->files->count() > 0)
-                        @foreach($folder->files as $file)
+                    <?php if($folder->files->count() > 0): ?>
+                        <?php $__currentLoopData = $folder->files; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $file): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-md-2 mb-4">
                                 <div class="card text-center card-2">
                                     <div class="card-header border-0 pb-0">
@@ -81,36 +83,32 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                     <i class="ti ti-dots-vertical"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    {{-- <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Share File')}}">
-                                                        <i class="ti ti-share"></i>
-                                                        <span>{{__('Share')}}</span>
-                                                    </a> --}}
-                                                    {{-- <button class="btn btn-primary btn-share-file" data-file-id="{{ $file->id }}" data-file-name="{{ $file->file_name }}" data-toggle="modal" data-target="#shareFileModal">
-                                                        Share
-                                                    </button> --}}
+                                                    
+                                                    
 
-                                                    <a href="#!"  class="dropdown-item btn-share-file" data-file-id="{{ $file->id }}" data-file-name="{{ $file->file_name }}" data-toggle="modal" data-target="#shareFileModal" >
+                                                    <a href="#!"  class="dropdown-item btn-share-file" data-file-id="<?php echo e($file->id); ?>" data-file-name="<?php echo e($file->file_name); ?>" data-toggle="modal" data-target="#shareFileModal" >
                                                         <i class="ti ti-share"></i>
-                                                        <span> {{__('Share')}} </span>
+                                                        <span> <?php echo e(__('Share')); ?> </span>
                                                     </a>
 
-                                                    <a href="#!" data-url="{{ route('files.rename',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                                    <a href="#!" data-url="<?php echo e(route('files.rename',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
                                                         <i class="ti ti-pencil"></i>
-                                                        <span>{{__('Rename')}}</span>
+                                                        <span><?php echo e(__('Rename')); ?></span>
                                                     </a>
-                                                    <a href="{{ route('files.download',$file->id) }}"  class="dropdown-item">
+                                                    <a href="<?php echo e(route('files.download',$file->id)); ?>"  class="dropdown-item">
                                                         <i class="ti ti-download"></i>
-                                                        <span> {{__('Download')}} </span>
+                                                        <span> <?php echo e(__('Download')); ?> </span>
                                                     </a>
                                                     <a href="#!"  class="dropdown-item bs-pass-para">
                                                         <i class="ti ti-archive"></i>
-                                                        <span> {{__('Archive')}} </span>
+                                                        <span> <?php echo e(__('Archive')); ?> </span>
                                                     </a>
                                                     <a href="#!"  class="dropdown-item bs-pass-para">
                                                         <i class="ti ti-adjustments"></i>
-                                                        <span>{{__('Restore')}} </span>
+                                                        <span><?php echo e(__('Restore')); ?> </span>
                                                     </a>
-                                                    {!! Form::close() !!}
+                                                    <?php echo Form::close(); ?>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -130,22 +128,23 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                     </g>
                                                 </svg>
                                             </span>
-                                            <h6 class=" mt-4 text-primary">{{ $file->file_name.'.'.$file = pathinfo(storage_path().$file->path, PATHINFO_EXTENSION); }}
+                                            <h6 class=" mt-4 text-primary"><?php echo e($file->file_name.'.'.$file = pathinfo(storage_path().$file->path, PATHINFO_EXTENSION)); ?>
+
                                             </h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    @else
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php else: ?>
                         <p>No files in this folder.</p>
-                    @endif
-                @endforeach
+                    <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
-                @if($rootFiles->count() > 0)
+                <?php if($rootFiles->count() > 0): ?>
                     <h2>Files without folder</h2>
-                    @foreach($rootFiles as $file)
+                    <?php $__currentLoopData = $rootFiles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $file): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-md-2 mb-4">
                             <div class="card text-center card-2">
                                 <div class="card-header border-0 pb-0">
@@ -157,23 +156,24 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                 <i class="ti ti-dots-vertical"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end">
-                                                <a href="#!" data-size="lg" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                                <a href="#!" data-size="lg" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
                                                     <i class="ti ti-share"></i>
-                                                    <span>{{__('Share')}}</span>
+                                                    <span><?php echo e(__('Share')); ?></span>
                                                 </a>
-                                                <a href={{ route('files.rename',$file) }} data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                                <a href=<?php echo e(route('files.rename',$file)); ?> data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
                                                     <i class="ti ti-pencil"></i>
-                                                    <span>{{__('Rename')}}</span>
+                                                    <span><?php echo e(__('Rename')); ?></span>
                                                 </a>
                                                 <a href="#!"  class="dropdown-item bs-pass-para">
                                                     <i class="ti ti-archive"></i>
-                                                    <span> {{__('Archive')}} </span>
+                                                    <span> <?php echo e(__('Archive')); ?> </span>
                                                 </a>
                                                 <a href="#!"  class="dropdown-item bs-pass-para">
                                                     <i class="ti ti-adjustments"></i>
-                                                    <span>{{__('Restore')}} </span>
+                                                    <span><?php echo e(__('Restore')); ?> </span>
                                                 </a>
-                                                {!! Form::close() !!}
+                                                <?php echo Form::close(); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -193,19 +193,22 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                 </g>
                                             </svg>
                                         </span>
-                                        <h6 class=" mt-4 text-primary">{{ $file->file_name.'.'.$file = pathinfo(storage_path().$file->path, PATHINFO_EXTENSION); }}
+                                        <h6 class=" mt-4 text-primary"><?php echo e($file->file_name.'.'.$file = pathinfo(storage_path().$file->path, PATHINFO_EXTENSION)); ?>
+
                                         </h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                @else
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php else: ?>
                     <p>No root-level files found.</p>
-                @endif
+                <?php endif; ?>
 
             </div>
         </div>
-        @include('filemanagement.modals.share-modal')
+        <?php echo $__env->make('filemanagement.modals.share-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/filemanagement/index.blade.php ENDPATH**/ ?>
