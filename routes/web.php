@@ -331,6 +331,7 @@ Route::get('hrm-leave', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
 Route::get('hrm-dta', [HrmDashControl::class, 'hrmDta'])->name('hrm.dta');
 Route::get('hrm-memo', [HrmDashControl::class, 'hrmMemo'])->name('hrm.memo');
 Route::get('hrm-apply-leave', [HrmDashControl::class, 'applyLeave'])->name('hrm.applyLeave');
+Route::post('apply-leave', [HrmDashControl::class, 'applyLeavePost'])->name('leave.apply');
 Route::get('hrm-apply-query', [HrmDashControl::class, 'applyQuery'])->name('hrm.applyQuery');
 Route::get('hrm-apply-dta', [HrmDashControl::class, 'applyDta'])->name('hrm.applyDta');
 
