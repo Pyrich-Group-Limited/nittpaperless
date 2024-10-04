@@ -36,24 +36,24 @@ class DataService
 
     public function getLiasons() {
         return [
-            'Abuja',
-            'Kano',
-            'Lagos',
-            'Portharcourt',
-            'Gombe',
-            'Ebonyi',
-            'Katsina',
-            'Ekiti'
+            'abuja' => 'Abuja',
+            'kano' => 'Kano',
+            'lagos' => 'Lagos',
+            'portharcourt' => 'Portharcourt',
+            'gombe' => 'Gombe',
+            'ebonyi' => 'Ebonyi',
+            'katsina' => 'Katsina',
+            'ekiti' => 'Ekiti'
         ];
     }
 
     public function getDirectorates() {
         return [
-            'Legal',
-            'Servicom',
-            'Annexes',
-            'Procurements',
-            'Physical Plannings'
+            'Legal' => 'Legal',
+            'Servicom' => 'Servicom',
+            'Annexes' => 'Annexes',
+            'Procurements' => 'Procurements',
+            'Physical Plannings' => 'Physical Plannings'
         ];
     }
 

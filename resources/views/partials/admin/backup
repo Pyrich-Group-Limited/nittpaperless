@@ -1,62 +1,261 @@
+<div class="modal" id="newUser" tabindex="-1" role="dialog" wire:ignore>
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    {{Form::open(array('url'=>'users','method'=>'post'))}}
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{Form::label('name',__('Name'),['class'=>'form-label']) }}
+                                        {{Form::text('name',null,array('class'=>'form-control','placeholder'=>__('Enter User Name'),'required'=>'required'))}}
+                                        @error('name')
+                                        <small class="invalid-name" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{Form::label('email',__('Email'),['class'=>'form-label'])}}
+                                        {{Form::text('email',null,array('class'=>'form-control','placeholder'=>__('Enter User Email'),'required'=>'required'))}}
+                                        @error('email')
+                                        <small class="invalid-email" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{Form::label('password',__('Password'),['class'=>'form-label'])}}
+                                        {{Form::password('password',array('class'=>'form-control','placeholder'=>__('Enter User Password'),'required'=>'required','minlength'=>"6"))}}
+                                        @error('password')
+                                        <small class="invalid-password" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {!! Form::select('location', [
+                                        '' => 'Select a Location',
+                                        'headquarters' => 'Headquarters',
+                                        'liaison' => 'Liaison Offices'
+                                    ], 'headquarters', array('class' => 'form-control select', 'required' => 'required', 'id' => 'select_location')) !!}
+
+                                    @error('Location')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div id="liasonTog" class="form-group col-md-6" style="display: none;">
+                                    {{ Form::label('liason', __('Liason'),['class'=>'form-label']) }}
+                                    {!! Form::select('liason', ['' => 'Select a Liason Office'] + $liasons, null,array('class' => 'form-control select','required'=>'required')) !!}
+                                    @error('liason')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div id="headquarterTog" class="form-group col-md-6" style="display: none;">
+                                    {{ Form::label('headquaters', __('HeadQauter'),['class'=>'form-label']) }}
+                                    {!! Form::select('headquaters', ['' => 'Select a HeadQauter'] + $headquaters, null,array('class' => 'form-control select','required'=>'required','id' =>'select_headquater')) !!}
+                                    @error('headquaters')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div id="directorateTog" style="display: none;" class="form-group col-md-6">
+                                    {{ Form::label('directorate', __('Directorate'),['class'=>'form-label']) }}
+                                    {!! Form::select('directorate', ['' => 'Select a Directorate'] + $directorates, null, ['class' => 'form-control select', 'required' => 'required']) !!}
+                                    @error('directorate')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div id="departmentTog" style="display: none;" class="form-group col-md-6">
+                                    {{ Form::label('department', __('Department'),['class'=>'form-label']) }}
+                                    {!! Form::select('department', $departments, null,array('class' => 'form-control select','required'=>'required','id' =>'sel_department')) !!}
+                                    @error('Department')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div id="depUnitTog" style="display: none;" class="form-group col-md-6">
+                                    {{ Form::label('unit', __('Unit'),['class'=>'form-label']) }}
+                                    {!! Form::select('unit', ['User Unit'], null,array('class' => 'form-control select','required'=>'required','id'=>'department_units')) !!}
+                                    @error('Unit')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div id="dirUnitTog" style="display: none;" class="form-group col-md-6">
+                                    {{ Form::label('unit', __('Unit'),['class'=>'form-label']) }}
+                                    {!! Form::select('unit', ['Unit 01','Unit 02','Unit 03','Unit 4','Unit 5','Unit 6'], null,array('class' => 'form-control select','required'=>'required')) !!}
+                                    @error('Unit')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-12" id="subUnitToggles">
+                                    {{ Form::label('subunit', __('Sub-unit'),['class'=>'form-label']) }}
+                                    {!! Form::select('subunit', ['User Sub-unit'], null,array('class' => 'form-control select','required'=>'required','id'=>'subunits')) !!}
+                                    @error('subunit')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+                                @if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'hrm')
+                                    <div class="form-group col-md-6">
+                                        {{ Form::label('role', __('User Role'),['class'=>'form-label']) }}
+                                        {!! Form::select('role', $roles, null,array('class' => 'form-control select','required'=>'required')) !!}
+                                        @error('role')
+                                        <small class="invalid-role" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                        @enderror
+                                    </div>
+                                @else
+                                {!! Form::hidden('role', 'super admin', null,array('class' => 'form-control select2','required'=>'required')) !!}
+                                @endif
+
+                                <div class="form-group col-md-6">
+                                    {{ Form::label('designation', __('Designation'),['class'=>'form-label']) }}
+                                    {!! Form::select('designation', $designations, null,array('class' => 'form-control select','required'=>'required')) !!}
+                                    @error('designation')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
 
 
-<!--
-@if(\Auth::user()->show_hrm() == 1)
-                        @if( Gate::check('manage employee') || Gate::check('manage setsalary'))
-                            <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'holiday-calender' || Request::segment(1) == 'reports-monthly-attendance' ||
-                                Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll' || Request::segment(1) == 'leavetype' || Request::segment(1) == 'leave' ||
-                                Request::segment(1) == 'attendanceemployee' || Request::segment(1) == 'document-upload' || Request::segment(1) == 'document' || Request::segment(1) == 'performanceType'  ||
-                                    Request::segment(1) == 'branch' || Request::segment(1) == 'department' || Request::segment(1) == 'designation' || Request::segment(1) == 'employee'
-                                    || Request::segment(1) == 'leave_requests' || Request::segment(1) == 'holidays' || Request::segment(1) == 'policies' || Request::segment(1) == 'leave_calender'
-                                    || Request::segment(1) == 'award' || Request::segment(1) == 'transfer' || Request::segment(1) == 'resignation' || Request::segment(1) == 'training' || Request::segment(1) == 'travel' ||
-                                    Request::segment(1) == 'promotion' || Request::segment(1) == 'complaint' || Request::segment(1) == 'warning'
-                                     || Request::segment(1) == 'termination' || Request::segment(1) == 'announcement' || Request::segment(1) == 'job' || Request::segment(1) == 'job-application' ||
-                                      Request::segment(1) == 'candidates-job-applications' || Request::segment(1) == 'job-onboard' || Request::segment(1) == 'custom-question'
-                                       || Request::segment(1) == 'interview-schedule' || Request::segment(1) == 'career' || Request::segment(1) == 'holiday' || Request::segment(1) == 'setsalary' ||
-                                       Request::segment(1) == 'payslip' || Request::segment(1) == 'paysliptype' || Request::segment(1) == 'company-policy' || Request::segment(1) == 'job-stage'
-                                       || Request::segment(1) == 'job-category' || Request::segment(1) == 'terminationtype' || Request::segment(1) == 'awardtype' || Request::segment(1) == 'trainingtype' ||
-                                       Request::segment(1) == 'goaltype' || Request::segment(1) == 'paysliptype' || Request::segment(1) == 'allowanceoption' || Request::segment(1) == 'competencies' || Request::segment(1) == 'loanoption'
-                                       || Request::segment(1) == 'deductionoption')?'active dash-trigger':''}}">
-                                <a href="#!" class="dash-link "><span class="dash-micon"><i class="ti ti-user"></i></span><span class="dash-mtext">{{__('HRM System')}}</span><span class="dash-arrow">
-                                        <i data-feather="chevron-right"></i></span>
-                                </a>
-                                <ul class="dash-submenu">
-                                    <li class="dash-item {{ (\Request::route()->getName()=='hrm.dashboard') ? ' active' : '' }}">
-                                        <a class="dash-link" href="{{route('hrm.dashboard')}}">{{__(' Overview')}}</a>
-                                    </li>
-                                    @can('manage report')
-                                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'active dash-trigger' : ''}}" href="#hr-report" data-toggle="collapse" role="button" aria-expanded="{{(Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'true' : 'false'}}">
-                                            <a class="dash-link" href="#">{{__('Reports/Analytics')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
-                                            <ul class="dash-submenu">
-                                                <li class="dash-item {{ request()->is('reports-payroll') ? 'active' : '' }}">
-                                                    <a class="dash-link" href="{{ route('report.payroll') }}">{{__('Payroll')}}</a>
-                                                </li>
-                                                <li class="dash-item {{ request()->is('reports-leave') ? 'active' : '' }}">
-                                                    <a class="dash-link" href="{{ route('report.leave') }}">{{__('Leave')}}</a>
-                                                </li>
-                                                <li class="dash-item {{ request()->is('reports-monthly-attendance') ? 'active' : '' }}">
-                                                    <a class="dash-link" href="{{ route('report.monthly.attendance') }}">{{ __('Monthly Attendance') }}</a>
-                                                </li>
-                                                <li class="dash-item {{ request()->is('reports-lead') ? 'active' : '' }}">
-                                                    <a class="dash-link" href="{{ route('report.lead') }}">{{__('Lead')}}</a>
-                                                </li>
-                                                <li class="dash-item {{ request()->is('reports-deal') ? 'active' : '' }}">
-                                                    <a class="dash-link" href="{{ route('report.deal') }}">{{__('Deal')}}</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    @endcan
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                </ul>
-                            </li>
-                        @endif
-                    @endif
- -->
+                                <div class="form-group col-md-6">
+                                    {{ Form::label('level', __('Level'),['class'=>'form-label']) }}
+                                    {!! Form::select('level', ['Level 07','Level 08','Level 09','Level 11','Level 12','Level 13','Level 14','Level 15'], null,array('class' => 'form-control select','required'=>'required')) !!}
+                                    @error('Level')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+
+                                @if(!$customFields->isEmpty())
+                                    <div class="col-md-6">
+                                        <div class="tab-pane fade show" id="tab-2" role="tabpanel">
+                                            @include('customFields.formBuilder')
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="button" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
+                            <input type="submit" value="{{__('Create')}}" class="btn  btn-primary">
+                        </div>
+                    {{Form::close()}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @push('script')
+    <script>
+        var x = document.getElementById("subUnitToggles");
+         x.style.display = "none"
+         $('#sel_department').append('<option value="0" selected>Select Department...</options>');
+
+        $(document).ready(function(){
+            $('#select_location').on('change', function(){
+                var selectedValue = $(this).val();
+                $('#liasonTog, #headquarterTog').hide();
+                if (selectedValue == 1) {
+                    $('#liasonTog').show();
+                    $('#departmentTog').show();
+                    $('#depUnitTog').show();
+                } else if (selectedValue == 0) {
+                    $('#headquarterTog').show();
+                }
+            })
+            $('#select_headquater').on('change', function(){
+                var selectedValue = $(this).val();
+                $('#departmentTog, #directorateTog').hide();
+                if (selectedValue == 1) {
+                    $('#departmentTog').show();
+                    $('#depUnitTog').show();
+                } else if (selectedValue == 0) {
+                    $('#directorateTog').show();
+                    $('#dirUnitTog').show();
+                }
+            })
+            //get department units
+            $('#sel_department').on('change',function(){
+                let id = $(this).val();
+                $('#department_units').empty();
+                $('#department_units').append('<option value="0" disabled selected>Processing...</options>');
+                    $.ajax({
+                        url: '/get-department-units/' + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(_response){
+                            var response = _response;
+                            $('#department_units').empty();
+                            $('#department_units').append('<option value="0" disabled selected>Select Staff Unit...</options>');
+                            response.forEach(element => {
+                                $('#department_units').append(`<option value="${element['id']}">${element['name']}</options>`);
+                            });
+                        },
+                        error: function( _response ){
+                            console.log(_response);
+                        }
+                    });
+            });
+
+            //get department subunit
+            $('#department_units').on('change',function(){
+                let id = $(this).val();
+                $('#subunits').empty();
+                $('#subunits').append('<option value="0" disabled selected>Processing...</options>');
+                    $.ajax({
+                        url: '/get-unit-subunits/' + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(_response){
+                            var response = _response;
+
+                            if(response!=0){
+                                $('#subunits').empty();
+                                $('#subunits').append('<option value="0" disabled selected>Select Staff Unit...</options>');
+
+                                response.forEach(unit_sub => {
+                                var x = document.getElementById("subUnitToggles");
+                                x.style.display = "block"
+                                $('#subunits').append(`<option value="${unit_sub['id']}">${unit_sub['name']}</options>`);
+                            });
+                            }else{
+                                var x = document.getElementById("subUnitToggles");
+                                x.style.display = "none"
+                                // document.getElementById("subUnitToggles").style.display === "none";
+                            }
+
+                        },
+                        error: function( _response ){
+                            console.log(_response);
+                        }
+                    });
+            });
+        });
+    </script>
+    @endpush

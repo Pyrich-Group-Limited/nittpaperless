@@ -45,6 +45,7 @@ class  UserController extends Controller
             $roles = Role::all()->pluck('name', 'id');
             $departments = Department::all()->pluck('name', 'id');
             $designations = Designation::all()->pluck('name', 'id');
+            // $designations = Designation::all()->pluck('name', 'id');
             $liasons = $this->dataService->getLiasons();
             $headquaters = $this->dataService->getHeadquaters();
             $directorates = $this->dataService->getDirectorates();
@@ -101,7 +102,7 @@ class  UserController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         if(\Auth::user()->can('create user'))
         {
             $default_language = DB::table('settings')->select('value')->where('name', 'default_language')->first();
@@ -127,10 +128,10 @@ class  UserController extends Controller
             $objUser    = \Auth::user();
             $role_r                = Role::findById($request->role);
 
-            $branch                = Branch::where('id', $request->branch_id)->first();
-            $department            = Department::where('id', $request->department_id)->first();
-            $unit                  = Unit::where('id', $request->unit_id)->first();
-            $designation           = Designation::where('id', $request->designation_id)->first();
+            // $branch                = Branch::where('id', $request->branch_id)->first();
+            // $department            = Department::where('id', $request->department_id)->first();
+            // $unit                  = Unit::where('id', $request->unit_id)->first();
+            // $designation           = Designation::where('id', $request->designation_id)->first();
 
             $psw                   = $request->password;
             $request['password']   = Hash::make($request->password);
