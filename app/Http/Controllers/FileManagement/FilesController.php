@@ -16,15 +16,33 @@ class FilesController extends Controller
 {
     public function index(Request $request){
 
+
         $users = User::all();
+
+        $search = $request->input('search');
+        // If search query exists, filter folders and files based on the search term
+        if ($search) {
+            $folders = Folder::where('folder_name', 'like', '%' . $search . '%')
+                ->orWhereHas('files', function ($query) use ($search) {
+                    $query->where('file_name', 'like', '%' . $search . '%');
+                })
+                ->with(['files' => function ($query) use ($search) {
+                    $query->where('file_name', 'like', '%' . $search . '%');
+                }])
+                ->get();
+        } else {
+            // Fetch all folders with their associated files if no search term is provided
+            $folders = Folder::where('user_id',Auth::user()->id)->with('files')->get();
+        }
+
          // Fetch all folders and their files for the authenticated user
-        $folders = Folder::where('user_id',Auth::user()->id)->with('files')->get();
-        $files = Auth::user()->files;
+        // $folders = Folder::where('user_id',Auth::user()->id)->with('files')->get();
+        // $files = Auth::user()->files()->where('is_archived', 0)->get();
 
         // Fetch files that are not in any folder (root-level files)
         $rootFiles = Auth::user()->files()->whereNull('folder_id')->get();
 
-        return view('filemanagement.index', compact('files','folders','rootFiles','users'));
+        return view('filemanagement.index', compact('folders','rootFiles','users'));
     }
 
     //function for storing files
@@ -65,20 +83,28 @@ class FilesController extends Controller
     }
 
 
+    //share file modal display
+    public function renameFileModal($id){
+        $file = File::find($id);
+        return view('filemanagement.modals.rename-file',compact('file'));
+    }
+
     //function for renaming a file
     public function rename(File $file, Request $request)
     {
         $this->authorize('update', $file);
         $request->validate(['filename' => 'required|string|max:255']);
-        $file->update(['file_name' => $request->name]);
+        $file->update(['file_name' => $request->filename]);
 
         return redirect()->back()->with('success', 'File renamed successfully.');
     }
 
-    // public function shareFileModal(File $file, Request $request){
-    //     $users = User::all();
-    //     return view('filemanagement.modals.share-modal',compact('users'));
-    // }
+    //share file modal display
+    public function shareFileModal($id){
+        $users = User::all();
+        $file=File::find($id);
+        return view('filemanagement.modals.share-modal',compact('users','file'));
+    }
 
     //function for file sharing
     public function share(File $file, Request $request)
@@ -126,6 +152,32 @@ class FilesController extends Controller
                     ->orderBy('created_at', 'desc')
                     ->get();
         return view('filemanagement.new-files',compact('newFiles'));
+    }
+
+
+    // Archive a file
+    public function archive(File $file)
+    {
+        // Check if the file is already archived
+        if ($file->is_archived) {
+            // Return an error response if the file is already archived
+            return redirect()->back()->with('error', 'This file is already archived.');
+        }
+
+        // Mark the file as archived
+        $file->is_archived = 1;
+        $file->save();
+
+        return redirect()->back()->with('success', 'File archived successfully.');
+    }
+
+    // List all archived files
+    public function archived()
+    {
+        // Fetch all files for authenticated user where 'is_archived' is 1
+        $files = File::where('user_id',Auth::user()->id)->where('is_archived', 1)->get();
+
+        return view('filemanagement.archived-files', compact('files'));
     }
 
 

@@ -61,6 +61,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
         <div class="col-xxl-12">
             <div class="row">
                 <h2>My Folders</h2>
+                @if($folders->count() > 0)
                     @foreach($folders as $folder)
                     <div class="col-md-2 mb-4">
                         <div class="card text-center card-2">
@@ -72,15 +73,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                 aria-expanded="false">
                                             <i class="ti ti-dots-vertical"></i>
                                         </button>
-
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a href="#!" data-size="lg" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                            <a href="#!" data-size="md" data-url="{{ route('folder.renameModal',$folder->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Rename Folder')}}">
                                                 <i class="ti ti-pencil"></i>
                                                 <span>{{__('Rename')}}</span>
                                             </a>
-                                            <a href="#!"  class="dropdown-item bs-pass-para">
+                                            <a href="{{ route('folder.details',$folder->id) }}"  class="dropdown-item">
                                                 <i class="ti ti-eye"></i>
-                                                <span> {{__('View')}}</span>
+                                                <span> {{__('View Details')}}</span>
                                             </a>
                                             <a href="#!"  class="dropdown-item bs-pass-para">
                                                 <i class="ti ti-share"></i>
@@ -117,6 +117,9 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         </div>
                     </div>
                     @endforeach
+                @else
+                    <p>No folders created.</p>
+                @endif
             </div>
         </div>
     </div>
