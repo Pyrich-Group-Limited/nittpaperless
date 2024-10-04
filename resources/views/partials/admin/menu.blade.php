@@ -733,6 +733,10 @@
                                             @endif
                                         </ul>
                                     </li>
+                                @else
+                                <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
+                                    <a class="dash-link" href="{{ route('hrm.leave') }}">{{__('Leave')}}</a>
+                                </li>
                                 @endif
                                 @can('manage attendance')
                                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' : ''}}" href="#navbar-attendance" data-toggle="collapse" role="button" aria-expanded="{{ (Request::segment(1) == 'attendanceemployee') ? 'true' : 'false'}}">

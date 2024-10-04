@@ -988,6 +988,7 @@ Route::get('employee/{id}/leave/{status}/{type}/{month}/{year}', [ReportControll
 Route::get('leave/{id}/action', [LeaveController::class, 'action'])->name('leave.action')->middleware(['auth', 'XSS']);
 Route::post('leave/changeaction', [LeaveController::class, 'changeaction'])->name('leave.changeaction')->middleware(['auth', 'XSS']);
 Route::post('leave/jsoncount', [LeaveController::class, 'jsoncount'])->name('leave.jsoncount')->middleware(['auth', 'XSS']);
+Route::get('leave/view-leave-application/{id}',[LeaveController::class, 'viewLeaveApplications'])->name('view-leave-application');
 
 Route::resource('leave', LeaveController::class)->middleware(['auth', 'XSS']);
 
