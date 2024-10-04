@@ -28,12 +28,25 @@ class FolderController extends Controller
         return redirect()->back()->with('success', 'Folder created successfully.');
     }
 
+
+     //raname folder modal display
+     public function renameFolderModal($id){
+        $folder = Folder::find($id);
+        return view('filemanagement.modals.rename-folder',compact('folder'));
+    }
+
     public function rename(Folder $folder, Request $request)
     {
-        $this->authorize('update', $folder);
+        // $this->authorize('update', $folder);
         $request->validate(['name' => 'required|string|max:255']);
         $folder->update(['folder_name' => $request->name]);
 
         return redirect()->back()->with('success', 'Folder renamed successfully.');
+    }
+
+    public function show(Folder $folder){
+        // $files = $folder->files;  // Get all files in the folder
+        $files = $folder->files()->simplePaginate(12);
+        return view('filemanagement.show-folder',compact('folder', 'files'));
     }
 }
