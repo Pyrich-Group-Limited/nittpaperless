@@ -14,12 +14,12 @@ class DtaController extends Controller
     public function index()
     {
         if(auth()->user()->type=='unit head' || auth()->user()->type=='supervisor'){
-            $dtaRequests = Dta::where('current_approver','Unit Head')->with('approval', 'rejectionComment')->get();
+            $dtaRequests = Dta::where('current_approver','Unit Head')->orWhere('user_id', auth()->id())->orderBy('status','DESC')->with('approval', 'rejectionComment')->get();
         }elseif(auth()->user()->type=='liason office head' || auth()->user()->type=='HOD'){
-            $dtaRequests = Dta::where('current_approver','HOD')->with('approval', 'rejectionComment')->get();
+            $dtaRequests = Dta::where('current_approver','HOD')->orWhere('user_id', auth()->id())->orderBy('status','DESC')->with('approval', 'rejectionComment')->get();
 
         }elseif(auth()->user()->type=='accountant'){
-            $dtaRequests = Dta::where('current_approver','Bursary/Accountant')->with('approval', 'rejectionComment')->get();
+            $dtaRequests = Dta::where('current_approver','Bursary/Accountant')->orWhere('user_id', auth()->id())->orderBy('status','DESC')->with('approval', 'rejectionComment')->get();
         }else{
             $dtaRequests = Dta::where('user_id', auth()->id())->orderBy('status','DESC')->with('approval', 'rejectionComment')->get();
         }
@@ -50,7 +50,7 @@ class DtaController extends Controller
             'travel_date' => $request->travel_date,
             'arrival_date' => $request->arrival_date,
             'estimated_expense' => $request->expense,
-            'current_approver' => 'supervisor',
+            'current_approver' => 'Unit Head',
         ]);
 
         // Create an approval record
@@ -60,24 +60,20 @@ class DtaController extends Controller
     }
 
     // Supervisor approval
-    public function approveBySupervisor($id)
-    {
-        $approval = DtaApproval::where('dta_id', $id)->first();
-        $travelRequest = Dta::find($id);
+    // public function approveBySupervisor($id)
+    // {
+    //     $approval = DtaApproval::where('dta_id', $id)->first();
+    //     $travelRequest = Dta::find($id);
 
-        if ($approval->approved_by_supervisor) {
-            return redirect()->back()->with('error','Already approved by Supervisor.');
-        }
-
-        $approval->approved_by_supervisor = true;
-        $approval->save();
-
-        // Set next approver as Unit Head
-        $travelRequest->current_approver = 'Unit Head';
-        $travelRequest->save();
-
-        return redirect()->route('dta.index')->with('success', 'Request approved by Supervisor.');
-    }
+    //     if ($approval->approved_by_supervisor) {
+    //         return redirect()->back()->with('error','Already approved by Supervisor.');
+    //     }
+    //     $approval->approved_by_supervisor = true;
+    //     $approval->save();
+    //     $travelRequest->current_approver = 'Unit Head';
+    //     $travelRequest->save();
+    //     return redirect()->route('dta.index')->with('success', 'Request approved by Supervisor.');
+    // }
 
     // Unit Head approval
     public function approveByUnitHead($id)

@@ -1,9 +1,6 @@
 <div class="modal-body">
      <?php echo e(Form::open(array('route'=>['reject.dta',$dtaReject->id],'method'=>'post'))); ?>
 
-    
-    
-
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -84,7 +81,6 @@ unset($__errorArgs, $__bag); ?>
             <input type="button" value="<?php echo e(('Cancel')); ?>" class="btn  btn-light btn-sm" data-bs-dismiss="modal">
             <input type="submit" value="<?php echo e(__('Reject')); ?>" class="btn  btn-danger btn-sm">
         </div>
-    
     <?php echo e(Form::close()); ?>
 
     </div>

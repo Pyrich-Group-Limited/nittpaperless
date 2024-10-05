@@ -370,7 +370,7 @@ Route::get('/dta-requests/create', [DtaController::class, 'create'])->name('dta.
 Route::post('/dta-requests', [DtaController::class, 'store'])->name('dta.store');
 Route::get('/dta-request/{dta}/details', [DtaController::class, 'show'])->name('dta.show');
 
-Route::post('/dta-requests/{id}/approve-supervisor', [DtaController::class, 'approveBySupervisor'])->name('approve.supervisor');
+// Route::post('/dta-requests/{id}/approve-supervisor', [DtaController::class, 'approveBySupervisor'])->name('approve.supervisor');
 Route::post('/dta-requests/{id}/unithead-approve', [DtaController::class, 'approveByUnitHead'])->name('approve.unithead');
 Route::post('/dta-requests/{id}/hod-approve', [DtaController::class, 'approveByHod'])->name('approve.hod');
 Route::post('/dta-requests/{id}/accountant-approve', [DtaController::class, 'approveByAccountant'])->name('approve.accountant');
