@@ -14,6 +14,38 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <li class="breadcrumb-item">{{__('Files')}}</li>
 @endsection
 
+@section('action-btn')
+    <div class="float-end">
+        {{------------ Start Filter ----------------}}
+                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ti ti-filter"></i>
+                </a>
+                <div class="dropdown-menu  dropdown-steady" id="project_sort">
+                    <a class="dropdown-item active" href="#" data-val="created_at-desc">
+                        <i class="ti ti-sort-descending"></i>{{__('Newest')}}
+                    </a>
+                    <a class="dropdown-item" href="#" data-val="created_at-asc">
+                        <i class="ti ti-sort-ascending"></i>{{__('Oldest')}}
+                    </a>
+                </div>
+
+            {{------------ End Filter ----------------}}
+
+            {{------------ Start Status Filter ----------------}}
+                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="btn-inner--icon">{{__('Status')}}</span>
+                </a>
+                <div class="dropdown-menu  project-filter-actions dropdown-steady" id="project_status">
+                    <a class="dropdown-item filter-action filter-show-all pl-4 active" href="#">{{__('Show All')}}</a>
+                        <a class="dropdown-item filter-action pl-4" href="#" data-val="">{{__('Status Filter')}}</a>
+                </div>
+            {{------------ End Status Filter ----------------}}
+            <a href="#" data-size="lg" data-url="{{ route('file.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create new file')}}" class="btn btn-sm btn-primary">
+                <i class="ti ti-plus"></i>
+            </a>
+    </div>
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-sm-12">

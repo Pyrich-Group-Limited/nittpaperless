@@ -121,5 +121,37 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 </div>
 
             </div>
+
+            <div id="personal_info" class="card">
+                <div class="card-header">
+                    <h5>{{__('Signature')}}</h5>
+                </div>
+                <div class="card-body">
+                    {{Form::model($userDetail,array('route' => array('update.account'), 'method' => 'post', 'enctype' => "multipart/form-data"))}}
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-9 col-md-6">
+                                <div class="form-group">
+                                    <div class="choose-files">
+                                        <label for="avatar">
+                                            <div class=" bg-primary profile_update"> <i class="ti ti-upload px-1"></i>{{__('Choose signature')}}</div>
+                                            <input type="file" class="form-control file" name="profile" id="avatar" data-filename="profile_update">
+                                        </label>
+                                    </div>
+                                    <span class="text-xs text-muted">{{ __('Please upload a valid image file. Size of image should not be more than 1MB.')}}</span>
+                                    @error('avatar')
+                                    <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-lg-12 text-end">
+                                <input type="submit" value="{{__('Update Signature')}}" class="btn btn-print-invoice  btn-primary m-r-10">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
         </div>
 @endsection

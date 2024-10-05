@@ -68,6 +68,11 @@
                             <span>{{__('My files')}}</span>
                         </a>
 
+                        <a href="{{route('dta.index')}}" class="dropdown-item">
+                            <i class="ti ti-cash"></i>
+                            <span>{{__('My DTA')}}</span>
+                        </a>
+
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="dropdown-item">
                             <i class="ti ti-power"></i>
                             <span>{{__('Logout')}}</span>

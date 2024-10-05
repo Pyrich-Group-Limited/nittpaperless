@@ -1,4 +1,4 @@
-{{Form::open(array('url'=>'users','method'=>'post'))}}
+{{-- {{Form::open(array('url'=>'users','method'=>'post'))}}
 <div class="modal-body">
     <div class="row">
         <div class="col-md-6">
@@ -99,4 +99,4 @@
     <input type="submit" value="{{__('Create')}}" class="btn  btn-primary">
 </div>
 {{Form::close()}}
-
+ --}}

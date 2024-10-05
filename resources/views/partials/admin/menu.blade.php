@@ -295,7 +295,7 @@
                                     ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                                     ></a>
                                 <ul class="dash-submenu {{ (Request::segment(1) == 'stages' || Request::segment(1) == 'labels' || Request::segment(1) == 'sources' || Request::segment(1) == 'lead_stages' || Request::segment(1) == 'leads'  || Request::segment(1) == 'form_builder' || Request::segment(1) == 'form_response' || Request::segment(1) == 'deals' || Request::segment(1) == 'pipelines')?'show':''}}">
-                                    
+
                                     <li class="dash-item {{ (Request::segment(1) == 'chats')?'active':'' }}">
                                         <a class="dash-link" href="{{route('chats')}}">{{__('Talk To')}}</a>
                                     </li>
@@ -741,7 +741,7 @@
                                     <a class="dash-link" href="#">{{__('DTA Management')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                     <ul class="dash-submenu">
                                         <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }} ">
-                                            <a class="dash-link" href="{{ route('hrm.dta') }}">{{__('DTA')}}</a>
+                                            <a class="dash-link" href="{{ route('dta.index') }}">{{__('DTA')}}</a>
                                         </li>
                                         <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
                                             <a class="dash-link" href="{{ route('report.leave') }}">{{__('DTA Report')}}</a>

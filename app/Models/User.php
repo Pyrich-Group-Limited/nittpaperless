@@ -41,6 +41,7 @@ class User extends Authenticatable
         'unit_id',
         'subunit_id',
         'level',
+        'signature',
     ];
 
     public function department(){
@@ -60,6 +61,11 @@ class User extends Authenticatable
     public function sharedFiles()
     {
         return $this->belongsToMany(File::class, 'file_user');
+    }
+
+    public function dtaRequests()
+    {
+        return $this->hasMany(Dta::class);
     }
 
 
