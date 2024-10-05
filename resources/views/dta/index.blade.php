@@ -91,11 +91,13 @@
                                             @endif
                                         </td>
                                         <td class="Action">
+                                            @if($dtaRequest->status!="rejected")
                                             <div class="action-btn bg-info ms-2">
                                                 <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="{{ route('dta.show',$dtaRequest->id) }}" data-ajax-popup="true"  data-size="lg" data-bs-toggle="tooltip" title="{{__('DTA Details')}}"  data-title="{{__('DTA Details')}}">
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>
+                                            @endif
                                             @can('reject dta')
                                                 <div class="action-btn bg-danger ms-2">
                                                     <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url={{ route('reject.show',$dtaRequest->id) }} data-ajax-popup="true"  data-size="lg" data-bs-toggle="tooltip" title="{{__('Reject with Comment')}}"  data-title="{{__('Reject with Comment')}}">
@@ -103,6 +105,13 @@
                                                     </a>
                                                 </div>
                                             @endcan
+                                            @if($dtaRequest->status=="rejected")
+                                                <div class="action-btn bg-info ms-2">
+                                                    <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="{{ route('rejected.show',$dtaRequest->id) }}" data-ajax-popup="true"  data-size="lg" data-bs-toggle="tooltip" title="{{__('Details')}}"  data-title="{{__('Details')}}">
+                                                        <i class="ti ti-eye text-white"></i>
+                                                    </a>
+                                                </div>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

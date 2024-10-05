@@ -744,13 +744,13 @@
                                             <a class="dash-link" href="{{ route('dta.index') }}">{{__('DTA')}}</a>
                                         </li>
                                         <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
-                                            <a class="dash-link" href="{{ route('report.leave') }}">{{__('DTA Report')}}</a>
+                                            <a class="dash-link" href="{{ route('reports.dta') }}">{{__('DTA Report')}}</a>
                                         </li>
-                                        @can('manage travel')
+                                        {{-- @can('manage travel')
                                             <li class="dash-item {{ (request()->is('travel*') ? 'active' : '')}}">
                                                 <a class="dash-link" href="{{route('travel.index')}}">{{__('Trip')}}</a>
                                             </li>
-                                        @endcan
+                                        @endcan --}}
                                     </ul>
                                 </li>
                                 <li class="dash-item dash-hasmenu  ">
