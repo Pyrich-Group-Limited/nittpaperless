@@ -1,10 +1,5 @@
 <div class="modal-body">
      {{Form::open(array('route'=>['reject.dta',$dtaReject->id],'method'=>'post'))}}
-    {{--{!! Form::hidden('type', 0) !!}
-    {!! Form::submit('Approve', ['class' => 'btn btn-primary btn-sm']) !!}
-    {!! Form::close() !!}  --}}
-    {{-- <form action=""> --}}
-
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -78,6 +73,5 @@
             <input type="button" value="{{('Cancel')}}" class="btn  btn-light btn-sm" data-bs-dismiss="modal">
             <input type="submit" value="{{__('Reject')}}" class="btn  btn-danger btn-sm">
         </div>
-    {{-- </form> --}}
     {{Form::close()}}
     </div>
