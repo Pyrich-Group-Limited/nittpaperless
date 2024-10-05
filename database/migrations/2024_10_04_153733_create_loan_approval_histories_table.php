@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('loan_approval_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('leave_id')->constrained()->onDelete('cascade');
-            $table->foreignId('authorizer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('status');
             $table->string('commend');
             $table->timestamps();

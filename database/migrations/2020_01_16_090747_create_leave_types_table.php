@@ -18,6 +18,7 @@ class CreateLeaveTypesTable extends Migration
             $table->string('title');
             $table->integer('days');
             $table->integer('created_by');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
