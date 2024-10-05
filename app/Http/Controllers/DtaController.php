@@ -163,6 +163,12 @@ class DtaController extends Controller
         return redirect()->route('dta.index')->with('success', 'Request rejected with comment.');
     }
 
+    public function showRejected($id){
+        $rejectedDta = Dta::find($id);
+
+        return view('dta.rejected',compact('rejectedDta'));
+    }
+
 
     public function show(Request $request, $id)
     {

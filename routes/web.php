@@ -142,6 +142,7 @@ use App\Http\Controllers\FileManagement\FilesController;
 use App\Http\Controllers\FileManagement\FolderController;
 
 use App\Http\Controllers\DtaController;
+use App\Http\Controllers\DtaReportController;
 
 
 
@@ -375,17 +376,14 @@ Route::post('/dta-requests/{id}/unithead-approve', [DtaController::class, 'appro
 Route::post('/dta-requests/{id}/hod-approve', [DtaController::class, 'approveByHod'])->name('approve.hod');
 Route::post('/dta-requests/{id}/accountant-approve', [DtaController::class, 'approveByAccountant'])->name('approve.accountant');
 
+Route::get('/rejected-dta/{id}', [DtaController::class, 'showRejected'])->name('rejected.show');
 Route::get('/dta-requests/{id}', [DtaController::class, 'reject'])->name('reject.show');
 Route::post('/dta-requests/{id}/reject', [DtaController::class, 'rejectRequest'])->name('reject.dta');
 
-// Route::post('/travel-requests/{id}/approve-supervisor', [ApprovalController::class, 'approveBySupervisor'])->name('approve.supervisor');
-// Route::post('/travel-requests/{id}/reject', [ApprovalController::class, 'rejectRequest'])->name('reject.request');
+Route::get('dta-reports', [DtaReportController::class, 'dta'])->name('reports.dta');
 
-// Manager approval routes
-// Route::middleware(['auth', 'role:manager'])->group(function () {
-//     Route::post('/dta-requests/{id}/approve-manager1', [DtaController::class, 'approveByManager1'])->name('approve.manager1');
-//     Route::post('/dta-requests/{id}/approve-manager2', [DtaController::class, 'approveByManager2'])->name('approve.manager2');
-// });
+
+// Route::post('/travel-requests/{id}/approve-supervisor', [ApprovalController::class, 'approveBySupervisor'])->name('approve.supervisor');
 
 
 //Product Stock

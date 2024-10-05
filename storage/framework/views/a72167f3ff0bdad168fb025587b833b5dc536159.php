@@ -738,13 +738,9 @@
                                             <a class="dash-link" href="<?php echo e(route('dta.index')); ?>"><?php echo e(__('DTA')); ?></a>
                                         </li>
                                         <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?>">
-                                            <a class="dash-link" href="<?php echo e(route('report.leave')); ?>"><?php echo e(__('DTA Report')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('reports.dta')); ?>"><?php echo e(__('DTA Report')); ?></a>
                                         </li>
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage travel')): ?>
-                                            <li class="dash-item <?php echo e((request()->is('travel*') ? 'active' : '')); ?>">
-                                                <a class="dash-link" href="<?php echo e(route('travel.index')); ?>"><?php echo e(__('Trip')); ?></a>
-                                            </li>
-                                        <?php endif; ?>
+                                        
                                     </ul>
                                 </li>
                                 <li class="dash-item dash-hasmenu  ">
