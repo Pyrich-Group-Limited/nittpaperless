@@ -299,4 +299,10 @@ class LeaveController extends Controller
 
     }
 
+
+    public function viewLeaveApplications($id){
+        $leave = Leave::find($id);
+        return view('hrm.modals.view-leave-application',compact('leave'));
+    }
+
 }

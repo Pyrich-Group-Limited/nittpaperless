@@ -48,7 +48,7 @@
                             </ul>
                         </li>
                     <?php endif; ?>
-                    
+
                     <?php if(\Auth::user()->show_crm() == 1): ?>
                         <?php if( Gate::check('manage lead') || Gate::check('manage deal') || Gate::check('manage form builder') || Gate::check('manage contract')): ?>
                             <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'holiday-calender' || Request::segment(1) == 'reports-monthly-attendance' ||
@@ -222,7 +222,7 @@
                                                     <a class="dash-link" href="<?php echo e(route('resignation.index')); ?>"><?php echo e(__('Resignation')); ?></a>
                                                 </li>
                                             <?php endif; ?>
-                                            
+
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage promotion')): ?>
                                                 <li class="dash-item <?php echo e((request()->is('promotion*') ? 'active' : '')); ?>">
                                                     <a class="dash-link" href="<?php echo e(route('promotion.index')); ?>"><?php echo e(__('Promotion')); ?></a>
@@ -577,13 +577,19 @@
                                     <a class="dash-link" href="#"><?php echo e(__('Files')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                     <ul class="dash-submenu">
                                         <li class="dash-item">
-                                            <a class="dash-link" href="<?php echo e(route('file.index')); ?>"><?php echo e(__('Files')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('folders.index')); ?>"><?php echo e(__('File Folders')); ?></a>
                                         </li>
                                         <li class="dash-item">
-                                            <a class="dash-link" href="#"><?php echo e(__('New Files')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('file.index')); ?>"><?php echo e(__('Files')); ?></a>
                                         </li>
                                         <li class="dash-item ">
-                                            <a class="dash-link" href="#"><?php echo e(__('This Month')); ?></a>
+                                            <a class="dash-link" href=<?php echo e(route('sharedfiles.index')); ?>><?php echo e(__('Shared')); ?></a>
+                                        </li>
+                                        <li class="dash-item">
+                                            <a class="dash-link" href="<?php echo e(route('files.newFile')); ?>"><?php echo e(__('New Files')); ?></a>
+                                        </li>
+                                        <li class="dash-item ">
+                                            <a class="dash-link" href="<?php echo e(route('files.thisMonth')); ?>"><?php echo e(__('This Month')); ?></a>
                                         </li>
                                         <li class="dash-item ">
                                             <a class="dash-link" href="#"><?php echo e(__('Older Files')); ?></a>
@@ -591,9 +597,7 @@
                                         <li class="dash-item ">
                                             <a class="dash-link" href="#"><?php echo e(__('Starred')); ?></a>
                                         </li>
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href="#"><?php echo e(__('Shared')); ?></a>
-                                        </li>
+
                                         <li class="dash-item ">
                                             <a class="dash-link" href="#"><?php echo e(__('Recovery')); ?></a>
                                         </li>
@@ -659,7 +663,7 @@
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>
-                        
+
                     <?php if(\Auth::user()->type == 'liason office head' || \Auth::user()->type == 'unit head'): ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create budget plan')): ?>
                         <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'chats')?'active':''); ?>">
@@ -695,7 +699,7 @@
                                                     <a class="dash-link" href="<?php echo e(route('leave.index')); ?>"><?php echo e(__('Manage Leave')); ?></a>
                                                 </li>
                                             <?php endif; ?>
-                                           
+
                                             <li class="dash-item <?php echo e((Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : ''); ?>">
                                                 <a class="dash-link" href="<?php echo e(route('hrm.leave')); ?>"><?php echo e(__('Leave')); ?></a>
                                             </li>

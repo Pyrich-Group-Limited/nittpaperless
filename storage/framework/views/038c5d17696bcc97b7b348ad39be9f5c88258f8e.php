@@ -1,17 +1,17 @@
-<div class="">
+<div class="col-md-12">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
-                            <a href="<?php echo e(route('hrm.budget')); ?>">
+                            <a href="<?php echo e(route('purchase.requisition')); ?>">
                                 <div class="d-flex align-items-center">
                                     <div class="theme-avtar bg-primary">
                                         <i class="ti ti-cast"></i>
                                     </div>
                                     <div class="ms-3">
-                                        <h6 class="m-0"><?php echo e(__('Departmental Budget')); ?></h6>
+                                        <h6 class="m-0"><?php echo e(__('Purchase Requisition')); ?></h6>
                                     </div>
                                 </div>
                             </a>
@@ -21,19 +21,58 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
-                            <a href="<?php echo e(route('hrm.query')); ?>">
+                            <a href="<?php echo e(route('purchase.requisition')); ?>">
                                 <div class="d-flex align-items-center">
                                     <div class="theme-avtar bg-primary">
-                                        <i class="ti ti-list"></i>
+                                        <i class="ti ti-cast"></i>
                                     </div>
                                     <div class="ms-3">
-                                        
-                                        <h6 class="m-0"><?php echo e(__('Query')); ?></h6>
+                                        <h6 class="m-0"><?php echo e(__('Income By Category')); ?></h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mb-3 mb-sm-0">
+                            <a href="<?php echo e(route('purchase.requisition')); ?>">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-primary">
+                                        <i class="ti ti-cast"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="m-0"><?php echo e(__('Expense By Category')); ?></h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mb-3 mb-sm-0">
+                            <a href="<?php echo e(route('store.requisition')); ?>">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-primary">
+                                        <i class="ti ti-cast"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="m-0"><?php echo e(__('Store Requisition Notes')); ?></h6>
                                     </div>
                                 </div>
                             </a>
@@ -43,15 +82,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
-                            <a href="<?php echo e(route('hrm.leave')); ?>">
+                            <a href="<?php echo e(route('leave')); ?>">
                                 <div class="d-flex align-items-center">
                                     <div class="theme-avtar bg-primary">
-                                        <i class="ti ti-list"></i>
+                                        <i class="ti ti-cast"></i>
                                     </div>
                                     <div class="ms-3">
                                         <h6 class="m-0"><?php echo e(__('Leave')); ?></h6>
@@ -64,48 +103,28 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+
+        <div class="col-lg-6 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
-                           <a href="<?php echo e(route('hrm.dta')); ?>">
-                            <div class="d-flex align-items-center">
-                                <div class="theme-avtar bg-primary">
-                                    <i class="ti ti-list"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h6 class="m-0"><?php echo e(__('DTA')); ?></h6>
-                                </div>
-                            </div>
-                           </a>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-auto mb-3 mb-sm-0">
-                            <a href="<?php echo e(route('hrm.memo')); ?>">
+                            <a href="<?php echo e(route('goodsReceived.list')); ?>">
                                 <div class="d-flex align-items-center">
                                     <div class="theme-avtar bg-primary">
-                                        <i class="ti ti-list"></i>
+                                        <i class="ti ti-cast"></i>
                                     </div>
                                     <div class="ms-3">
-                                        <h6 class="m-0"><?php echo e(__('Memo')); ?></h6>
+                                        <h6 class="m-0"><?php echo e(__('Goods Received Notes')); ?></h6>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/hrm/includes/dash-nav.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/dashboard/includes/nav.blade.php ENDPATH**/ ?>

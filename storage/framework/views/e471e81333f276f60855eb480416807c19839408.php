@@ -99,6 +99,8 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
+            <?php echo e($users->links()); ?>
+
         </div>
     </div>
 
@@ -108,6 +110,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 <div class="modal-body">
                     <?php echo e(Form::open(array('url'=>'users','method'=>'post'))); ?>
 
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="applyLeave">User Registration
+                        </h5>
+                    </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -150,7 +156,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?php echo e(Form::label('password',__('Password'),['class'=>'form-label'])); ?>
@@ -418,7 +424,7 @@ unset($__errorArgs, $__bag); ?>
             $('#select_location').on('change', function(){
                 var selectedValue = $(this).val();
                 $('#liasonTog, #headquarterTog').hide();
-                // alert('Location changed to: ' + selectedValue); 
+                // alert('Location changed to: ' + selectedValue);
                 if (selectedValue == "liaison") {
                     $('#liasonTog').show();
                     $('#departmentTog').show();
@@ -505,4 +511,4 @@ unset($__errorArgs, $__bag); ?>
     <?php $__env->stopPush(); ?>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ARthur\Desktop\projects\pyrich\nittpaperless\resources\views/user/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/user/index.blade.php ENDPATH**/ ?>

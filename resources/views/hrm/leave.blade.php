@@ -28,7 +28,7 @@
                 <div class="card-body table-border-style" >
                     <div class="table-responsive">
                         <div class="table-head col-xl-12 mt-2" style="text-align: right;">
-                            <a href="#" class="btn btn-primary" data-url="{{ route('hrm.applyLeave') }}" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>Apply for Leave</a>
+                            <a href="#" class="btn btn-primary" id="applyLeaveButton" data-bs-toggle="modal" data-bs-target="#applyLeave"   data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>Apply for Leave</a>
                         </div>
                         <table class="table datatable">
                             <thead>
@@ -44,15 +44,17 @@
                             </tr>
                             </thead>
                             <tbody>
+                                @foreach($leaves as $leave)
                                 <tr class="font-style">
-                                    <td>Test User</td>
-                                    <td>Finance</td>
-                                    <td>Casual Leave</td>
+                                    <td>{{ $leave->user->name }}</td>
+                                    <td>{{ $leave->user->department->name }}</td>
+                                    <td>{{ $leave->leaveType->title}}</td>
                                     <td>11-10-2024</td>
-                                    <td>10</td>
-                                    <td>21-10-2024</td>
-                                    <td>Awaiting Approval</td>
+                                    <td>{{ $leave->total_leave_days }}</td>
+                                    <td>{{ $leave->end_date }}</td>
+                                    <td>{{ $leave->status  }}</td>
                                     <td class="Action">
+                                    @can('manage leave')
                                         <div class="action-btn bg-success ms-2">
                                             <a href="#" class="mx-3 btn btn-sm align-items-center" data-url=""
                                                 data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Approve')}}" data-title="{{__('Approve')}}">
@@ -69,8 +71,17 @@
                                                 <i class="ti ti-plus text-white"></i>
                                             </a>
                                         </div>
+                                        @else
+                                        <div class="action-btn bg-danger ms-2">
+                                            <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="{{ route('view-leave-application',$leave->id)}}" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="{{__('View')}}"  data-title="{{__('Leave Applicaiton Details')}}">
+                                                <i class="ti ti-eye text-white"></i>
+                                            </a>
+                                        </div>
+                                        @endcan
                                     </td>
+
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -78,5 +89,14 @@
             </div>
         </div>
     </div>
+    @include('hrm.modals.apply-leave')
+    @if($errors->any() || Session::has('error'))
+    <script>
+         $(document).ready(function() {
+            // $('#applyLeaveButton').modal('show');
+            document.getElementById("applyLeaveButton").click();
+         });
+    </script>
+    @endif
 @endsection
 

@@ -92,12 +92,12 @@
                 <div class="col-xl-6 img-card-side">
                     <div class="auth-img-content">
                         <img
-                            src="<?php echo e(asset('assets/images/auth/img-auth-3.svg')); ?>"
+                            src="<?php echo e(asset('assets/images/auth/nitt-auth-img.png')); ?>"
                             alt=""
                             class="img-fluid"
                         />
                         <h2 class="text-white mb-4 mt-5">
-                        Nigerian Institute of Transport Technology
+                        NIGERIAN INSTITUTE OF TRANSPORT TECHNOLOGY
                         </h2>
                         <p class="text-white">Zaria, Nigeria</p>
                     </div>

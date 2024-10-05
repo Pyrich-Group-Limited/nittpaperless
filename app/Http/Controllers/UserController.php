@@ -38,13 +38,18 @@ class  UserController extends Controller
         $user = \Auth::user();
         if(\Auth::user()->can('manage user'))
         {
-            $users = User::where('created_by', '=', $user->creatorId())->get();
+            $roles = [];
+            $users = User::paginate(12);
             // $users = User::where('created_by', '=', $user->creatorId())->where('type', '!=', 'client')->get();
             $customFields = CustomField::where('created_by', '=', \Auth::user()->creatorId())->where('module', '=', 'user')->get();
             $user  = \Auth::user();
-            $roles = Role::all()->pluck('name', 'id');
+            $allRoles = Role::all();
+            foreach($allRoles as $role){
+                $roles[] = $role->id = $role->name=="client"? "Human Resource (HR)" : ucwords($role->name);
+            }
             $departments = Department::all()->pluck('name', 'id');
             $designations = Designation::all()->pluck('name', 'id');
+            // $designations = Designation::all()->pluck('name', 'id');
             $liasons = $this->dataService->getLiasons();
             $headquaters = $this->dataService->getHeadquaters();
             $directorates = $this->dataService->getDirectorates();
@@ -117,6 +122,7 @@ class  UserController extends Controller
                                    'level' => 'required',
                                ]
             );
+
             if($validator->fails())
             {
                 $messages = $validator->getMessageBag();
@@ -127,14 +133,15 @@ class  UserController extends Controller
             $objUser    = \Auth::user();
             $role_r                = Role::findById($request->role);
 
-            $branch                = Branch::where('id', $request->branch_id)->first();
-            $department            = Department::where('id', $request->department_id)->first();
-            $unit                  = Unit::where('id', $request->unit_id)->first();
-            $designation           = Designation::where('id', $request->designation_id)->first();
+
+            // $branch                = Branch::where('id', $request->branch_id)->first();
+            // $department            = Department::where('id', $request->department_id)->first();
+            // $unit                  = Unit::where('id', $request->unit_id)->first();
+            // $designation           = Designation::where('id', $request->designation_id)->first();
 
             $psw                   = $request->password;
             $request['password']   = Hash::make($request->password);
-            $request['type']       = $role_r->name;
+            $request['type']       =  $role_r->name;
             $request['designation']       = $request->designation;
             $request['department_id']       = $request->department;
             $request['unit_id']       = $request->unit;

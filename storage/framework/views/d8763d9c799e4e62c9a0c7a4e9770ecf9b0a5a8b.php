@@ -63,6 +63,11 @@
                             <span><?php echo e(__('Profile')); ?></span>
                         </a>
 
+                        <a href="<?php echo e(route('file.index')); ?>" class="dropdown-item">
+                            <i class="ti ti-files"></i>
+                            <span><?php echo e(__('My files')); ?></span>
+                        </a>
+
                         <a href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="dropdown-item">
                             <i class="ti ti-power"></i>
                             <span><?php echo e(__('Logout')); ?></span>

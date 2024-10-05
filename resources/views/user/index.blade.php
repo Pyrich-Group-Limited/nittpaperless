@@ -96,6 +96,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     </div>
                 @endforeach
             </div>
+            {{ $users->links() }}
         </div>
     </div>
 
@@ -104,7 +105,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
             <div class="modal-content">
                 <div class="modal-body">
                     {{Form::open(array('url'=>'users','method'=>'post'))}}
-                        @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="applyLeave">User Registration
+                        </h5>
+                    </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -142,8 +146,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    {{ Form::label('Location', __('Location'),['class'=>'form-label']) }}
-                                    {!! Form::select('location', ['' => 'Select a Location'] +  ['Headquaters','Liason Offices'], null,array('class' => 'form-control select','required'=>'required','id' =>'select_location')) !!}
+                                    {{ Form::label('location', __('Location'), ['class' => 'form-label']) }}
+                                    {!! Form::select('location', [
+                                        '' => 'Select',
+                                        'headquarters' => 'Headquarters',
+                                        'liaison' => 'Liaison Offices'
+                                    ], null, array('class' => 'form-control select', 'required' => 'required', 'id' => 'select_location')) !!}
                                     @error('Location')
                                     <small class="invalid-role" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
@@ -152,7 +160,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                 </div>
                                 <div id="liasonTog" class="form-group col-md-6" style="display: none;">
                                     {{ Form::label('liason', __('Liason'),['class'=>'form-label']) }}
-                                    {!! Form::select('liason', ['' => 'Select a Liason Office'] + $liasons, null,array('class' => 'form-control select','required'=>'required')) !!}
+                                    {!! Form::select('liason', ['' => 'Select a Liason Office'] + $liasons, null,array('class' => 'form-control select','id' =>'select_liason')) !!}
                                     @error('liason')
                                     <small class="invalid-role" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
@@ -160,8 +168,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                     @enderror
                                 </div>
                                 <div id="headquarterTog" class="form-group col-md-6" style="display: none;">
-                                    {{ Form::label('headquaters', __('HeadQauter'),['class'=>'form-label']) }}
-                                    {!! Form::select('headquaters', ['' => 'Select a HeadQauter'] + $headquaters, null,array('class' => 'form-control select','required'=>'required','id' =>'select_headquater')) !!}
+                                    {{ Form::label('headquaters', __('Headquaters'),['class'=>'form-label']) }}
+                                    {!! Form::select('headquaters', [
+                                        '' => 'Select',
+                                        'directorates' => 'Directorates',
+                                        'departments' => 'Departments'
+                                    ], 'headquarters', array('class' => 'form-control select', 'id' => 'select_headquater')) !!}
                                     @error('headquaters')
                                     <small class="invalid-role" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
@@ -170,7 +182,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                 </div>
                                 <div id="directorateTog" style="display: none;" class="form-group col-md-6">
                                     {{ Form::label('directorate', __('Directorate'),['class'=>'form-label']) }}
-                                    {!! Form::select('directorate', ['' => 'Select a Directorate'] + $directorates, null, ['class' => 'form-control select', 'required' => 'required']) !!}
+                                    {!! Form::select('directorate', ['' => 'Select a Directorate'] + $directorates, null, ['class' => 'form-control select','id'=>'sel_directorate']) !!}
                                     @error('directorate')
                                     <small class="invalid-role" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
@@ -179,16 +191,25 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                 </div>
                                 <div id="departmentTog" style="display: none;" class="form-group col-md-6">
                                     {{ Form::label('department', __('Department'),['class'=>'form-label']) }}
-                                    {!! Form::select('department', $departments, null,array('class' => 'form-control select','required'=>'required','id' =>'sel_department')) !!}
+                                    {!! Form::select('department', $departments, null,array('class' => 'form-control select','id' =>'sel_department')) !!}
                                     @error('Department')
                                     <small class="invalid-role" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
                                     </small>
                                     @enderror
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div id="depUnitTog" style="display: none;" class="form-group col-md-6">
                                     {{ Form::label('unit', __('Unit'),['class'=>'form-label']) }}
-                                    {!! Form::select('unit', ['User Unit'], null,array('class' => 'form-control select','required'=>'required','id'=>'department_units')) !!}
+                                    {!! Form::select('unit', ['User Unit'], null,array('class' => 'form-control select','id'=>'department_units')) !!}
+                                    @error('Unit')
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div id="dirUnitTog" style="display: none;" class="form-group col-md-6">
+                                    {{ Form::label('unit', __('Unit'),['class'=>'form-label']) }}
+                                    {!! Form::select('unit', ['Unit 01','Unit 02','Unit 03','Unit 4','Unit 5','Unit 6'], null,array('class' => 'form-control select','id'=>'directorate_units')) !!}
                                     @error('Unit')
                                     <small class="invalid-role" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
@@ -260,8 +281,6 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
         </div>
     </div>
 
-
-
     @push('script')
     <script>
         var x = document.getElementById("subUnitToggles");
@@ -272,20 +291,30 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
             $('#select_location').on('change', function(){
                 var selectedValue = $(this).val();
                 $('#liasonTog, #headquarterTog').hide();
-                if (selectedValue == 1) {
+                // alert('Location changed to: ' + selectedValue);
+                if (selectedValue == "liaison") {
                     $('#liasonTog').show();
                     $('#departmentTog').show();
-                } else if (selectedValue == 0) {
+                    $('#depUnitTog').show();
+                    $('#select_liason').prop('required', true);
+                } else if (selectedValue == "headquarters") {
                     $('#headquarterTog').show();
+                    $('#select_headquater').prop('required', true);
                 }
             })
             $('#select_headquater').on('change', function(){
                 var selectedValue = $(this).val();
                 $('#departmentTog, #directorateTog').hide();
-                if (selectedValue == 1) {
+                if (selectedValue == "departments") {
                     $('#departmentTog').show();
-                } else if (selectedValue == 0) {
+                    $('#depUnitTog').show();
+                    $('#department_units').prop('required', true);
+                    $('#department_units').prop('required', true);
+                } else if (selectedValue == "directorates") {
                     $('#directorateTog').show();
+                    $('#dirUnitTog').show();
+                    $('#sel_directorate').prop('required', true);
+                    $('#directorate_units').prop('required', true);
                 }
             })
             //get department units
