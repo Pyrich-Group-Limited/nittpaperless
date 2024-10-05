@@ -39,6 +39,7 @@ class CreateUsersTable extends Migration
             $table->integer('department_id');
             $table->integer('unit_id');
             $table->integer('sub_unit_id')->nullable();
+            $table->string('signature')->nullable();
             $table->rememberToken();
             $table->timestamps();
         }

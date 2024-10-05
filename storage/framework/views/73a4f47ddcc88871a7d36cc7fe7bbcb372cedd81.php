@@ -11,9 +11,6 @@
 
 <?php $__env->startSection('action-btn'); ?>
     <div class="float-end">
-
-
-
         
                 <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="ti ti-filter"></i>
@@ -99,16 +96,15 @@
                                             <?php endif; ?>
                                         </td>
                                         <td class="Action">
-                                            
                                             <div class="action-btn bg-info ms-2">
                                                 <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="<?php echo e(route('dta.show',$dtaRequest->id)); ?>" data-ajax-popup="true"  data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('DTA Details')); ?>"  data-title="<?php echo e(__('DTA Details')); ?>">
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve dta')): ?>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('reject dta')): ?>
                                                 <div class="action-btn bg-danger ms-2">
                                                     <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url=<?php echo e(route('reject.show',$dtaRequest->id)); ?> data-ajax-popup="true"  data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Reject with Comment')); ?>"  data-title="<?php echo e(__('Reject with Comment')); ?>">
-                                                        <i class="ti ti-plus text-white"></i>
+                                                        <i class="ti ti-thumb-down text-white"></i>
                                                     </a>
                                                 </div>
                                             <?php endif; ?>

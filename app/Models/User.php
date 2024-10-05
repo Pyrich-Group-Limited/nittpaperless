@@ -41,6 +41,7 @@ class User extends Authenticatable
         'unit_id',
         'subunit_id',
         'level',
+        'signature',
     ];
 
     public function department(){

@@ -9,7 +9,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">File Content</label>
-                    <input type="file" name="file" aria-multiselectable="" class="form-control">
+                    <input type="file" name="file" aria-multiselectable="" class="form-control" required>
                 </div>
                 
 

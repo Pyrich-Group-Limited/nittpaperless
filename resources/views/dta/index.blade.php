@@ -11,9 +11,6 @@
 
 @section('action-btn')
     <div class="float-end">
-
-
-
         {{------------ Start Filter ----------------}}
                 <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="ti ti-filter"></i>
@@ -94,23 +91,15 @@
                                             @endif
                                         </td>
                                         <td class="Action">
-                                            {{-- @can('approve dta')
-                                                <div class="action-btn bg-success ms-2">
-                                                    <a href="{{ route('approve.supervisor',$dtaRequest->id) }}" class="mx-3 btn btn-sm align-items-center" data-url=""
-                                                        data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Approve DTA')}}" data-title="{{__('Approve DTA')}}">
-                                                        <i class="ti ti-check text-white"></i>
-                                                    </a>
-                                                </div>
-                                            @endcan --}}
                                             <div class="action-btn bg-info ms-2">
                                                 <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="{{ route('dta.show',$dtaRequest->id) }}" data-ajax-popup="true"  data-size="lg" data-bs-toggle="tooltip" title="{{__('DTA Details')}}"  data-title="{{__('DTA Details')}}">
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>
-                                            @can('approve dta')
+                                            @can('reject dta')
                                                 <div class="action-btn bg-danger ms-2">
                                                     <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url={{ route('reject.show',$dtaRequest->id) }} data-ajax-popup="true"  data-size="lg" data-bs-toggle="tooltip" title="{{__('Reject with Comment')}}"  data-title="{{__('Reject with Comment')}}">
-                                                        <i class="ti ti-plus text-white"></i>
+                                                        <i class="ti ti-thumb-down text-white"></i>
                                                     </a>
                                                 </div>
                                             @endcan
