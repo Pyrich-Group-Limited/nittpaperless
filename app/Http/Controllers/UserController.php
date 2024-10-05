@@ -52,7 +52,7 @@ class  UserController extends Controller
                 'designations',
                 'roles',
                 'departments',
-                'customFields', 
+                'customFields',
                 'liasons',
                 'headquaters',
                 'directorates'
@@ -101,7 +101,7 @@ class  UserController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         if(\Auth::user()->can('create user'))
         {
             $default_language = DB::table('settings')->select('value')->where('name', 'default_language')->first();

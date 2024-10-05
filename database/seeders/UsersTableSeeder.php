@@ -3309,6 +3309,16 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [   'name' => 'view dta',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'approve dta',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ];
 
         Permission::insert($arrPermissions);
@@ -3324,6 +3334,7 @@ class UsersTableSeeder extends Seeder
         );
 
         $companyPermissions = [
+            ['name' => 'approve dta'],
             ['name' => 'view leave report'],
             ['name' => 'show pos dashboard'],
             ['name' => 'show crm dashboard'],
@@ -3889,6 +3900,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $supervisorPermission = [
+            ['name' => 'approve dta'],
             ['name' => 'show invoice'],
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
@@ -4059,6 +4071,7 @@ class UsersTableSeeder extends Seeder
 
         // Define the permissions for the unit head role
         $unitHeadPermissions = [
+            ['name' => 'approve dta'],
             ['name' => 'view leave report'],
             ['name' => 'show unithead dashboard'],
             ['name' => 'manage client dashboard'],
@@ -4098,13 +4111,13 @@ class UsersTableSeeder extends Seeder
             $role->givePermissionTo($unitHeadPermissions);
         }
 
-        $unitHeadRole       = Role::create(
+        $unitHeadRole = Role::create(
             [
                 'name' => 'Unit Head',
                 'created_by' => $company->id,
             ],
         );
-        
+
         $unitHead = User::create(
             [
                 'name' => 'Unit Head',
@@ -4199,6 +4212,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
+            ['name' => 'approve dta'],
             ['name' => 'manage purchase'],
             ['name' => 'manage pos'],
             ['name' => 'manage warehouse'],

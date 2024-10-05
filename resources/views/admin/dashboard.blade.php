@@ -5,7 +5,7 @@
 @endsection
 
 @section('action-button')
-    @if(Auth::user()->type == 'admin')
+    @if(Auth::user()->type == 'super admin')
         <div class="bg-neutral rounded-pill d-inline-block">
             <div class="input-group input-group-sm input-group-merge input-group-flush">
                 <div class="input-group-prepend">
@@ -18,14 +18,14 @@
 @endsection
 
 @push('theme-script')
-    @if(Auth::user()->type != 'admin')
+    @if(Auth::user()->type != 'super admin')
         <script src="{{ asset('assets/libs/dragula/dist/dragula.min.js') }}"></script>
         <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     @endif
 @endpush
 
 @section('content')
-    @if(Auth::user()->type == 'admin')
+    @if(Auth::user()->type == 'super admin')
         <div class="row" id="dashboard_view"></div>
     @else
         <div class="row">
@@ -310,7 +310,7 @@
 @endsection
 
 @push('script')
-    @if(Auth::user()->type == 'admin')
+    @if(Auth::user()->type == 'super admin')
         <script>
             $(document).ready(function () {
                 ajaxFilterUserView();

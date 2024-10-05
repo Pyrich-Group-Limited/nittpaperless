@@ -141,6 +141,8 @@ use App\Http\Controllers\DashControls\HrmDashControl;
 use App\Http\Controllers\FileManagement\FilesController;
 use App\Http\Controllers\FileManagement\FolderController;
 
+use App\Http\Controllers\DtaController;
+
 
 
 
@@ -360,12 +362,30 @@ Route::get('/rename-folder/{id}', [FolderController::class, 'renameFolderModal']
 Route::patch('/folders/{folder}/rename', [FolderController::class, 'rename'])->name('folders.rename');
 
 Route::get('/folder/{folder}/details', [FolderController::class, 'show'])->name('folder.details');
-
-
-
 Route::get('file-upload',[FilesController::class, 'filesUpload'])->name('file.upload');
 
 
+Route::get('/dta-requests', [DtaController::class, 'index'])->name('dta.index');
+Route::get('/dta-requests/create', [DtaController::class, 'create'])->name('dta.create');
+Route::post('/dta-requests', [DtaController::class, 'store'])->name('dta.store');
+Route::get('/dta-request/{dta}/details', [DtaController::class, 'show'])->name('dta.show');
+
+Route::post('/dta-requests/{id}/approve-supervisor', [DtaController::class, 'approveBySupervisor'])->name('approve.supervisor');
+Route::post('/dta-requests/{id}/unithead-approve', [DtaController::class, 'approveByUnitHead'])->name('approve.unithead');
+Route::post('/dta-requests/{id}/hod-approve', [DtaController::class, 'approveByHod'])->name('approve.hod');
+Route::post('/dta-requests/{id}/accountant-approve', [DtaController::class, 'approveByAccountant'])->name('approve.accountant');
+
+Route::get('/dta-requests/{id}', [DtaController::class, 'reject'])->name('reject.show');
+Route::post('/dta-requests/{id}/reject', [DtaController::class, 'rejectRequest'])->name('reject.dta');
+
+// Route::post('/travel-requests/{id}/approve-supervisor', [ApprovalController::class, 'approveBySupervisor'])->name('approve.supervisor');
+// Route::post('/travel-requests/{id}/reject', [ApprovalController::class, 'rejectRequest'])->name('reject.request');
+
+// Manager approval routes
+// Route::middleware(['auth', 'role:manager'])->group(function () {
+//     Route::post('/dta-requests/{id}/approve-manager1', [DtaController::class, 'approveByManager1'])->name('approve.manager1');
+//     Route::post('/dta-requests/{id}/approve-manager2', [DtaController::class, 'approveByManager2'])->name('approve.manager2');
+// });
 
 
 //Product Stock
@@ -1025,6 +1045,7 @@ Route::get('reports-pos-vs-purchase', [ReportController::class, 'posVsPurchaseRe
 
 
 // User Module
+// Route::get('/user', [UserController::class, 'store'])->name('user.store')->middleware(['auth', 'XSS']);
 Route::get('users/{view?}', [UserController::class, 'index'])->name('users')->middleware(['auth', 'XSS']);
 Route::get('users-view', [UserController::class, 'filterUserView'])->name('filter.user.view')->middleware(['auth', 'XSS']);
 Route::get('checkuserexists', [UserController::class, 'checkUserExists'])->name('user.exists')->middleware(['auth', 'XSS']);

@@ -104,6 +104,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
             <div class="modal-content">
                 <div class="modal-body">
                     {{Form::open(array('url'=>'users','method'=>'post'))}}
+                        @csrf
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -128,7 +129,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         {{Form::label('password',__('Password'),['class'=>'form-label'])}}

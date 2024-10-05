@@ -43,10 +43,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                 <i class="ti ti-download"></i>
                                                 <span> <?php echo e(__('Download')); ?> </span>
                                             </a>
-                                            <a href="#!"  class="dropdown-item bs-pass-para">
-                                                <i class="ti ti-archive"></i>
-                                                <span> <?php echo e(__('Archive')); ?> </span>
-                                            </a>
+                                            <form action="<?php echo e(route('files.archive', $file->id)); ?>" method="POST" style="display:inline;">
+                                                <?php echo csrf_field(); ?>
+                                                <button type="submit" class="btn btn-white dropdown-item"><i class="ti ti-archive"></i>Archive</button>
+                                            </form>
                                             <?php echo Form::close(); ?>
 
                                         </div>

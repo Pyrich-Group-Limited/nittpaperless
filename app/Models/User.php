@@ -62,6 +62,11 @@ class User extends Authenticatable
         return $this->belongsToMany(File::class, 'file_user');
     }
 
+    public function dtaRequests()
+    {
+        return $this->hasMany(Dta::class);
+    }
+
 
     protected $hidden = [
         'password',
