@@ -96,6 +96,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     </div>
                 @endforeach
             </div>
+            {{ $users->links() }}
         </div>
     </div>
 
@@ -104,6 +105,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
             <div class="modal-content">
                 <div class="modal-body">
                     {{Form::open(array('url'=>'users','method'=>'post'))}}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="applyLeave">User Registration
+                        </h5>
+                    </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -128,7 +133,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         {{Form::label('password',__('Password'),['class'=>'form-label'])}}
@@ -286,7 +291,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
             $('#select_location').on('change', function(){
                 var selectedValue = $(this).val();
                 $('#liasonTog, #headquarterTog').hide();
-                // alert('Location changed to: ' + selectedValue); 
+                // alert('Location changed to: ' + selectedValue);
                 if (selectedValue == "liaison") {
                     $('#liasonTog').show();
                     $('#departmentTog').show();

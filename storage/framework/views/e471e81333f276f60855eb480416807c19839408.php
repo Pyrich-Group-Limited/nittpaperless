@@ -99,6 +99,8 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
+            <?php echo e($users->links()); ?>
+
         </div>
     </div>
 
@@ -108,6 +110,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 <div class="modal-body">
                     <?php echo e(Form::open(array('url'=>'users','method'=>'post'))); ?>
 
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="applyLeave">User Registration
+                        </h5>
+                    </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -150,7 +156,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?php echo e(Form::label('password',__('Password'),['class'=>'form-label'])); ?>
@@ -172,9 +178,13 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <?php echo e(Form::label('Location', __('Location'),['class'=>'form-label'])); ?>
+                                    <?php echo e(Form::label('location', __('Location'), ['class' => 'form-label'])); ?>
 
-                                    <?php echo Form::select('location', ['' => 'Select a Location'] +  ['Headquaters','Liason Offices'], null,array('class' => 'form-control select','required'=>'required','id' =>'select_location')); ?>
+                                    <?php echo Form::select('location', [
+                                        '' => 'Select',
+                                        'headquarters' => 'Headquarters',
+                                        'liaison' => 'Liaison Offices'
+                                    ], null, array('class' => 'form-control select', 'required' => 'required', 'id' => 'select_location')); ?>
 
                                     <?php $__errorArgs = ['Location'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -192,7 +202,7 @@ unset($__errorArgs, $__bag); ?>
                                 <div id="liasonTog" class="form-group col-md-6" style="display: none;">
                                     <?php echo e(Form::label('liason', __('Liason'),['class'=>'form-label'])); ?>
 
-                                    <?php echo Form::select('liason', ['' => 'Select a Liason Office'] + $liasons, null,array('class' => 'form-control select','required'=>'required')); ?>
+                                    <?php echo Form::select('liason', ['' => 'Select a Liason Office'] + $liasons, null,array('class' => 'form-control select','id' =>'select_liason')); ?>
 
                                     <?php $__errorArgs = ['liason'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -208,9 +218,13 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div id="headquarterTog" class="form-group col-md-6" style="display: none;">
-                                    <?php echo e(Form::label('headquaters', __('HeadQauter'),['class'=>'form-label'])); ?>
+                                    <?php echo e(Form::label('headquaters', __('Headquaters'),['class'=>'form-label'])); ?>
 
-                                    <?php echo Form::select('headquaters', ['' => 'Select a HeadQauter'] + $headquaters, null,array('class' => 'form-control select','required'=>'required','id' =>'select_headquater')); ?>
+                                    <?php echo Form::select('headquaters', [
+                                        '' => 'Select',
+                                        'directorates' => 'Directorates',
+                                        'departments' => 'Departments'
+                                    ], 'headquarters', array('class' => 'form-control select', 'id' => 'select_headquater')); ?>
 
                                     <?php $__errorArgs = ['headquaters'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -228,7 +242,7 @@ unset($__errorArgs, $__bag); ?>
                                 <div id="directorateTog" style="display: none;" class="form-group col-md-6">
                                     <?php echo e(Form::label('directorate', __('Directorate'),['class'=>'form-label'])); ?>
 
-                                    <?php echo Form::select('directorate', ['' => 'Select a Directorate'] + $directorates, null, ['class' => 'form-control select', 'required' => 'required']); ?>
+                                    <?php echo Form::select('directorate', ['' => 'Select a Directorate'] + $directorates, null, ['class' => 'form-control select','id'=>'sel_directorate']); ?>
 
                                     <?php $__errorArgs = ['directorate'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -246,7 +260,7 @@ unset($__errorArgs, $__bag); ?>
                                 <div id="departmentTog" style="display: none;" class="form-group col-md-6">
                                     <?php echo e(Form::label('department', __('Department'),['class'=>'form-label'])); ?>
 
-                                    <?php echo Form::select('department', $departments, null,array('class' => 'form-control select','required'=>'required','id' =>'sel_department')); ?>
+                                    <?php echo Form::select('department', $departments, null,array('class' => 'form-control select','id' =>'sel_department')); ?>
 
                                     <?php $__errorArgs = ['Department'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -261,10 +275,28 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div id="depUnitTog" style="display: none;" class="form-group col-md-6">
                                     <?php echo e(Form::label('unit', __('Unit'),['class'=>'form-label'])); ?>
 
-                                    <?php echo Form::select('unit', ['User Unit'], null,array('class' => 'form-control select','required'=>'required','id'=>'department_units')); ?>
+                                    <?php echo Form::select('unit', ['User Unit'], null,array('class' => 'form-control select','id'=>'department_units')); ?>
+
+                                    <?php $__errorArgs = ['Unit'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="invalid-role" role="alert">
+                                        <strong class="text-danger"><?php echo e($message); ?></strong>
+                                    </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                                <div id="dirUnitTog" style="display: none;" class="form-group col-md-6">
+                                    <?php echo e(Form::label('unit', __('Unit'),['class'=>'form-label'])); ?>
+
+                                    <?php echo Form::select('unit', ['Unit 01','Unit 02','Unit 03','Unit 4','Unit 5','Unit 6'], null,array('class' => 'form-control select','id'=>'directorate_units')); ?>
 
                                     <?php $__errorArgs = ['Unit'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -382,8 +414,6 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 
-
-
     <?php $__env->startPush('script'); ?>
     <script>
         var x = document.getElementById("subUnitToggles");
@@ -394,20 +424,30 @@ unset($__errorArgs, $__bag); ?>
             $('#select_location').on('change', function(){
                 var selectedValue = $(this).val();
                 $('#liasonTog, #headquarterTog').hide();
-                if (selectedValue == 1) {
+                // alert('Location changed to: ' + selectedValue);
+                if (selectedValue == "liaison") {
                     $('#liasonTog').show();
                     $('#departmentTog').show();
-                } else if (selectedValue == 0) {
+                    $('#depUnitTog').show();
+                    $('#select_liason').prop('required', true);
+                } else if (selectedValue == "headquarters") {
                     $('#headquarterTog').show();
+                    $('#select_headquater').prop('required', true);
                 }
             })
             $('#select_headquater').on('change', function(){
                 var selectedValue = $(this).val();
                 $('#departmentTog, #directorateTog').hide();
-                if (selectedValue == 1) {
+                if (selectedValue == "departments") {
                     $('#departmentTog').show();
-                } else if (selectedValue == 0) {
+                    $('#depUnitTog').show();
+                    $('#department_units').prop('required', true);
+                    $('#department_units').prop('required', true);
+                } else if (selectedValue == "directorates") {
                     $('#directorateTog').show();
+                    $('#dirUnitTog').show();
+                    $('#sel_directorate').prop('required', true);
+                    $('#directorate_units').prop('required', true);
                 }
             })
             //get department units

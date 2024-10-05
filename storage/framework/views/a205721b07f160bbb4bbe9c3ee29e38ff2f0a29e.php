@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
@@ -85,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">

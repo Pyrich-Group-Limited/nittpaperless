@@ -54,12 +54,19 @@ class HrmDashControl extends Controller
             'reason' => ['required','string'],
         ]);
 
+        $leaeType = LeaveType::find($data['type_of_leave']);
+        $myLeave = Leave::where('employee_id',Auth::user()->id)->where('status','Pending')->first();
         $leaveDuration = round(strtotime($data['end_date']) - strtotime($data['start_date']))/ 86400;
 
-        if(strtotime($data['start_date'])<strtotime(date('Y-m-d'))){
+        if($myLeave!=null){
+            return back()->with('error','Sorry you already have a pending leave application');
+        }elseif(strtotime($data['start_date'])<strtotime(date('Y-m-d'))){
             return back()->with('error','Sorry your start date can not be later than today')->withInput();
         }elseif($leaveDuration<=0){
             return back()->with('error','Sorry your start date can not be later than start')->withInput();
+        }elseif($leaveDuration>$leaeType->days){
+            return back()->with('error','Sorry you can not apply for more than '.$leaveType->days. ' for '.$leaveType->name)->withInput();
+
         }else{
             Leave::create([
                 'employee_id' => Auth::user()->id,
