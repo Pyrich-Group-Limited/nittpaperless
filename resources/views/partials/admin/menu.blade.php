@@ -573,7 +573,7 @@
                             ></a>
                             <ul class="dash-submenu">
                                 <li class="dash-item">
-                                    <a class="dash-link" href="{{ route('hrm.memo') }}">{{__('Memo/Letters')}}</a>
+                                    <a class="dash-link" href="{{ route('memos.index') }}">{{__('Memo/Letters')}}</a>
                                 </li>
                                 <li class="dash-item dash-hasmenu  {{ (Request::segment(1) == 'leave' || Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' :''}}">
                                     <a class="dash-link" href="#">{{__('Files')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>

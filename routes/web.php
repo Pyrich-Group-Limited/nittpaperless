@@ -143,6 +143,7 @@ use App\Http\Controllers\FileManagement\FolderController;
 
 use App\Http\Controllers\DtaController;
 use App\Http\Controllers\DtaReportController;
+use App\Http\Controllers\MemoController;
 
 
 
@@ -381,9 +382,14 @@ Route::get('/dta-requests/{id}', [DtaController::class, 'reject'])->name('reject
 Route::post('/dta-requests/{id}/reject', [DtaController::class, 'rejectRequest'])->name('reject.dta');
 
 Route::get('dta-reports', [DtaReportController::class, 'dta'])->name('reports.dta');
-
-
+Route::get('employee/{id}/dta/{status}/{type}/{month}/{year}', [DtaReportController::class, 'employeeDta'])->name('report.employee.dta');
 // Route::post('/travel-requests/{id}/approve-supervisor', [ApprovalController::class, 'approveBySupervisor'])->name('approve.supervisor');
+
+
+
+
+Route::resource('memos', MemoController::class);
+Route::post('memos/{id}/share', [MemoController::class, 'share'])->name('memos.share');
 
 
 //Product Stock
@@ -987,7 +993,7 @@ Route::post('job-application/stage/change', [JobApplicationController::class, 's
 
 Route::resource('custom-question', CustomQuestionController::class)->middleware(['auth', 'XSS']);
 Route::resource('interview-schedule', InterviewScheduleController::class)->middleware(['auth', 'XSS']);
-Route::get('interview-schedule/create/{id?}', [InterviewScheduleController::class, 'create'])->name('interview-schedule.create')->middleware(['auth', 'XSS']);
+Route::get('interview-schedule/create/{id?}', [Dta::class, 'create'])->name('interview-schedule.create')->middleware(['auth', 'XSS']);
 Route::get('taskboard/{view?}', [ProjectTaskController::class, 'taskBoard'])->name('taskBoard.view')->middleware(['auth', 'XSS']);
 Route::get('taskboard-view', [ProjectTaskController::class, 'taskboardView'])->name('project.taskboard.view')->middleware(['auth', 'XSS']);
 

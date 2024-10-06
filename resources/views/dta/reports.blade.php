@@ -85,7 +85,7 @@
             <div class=" mt-2 " id="multiCollapseExample1">
                 <div class="card">
                     <div class="card-body">
-                        {{ Form::open(array('route' => array('report.leave'),'method'=>'get','id'=>'report_leave')) }}
+                        {{ Form::open(array('route' => array('reports.dta'),'method'=>'get','id'=>'report_dta')) }}
                         <div class="row align-items-center justify-content-end">
                             <div class="col-xl-10">
                                 <div class="row">
@@ -139,11 +139,11 @@
                                 <div class="row">
                                     <div class="col-auto">
 
-                                        <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('report_leave').submit(); return false;" data-bs-toggle="tooltip" title="{{__('Apply')}}" data-original-title="{{__('apply')}}">
+                                        <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('report_dta').submit(); return false;" data-bs-toggle="tooltip" title="{{__('Apply')}}" data-original-title="{{__('apply')}}">
                                             <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
                                         </a>
 
-                                        <a href="{{route('report.leave')}}" class="btn btn-sm btn-danger " data-bs-toggle="tooltip"  title="{{ __('Reset') }}" data-original-title="{{__('Reset')}}">
+                                        <a href="{{route('reports.dta')}}" class="btn btn-sm btn-danger " data-bs-toggle="tooltip"  title="{{ __('Reset') }}" data-original-title="{{__('Reset')}}">
                                             <span class="btn-inner--icon"><i class="ti ti-trash-off text-white-off "></i></span>
                                         </a>
 
@@ -171,12 +171,12 @@
                                 </div>
                                 <div class="ms-3">
                                     <input type="hidden"
-                                           value="{{ $filterYear['branch'] . ' ' . __('Branch') . ' ' . $filterYear['dateYearRange'] . ' ' . $filterYear['type'] . ' ' . __('Leave Report of') . ' ' . $filterYear['department'] . ' ' . 'Department' }}"
+                                           value="{{ $filterYear['branch'] . ' ' . __('Branch') . ' ' . $filterYear['dateYearRange'] . ' ' . $filterYear['type'] . ' ' . __('DTA Report of') . ' ' . $filterYear['department'] . ' ' . 'Department' }}"
                                            id="filename">
                                     <h5 class="mb-0">{{ __('Report') }}</h5>
                                     <div>
                                         <p class="text-muted text-sm mb-0">
-                                            {{ $filterYear['type'] . ' ' . __('Leave Summary') }}</p>
+                                            {{ $filterYear['type'] . ' ' . __('DTA Summary') }}</p>
                                     </div>
 
                                 </div>
@@ -322,25 +322,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($leaves as $leave)
+                                @foreach($dtas as $dta)
                                     <tr>
-                                        {{--                                    <td class="">{{ \Auth::user()->employeeIdFormat($leave['employee_id']) }}</td>--}}
-                                        <td><a href="#" class="btn btn-sm btn-primary">{{ \Auth::user()->employeeIdFormat($leave['employee_id']) }}</a></td>
+                                        {{--                                    <td class="">{{ \Auth::user()->employeeIdFormat($dta['employee_id']) }}</td>--}}
+                                        <td><a href="#" class="btn btn-sm btn-primary">{{ \Auth::user()->employeeIdFormat($dta['employee_id']) }}</a></td>
 
-                                        <td>{{$leave['employee']}}</td>
+                                        <td>{{$dta['employee']}}</td>
                                         <td>
-                                            <div class="m-view-btn badge bg-info p-2 px-3 rounded">{{$leave['approved']}}
-                                                <a href="#" class="text-white" data-url="{{ route('report.employee.leave',[$leave['id'],'Approved',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')]) }}" data-ajax-popup="true" data-title="{{__('Approved Leave Detail')}}" data-bs-toggle="tooltip" title="{{__('View')}}" data-original-title="{{__('View')}}">{{__('View')}}</a>
+                                            <div class="m-view-btn badge bg-info p-2 px-3 rounded">{{$dta['approved']}}
+                                                <a href="#" class="text-white" data-size="lg" data-url="{{ route('report.employee.dta',[$dta['id'],'Approved',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')]) }}" data-ajax-popup="true" data-title="{{__('Approved DTA Detail')}}" data-bs-toggle="tooltip" title="{{__('View')}}" data-original-title="{{__('View')}}">{{__('View')}}</a>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="m-view-btn badge bg-danger p-2 px-3 rounded">{{$leave['reject']}}
-                                                <a href="#" class="text-white" data-url="{{ route('report.employee.leave',[$leave['id'],'Reject',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')]) }}" class="table-action table-action-delete" data-ajax-popup="true" data-title="{{__('Rejected Leave Detail')}}" data-bs-toggle="tooltip" title="{{__('View')}}" data-original-title="{{__('View')}}">{{__('View')}}</a>
+                                            <div class="m-view-btn badge bg-danger p-2 px-3 rounded">{{$dta['rejected']}}
+                                                <a href="#" class="text-white" data-size="lg" data-url="{{ route('report.employee.dta',[$dta['id'],'Rejected',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')]) }}" class="table-action table-action-delete" data-ajax-popup="true" data-title="{{__('Rejected DTA Detail')}}" data-bs-toggle="tooltip" title="{{__('View')}}" data-original-title="{{__('View')}}">{{__('View')}}</a>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="m-view-btn badge bg-warning p-2 px-3 rounded">{{$leave['pending']}}
-                                                <a href="#" class="text-white" data-url="{{ route('report.employee.leave',[$leave['id'],'Pending',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')]) }}" class="table-action table-action-delete" data-ajax-popup="true" data-title="{{__('Pending Leave Detail')}}" data-bs-toggle="tooltip" title="{{__('View')}}" data-original-title="{{__('View')}}">{{__('View')}}</a>
+                                            <div class="m-view-btn badge bg-warning p-2 px-3 rounded">{{$dta['pending']}}
+                                                <a href="#" class="text-white" data-size="lg" data-url="{{ route('report.employee.dta',[$dta['id'],'Pending',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')]) }}" class="table-action table-action-delete" data-ajax-popup="true" data-title="{{__('Pending DTA Detail')}}" data-bs-toggle="tooltip" title="{{__('View')}}" data-original-title="{{__('View')}}">{{__('View')}}</a>
                                             </div>
                                         </td>
                                     </tr>
