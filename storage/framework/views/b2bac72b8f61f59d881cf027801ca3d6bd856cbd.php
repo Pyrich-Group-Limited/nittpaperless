@@ -85,7 +85,7 @@
             <div class=" mt-2 " id="multiCollapseExample1">
                 <div class="card">
                     <div class="card-body">
-                        <?php echo e(Form::open(array('route' => array('report.leave'),'method'=>'get','id'=>'report_leave'))); ?>
+                        <?php echo e(Form::open(array('route' => array('reports.dta'),'method'=>'get','id'=>'report_dta'))); ?>
 
                         <div class="row align-items-center justify-content-end">
                             <div class="col-xl-10">
@@ -147,11 +147,11 @@
                                 <div class="row">
                                     <div class="col-auto">
 
-                                        <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('report_leave').submit(); return false;" data-bs-toggle="tooltip" title="<?php echo e(__('Apply')); ?>" data-original-title="<?php echo e(__('apply')); ?>">
+                                        <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('report_dta').submit(); return false;" data-bs-toggle="tooltip" title="<?php echo e(__('Apply')); ?>" data-original-title="<?php echo e(__('apply')); ?>">
                                             <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
                                         </a>
 
-                                        <a href="<?php echo e(route('report.leave')); ?>" class="btn btn-sm btn-danger " data-bs-toggle="tooltip"  title="<?php echo e(__('Reset')); ?>" data-original-title="<?php echo e(__('Reset')); ?>">
+                                        <a href="<?php echo e(route('reports.dta')); ?>" class="btn btn-sm btn-danger " data-bs-toggle="tooltip"  title="<?php echo e(__('Reset')); ?>" data-original-title="<?php echo e(__('Reset')); ?>">
                                             <span class="btn-inner--icon"><i class="ti ti-trash-off text-white-off "></i></span>
                                         </a>
 
@@ -180,12 +180,12 @@
                                 </div>
                                 <div class="ms-3">
                                     <input type="hidden"
-                                           value="<?php echo e($filterYear['branch'] . ' ' . __('Branch') . ' ' . $filterYear['dateYearRange'] . ' ' . $filterYear['type'] . ' ' . __('Leave Report of') . ' ' . $filterYear['department'] . ' ' . 'Department'); ?>"
+                                           value="<?php echo e($filterYear['branch'] . ' ' . __('Branch') . ' ' . $filterYear['dateYearRange'] . ' ' . $filterYear['type'] . ' ' . __('DTA Report of') . ' ' . $filterYear['department'] . ' ' . 'Department'); ?>"
                                            id="filename">
                                     <h5 class="mb-0"><?php echo e(__('Report')); ?></h5>
                                     <div>
                                         <p class="text-muted text-sm mb-0">
-                                            <?php echo e($filterYear['type'] . ' ' . __('Leave Summary')); ?></p>
+                                            <?php echo e($filterYear['type'] . ' ' . __('DTA Summary')); ?></p>
                                     </div>
 
                                 </div>
@@ -332,28 +332,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $__currentLoopData = $leaves; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $leave): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php $__currentLoopData = $dtas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         
-                                        <td><a href="#" class="btn btn-sm btn-primary"><?php echo e(\Auth::user()->employeeIdFormat($leave['employee_id'])); ?></a></td>
+                                        <td><a href="#" class="btn btn-sm btn-primary"><?php echo e(\Auth::user()->employeeIdFormat($dta['employee_id'])); ?></a></td>
 
-                                        <td><?php echo e($leave['employee']); ?></td>
+                                        <td><?php echo e($dta['employee']); ?></td>
                                         <td>
-                                            <div class="m-view-btn badge bg-info p-2 px-3 rounded"><?php echo e($leave['approved']); ?>
+                                            <div class="m-view-btn badge bg-info p-2 px-3 rounded"><?php echo e($dta['approved']); ?>
 
-                                                <a href="#" class="text-white" data-url="<?php echo e(route('report.employee.leave',[$leave['id'],'Approved',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')])); ?>" data-ajax-popup="true" data-title="<?php echo e(__('Approved Leave Detail')); ?>" data-bs-toggle="tooltip" title="<?php echo e(__('View')); ?>" data-original-title="<?php echo e(__('View')); ?>"><?php echo e(__('View')); ?></a>
+                                                <a href="#" class="text-white" data-size="lg" data-url="<?php echo e(route('report.employee.dta',[$dta['id'],'Approved',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')])); ?>" data-ajax-popup="true" data-title="<?php echo e(__('Approved DTA Detail')); ?>" data-bs-toggle="tooltip" title="<?php echo e(__('View')); ?>" data-original-title="<?php echo e(__('View')); ?>"><?php echo e(__('View')); ?></a>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="m-view-btn badge bg-danger p-2 px-3 rounded"><?php echo e($leave['reject']); ?>
+                                            <div class="m-view-btn badge bg-danger p-2 px-3 rounded"><?php echo e($dta['rejected']); ?>
 
-                                                <a href="#" class="text-white" data-url="<?php echo e(route('report.employee.leave',[$leave['id'],'Reject',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')])); ?>" class="table-action table-action-delete" data-ajax-popup="true" data-title="<?php echo e(__('Rejected Leave Detail')); ?>" data-bs-toggle="tooltip" title="<?php echo e(__('View')); ?>" data-original-title="<?php echo e(__('View')); ?>"><?php echo e(__('View')); ?></a>
+                                                <a href="#" class="text-white" data-size="lg" data-url="<?php echo e(route('report.employee.dta',[$dta['id'],'Rejected',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')])); ?>" class="table-action table-action-delete" data-ajax-popup="true" data-title="<?php echo e(__('Rejected DTA Detail')); ?>" data-bs-toggle="tooltip" title="<?php echo e(__('View')); ?>" data-original-title="<?php echo e(__('View')); ?>"><?php echo e(__('View')); ?></a>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="m-view-btn badge bg-warning p-2 px-3 rounded"><?php echo e($leave['pending']); ?>
+                                            <div class="m-view-btn badge bg-warning p-2 px-3 rounded"><?php echo e($dta['pending']); ?>
 
-                                                <a href="#" class="text-white" data-url="<?php echo e(route('report.employee.leave',[$leave['id'],'Pending',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')])); ?>" class="table-action table-action-delete" data-ajax-popup="true" data-title="<?php echo e(__('Pending Leave Detail')); ?>" data-bs-toggle="tooltip" title="<?php echo e(__('View')); ?>" data-original-title="<?php echo e(__('View')); ?>"><?php echo e(__('View')); ?></a>
+                                                <a href="#" class="text-white" data-size="lg" data-url="<?php echo e(route('report.employee.dta',[$dta['id'],'Pending',isset($_GET['type']) ?$_GET['type']:'no',isset($_GET['month'])?$_GET['month']:date('Y-m'),isset($_GET['year'])?$_GET['year']:date('Y')])); ?>" class="table-action table-action-delete" data-ajax-popup="true" data-title="<?php echo e(__('Pending DTA Detail')); ?>" data-bs-toggle="tooltip" title="<?php echo e(__('View')); ?>" data-original-title="<?php echo e(__('View')); ?>"><?php echo e(__('View')); ?></a>
                                             </div>
                                         </td>
                                     </tr>

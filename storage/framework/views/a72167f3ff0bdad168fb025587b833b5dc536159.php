@@ -571,7 +571,7 @@
                             ></a>
                             <ul class="dash-submenu">
                                 <li class="dash-item">
-                                    <a class="dash-link" href="<?php echo e(route('hrm.memo')); ?>"><?php echo e(__('Memo/Letters')); ?></a>
+                                    <a class="dash-link" href="<?php echo e(route('memos.index')); ?>"><?php echo e(__('Memo/Letters')); ?></a>
                                 </li>
                                 <li class="dash-item dash-hasmenu  <?php echo e((Request::segment(1) == 'leave' || Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' :''); ?>">
                                     <a class="dash-link" href="#"><?php echo e(__('Files')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>

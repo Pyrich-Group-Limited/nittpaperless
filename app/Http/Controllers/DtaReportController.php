@@ -20,17 +20,20 @@ class DtaReportController extends Controller
         if(\Auth::user()->can('manage report'))
         {
 
-            $branch = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            // $branch = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            $branch = Branch::all()->pluck('name', 'id');
             $branch->prepend('Select Branch', '');
 
-            $department = Department::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            // $department = Department::where('id', \Auth::user()->department_id)->get()->pluck('name', 'id');
+            $department = Department::all()->pluck('name', 'id');
             $department->prepend('Select Department', '');
 
             $filterYear['branch']        = __('All');
             $filterYear['department']    = __('All');
             $filterYear['type']          = __('Monthly');
             $filterYear['dateYearRange'] = date('M-Y');
-            $employees                   = Employee::where('created_by', \Auth::user()->creatorId());
+            $employees                   = User::all();
+            // $employees                   = User::where('created_by', \Auth::user()->creatorId());
             if(!empty($request->branch))
             {
                 $employees->where('branch_id', $request->branch);
@@ -43,9 +46,9 @@ class DtaReportController extends Controller
             }
 
 
-            $employees = $employees->get();
+            // $employees = $employees->get();
 
-            $leaves        = [];
+            $dtas        = [];
             $totalApproved = $totalReject = $totalPending = 0;
             foreach($employees as $employee)
             {
@@ -54,18 +57,18 @@ class DtaReportController extends Controller
                 $employeeLeave['employee_id'] = $employee->employee_id;
                 $employeeLeave['employee']    = $employee->name;
 
-                $approved = Leave::where('employee_id', $employee->id)->where('status', 'Approved');
-                $reject   = Leave::where('employee_id', $employee->id)->where('status', 'Reject');
-                $pending  = Leave::where('employee_id', $employee->id)->where('status', 'Pending');
+                $approved = Dta::where('user_id', $employee->id)->where('status', 'Approved');
+                $rejected   = Dta::where('user_id', $employee->id)->where('status', 'Rejected');
+                $pending  = Dta::where('user_id', $employee->id)->where('status', 'Pending');
 
                 if($request->type == 'monthly' && !empty($request->month))
                 {
                     $month = date('m', strtotime($request->month));
                     $year  = date('Y', strtotime($request->month));
 
-                    $approved->whereMonth('applied_on', $month)->whereYear('applied_on', $year);
-                    $reject->whereMonth('applied_on', $month)->whereYear('applied_on', $year);
-                    $pending->whereMonth('applied_on', $month)->whereYear('applied_on', $year);
+                    $approved->whereMonth('created_at', $month)->whereYear('created_at', $year);
+                    $rejected->whereMonth('created_at', $month)->whereYear('created_at', $year);
+                    $pending->whereMonth('created_at', $month)->whereYear('created_at', $year);
 
                     $filterYear['dateYearRange'] = date('M-Y', strtotime($request->month));
                     $filterYear['type']          = __('Monthly');
@@ -77,9 +80,9 @@ class DtaReportController extends Controller
                     $year      = date('Y');
                     $monthYear = date('Y-m');
 
-                    $approved->whereMonth('applied_on', $month)->whereYear('applied_on', $year);
-                    $reject->whereMonth('applied_on', $month)->whereYear('applied_on', $year);
-                    $pending->whereMonth('applied_on', $month)->whereYear('applied_on', $year);
+                    $approved->whereMonth('created_at', $month)->whereYear('created_at', $year);
+                    $rejected->whereMonth('created_at', $month)->whereYear('created_at', $year);
+                    $pending->whereMonth('created_at', $month)->whereYear('created_at', $year);
 
                     $filterYear['dateYearRange'] = date('M-Y', strtotime($monthYear));
                     $filterYear['type']          = __('Monthly');
@@ -88,9 +91,9 @@ class DtaReportController extends Controller
 
                 if($request->type == 'yearly' && !empty($request->year))
                 {
-                    $approved->whereYear('applied_on', $request->year);
-                    $reject->whereYear('applied_on', $request->year);
-                    $pending->whereYear('applied_on', $request->year);
+                    $approved->whereYear('created_at', $request->year);
+                    $rejected->whereYear('created_at', $request->year);
+                    $pending->whereYear('created_at', $request->year);
 
 
                     $filterYear['dateYearRange'] = $request->year;
@@ -98,19 +101,19 @@ class DtaReportController extends Controller
                 }
 
                 $approved = $approved->count();
-                $reject   = $reject->count();
+                $rejected   = $rejected->count();
                 $pending  = $pending->count();
 
                 $totalApproved += $approved;
-                $totalReject   += $reject;
+                $totalReject   += $rejected;
                 $totalPending  += $pending;
 
                 $employeeLeave['approved'] = $approved;
-                $employeeLeave['reject']   = $reject;
+                $employeeLeave['rejected']   = $rejected;
                 $employeeLeave['pending']  = $pending;
 
 
-                $leaves[] = $employeeLeave;
+                $dtas[] = $employeeLeave;
             }
 
             $starting_year = date('Y', strtotime('-5 year'));
@@ -124,11 +127,69 @@ class DtaReportController extends Controller
             $filter['totalPending']  = $totalPending;
 
 
-            return view('dta.reports', compact('department', 'branch', 'leaves', 'filterYear', 'filter'));
+            return view('dta.reports', compact('department', 'branch', 'dtas', 'filterYear', 'filter'));
         }
         else
         {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
+    }
+
+
+    public function employeeDta(Request $request, $employee_id, $status, $type, $month, $year)
+    {
+        if(\Auth::user()->can('manage report'))
+        {
+            // $leaveTypes = LeaveType::where('created_by', \Auth::user()->creatorId())->get();
+            $leaveTypes = Dta::where('user_id', $employee_id)->get();
+            // $leaveTypes = Dta::all();
+            $dtas     = [];
+            foreach($leaveTypes as $leaveType)
+            {
+                $leave        = new Dta();
+                $leave->title = $leaveType->title;
+                $totalLeave   = Dta::where('user_id', $employee_id)->where('status', $status);
+                if($type == 'yearly')
+                {
+                    $totalLeave->whereYear('created_at', $year);
+                }
+                else
+                {
+                    $m = date('m', strtotime($month));
+                    $y = date('Y', strtotime($month));
+
+                    $totalLeave->whereMonth('created_at', $m)->whereYear('created_at', $y);
+                }
+                $totalLeave = $totalLeave->count();
+
+                $leave->total = $totalLeave;
+                $dtas[]     = $leave;
+            }
+
+            $dtaData = Dta::where('user_id', $employee_id)->where('status', $status);
+            if($type == 'yearly')
+            {
+                $dtaData->whereYear('created_at', $year);
+            }
+            else
+            {
+                $m = date('m', strtotime($month));
+                $y = date('Y', strtotime($month));
+
+                $dtaData->whereMonth('created_at', $m)->whereYear('created_at', $y);
+            }
+
+
+            $dtaData = $dtaData->get();
+
+
+            return view('dta.dtaShow', compact('dtas', 'dtaData'));
+        }
+        else
+        {
+            return redirect()->back()->with('error','Permission denied.');
+        }
+
+
     }
 }
