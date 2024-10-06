@@ -56,11 +56,11 @@
                                                     <tbody>
                                                         @foreach($memos as $memo)
                                                             <tr class="font-style">
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
+                                                                <td>{{ $memo->creator->name }}</td>
+                                                                <td>{{ $memo->creator->department->name }}</td>
+                                                                <td>{{ $memo->creator->created_at }}</td>
+                                                                <td>{{ $memo->creator->created_at }}</td>
+                                                                <td>{{ $memo->creator->created_at }}</td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">
                                                                         <a href="#" class="mx-3 btn btn-sm align-items-center" data-url="{{ route('memos.show', $memo->id) }}"
@@ -69,13 +69,14 @@
                                                                         </a>
                                                                     </div>
                                                                     <div class="action-btn bg-info ms-2">
-                                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Return')}}"  data-title="{{__('Return')}}">
+                                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Share Memo')}}"  data-title="{{__('Share Memo')}}">
                                                                             <i class="ti ti-share text-white"></i>
                                                                         </a>
                                                                     </div>
-                                                                    <div class="action-btn bg-danger ms-2">
-                                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Reject')}}"  data-title="{{__('Reject')}}">
-                                                                            <i class="ti ti-plus text-white"></i>
+
+                                                                    <div class="action-btn bg-primary ms-2">
+                                                                        <a href="{{ route('memos.download',$memo->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
+                                                                            <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>
                                                                 </td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Memo;
 use App\Models\MemoShare;
 use App\Models\Signature;
@@ -70,7 +71,7 @@ class MemoController extends Controller
      */
     public function show($id)
     {
-        $memo = Memo::findOrFail($id);
+        $memo = Memo::find($id);
         $signatures = Signature::where('user_id', $memo->created_by)->first();
 
         return view('memos.show', compact('memo', 'signatures'));
@@ -92,6 +93,21 @@ class MemoController extends Controller
         ]);
 
         return redirect()->route('memos.show', $id)->with('success', 'Memo shared successfully.');
+    }
+
+    // Method to download the file
+    public function download(Memo $memo)
+    {
+        // Get the file's path from the database
+        $filePath = $memo->path;
+        // Check if the file exists in storage
+        if (Storage::exists($filePath)) {
+            // Return the file for download
+            return Storage::download($filePath, $memo->title);
+        } else {
+            // Return a 404 response if the file doesn't exist
+            abort(404, 'File not found.');
+        }
     }
 
     /**

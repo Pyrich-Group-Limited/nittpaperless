@@ -390,6 +390,7 @@ Route::get('employee/{id}/dta/{status}/{type}/{month}/{year}', [DtaReportControl
 
 Route::resource('memos', MemoController::class);
 Route::post('memos/{id}/share', [MemoController::class, 'share'])->name('memos.share');
+Route::get('/memos/{memo}/download', [MemoController::class, 'download'])->name('memos.download');
 
 
 //Product Stock

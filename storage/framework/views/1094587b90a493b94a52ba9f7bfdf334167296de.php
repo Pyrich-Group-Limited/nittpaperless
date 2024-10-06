@@ -56,11 +56,11 @@
                                                     <tbody>
                                                         <?php $__currentLoopData = $memos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $memo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <tr class="font-style">
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
+                                                                <td><?php echo e($memo->creator->name); ?></td>
+                                                                <td><?php echo e($memo->creator->department->name); ?></td>
+                                                                <td><?php echo e($memo->creator->created_at); ?></td>
+                                                                <td><?php echo e($memo->creator->created_at); ?></td>
+                                                                <td><?php echo e($memo->creator->created_at); ?></td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">
                                                                         <a href="#" class="mx-3 btn btn-sm align-items-center" data-url="<?php echo e(route('memos.show', $memo->id)); ?>"
@@ -69,13 +69,14 @@
                                                                         </a>
                                                                     </div>
                                                                     <div class="action-btn bg-info ms-2">
-                                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Return')); ?>"  data-title="<?php echo e(__('Return')); ?>">
+                                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Share Memo')); ?>"  data-title="<?php echo e(__('Share Memo')); ?>">
                                                                             <i class="ti ti-share text-white"></i>
                                                                         </a>
                                                                     </div>
-                                                                    <div class="action-btn bg-danger ms-2">
-                                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Reject')); ?>"  data-title="<?php echo e(__('Reject')); ?>">
-                                                                            <i class="ti ti-plus text-white"></i>
+
+                                                                    <div class="action-btn bg-primary ms-2">
+                                                                        <a href="<?php echo e(route('memos.download',$memo->id)); ?>" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Download Memo')); ?>"  data-title="<?php echo e(__('Download Memo')); ?>">
+                                                                            <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>
                                                                 </td>
