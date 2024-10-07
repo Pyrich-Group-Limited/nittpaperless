@@ -117,13 +117,12 @@ class MemoController extends Controller
         // Check if the file exists in storage
         if (Storage::exists($filePath)) {
             // Return the file for download
-            return Storage::download($filePath, $memo->title);
+            return Storage::download($filePath, $memo->file_name);
         } else {
             // Return a 404 response if the file doesn't exist
             abort(404, 'Memo file not found.');
         }
     }
-    // $memo->file_path
     /**
      * Show the form for editing the specified resource.
      *
