@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Mail;
 use Session;
 use Spatie\Permission\Models\Role;
 use App\Services\DataService;
+use App\Models\Signature;
+use Storage;
 
 
 
@@ -409,6 +411,40 @@ class  UserController extends Controller
             return redirect()->route('profile', \Auth::user()->id)->with('error', __('Something is wrong.'));
         }
     }
+
+    // Method to handle the signature update
+    public function updateSignature(Request $request)
+    {
+        $request->validate([
+            'signature' => 'required|image|mimes:jpeg,png,jpg,gif|max:1048',
+        ]);
+
+        $user = Auth::user();
+        $signature = $user->signature;  // Find the user's existing signature
+
+        // Handle the new signature upload
+        if ($request->hasFile('signature')) {
+            // Store the new file
+            $filePath = $request->file('signature')->store('signatures', 'public');
+
+            // Delete the old signature file if it exists
+            if ($signature && Storage::disk('public')->exists($signature->signature_path)) {
+                Storage::disk('public')->delete($signature->signature_path);
+            }
+
+            // Update or create the user's signature record
+            Signature::updateOrCreate(
+                ['user_id' => $user->id],  // Condition
+                ['signature_path' => $filePath]  // New data
+            );
+
+            return redirect()->back()->with('success', 'Signature updated successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Failed to upload the signature.');
+    }
+
+
     // User To do module
     public function todo_store(Request $request)
     {
