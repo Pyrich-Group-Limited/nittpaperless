@@ -28,13 +28,13 @@
                             <div class="d-flex justify-content-between w-100">
                                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="profile-tab3" data-bs-toggle="pill" href="#memos" role="tab" aria-controls="pills-summary" aria-selected="true">{{__('Memos')}}</a>
+                                        <a class="nav-link active" id="profile-tab3" data-bs-toggle="pill" href="#memos" role="tab" aria-controls="pills-summary" aria-selected="true"><i class="ti ti-files"> </i> {{__('Memos')}}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab3" data-bs-toggle="pill" href="#incoming" role="tab" aria-controls="pills-summary" aria-selected="true">{{__('Incoming Memos')}}</a>
+                                        <a class="nav-link" id="profile-tab3" data-bs-toggle="pill" href="#incoming" role="tab" aria-controls="pills-summary" aria-selected="true"><i class="ti ti-download"> </i> {{__('Incoming Memos')}}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab4" data-bs-toggle="pill" href="#outgoing" role="tab" aria-controls="pills-invoice" aria-selected="false">{{__('Outgoing Memos')}}</a>
+                                        <a class="nav-link" id="contact-tab4" data-bs-toggle="pill" href="#outgoing" role="tab" aria-controls="pills-invoice" aria-selected="false"><i class="ti ti-upload"> </i> {{__('Outgoing Memos')}}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -78,7 +78,7 @@
                                                                     </div>
 
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="{{ route('memos.download',$memo->id) }}" download class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
+                                                                        <a href="{{ route('memos.download',$memo->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
                                                                             <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>

@@ -113,14 +113,14 @@ class MemoController extends Controller
     public function download(Memo $memo)
     {
         // Get the file's path from the database
-        $filePath = $memo->path;
+        $filePath = $memo->file_path;
         // Check if the file exists in storage
         if (Storage::exists($filePath)) {
             // Return the file for download
-            return Storage::download($filePath);
+            return Storage::download($filePath, $memo->title);
         } else {
             // Return a 404 response if the file doesn't exist
-            abort(404, 'File not found.');
+            abort(404, 'Memo file not found.');
         }
     }
     // $memo->file_path

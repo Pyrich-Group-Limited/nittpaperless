@@ -28,13 +28,13 @@
                             <div class="d-flex justify-content-between w-100">
                                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="profile-tab3" data-bs-toggle="pill" href="#memos" role="tab" aria-controls="pills-summary" aria-selected="true"><?php echo e(__('Memos')); ?></a>
+                                        <a class="nav-link active" id="profile-tab3" data-bs-toggle="pill" href="#memos" role="tab" aria-controls="pills-summary" aria-selected="true"><i class="ti ti-files"> </i> <?php echo e(__('Memos')); ?></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab3" data-bs-toggle="pill" href="#incoming" role="tab" aria-controls="pills-summary" aria-selected="true"><?php echo e(__('Incoming Memos')); ?></a>
+                                        <a class="nav-link" id="profile-tab3" data-bs-toggle="pill" href="#incoming" role="tab" aria-controls="pills-summary" aria-selected="true"><i class="ti ti-download"> </i> <?php echo e(__('Incoming Memos')); ?></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab4" data-bs-toggle="pill" href="#outgoing" role="tab" aria-controls="pills-invoice" aria-selected="false"><?php echo e(__('Outgoing Memos')); ?></a>
+                                        <a class="nav-link" id="contact-tab4" data-bs-toggle="pill" href="#outgoing" role="tab" aria-controls="pills-invoice" aria-selected="false"><i class="ti ti-upload"> </i> <?php echo e(__('Outgoing Memos')); ?></a>
                                     </li>
                                 </ul>
                             </div>
@@ -78,7 +78,7 @@
                                                                     </div>
 
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="<?php echo e(route('memos.download',$memo->id)); ?>" download class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Download Memo')); ?>"  data-title="<?php echo e(__('Download Memo')); ?>">
+                                                                        <a href="<?php echo e(route('memos.download',$memo->id)); ?>" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Download Memo')); ?>"  data-title="<?php echo e(__('Download Memo')); ?>">
                                                                             <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>
