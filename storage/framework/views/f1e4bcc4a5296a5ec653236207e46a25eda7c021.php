@@ -26,16 +26,16 @@
                                 <th scope="row">Date created</th>
                                 <td><?php echo e($memo->created_at->format('d-M-Y')); ?></td>
                             </tr>
-                            
+
 
                             <tr>
-                                <th scope="row"></th>
+                                <th scope="row">Your Signature</th>
                                 <td>
                                     <?php if($isSigned): ?>
                                         <div class="alert alert-success">
                                             <strong>You have signed this memo.</strong>
                                         </div>
-                                        <img src="<?php echo e(asset('storage/' .$signatures->signature_path)); ?>" alt="Your Signature" height="50">
+                                        <img src="<?php echo e(asset('storage/' .$signatures->signature_path)); ?>" alt="Your Signature" height="70">
                                     <?php else: ?>
                                         <?php if($signatures): ?>
                                             <form action="<?php echo e(route('memos.sign', $memo->id)); ?>" method="POST">
@@ -49,6 +49,23 @@
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">All Signature</th>
+                                <?php if($memo->signedUsers->isEmpty()): ?>
+                                    <p>No signatures yet.</p>
+                                <?php else: ?>
+                                    <td>
+                                        <?php $__currentLoopData = $memo->signedUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($user->signature): ?>
+                                            <img src="<?php echo e(asset('storage/' . $user->signature->signature_path)); ?>" alt="Signature" height="50">
+                                        <?php else: ?>
+                                            <p>No signature uploaded.</p>
+                                        <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </td>
+                                <?php endif; ?>
                             </tr>
 
                         </tbody>
