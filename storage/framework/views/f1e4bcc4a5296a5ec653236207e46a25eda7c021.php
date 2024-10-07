@@ -26,14 +26,27 @@
                                 <th scope="row">Date created</th>
                                 <td><?php echo e($memo->created_at->format('d-M-Y')); ?></td>
                             </tr>
+                            
+
                             <tr>
-                                <th scope="row">Signature</th>
+                                <th scope="row"></th>
                                 <td>
-                                    
-                                    <?php if($signatures): ?>
-                                        <img src="<?php echo e(asset('storage/' . $signatures->signature_path)); ?>" alt="Signature" height="100">
+                                    <?php if($isSigned): ?>
+                                        <div class="alert alert-success">
+                                            <strong>You have signed this memo.</strong>
+                                        </div>
+                                        <img src="<?php echo e(asset('storage/' .$signatures->signature_path)); ?>" alt="Your Signature" height="50">
                                     <?php else: ?>
-                                        <p>You have not uploaded a signature yet.</p>
+                                        <?php if($signatures): ?>
+                                            <form action="<?php echo e(route('memos.sign', $memo->id)); ?>" method="POST">
+                                                <?php echo csrf_field(); ?>
+                                                <button type="submit" class="btn btn-success">Sign Memo</button>
+                                            </form>
+                                        <?php else: ?>
+                                            <div class="alert alert-danger">
+                                                <strong>You need to upload a signature before signing the memo.</strong>
+                                            </div>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 </td>
                             </tr>
@@ -42,6 +55,8 @@
                     </table>
                 </div>
             </div>
+
+
 
         </div>
 
