@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Memo;
 use App\Models\MemoShare;
+use App\Models\MemoComment;
 use App\Models\Signature;
 use App\Models\User;
 use Auth;
@@ -103,6 +104,12 @@ class MemoController extends Controller
             'memo_id' => $id,
             'shared_with' => $request->shared_with,
             'shared_by' => Auth::id(),
+            'comment' => $request->comment,
+        ]);
+
+        MemoComment::create([
+            'memo_id' => $id,
+            'user_id' => Auth::id(),
             'comment' => $request->comment,
         ]);
 

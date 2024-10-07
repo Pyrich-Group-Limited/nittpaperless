@@ -198,31 +198,29 @@ unset($__errorArgs, $__bag); ?>" name="password_confirmation" type="password" re
                     <h5><?php echo e(__('Signature')); ?></h5>
                 </div>
                 <div class="card-body">
-                    <?php echo e(Form::model($userDetail,array('route' => array('update.account'), 'method' => 'post', 'enctype' => "multipart/form-data"))); ?>
+                    <?php echo e(Form::model($userDetail,array('route' => array('signatures.update'), 'method' => 'post', 'enctype' => "multipart/form-data"))); ?>
 
                         <?php echo csrf_field(); ?>
+                        <?php echo method_field('PUT'); ?>
                         <div class="row">
-                            <div class="col-lg-9 col-md-6">
-                                <div class="form-group">
-                                    <div class="choose-files">
-                                        <label for="avatar">
-                                            <div class=" bg-primary profile_update"> <i class="ti ti-upload px-1"></i><?php echo e(__('Choose signature')); ?></div>
-                                            <input type="file" class="form-control file" name="profile" id="avatar" data-filename="profile_update">
-                                        </label>
-                                    </div>
-                                    <span class="text-xs text-muted"><?php echo e(__('Please upload a valid image file. Size of image should not be more than 1MB.')); ?></span>
-                                    <?php $__errorArgs = ['avatar'];
+                            
+
+                            <div class="col-lg-9 col-sm-6 form-group">
+                                <label for="signature" class="col-form-label text-dark"><?php echo e(__('New Signature')); ?></label>
+                                <input class="form-control" type="file" name="signature" required />
+                            </div>
+                            <span class="text-xs text-muted"><?php echo e(__('Please upload a valid image file. Size of image should not be more than 1MB.')); ?></span>
+                            <?php $__errorArgs = ['signature'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback text-danger text-xs" role="alert"><?php echo e($message); ?></span>
-                                    <?php unset($message);
+                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                </div>
-                            </div>
+
                             <div class="col-lg-12 text-end">
                                 <input type="submit" value="<?php echo e(__('Update Signature')); ?>" class="btn btn-print-invoice  btn-primary m-r-10">
                             </div>

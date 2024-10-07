@@ -28,7 +28,14 @@
                             </tr>
                             <tr>
                                 <th scope="row">Signature</th>
-                                {{-- <td><img src="{{ asset($signatures->signature_path) }}" alt="Signature" height="50"></td> --}}
+                                <td>
+                                    {{-- <img src="{{ asset('storage/' .$signatures->signature_path) }}" alt="Signature" height="50"> --}}
+                                    @if ($signatures)
+                                        <img src="{{ asset('storage/' . $signatures->signature_path) }}" alt="Signature" height="100">
+                                    @else
+                                        <p>You have not uploaded a signature yet.</p>
+                                    @endif
+                                </td>
                             </tr>
 
                         </tbody>

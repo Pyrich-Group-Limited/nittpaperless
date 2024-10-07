@@ -28,7 +28,14 @@
                             </tr>
                             <tr>
                                 <th scope="row">Signature</th>
-                                
+                                <td>
+                                    
+                                    <?php if($signatures): ?>
+                                        <img src="<?php echo e(asset('storage/' . $signatures->signature_path)); ?>" alt="Signature" height="100">
+                                    <?php else: ?>
+                                        <p>You have not uploaded a signature yet.</p>
+                                    <?php endif; ?>
+                                </td>
                             </tr>
 
                         </tbody>

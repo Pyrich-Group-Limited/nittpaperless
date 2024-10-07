@@ -1063,6 +1063,7 @@ Route::get('user/{id}/info/{type}', [UserController::class, 'getProjectTask'])->
 Route::delete('users/{id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware(['auth', 'XSS']);
 Route::get('get-department-units/{id}', [UserController::class, 'getDepartments']);
 Route::get('get-unit-subunits/{id}', [UserController::class, 'getSubUnits']);
+Route::put('/signature/update', [UserController::class, 'updateSignature'])->name('signatures.update');
 
 
 // End User Module
