@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('loan_approval_histories', function (Blueprint $table) {
+        Schema::create('leave_approvals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('leave_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('status');
-            $table->string('commend');
+            $table->unsignedBigInteger('leave_id');
+            $table->foreign('leave_id')->references('id')->on('leaves')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loan_approval_histories');
+        Schema::dropIfExists('leave_approvals');
     }
 };

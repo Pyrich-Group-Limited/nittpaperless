@@ -19,6 +19,7 @@ class DepartmentSeeder extends Seeder
     {
         $department = Department::create([
             'name' => "Bursry Department",
+            'category' => "department",
         ]);
 
             Unit::create([
@@ -59,6 +60,7 @@ class DepartmentSeeder extends Seeder
 
         $department = Department::create([
             'name' => "Registry Department",
+            'category' => "department",
         ]);
 
             Unit::create([
@@ -83,6 +85,7 @@ class DepartmentSeeder extends Seeder
 
         $department = Department::create([
             'name' => "Audit Department",
+            'category' => "department",
         ]);
 
             Unit::create([
@@ -106,6 +109,7 @@ class DepartmentSeeder extends Seeder
 
         $department = Department::create([
             'name' => "Library and Information Department",
+            'category' => "department",
         ]);
 
             Unit::create([
@@ -130,6 +134,7 @@ class DepartmentSeeder extends Seeder
 
         $department = Department::create([
             'name' => "Consultancy Department",
+            'category' => "department",
         ]);
 
             Unit::create([
@@ -139,6 +144,7 @@ class DepartmentSeeder extends Seeder
 
         $department = Department::create([
             'name' => "Transport, Research and Inteligence",
+            'category' => "department",
         ]);
 
             Unit::create([
@@ -163,6 +169,7 @@ class DepartmentSeeder extends Seeder
 
         $department = Department::create([
             'name' => "Transport School Department",
+            'category' => "department",
         ]);
 
             $unit = Unit::create([
@@ -248,6 +255,7 @@ class DepartmentSeeder extends Seeder
 
         $department = Department::create([
             'name' => "Transport Technology Center Department",
+            'category' => "department",
         ]);
 
             Unit::create([
@@ -324,5 +332,30 @@ class DepartmentSeeder extends Seeder
                     'unit_id' => $unit->id,
                     'name' => "Machine Tools"
                 ]);
+
+        $department = Department::create([
+            'name' => "Legal",
+            'category' => "directorate",
+        ]);
+
+        $department = Department::create([
+            'name' => "Servicom",
+            'category' => "directorate",
+        ]);
+
+        $department = Department::create([
+            'name' => "Annexes",
+            'category' => "directorate",
+        ]);
+
+        $department = Department::create([
+            'name' => "Procurements",
+            'category' => "directorate",
+        ]);
+
+        $department = Department::create([
+            'name' => "Physical Plannings",
+            'category' => "directorate",
+        ]);
     }
 }

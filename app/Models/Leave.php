@@ -9,6 +9,8 @@ class Leave extends Model
     protected $fillable = [
         'employee_id',
         'leave_type_id',
+        'department_id',
+        'unit_id',
         'applied_on',
         'start_date',
         'end_date',
@@ -16,6 +18,7 @@ class Leave extends Model
         'leave_reason',
         'remark',
         'status',
+        'current_approver',
         'created_by',
     ];
 

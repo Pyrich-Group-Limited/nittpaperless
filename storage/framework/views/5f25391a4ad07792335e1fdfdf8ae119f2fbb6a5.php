@@ -293,7 +293,7 @@
                                     ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                                     ></a>
                                 <ul class="dash-submenu <?php echo e((Request::segment(1) == 'stages' || Request::segment(1) == 'labels' || Request::segment(1) == 'sources' || Request::segment(1) == 'lead_stages' || Request::segment(1) == 'leads'  || Request::segment(1) == 'form_builder' || Request::segment(1) == 'form_response' || Request::segment(1) == 'deals' || Request::segment(1) == 'pipelines')?'show':''); ?>">
-                                    
+
                                     <li class="dash-item <?php echo e((Request::segment(1) == 'chats')?'active':''); ?>">
                                         <a class="dash-link" href="<?php echo e(route('chats')); ?>"><?php echo e(__('Talk To')); ?></a>
                                     </li>
@@ -562,8 +562,8 @@
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>
-                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'users' || Request::segment(1) == 'roles'
-                            || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''); ?>">
+                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'memos' || Request::segment(1) == 'files'
+                            || Request::segment(1) == 'folders'  || Request::segment(1) == 'archived')?' active dash-trigger':''); ?>">
                         <a href="#!" class="dash-link active dash-trigger"
                         ><span class="dash-micon"><i class="ti ti-files"></i></span
                             ><span class="dash-mtext"><?php echo e(__('Document Mgt')); ?></span
@@ -571,7 +571,7 @@
                             ></a>
                             <ul class="dash-submenu">
                                 <li class="dash-item">
-                                    <a class="dash-link" href="<?php echo e(route('hrm.memo')); ?>"><?php echo e(__('Memo/Letters')); ?></a>
+                                    <a class="dash-link" href="<?php echo e(route('memos.index')); ?>"><?php echo e(__('Memo/Letters')); ?></a>
                                 </li>
                                 <li class="dash-item dash-hasmenu  <?php echo e((Request::segment(1) == 'leave' || Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' :''); ?>">
                                     <a class="dash-link" href="#"><?php echo e(__('Files')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
@@ -735,16 +735,12 @@
                                     <a class="dash-link" href="#"><?php echo e(__('DTA Management')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                     <ul class="dash-submenu">
                                         <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?> ">
-                                            <a class="dash-link" href="<?php echo e(route('hrm.dta')); ?>"><?php echo e(__('DTA')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('dta.index')); ?>"><?php echo e(__('DTA')); ?></a>
                                         </li>
                                         <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?>">
-                                            <a class="dash-link" href="<?php echo e(route('report.leave')); ?>"><?php echo e(__('DTA Report')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('reports.dta')); ?>"><?php echo e(__('DTA Report')); ?></a>
                                         </li>
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage travel')): ?>
-                                            <li class="dash-item <?php echo e((request()->is('travel*') ? 'active' : '')); ?>">
-                                                <a class="dash-link" href="<?php echo e(route('travel.index')); ?>"><?php echo e(__('Trip')); ?></a>
-                                            </li>
-                                        <?php endif; ?>
+                                        
                                     </ul>
                                 </li>
                                 <li class="dash-item dash-hasmenu  ">

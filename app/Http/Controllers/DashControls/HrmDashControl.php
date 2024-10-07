@@ -70,6 +70,8 @@ class HrmDashControl extends Controller
         }else{
             Leave::create([
                 'employee_id' => Auth::user()->id,
+                'department_id' => Auth::user()->department->id,
+                'unit_id' => Auth::user()->unit->id,
                 'created_by' => Auth::user()->id,
                 'leave_type_id' => $data['type_of_leave'],
                 'start_date' => $data['start_date'],

@@ -16,6 +16,8 @@ class CreateLeavesTable extends Migration
         Schema::create('leaves', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('employee_id');
+            $table->integer('department_id');
+            $table->integer('unit_id');
             $table->integer('leave_type_id');
             $table->date('applied_on');
             $table->date('start_date');
@@ -23,7 +25,8 @@ class CreateLeavesTable extends Migration
             $table->string('total_leave_days');
             $table->string('leave_reason');
             $table->string('remark')->nullable();
-            $table->string('status');
+            $table->string('status')->default('pending');
+            $table->string('current_approver')->nullable(); // supervisor, unit_head, hod, accountant
             $table->integer('created_by');
             $table->timestamps();
         });

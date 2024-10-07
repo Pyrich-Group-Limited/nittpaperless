@@ -14,6 +14,40 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <li class="breadcrumb-item"><?php echo e(__('Files')); ?></li>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('action-btn'); ?>
+    <div class="float-end">
+        
+                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ti ti-filter"></i>
+                </a>
+                <div class="dropdown-menu  dropdown-steady" id="project_sort">
+                    <a class="dropdown-item active" href="#" data-val="created_at-desc">
+                        <i class="ti ti-sort-descending"></i><?php echo e(__('Newest')); ?>
+
+                    </a>
+                    <a class="dropdown-item" href="#" data-val="created_at-asc">
+                        <i class="ti ti-sort-ascending"></i><?php echo e(__('Oldest')); ?>
+
+                    </a>
+                </div>
+
+            
+
+            
+                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="btn-inner--icon"><?php echo e(__('Status')); ?></span>
+                </a>
+                <div class="dropdown-menu  project-filter-actions dropdown-steady" id="project_status">
+                    <a class="dropdown-item filter-action filter-show-all pl-4 active" href="#"><?php echo e(__('Show All')); ?></a>
+                        <a class="dropdown-item filter-action pl-4" href="#" data-val=""><?php echo e(__('Status Filter')); ?></a>
+                </div>
+            
+            <a href="#" data-size="lg" data-url="<?php echo e(route('file.create')); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('Create new file')); ?>" class="btn btn-sm btn-primary">
+                <i class="ti ti-plus"></i>
+            </a>
+    </div>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col-sm-12">
@@ -25,12 +59,16 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="btn-box">
-                                        <input type="text" class="form-control" placeholder="Search files, folder">
+                                        <form action="<?php echo e(route('file.index')); ?>" method="GET">
+                                            <input type="text" name="search" class="form-control" placeholder="Search files or folders" value="<?php echo e(request('search')); ?>">
+                                            <button type="submit" class="btn btn-primary btn-sm" hidden>Search</button>
+                                        </form>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto mt-2">
+                        <div class="col-auto">
                             <div class="row">
                                 <div class="col-auto">
                                     <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
@@ -46,9 +84,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         </a>
                                     </div>
 
-                                    <a href="#" class="btn btn-primary btn-sm" data-url="<?php echo e(route('file.upload')); ?>" data-ajax-popup="true"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo e(__('Upload Files')); ?>"><i class="ti ti-cloud-upload"></i> Upload
-                                    </a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -83,15 +119,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                     <i class="ti ti-dots-vertical"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    
-                                                    
-
-                                                    <a href="#!"  class="dropdown-item btn-share-file" data-file-id="<?php echo e($file->id); ?>" data-file-name="<?php echo e($file->file_name); ?>" data-toggle="modal" data-target="#shareFileModal" >
+                                                    <a href="#!" data-size="lg" data-url="<?php echo e(route('file.shareModal',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Share File')); ?>">
                                                         <i class="ti ti-share"></i>
-                                                        <span> <?php echo e(__('Share')); ?> </span>
+                                                        <span><?php echo e(__('Share')); ?></span>
                                                     </a>
-
-                                                    <a href="#!" data-url="<?php echo e(route('files.rename',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit User')); ?>">
+                                                    <a href="#!" data-url="<?php echo e(route('file.renameModal',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Rename File')); ?>">
                                                         <i class="ti ti-pencil"></i>
                                                         <span><?php echo e(__('Rename')); ?></span>
                                                     </a>
@@ -99,14 +131,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                         <i class="ti ti-download"></i>
                                                         <span> <?php echo e(__('Download')); ?> </span>
                                                     </a>
-                                                    <a href="#!"  class="dropdown-item bs-pass-para">
-                                                        <i class="ti ti-archive"></i>
-                                                        <span> <?php echo e(__('Archive')); ?> </span>
-                                                    </a>
-                                                    <a href="#!"  class="dropdown-item bs-pass-para">
-                                                        <i class="ti ti-adjustments"></i>
-                                                        <span><?php echo e(__('Restore')); ?> </span>
-                                                    </a>
+                                                    <form action="<?php echo e(route('files.archive', $file->id)); ?>" method="POST" style="display:inline;">
+                                                        <?php echo csrf_field(); ?>
+                                                        <button type="submit" class="btn btn-white dropdown-item"><i class="ti ti-archive"></i>Archive</button>
+                                                    </form>
+                                                    
+                                                    
                                                     <?php echo Form::close(); ?>
 
                                                 </div>
@@ -207,7 +237,6 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 
             </div>
         </div>
-        <?php echo $__env->make('filemanagement.modals.share-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
 <?php $__env->stopSection(); ?>
 

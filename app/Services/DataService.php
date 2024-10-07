@@ -6,7 +6,7 @@ namespace App\Services;
 class DataService
 {
     public function setLocation(){
-        $location = 
+        $location =
         [
             'headquaters',
             'liason_offices'
@@ -21,18 +21,18 @@ class DataService
         ];
     }
 
-    public function setDepartments() {
-        return [
-            'Registry',
-            'Audit',
-            'Library and Information',
-            'Consultancy',
-            'Transport Reseach and Intelligence',
-            'Transport School',
-            'Transport Technology Center',
-            'Bursary'
-        ];
-    }
+    // public function setDepartments() {
+    //     return [
+    //         'Registry',
+    //         'Audit',
+    //         'Library and Information',
+    //         'Consultancy',
+    //         'Transport Reseach and Intelligence',
+    //         'Transport School',
+    //         'Transport Technology Center',
+    //         'Bursary'
+    //     ];
+    // }
 
     public function getLiasons() {
         return [
