@@ -68,6 +68,17 @@ class User extends Authenticatable
         return $this->hasMany(Dta::class);
     }
 
+    public function signature()
+    {
+        return $this->hasOne(Signature::class);
+    }
+
+    public function signedMemos()
+    {
+        return $this->belongsToMany(Memo::class, 'memo_signatures')
+                    ->withTimestamps();
+    }
+
 
     protected $hidden = [
         'password',

@@ -26,25 +26,16 @@
                                 <th scope="row">Date created</th>
                                 <td>{{ $memo->created_at->format('d-M-Y')  }}</td>
                             </tr>
-                            {{-- <tr>
-                                <th scope="row">Signature</th>
-                                <td>
-                                    @if ($signatures)
-                                        <img src="{{ asset('storage/' . $signatures->signature_path) }}" alt="Signature" height="100">
-                                    @else
-                                        <p>You have not uploaded a signature yet.</p>
-                                    @endif
-                                </td>
-                            </tr> --}}
+
 
                             <tr>
-                                <th scope="row"></th>
+                                <th scope="row">Your Signature</th>
                                 <td>
                                     @if ($isSigned)
                                         <div class="alert alert-success">
                                             <strong>You have signed this memo.</strong>
                                         </div>
-                                        <img src="{{ asset('storage/' .$signatures->signature_path) }}" alt="Your Signature" height="50">
+                                        <img src="{{ asset('storage/' .$signatures->signature_path) }}" alt="Your Signature" height="70">
                                     @else
                                         @if ($signatures)
                                             <form action="{{ route('memos.sign', $memo->id) }}" method="POST">
@@ -58,6 +49,23 @@
                                         @endif
                                     @endif
                                 </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">All Signature</th>
+                                @if ($memo->signedUsers->isEmpty())
+                                    <p>No signatures yet.</p>
+                                @else
+                                    <td>
+                                        @foreach ($memo->signedUsers as $user)
+                                        @if ($user->signature)
+                                            <img src="{{ asset('storage/' . $user->signature->signature_path) }}" alt="Signature" height="50">
+                                        @else
+                                            <p>No signature uploaded.</p>
+                                        @endif
+                                        @endforeach
+                                    </td>
+                                @endif
                             </tr>
 
                         </tbody>

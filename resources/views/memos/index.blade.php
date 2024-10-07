@@ -110,7 +110,7 @@
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">
                                                                         <a href="#" class="mx-3 btn btn-sm align-items-center" data-url="{{ route('memos.show', $incomingMemo->memo_id) }}"
-                                                                            data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('View Memo')}}" data-title="{{__('View Memo')}}">
+                                                                            data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="{{__('View Memo')}}" data-title="{{__('View Memo')}}">
                                                                             <i class="ti ti-eye text-white"></i>
                                                                         </a>
                                                                     </div>
@@ -152,7 +152,7 @@
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">
                                                                         <a href="#" class="mx-3 btn btn-sm align-items-center" data-url="{{ route('memos.show', $outgoingMemo->memo_id) }}"
-                                                                            data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('View Memo')}}" data-title="{{__('View Memo')}}">
+                                                                            data-ajax-popup="true" data-size="lg " data-bs-toggle="tooltip" title="{{__('View Memo')}}" data-title="{{__('View Memo')}}">
                                                                             <i class="ti ti-eye text-white"></i>
                                                                         </a>
                                                                     </div>

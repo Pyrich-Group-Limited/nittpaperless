@@ -28,4 +28,10 @@ class Memo extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function signedUsers()
+    {
+        return $this->belongsToMany(User::class, 'memo_signatures')
+                    ->withTimestamps();
+    }
 }

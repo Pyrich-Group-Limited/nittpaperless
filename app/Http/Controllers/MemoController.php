@@ -81,12 +81,13 @@ class MemoController extends Controller
         $userSignature = Auth::user()->signature; // Check if user has a signature
 
         $isSigned = MemoSignature::where('memo_id', $id)->where('user_id', Auth::id())->exists(); // Check if user already signed
-
-        $users = User::where('department_id',Auth::user()->department_id)->get();
+        // $memoApprovals = MemoSignature::where('memo_id', $id)->get();
+        $memoApprovals = Memo::with('signedUsers.signature')->findOrFail($id);
         $memo = Memo::find($id);
         $signatures = Signature::where('user_id', Auth::user()->id)->first();
 
-        return view('memos.show', compact('memo', 'signatures','users','isSigned','userSignature'));
+        $users = User::where('department_id',Auth::user()->department_id)->get();
+        return view('memos.show', compact('memo', 'signatures','users','isSigned','userSignature','memoApprovals'));
     }
 
     public function shareModal($id)
