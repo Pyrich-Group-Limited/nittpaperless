@@ -8,6 +8,7 @@ use App\Models\Memo;
 use App\Models\MemoShare;
 use App\Models\MemoComment;
 use App\Models\Signature;
+use App\Models\MemoSignature;
 use App\Models\User;
 use Auth;
 
@@ -76,11 +77,16 @@ class MemoController extends Controller
      */
     public function show($id)
     {
+
+        $userSignature = Auth::user()->signature; // Check if user has a signature
+
+        $isSigned = MemoSignature::where('memo_id', $id)->where('user_id', Auth::id())->exists(); // Check if user already signed
+
         $users = User::where('department_id',Auth::user()->department_id)->get();
         $memo = Memo::find($id);
-        $signatures = Signature::where('user_id', $memo->created_by)->first();
+        $signatures = Signature::where('user_id', Auth::user()->id)->first();
 
-        return view('memos.show', compact('memo', 'signatures','users'));
+        return view('memos.show', compact('memo', 'signatures','users','isSigned','userSignature'));
     }
 
     public function shareModal($id)
@@ -115,6 +121,34 @@ class MemoController extends Controller
 
         return redirect()->route('memos.index')->with('success', 'Memo shared successfully.');
     }
+
+    // Method to handle signing a memo
+    public function signMemo($id)
+    {
+        $memo = Memo::find($id);
+
+        $signatures = Signature::where('user_id', Auth::user()->id)->first();
+        // Check if the user has a signature before signing
+        if (!$signatures) {
+            return redirect()->back()->with('error', 'You must upload a signature before signing the memo');
+        }
+
+        // Check if the user has already signed the memo
+        $alreadySigned = MemoSignature::where('memo_id', $memo->id)->where('user_id', Auth::id())->exists();
+
+        if ($alreadySigned) {
+            return redirect()->back()->with('error', 'You have already signed this memo.');
+        }
+
+        // Create a new memo signature
+        MemoSignature::create([
+            'memo_id' => $memo->id,
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->back()->with('success', 'Memo signed successfully.');
+    }
+
 
     // Method to download the file
     public function download(Memo $memo)

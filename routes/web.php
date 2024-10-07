@@ -393,6 +393,8 @@ Route::get('memo-share/{id}', [MemoController::class, 'shareModal'])->name('memo
 Route::post('memos/{id}/share', [MemoController::class, 'share'])->name('memos.share');
 Route::get('/memos/{memo}/download', [MemoController::class, 'download'])->name('memos.download');
 
+Route::post('/memos/{id}/sign', [MemoController::class, 'signMemo'])->name('memos.sign');
+
 
 //Product Stock
 Route::resource('productstock', ProductStockController::class)->middleware(['auth', 'XSS', 'revalidate']);
