@@ -5,19 +5,16 @@
             <div class="row">
                 <div class="form-group">
                     <label for="">Memo Title</label>
-                    <input type="text" name="filename" class="form-control" required>
+                    <input type="text" name="title" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="">Memo Description</label>
-                    
-                    <textarea name="" id="" class="form-control" cols="30" required></textarea>
+                    <textarea name="description" id="" class="form-control" cols="30" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="">Attach File</label>
                     <input type="file" name="file" aria-multiselectable="" class="form-control" required>
                 </div>
-                
-
             </div>
         </div>
 

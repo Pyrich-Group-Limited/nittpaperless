@@ -127,23 +127,35 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     <h5>{{__('Signature')}}</h5>
                 </div>
                 <div class="card-body">
-                    {{Form::model($userDetail,array('route' => array('update.account'), 'method' => 'post', 'enctype' => "multipart/form-data"))}}
+                    {{Form::model($userDetail,array('route' => array('signatures.update'), 'method' => 'post', 'enctype' => "multipart/form-data"))}}
                         @csrf
+                        @method('PUT')
                         <div class="row">
-                            <div class="col-lg-9 col-md-6">
+                            {{-- <div class="col-lg-9 col-md-6">
                                 <div class="form-group">
                                     <div class="choose-files">
-                                        <label for="avatar">
+                                        <label for="signature">
                                             <div class=" bg-primary profile_update"> <i class="ti ti-upload px-1"></i>{{__('Choose signature')}}</div>
-                                            <input type="file" class="form-control file" name="profile" id="avatar" data-filename="profile_update">
+                                            <input type="file" class="form-control file" name="signature" id="avatar" data-filename="profile_update">
                                         </label>
+
                                     </div>
                                     <span class="text-xs text-muted">{{ __('Please upload a valid image file. Size of image should not be more than 1MB.')}}</span>
-                                    @error('avatar')
+                                    @error('signature')
                                     <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
                                     @enderror
                                 </div>
+                            </div> --}}
+
+                            <div class="col-lg-9 col-sm-6 form-group">
+                                <label for="signature" class="col-form-label text-dark">{{ __('New Signature') }}</label>
+                                <input class="form-control" type="file" name="signature" required />
                             </div>
+                            <span class="text-xs text-muted">{{ __('Please upload a valid image file. Size of image should not be more than 1MB.')}}</span>
+                            @error('signature')
+                                    <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
+                            @enderror
+
                             <div class="col-lg-12 text-end">
                                 <input type="submit" value="{{__('Update Signature')}}" class="btn btn-print-invoice  btn-primary m-r-10">
                             </div>

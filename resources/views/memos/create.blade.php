@@ -15,13 +15,6 @@
                     <label for="">Attach File</label>
                     <input type="file" name="file" aria-multiselectable="" class="form-control" required>
                 </div>
-                {{-- <div class="form-group">
-                    <label for="">File Folder</label>
-                    <select name="folder_id" id="" class="form-control" >
-                        <option value="#">Select folder</option>
-                    </select>
-                </div> --}}
-
             </div>
         </div>
 

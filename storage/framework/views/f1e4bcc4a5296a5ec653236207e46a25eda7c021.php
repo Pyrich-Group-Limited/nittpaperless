@@ -12,60 +12,60 @@
                             </style>
                             <tr>
                                 <th scope="row">Memo Title</th>
-                                <td>{{ $memo->title }}</td>
+                                <td><?php echo e($memo->title); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Memo Description</th>
-                                <td style="white-space: pre-wrap">{{ $memo->description }}</td>
+                                <td style="white-space: pre-wrap"><?php echo e($memo->description); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Created  By:</th>
-                                <td>{{ $memo->creator->name }}</td>
+                                <td><?php echo e($memo->creator->name); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Date created</th>
-                                <td>{{ $memo->created_at->format('d-M-Y')  }}</td>
+                                <td><?php echo e($memo->created_at->format('d-M-Y')); ?></td>
                             </tr>
 
 
                             <tr>
                                 <th scope="row">Your Signature</th>
                                 <td>
-                                    @if ($isSigned)
+                                    <?php if($isSigned): ?>
                                         <div class="alert alert-success">
                                             <strong>You have signed this memo.</strong>
                                         </div>
-                                        <img src="{{ asset('storage/' .$signatures->signature_path) }}" alt="Your Signature" height="70">
-                                    @else
-                                        @if ($signatures)
-                                            <form action="{{ route('memos.sign', $memo->id) }}" method="POST">
-                                                @csrf
+                                        <img src="<?php echo e(asset('storage/' .$signatures->signature_path)); ?>" alt="Your Signature" height="70">
+                                    <?php else: ?>
+                                        <?php if($signatures): ?>
+                                            <form action="<?php echo e(route('memos.sign', $memo->id)); ?>" method="POST">
+                                                <?php echo csrf_field(); ?>
                                                 <button type="submit" class="btn btn-success">Sign Memo</button>
                                             </form>
-                                        @else
+                                        <?php else: ?>
                                             <div class="alert alert-danger">
                                                 <strong>You need to upload a signature before signing the memo.</strong>
                                             </div>
-                                        @endif
-                                    @endif
+                                        <?php endif; ?>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
 
                             <tr>
                                 <th scope="row">All Signature</th>
-                                @if ($memo->signedUsers->isEmpty())
+                                <?php if($memo->signedUsers->isEmpty()): ?>
                                     <p>No signatures yet.</p>
-                                @else
+                                <?php else: ?>
                                     <td>
-                                        @foreach ($memo->signedUsers as $user)
-                                        @if ($user->signature)
-                                            <img src="{{ asset('storage/' . $user->signature->signature_path) }}" alt="Signature" height="50">
-                                        @else
+                                        <?php $__currentLoopData = $memo->signedUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($user->signature): ?>
+                                            <img src="<?php echo e(asset('storage/' . $user->signature->signature_path)); ?>" alt="Signature" height="50">
+                                        <?php else: ?>
                                             <p>No signature uploaded.</p>
-                                        @endif
-                                        @endforeach
+                                        <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </td>
-                                @endif
+                                <?php endif; ?>
                             </tr>
 
                         </tbody>
@@ -80,7 +80,8 @@
         </div>
 
         <div class="modal-footer">
-            <a href="{{ route('memos.download',$memo->id) }}" class="btn btn-primary btn-sm" download><i class="ti ti-download text-white"></i> Download Memo</a>
-            <input type="button" value="{{('Close')}}" class="btn  btn-light btn-sm" data-bs-dismiss="modal">
+            <a href="<?php echo e(route('memos.download',$memo->id)); ?>" class="btn btn-primary btn-sm" download><i class="ti ti-download text-white"></i> Download Memo</a>
+            <input type="button" value="<?php echo e(('Close')); ?>" class="btn  btn-light btn-sm" data-bs-dismiss="modal">
         </div>
     </div>
+<?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/memos/show.blade.php ENDPATH**/ ?>

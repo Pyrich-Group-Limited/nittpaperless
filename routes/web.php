@@ -389,7 +389,11 @@ Route::get('employee/{id}/dta/{status}/{type}/{month}/{year}', [DtaReportControl
 
 
 Route::resource('memos', MemoController::class);
+Route::get('memo-share/{id}', [MemoController::class, 'shareModal'])->name('memos.shareModal');
 Route::post('memos/{id}/share', [MemoController::class, 'share'])->name('memos.share');
+Route::get('/memos/{memo}/download', [MemoController::class, 'download'])->name('memos.download');
+
+Route::post('/memos/{id}/sign', [MemoController::class, 'signMemo'])->name('memos.sign');
 
 
 //Product Stock
@@ -1063,6 +1067,7 @@ Route::delete('users/{id}', [UserController::class, 'destroy'])->name('user.dest
 Route::get('get-department-units/{id}', [UserController::class, 'getDepartments']);
 Route::get('get-department/{id}', [UserController::class, 'departments']);
 Route::get('get-unit-subunits/{id}', [UserController::class, 'getSubUnits']);
+Route::put('/signature/update', [UserController::class, 'updateSignature'])->name('signatures.update');
 
 
 // End User Module
