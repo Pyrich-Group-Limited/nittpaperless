@@ -4,14 +4,14 @@
 $profile=\App\Models\Utility::get_file('uploads/avatar');
 @endphp
 @section('page-title')
-    {{__('Files')}}
+    {{__('Folders')}}
 @endsection
 @push('script-page')
 
 @endpush
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Files')}}</li>
+    <li class="breadcrumb-item">{{__('Folders')}}</li>
 @endsection
 
 @section('content')
@@ -60,7 +60,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">
-                <h2>My Folders</h2>
+                {{-- <h2>My Folders</h2> --}}
                 @if($folders->count() > 0)
                     @foreach($folders as $folder)
                     <div class="col-md-2 mb-4">
@@ -118,7 +118,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     </div>
                     @endforeach
                 @else
-                    <p>No folders created.</p>
+                    <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                        no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                        alt="No results found" >
+                        <p class="mt-2 text-danger">No folders created!</p>
+                    </div>
                 @endif
             </div>
         </div>

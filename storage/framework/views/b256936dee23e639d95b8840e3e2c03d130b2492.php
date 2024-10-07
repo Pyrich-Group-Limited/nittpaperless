@@ -21,11 +21,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     <i class="ti ti-filter"></i>
                 </a>
                 <div class="dropdown-menu  dropdown-steady" id="project_sort">
-                    <a class="dropdown-item active" href="#" data-val="created_at-desc">
+                    <a class="dropdown-item <?php echo e($sortOrder == 'newest' ? 'active' : ''); ?>"
+                    href="<?php echo e(route('file.index', ['sort' => 'newest'])); ?>" data-val="created_at-desc">
                         <i class="ti ti-sort-descending"></i><?php echo e(__('Newest')); ?>
 
                     </a>
-                    <a class="dropdown-item" href="#" data-val="created_at-asc">
+                    <a class="dropdown-item" <?php echo e($sortOrder == 'oldest' ? 'active' : ''); ?>
+
+                    href="<?php echo e(route('file.index', ['sort' => 'oldest'])); ?>" data-val="created_at-asc">
                         <i class="ti ti-sort-ascending"></i><?php echo e(__('Oldest')); ?>
 
                     </a>
@@ -167,7 +170,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                             </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php else: ?>
-                        <p>No files in this folder.</p>
+                        <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                            no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                            alt="No results found" >
+                            <p class="mt-2 text-danger">No files in this folder!</p>
+                        </div>
                     <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -232,7 +239,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
-                    <p>No root-level files found.</p>
+                    
+                    <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                        no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                        alt="No results found" >
+                        <p class="mt-2 text-danger">No root-level files found.!</p>
+                    </div>
                 <?php endif; ?>
 
             </div>

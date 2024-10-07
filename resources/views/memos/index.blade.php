@@ -11,11 +11,12 @@
 
 @section('action-btn')
     <div class="float-end">
-        <a href="#" data-size="lg" data-url="{{ route('memos.create') }}" data-ajax-popup="true"
-            data-bs-toggle="tooltip" title="{{ __('Create') }}" data-title="{{ __('Raise Memo') }}"
+        {{-- <a href="#" data-size="lg" data-url="{{ route('memos.create') }}" data-ajax-popup="true"
+            data-bs-toggle="tooltip" id="raiseMemoButton" title="{{ __('Create') }}" data-title="{{ __('Raise Memo') }}"
             class="btn btn-sm btn-primary">Raise Memo
             <i class="ti ti-plus"></i>
-        </a>
+        </a> --}}
+        <a href="#" class="btn btn-sm btn-primary" id="raiseMemoButton" data-bs-toggle="modal" data-bs-target="#raisememo"   data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>Raise a Memo</a>
     </div>
 @endsection
 
@@ -28,10 +29,10 @@
                             <div class="d-flex justify-content-between w-100">
                                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="profile-tab3" data-bs-toggle="pill" href="#memos" role="tab" aria-controls="pills-summary" aria-selected="true"><i class="ti ti-files"> </i> {{__('Memos')}}</a>
+                                        <a class="nav-link active" id="profile-tab2" data-bs-toggle="pill" href="#memos" role="tab" aria-controls="pills-summary" aria-selected="true"><i class="ti ti-files"> </i> {{__('Memos')}}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab3" data-bs-toggle="pill" href="#incoming" role="tab" aria-controls="pills-summary" aria-selected="true"><i class="ti ti-download"> </i> {{__('Incoming Memos')}}</a>
+                                        <a class="nav-link" id="profile-tab3" data-bs-toggle="pill" href="#incoming" role="tab" aria-controls="pills-summary" aria-selected="false"><i class="ti ti-download"> </i> {{__('Incoming Memos')}}</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="contact-tab4" data-bs-toggle="pill" href="#outgoing" role="tab" aria-controls="pills-invoice" aria-selected="false"><i class="ti ti-upload"> </i> {{__('Outgoing Memos')}}</a>
@@ -44,7 +45,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="tab-content" id="myTabContent2">
-                                        <div class="tab-pane fade fade table-responsive" id="memos" role="tabpanel" aria-labelledby="profile-tab3">
+                                        <div class="tab-pane fade fade table-responsive" id="memos" role="tabpanel" aria-labelledby="profile-tab2">
                                             <table class="table table-flush table datatable" id="report-dataTable">
                                                 <thead>
                                                     <tr>
@@ -101,6 +102,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
+
                                                         @foreach($incomingMemos as $incomingMemo)
                                                             <tr class="font-style">
                                                                 <td>{{ $incomingMemo->sharedBy->name }}</td>
@@ -114,11 +116,11 @@
                                                                             <i class="ti ti-eye text-white"></i>
                                                                         </a>
                                                                     </div>
-                                                                    {{-- <div class="action-btn bg-info ms-2">
-                                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Return')}}"  data-title="{{__('Return')}}">
+                                                                    <div class="action-btn bg-info ms-2">
+                                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="{{ route('memos.shareModal', $incomingMemo->memo->id) }}" data-ajax-popup="true"  data-size="lg" data-bs-toggle="tooltip" title="{{__('Share Memo')}}"  data-title="{{__('Share Memo')}}">
                                                                             <i class="ti ti-share text-white"></i>
                                                                         </a>
-                                                                    </div> --}}
+                                                                    </div>
                                                                     <div class="action-btn bg-primary ms-2">
                                                                         <a href="{{ route('memos.download',$incomingMemo->memo->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
                                                                             <i class="ti ti-download text-white"></i>
@@ -127,11 +129,19 @@
                                                                 </td>
                                                             </tr>
                                                         @endforeach
+                                                        {{-- @endif --}}
                                                     </tbody>
                                             </table>
+                                            @if ($incomingMemos->isEmpty())
+                                            <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                                                no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                                                alt="No results found" >
+                                                <p class="mt-2 text-danger">No incoming record found!</p>
+                                            </div>
+                                            @endif
                                         </div>
 
-                                        <div class="tab-pane fade fade table-responsive" id="outgoing" role="tabpanel" aria-labelledby="profile-tab3">
+                                        <div class="tab-pane fade fade table-responsive" id="outgoing" role="tabpanel" aria-labelledby="profile-tab4">
                                             <table class="table table-flush table datatable" id="report-dataTable">
                                                 <thead>
                                                     <tr>
@@ -171,6 +181,13 @@
                                                         @endforeach
                                                     </tbody>
                                             </table>
+                                            @if ($outgoingMemos->isEmpty())
+                                            <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                                                no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                                                alt="No results found" >
+                                                <p class="mt-2 text-danger">No outgoing record found!</p>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -181,5 +198,13 @@
             </div>
         </div>
     </div>
+    @include('memos.create')
 
+    @if($errors->any() || Session::has('error'))
+    <script>
+        $(document).ready(function() {
+            document.getElementById("raiseMemoButton").click();
+        });
+    </script>
+    @endif
 @endsection

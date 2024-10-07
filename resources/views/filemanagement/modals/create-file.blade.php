@@ -11,12 +11,6 @@
                     <label for="">File Content</label>
                     <input type="file" name="file" aria-multiselectable="" class="form-control" required>
                 </div>
-                {{-- <div class="form-group">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-                    </div>
-                </div> --}}
-
                 <div class="form-group">
                     <label for="">File Folder</label>
                     <select name="folder_id" id="" class="form-control" >
