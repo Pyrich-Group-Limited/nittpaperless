@@ -19,6 +19,15 @@ class FilesController extends Controller
 
         $users = User::all();
 
+        // Get the sorting order from the request, default to 'newest'
+        $sortOrder = $request->get('sort', 'newest');
+        // Build the query to fetch documents and order by creation date
+        if ($sortOrder === 'newest') {
+            $folders = Folder::orderBy('created_at', 'desc')->get();
+        } else {
+            $folders = Folder::orderBy('created_at', 'asc')->get();
+        }
+
         $search = $request->input('search');
         // If search query exists, filter folders and files based on the search term
         if ($search) {
@@ -35,14 +44,10 @@ class FilesController extends Controller
             $folders = Folder::where('user_id',Auth::user()->id)->with('files')->get();
         }
 
-         // Fetch all folders and their files for the authenticated user
-        // $folders = Folder::where('user_id',Auth::user()->id)->with('files')->get();
-        // $files = Auth::user()->files()->where('is_archived', 0)->get();
-
         // Fetch files that are not in any folder (root-level files)
         $rootFiles = Auth::user()->files()->whereNull('folder_id')->get();
 
-        return view('filemanagement.index', compact('folders','rootFiles','users'));
+        return view('filemanagement.index', compact('folders','rootFiles','users','sortOrder'));
     }
 
     //function for storing files

@@ -3,7 +3,7 @@
 $profile=\App\Models\Utility::get_file('uploads/avatar');
 ?>
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Files')); ?>
+    <?php echo e(__('Folders')); ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('script-page'); ?>
@@ -11,7 +11,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 <?php $__env->stopPush(); ?>
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
-    <li class="breadcrumb-item"><?php echo e(__('Files')); ?></li>
+    <li class="breadcrumb-item"><?php echo e(__('Folders')); ?></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -61,7 +61,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">
-                <h2>My Folders</h2>
+                
                 <?php if($folders->count() > 0): ?>
                     <?php $__currentLoopData = $folders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $folder): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-2 mb-4">
@@ -120,7 +120,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
-                    <p>No folders created.</p>
+                    <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                        no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                        alt="No results found" >
+                        <p class="mt-2 text-danger">No folders created!</p>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

@@ -62,7 +62,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">
-                <h4>My Shared Files</h4>
+                {{-- <h4>My Shared Files</h4> --}}
                 @if($sharedFiles->isNotEmpty())
                     @foreach($sharedFiles as $file)
                         <div class="col-md-2 mb-4">
@@ -119,7 +119,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         </div>
                     @endforeach
                 @else
-                    <p>No shared files.</p>
+                <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                    no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                    alt="No results found" >
+                    <p class="mt-2 text-danger">No shared files!</p>
+                </div>
                 @endif
             </div>
         </div>

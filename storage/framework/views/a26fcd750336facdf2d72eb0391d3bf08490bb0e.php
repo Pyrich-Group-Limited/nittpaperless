@@ -44,10 +44,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                     <i class="ti ti-download"></i>
                                                     <span> <?php echo e(__('Download')); ?> </span>
                                                 </a>
-                                                <a href="#!"  class="dropdown-item bs-pass-para">
-                                                    <i class="ti ti-archive"></i>
-                                                    <span> <?php echo e(__('Archive')); ?> </span>
-                                                </a>
+                                                <form action="<?php echo e(route('files.archive', $file->id)); ?>" method="POST" style="display:inline;">
+                                                    <?php echo csrf_field(); ?>
+                                                    <button type="submit" class="btn btn-white dropdown-item"><i class="ti ti-archive"></i>Archive</button>
+                                                </form>
                                                 <?php echo Form::close(); ?>
 
                                             </div>
@@ -79,7 +79,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
-                    <p class="text-danger">No recent files found.</p>
+                    
+                    <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                        no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                        alt="No results found" >
+                        <p class="mt-2 text-danger">No recent files found!</p>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

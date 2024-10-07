@@ -26,8 +26,12 @@
                                 <th scope="row">Date created</th>
                                 <td>{{ $memo->created_at->format('d-M-Y')  }}</td>
                             </tr>
-
-
+                            @if ($memoShareComment)
+                                <tr>
+                                    <th scope="row">Share Comment</th>
+                                    <td style="white-space: pre-wrap">{{ $memoShareComment->comment }}</td>
+                                </tr>
+                            @endif
                             <tr>
                                 <th scope="row">Your Signature</th>
                                 <td>
@@ -52,7 +56,7 @@
                             </tr>
 
                             <tr>
-                                <th scope="row">All Signature</th>
+                                <th scope="row">All Signatures</th>
                                 @if ($memo->signedUsers->isEmpty())
                                     <p>No signatures yet.</p>
                                 @else

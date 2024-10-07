@@ -91,6 +91,7 @@
     @endif
 
     @stack('css-page')
+    @livewireStyles
 </head>
 <body class="{{ $color }}">
 <!-- [ Pre-loader ] start -->
@@ -265,7 +266,7 @@
 
 @include('partials.admin.footer')
 @include('Chatify::layouts.footerLinks')
-
+@livewireScripts
 
 </body>
 </html>

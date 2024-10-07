@@ -11,6 +11,7 @@ use App\Models\Signature;
 use App\Models\MemoSignature;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class MemoController extends Controller
 {
@@ -49,24 +50,31 @@ class MemoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'file' => 'required|mimes:pdf,doc,docx|max:2048',
+        $data = $request->validate([
+            'title' => ['required', 'string'],
+            'description' => ['required','string'],
+            'memofile' => 'required|mimes:pdf,doc,docx|max:2048',
         ]);
 
+
+        // if ($request->hasFile('memofile')) {
+        //     // Handle file upload
+        //     $filePath = $request->file('memofile')->store('memos');
+        // }
+
         // Handle file upload
-        $filePath = $request->file('file')->store('memos');
+        $filePath = $request->file('memofile')->store('memos');
 
         // Create memo
         Memo::create([
             'created_by' => Auth::id(),
-            'title' => $request->title,
-            'description' => $request->description,
+            'title' => $data['title'],
+            'description' => $data['description'],
             'file_path' => $filePath,
         ]);
 
-        return redirect()->route('memos.index')->with('success', 'Memo created successfully.');
+        // return redirect()->route('memos.index')->with('success', 'Memo created successfully.');
+        return back()->with('success', 'Memo created successfully.');
     }
 
     /**
@@ -81,13 +89,13 @@ class MemoController extends Controller
         $userSignature = Auth::user()->signature; // Check if user has a signature
 
         $isSigned = MemoSignature::where('memo_id', $id)->where('user_id', Auth::id())->exists(); // Check if user already signed
-        // $memoApprovals = MemoSignature::where('memo_id', $id)->get();
         $memoApprovals = Memo::with('signedUsers.signature')->findOrFail($id);
         $memo = Memo::find($id);
         $signatures = Signature::where('user_id', Auth::user()->id)->first();
+        $memoShareComment = MemoShare::where('memo_id', $id)->where('shared_with', Auth::id())->first();
 
         $users = User::where('department_id',Auth::user()->department_id)->get();
-        return view('memos.show', compact('memo', 'signatures','users','isSigned','userSignature','memoApprovals'));
+        return view('memos.show', compact('memo', 'signatures','users','isSigned','userSignature','memoApprovals','memoShareComment'));
     }
 
     public function shareModal($id)

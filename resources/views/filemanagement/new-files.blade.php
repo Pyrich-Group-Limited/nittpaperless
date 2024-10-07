@@ -77,7 +77,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         </div>
                     @endforeach
                 @else
-                    <p class="text-danger">No recent files found.</p>
+                    {{-- <p class="text-danger">No recent files found.</p> --}}
+                    <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                        no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                        alt="No results found" >
+                        <p class="mt-2 text-danger">No recent files found!</p>
+                    </div>
                 @endif
             </div>
         </div>
