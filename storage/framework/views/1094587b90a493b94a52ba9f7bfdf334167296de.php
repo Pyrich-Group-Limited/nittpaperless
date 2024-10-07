@@ -116,7 +116,7 @@
                                                                     </div>
                                                                     
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="<?php echo e(route('memos.download',$incomingMemo->memo_id)); ?>" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Download Memo')); ?>"  data-title="<?php echo e(__('Download Memo')); ?>">
+                                                                        <a href="<?php echo e(route('memos.download',$incomingMemo->memo->id)); ?>" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Download Memo')); ?>"  data-title="<?php echo e(__('Download Memo')); ?>">
                                                                             <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>
@@ -154,7 +154,7 @@
                                                                     </div>
                                                                     
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="<?php echo e(route('memos.download',$outgoingMemo->memo_id)); ?>" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Download Memo')); ?>"  data-title="<?php echo e(__('Download Memo')); ?>">
+                                                                        <a href="<?php echo e(route('memos.download',$outgoingMemo->memo->id)); ?>" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Download Memo')); ?>"  data-title="<?php echo e(__('Download Memo')); ?>">
                                                                             <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>
