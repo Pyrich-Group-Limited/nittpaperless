@@ -1,30 +1,48 @@
-<?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Show Memo')); ?>
+<div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
 
-<?php $__env->stopSection(); ?>
-<?php $__env->startPush('script-page'); ?>
-<?php $__env->stopPush(); ?>
+                        <tbody>
+                            <style>
+                                th{
+                                    width: 200px !important;
+                                }
+                            </style>
+                            <tr>
+                                <th scope="row">Memo Title</th>
+                                <td><?php echo e($memo->title); ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Memo Description</th>
+                                <td style="white-space: pre-wrap"><?php echo e($memo->description); ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Created  By:</th>
+                                <td><?php echo e($memo->creator->name); ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Date created</th>
+                                <td><?php echo e($memo->created_at->format('d-M-Y')); ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Signature</th>
+                                
+                            </tr>
 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-<?php $__env->startSection('content'); ?>
-<div class="container">
-    <h1><?php echo e($memo->title); ?></h1>
-    <p><?php echo e($memo->description); ?></p>
+        </div>
 
-    <p><strong>Created by:</strong> <?php echo e($memo->creator->name); ?></p>
+        </div>
 
-    <p><strong>Signature:</strong>
-        
-    </p>
-
-    <a href="<?php echo e(asset('storage/' . $memo->file_path)); ?>" class="btn btn-primary" download>Download Memo</a>
-
-    <hr>
-
-    <h2>Share Memo</h2>
-
-    
-</div>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/memos/show.blade.php ENDPATH**/ ?>
+        <div class="modal-footer">
+            <a href="<?php echo e(asset('storage/' . $memo->file_path)); ?>" class="btn btn-primary" download>Download Memo</a>
+            <input type="button" value="<?php echo e(('Close')); ?>" class="btn  btn-light btn-sm" data-bs-dismiss="modal">
+        </div>
+    </div>
+<?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/memos/show.blade.php ENDPATH**/ ?>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Memo;
 use App\Models\MemoShare;
 use App\Models\Signature;
+use App\Models\User;
 use Auth;
 
 class MemoController extends Controller
@@ -20,9 +21,12 @@ class MemoController extends Controller
     {
         $memos = Memo::where('created_by', Auth::id())->orWhereHas('shares', function ($query) {
             $query->where('shared_with', Auth::id());
-        })->get();
+        })->orderBy('created_at','DESC')->get();
 
-        return view('memos.index', compact('memos'));
+        $incomingMemos = MemoShare::where('shared_with', Auth::id())->orderBy('created_at','DESC')->get();
+        $outgoingMemos = MemoShare::where('shared_by', Auth::id())->orderBy('created_at','DESC')->get();
+
+        return view('memos.index', compact('memos','outgoingMemos','incomingMemos'));
     }
 
     /**
@@ -71,10 +75,20 @@ class MemoController extends Controller
      */
     public function show($id)
     {
+        $users = User::where('department_id',Auth::user()->department_id)->get();
         $memo = Memo::find($id);
         $signatures = Signature::where('user_id', $memo->created_by)->first();
 
-        return view('memos.show', compact('memo', 'signatures'));
+        return view('memos.show', compact('memo', 'signatures','users'));
+    }
+
+    public function shareModal($id)
+    {
+        $users = User::where('department_id',Auth::user()->department_id)->get();
+        $memo = Memo::find($id);
+        $signatures = Signature::where('user_id', $memo->created_by)->first();
+
+        return view('memos.shareModal', compact('memo', 'signatures','users'));
     }
 
     // Share memo with another employee
@@ -92,7 +106,7 @@ class MemoController extends Controller
             'comment' => $request->comment,
         ]);
 
-        return redirect()->route('memos.show', $id)->with('success', 'Memo shared successfully.');
+        return redirect()->route('memos.index')->with('success', 'Memo shared successfully.');
     }
 
     // Method to download the file
@@ -103,13 +117,13 @@ class MemoController extends Controller
         // Check if the file exists in storage
         if (Storage::exists($filePath)) {
             // Return the file for download
-            return Storage::download($filePath, $memo->title);
+            return Storage::download($filePath);
         } else {
             // Return a 404 response if the file doesn't exist
             abort(404, 'File not found.');
         }
     }
-
+    // $memo->file_path
     /**
      * Show the form for editing the specified resource.
      *

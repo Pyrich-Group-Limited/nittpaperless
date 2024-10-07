@@ -389,6 +389,7 @@ Route::get('employee/{id}/dta/{status}/{type}/{month}/{year}', [DtaReportControl
 
 
 Route::resource('memos', MemoController::class);
+Route::get('memo-share/{id}', [MemoController::class, 'shareModal'])->name('memos.shareModal');
 Route::post('memos/{id}/share', [MemoController::class, 'share'])->name('memos.share');
 Route::get('/memos/{memo}/download', [MemoController::class, 'download'])->name('memos.download');
 
