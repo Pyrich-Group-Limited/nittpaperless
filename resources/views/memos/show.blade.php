@@ -41,7 +41,7 @@
         </div>
 
         <div class="modal-footer">
-            <a href="{{ asset('storage/' . $memo->file_path) }}" class="btn btn-primary" download>Download Memo</a>
+            <a href="{{ route('memos.download',$memo->id) }}" class="btn btn-primary btn-sm" download><i class="ti ti-download text-white"></i> Download Memo</a>
             <input type="button" value="{{('Close')}}" class="btn  btn-light btn-sm" data-bs-dismiss="modal">
         </div>
     </div>
