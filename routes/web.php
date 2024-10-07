@@ -825,6 +825,7 @@ Route::resource('leads', LeadController::class)->middleware(['auth', 'XSS']);
 Route::get('user/{id}/plan', [UserController::class, 'upgradePlan'])->name('plan.upgrade')->middleware(['auth','XSS']);
 Route::get('user/{id}/plan/{pid}', [UserController::class, 'activePlan'])->name('plan.active')->middleware(['auth','XSS']);
 Route::get('/{uid}/notification/seen', [UserController::class, 'notificationSeen'])->name('notification.seen');
+Route::post('/upload-users', [UserController::class, 'uploadUser'])->name('uploadUser');
 
 
 // Email Templates
@@ -1060,6 +1061,7 @@ Route::get('user/info/{id}', [UserController::class, 'userInfo'])->name('users.i
 Route::get('user/{id}/info/{type}', [UserController::class, 'getProjectTask'])->name('user.info.popup')->middleware(['auth', 'XSS']);
 Route::delete('users/{id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware(['auth', 'XSS']);
 Route::get('get-department-units/{id}', [UserController::class, 'getDepartments']);
+Route::get('get-department/{id}', [UserController::class, 'departments']);
 Route::get('get-unit-subunits/{id}', [UserController::class, 'getSubUnits']);
 
 

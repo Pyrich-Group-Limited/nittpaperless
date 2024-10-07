@@ -15,6 +15,7 @@ use Auth;
 use File;
 use App\Models\Utility;
 use App\Models\UserToDo;
+use App\Models\LiasonOffice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,9 @@ use Illuminate\Support\Facades\Mail;
 use Session;
 use Spatie\Permission\Models\Role;
 use App\Services\DataService;
-
+use App\Exports\FailedUsersExport;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class  UserController extends Controller
@@ -47,12 +50,12 @@ class  UserController extends Controller
             foreach($allRoles as $role){
                 $roles[] = $role->id = $role->name=="client"? "Human Resource (HR)" : ucwords($role->name);
             }
-            $departments = Department::all()->pluck('name', 'id');
+            $departments = Department::where('category','department')->get()->pluck('name', 'id');
             $designations = Designation::all()->pluck('name', 'id');
             // $designations = Designation::all()->pluck('name', 'id');
             $liasons = $this->dataService->getLiasons();
             $headquaters = $this->dataService->getHeadquaters();
-            $directorates = $this->dataService->getDirectorates();
+            $directorates = Department::where('category','directorate')->get()->pluck('name', 'id');
             return view('user.index',compact(
                 'designations',
                 'roles',
@@ -91,9 +94,9 @@ class  UserController extends Controller
         $customFields = CustomField::where('created_by', '=', \Auth::user()->creatorId())->where('module', '=', 'user')->get();
         $user  = \Auth::user();
         $roles = Role::all()->pluck('name', 'id');
-        $departments = Department::all()->pluck('name', 'id');
+        $departments = Department::where('category','department')->get()->pluck('name', 'id');
         $designations = Designation::all()->pluck('name', 'id');
-        $liasons = $this->dataService->getLiasons();
+        $liasons =  LiasonOffice::all()->pluck('name', 'id');
         if(\Auth::user()->can('create user'))
         {
             return view('user.create', compact('roles', 'customFields','departments','designations', 'liasons'));
@@ -106,28 +109,65 @@ class  UserController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+        $data;
         if(\Auth::user()->can('create user'))
         {
-            $default_language = DB::table('settings')->select('value')->where('name', 'default_language')->first();
-            $validator = \Validator::make(
-                $request->all(), [
-                                   'name' => 'required|max:120',
-                                   'email' => 'required|email|unique:users',
-                                   'password' => 'required|min:6',
-                                   'role' => 'required',
-                                   'designation' => 'required',
-                                   'department' => 'required',
-                                   'unit' => 'required',
-                                   'level' => 'required',
-                               ]
-            );
 
-            if($validator->fails())
-            {
-                $messages = $validator->getMessageBag();
-                return redirect()->back()->with('error', $messages->first());
+            $data = $request->validate([
+                'surname' => ['required','max:120'],
+                'firstname' => ['required','max:120'],
+                'email' => 'required|email|unique:users',
+                'surname' => ['required'],
+                'designation' => ['required'],
+                'level' => ['required'],
+                'location' => ['required'],
+                'headquarters' => ['required'],
+            ]);
+
+            if($data['location']=="headquater"){
+                $data = $request->validate([
+                    'directorate' => ['required'],
+                ]);
+            }else{
+                $data = $request->validate([
+                    'liason' => ['required'],
+                    'department' => ['required'],
+                    'unit' => ['required'],
+                ]);
             }
+
+            $location_type = $data['location']=="Headquater"? $data['headquaters'] : "Liason Office";
+
+            $user = User::create([
+                'name' => $data['surname']." ".$data['firstname'],
+                'location' => $data['location'],
+                'location_type' =>  $location_typ,
+                'department_id' => $data['department'],
+                'directorate_id' => $data['directorate'],
+                'unit_id' => $data['unit'],
+                'sub_unit_id' => $data['subunit'],
+            ]);
+            // $default_language = DB::table('settings')->select('value')->where('name', 'default_language')->first();
+            // $validator = \Validator::make(
+            //     $request->all(), [
+            //                        'firsname' => 'required|max:120',
+            //                        'surname' => 'required|max:120',
+            //                        'email' => 'required|email|unique:users',
+            //                        'password' => 'required|min:6',
+            //                        'role' => 'required',
+            //                        'designation' => 'required',
+            //                        'directorate' => 'required',
+            //                        'department' => 'required',
+            //                        'unit' => 'required',
+            //                        'level' => 'required',
+            //                    ]
+            // );
+
+            // if($validator->fails())
+            // {
+            //     $messages = $validator->getMessageBag();
+            //     return redirect()->back()->with('error', $messages->first());
+            // }
 
 
             $objUser    = \Auth::user();
@@ -139,12 +179,13 @@ class  UserController extends Controller
             // $unit                  = Unit::where('id', $request->unit_id)->first();
             // $designation           = Designation::where('id', $request->designation_id)->first();
 
-            $psw                   = $request->password;
+            $psw                   = "NITT@2024";
             $request['password']   = Hash::make($request->password);
             $request['type']       =  $role_r->name;
             $request['designation']       = $request->designation;
             $request['department_id']       = $request->department;
             $request['unit_id']       = $request->unit;
+            $request['name']       = $request->surname." ".$request->firstname;
             $request['level']       = $request->level;
             $request['lang']       = !empty($default_language) ? $default_language->value : 'en';
             $request['created_by'] = \Auth::user()->creatorId();
@@ -604,4 +645,83 @@ class  UserController extends Controller
 
     //end for user login details
 
+    public function uploadUser(Request $request)
+    {
+        $data = $request->validate([
+            'uploadFile' => ['required','file','mimes:xlsx,csv,xls'],
+        ]);
+
+        $sn = 0;
+
+        try{
+            $staffs  = Excel::toArray(new UsersImport, $data['uploadFile']);
+
+            dd($staffs );
+            foreach($staffs[0] as $row){
+                $this->uploadUserRecord($row);
+            }
+
+        }catch(Throwable $e){
+            return back()->with('error','There was an error uploading record kindly ensure your data is properly arranged and upload again');
+        }
+    }
+
+    //to download failed upload records
+    public function downloadFailedUpload(){
+        return Excel::download(new FailedUsersExport($this->failed_upload), 'Failed-Uploads.xlsx');
+    }
+
+    public function uploadUserRecord($row){
+        dd($row);
+
+        $departments = Department::where('',$row['3'])->first();
+        $designations = Designation::where('',$row['4'])->first();
+        $liasons = $this->dataService->getLiasons();
+        $headquaters = $this->dataService->getHeadquaters();
+        $directorates = $this->dataService->getDirectorates();
+
+        if($branch==null || $department==null || $unit==null){
+            if($branch==null){
+                $this->setFailedUpload($row,"Invalid Branch");
+            }elseif($department==null){
+                $this->setFailedUpload($row,"Invalid Department");
+            }elseif($unit==null){
+                $this->setFailedUpload($row,"Invalid Unit");
+            }
+        }else{
+            $valUser = User::where('email',$row[3])->first();
+            if($row[0]!=null && $valUser==null){
+                $user = User::create([
+                    'designation'  => $row[0],
+                    'surname' => $row[1],
+                    'othernames' => $row[2],
+                    'email' => $row[3],
+                    'user_type' => $row[4],
+                    'branch_id' => $branch->id,
+                    'department_id' => $department->id,
+                    'password' => Hash::make('12345678'),
+                ]);
+
+                $role = Role::where('name',trim($row[4]))->first();
+
+                if($role!=null){
+                    $user->assignRole([$row[4]]);
+                    $user->givePermissionTo($role->permissions->pluck('name'));
+                }else{
+                    $this->setFailedUpload($row,"Undefined Role (User type)");
+                    $user->delete();
+                }
+
+                $this->sendMail($user);
+
+            }
+        }
+
+        if(count($this->failed_upload)>0){
+            $this->dispatchBrowserEvent('errorfeedback',['errorfeedback'=>'Some staff were not uploaded. Kindly download the failed excel record to ensure they are currently inputed']);
+        }else{
+            $this->dispatchBrowserEvent('feedback',['feedback'=>'Upload Successful']);
+        }
+
+    }
 }

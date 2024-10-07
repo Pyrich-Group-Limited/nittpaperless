@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('email')->unique();
+            $table->string('location_type');
+            $table->string('location');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->integer('plan')->nullable();
@@ -36,8 +38,9 @@ class CreateUsersTable extends Migration
             $table->datetime('last_login_at')->nullable();
             $table->string('designation');
             $table->string('level');
-            $table->integer('department_id');
-            $table->integer('unit_id');
+            $table->integer('department_id')->nullable();
+            $table->integer('directorate_id')->nullable();
+            $table->integer('unit_id')->nullable();
             $table->integer('sub_unit_id')->nullable();
             $table->rememberToken();
             $table->timestamps();

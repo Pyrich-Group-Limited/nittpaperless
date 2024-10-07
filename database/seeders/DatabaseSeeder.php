@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             $this->call(UsersTableSeeder::class);
             $this->call(AiTemplateSeeder::class);
             $this->call(LeaveSeeader::class);
+            $this->call(LiasonOfficerSeeder::class);
 
        /*  }else{
             Utility::languagecreate();

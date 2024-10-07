@@ -41,10 +41,15 @@ class User extends Authenticatable
         'unit_id',
         'subunit_id',
         'level',
+        'directorate_id'
         // 'signature',
     ];
 
     public function department(){
+        return $this->belongsTo(Department::class);
+    }
+
+    public function unit(){
         return $this->belongsTo(Department::class);
     }
 
