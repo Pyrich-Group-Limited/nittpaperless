@@ -116,8 +116,59 @@ class FilesController extends Controller
 
     //share file modal display
     public function shareFileModal($id){
-        $users = User::all();
+
         $file=File::find($id);
+
+        $authUser = Auth::user();
+
+        if($authUser->type=='user'){
+            $users = User::where('unit_id', $authUser->unit_id)
+            ->where('department_id', $authUser->department_id)
+            ->where('type', 'supervisor')
+            ->orWhere('type', 'user')->get();
+
+        }elseif($authUser->type=='supervisor'){
+
+            $unitHeads = User::where('type', 'unit head')
+            ->where('department_id', $authUser->department_id)->get();
+            $otherUsers = User::where('type', 'user')
+            ->where('department_id', $authUser->department_id)->get();
+            $users = $unitHeads->merge($otherUsers);
+
+        }elseif($authUser->type=='unit head'){
+            $sameUnitAndDepartmentUsers = User::where('unit_id', $authUser->unit_id)
+            ->where('department_id', $authUser->department_id)
+            ->where('type', 'user')->orWhere('type', 'HOD')
+            ->get();
+
+            $unitHeadsOtherDepartments = User::where('type', 'unit head')
+            ->where('department_id', '!=', $authUser->department_id)->get();
+            $users = $sameUnitAndDepartmentUsers->merge($unitHeadsOtherDepartments);
+
+        }elseif($authUser->type=='liason office head'){
+            $hQUsers = User::where('location','Headquarters')
+            ->where('type', 'DG')
+            ->where('type', 'HOD')->get();
+
+            $liasonOfficeUsers = User::where('location', 'Liaison-Offices')
+            ->where('location_type', $authUser->location_type)->get();
+            $users = $hQUsers->merge($liasonOfficeUsers);
+
+        }elseif($authUser->type=='HOD'){
+            $otherHods = User::where('type','HOD')
+            ->get();
+
+            $others = User::where('department_id',$authUser->department_id)
+            ->where('type','!=','HOD')->get();
+            $users = $otherHods->merge($others);
+
+        }elseif($authUser->type=='DG' || $authUser->type=='super admin'){
+            $users = User::all();
+        }else {
+            return redirect()->back()->with('error', 'You are not authorized to view this page.');
+        }
+        // $users = User::where('department_id',$authUser->department_id)->get();
+
         return view('filemanagement.modals.share-modal',compact('users','file'));
     }
 

@@ -100,9 +100,58 @@ class MemoController extends Controller
 
     public function shareModal($id)
     {
-        $users = User::where('department_id',Auth::user()->department_id)->get();
+        // $users = User::where('department_id',Auth::user()->department_id)->get();
         $memo = Memo::find($id);
         $signatures = Signature::where('user_id', $memo->created_by)->first();
+
+        $authUser = Auth::user();
+
+        if($authUser->type=='user'){
+            $users = User::where('unit_id', $authUser->unit_id)
+            ->where('department_id', $authUser->department_id)
+            ->where('type', 'supervisor')
+            ->orWhere('type', 'user')->get();
+
+        }elseif($authUser->type=='supervisor'){
+
+            $unitHeads = User::where('type', 'unit head')
+            ->where('department_id', $authUser->department_id)->get();
+            $otherUsers = User::where('type', 'user')
+            ->where('department_id', $authUser->department_id)->get();
+            $users = $unitHeads->merge($otherUsers);
+
+        }elseif($authUser->type=='unit head'){
+            $sameUnitAndDepartmentUsers = User::where('unit_id', $authUser->unit_id)
+            ->where('department_id', $authUser->department_id)
+            ->where('type', 'user')->orWhere('type', 'HOD')
+            ->get();
+
+            $unitHeadsOtherDepartments = User::where('type', 'unit head')
+            ->where('department_id', '!=', $authUser->department_id)->get();
+            $users = $sameUnitAndDepartmentUsers->merge($unitHeadsOtherDepartments);
+
+        }elseif($authUser->type=='liason office head'){
+            $hQUsers = User::where('location','Headquarters')
+            ->where('type', 'DG')
+            ->where('type', 'HOD')->get();
+
+            $liasonOfficeUsers = User::where('location', 'Liaison-Offices')
+            ->where('location_type', $authUser->location_type)->get();
+            $users = $hQUsers->merge($liasonOfficeUsers);
+
+        }elseif($authUser->type=='HOD'){
+            $otherHods = User::where('type','HOD')
+            ->get();
+
+            $others = User::where('department_id',$authUser->department_id)
+            ->where('type','!=','HOD')->get();
+            $users = $otherHods->merge($others);
+
+        }elseif($authUser->type=='DG' || $authUser->type=='super admin'){
+            $users = User::all();
+        }else {
+            return redirect()->back()->with('error', 'You are not authorized to view this page.');
+        }
 
         return view('memos.shareModal', compact('memo', 'signatures','users'));
     }
