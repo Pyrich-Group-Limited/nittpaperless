@@ -131,23 +131,15 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         @csrf
                         @method('PUT')
                         <div class="row">
-                            {{-- <div class="col-lg-9 col-md-6">
-                                <div class="form-group">
-                                    <div class="choose-files">
-                                        <label for="signature">
-                                            <div class=" bg-primary profile_update"> <i class="ti ti-upload px-1"></i>{{__('Choose signature')}}</div>
-                                            <input type="file" class="form-control file" name="signature" id="avatar" data-filename="profile_update">
-                                        </label>
+                            <div class="col-lg-6 offset-lg-4 col-sm-6 form-group">
+                                @if (Auth::user()->signature)
+                                    <img src="{{ asset('storage/' . Auth::user()->signature->signature_path) }}" alt="Signature" width="200">
+                                @else
+                                    <p class="text-info">You are yet to upload your signature!</p>
+                                @endif
+                            </div>
 
-                                    </div>
-                                    <span class="text-xs text-muted">{{ __('Please upload a valid image file. Size of image should not be more than 1MB.')}}</span>
-                                    @error('signature')
-                                    <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div> --}}
-
-                            <div class="col-lg-9 col-sm-6 form-group">
+                            <div class="col-lg-12 col-sm-6 form-group">
                                 <label for="signature" class="col-form-label text-dark">{{ __('New Signature') }}</label>
                                 <input class="form-control" type="file" name="signature" required />
                             </div>

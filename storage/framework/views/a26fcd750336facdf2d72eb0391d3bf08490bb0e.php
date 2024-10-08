@@ -15,7 +15,52 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="mt-2 " id="multiCollapseExample1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="btn-box">
+                                        <form method="GET" action="<?php echo e(route('file.index')); ?>" class="mb-3">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <input type="text" name="search" class="form-control" placeholder="Search file, folder..." value="<?php echo e(request('search')); ?>">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select name="sortBy" class="form-select form-control">
+                                                        <option value="file_name" <?php echo e(request('sortBy') == 'file_name' ? 'selected' : ''); ?>>Sort by Name</option>
+                                                        <option value="created_at" <?php echo e(request('sortBy') == 'created_at' ? 'selected' : ''); ?>>Sort by Date</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select name="order" class="form-select form-control">
+                                                        <option value="asc" <?php echo e(request('order') == 'asc' ? 'selected' : ''); ?>>Ascending</option>
+                                                        <option value="desc" <?php echo e(request('order') == 'desc' ? 'selected' : ''); ?>>Descending</option>
+                                                    </select>
+                                                </div>
 
+                                                <div class="col-md-3">
+                                                        <button type="submit" class="btn btn-primary form-control">Search & Filter</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">

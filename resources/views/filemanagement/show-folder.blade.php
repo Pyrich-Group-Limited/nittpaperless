@@ -21,37 +21,25 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-8">
+                        <div class="col-xl-12">
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="btn-box">
-                                        <input type="text" class="form-control" placeholder="Search files, folder">
+                                        <form action="{{ route('folders.index') }}" method="GET">
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <input type="text" name="search" class="form-control" placeholder="Search folders by name" value="{{ request('search') }}">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button type="submit" class="btn btn-primary form-control">Search</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto mt-2">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
-                                    <div class="dropdown-menu dropdown-menu-end">
 
-                                        <a href="#!" data-size="lg" data-url="{{ route('file.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create File')}}">
-                                            <i class="ti ti-file-plus"></i>
-                                            <span>{{__('Create File')}}</span>
-                                        </a>
-                                        <a href="#!" data-url="{{ route('folder.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create Folder')}}">
-                                            <i class="ti ti-folder-plus"></i>
-                                            <span>  {{__('Create Folder')}}</span>
-                                        </a>
-                                    </div>
-
-                                    <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('file.upload') }}" data-ajax-popup="true"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Upload Files') }}"><i class="ti ti-cloud-upload"></i> Upload
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 {{ Form::close() }}
@@ -124,7 +112,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                             </div>
                         @endforeach
                     @else
-                        <p>No files in this folder.</p>
+                        <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                            no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                            alt="No results found" >
+                            <p class="mt-2 text-danger">No files in this folder!</p>
+                        </div>
                     @endif
 
                     <div class="pagination">

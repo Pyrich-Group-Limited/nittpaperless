@@ -16,38 +16,39 @@ class FilesController extends Controller
 {
     public function index(Request $request){
 
+        // Search, filter, and sorting options
+        $search = $request->input('search');
+        $sortBy = $request->input('sortBy', 'file_name'); // Default sort by name
+        $order = $request->input('order', 'desc'); // Default order ascending
+
+         // Query documents with folders
+        $documentsQuery = File::with('folder');
+
+        // Search by document name or folder name
+        if ($search) {
+            $documentsQuery->where('file_name', 'like', "%$search%")
+            ->orWhereHas('folder', function($query) use ($search) {
+                $query->where('folder_name', 'like', "%$search%");
+            });
+        }
+
+        // Sorting
+        $documentsQuery->orderBy($sortBy, $order);
+
+        // Fetch grouped documents by folder
+        $documents = $documentsQuery->where('user_id',Auth::user()->id)->get()->groupBy('folder.folder_name');
 
         $users = User::all();
-
-        // Get the sorting order from the request, default to 'newest'
-        $sortOrder = $request->get('sort', 'newest');
-        // Build the query to fetch documents and order by creation date
-        if ($sortOrder === 'newest') {
-            $folders = Folder::orderBy('created_at', 'desc')->get();
-        } else {
-            $folders = Folder::orderBy('created_at', 'asc')->get();
-        }
-
-        $search = $request->input('search');
-        // If search query exists, filter folders and files based on the search term
-        if ($search) {
-            $folders = Folder::where('folder_name', 'like', '%' . $search . '%')
-                ->orWhereHas('files', function ($query) use ($search) {
-                    $query->where('file_name', 'like', '%' . $search . '%');
-                })
-                ->with(['files' => function ($query) use ($search) {
-                    $query->where('file_name', 'like', '%' . $search . '%');
-                }])
-                ->get();
-        } else {
-            // Fetch all folders with their associated files if no search term is provided
-            $folders = Folder::where('user_id',Auth::user()->id)->with('files')->get();
-        }
 
         // Fetch files that are not in any folder (root-level files)
         $rootFiles = Auth::user()->files()->whereNull('folder_id')->get();
 
-        return view('filemanagement.index', compact('folders','rootFiles','users','sortOrder'));
+        $folders = Folder::where('user_id',Auth::user()->id)->get();
+
+        return view('filemanagement.index', compact(
+        'rootFiles','users',
+        'documents', 'search', 'sortBy', 'order','folders'
+    ));
     }
 
     //function for storing files
@@ -55,20 +56,29 @@ class FilesController extends Controller
     {
         $request->validate([
             'filename' => 'required|string|max:255',
-            'file' => 'required|file',
+            'file' => 'required|file|mimes:jpg,png,pdf,docx,pdf,xlxs,txt|max:2048',
             'folder_id' => 'nullable|exists:folders,id',
         ]);
 
-        $path = $request->file('file')->store('files');
+         // Handle file upload
+         if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filePath = $file->store('files'); // Store file in 'files' folder
 
-        File::create([
-            'file_name' => $request->filename,
-            'path' => $path,
-            'user_id' => Auth::id(),
-            'folder_id' => $request->folder_id,
-        ]);
+            // Create a new document entry in the database
+            File::create([
+                'file_name' => $request->filename,
+                'path' => $filePath,
+                'user_id' => Auth::id(),
+                'folder_id' => $request->folder_id,
+            ]);
+        }
+
+
 
         return redirect()->back()->with('success', 'File uploaded successfully.');
+
+
     }
 
 
