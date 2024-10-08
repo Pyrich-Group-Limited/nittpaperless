@@ -100,7 +100,6 @@ class MemoController extends Controller
 
     public function shareModal($id)
     {
-        // $users = User::where('department_id',Auth::user()->department_id)->get();
         $memo = Memo::find($id);
         $signatures = Signature::where('user_id', $memo->created_by)->first();
 
@@ -164,7 +163,7 @@ class MemoController extends Controller
             'comment' => 'nullable',
         ]);
 
-        MemoShare::create([
+        $memoShare = MemoShare::create([
             'memo_id' => $id,
             'shared_with' => $request->shared_with,
             'shared_by' => Auth::id(),
@@ -176,6 +175,9 @@ class MemoController extends Controller
             'user_id' => Auth::id(),
             'comment' => $request->comment,
         ]);
+
+        // $memoShare->sharedWithUsers()->attach($request->shared_with);
+
 
         return redirect()->route('memos.index')->with('success', 'Memo shared successfully.');
     }

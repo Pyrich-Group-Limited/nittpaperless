@@ -9,9 +9,9 @@
                     <input type="text" value="{{ $file->file_name }}" name="file_id" class="form-control" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="">Share with</label>
-                    <select name="user_id" id="" class="form-control" >
-                        <option value="#">Select User</option>
+                    <label for="">Share with: (<span class="text-xs text-muted">{{ __('You can select one or more users to share file with')}}</span>) </label>
+                    <select name="user_id[]" id="choices-multiple1" class="form-control select2" multiple>
+                        <option value="#">Select one or more Users</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
