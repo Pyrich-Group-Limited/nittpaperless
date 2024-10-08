@@ -1,4 +1,4 @@
-<?php
+@php
     $logo=asset(Storage::url('uploads/logo/'));
     $company_favicon=Utility::getValByName('company_favicon');
     $SITE_RTL = Utility::getValByName('SITE_RTL');
@@ -15,86 +15,85 @@
     $meta_logo = isset($getseo['meta_image'])?$getseo['meta_image']:'';
     $get_cookie = \App\Models\Utility::getCookieSetting();
 
-?>
+@endphp
     <!DOCTYPE html>
-<html lang="en" dir="<?php echo e($SITE_RTL == 'on'?'rtl':''); ?>">
-<meta name="csrf-token" id="csrf-token" content="<?php echo e(csrf_token()); ?>">
+<html lang="en" dir="{{$SITE_RTL == 'on'?'rtl':''}}">
+<meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 <head>
-    <title><?php echo e((Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'ERPGO')); ?> - <?php echo $__env->yieldContent('page-title'); ?></title>
+    <title>{{(Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'ERPGO')}} - @yield('page-title')</title>
 
-    <meta name="title" content="<?php echo e($metatitle); ?>">
-    <meta name="description" content="<?php echo e($metsdesc); ?>">
+    <meta name="title" content="{{$metatitle}}">
+    <meta name="description" content="{{$metsdesc}}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="<?php echo e(env('APP_URL')); ?>">
-    <meta property="og:title" content="<?php echo e($metatitle); ?>">
-    <meta property="og:description" content="<?php echo e($metsdesc); ?>">
-    <meta property="og:image" content="<?php echo e($meta_image.$meta_logo); ?>">
+    <meta property="og:url" content="{{ env('APP_URL') }}">
+    <meta property="og:title" content="{{$metatitle}}">
+    <meta property="og:description" content="{{$metsdesc}}">
+    <meta property="og:image" content="{{$meta_image.$meta_logo}}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="<?php echo e(env('APP_URL')); ?>">
-    <meta property="twitter:title" content="<?php echo e($metatitle); ?>">
-    <meta property="twitter:description" content="<?php echo e($metsdesc); ?>">
-    <meta property="twitter:image" content="<?php echo e($meta_image.$meta_logo); ?>">
+    <meta property="twitter:url" content="{{ env('APP_URL') }}">
+    <meta property="twitter:title" content="{{$metatitle}}">
+    <meta property="twitter:description" content="{{$metsdesc}}">
+    <meta property="twitter:image" content="{{$meta_image.$meta_logo}}">
 
 
-    <script src="<?php echo e(asset('js/html5shiv.js')); ?>"></script>
+    <script src="{{ asset('js/html5shiv.js') }}"></script>
 
-
+{{--    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>--}}
 
     <!-- Meta -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="url" content="<?php echo e(url('').'/'.config('chatify.path')); ?>" data-user="<?php echo e(Auth::user()->id); ?>">
-    <link rel="icon" href="<?php echo e($logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')); ?>" type="image" sizes="16x16">
+    <meta name="url" content="{{ url('').'/'.config('chatify.path') }}" data-user="{{ Auth::user()->id }}">
+    <link rel="icon" href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}" type="image" sizes="16x16">
 
     <!-- Favicon icon -->
-   <link rel="icon" href="<?php echo e(asset('assets/images/favicon.png')); ?>" type="image/x-icon"/>
+   <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon"/>
     <!-- Calendar-->
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/main.css')); ?>">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/main.css') }}">
 
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/style.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/flatpickr.min.css')); ?>">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/flatpickr.min.css') }}">
 
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/animate.min.css')); ?>">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.min.css') }}">
 
     <!-- font css -->
-    <link rel="stylesheet" href="<?php echo e(asset('assets/fonts/tabler-icons.min.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('assets/fonts/feather.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('assets/fonts/fontawesome.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('assets/fonts/material.css')); ?>">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/material.css') }}">
 
     <!--bootstrap switch-->
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/bootstrap-switch-button.min.css')); ?>">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap-switch-button.min.css') }}">
 
     <!-- vendor css -->
-    <?php if($SITE_RTL == 'on'): ?>
-        <link rel="stylesheet" href="<?php echo e(asset('assets/css/style-rtl.css')); ?>">
-    <?php endif; ?>
+    @if ($SITE_RTL == 'on')
+        <link rel="stylesheet" href="{{ asset('assets/css/style-rtl.css') }}">
+    @endif
 
 
-    <?php if($setting['cust_darklayout'] == 'on'): ?>
-        <link rel="stylesheet" href="<?php echo e(asset('assets/css/style-dark.css')); ?>" id="main-style">
-    <?php else: ?>
-        <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>" id="main-style">
-    <?php endif; ?>
+    @if($setting['cust_darklayout'] == 'on')
+        <link rel="stylesheet" href="{{ asset('assets/css/style-dark.css') }}" id="main-style">
+    @else
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style">
+    @endif
 
 
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/customizer.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('css/custom.css')); ?>" >
+    <link rel="stylesheet" href="{{ asset('assets/css/customizer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" >
 
-    <?php if($setting['cust_darklayout'] == 'on'): ?>
-        <link rel="stylesheet" href="<?php echo e(asset('css/custom-dark.css')); ?>" >
-    <?php endif; ?>
+    @if ($setting['cust_darklayout'] == 'on')
+        <link rel="stylesheet" href="{{ asset('css/custom-dark.css') }}" >
+    @endif
 
-    <?php echo $__env->yieldPushContent('css-page'); ?>
-    <?php echo \Livewire\Livewire::styles(); ?>
-
+    @stack('css-page')
+    @livewireStyles
 </head>
-<body class="<?php echo e($color); ?>">
+<body class="{{ $color }}">
 <!-- [ Pre-loader ] start -->
 <div class="loader-bg">
     <div class="loader-track">
@@ -102,10 +101,10 @@
     </div>
 </div>
 
-<?php echo $__env->make('partials.admin.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+@include('partials.admin.menu')
 <!-- [ navigation menu ] end -->
 <!-- [ Header ] start -->
-<?php echo $__env->make('partials.admin.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+@include('partials.admin.header')
 
 <!-- Modal -->
 <div class="modal notification-modal fade"
@@ -208,19 +207,19 @@
                 <div class="row align-items-center">
                     <div class="col-auto">
                         <div class="page-header-title">
-                            <h4 class="m-b-10"><?php echo $__env->yieldContent('page-title'); ?></h4>
+                            <h4 class="m-b-10">@yield('page-title')</h4>
                         </div>
                         <ul class="breadcrumb">
-                            <?php echo $__env->yieldContent('breadcrumb'); ?>
+                            @yield('breadcrumb')
                         </ul>
                     </div>
                     <div class="col">
-                        <?php echo $__env->yieldContent('action-btn'); ?>
+                        @yield('action-btn')
                     </div>
                 </div>
             </div>
         </div>
-    <?php echo $__env->yieldContent('content'); ?>
+        {{ $slot }}
     <!-- [ Main Content ] end -->
     </div>
 </div>
@@ -265,11 +264,9 @@
 
 
 
-<?php echo $__env->make('partials.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php echo $__env->make('Chatify::layouts.footerLinks', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php echo \Livewire\Livewire::scripts(); ?>
-
+@include('partials.admin.footer')
+@include('Chatify::layouts.footerLinks')
+@livewireScripts
 
 </body>
 </html>
-<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/layouts/admin.blade.php ENDPATH**/ ?>

@@ -220,7 +220,8 @@
                 </div>
             </div>
         </div>
-    <?php echo $__env->yieldContent('content'); ?>
+        <?php echo e($slot); ?>
+
     <!-- [ Main Content ] end -->
     </div>
 </div>
@@ -272,4 +273,4 @@
 
 </body>
 </html>
-<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/layouts/admin.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/layouts/app.blade.php ENDPATH**/ ?>

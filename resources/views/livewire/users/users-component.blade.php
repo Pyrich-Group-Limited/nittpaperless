@@ -1,5 +1,3 @@
-@extends('layouts.admin')
-
 @php
  //   $profile=asset(Storage::url('uploads/avatar/'));
 $profile=\App\Models\Utility::get_file('uploads/avatar');
@@ -32,7 +30,8 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
         @endcan
     </div>
 @endsection
-@section('content')
+
+<div>
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">
@@ -59,7 +58,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 
                                         <div class="dropdown-menu dropdown-menu-end">
                                             @can('edit user')
-                                                <a href="#!" data-size="lg" data-url="{{ route('users.edit',$user->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                                <a href="" wire:click="selUser({{$user->id}})" data-bs-toggle="modal" data-bs-target="#editUser" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
                                                     <i class="ti ti-pencil"></i>
                                                     <span>{{__('Edit')}}</span>
                                                 </a>
@@ -103,7 +102,9 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
         </div>
     </div>
 
-
+    <x-toast-notification />
     @include('user.upload-users')
-    @livewire('user.new-user-component')
-@endsection
+    @include('livewire.users.modals.edit-user-modal')
+    @include('livewire.users.modals.new-user-modal')
+    {{-- @livewire('users.new-user-component') --}}
+</div>

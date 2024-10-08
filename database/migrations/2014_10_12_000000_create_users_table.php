@@ -39,7 +39,6 @@ class CreateUsersTable extends Migration
             $table->string('designation');
             $table->string('level');
             $table->integer('department_id')->nullable();
-            $table->integer('directorate_id')->nullable();
             $table->integer('unit_id')->nullable();
             $table->integer('sub_unit_id')->nullable();
             $table->rememberToken();

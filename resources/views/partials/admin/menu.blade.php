@@ -269,7 +269,7 @@
                             <ul class="dash-submenu">
                                 @can('manage user')
                                     <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
-                                        <a class="dash-link" href="{{ route('users.index') }}">{{__('User')}}</a>
+                                        <a class="dash-link" href="{{ route('get-all-users') }}">{{__('User')}}</a>
                                     </li>
                                 @endcan
                                 @can('manage role')

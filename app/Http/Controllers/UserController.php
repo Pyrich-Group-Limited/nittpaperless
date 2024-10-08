@@ -230,15 +230,10 @@ class  UserController extends Controller
 
     public function edit($id)
     {
-        $user  = \Auth::user();
-        $roles = Role::where('created_by', '=', $user->creatorId())->where('name','!=','client')->get()->pluck('name', 'id');
+        $userId = $id;
         if(\Auth::user()->can('edit user'))
         {
-            $user              = User::findOrFail($id);
-            $user->customField = CustomField::getData($user, 'user');
-            $customFields      = CustomField::where('created_by', '=', \Auth::user()->creatorId())->where('module', '=', 'user')->get();
-
-            return view('user.edit', compact('user', 'roles', 'customFields'));
+               return view('user.edit',compact('userId'));
         }
         else
         {

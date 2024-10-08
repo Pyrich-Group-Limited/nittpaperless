@@ -1,1 +1,0 @@
-<?php /**PATH C:\Users\ARthur\Desktop\projects\pyrich\new\nittpaperless\resources\views/dashboard/user-dashboard.blade.php ENDPATH**/ ?>
