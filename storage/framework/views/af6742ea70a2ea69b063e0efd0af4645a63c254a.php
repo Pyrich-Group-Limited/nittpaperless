@@ -1,19 +1,24 @@
-<div class="modal" id="uploadUsers" tabindex="-1" role="dialog" wire:ignore>
+<div class="modal" id="uploadUsers" tabindex="-1" role="dialog" wire:ignore.self>
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <?php echo e(Form::open(array('url'=>'upload-users','enctype'=>'multipart/form-data','method'=>'post'))); ?>
-
+                <form wire:submit.prevent="uploadUser" method="POST" enctype="multipart/form-data">
                 <?php echo csrf_field(); ?>
                 <div class="modal-header">
-                    <h5 class="modal-title" id="applyLeave">Upload Users
-                    </h5>
+                            <h5 class="modal-title" id="applyLeave">Upload Users </h5>
                 </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-6 mt-1">
+                            <?php if($failed_upload): ?>
+                            <div class="alert alert-danger alert-dismissible alert-alt fade show mt-3">
+                                <strong>Attention! </strong> Some records were not uploaded. kindly ensure you <br> entered all records correctly.
+                                <input type="button"  wire:click.prevent="downloadFailedUpload" value="<?php echo e(__('Donlaod Failed Upload')); ?>" class="btn  btn-danger">
+                            </div>
+                        <?php endif; ?>
+                            <div class="col-md-8 mt-1">
                                 <div class="form-group">
-                                    <?php echo e(Form::file('uploadFile',null,array('class'=>'form-control','placeholder'=>__('Select File'),'required'=>'required'))); ?>
+                                    <input type="file" wire:model="uploadFile" class="form-control">
+                                    <div style="color: red" align="center" wire:loading wire:target="uploadFile" >Loading...</div>
 
                                     <?php $__errorArgs = ['uploadFile'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -29,19 +34,18 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
-                            <div class="col-md-6 ">
-                                <input type="submit" value="<?php echo e(__('Download Template')); ?>" class="btn  btn-primary">
+                            <div class="col-md-4 ">
+                                <a href="<?php echo e(asset('uploads/staf-sample.xlsx')); ?>"><input type="button" value="<?php echo e(__('Download Template')); ?>" class="btn  btn-primary"></a>
                             </div>
                         </div>
 
                     </div>
 
                     <div class="modal-footer">
-                        <input type="button" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light" data-bs-dismiss="modal">
+                        <input type="button" id="closeUploadUser" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light" data-bs-dismiss="modal">
                         <input type="submit" value="<?php echo e(__('Onboard Users')); ?>" class="btn  btn-primary">
                     </div>
-                <?php echo e(Form::close()); ?>
-
+                </form>
             </div>
         </div>
     </div>
@@ -53,6 +57,12 @@ unset($__errorArgs, $__bag); ?>
             console.log('user');
             document.getElementById("toggleOldUser").click();
         });
+    </script>
+
+    <script>
+        window.addEventListener('success', event => {
+            document.getElementById("closeUploadUser").click();
+        })
     </script>
     <?php endif; ?>
 <?php $__env->stopPush(); ?>

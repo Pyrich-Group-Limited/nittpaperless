@@ -33,6 +33,7 @@ use Storage;
 
 class  UserController extends Controller
 {
+    private $failed_upload;
     private $dataService;
     public function __construct(DataService $dataService)
     {
@@ -677,83 +678,5 @@ class  UserController extends Controller
 
     //end for user login details
 
-    public function uploadUser(Request $request)
-    {
-        $data = $request->validate([
-            'uploadFile' => ['required','file','mimes:xlsx,csv,xls'],
-        ]);
 
-        $sn = 0;
-
-        try{
-            $staffs  = Excel::toArray(new UsersImport, $data['uploadFile']);
-
-            dd($staffs );
-            foreach($staffs[0] as $row){
-                $this->uploadUserRecord($row);
-            }
-
-        }catch(Throwable $e){
-            return back()->with('error','There was an error uploading record kindly ensure your data is properly arranged and upload again');
-        }
-    }
-
-    //to download failed upload records
-    public function downloadFailedUpload(){
-        return Excel::download(new FailedUsersExport($this->failed_upload), 'Failed-Uploads.xlsx');
-    }
-
-    public function uploadUserRecord($row){
-        dd($row);
-
-        $departments = Department::where('',$row['3'])->first();
-        $designations = Designation::where('',$row['4'])->first();
-        $liasons = $this->dataService->getLiasons();
-        $headquaters = $this->dataService->getHeadquaters();
-        $directorates = $this->dataService->getDirectorates();
-
-        if($branch==null || $department==null || $unit==null){
-            if($branch==null){
-                $this->setFailedUpload($row,"Invalid Branch");
-            }elseif($department==null){
-                $this->setFailedUpload($row,"Invalid Department");
-            }elseif($unit==null){
-                $this->setFailedUpload($row,"Invalid Unit");
-            }
-        }else{
-            $valUser = User::where('email',$row[3])->first();
-            if($row[0]!=null && $valUser==null){
-                $user = User::create([
-                    'designation'  => $row[0],
-                    'surname' => $row[1],
-                    'othernames' => $row[2],
-                    'email' => $row[3],
-                    'user_type' => $row[4],
-                    'branch_id' => $branch->id,
-                    'department_id' => $department->id,
-                    'password' => Hash::make('12345678'),
-                ]);
-
-                $role = Role::where('name',trim($row[4]))->first();
-
-                if($role!=null){
-                    $user->assignRole([$row[4]]);
-                    $user->givePermissionTo($role->permissions->pluck('name'));
-                }else{
-                    $this->setFailedUpload($row,"Undefined Role (User type)");
-                    $user->delete();
-                }
-
-                $this->sendMail($user);
-
-            }
-        }
-
-        if(count($this->failed_upload)>0){
-            $this->dispatchBrowserEvent('errorfeedback',['errorfeedback'=>'Some staff were not uploaded. Kindly download the failed excel record to ensure they are currently inputed']);
-        }else{
-            $this->dispatchBrowserEvent('feedback',['feedback'=>'Upload Successful']);
-        }
-
-    }
 }
