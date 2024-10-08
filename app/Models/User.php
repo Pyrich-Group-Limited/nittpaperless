@@ -38,10 +38,12 @@ class User extends Authenticatable
         'requested_plan',
         'last_login_at',
         'department_id',
+        'designation',
+        'location_type',
+        'location',
         'unit_id',
         'subunit_id',
         'level',
-        'directorate_id'
         // 'signature',
     ];
 
@@ -102,11 +104,11 @@ class User extends Authenticatable
 
         if(!empty($this->avatar) && \Storage::exists($this->avatar))
         {
-            return $this->attributes['avatar'] = asset(\Storage::url($this->avatar));
+            return null;
         }
         else
         {
-            return $this->attributes['avatar'] = asset(\Storage::url('avatar.png'));
+            return null;
         }
     }
 

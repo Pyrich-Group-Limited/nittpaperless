@@ -105,7 +105,5 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 
 
     @include('user.upload-users')
-    @include('user.create')
-
-
+    @livewire('user.new-user-component')
 @endsection

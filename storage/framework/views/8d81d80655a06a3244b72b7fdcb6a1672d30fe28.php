@@ -53,6 +53,8 @@
         show_toastr('error', '<?php echo $message; ?>');
     </script>
 <?php endif; ?>
+
+
 <?php if($get_cookie['enable_cookie'] == 'on'): ?>
     <?php echo $__env->make('layouts.cookie_consent', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php endif; ?>

@@ -146,6 +146,9 @@ use App\Http\Controllers\DtaReportController;
 use App\Http\Controllers\MemoController;
 
 
+//livewire component for user
+use App\Http\Livewire\Users\UsersComponent;
+
 
 
 /*
@@ -842,6 +845,7 @@ Route::resource('email_template', EmailTemplateController::class)->middleware(['
 
 // HRM
 
+Route::get('registered-users', UsersComponent::class)->name('get-all-users');
 Route::resource('user', UserController::class)->middleware(['auth', 'XSS']);
 Route::post('employee/json', [EmployeeController::class, 'json'])->name('employee.json')->middleware(['auth','XSS']);
 Route::post('branch/employee/json', [EmployeeController::class, 'employeeJson'])->name('branch.employee.json')->middleware(['auth','XSS']);
@@ -1056,6 +1060,7 @@ Route::get('reports-pos-vs-purchase', [ReportController::class, 'posVsPurchaseRe
 
 // User Module
 // Route::get('/user', [UserController::class, 'store'])->name('user.store')->middleware(['auth', 'XSS']);
+// Route::get('users/{view?}', UsersComponent::class)->name('users')->middleware(['auth', 'XSS']);
 Route::get('users/{view?}', [UserController::class, 'index'])->name('users')->middleware(['auth', 'XSS']);
 Route::get('users-view', [UserController::class, 'filterUserView'])->name('filter.user.view')->middleware(['auth', 'XSS']);
 Route::get('checkuserexists', [UserController::class, 'checkUserExists'])->name('user.exists')->middleware(['auth', 'XSS']);

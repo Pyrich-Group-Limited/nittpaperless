@@ -53,6 +53,8 @@
         show_toastr('error', '{!! $message !!}');
     </script>
 @endif
+
+
 @if($get_cookie['enable_cookie'] == 'on')
     @include('layouts.cookie_consent')
 @endif

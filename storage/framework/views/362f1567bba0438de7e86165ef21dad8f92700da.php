@@ -91,6 +91,8 @@
     <?php endif; ?>
 
     <?php echo $__env->yieldPushContent('css-page'); ?>
+    <?php echo \Livewire\Livewire::styles(); ?>
+
 </head>
 <body class="<?php echo e($color); ?>">
 <!-- [ Pre-loader ] start -->
@@ -265,6 +267,7 @@
 
 <?php echo $__env->make('partials.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('Chatify::layouts.footerLinks', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo \Livewire\Livewire::scripts(); ?>
 
 
 </body>
