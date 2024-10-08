@@ -176,10 +176,14 @@ class FilesController extends Controller
     public function share(File $file, Request $request)
     {
         $this->authorize('update', $file);
-        $request->validate(['user_id' => 'required|exists:users,id']);
+        $request->validate([
+            'user_id' => 'required|array',
+            'user_id' => 'required|exists:users,id'
+        ]);
 
+        // $file->sharedWith()->syncWithoutDetaching($user);
         $user = User::find($request->user_id);
-        $file->sharedWith()->syncWithoutDetaching($user);
+        $file->sharedWith()->attach($user);
         return redirect()->back()->with('success', 'File shared successfully.');
     }
 

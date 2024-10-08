@@ -23,7 +23,7 @@ class File extends Model
 
     public function sharedWith()
     {
-        return $this->belongsToMany(User::class, 'file_user');
+        return $this->belongsToMany(User::class, 'file_user')->withTimestamps();
     }
 
 
