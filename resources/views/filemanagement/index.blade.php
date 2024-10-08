@@ -17,34 +17,26 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 @section('action-btn')
     <div class="float-end">
         {{------------ Start Filter ----------------}}
-                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{-- <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="ti ti-filter"></i>
-                </a>
-                <div class="dropdown-menu  dropdown-steady" id="project_sort">
-                    <a class="dropdown-item {{ $sortOrder == 'newest' ? 'active' : '' }}"
+                </a> --}}
+                {{-- <div class="dropdown-menu  dropdown-steady" id="project_sort">
+                    <a class="dropdown-item {{ request('order') == 'desc' ? 'selected' : '' }}"
                     href="{{ route('file.index', ['sort' => 'newest']) }}" data-val="created_at-desc">
                         <i class="ti ti-sort-descending"></i>{{__('Newest')}}
                     </a>
-                    <a class="dropdown-item" {{ $sortOrder == 'oldest' ? 'active' : '' }}
+                    <a class="dropdown-item" {{ request('order') == 'asc' ? 'selected' : '' }}
                     href="{{ route('file.index', ['sort' => 'oldest']) }}" data-val="created_at-asc">
                         <i class="ti ti-sort-ascending"></i>{{__('Oldest')}}
                     </a>
-                </div>
+                </div> --}}
 
             {{------------ End Filter ----------------}}
 
-            {{------------ Start Status Filter ----------------}}
-                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="btn-inner--icon">{{__('Status')}}</span>
-                </a>
-                <div class="dropdown-menu  project-filter-actions dropdown-steady" id="project_status">
-                    <a class="dropdown-item filter-action filter-show-all pl-4 active" href="#">{{__('Show All')}}</a>
-                        <a class="dropdown-item filter-action pl-4" href="#" data-val="">{{__('Status Filter')}}</a>
-                </div>
-            {{------------ End Status Filter ----------------}}
-            <a href="#" data-size="lg" data-url="{{ route('file.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create new file')}}" class="btn btn-sm btn-primary">
+            {{-- <a href="#" id="newFileButton" data-size="lg" data-url="{{ route('file.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create new file')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-plus"></i>
-            </a>
+            </a>--}}
+            <a href="#" class="btn btn-sm btn-primary" id="newFileButton" data-bs-toggle="modal" data-bs-target="#newfile"   data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>New</a>
     </div>
 @endsection
 
@@ -55,20 +47,40 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-8">
+                        <div class="col-xl-12">
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="btn-box">
-                                        <form action="{{ route('file.index') }}" method="GET">
-                                            <input type="text" name="search" class="form-control" placeholder="Search files or folders" value="{{ request('search') }}">
-                                            <button type="submit" class="btn btn-primary btn-sm" hidden>Search</button>
+                                        <form method="GET" action="{{ route('file.index') }}" class="mb-3">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <input type="text" name="search" class="form-control" placeholder="Search file, folder..." value="{{ request('search') }}">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select name="sortBy" class="form-select form-control">
+                                                        <option value="file_name" {{ request('sortBy') == 'file_name' ? 'selected' : '' }}>Sort by Name</option>
+                                                        <option value="created_at" {{ request('sortBy') == 'created_at' ? 'selected' : '' }}>Sort by Date</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select name="order" class="form-select form-control">
+                                                        <option value="asc" {{ request('order') == 'asc' ? 'selected' : '' }}>Ascending</option>
+                                                        <option value="desc" {{ request('order') == 'desc' ? 'selected' : '' }}>Descending</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                        <button type="submit" class="btn btn-primary form-control">Search & Filter</button>
+                                                </div>
+                                            </div>
+
                                         </form>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto">
+                        {{-- <div class="col-auto">
                             <div class="row">
                                 <div class="col-auto">
                                     <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
@@ -84,12 +96,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         </a>
                                     </div>
 
-                                    {{-- <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('file.upload') }}" data-ajax-popup="true"
+                                    <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('file.upload') }}" data-ajax-popup="true"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Upload Files') }}"><i class="ti ti-cloud-upload"></i> Upload
-                                    </a> --}}
+                                    </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 {{ Form::close() }}
@@ -100,14 +112,17 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">
-                @foreach($folders as $folder)
+                {{-- @foreach($folders as $folder) --}}
+                @foreach ($documents as $folderName => $docs)
                     <h4>
                         <i class="ti ti-folder"></i>
-                        {{ $folder->folder_name }}
+                        {{ $folderName ? : 'Files without folder'  }}
                     </h4>
 
-                    @if($folder->files->count() > 0)
-                        @foreach($folder->files as $file )
+                    {{-- @if($folder->files->count() > 0) --}}
+                    @if($documents->count() > 0)
+                        {{-- @foreach($folder->files as $file ) --}}
+                        @foreach ($docs as $file)
                             <div class="col-md-2 mb-4">
                                 <div class="card text-center card-2">
                                     <div class="card-header border-0 pb-0">
@@ -179,9 +194,8 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     @endif
                 @endforeach
 
-
-                @if($rootFiles->count() > 0)
-                    <h2>Files without folder</h2>
+                {{-- @if($rootFiles->count() > 0)
+                    <h4>Files without folder</h4>
                     @foreach($rootFiles as $file)
                         <div class="col-md-2 mb-4">
                             <div class="card text-center card-2">
@@ -202,14 +216,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                     <i class="ti ti-pencil"></i>
                                                     <span>{{__('Rename')}}</span>
                                                 </a>
-                                                <a href="#!"  class="dropdown-item bs-pass-para">
-                                                    <i class="ti ti-archive"></i>
-                                                    <span> {{__('Archive')}} </span>
+                                                <a href="{{ route('files.download',$file->id) }}"  class="dropdown-item">
+                                                    <i class="ti ti-download"></i>
+                                                    <span> {{__('Download')}} </span>
                                                 </a>
-                                                <a href="#!"  class="dropdown-item bs-pass-para">
-                                                    <i class="ti ti-adjustments"></i>
-                                                    <span>{{__('Restore')}} </span>
-                                                </a>
+                                                <form action="{{ route('files.archive', $file->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-white dropdown-item"><i class="ti ti-archive"></i>Archive</button>
+                                                </form>
                                                 {!! Form::close() !!}
                                             </div>
                                         </div>
@@ -238,15 +252,23 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         </div>
                     @endforeach
                 @else
-                    {{-- <p>No root-level files found.</p> --}}
                     <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
                         no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
                         alt="No results found" >
                         <p class="mt-2 text-danger">No root-level files found.!</p>
                     </div>
-                @endif
+                @endif --}}
 
             </div>
         </div>
     </div>
+    @include('filemanagement.modals.create-file')
+
+    @if($errors->any() || Session::has('error'))
+    <script>
+        $(document).ready(function() {
+            document.getElementById("newFileButton").click();
+        });
+    </script>
+    @endif
 @endsection
