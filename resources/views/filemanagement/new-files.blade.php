@@ -15,7 +15,73 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 @endsection
 
 @section('content')
+<div class="row">
+    <div class="col-sm-12">
+        <div class="mt-2 " id="multiCollapseExample1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="btn-box">
+                                        <form method="GET" action="{{ route('file.index') }}" class="mb-3">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <input type="text" name="search" class="form-control" placeholder="Search file, folder..." value="{{ request('search') }}">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select name="sortBy" class="form-select form-control">
+                                                        <option value="file_name" {{ request('sortBy') == 'file_name' ? 'selected' : '' }}>Sort by Name</option>
+                                                        <option value="created_at" {{ request('sortBy') == 'created_at' ? 'selected' : '' }}>Sort by Date</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select name="order" class="form-select form-control">
+                                                        <option value="asc" {{ request('order') == 'asc' ? 'selected' : '' }}>Ascending</option>
+                                                        <option value="desc" {{ request('order') == 'desc' ? 'selected' : '' }}>Descending</option>
+                                                    </select>
+                                                </div>
 
+                                                <div class="col-md-3">
+                                                        <button type="submit" class="btn btn-primary form-control">Search & Filter</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="col-auto">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+
+                                        <a href="#!" data-size="lg" data-url="{{ route('file.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create File')}}">
+                                            <i class="ti ti-file-plus"></i>
+                                            <span>{{__('Create File')}}</span>
+                                        </a>
+                                        <a href="#!" data-url="{{ route('folder.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create Folder')}}">
+                                            <i class="ti ti-folder-plus"></i>
+                                            <span>  {{__('Create Folder')}}</span>
+                                        </a>
+                                    </div>
+
+                                    <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('file.upload') }}" data-ajax-popup="true"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Upload Files') }}"><i class="ti ti-cloud-upload"></i> Upload
+                                    </a>
+                                </div>
+                            </div>
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">

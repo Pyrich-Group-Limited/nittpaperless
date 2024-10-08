@@ -562,8 +562,8 @@
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>
-                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'users' || Request::segment(1) == 'roles'
-                            || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''); ?>">
+                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'memos' || Request::segment(1) == 'files'
+                            || Request::segment(1) == 'folders'  || Request::segment(1) == 'archived')?' active dash-trigger':''); ?>">
                         <a href="#!" class="dash-link active dash-trigger"
                         ><span class="dash-micon"><i class="ti ti-files"></i></span
                             ><span class="dash-mtext"><?php echo e(__('Document Mgt')); ?></span

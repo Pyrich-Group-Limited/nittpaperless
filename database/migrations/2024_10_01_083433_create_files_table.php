@@ -17,8 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('file_name');
             $table->string('path');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('folder_id')->nullable()->constrained()->onDelete('cascade');
+
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+            $table->bigInteger('folder_id')->unsigned()->nullable();
+            $table->foreign('folder_id')->references('id')->on('folders')->onDelete('cascade');
+
             $table->boolean('is_archived')->default(0);  // 0 for active, 1 for archived
             $table->timestamps();
         });

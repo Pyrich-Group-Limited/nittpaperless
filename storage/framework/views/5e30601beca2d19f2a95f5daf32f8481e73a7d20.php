@@ -13,6 +13,32 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
     <li class="breadcrumb-item"><?php echo e(__('Folders')); ?></li>
 <?php $__env->stopSection(); ?>
+<?php $__env->startSection('action-btn'); ?>
+    <div class="float-end">
+        
+                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ti ti-filter"></i>
+                </a>
+                <div class="dropdown-menu  dropdown-steady" id="project_sort">
+                    <a class="dropdown-item <?php echo e($sortOrder == 'newest' ? 'active' : ''); ?>"
+                    href="<?php echo e(route('folders.index', ['sort' => 'newest'])); ?>" data-val="created_at-desc">
+                        <i class="ti ti-sort-descending"></i><?php echo e(__('Newest')); ?>
+
+                    </a>
+                    <a class="dropdown-item" <?php echo e($sortOrder == 'oldest' ? 'active' : ''); ?>
+
+                    href="<?php echo e(route('folders.index', ['sort' => 'oldest'])); ?>" data-val="created_at-asc">
+                        <i class="ti ti-sort-ascending"></i><?php echo e(__('Oldest')); ?>
+
+                    </a>
+                </div>
+
+            
+            <a href="#" data-size="lg" data-url="<?php echo e(route('folder.create')); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('Create new folder')); ?>" class="btn btn-sm btn-primary">
+                <i class="ti ti-plus">New </i>
+            </a>
+    </div>
+<?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
 <div class="row">
@@ -21,35 +47,25 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-8">
+                        <div class="col-xl-12">
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="btn-box">
-                                        <input type="text" class="form-control" placeholder="Search files, folder">
+                                        <form action="<?php echo e(route('folders.index')); ?>" method="GET">
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <input type="text" name="search" class="form-control" placeholder="Search folders by name" value="<?php echo e(request('search')); ?>">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button type="submit" class="btn btn-primary form-control">Search</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto mt-2">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <a href="#!" data-size="lg" data-url="<?php echo e(route('file.create')); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Create File')); ?>">
-                                            <i class="ti ti-file-plus"></i>
-                                            <span><?php echo e(__('Create File')); ?></span>
-                                        </a>
-                                        <a href="#!" data-url="<?php echo e(route('folder.create')); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Create Folder')); ?>">
-                                            <i class="ti ti-folder-plus"></i>
-                                            <span>  <?php echo e(__('Create Folder')); ?></span>
-                                        </a>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-sm" data-url="<?php echo e(route('file.upload')); ?>" data-ajax-popup="true"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo e(__('Upload Files')); ?>"><i class="ti ti-cloud-upload"></i> Upload
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <?php echo e(Form::close()); ?>
@@ -126,6 +142,8 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         <p class="mt-2 text-danger">No folders created!</p>
                     </div>
                 <?php endif; ?>
+                <?php echo e($folders->links()); ?>
+
             </div>
         </div>
     </div>

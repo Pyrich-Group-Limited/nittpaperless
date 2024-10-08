@@ -15,55 +15,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="mt-2 " id="multiCollapseExample1">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-8">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="btn-box">
-                                        <input type="text" class="form-control" placeholder="Search files, folder">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto mt-2">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
-                                    <div class="dropdown-menu dropdown-menu-end">
 
-                                        <a href="#!" data-size="lg" data-url="<?php echo e(route('file.create')); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Create File')); ?>">
-                                            <i class="ti ti-file-plus"></i>
-                                            <span><?php echo e(__('Create File')); ?></span>
-                                        </a>
-                                        <a href="#!" data-url="<?php echo e(route('folder.create')); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Create Folder')); ?>">
-                                            <i class="ti ti-folder-plus"></i>
-                                            <span>  <?php echo e(__('Create Folder')); ?></span>
-                                        </a>
-                                    </div>
-
-                                    <a href="#" class="btn btn-primary btn-sm" data-url="<?php echo e(route('file.upload')); ?>" data-ajax-popup="true"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo e(__('Upload Files')); ?>"><i class="ti ti-cloud-upload"></i> Upload
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <?php echo e(Form::close()); ?>
-
-            </div>
-        </div>
-    </div>
-</div>
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">
-                <h4>My Shared Files</h4>
+                
                 <?php if($sharedFiles->isNotEmpty()): ?>
                     <?php $__currentLoopData = $sharedFiles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $file): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-md-2 mb-4">

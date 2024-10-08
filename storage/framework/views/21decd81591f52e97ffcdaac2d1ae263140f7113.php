@@ -203,9 +203,15 @@ unset($__errorArgs, $__bag); ?>" name="password_confirmation" type="password" re
                         <?php echo csrf_field(); ?>
                         <?php echo method_field('PUT'); ?>
                         <div class="row">
-                            
+                            <div class="col-lg-6 offset-lg-4 col-sm-6 form-group">
+                                <?php if(Auth::user()->signature): ?>
+                                    <img src="<?php echo e(asset('storage/' . Auth::user()->signature->signature_path)); ?>" alt="Signature" width="200">
+                                <?php else: ?>
+                                    <p class="text-info">You are yet to upload your signature!</p>
+                                <?php endif; ?>
+                            </div>
 
-                            <div class="col-lg-9 col-sm-6 form-group">
+                            <div class="col-lg-12 col-sm-6 form-group">
                                 <label for="signature" class="col-form-label text-dark"><?php echo e(__('New Signature')); ?></label>
                                 <input class="form-control" type="file" name="signature" required />
                             </div>

@@ -10,10 +10,26 @@ use App\Models\Folder;
 
 class FolderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $folders = Folder::where('user_id',Auth::user()->id)->get();
-        return view('filemanagement.folders', compact('folders'));
+        $search = $request->query('search');
+        // Check if search query is present
+        if ($search) {
+            // If a search query exists, filter folders by the search term
+            $folders = Folder::where('folder_name', 'LIKE', "%{$search}%")
+            ->where('user_id',Auth::user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10); // You can adjust the pagination limit
+        } else {
+            $sortOrder = $request->get('sort', 'newest');
+            if ($sortOrder === 'newest') {
+                $folders = Folder::where('user_id',Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+            } else {
+                $folders = Folder::where('user_id',Auth::user()->id)->orderBy('created_at', 'asc')->paginate(10);
+            }
+        }
+
+        return view('filemanagement.folders', compact('folders','sortOrder'));
 
     }
 
