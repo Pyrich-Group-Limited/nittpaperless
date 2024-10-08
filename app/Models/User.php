@@ -52,7 +52,7 @@ class User extends Authenticatable
     }
 
     public function unit(){
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Unit::class);
     }
 
     public function folders()
