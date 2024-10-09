@@ -51,11 +51,11 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Contract Description</label>
+                                <label class="form-label" for="ad_description">Contract Description</label>
                                 <div wire:ignore>
-                                    <textarea id="description" wire:model="description" class="form-control tinymce-basic" name="description"></textarea>
+                                    <textarea id="ad_description" wire:model="ad_description" class="form-control tinymce-basic" name="ad_description"></textarea>
                                 </div>
-                                <?php $__errorArgs = ['description'];
+                                <?php $__errorArgs = ['ad_description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -70,7 +70,7 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <?php echo e(Form::label('start_date', __('Start Date'), ['class' => 'form-label'])); ?>
 
-                                    <input type="date" id="start_date" wire:model.defer="start_date" class="form-control"
+                                    <input type="date" id="start_date" wire:model.defer="ad_start_date" class="form-control"
                                         placeholder="Project Start Date" />
                                     <?php $__errorArgs = ['start_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -90,7 +90,7 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <?php echo e(Form::label('end_date', __('End Date'), ['class' => 'form-label'])); ?>
 
-                                    <input type="date" id="end_date" wire:model.defer="end_date" class="form-control"
+                                    <input type="date" id="end_date" wire:model.defer="ad_end_date" class="form-control"
                                         placeholder="Project End Date" />
                                     <?php $__errorArgs = ['end_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -112,7 +112,7 @@ unset($__errorArgs, $__bag); ?>
                     <div class="modal-footer">
                         <input type="button" id="closeAdvertPublishModal" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
                             data-bs-dismiss="modal">
-                        <input type="button" wire:click="registerUser" value="<?php echo e(__('Publish Advert')); ?>" class="btn  btn-primary">
+                        <input type="button" wire:click="advertiseProject" value="<?php echo e(__('Publish Advert')); ?>" class="btn  btn-primary">
                     </div>
                 </div>
             </div>
@@ -136,13 +136,13 @@ unset($__errorArgs, $__bag); ?>
 
     <script>
         tinymce.init({
-            selector: '#description',
+            selector: '#ad_description',
             setup: function(editor) {
                 editor.on('init change', function() {
                     editor.save();
                 });
                 editor.on('change', function(e) {
-                    window.livewire.find('<?php echo e($_instance->id); ?>').set('description', editor.getContent());
+                    window.livewire.find('<?php echo e($_instance->id); ?>').set('ad_description', editor.getContent());
                 });
             }
         });

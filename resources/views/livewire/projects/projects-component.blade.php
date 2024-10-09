@@ -151,18 +151,14 @@
                                             {{-- @endcan --}}
                                             {{-- @can('edit project') --}}
                                                 <div class="action-btn bg-info ms-2">
-                                                        {{-- <a href="{{ route('project.edit',$project) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="{{ URL::to('projects/'.$project->id.'/edit') }}" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-title="{{__('Edit Project')}}">
-                                                            <i class="ti ti-pencil text-white"></i>
-                                                        </a> --}}
                                                         <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#editProject" id="toggleOldProject"  wire:click="selProject({{$project->id}})"  data-bs-toggle="tooltip" title="{{__('Modify Project')}}"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
                                                             <i class="ti ti-pencil text-white"></i>
                                                         </a>
-                                                        {{-- <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#viewApplicantModal" wire:click="setApplicant('{{ $applicant->id }}')" href="#"><i class="fa fa-eye"></i> View Details</a> --}}
                                                     </div>
                                             {{-- @endcan --}}
                                             {{-- @can('edit project') --}}
                                             <div class="action-btn bg-primary ms-2">
-                                                <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject"  data-bs-toggle="tooltip" title="{{__('Advertise Project')}}"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
+                                                <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject" wire:click="selProject({{$project->id}})"  data-bs-toggle="tooltip" title="{{__('Advertise Project')}}"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
                                                     <i class="ti ti-share text-white"></i>
                                                 </a>
                                             </div>
