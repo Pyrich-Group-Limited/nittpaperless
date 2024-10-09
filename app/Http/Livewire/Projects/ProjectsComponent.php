@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Projects;
 
 use Livewire\Component;
-use App\Models\Utility;
+// use App\Models\Utility;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\ProjectCreation;
@@ -22,27 +22,33 @@ class ProjectsComponent extends Component
     public $end_date;
     public $project_category_id;
     public $project_boq;
-    public $supervising_staff_id = [];
-    // public $selectedStaff = [];
+    public $supervising_staff_id;
+    public $selectedStaff = [];
     public $status;
     public $budget;
+    public $users;
+
+    public function mount()
+    {
+        $this->users = User::all();
+    }
 
     public function createProject(){
+        // dd($this);
         $this->validate([
             'project_name' => ['required','max:120'],
             'description' => ['required'],
             'start_date' => ['required'],
             'end_date' => ['required'],
             'project_category_id' => ['required'],
-            'project_boq' => 'required|mimes:pdf,doc,docx,txt|max:10240',
-            'supervising_staff_id' => 'required|array|min:1',
-            // 'selectedStaff' => 'required|array|min:1',
-            'status' => ['required'],
+            // 'supervising_staff_id' => ['required'],
+            'selectedStaff' => 'required|array|min:1',
+            'selectedStaff.*' => 'exists:users,id',
             'budget' => ['required'],
         ]);
 
-        $boqDocumentName = Carbon::now()->timestamp. '.' . $this->project_boq->getClientOriginalName();
-        $this->project_boq->storePubliclyAs('boqs', 'public');
+        // $boqDocumentName = Carbon::now()->timestamp. '.' . $this->project_boq->getClientOriginalName();
+        // $this->project_boq->storePubliclyAs('boqs', 'public');
 
         $project = ProjectCreation::create([
             'project_name' => $this->project_name,
@@ -50,17 +56,16 @@ class ProjectsComponent extends Component
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'project_category_id' => $this->project_category_id,
-            'project_boq' => $boqDocumentName,
             // 'supervising_staff_id' => $this->supervising_staff_id,
-            'status' => $this->status,
+            // 'status' => $this->status,
             'budget' => $this->budget,
             'created_by' => Auth::user()->id
         ]);
 
-        $project->user()->sync($this->supervising_staff_id);
-        // $project->user()->sync($this->selectedStaff);
+        $project->users()->attach($this->selectedStaff);
+        // $project->users()->sync($this->selectedStaff);
 
-        if(\Auth::user()->type=='super admin'){
+        if(Auth::user()->type=='super admin'){
 
             ProjectUser::create(
                 [
@@ -68,44 +73,6 @@ class ProjectsComponent extends Component
                     'user_id' => Auth::user()->id,
                 ]
             );
-
-        //     if($request->user){
-        //         foreach($request->user as $key => $value) {
-        //             ProjectUser::create(
-        //                 [
-        //                     'project_id' => $project->id,
-        //                     'user_id' => $value,
-        //                 ]
-        //             );
-        //         }
-        //     }
-
-
-        // }else{
-        //     ProjectUser::create(
-        //         [
-        //             'project_id' => $project->id,
-        //             'user_id' => Auth::user()->creatorId(),
-        //         ]
-        //     );
-
-        //     ProjectUser::create(
-        //         [
-        //             'project_id' => $project->id,
-        //             'user_id' => Auth::user()->id,
-        //         ]
-        //     );
-
-        //     if($request->user){
-        //         foreach($request->user as $key => $value) {
-        //             ProjectUser::create(
-        //                 [
-        //                     'project_id' => $project->id,
-        //                     'user_id' => $value,
-        //                 ]
-        //             );
-        //         }
-        //     }
 
         }
 

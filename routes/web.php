@@ -150,6 +150,8 @@ use App\Http\Controllers\MemoController;
 use App\Http\Livewire\Users\UsersComponent;
 
 use App\Http\Livewire\Projects\ProjectsComponent;
+use App\Http\Livewire\Projects\EditProjectsComponent;
+use App\Http\Livewire\Projects\ShowProjectsComponent;
 
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
@@ -1118,7 +1120,12 @@ Route::get('projects/milestone/{id}/show', [ProjectController::class, 'milestone
 // End Milestone
 
 // Project Module
-Route::get('all-projects', ProjectsComponent::class)->name('created-projects');
+Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function () {
+    Route::get('all-projects', ProjectsComponent::class)->name('created-projects');
+    Route::get('project/{id}/show',ShowProjectsComponent::class)->name('project.details');
+    Route::get('project/{id}/edit',EditProjectsComponent::class)->name('project.edit');
+});
+
 
 Route::get('invite-project-member/{id}', [ProjectController::class, 'inviteMemberView'])->name('invite.project.member.view')->middleware(['auth', 'XSS']);
 Route::post('invite-project-user-member', [ProjectController::class, 'inviteProjectUserMember'])->name('invite.project.user.member')->middleware(['auth', 'XSS']);

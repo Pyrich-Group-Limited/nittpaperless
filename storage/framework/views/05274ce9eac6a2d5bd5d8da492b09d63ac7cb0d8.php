@@ -16,9 +16,7 @@
 <?php $__env->startSection('action-btn'); ?>
     <div class="float-end">
         <?php if($view == 'grid'): ?>
-            <a href="<?php echo e(route('projects.list','list')); ?>"  data-bs-toggle="tooltip" title="<?php echo e(__('List View')); ?>" class="btn btn-sm btn-primary">
-                <i class="ti ti-list"></i>
-            </a>
+            
 
         <?php else: ?>
             <a href="<?php echo e(route('created-projects')); ?>"  data-bs-toggle="tooltip" title="<?php echo e(__('Grid View')); ?>" class="btn btn-sm btn-primary">
@@ -63,12 +61,6 @@
                 </div>
             
 
-
-        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create project')): ?>
-            <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newProject" id="toggleOldProject"  data-bs-toggle="tooltip" title="<?php echo e(__('Create New Project')); ?>"  class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
-            </a>
-        <?php endif; ?>
     </div>
 <?php $__env->stopSection(); ?>
 
@@ -93,12 +85,12 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img <?php echo e($project->img_image); ?> class="wid-40 rounded me-3">
-                                            <p class="mb-0"><a href="<?php echo e(route('projects.show',$project)); ?>" class="name mb-0 h6 text-sm"><?php echo e($project->project_name); ?></a></p>
+                                            <img src="<?php echo e(asset('uploads/project.png')); ?>" class="wid-40 rounded me-3">
+                                            <p class="mb-0"><a href="<?php echo e(route('pp.projects.show',$project)); ?>" class="name mb-0 h6 text-sm"><?php echo e($project->project_name); ?></a></p>
                                         </div>
                                     </td>
                                     <td class="">
-                                        <span class="badge bg-info p-2 px-3 rounded"><?php echo e($project->status); ?></span>
+                                        <span class="badge bg-info p-2 px-3 rounded"><?php echo e($project->status); ?></span><?php if($project->project_boq==null): ?> <span class="badge bg-danger p-2 px-3 rounded">Pending BOQ</span> <?php endif; ?>
                                     </td>
                                     <td class="">
                                         <div class="avatar-group" id="project_<?php echo e($project->id); ?>">
@@ -136,18 +128,27 @@
                                         <span>
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
                                                 <div class="action-btn bg-warning ms-2">
-                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="<?php echo e(route('invite.project.member.view', $project->id)); ?>" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Invite User')); ?>" data-title="<?php echo e(__('Invite User')); ?>">
-                                                        <i class="ti ti-send text-white"></i>
+                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('View Project')); ?>" data-title="<?php echo e(__('View Project')); ?>">
+                                                        <i class="ti ti-eye text-white"></i>
                                                     </a>
                                                 </div>
                                             <?php endif; ?>
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
+                                            <div class="action-btn bg-warning ms-2">
+                                                <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="<?php echo e(route('invite.project.member.view', $project->id)); ?>" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Invite User')); ?>" data-title="<?php echo e(__('Invite User')); ?>">
+                                                    <i class="ti ti-send text-white"></i>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if($project->project_boq==null): ?>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
                                                 <div class="action-btn bg-info ms-2">
-                                                        <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="<?php echo e(URL::to('projects/'.$project->id.'/edit')); ?>" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Edit')); ?>" data-title="<?php echo e(__('Edit Project')); ?>">
-                                                            <i class="ti ti-pencil text-white"></i>
+                                                        <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="<?php echo e(URL::to('projects/'.$project->id.'/edit')); ?>" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Upload Bill of Quantity')); ?>" data-title="<?php echo e(__('Upload Bill of Quantity')); ?>">
+                                                            <i class="ti ti-upload text-white"></i>
                                                         </a>
                                                     </div>
                                             <?php endif; ?>
+                                        <?php endif; ?>
                                             
                                         </span>
                                     </td>
@@ -186,4 +187,4 @@
 <?php echo $__env->make('livewire.projects.modals.create-project', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 </div>
-<?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/livewire/projects/projects-component.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/livewire/physical-planning/projects/physical-planning-projects-component.blade.php ENDPATH**/ ?>

@@ -561,7 +561,7 @@
 
                     <?php if(\Auth::user()->show_project() == 1): ?>
                         <?php if( Gate::check('manage project')): ?>
-                            <li class="dash-item dash-hasmenu">
+                            <li class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''); ?>">
                                 <a href="#!" class="dash-link"
                                 ><span class="dash-micon"><i class="ti ti-list"></i></span
                                     ><span class="dash-mtext"><?php echo e(__('New PM/PP')); ?></span
@@ -570,7 +570,7 @@
                                     <ul class="dash-submenu">
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project')): ?>
                                             <li class="dash-item  ">
-                                                <a class="dash-link" href="#"><?php echo e(__('Projects')); ?></a>
+                                                <a class="dash-link" href="<?php echo e(route('pp.projects')); ?>"><?php echo e(__('Projects')); ?></a>
                                             </li>
                                         <?php endif; ?>
 
