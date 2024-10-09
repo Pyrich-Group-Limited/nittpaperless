@@ -27,42 +27,25 @@
 @endsection
 @section('action-btn')
     <div class="float-end">
-
+        @if($project->project_boq==null)
+            @can('edit project')
+            <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="{{__('Upload Bill of Quantity')}}"  class="btn btn-sm btn-primary">
+                <i class="ti ti-upload"></i>
+            </a>
+            @endcan
+        @else
         @can('edit project')
-        <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="{{__('Create')}}"  class="btn btn-sm btn-primary">
-            <i class="ti ti-upload"></i>
+        <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="{{__('Edit Bill of Quantity')}}"  class="btn btn-sm btn-primary">
+            <i class="ti ti-edit"></i>
         </a>
         @endcan
-
-
+        @endif
     </div>
 @endsection
 
 <div class="row">
-    <div class="col-lg-4 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mb-3 mb-sm-0">
-                        <div class="d-flex align-items-center">
-                            <div class="theme-avtar bg-warning">
-                                <i class="ti ti-list"></i>
-                            </div>
-                            <div class="ms-3">
-                                <small class="text-muted h6">{{__('Total Task')}}</small>
-                                <h6 class="m-0">{{$project_data['task']['total'] }}</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto text-end">
-                        <h4 class="m-0">{{ $project_data['task']['done'] }}</h4>
-                        <small class="text-muted h6">{{__('Done Task')}}</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-12">
+
+    <div class="col-lg-6 col-md-12">
         <div class="card">
             <div class="card-body">
                 <div class="row align-items-center justify-content-between">
@@ -85,7 +68,7 @@
         </div>
     </div>
     @if(Auth::user()->type !='client')
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
@@ -159,151 +142,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-start">
-                    <div class="theme-avtar bg-primary">
-                        <i class="ti ti-clipboard-list"></i>
-                    </div>
-                    <div class="ms-3">
-                        <p class="text-muted mb-0">{{__('Last 7 days task done')}}</p>
-                        <h4 class="mb-0">{{ $project_data['task_chart']['total'] }}</h4>
-
-                    </div>
-                </div>
-                <div id="task_chart"></div>
-            </div>
-
-            <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-                        <span class="text-muted">{{__('Day Left')}}</span>
-                    </div>
-                    <span>{{ $project_data['day_left']['day'] }}</span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: {{ $project_data['day_left']['percentage'] }}%"></div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-
-                        <span class="text-muted">{{__('Open Task')}}</span>
-                    </div>
-                    <span>{{ $project_data['open_task']['tasks'] }}</span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: {{ $project_data['open_task']['percentage'] }}%"></div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-                        <span class="text-muted">{{__('Completed Milestone')}}</span>
-                    </div>
-                    <span>{{ $project_data['milestone']['total'] }}</span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: {{ $project_data['milestone']['percentage'] }}%"></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="col-lg-4 col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-start">
-                    <div class="theme-avtar bg-primary">
-                        <i class="ti ti-clipboard-list"></i>
-                    </div>
-                    <div class="ms-3">
-                        <p class="text-muted mb-0">{{__('Last 7 days hours spent')}}</p>
-                        <h4 class="mb-0">{{ $project_data['timesheet_chart']['total'] }}</h4>
-
-                    </div>
-                </div>
-                <div id="timesheet_chart"></div>
-            </div>
-            <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-                        <span class="text-muted">{{__('Total project time spent')}}</span>
-                    </div>
-                    <span>{{ $project_data['time_spent']['total'] }}</span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: {{ $project_data['time_spent']['percentage'] }}%"></div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-
-                        <span class="text-muted">{{__('Allocated hours on task')}}</span>
-                    </div>
-                    <span>{{ $project_data['task_allocated_hrs']['hrs'] }}</span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: {{ $project_data['task_allocated_hrs']['percentage'] }}%"></div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-                        <span class="text-muted">{{__('User Assigned')}}</span>
-                    </div>
-                    <span>{{ $project_data['user_assigned']['total'] }}</span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: {{ $project_data['user_assigned']['percentage'] }}%"></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="col-lg-6 col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex align-items-center justify-content-between">
-                    <h5>{{__('Members')}}</h5>
-                    @can('edit project')
-                        <div class="float-end">
-                            <a href="#" data-size="lg" data-url="{{ route('invite.project.member.view', $project->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary" data-bs-original-title="{{__('Add Member')}}">
-                                <i class="ti ti-plus"></i>
-                            </a>
-                        </div>
-                    @endcan
-                </div>
-            </div>
-            <div class="card-body">
-                <ul class="list-group list-group-flush list" id="project_users">
-                    @foreach($project->users as $user)
-                        <li class="list-group-item px-0">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-sm-auto mb-3 mb-sm-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar rounded-circle avatar-sm me-3">
-                    {{--                        <img src="@if($user->avatar) src="{{asset('/storage/uploads/avatar/'.$user->avatar)}}" @else src="{{asset('/storage/uploads/avatar/avatar.png')}}" @endif " alt="kal" class="img-user">--}}
-                                            <img @if($user->avatar) src="{{asset('/storage/uploads/avatar/'.$user->avatar)}}" @else src="{{ asset('uploads/user.png')}}" @endif  alt="image" >
-
-                                        </div>
-                                        <div class="div">
-                                            <h5 class="m-0">{{ $user->name }}</h5>
-                                            <small class="text-muted">{{ $user->email }}</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-auto text-sm-end d-flex align-items-center">
-                                    <div class="action-btn bg-danger ms-2">
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy',  [$project->id,$user->id]]]) !!}
-                                        <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}"><i class="ti ti-trash text-white"></i></a>
-
-                                        {!! Form::close() !!}
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-8 col-md-8">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center justify-content-between">
@@ -364,14 +203,15 @@
             </div>
         </div>
     </div>
+
     <div class="col-lg-6 col-md-6">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h5>{{__('Milestones')}} ({{count($project->milestones)}})</h5>
-                    @can('create milestone')
+                    <h5>{{__('Members')}}</h5>
+                    @can('edit project')
                         <div class="float-end">
-                            <a href="#" data-size="md" data-url="{{ route('project.milestone', $project->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary" data-bs-original-title="{{__('Create New Milestone')}}">
+                            <a href="#" data-size="lg" data-url="{{ route('invite.project.member.view', $project->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary" data-bs-original-title="{{__('Add Member')}}">
                                 <i class="ti ti-plus"></i>
                             </a>
                         </div>
@@ -379,55 +219,35 @@
                 </div>
             </div>
             <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    @if($project->milestones->count() > 0)
-                        @foreach($project->milestones as $milestone)
-                            <li class="list-group-item px-0">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col-sm-auto mb-3 mb-sm-0">
-                                        <div class="d-flex align-items-center">
-                                            <div class="div">
-                                                <h6 class="m-0">{{ $milestone->title }}
-                                                    <span class="badge-xs badge bg-{{\App\Models\Project::$status_color[$milestone->status]}} p-2 px-3 rounded">{{ __(\App\Models\Project::$project_status[$milestone->status]) }}</span>
-                                                </h6>
-                                                <small class="text-muted">{{ $milestone->tasks->count().' '. __('Tasks') }}</small>
-                                            </div>
+                <ul class="list-group list-group-flush list" id="project_users">
+                    @foreach($project->users as $user)
+                        <li class="list-group-item px-0">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-sm-auto mb-3 mb-sm-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar rounded-circle avatar-sm me-3">
+                    {{--                        <img src="@if($user->avatar) src="{{asset('/storage/uploads/avatar/'.$user->avatar)}}" @else src="{{asset('/storage/uploads/avatar/avatar.png')}}" @endif " alt="kal" class="img-user">--}}
+                                            <img @if($user->avatar) src="{{asset('/storage/uploads/avatar/'.$user->avatar)}}" @else src="{{ asset('uploads/user.png')}}" @endif  alt="image" >
+
+                                        </div>
+                                        <div class="div">
+                                            <h5 class="m-0">{{ $user->name }}</h5>
+                                            <small class="text-muted">{{ $user->email }}</small>
                                         </div>
                                     </div>
-                                    <div class="col-sm-auto text-sm-end d-flex align-items-center">
-                                        @can('view milestone')
-                                            <div class="action-btn bg-warning ms-2">
-                                                <a href="#" data-size="lg" data-url="{{ route('project.milestone.show',$milestone->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('View')}}" class="btn btn-sm">
-                                                    <i class="ti ti-eye text-white"></i>
-                                                </a>
-                                            </div>
-                                        @endcan
-                                        @can('edit milestone')
-                                            <div class="action-btn bg-info ms-2">
-                                                <a href="#" data-size="md" data-title="{{__('Edit Milestone')}} data-url="{{ route('project.milestone.edit',$milestone->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Edit')}}" class="btn btn-sm">
-                                                    <i class="ti ti-pencil text-white"></i>
-                                                </a>
-                                            </div>
-                                        @endcan
-                                        @can('delete milestone')
-                                            <div class="action-btn bg-danger ms-2">
-                                                {!! Form::open(['method' => 'DELETE', 'route' => ['project.milestone.destroy', $milestone->id]]) !!}
-                                                <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}"><i class="ti ti-trash text-white"></i></a>
+                                </div>
+                                <div class="col-sm-auto text-sm-end d-flex align-items-center">
+                                    <div class="action-btn bg-danger ms-2">
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy',  [$project->id,$user->id]]]) !!}
+                                        <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}"><i class="ti ti-trash text-white"></i></a>
 
-                                                {!! Form::close() !!}
-                                            </div>
-                                        @endcan
+                                        {!! Form::close() !!}
                                     </div>
                                 </div>
-                            </li>
-                        @endforeach
-                    @else
-                        <div class="py-5">
-                            <h6 class="h6 text-center">{{__('No Milestone Found.')}}</h6>
-                        </div>
-                    @endif
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
-
             </div>
         </div>
     </div>

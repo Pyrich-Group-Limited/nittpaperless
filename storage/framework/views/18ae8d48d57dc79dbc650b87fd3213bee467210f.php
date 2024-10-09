@@ -28,42 +28,25 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('action-btn'); ?>
     <div class="float-end">
-
+        <?php if($project->project_boq==null): ?>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
+            <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="<?php echo e(__('Upload Bill of Quantity')); ?>"  class="btn btn-sm btn-primary">
+                <i class="ti ti-upload"></i>
+            </a>
+            <?php endif; ?>
+        <?php else: ?>
         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
-        <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="<?php echo e(__('Create')); ?>"  class="btn btn-sm btn-primary">
-            <i class="ti ti-upload"></i>
+        <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="<?php echo e(__('Edit Bill of Quantity')); ?>"  class="btn btn-sm btn-primary">
+            <i class="ti ti-edit"></i>
         </a>
         <?php endif; ?>
-
-
+        <?php endif; ?>
     </div>
 <?php $__env->stopSection(); ?>
 
 <div class="row">
-    <div class="col-lg-4 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mb-3 mb-sm-0">
-                        <div class="d-flex align-items-center">
-                            <div class="theme-avtar bg-warning">
-                                <i class="ti ti-list"></i>
-                            </div>
-                            <div class="ms-3">
-                                <small class="text-muted h6"><?php echo e(__('Total Task')); ?></small>
-                                <h6 class="m-0"><?php echo e($project_data['task']['total']); ?></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto text-end">
-                        <h4 class="m-0"><?php echo e($project_data['task']['done']); ?></h4>
-                        <small class="text-muted h6"><?php echo e(__('Done Task')); ?></small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-12">
+
+    <div class="col-lg-6 col-md-12">
         <div class="card">
             <div class="card-body">
                 <div class="row align-items-center justify-content-between">
@@ -86,7 +69,7 @@
         </div>
     </div>
     <?php if(Auth::user()->type !='client'): ?>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
@@ -160,153 +143,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-start">
-                    <div class="theme-avtar bg-primary">
-                        <i class="ti ti-clipboard-list"></i>
-                    </div>
-                    <div class="ms-3">
-                        <p class="text-muted mb-0"><?php echo e(__('Last 7 days task done')); ?></p>
-                        <h4 class="mb-0"><?php echo e($project_data['task_chart']['total']); ?></h4>
-
-                    </div>
-                </div>
-                <div id="task_chart"></div>
-            </div>
-
-            <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-                        <span class="text-muted"><?php echo e(__('Day Left')); ?></span>
-                    </div>
-                    <span><?php echo e($project_data['day_left']['day']); ?></span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: <?php echo e($project_data['day_left']['percentage']); ?>%"></div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-
-                        <span class="text-muted"><?php echo e(__('Open Task')); ?></span>
-                    </div>
-                    <span><?php echo e($project_data['open_task']['tasks']); ?></span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: <?php echo e($project_data['open_task']['percentage']); ?>%"></div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-                        <span class="text-muted"><?php echo e(__('Completed Milestone')); ?></span>
-                    </div>
-                    <span><?php echo e($project_data['milestone']['total']); ?></span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: <?php echo e($project_data['milestone']['percentage']); ?>%"></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="col-lg-4 col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-start">
-                    <div class="theme-avtar bg-primary">
-                        <i class="ti ti-clipboard-list"></i>
-                    </div>
-                    <div class="ms-3">
-                        <p class="text-muted mb-0"><?php echo e(__('Last 7 days hours spent')); ?></p>
-                        <h4 class="mb-0"><?php echo e($project_data['timesheet_chart']['total']); ?></h4>
-
-                    </div>
-                </div>
-                <div id="timesheet_chart"></div>
-            </div>
-            <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-                        <span class="text-muted"><?php echo e(__('Total project time spent')); ?></span>
-                    </div>
-                    <span><?php echo e($project_data['time_spent']['total']); ?></span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: <?php echo e($project_data['time_spent']['percentage']); ?>%"></div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-
-                        <span class="text-muted"><?php echo e(__('Allocated hours on task')); ?></span>
-                    </div>
-                    <span><?php echo e($project_data['task_allocated_hrs']['hrs']); ?></span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: <?php echo e($project_data['task_allocated_hrs']['percentage']); ?>%"></div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-                        <span class="text-muted"><?php echo e(__('User Assigned')); ?></span>
-                    </div>
-                    <span><?php echo e($project_data['user_assigned']['total']); ?></span>
-                </div>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-primary" style="width: <?php echo e($project_data['user_assigned']['percentage']); ?>%"></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="col-lg-6 col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex align-items-center justify-content-between">
-                    <h5><?php echo e(__('Members')); ?></h5>
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
-                        <div class="float-end">
-                            <a href="#" data-size="lg" data-url="<?php echo e(route('invite.project.member.view', $project->id)); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary" data-bs-original-title="<?php echo e(__('Add Member')); ?>">
-                                <i class="ti ti-plus"></i>
-                            </a>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-            <div class="card-body">
-                <ul class="list-group list-group-flush list" id="project_users">
-                    <?php $__currentLoopData = $project->users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <li class="list-group-item px-0">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-sm-auto mb-3 mb-sm-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar rounded-circle avatar-sm me-3">
-                    
-                                            <img <?php if($user->avatar): ?> src="<?php echo e(asset('/storage/uploads/avatar/'.$user->avatar)); ?>" <?php else: ?> src="<?php echo e(asset('uploads/user.png')); ?>" <?php endif; ?>  alt="image" >
-
-                                        </div>
-                                        <div class="div">
-                                            <h5 class="m-0"><?php echo e($user->name); ?></h5>
-                                            <small class="text-muted"><?php echo e($user->email); ?></small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-auto text-sm-end d-flex align-items-center">
-                                    <div class="action-btn bg-danger ms-2">
-                                        <?php echo Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy',  [$project->id,$user->id]]]); ?>
-
-                                        <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"><i class="ti ti-trash text-white"></i></a>
-
-                                        <?php echo Form::close(); ?>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-8 col-md-8">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center justify-content-between">
@@ -367,14 +204,15 @@
             </div>
         </div>
     </div>
+
     <div class="col-lg-6 col-md-6">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h5><?php echo e(__('Milestones')); ?> (<?php echo e(count($project->milestones)); ?>)</h5>
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create milestone')): ?>
+                    <h5><?php echo e(__('Members')); ?></h5>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
                         <div class="float-end">
-                            <a href="#" data-size="md" data-url="<?php echo e(route('project.milestone', $project->id)); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary" data-bs-original-title="<?php echo e(__('Create New Milestone')); ?>">
+                            <a href="#" data-size="lg" data-url="<?php echo e(route('invite.project.member.view', $project->id)); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary" data-bs-original-title="<?php echo e(__('Add Member')); ?>">
                                 <i class="ti ti-plus"></i>
                             </a>
                         </div>
@@ -382,58 +220,37 @@
                 </div>
             </div>
             <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    <?php if($project->milestones->count() > 0): ?>
-                        <?php $__currentLoopData = $project->milestones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $milestone): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li class="list-group-item px-0">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col-sm-auto mb-3 mb-sm-0">
-                                        <div class="d-flex align-items-center">
-                                            <div class="div">
-                                                <h6 class="m-0"><?php echo e($milestone->title); ?>
+                <ul class="list-group list-group-flush list" id="project_users">
+                    <?php $__currentLoopData = $project->users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li class="list-group-item px-0">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-sm-auto mb-3 mb-sm-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar rounded-circle avatar-sm me-3">
+                    
+                                            <img <?php if($user->avatar): ?> src="<?php echo e(asset('/storage/uploads/avatar/'.$user->avatar)); ?>" <?php else: ?> src="<?php echo e(asset('uploads/user.png')); ?>" <?php endif; ?>  alt="image" >
 
-                                                    <span class="badge-xs badge bg-<?php echo e(\App\Models\Project::$status_color[$milestone->status]); ?> p-2 px-3 rounded"><?php echo e(__(\App\Models\Project::$project_status[$milestone->status])); ?></span>
-                                                </h6>
-                                                <small class="text-muted"><?php echo e($milestone->tasks->count().' '. __('Tasks')); ?></small>
-                                            </div>
+                                        </div>
+                                        <div class="div">
+                                            <h5 class="m-0"><?php echo e($user->name); ?></h5>
+                                            <small class="text-muted"><?php echo e($user->email); ?></small>
                                         </div>
                                     </div>
-                                    <div class="col-sm-auto text-sm-end d-flex align-items-center">
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view milestone')): ?>
-                                            <div class="action-btn bg-warning ms-2">
-                                                <a href="#" data-size="lg" data-url="<?php echo e(route('project.milestone.show',$milestone->id)); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('View')); ?>" class="btn btn-sm">
-                                                    <i class="ti ti-eye text-white"></i>
-                                                </a>
-                                            </div>
-                                        <?php endif; ?>
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit milestone')): ?>
-                                            <div class="action-btn bg-info ms-2">
-                                                <a href="#" data-size="md" data-title="<?php echo e(__('Edit Milestone')); ?> data-url="<?php echo e(route('project.milestone.edit',$milestone->id)); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('Edit')); ?>" class="btn btn-sm">
-                                                    <i class="ti ti-pencil text-white"></i>
-                                                </a>
-                                            </div>
-                                        <?php endif; ?>
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete milestone')): ?>
-                                            <div class="action-btn bg-danger ms-2">
-                                                <?php echo Form::open(['method' => 'DELETE', 'route' => ['project.milestone.destroy', $milestone->id]]); ?>
+                                </div>
+                                <div class="col-sm-auto text-sm-end d-flex align-items-center">
+                                    <div class="action-btn bg-danger ms-2">
+                                        <?php echo Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy',  [$project->id,$user->id]]]); ?>
 
-                                                <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"><i class="ti ti-trash text-white"></i></a>
+                                        <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"><i class="ti ti-trash text-white"></i></a>
 
-                                                <?php echo Form::close(); ?>
+                                        <?php echo Form::close(); ?>
 
-                                            </div>
-                                        <?php endif; ?>
                                     </div>
                                 </div>
-                            </li>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php else: ?>
-                        <div class="py-5">
-                            <h6 class="h6 text-center"><?php echo e(__('No Milestone Found.')); ?></h6>
-                        </div>
-                    <?php endif; ?>
+                            </div>
+                        </li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>
-
             </div>
         </div>
     </div>
