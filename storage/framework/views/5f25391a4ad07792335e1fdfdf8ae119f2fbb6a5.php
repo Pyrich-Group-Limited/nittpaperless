@@ -19,7 +19,7 @@
     <div class="navbar-wrapper">
         <div class="m-header main-logo">
             <a href="#" class="b-brand">
-                <img src="<?php echo e('logo-dark.png'); ?>" alt="NITT" class="logo logo-lg">
+                <img src="<?php echo e(asset('logo-dark.png')); ?>" alt="NITTs" class="logo logo-lg">
             </a>
         </div>
         <div class="navbar-content">
@@ -259,15 +259,15 @@
                         <li class="dash-item dash-hasmenu ">
                             <a href="#!" class="dash-link"
                             ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
-                                ><span class="dash-mtext"><?php echo e(__('Procurment')); ?></span
+                                ><span class="dash-mtext"><?php echo e(__('e-Procurement')); ?></span
                                 ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                                 ></a>
                             <ul class="dash-submenu ">
                                 <li class="dash-item <?php echo e((\Request::route()->getName()=='hrm.dashboard') ? ' active' : ''); ?>">
-                                    <a class="dash-link" href="<?php echo e(route('hrm.dashboard')); ?>"><?php echo e(__(' Projects')); ?></a>
+                                    <a class="dash-link" href="<?php echo e(route('procurements.projects')); ?>"><?php echo e(__(' Projects')); ?></a>
                                 </li>
                                 <li class="dash-item <?php echo e(request()->is('reports-payroll') ? 'active' : ''); ?>">
-                                    <a class="dash-link" href="<?php echo e(route('report.payroll')); ?>"><?php echo e(__('Advert')); ?></a>
+                                    <a class="dash-link" href="<?php echo e(route('projects.adverts')); ?>"><?php echo e(__('Adverts')); ?></a>
                                 </li>
                                 <li class="dash-item <?php echo e(request()->is('reports-payroll') ? 'active' : ''); ?>">
                                     <a class="dash-link" href="<?php echo e(route('report.payroll')); ?>"><?php echo e(__('Applications')); ?></a>
@@ -865,11 +865,6 @@
                                 </li>
                             <?php endif; ?>
                         </ul>
-                    </li>
-                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'procurement')?'active':''); ?>">
-                        <a href="" class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-write"></i></span><span class="dash-mtext"><?php echo e(__('e-Procurement')); ?></span>
-                        </a>
                     </li>
                     <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'procurement')?'active':''); ?>">
                         <a href="" class="dash-link">
