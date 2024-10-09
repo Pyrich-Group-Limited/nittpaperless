@@ -179,6 +179,12 @@ Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->gr
     Route::get('projects/{id}',PhysicalPlanningProjectDetials::class)->name('pp.projects.show');
     // Route::get('adverts',ProcurementAdvertsComponent::class)->name('projects.adverts');
 });
+
+Route::get('/project-advert', function () {
+    dd('ddd');
+    return view('livewire.guests.contract-advert');
+})->name('guest.advert');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
