@@ -440,4 +440,4 @@
     </div>
 </div>
 
-@livewire('physical-planning.projects.uploadboq')
+@livewire('physical-planning.projects.uploadboq', ['project' => $project], key($project->id))

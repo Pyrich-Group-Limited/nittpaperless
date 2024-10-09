@@ -10,11 +10,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-
+                            @if($selProject)
                             <div class="col-md-12">
                                 <div class="form-group">
                                     {{ Form::label('name', __('Project Name'), ['class' => 'form-label']) }}
-                                    <input type="text" id="project_name" disabled wire:model.defer="project_name" class="form-control"
+                                    <input type="text" id="project_name" value="{{ $selProject->project_name }}" disabled  class="form-control"
                                         placeholder="Project Name" />
                                     @error('project_name')
                                         <small class="invalid-name" role="alert">
@@ -50,6 +50,9 @@
                                 </div>
                             </div>
                         </div>
+                        @else
+                        <label align="center" class="mb-4" style="color: red">Loading...</label>
+                        @endif
                     </div>
 
                     <div class="modal-footer">
