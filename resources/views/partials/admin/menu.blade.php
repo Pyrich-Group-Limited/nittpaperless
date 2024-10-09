@@ -571,7 +571,7 @@
                                     ></a>
                                     <ul class="dash-submenu">
                                         @can('manage project')
-                                            <li class="dash-item  ">
+                                            <li class="dash-item  {{Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''}}">
                                                 <a class="dash-link" href="{{ route('pp.projects')}}">{{__('Projects')}}</a>
                                             </li>
                                         @endcan

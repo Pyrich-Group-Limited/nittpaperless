@@ -448,16 +448,16 @@
 
 <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('physical-planning.projects.uploadboq')->html();
-} elseif ($_instance->childHasBeenRendered('l651574873-0')) {
-    $componentId = $_instance->getRenderedChildComponentId('l651574873-0');
-    $componentTag = $_instance->getRenderedChildComponentTagName('l651574873-0');
+    $html = \Livewire\Livewire::mount('physical-planning.projects.uploadboq', ['project' => $project])->html();
+} elseif ($_instance->childHasBeenRendered($project->id)) {
+    $componentId = $_instance->getRenderedChildComponentId($project->id);
+    $componentTag = $_instance->getRenderedChildComponentTagName($project->id);
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('l651574873-0');
+    $_instance->preserveRenderedChild($project->id);
 } else {
-    $response = \Livewire\Livewire::mount('physical-planning.projects.uploadboq');
+    $response = \Livewire\Livewire::mount('physical-planning.projects.uploadboq', ['project' => $project]);
     $html = $response->html();
-    $_instance->logRenderedChild('l651574873-0', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild($project->id, $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

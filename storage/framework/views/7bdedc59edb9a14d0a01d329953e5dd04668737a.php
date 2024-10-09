@@ -10,12 +10,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-
+                            <?php if($selProject): ?>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <?php echo e(Form::label('name', __('Project Name'), ['class' => 'form-label'])); ?>
 
-                                    <input type="text" id="project_name" disabled wire:model.defer="project_name" class="form-control"
+                                    <input type="text" id="project_name" value="<?php echo e($selProject->project_name); ?>" disabled  class="form-control"
                                         placeholder="Project Name" />
                                     <?php $__errorArgs = ['project_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -74,6 +74,9 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
+                        <?php else: ?>
+                        <label align="center" class="mb-4" style="color: red">Loading...</label>
+                        <?php endif; ?>
                     </div>
 
                     <div class="modal-footer">
