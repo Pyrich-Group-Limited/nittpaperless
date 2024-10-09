@@ -1128,8 +1128,8 @@ Route::get('projects/milestone/{id}/show', [ProjectController::class, 'milestone
 // Project Module
 Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function () {
     Route::get('all-projects', ProjectsComponent::class)->name('created-projects');
-    Route::get('project/{id}/show',ShowProjectsComponent::class)->name('project.details');
-    Route::get('project/{id}/edit',EditProjectsComponent::class)->name('project.edit');
+    // Route::get('project/{id}/show',ShowProjectsComponent::class)->name('project.details');
+    // Route::get('project/{id}/edit',EditProjectsComponent::class)->name('project.edit');
 });
 
 
