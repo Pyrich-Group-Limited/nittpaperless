@@ -125,22 +125,16 @@
                                         <span>
                                             @can('edit project')
                                                 <div class="action-btn bg-warning ms-2">
-                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="{{__('View Project')}}" data-title="{{__('View Project')}}">
+                                                    <a href="{{ route('pp.projects.show',$project) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="{{__('View Project')}}" data-title="{{__('View Project')}}">
                                                         <i class="ti ti-eye text-white"></i>
                                                     </a>
                                                 </div>
                                             @endcan
-                                            @can('edit project')
-                                            <div class="action-btn bg-warning ms-2">
-                                                <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="{{ route('invite.project.member.view', $project->id) }}" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="{{__('Invite User')}}" data-title="{{__('Invite User')}}">
-                                                    <i class="ti ti-send text-white"></i>
-                                                </a>
-                                            </div>
-                                        @endcan
+
                                         @if($project->project_boq==null)
                                             @can('edit project')
                                                 <div class="action-btn bg-info ms-2">
-                                                        <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="{{ URL::to('projects/'.$project->id.'/edit') }}" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="{{__('Upload Bill of Quantity')}}" data-title="{{__('Upload Bill of Quantity')}}">
+                                                        <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Upload Bill of Quantity')}}" data-title="{{__('Upload Bill of Quantity')}}">
                                                             <i class="ti ti-upload text-white"></i>
                                                         </a>
                                                     </div>
@@ -174,5 +168,6 @@
 
 <x-toast-notification />
 @include('livewire.projects.modals.create-project')
+@livewire('physical-planning.projects.uploadboq')
 
 </div>

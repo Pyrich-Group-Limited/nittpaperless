@@ -128,22 +128,16 @@
                                         <span>
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
                                                 <div class="action-btn bg-warning ms-2">
-                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('View Project')); ?>" data-title="<?php echo e(__('View Project')); ?>">
+                                                    <a href="<?php echo e(route('pp.projects.show',$project)); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('View Project')); ?>" data-title="<?php echo e(__('View Project')); ?>">
                                                         <i class="ti ti-eye text-white"></i>
                                                     </a>
                                                 </div>
                                             <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
-                                            <div class="action-btn bg-warning ms-2">
-                                                <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="<?php echo e(route('invite.project.member.view', $project->id)); ?>" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Invite User')); ?>" data-title="<?php echo e(__('Invite User')); ?>">
-                                                    <i class="ti ti-send text-white"></i>
-                                                </a>
-                                            </div>
-                                        <?php endif; ?>
+
                                         <?php if($project->project_boq==null): ?>
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
                                                 <div class="action-btn bg-info ms-2">
-                                                        <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="<?php echo e(URL::to('projects/'.$project->id.'/edit')); ?>" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Upload Bill of Quantity')); ?>" data-title="<?php echo e(__('Upload Bill of Quantity')); ?>">
+                                                        <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Upload Bill of Quantity')); ?>" data-title="<?php echo e(__('Upload Bill of Quantity')); ?>">
                                                             <i class="ti ti-upload text-white"></i>
                                                         </a>
                                                     </div>
@@ -185,6 +179,21 @@
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
 <?php echo $__env->make('livewire.projects.modals.create-project', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('physical-planning.projects.uploadboq')->html();
+} elseif ($_instance->childHasBeenRendered('l3187952966-0')) {
+    $componentId = $_instance->getRenderedChildComponentId('l3187952966-0');
+    $componentTag = $_instance->getRenderedChildComponentTagName('l3187952966-0');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('l3187952966-0');
+} else {
+    $response = \Livewire\Livewire::mount('physical-planning.projects.uploadboq');
+    $html = $response->html();
+    $_instance->logRenderedChild('l3187952966-0', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
 
 </div>
 <?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/physical-planning/projects/physical-planning-projects-component.blade.php ENDPATH**/ ?>
