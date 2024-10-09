@@ -149,6 +149,8 @@ use App\Http\Controllers\MemoController;
 //livewire component for user
 use App\Http\Livewire\Users\UsersComponent;
 
+use App\Http\Livewire\Projects\ProjectsComponent;
+
 
 
 /*
@@ -1107,6 +1109,7 @@ Route::get('projects/milestone/{id}/show', [ProjectController::class, 'milestone
 // End Milestone
 
 // Project Module
+Route::get('all-projects', ProjectsComponent::class)->name('created-projects');
 
 Route::get('invite-project-member/{id}', [ProjectController::class, 'inviteMemberView'])->name('invite.project.member.view')->middleware(['auth', 'XSS']);
 Route::post('invite-project-user-member', [ProjectController::class, 'inviteProjectUserMember'])->name('invite.project.user.member')->middleware(['auth', 'XSS']);
