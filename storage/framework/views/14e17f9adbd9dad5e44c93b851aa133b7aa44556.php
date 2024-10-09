@@ -12,8 +12,19 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <?php echo e(Form::label('project_name', __('Project Name'), ['class' => 'form-label'])); ?><span class="text-danger">*</span>
-                                    <?php echo e(Form::text('project_name', null, ['class' => 'form-control','required'=>'required'])); ?>
-
+                                    <input type="text" wire:model="project_name" class="form-control">
+                                    <?php $__errorArgs = ['project_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger"><?php echo e($message); ?></strong>
+                                    </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
@@ -22,8 +33,20 @@
                                 <div class="form-group">
                                     <?php echo e(Form::label('description', __('Project Description'), ['class' => 'form-label'])); ?>
 
-                                    <?php echo e(Form::textarea('description', null, ['class' => 'form-control', 'rows' => '4', 'cols' => '50'])); ?>
-
+                                    
+                                    <textarea wire:model="description" id="" cols="50" rows="4" class="form-control"></textarea>
+                                    <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger"><?php echo e($message); ?></strong>
+                                        </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
@@ -32,32 +55,74 @@
                                 <div class="form-group">
                                     <?php echo e(Form::label('start_date', __('Start Date'), ['class' => 'form-label'])); ?>
 
-                                    <?php echo e(Form::date('start_date', null, ['class' => 'form-control'])); ?>
-
+                                    
+                                    <input type="date" class="form-control" wire:model="start_date">
+                                    <?php $__errorArgs = ['start_date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger"><?php echo e($message); ?></strong>
+                                        </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <?php echo e(Form::label('end_date', __('End Date'), ['class' => 'form-label'])); ?>
 
-                                    <?php echo e(Form::date('end_date', null, ['class' => 'form-control'])); ?>
-
+                                    
+                                    <input type="date" class="form-control" wire:model="end_date">
+                                    <?php $__errorArgs = ['end_date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger"><?php echo e($message); ?></strong>
+                                    </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <?php echo e(Form::label('category', __('Project Category'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
-                                <?php echo Form::select('category', $categories, null,array('class' => 'form-control','required'=>'required')); ?>
-
-                            </div>
-                        </div>
                         <div class="row">
-                            <div class="form-group col-sm-12 col-md-12">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <?php echo e(Form::label('category', __('Project Category'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
+                                    <select wire:model="project_category_id" id="" class="form-control">
+                                        <option value="">---Select---</option>
+                                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($category->id); ?>"><?php echo e($category->category_name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__errorArgs = ['project_category_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger"><?php echo e($message); ?></strong>
+                                        </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-md-6">
                                 <?php echo e(Form::label('project_boq', __('Project BoQ'), ['class' => 'form-label'])); ?><span class="text-danger">*</span>
                                 <div class="form-file mb-3">
-                                    <input type="file" class="form-control" name="project_boq" required="">
-                                <?php $__errorArgs = ['level'];
+                                    <input type="file" class="form-control" wire:model="project_boq" required="">
+                                    
+                                <?php $__errorArgs = ['project_boq'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -70,21 +135,51 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <?php echo e(Form::label('user', __('Supervising Staff'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
-                                    <?php echo Form::select('user[]', $users, null,array('class' => 'form-control','required'=>'required')); ?>
-
+                                    <?php echo e(Form::label('supervising_staff_id', __('Supervising Staff'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
+                                    <select wire:model="supervising_staff_id[]" id="choices-multiple1" class="form-control select2" multiple>
+                                        <option value="">---Select---</option>
+                                        <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($user->id); ?>"><?php echo e($user->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                    <?php $__errorArgs = ['supervising_staff_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger"><?php echo e($message); ?></strong>
+                                    </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
+
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <?php echo e(Form::label('budget', __('Budget'), ['class' => 'form-label'])); ?>
 
-                                    <?php echo e(Form::number('budget', null, ['class' => 'form-control'])); ?>
-
+                                    <input type="number" wire:model="budget" class="form-control">
+                                    <?php $__errorArgs = ['budget'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger"><?php echo e($message); ?></strong>
+                                    </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
@@ -93,15 +188,14 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <?php echo e(Form::label('status', __('Status'), ['class' => 'form-label'])); ?>
 
-                                    <select name="status" id="status" class="form-control main-element">
-                                        <?php $__currentLoopData = \App\Models\Project::$project_status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <select wire:model.defer="status" id="status" class="form-control main-element">
+                                        <?php $__currentLoopData = \App\Models\ProjectCreation::$project_status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($k); ?>"><?php echo e(__($v)); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="modal-footer">
