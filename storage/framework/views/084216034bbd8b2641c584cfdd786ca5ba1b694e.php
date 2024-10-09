@@ -1,21 +1,40 @@
-<div id="uploadBOQ">
-    <div class="modal" id="uploadBOQModal" tabindex="-1" role="dialog" wire:ignore.self>
+<div id="publishAdvert">
+    <div class="modal" id="publishAdvertModal" tabindex="-1" role="dialog" wire:ignore.self>
         <div class="modal-dialog modal-lg" role="document" wire:ignore.self>
             <div class="modal-content">
                 <div class="modal-body">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="applyLeave">Project Bill of Quantity Upload
+                        <h5 class="modal-title" id="applyLeave">Project Advert Publish
                         </h5>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <?php if($selProject): ?>
+                            <div class="form-group col-md-12">
+                                <label for="type_of_advert" class="form-label">Type of Advert</label>
+                                <select wire:model="type_of_advert" id="type_of_advert" class="form-control">
+                                    <option value="" selected>-- Select Type of Advert --</option>
+                                    <option value="Internal">Internal</option>
+                                    <option value="External">External</option>
+                                </select>
+                                <?php $__errorArgs = ['type_of_advert'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger"><?php echo e($message); ?></strong>
+                                    </small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <?php echo e(Form::label('name', __('Project Name'), ['class' => 'form-label'])); ?>
 
-                                    <input type="text" id="project_name" value="<?php echo e($selProject->project_name); ?>" disabled  class="form-control"
+                                    <input type="text" id="project_name" disabled wire:model.defer="project_name" class="form-control"
                                         placeholder="Project Name" />
                                     <?php $__errorArgs = ['project_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -31,14 +50,29 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
-
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Contract Description</label>
+                                <div wire:ignore>
+                                    <textarea id="description" wire:model="description" class="form-control tinymce-basic" name="description"></textarea>
+                                </div>
+                                <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <p class="text-danger"><?php echo e($message); ?></p>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <?php echo e(Form::label('bduget', __('Estimated Budget'), ['class' => 'form-label'])); ?>
+                                    <?php echo e(Form::label('start_date', __('Start Date'), ['class' => 'form-label'])); ?>
 
-                                    <input type="text" id="boq_file" wire:model.defer="budget" class="form-control"
-                                        placeholder="Estimated Budget" />
-                                    <?php $__errorArgs = ['boq_file'];
+                                    <input type="date" id="start_date" wire:model.defer="start_date" class="form-control"
+                                        placeholder="Project Start Date" />
+                                    <?php $__errorArgs = ['start_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -52,14 +86,13 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <?php echo e(Form::label('boq_file', __('File Upload'), ['class' => 'form-label'])); ?>
+                                    <?php echo e(Form::label('end_date', __('End Date'), ['class' => 'form-label'])); ?>
 
-                                    <input type="file" id="boq_file" wire:model.defer="boq_file" class="form-control"
-                                        placeholder="File" />
-                                    <?php $__errorArgs = ['boq_file'];
+                                    <input type="date" id="end_date" wire:model.defer="end_date" class="form-control"
+                                        placeholder="Project End Date" />
+                                    <?php $__errorArgs = ['end_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -74,15 +107,12 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
-                        <?php else: ?>
-                        <label align="center" class="mb-4" style="color: red">Loading...</label>
-                        <?php endif; ?>
                     </div>
 
                     <div class="modal-footer">
-                        <input type="button" id="closeUplaodBOQ" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
+                        <input type="button" id="closeAdvertPublishModal" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
                             data-bs-dismiss="modal">
-                        <input type="button" wire:click="registerUser" value="<?php echo e(__('Uplaod Bill of Quantity')); ?>" class="btn  btn-primary">
+                        <input type="button" wire:click="registerUser" value="<?php echo e(__('Publish Advert')); ?>" class="btn  btn-primary">
                     </div>
                 </div>
             </div>
@@ -138,4 +168,4 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
-<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/physical-planning/projects/uploadboq.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/physical-planning/projects/modals/new-advert.blade.php ENDPATH**/ ?>

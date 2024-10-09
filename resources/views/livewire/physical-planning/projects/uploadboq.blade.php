@@ -10,11 +10,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-
-                            <div class="col-md-6">
+                            @if($selProject)
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     {{ Form::label('name', __('Project Name'), ['class' => 'form-label']) }}
-                                    <input type="text" id="project_name" disabled wire:model.defer="project_name" class="form-control"
+                                    <input type="text" id="project_name" value="{{ $selProject->project_name }}" disabled  class="form-control"
                                         placeholder="Project Name" />
                                     @error('project_name')
                                         <small class="invalid-name" role="alert">
@@ -26,8 +26,8 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    {{ Form::label('boq_file', __('File Upload'), ['class' => 'form-label']) }}
-                                    <input type="date" id="boq_file" wire:model.defer="boq_file" class="form-control"
+                                    {{ Form::label('bduget', __('Estimated Budget'), ['class' => 'form-label']) }}
+                                    <input type="text" id="boq_file" wire:model.defer="budget" class="form-control"
                                         placeholder="Estimated Budget" />
                                     @error('boq_file')
                                         <small class="invalid-name" role="alert">
@@ -36,13 +36,29 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ Form::label('boq_file', __('File Upload'), ['class' => 'form-label']) }}
+                                    <input type="file" id="boq_file" wire:model.defer="boq_file" class="form-control"
+                                        placeholder="File" />
+                                    @error('boq_file')
+                                        <small class="invalid-name" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
+                        @else
+                        <label align="center" class="mb-4" style="color: red">Loading...</label>
+                        @endif
                     </div>
 
                     <div class="modal-footer">
-                        <input type="button" id="closeAdvertPublishModal" value="{{ __('Cancel') }}" class="btn  btn-light"
+                        <input type="button" id="closeUplaodBOQ" value="{{ __('Cancel') }}" class="btn  btn-light"
                             data-bs-dismiss="modal">
-                        <input type="button" wire:click="registerUser" value="{{ __('Publish Advert') }}" class="btn  btn-primary">
+                        <input type="button" wire:click="registerUser" value="{{ __('Uplaod Bill of Quantity') }}" class="btn  btn-primary">
                     </div>
                 </div>
             </div>

@@ -20,6 +20,7 @@ class PhysicalPlanningProjectsComponent extends Component
     public $description;
     public $type_of_project;
 
+
     Public function advertiseProject(){
         $project = ProjectCreation::find($selProject->id);
         $projectDuration = round(strtotime($data['end_date']) - strtotime($data['start_date']))/ 86400;
@@ -49,7 +50,10 @@ class PhysicalPlanningProjectsComponent extends Component
             $this->dispatchBrowserEvent('success',['success' => 'Project successfully Published']);
         }
     }
-
+    public function setProject(ProjectCreation $project){
+        $this->selProject = $project;
+        $this->emit('project', $project);
+    }
 
     public function render()
     {
