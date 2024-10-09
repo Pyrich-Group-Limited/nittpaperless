@@ -1,7 +1,24 @@
 <?php
 
 namespace App\Services;
+use Carbon\Carbon;
 
+function getAdvertStatus(advertAdvert $advert){
+    $startDate = Carbon::parse($advert->start_date);
+    $endDate = Carbon::parse($advert->end_date);
+    $currentDate = Carbon::now();
+
+    // Determine if the advert is open, upcoming, or closed
+    if ($currentDate->lt($startDate)) {
+        $status = "Upcoming";
+    } elseif ($currentDate->between($startDate, $endDate)) {
+        $status = "Open";
+    } else {
+        $status = "Closed";
+    }
+
+    return $status;
+}
 
 class DataService
 {

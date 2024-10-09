@@ -151,6 +151,12 @@ use App\Http\Livewire\Users\UsersComponent;
 
 use App\Http\Livewire\Projects\ProjectsComponent;
 
+//procurement component import
+use App\Http\Livewire\Procurements\Projects\ProcurementProjectsComponent;
+
+//advert components
+use App\Http\Livewire\Procurements\Advert\ProcurementAdvertsComponent;
+
 
 
 /*
@@ -164,10 +170,11 @@ use App\Http\Livewire\Projects\ProjectsComponent;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+//procurment routes
+Route::middleware(['XSS', 'revalidate'])->prefix('procurements')->group(function () {
+    Route::get('projects',ProcurementProjectsComponent::class)->name('procurements.projects');
+    Route::get('adverts',ProcurementAdvertsComponent::class)->name('projects.adverts');
+});
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');

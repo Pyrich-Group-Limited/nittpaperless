@@ -19,7 +19,7 @@
     <div class="navbar-wrapper">
         <div class="m-header main-logo">
             <a href="#" class="b-brand">
-                <img src="{{  'logo-dark.png' }}" alt="NITT" class="logo logo-lg">
+                <img src="{{  asset('logo-dark.png') }}" alt="NITTs" class="logo logo-lg">
             </a>
         </div>
         <div class="navbar-content">
@@ -261,15 +261,15 @@
                         <li class="dash-item dash-hasmenu ">
                             <a href="#!" class="dash-link"
                             ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
-                                ><span class="dash-mtext">{{__('Procurment')}}</span
+                                ><span class="dash-mtext">{{__('e-Procurement')}}</span
                                 ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                                 ></a>
                             <ul class="dash-submenu ">
                                 <li class="dash-item {{ (\Request::route()->getName()=='hrm.dashboard') ? ' active' : '' }}">
-                                    <a class="dash-link" href="{{route('hrm.dashboard')}}">{{__(' Projects')}}</a>
+                                    <a class="dash-link" href="{{route('procurements.projects')}}">{{__(' Projects')}}</a>
                                 </li>
                                 <li class="dash-item {{ request()->is('reports-payroll') ? 'active' : '' }}">
-                                    <a class="dash-link" href="{{ route('report.payroll') }}">{{__('Advert')}}</a>
+                                    <a class="dash-link" href="{{ route('projects.adverts') }}">{{__('Adverts')}}</a>
                                 </li>
                                 <li class="dash-item {{ request()->is('reports-payroll') ? 'active' : '' }}">
                                     <a class="dash-link" href="{{ route('report.payroll') }}">{{__('Applications')}}</a>
@@ -875,11 +875,6 @@
                                 </li>
                             @endcan
                         </ul>
-                    </li>
-                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'procurement')?'active':''}}">
-                        <a href="" class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-write"></i></span><span class="dash-mtext">{{__('e-Procurement')}}</span>
-                        </a>
                     </li>
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'procurement')?'active':''}}">
                         <a href="" class="dash-link">
