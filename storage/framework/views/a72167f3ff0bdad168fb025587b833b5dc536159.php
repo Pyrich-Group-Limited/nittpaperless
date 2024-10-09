@@ -271,7 +271,7 @@
                                     <?php endif; ?>
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage client')): ?>
                                         <li class="dash-item <?php echo e((Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : ''); ?>">
-                                            <a class="dash-link" href="<?php echo e(route('clients.index')); ?>"><?php echo e(__('Client')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('clients.index')); ?>"><?php echo e(__('Contractor')); ?></a>
                                         </li>
                                     <?php endif; ?>
                                     <?php if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client'): ?>
@@ -569,7 +569,7 @@
                                     ></a>
                                     <ul class="dash-submenu">
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project')): ?>
-                                            <li class="dash-item  ">
+                                            <li class="dash-item  <?php echo e(Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''); ?>">
                                                 <a class="dash-link" href="<?php echo e(route('pp.projects')); ?>"><?php echo e(__('Projects')); ?></a>
                                             </li>
                                         <?php endif; ?>

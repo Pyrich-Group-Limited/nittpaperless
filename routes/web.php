@@ -150,8 +150,8 @@ use App\Http\Controllers\MemoController;
 use App\Http\Livewire\Users\UsersComponent;
 
 use App\Http\Livewire\Projects\ProjectsComponent;
-use App\Http\Livewire\Projects\EditProjectsComponent;
-use App\Http\Livewire\Projects\ShowProjectsComponent;
+use App\Http\Livewire\Projects\EditProjectComponent;
+use App\Http\Livewire\Projects\ShowProjectComponent;
 
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
@@ -1122,8 +1122,8 @@ Route::get('projects/milestone/{id}/show', [ProjectController::class, 'milestone
 // Project Module
 Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function () {
     Route::get('all-projects', ProjectsComponent::class)->name('created-projects');
-    Route::get('project/{id}/show',ShowProjectsComponent::class)->name('project.details');
-    Route::get('project/{id}/edit',EditProjectsComponent::class)->name('project.edit');
+    Route::get('project/{id}/show',ShowProjectComponent::class)->name('project.details');
+    Route::get('project/{id}/edit',EditProjectComponent::class)->name('project.edit');
 });
 
 
