@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Projects;
 
 use Livewire\Component;
 // use App\Models\Utility;
-use App\Models\Project;
+use App\Models\ProjectAdvert;
 use App\Models\ProjectCategory;
 use App\Models\ProjectCreation;
 use App\Models\ProjectUser;
@@ -32,15 +32,22 @@ class ProjectsComponent extends Component
     public $selProject;
     public $setActionId;
 
+    public $selProject2;
+    public $ad_start_date;
+    public $ad_end_date;
+    public $ad_description;
+    public $type_of_project;
+    public $type_of_advert;
+
     public function mount()
     {
 
         $this->users = User::all();
     }
 
-    public function setProject(ProjectCreation $project){
-        $this->selProject = $project;
-    }
+    // public function setProject(ProjectCreation $project){
+    //     $this->selProject = $project;
+    // }
 
     public function createProject(){
         // dd($this);
@@ -131,21 +138,56 @@ class ProjectsComponent extends Component
         ]);
 
 
-        $project->users()->attach($this->selectedStaff);
+        // $project->users()->attach($this->selectedStaff);
 
         if(Auth::user()->type=='super admin'){
 
             ProjectUser::create(
                 [
-                    'project_id' => $project->id,
+                    'project_id' => $this->selProject->id,
                     'user_id' => Auth::user()->id,
                 ]
             );
 
         }
 
-        $this->reset();
-        $this->dispatchBrowserEvent('success',["success" =>"Project Successfully Created"]);
+        $this->dispatchBrowserEvent('success',["success" =>"Project Successfully Updated"]);
+    }
+
+
+    Public function advertiseProject(){
+        $project = ProjectCreation::find($this->selProject->id);
+        $projectDuration = round(strtotime($this->ad_end_date) - strtotime($this->ad_start_date))/ 86400;
+
+        if($project!=null){
+            $this->dispatchBrowserEvent('error',['error' => 'Sorry this project has already been advertised for applications']);
+        }elseif(strtotime($this->start_date)<strtotime(date('Y-m-d'))){
+            $this->dispatchBrowserEvent('error',['error' => 'Sorry your start date can not be later than today']);
+        }elseif($projectDuration<=0){
+            $this->dispatchBrowserEvent('error',['error' => 'Sorry your start date can not be later than start']);
+        }else{
+            $this->validate([
+                'start_date' => ['required','string'],
+                'end_date' => ['required','string'],
+                'description' => ['required','string'],
+                'type_of_advert' => ['required','string'],
+            ]);
+
+            ProjectAdvert::create([
+                'project_id' => $this->selProject->id,
+                'start_date' => $this->ad_start_date,
+                'end_date' => $this->ad_end_date,
+                'descripton' => $this->ad_description,
+                'advert_type' => $this->type_of_advert,
+            ]);
+
+            $this->reset();
+            $this->dispatchBrowserEvent('success',['success' => 'Project successfully Published']);
+        }
+    }
+    public function setProject(ProjectCreation $project){
+        $this->selProject = $project;
+        $this->emit('project', $project);
     }
 
     public function render()

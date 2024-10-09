@@ -36,18 +36,18 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Contract Description</label>
+                                <label class="form-label" for="ad_description">Contract Description</label>
                                 <div wire:ignore>
-                                    <textarea id="description" wire:model="description" class="form-control tinymce-basic" name="description"></textarea>
+                                    <textarea id="ad_description" wire:model="ad_description" class="form-control tinymce-basic" name="ad_description"></textarea>
                                 </div>
-                                @error('description')
+                                @error('ad_description')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {{ Form::label('start_date', __('Start Date'), ['class' => 'form-label']) }}
-                                    <input type="date" id="start_date" wire:model.defer="start_date" class="form-control"
+                                    <input type="date" id="start_date" wire:model.defer="ad_start_date" class="form-control"
                                         placeholder="Project Start Date" />
                                     @error('start_date')
                                         <small class="invalid-name" role="alert">
@@ -59,7 +59,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {{ Form::label('end_date', __('End Date'), ['class' => 'form-label']) }}
-                                    <input type="date" id="end_date" wire:model.defer="end_date" class="form-control"
+                                    <input type="date" id="end_date" wire:model.defer="ad_end_date" class="form-control"
                                         placeholder="Project End Date" />
                                     @error('end_date')
                                         <small class="invalid-name" role="alert">
@@ -74,7 +74,7 @@
                     <div class="modal-footer">
                         <input type="button" id="closeAdvertPublishModal" value="{{ __('Cancel') }}" class="btn  btn-light"
                             data-bs-dismiss="modal">
-                        <input type="button" wire:click="registerUser" value="{{ __('Publish Advert') }}" class="btn  btn-primary">
+                        <input type="button" wire:click="advertiseProject" value="{{ __('Publish Advert') }}" class="btn  btn-primary">
                     </div>
                 </div>
             </div>
@@ -98,13 +98,13 @@
 
     <script>
         tinymce.init({
-            selector: '#description',
+            selector: '#ad_description',
             setup: function(editor) {
                 editor.on('init change', function() {
                     editor.save();
                 });
                 editor.on('change', function(e) {
-                    @this.set('description', editor.getContent());
+                    @this.set('ad_description', editor.getContent());
                 });
             }
         });
