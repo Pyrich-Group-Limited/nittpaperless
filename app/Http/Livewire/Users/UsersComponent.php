@@ -232,9 +232,13 @@ class UsersComponent extends Component
     public function uploadUserRecord($row){
 
         $subunit = null;
+        $units = null;
         $departments = Department::where('name',$row['4'])->first();
         $designations = Designation::where('name',$row['8'])->first();
-        $units = Unit::where('name',$row[5])->where('department_id',$departments->id)->first();
+        if($departments!=null){
+            $units = Unit::where('name',$row[5])->where('department_id',$departments->id)->first();
+        }
+
         if($units!=null){
             $subunit = SubUnit::where('name',$row[6])->where('unit_id',$units->id)->first();
         }

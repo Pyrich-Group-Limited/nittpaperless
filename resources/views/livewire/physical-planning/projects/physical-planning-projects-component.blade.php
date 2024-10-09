@@ -142,6 +142,14 @@
                                                     </a>
                                                 </div>
                                         @endcan
+                                    @else
+                                    @can('edit project')
+                                    <div class="action-btn bg-info ms-2">
+                                            <a href="#" wire:click="setProject('{{ $project->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Edit Bill of Quantity')}}" data-title="{{__('Edit Bill of Quantity')}}">
+                                                <i class="ti ti-edit text-white"></i>
+                                            </a>
+                                        </div>
+                                @endcan
                                     @endif
                                         {{-- @can('delete project')
                                             <div class="action-btn bg-danger ms-2">
@@ -166,10 +174,6 @@
     </div>
 </div>
 
-
-
- <x-toast-notification />
- @include('livewire.projects.modals.create-project')
  @livewire('physical-planning.projects.uploadboq')
 
 <div>
