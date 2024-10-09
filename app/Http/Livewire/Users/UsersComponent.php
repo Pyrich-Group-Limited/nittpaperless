@@ -9,7 +9,7 @@ use App\Models\UserCompany;
 use App\Models\Designation;
 use App\Models\LiasonOffice;
 use App\Models\Unit;
-use App\Models\SubUnit;
+use App\Models\Subunit;
 use App\Models\Employee;
 use Spatie\Permission\Models\Role;
 use App\Services\DataService;
@@ -151,7 +151,7 @@ class UsersComponent extends Component
     }
 
     public function updatedUnit($id){
-        $this->subunits = SubUnit::where('unit_id',$id)->get();
+        $this->subunits = Subunit::where('unit_id',$id)->get();
     }
 
     public function setActionId($id){

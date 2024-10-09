@@ -22,8 +22,10 @@ class XSS
     public function handle($request, Closure $next)
     {
 
+
         if(\Auth::check())
         {
+
             \App::setLocale(\Auth::user()->lang);
 
             if(\Auth::user()->type == 'super admin')
