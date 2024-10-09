@@ -41,7 +41,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:32:20] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -85,7 +85,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:32:40] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -129,7 +129,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:32:40] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -173,7 +173,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:33:38] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -217,7 +217,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:33:38] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -261,7 +261,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:34:09] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -305,7 +305,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:34:38] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -349,7 +349,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:34:39] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -393,7 +393,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:34:42] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -437,7 +437,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:34:51] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -483,7 +483,7 @@
 #40 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #41 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #42 {main}
-"} 
+"}
 [2024-10-09 12:35:38] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -527,7 +527,7 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:35:39] local.ERROR: Invalid route action: [ProcurementProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ProcurementProjectsComponent]. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ProcurementProj...')
@@ -571,11 +571,11 @@
 #38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 12:35:50] local.ERROR: Maximum execution time of 60 seconds exceeded {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\spatie\\laravel-ignition\\src\\Support\\Composer\\ComposerClassMap.php:117)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 12:37:28] local.ERROR: View [livewire.procurements.projects.modals.new-advert] not found. {"view":{"view":"C:\\xampp-server\\htdocs\\nittpaperless\\resources\\views\\livewire\\physical-planning\\projects\\physical-planning-projects-component.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1376846548 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#3162</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -819,7 +819,7 @@
 #71 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #72 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #73 {main}
-"} 
+"}
 [2024-10-09 12:41:14] local.ERROR: Class "App\Http\Livewire\PhysicalPlanning\Projects\User" not found {"userId":1,"exception":"[object] (Error(code: 0): Class \"App\\Http\\Livewire\\PhysicalPlanning\\Projects\\User\" not found at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectsComponent.php:21)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectsComponent->render()
@@ -881,7 +881,7 @@
 #56 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #57 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #58 {main}
-"} 
+"}
 [2024-10-09 12:46:16] local.ERROR: syntax error, unexpected token ",", expecting ")" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \",\", expecting \")\" at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectsComponent.php:60)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp-server...')
@@ -930,7 +930,7 @@
 #43 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #44 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #45 {main}
-"} 
+"}
 [2024-10-09 12:46:26] local.ERROR: Class "App\Http\Livewire\PhysicalPlanning\Projects\User" not found {"userId":1,"exception":"[object] (Error(code: 0): Class \"App\\Http\\Livewire\\PhysicalPlanning\\Projects\\User\" not found at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectsComponent.php:57)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectsComponent->render()
@@ -992,7 +992,7 @@
 #56 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #57 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #58 {main}
-"} 
+"}
 [2024-10-09 12:46:48] local.ERROR: View [livewire.physical-planning.projects.physical-planning-projects-component] not found. {"userId":1,"exception":"[object] (InvalidArgumentException(code: 0): View [livewire.physical-planning.projects.physical-planning-projects-component] not found. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php:137)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('livewire.physic...', Array)
@@ -1058,7 +1058,7 @@
 #60 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #61 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #62 {main}
-"} 
+"}
 [2024-10-09 12:47:36] local.ERROR: View [physical-planning-projects-component.blade] not found. {"userId":1,"exception":"[object] (InvalidArgumentException(code: 0): View [physical-planning-projects-component.blade] not found. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php:137)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('physical-planni...', Array)
@@ -1124,7 +1124,7 @@
 #60 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #61 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #62 {main}
-"} 
+"}
 [2024-10-09 12:48:04] local.ERROR: View [livewire.physical-planning.projects.physical-planning-projects-component.blade] not found. {"userId":1,"exception":"[object] (InvalidArgumentException(code: 0): View [livewire.physical-planning.projects.physical-planning-projects-component.blade] not found. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php:137)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('livewire.physic...', Array)
@@ -1190,7 +1190,7 @@
 #60 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #61 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #62 {main}
-"} 
+"}
 [2024-10-09 12:48:20] local.ERROR: View [livewire.physical-planning.projects.physical-planning-projects-component] not found. {"userId":1,"exception":"[object] (InvalidArgumentException(code: 0): View [livewire.physical-planning.projects.physical-planning-projects-component] not found. at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php:137)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('livewire.physic...', Array)
@@ -1256,7 +1256,7 @@
 #60 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #61 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #62 {main}
-"} 
+"}
 [2024-10-09 12:50:38] local.ERROR: Unable to set component data. Public property [$supervising_staff_id[]] not found on component: [projects.projects-component] {"userId":1,"exception":"[object] (Livewire\\Exceptions\\PublicPropertyNotFoundException(code: 0): Unable to set component data. Public property [$supervising_staff_id[]] not found on component: [projects.projects-component] at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php:31)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php(90): Livewire\\Component->Livewire\\ComponentConcerns\\{closure}('supervising_sta...', Array)
@@ -1310,7 +1310,7 @@
 #48 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #49 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #50 {main}
-"} 
+"}
 [2024-10-09 13:57:32] local.ERROR: syntax error, unexpected token "public" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"public\" at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php:135)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp-server...')
@@ -1357,7 +1357,7 @@
 #41 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 14:03:34] local.ERROR: in_array(): Argument #2 ($haystack) must be of type array, null given {"userId":1,"exception":"[object] (TypeError(code: 0): in_array(): Argument #2 ($haystack) must be of type array, null given at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php:19)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php(19): in_array(1, NULL)
@@ -1421,7 +1421,7 @@
 #58 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #59 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #60 {main}
-"} 
+"}
 [2024-10-09 14:05:25] local.ERROR: Too few arguments to function App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials::getProjectDetails(), 1 passed in C:\xampp-server\htdocs\nittpaperless\app\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials.php on line 149 and exactly 2 expected {"userId":1,"exception":"[object] (ArgumentCountError(code: 0): Too few arguments to function App\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials::getProjectDetails(), 1 passed in C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php on line 149 and exactly 2 expected at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php:18)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php(149): App\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials->getProjectDetails(Object(App\\Models\\ProjectCreation))
@@ -1484,7 +1484,7 @@
 #57 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #59 {main}
-"} 
+"}
 [2024-10-09 14:05:39] local.ERROR: Class "App\Http\Livewire\PhysicalPlanning\Projects\ProjectTask" not found {"userId":1,"exception":"[object] (Error(code: 0): Class \"App\\Http\\Livewire\\PhysicalPlanning\\Projects\\ProjectTask\" not found at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php:23)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php(149): App\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials->getProjectDetails(Object(App\\Models\\ProjectCreation))
@@ -1547,7 +1547,7 @@
 #57 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #59 {main}
-"} 
+"}
 [2024-10-09 14:05:51] local.ERROR: Class "App\Http\Livewire\PhysicalPlanning\Projects\User" not found {"userId":1,"exception":"[object] (Error(code: 0): Class \"App\\Http\\Livewire\\PhysicalPlanning\\Projects\\User\" not found at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php:54)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php(150): App\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials->getProjectDetails(Object(App\\Models\\ProjectCreation))
@@ -1610,7 +1610,7 @@
 #57 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #59 {main}
-"} 
+"}
 [2024-10-09 14:05:58] local.ERROR: Undefined variable $usr {"userId":1,"exception":"[object] (ErrorException(code: 0): Undefined variable $usr at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php:55)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined varia...', 'C:\\\\xampp-server...', 55)
@@ -1675,7 +1675,7 @@
 #59 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #60 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #61 {main}
-"} 
+"}
 [2024-10-09 14:07:19] local.ERROR: Class "App\Http\Livewire\PhysicalPlanning\Projects\Auth" not found {"userId":1,"exception":"[object] (Error(code: 0): Class \"App\\Http\\Livewire\\PhysicalPlanning\\Projects\\Auth\" not found at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php:21)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php(152): App\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials->getProjectDetails(Object(App\\Models\\ProjectCreation))
@@ -1738,7 +1738,7 @@
 #57 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #59 {main}
-"} 
+"}
 [2024-10-09 14:07:44] local.ERROR: Class "App\Http\Livewire\PhysicalPlanning\Projects\Carbon" not found {"userId":1,"exception":"[object] (Error(code: 0): Class \"App\\Http\\Livewire\\PhysicalPlanning\\Projects\\Carbon\" not found at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php:67)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php(153): App\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials->getProjectDetails(Object(App\\Models\\ProjectCreation))
@@ -1801,7 +1801,7 @@
 #57 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #59 {main}
-"} 
+"}
 [2024-10-09 14:07:59] local.ERROR: Class "App\Http\Livewire\PhysicalPlanning\Projects\Project" not found {"userId":1,"exception":"[object] (Error(code: 0): Class \"App\\Http\\Livewire\\PhysicalPlanning\\Projects\\Project\" not found at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php:107)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials.php(155): App\\Http\\Livewire\\PhysicalPlanning\\Projects\\PhysicalPlanningProjectDetials->getProjectDetails(Object(App\\Models\\ProjectCreation))
@@ -1864,7 +1864,7 @@
 #57 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #59 {main}
-"} 
+"}
 [2024-10-09 14:10:27] local.ERROR: Class "App\Models\Auth" not found {"view":{"view":"C:\\xampp-server\\htdocs\\nittpaperless\\resources\\views\\livewire\\physical-planning\\projects\\physical-planning-project-detials.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-386034245 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#3164</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -2097,7 +2097,7 @@
 #73 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #74 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #75 {main}
-"} 
+"}
 [2024-10-09 14:16:28] local.ERROR: Unable to find component: [physical-planning.project.uploadboq] {"userId":1,"exception":"[object] (Livewire\\Exceptions\\ComponentNotFoundException(code: 0): Unable to find component: [physical-planning.project.uploadboq] at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\LivewireManager.php:98)
 [stacktrace]
 #0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\LivewireManager.php(107): Livewire\\LivewireManager->getClass('physical-planni...')
@@ -2178,7 +2178,7 @@
 #75 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #76 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #77 {main}
-"} 
+"}
 [2024-10-09 16:24:58] local.ERROR: Invalid route action: [App\Http\Livewire\Projects\ShowProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [App\\Http\\Livewire\\Projects\\ShowProjectsComponent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('App\\\\Http\\\\Livewi...')
@@ -2222,7 +2222,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:24:58] local.ERROR: Invalid route action: [App\Http\Livewire\Projects\ShowProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [App\\Http\\Livewire\\Projects\\ShowProjectsComponent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('App\\\\Http\\\\Livewi...')
@@ -2266,7 +2266,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:25:48] local.ERROR: Invalid route action: [App\Http\Livewire\Projects\ShowProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [App\\Http\\Livewire\\Projects\\ShowProjectsComponent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('App\\\\Http\\\\Livewi...')
@@ -2310,7 +2310,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:25:58] local.ERROR: Invalid route action: [App\Http\Livewire\Projects\ShowProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [App\\Http\\Livewire\\Projects\\ShowProjectsComponent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('App\\\\Http\\\\Livewi...')
@@ -2354,7 +2354,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:25:58] local.ERROR: Invalid route action: [App\Http\Livewire\Projects\ShowProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [App\\Http\\Livewire\\Projects\\ShowProjectsComponent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('App\\\\Http\\\\Livewi...')
@@ -2398,7 +2398,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:26:58] local.ERROR: Invalid route action: [App\Http\Livewire\Projects\ShowProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [App\\Http\\Livewire\\Projects\\ShowProjectsComponent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('App\\\\Http\\\\Livewi...')
@@ -2442,7 +2442,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:26:58] local.ERROR: Invalid route action: [App\Http\Livewire\Projects\ShowProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [App\\Http\\Livewire\\Projects\\ShowProjectsComponent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('App\\\\Http\\\\Livewi...')
@@ -2486,7 +2486,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:26:59] local.ERROR: Invalid route action: [ShowProjectsComponent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ShowProjectsComponent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ShowProjectsCom...')
@@ -2530,7 +2530,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:27:26] local.ERROR: Invalid route action: [ShowProjectCompnent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ShowProjectCompnent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ShowProjectComp...')
@@ -2574,7 +2574,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:27:27] local.ERROR: Invalid route action: [ShowProjectCompnent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ShowProjectCompnent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ShowProjectComp...')
@@ -2618,7 +2618,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:27:45] local.ERROR: Invalid route action: [ShowProjectCompnent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ShowProjectCompnent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ShowProjectComp...')
@@ -2662,7 +2662,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:27:45] local.ERROR: Invalid route action: [ShowProjectCompnent]. {"exception":"[object] (UnexpectedValueException(code: 0): Invalid route action: [ShowProjectCompnent]. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php:92)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteAction.php(47): Illuminate\\Routing\\RouteAction::makeInvokable('ShowProjectComp...')
@@ -2706,7 +2706,7 @@
 #38 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #39 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #40 {main}
-"} 
+"}
 [2024-10-09 16:28:05] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2732,7 +2732,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:28:05] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2758,7 +2758,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:28:07] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2784,7 +2784,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:28:07] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2810,7 +2810,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:28:08] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2836,7 +2836,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:28:12] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2862,7 +2862,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:28:13] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2888,7 +2888,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:28:16] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2914,7 +2914,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:29:58] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2940,7 +2940,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:29:58] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2966,7 +2966,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:01] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -2992,7 +2992,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:02] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3018,7 +3018,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:05] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3044,7 +3044,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:05] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3070,7 +3070,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:07] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3096,7 +3096,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:07] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3122,7 +3122,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:24] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3148,7 +3148,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:30] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3174,7 +3174,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:34] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3200,7 +3200,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:36] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3226,7 +3226,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:38] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3252,7 +3252,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:39] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3278,7 +3278,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:40] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3304,7 +3304,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:40] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3330,7 +3330,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:43] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3356,7 +3356,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:43] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3382,7 +3382,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:44] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3408,7 +3408,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:44] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3434,7 +3434,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:45] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3460,7 +3460,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:54] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3486,7 +3486,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:30:59] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3512,7 +3512,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:31:00] local.ERROR: Class "ApiController" does not exist {"exception":"[object] (ReflectionException(code: -1): Class \"ApiController\" does not exist at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php:234)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\RouteListCommand.php(234): ReflectionClass->__construct('ApiController')
@@ -3538,7 +3538,7 @@
 #20 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #21 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #22 {main}
-"} 
+"}
 [2024-10-09 16:40:15] local.ERROR: Class "App\Http\Livewire\Projects\Auth" not found {"userId":1,"exception":"[object] (Error(code: 0): Class \"App\\Http\\Livewire\\Projects\\Auth\" not found at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ShowProjectComponent.php:21)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ShowProjectComponent.php(152): App\\Http\\Livewire\\Projects\\ShowProjectComponent->getProjectDetails(Object(App\\Models\\ProjectCreation))
@@ -3601,7 +3601,7 @@
 #57 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #59 {main}
-"} 
+"}
 [2024-10-09 16:40:51] local.ERROR: Class "App\Http\Livewire\Projects\Auth" not found {"userId":1,"exception":"[object] (Error(code: 0): Class \"App\\Http\\Livewire\\Projects\\Auth\" not found at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ShowProjectComponent.php:21)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ShowProjectComponent.php(152): App\\Http\\Livewire\\Projects\\ShowProjectComponent->getProjectDetails(Object(App\\Models\\ProjectCreation))
@@ -3664,7 +3664,7 @@
 #57 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #59 {main}
-"} 
+"}
 [2024-10-09 16:43:57] local.ERROR: Attempt to read property "id" on null {"view":{"view":"C:\\xampp\\htdocs\\nittpaperless\\resources\\views\\projects\\milestone.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1440268822 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#3704</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -3802,7 +3802,7 @@
 #60 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #61 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #62 {main}
-"} 
+"}
 [2024-10-09 17:01:06] local.ERROR: syntax error, unexpected variable "$this" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected variable \"$this\" at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\EditProjectComponent.php:34)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp\\\\htdocs...')
@@ -3849,7 +3849,7 @@
 #41 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 17:01:06] local.ERROR: syntax error, unexpected variable "$this" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected variable \"$this\" at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\EditProjectComponent.php:34)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp\\\\htdocs...')
@@ -3896,7 +3896,7 @@
 #41 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 20:08:55] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php:220)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php(147): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -3912,7 +3912,7 @@
 #10 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #12 {main}
-"} 
+"}
 [2024-10-09 20:08:58] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php:220)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php(147): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -3928,7 +3928,7 @@
 #10 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #12 {main}
-"} 
+"}
 [2024-10-09 20:09:01] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php:220)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php(147): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -3944,7 +3944,7 @@
 #10 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #12 {main}
-"} 
+"}
 [2024-10-09 20:14:44] local.ERROR: Call to a member function creatorId() on null {"exception":"[object] (Error(code: 0): Call to a member function creatorId() on null at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:86)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\Projects\\ProjectsComponent->render()
@@ -4006,7 +4006,7 @@
 #56 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #57 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #58 {main}
-"} 
+"}
 [2024-10-09 20:15:38] local.ERROR: Unable to set component data. Public property [$budget] not found on component: [projects.projects-component] {"userId":1,"exception":"[object] (Livewire\\Exceptions\\PublicPropertyNotFoundException(code: 0): Unable to set component data. Public property [$budget] not found on component: [projects.projects-component] at C:\\xampp\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php:31)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php(90): Livewire\\Component->Livewire\\ComponentConcerns\\{closure}('budget', '5')
@@ -4060,7 +4060,7 @@
 #48 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #49 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #50 {main}
-"} 
+"}
 [2024-10-09 20:15:39] local.ERROR: Unable to set component data. Public property [$budget] not found on component: [projects.projects-component] {"userId":1,"exception":"[object] (Livewire\\Exceptions\\PublicPropertyNotFoundException(code: 0): Unable to set component data. Public property [$budget] not found on component: [projects.projects-component] at C:\\xampp\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php:31)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php(90): Livewire\\Component->Livewire\\ComponentConcerns\\{closure}('budget', '500')
@@ -4114,7 +4114,7 @@
 #48 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #49 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #50 {main}
-"} 
+"}
 [2024-10-09 20:17:24] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php:220)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php(147): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -4130,7 +4130,7 @@
 #10 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #12 {main}
-"} 
+"}
 [2024-10-09 20:17:26] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php:220)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php(147): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -4146,7 +4146,7 @@
 #10 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #12 {main}
-"} 
+"}
 [2024-10-09 20:17:29] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php:220)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\symfony\\console\\Input\\ArgvInput.php(147): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -4162,7 +4162,7 @@
 #10 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 C:\\xampp\\htdocs\\nittpaperless\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #12 {main}
-"} 
+"}
 [2024-10-09 20:29:10] local.ERROR: syntax error, unexpected token "<" {"view":{"view":"C:\\xampp\\htdocs\\nittpaperless\\resources\\views\\livewire\\projects\\projects-component.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1955792977 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#3705</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -4396,7 +4396,7 @@
 #67 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #68 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #69 {main}
-"} 
+"}
 [2024-10-09 20:49:00] local.ERROR: View [livewire.procurements.projects.modals.new-advert] not found. {"view":{"view":"C:\\xampp\\htdocs\\nittpaperless\\resources\\views\\livewire\\projects\\projects-component.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1255574627 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#3705</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -4638,7 +4638,7 @@
 #71 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #72 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #73 {main}
-"} 
+"}
 [2024-10-09 20:50:30] local.ERROR: Unable to set component data. Public property [$type_of_advert] not found on component: [projects.projects-component] {"userId":1,"exception":"[object] (Livewire\\Exceptions\\PublicPropertyNotFoundException(code: 0): Unable to set component data. Public property [$type_of_advert] not found on component: [projects.projects-component] at C:\\xampp\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php:31)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php(90): Livewire\\Component->Livewire\\ComponentConcerns\\{closure}('type_of_advert', 'External')
@@ -4692,7 +4692,7 @@
 #48 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #49 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #50 {main}
-"} 
+"}
 [2024-10-09 21:04:38] local.ERROR: syntax error, unexpected token "}" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\" at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\EditProjectComponent.php:43)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp\\\\htdocs...')
@@ -4739,7 +4739,7 @@
 #41 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 21:04:38] local.ERROR: syntax error, unexpected token "}" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\" at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\EditProjectComponent.php:43)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp\\\\htdocs...')
@@ -4786,7 +4786,7 @@
 #41 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 21:19:38] local.ERROR: syntax error, unexpected token "}" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\" at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\EditProjectComponent.php:47)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp\\\\htdocs...')
@@ -4833,7 +4833,7 @@
 #41 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 21:19:38] local.ERROR: syntax error, unexpected token "}" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\" at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\EditProjectComponent.php:47)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp\\\\htdocs...')
@@ -4880,7 +4880,7 @@
 #41 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 21:20:38] local.ERROR: syntax error, unexpected token ")", expecting variable {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \")\", expecting variable at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\EditProjectComponent.php:46)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp\\\\htdocs...')
@@ -4927,7 +4927,7 @@
 #41 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 21:20:38] local.ERROR: syntax error, unexpected token ")", expecting variable {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \")\", expecting variable at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\EditProjectComponent.php:46)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp\\\\htdocs...')
@@ -4974,7 +4974,7 @@
 #41 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 21:26:38] local.ERROR: syntax error, unexpected variable "$project_id" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected variable \"$project_id\" at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:36)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp\\\\htdocs...')
@@ -5021,7 +5021,7 @@
 #41 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 21:26:38] local.ERROR: syntax error, unexpected variable "$project_id" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected variable \"$project_id\" at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:36)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\xampp\\\\htdocs...')
@@ -5068,7 +5068,7 @@
 #41 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(153): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #42 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #43 {main}
-"} 
+"}
 [2024-10-09 21:29:30] local.ERROR: Unable to resolve dependency [Parameter #0 [ <required> $id ]] in class App\Http\Livewire\Projects\ProjectsComponent {"userId":1,"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Unable to resolve dependency [Parameter #0 [ <required> $id ]] in class App\\Http\\Livewire\\Projects\\ProjectsComponent at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php:188)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ImplicitlyBoundMethod.php(21): Illuminate\\Container\\BoundMethod::addDependencyForCallParameter(Object(Illuminate\\Foundation\\Application), Object(ReflectionParameter), Array, Array)
@@ -5129,7 +5129,7 @@
 #55 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #56 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #57 {main}
-"} 
+"}
 [2024-10-09 21:34:20] local.ERROR: Unable to resolve dependency [Parameter #0 [ <required> $id ]] in class App\Http\Livewire\Projects\ProjectsComponent {"userId":1,"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Unable to resolve dependency [Parameter #0 [ <required> $id ]] in class App\\Http\\Livewire\\Projects\\ProjectsComponent at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php:188)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ImplicitlyBoundMethod.php(21): Illuminate\\Container\\BoundMethod::addDependencyForCallParameter(Object(Illuminate\\Foundation\\Application), Object(ReflectionParameter), Array, Array)
@@ -5190,51 +5190,51 @@
 #55 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #56 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #57 {main}
-"} 
+"}
 [2024-10-09 21:37:38] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:37:38] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:38:37] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:38:38] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:38:38] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:39:38] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:39:38] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:40:38] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:40:38] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:41:38] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:41:38] local.ERROR: Cannot redeclare App\Http\Livewire\Projects\ProjectsComponent::setProject() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Livewire\\Projects\\ProjectsComponent::setProject() at C:\\xampp\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Projects\\ProjectsComponent.php:96)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-09 21:43:14] local.ERROR: Unable to resolve dependency [Parameter #0 [ <required> $id ]] in class App\Http\Livewire\Projects\ProjectsComponent {"userId":1,"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Unable to resolve dependency [Parameter #0 [ <required> $id ]] in class App\\Http\\Livewire\\Projects\\ProjectsComponent at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php:188)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ImplicitlyBoundMethod.php(21): Illuminate\\Container\\BoundMethod::addDependencyForCallParameter(Object(Illuminate\\Foundation\\Application), Object(ReflectionParameter), Array, Array)
@@ -5295,7 +5295,7 @@
 #55 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #56 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #57 {main}
-"} 
+"}
 [2024-10-09 21:45:54] local.ERROR: Unable to resolve dependency [Parameter #0 [ <required> $id ]] in class App\Http\Livewire\Projects\ProjectsComponent {"userId":1,"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Unable to resolve dependency [Parameter #0 [ <required> $id ]] in class App\\Http\\Livewire\\Projects\\ProjectsComponent at C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php:188)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ImplicitlyBoundMethod.php(21): Illuminate\\Container\\BoundMethod::addDependencyForCallParameter(Object(Illuminate\\Foundation\\Application), Object(ReflectionParameter), Array, Array)
@@ -5356,4 +5356,4 @@
 #55 C:\\xampp\\htdocs\\nittpaperless\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #56 C:\\xampp\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #57 {main}
-"} 
+"}

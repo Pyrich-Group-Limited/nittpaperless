@@ -1,6 +1,6 @@
 <div id="uploadBOQ">
     <div class="modal" id="uploadBOQModal" tabindex="-1" role="dialog" wire:ignore.self>
-        <div class="modal-dialog modal-lg" role="document" wire:ignore.self>
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body">
 
@@ -59,6 +59,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <input type="file" id="boq_file" wire:model.defer="boq_file" class="form-control"
                                         placeholder="File" />
+                                       <strong class="text-danger" wire:loading wire:target="boq_file">Loading...</strong>
                                     <?php $__errorArgs = ['boq_file'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -73,55 +74,86 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
+
+                            <?php $__currentLoopData = $inputs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $input): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-3">
+                                        <input type="text" <?php $__errorArgs = ['inputs.'.$key.'.item'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> style="border-color: red" <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> id="input_<?php echo e($key); ?>_item" id="input_<?php echo e($key); ?>_item" placeholder="Item" wire:model.defer="inputs.<?php echo e($key); ?>.item" class="form-control" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" <?php $__errorArgs = ['inputs.'.$key.'.description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> style="border-color: red" <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> id="input_<?php echo e($key); ?>_description" id="input_<?php echo e($key); ?>_description" placeholder="Description" wire:model.defer="inputs.<?php echo e($key); ?>.description" class="form-control" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text"  <?php $__errorArgs = ['inputs.'.$key.'.unit_price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> style="border-color: red" <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> id="input_<?php echo e($key); ?>_unit_price" id="input_<?php echo e($key); ?>_unit_price" placeholder="Unit Price" wire:model.defer="inputs.<?php echo e($key); ?>.unit_price" class="form-control" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" <?php $__errorArgs = ['inputs.'.$key.'.quantity'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> style="border-color: red" <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> id="input_<?php echo e($key); ?>_quantity" id="input_<?php echo e($key); ?>_quantity" placeholder="Quantity" wire:model.defer="inputs.<?php echo e($key); ?>.quantity" class="form-control" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <?php if($key > 0): ?>
+                                        <a href="#" wire:click="removeInput(<?php echo e($key); ?>)"  data-bs-toggle="tooltip" title="<?php echo e(__('Add Field')); ?>" class="btn btn-sm btn-danger mt-1">
+                                           X
+                                        </a>
+                                        <?php endif; ?>
+                                    </div>
+                            </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                            <a href="#" wire:click="addInput"  data-bs-toggle="tooltip" title="<?php echo e(__('Add Field')); ?>" class="btn btn-sm btn-primary mt-3">
+                                <i class="ti ti-plus"></i>
+                            </a>
+
+                            <?php else: ?>
+                            <label align="center" class="mb-4" style="color: red">Loading...</label>
+                            <?php endif; ?>
                         </div>
-                        <?php else: ?>
-                        <label align="center" class="mb-4" style="color: red">Loading...</label>
-                        <?php endif; ?>
                     </div>
 
                     <div class="modal-footer">
                         <input type="button" id="closeUplaodBOQ" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
                             data-bs-dismiss="modal">
-                        <input type="button" wire:click="registerUser" value="<?php echo e(__('Uplaod Bill of Quantity')); ?>" class="btn  btn-primary">
+                        <input type="button" wire:click="uploadBOQ" value="<?php echo e(__('Uplaod Bill of Quantity')); ?>" class="btn  btn-primary">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <?php $__env->startPush('script'); ?>
-        <?php if($errors->any() || Session::has('error')): ?>
-            <script>
-                $(document).ready(function() {
-                    document.getElementById("toggleOldUser").click();
-                });
-            </script>
-        <?php endif; ?>
-    <?php $__env->stopPush(); ?>
-
 </div>
 <?php $__env->startPush('script'); ?>
-    <script src="https://cdn.tiny.cloud/1/cvjfkxqlo8ylwqn3xgo15h2bd4xl6n7m6k5d0avjcq93c1i7/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
-
-    <script>
-        tinymce.init({
-            selector: '#description',
-            setup: function(editor) {
-                editor.on('init change', function() {
-                    editor.save();
-                });
-                editor.on('change', function(e) {
-                    window.livewire.find('<?php echo e($_instance->id); ?>').set('description', editor.getContent());
-                });
-            }
-        });
-
-
-        window.addEventListener('feedback', event => {
-            tinyMCE.activeEditor.setContent("");
-        });
-    </script>
+<script>
+    window.addEventListener('success', event => {
+        document.getElementById("closeUplaodBOQ").click();
+    })
+</script>
 <?php $__env->stopPush(); ?>
 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.toast-notification','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>

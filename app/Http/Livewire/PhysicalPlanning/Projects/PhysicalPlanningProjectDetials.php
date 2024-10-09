@@ -15,6 +15,7 @@ class PhysicalPlanningProjectDetials extends Component
 {
 
     public $project_id;
+    public $totalSum;
 
     public function mount($id){
         $this->project_id = $id;

@@ -24,6 +24,10 @@ class ProjectCreation extends Model
         'created_by'
     ];
 
+    public function boqs(){
+        return $this->hasMany(PPProjectBOQ::class,'project_id');
+    }
+
     public static $project_status=[
         'pending' => 'Pending',
         'in_progress' => 'In Progress',
