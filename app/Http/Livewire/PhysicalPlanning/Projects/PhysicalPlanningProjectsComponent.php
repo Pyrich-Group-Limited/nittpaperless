@@ -1,43 +1,23 @@
 <?php
 
-namespace App\Http\Livewire\Procurements\Projects;
+namespace App\Http\Livewire\PhysicalPlanning\Projects;
 
 use Livewire\Component;
-use Livewire\WithPagination;
+use App\Models\Utility;
+use App\Models\Project;
+use App\Models\ProjectCategory;
 use App\Models\ProjectCreation;
-class ProcurementProjectsComponent extends Component
+use App\Models\ProjectUser;
+use App\Models\User;
+class PhysicalPlanningProjectsComponent extends Component
 {
 
 
-    use WithPagination;
     public $selProject;
     public $start_date;
     public $end_date;
     public $description;
     public $type_of_project;
-
-    protected $paginationTheme = 'bootstrap';
-    public $actionId;
-    public $paginate;
-    public $failed_upload = [];
-
-
-    public $searchTerm = null;
-    public $searchBy = null;
-
-    public function getProjects(){
-        $projects = ProjectCreation::query()
-        ->where(function($query) {
-            if($this->searchTerm) {
-                $query->where('project_name', 'like', '%'.$this->searchTerm.'%')
-                ->orWhere('project_description', 'like', '%'.$this->searchTerm.'%')
-                ->orWhere('othernames', 'like', '%'.$this->searchTerm.'%');
-            }
-        })
-         ->latest();
-         return $projects;
-    }
-
 
     Public function advertiseProject(){
         $project = ProjectCreation::find($selProject->id);
@@ -69,10 +49,15 @@ class ProcurementProjectsComponent extends Component
         }
     }
 
+
     public function render()
     {
-        $projects = $this->getProjects();
-        $totalProjects = ProjectCreation::all();
-        return view('livewire.procurements.projects.procurement-projects-component',compact('projects','totalProjects'));
+        $view = 'grid';
+        $categories = ProjectCategory::all();
+        $projects = ProjectCreation::all();
+        $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'client')->get()->pluck('name', 'id');
+        $clients->prepend('Select Client', '');
+        $users   = User::where('type', '!=', 'client')->get();
+        return view('livewire.physical-planning.projects.physical-planning-projects-component',compact('view','projects','clients','users','categories'));
     }
 }

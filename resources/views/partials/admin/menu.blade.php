@@ -563,7 +563,7 @@
 
                     @if(\Auth::user()->show_project() == 1)
                         @if( Gate::check('manage project'))
-                            <li class="dash-item dash-hasmenu">
+                            <li class="dash-item dash-hasmenu {{Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''}}">
                                 <a href="#!" class="dash-link"
                                 ><span class="dash-micon"><i class="ti ti-list"></i></span
                                     ><span class="dash-mtext">{{__('New PM/PP')}}</span
@@ -572,7 +572,7 @@
                                     <ul class="dash-submenu">
                                         @can('manage project')
                                             <li class="dash-item  ">
-                                                <a class="dash-link" href="#">{{__('Projects')}}</a>
+                                                <a class="dash-link" href="{{ route('pp.projects')}}">{{__('Projects')}}</a>
                                             </li>
                                         @endcan
 
