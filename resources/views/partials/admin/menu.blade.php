@@ -258,6 +258,25 @@
                         @endif
                     @endif
 
+                        <li class="dash-item dash-hasmenu ">
+                            <a href="#!" class="dash-link"
+                            ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
+                                ><span class="dash-mtext">{{__('Procurment')}}</span
+                                ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                ></a>
+                            <ul class="dash-submenu ">
+                                <li class="dash-item {{ (\Request::route()->getName()=='hrm.dashboard') ? ' active' : '' }}">
+                                    <a class="dash-link" href="{{route('hrm.dashboard')}}">{{__(' Projects')}}</a>
+                                </li>
+                                <li class="dash-item {{ request()->is('reports-payroll') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('report.payroll') }}">{{__('Advert')}}</a>
+                                </li>
+                                <li class="dash-item {{ request()->is('reports-payroll') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('report.payroll') }}">{{__('Applications')}}</a>
+                                </li>
+                            </ul>
+                        </li>
+
                     @if(\Auth::user()->type=='super admin' && ( Gate::check('manage user') || Gate::check('manage role') || Gate::check('manage client')))
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
                             || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''}}">

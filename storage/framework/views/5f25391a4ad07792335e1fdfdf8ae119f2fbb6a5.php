@@ -256,6 +256,25 @@
                         <?php endif; ?>
                     <?php endif; ?>
 
+                        <li class="dash-item dash-hasmenu ">
+                            <a href="#!" class="dash-link"
+                            ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
+                                ><span class="dash-mtext"><?php echo e(__('Procurment')); ?></span
+                                ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                ></a>
+                            <ul class="dash-submenu ">
+                                <li class="dash-item <?php echo e((\Request::route()->getName()=='hrm.dashboard') ? ' active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('hrm.dashboard')); ?>"><?php echo e(__(' Projects')); ?></a>
+                                </li>
+                                <li class="dash-item <?php echo e(request()->is('reports-payroll') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('report.payroll')); ?>"><?php echo e(__('Advert')); ?></a>
+                                </li>
+                                <li class="dash-item <?php echo e(request()->is('reports-payroll') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('report.payroll')); ?>"><?php echo e(__('Applications')); ?></a>
+                                </li>
+                            </ul>
+                        </li>
+
                     <?php if(\Auth::user()->type=='super admin' && ( Gate::check('manage user') || Gate::check('manage role') || Gate::check('manage client'))): ?>
                         <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'users' || Request::segment(1) == 'roles'
                             || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''); ?>">
