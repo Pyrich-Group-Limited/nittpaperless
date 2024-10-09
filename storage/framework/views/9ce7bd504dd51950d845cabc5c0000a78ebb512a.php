@@ -1,37 +1,20 @@
 <div id="createUser">
-    <div class="modal" id="newProject" tabindex="-1" role="dialog" wire:ignore.self>
+    <div class="modal" id="editProject" tabindex="-1" role="dialog" wire:ignore.self>
         <div class="modal-dialog modal-lg" role="document" wire:ignore.self>
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="applyLeave">Create Project</h5>
+                        <h5 class="modal-title" id="applyLeave">Modify Project</h5>
                     </div>
                     <div class="modal-body">
                         
+                        <?php if($selProject): ?>
                         <div class="row">
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <?php echo e(Form::label('project_name', __('Project Name'), ['class' => 'form-label'])); ?><span class="text-danger">*</span>
                                     <input type="text" wire:model="project_name" class="form-control">
                                     <?php $__errorArgs = ['project_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                        <small class="invalid-type_of_leave" role="alert">
-                                            <strong class="text-danger"><?php echo e($message); ?></strong>
-                                    </small>
-                                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <?php echo e(Form::label('project_number', __('Project Number'), ['class' => 'form-label'])); ?><span class="text-danger">*</span>
-                                    <input type="text" wire:model="project_number" class="form-control">
-                                    <?php $__errorArgs = ['project_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -139,8 +122,6 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <?php echo e(Form::label('selectedStaff', __('Supervising Staff'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
                                     <select wire:model="selectedStaff" id="choices-multiple1" class="form-control sel_users select2 " multiple>
-                                    
-                                        
                                         <?php if(is_array($users) || is_object($users)): ?>
                                         <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($user->id); ?>"><?php echo e($user->name); ?></option>
@@ -162,15 +143,18 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <input type="button" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
-                            data-bs-dismiss="modal">
-                        <input type="button" id="button" wire:click="createProject" value="<?php echo e(__('Create')); ?>" class="btn  btn-primary">
-                    </div>
-                    <?php echo e(Form::close()); ?>
+                        <div class="modal-footer">
+                            <input type="button" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
+                                data-bs-dismiss="modal">
+                            <input type="button" id="button" wire:click="updateProject" value="<?php echo e(__('Create')); ?>" class="btn  btn-primary">
+                        </div>
+                    <?php else: ?>
+                    <lable align="center">Loading...</lable>
+                    <?php endif; ?>
 
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -217,4 +201,4 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
-<?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/livewire/projects/modals/create-project.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/livewire/projects/modals/edit-project.blade.php ENDPATH**/ ?>

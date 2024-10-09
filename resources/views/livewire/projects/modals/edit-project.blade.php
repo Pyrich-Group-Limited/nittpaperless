@@ -1,30 +1,20 @@
 <div id="createUser">
-    <div class="modal" id="newProject" tabindex="-1" role="dialog" wire:ignore.self>
+    <div class="modal" id="editProject" tabindex="-1" role="dialog" wire:ignore.self>
         <div class="modal-dialog modal-lg" role="document" wire:ignore.self>
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="applyLeave">Create Project</h5>
+                        <h5 class="modal-title" id="applyLeave">Modify Project</h5>
                     </div>
                     <div class="modal-body">
                         {{-- {{ Form::open(['url' => 'projects', 'method' => 'post','enctype' => 'multipart/form-data']) }} --}}
+                        @if($selProject)
                         <div class="row">
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     {{ Form::label('project_name', __('Project Name'), ['class' => 'form-label']) }}<span class="text-danger">*</span>
                                     <input type="text" wire:model="project_name" class="form-control">
                                     @error('project_name')
-                                        <small class="invalid-type_of_leave" role="alert">
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                    </small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    {{ Form::label('project_number', __('Project Number'), ['class' => 'form-label']) }}<span class="text-danger">*</span>
-                                    <input type="text" wire:model="project_number" class="form-control">
-                                    @error('project_number')
                                         <small class="invalid-type_of_leave" role="alert">
                                             <strong class="text-danger">{{ $message }}</strong>
                                     </small>
@@ -94,8 +84,6 @@
                                 <div class="form-group">
                                     {{ Form::label('selectedStaff', __('Supervising Staff'),['class'=>'form-label']) }}<span class="text-danger">*</span>
                                     <select wire:model="selectedStaff" id="choices-multiple1" class="form-control sel_users select2 " multiple>
-                                    {{-- <select wire:model="supervising_staff_id" class="form-control"> --}}
-                                        {{-- <option value="">---Select---</option> --}}
                                         @if (is_array($users) || is_object($users))
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -110,14 +98,18 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <input type="button" value="{{ __('Cancel') }}" class="btn  btn-light"
-                            data-bs-dismiss="modal">
-                        <input type="button" id="button" wire:click="createProject" value="{{ __('Create') }}" class="btn  btn-primary">
+                        <div class="modal-footer">
+                            <input type="button" value="{{ __('Cancel') }}" class="btn  btn-light"
+                                data-bs-dismiss="modal">
+                            <input type="button" id="button" wire:click="updateProject" value="{{ __('Create') }}" class="btn  btn-primary">
+                        </div>
+                    @else
+                    <lable align="center">Loading...</lable>
+                    @endif
+
                     </div>
-                    {{Form::close()}}
+                    {{-- {{Form::close()}} --}}
                 </div>
             </div>
         </div>

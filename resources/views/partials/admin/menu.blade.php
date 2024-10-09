@@ -273,7 +273,7 @@
                                     @endcan
                                     @can('manage client')
                                         <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
-                                            <a class="dash-link" href="{{ route('clients.index') }}">{{__('Client')}}</a>
+                                            <a class="dash-link" href="{{ route('clients.index') }}">{{__('Contractor')}}</a>
                                         </li>
                                     @endcan
                                     @if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client')
