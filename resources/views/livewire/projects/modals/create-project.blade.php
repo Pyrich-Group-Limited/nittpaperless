@@ -12,7 +12,12 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     {{ Form::label('project_name', __('Project Name'), ['class' => 'form-label']) }}<span class="text-danger">*</span>
-                                    {{ Form::text('project_name', null, ['class' => 'form-control','required'=>'required']) }}
+                                    <input type="text" wire:model="project_name" class="form-control">
+                                    @error('project_name')
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -20,7 +25,13 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     {{ Form::label('description', __('Project Description'), ['class' => 'form-label']) }}
-                                    {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => '4', 'cols' => '50']) }}
+                                    {{-- {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => '4', 'cols' => '50']) }} --}}
+                                    <textarea wire:model="description" id="" cols="50" rows="4" class="form-control"></textarea>
+                                    @error('description')
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -28,45 +39,91 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     {{ Form::label('start_date', __('Start Date'), ['class' => 'form-label']) }}
-                                    {{ Form::date('start_date', null, ['class' => 'form-control']) }}
+                                    {{-- {{ Form::date('start_date', null, ['class' => 'form-control']) }} --}}
+                                    <input type="date" class="form-control" wire:model="start_date">
+                                    @error('start_date')
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     {{ Form::label('end_date', __('End Date'), ['class' => 'form-label']) }}
-                                    {{ Form::date('end_date', null, ['class' => 'form-control']) }}
+                                    {{-- {{ Form::date('end_date', null, ['class' => 'form-control']) }} --}}
+                                    <input type="date" class="form-control" wire:model="end_date">
+                                    @error('end_date')
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {{ Form::label('category', __('Project Category'),['class'=>'form-label']) }}<span class="text-danger">*</span>
-                                {!! Form::select('category', $categories, null,array('class' => 'form-control','required'=>'required')) !!}
-                            </div>
-                        </div>
                         <div class="row">
-                            <div class="form-group col-sm-12 col-md-12">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    {{ Form::label('category', __('Project Category'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                                    <select wire:model="project_category_id" id="" class="form-control">
+                                        <option value="">---Select---</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                        @endforeach
+                                        @error('project_category_id')
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                        @enderror
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-md-6">
                                 {{ Form::label('project_boq', __('Project BoQ'), ['class' => 'form-label']) }}<span class="text-danger">*</span>
                                 <div class="form-file mb-3">
-                                    <input type="file" class="form-control" name="project_boq" required="">
-                                @error('level')
+                                    <input type="file" class="form-control" wire:model="project_boq" required="">
+                                    {{-- @if ($project_boq)
+                                        <div class="progress mt-2">
+                                            <div class="progress-bar" style="width: 100%">Uploading...</div>
+                                        </div>
+                                    @endif --}}
+                                @error('project_boq')
                                     <small class="invalid-type_of_leave" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
                                     </small>
                                 @enderror
                                 </div>
-
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    {{ Form::label('user', __('Supervising Staff'),['class'=>'form-label']) }}<span class="text-danger">*</span>
-                                    {!! Form::select('user[]', $users, null,array('class' => 'form-control','required'=>'required')) !!}
+                                    {{ Form::label('supervising_staff_id', __('Supervising Staff'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                                    <select wire:model="supervising_staff_id[]" id="choices-multiple1" class="form-control select2" multiple>
+                                        <option value="">---Select---</option>
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('supervising_staff_id')
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     {{ Form::label('budget', __('Budget'), ['class' => 'form-label']) }}
-                                    {{ Form::number('budget', null, ['class' => 'form-control']) }}
+                                    <input type="number" wire:model="budget" class="form-control">
+                                    @error('budget')
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -74,15 +131,14 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     {{ Form::label('status', __('Status'), ['class' => 'form-label']) }}
-                                    <select name="status" id="status" class="form-control main-element">
-                                        @foreach(\App\Models\Project::$project_status as $k => $v)
+                                    <select wire:model.defer="status" id="status" class="form-control main-element">
+                                        @foreach(\App\Models\ProjectCreation::$project_status as $k => $v)
                                             <option value="{{$k}}">{{__($v)}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="modal-footer">

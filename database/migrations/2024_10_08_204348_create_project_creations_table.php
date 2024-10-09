@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('project_creations', function (Blueprint $table) {
             $table->id();
             $table->string('project_name');
+            $table->string('projectId')->unique()->nullable();
             $table->text('description');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->unsignedBigInteger('supervising_staff_id')->nullable();
             $table->foreign('supervising_staff_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->string('status');
+            $table->string('status')->default('pending');
             $table->integer('budget')->nullable();
 
             $table->unsignedBigInteger('created_by')->nullable();
