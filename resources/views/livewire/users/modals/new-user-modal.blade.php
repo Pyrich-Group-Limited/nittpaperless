@@ -52,7 +52,7 @@
                                 <select wire:model="location" id="location" class="form-control">
                                     <option value="" selected>-- Select Location --</option>
                                     <option value="Headquarters">Headquarters</option>
-                                    <option value="Liaison-Offices">Liaison Office</option>
+                                    <option value="Liaison Office">Liaison Office</option>
                                 </select>
                                 @error('location')
                                     <small class="invalid-type_of_leave" role="alert">

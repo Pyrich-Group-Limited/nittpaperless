@@ -176,9 +176,9 @@ Route::get('/', function () {
 });
 
 require __DIR__.'/auth.php';
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+// Route::get('/', function () {
+//     return redirect()->route('login');
+// });
 
 //
 //Route::get('/', ['as' => 'home','uses' =>'HomeController@index'])->middleware(['XSS']);
@@ -847,7 +847,7 @@ Route::resource('email_template', EmailTemplateController::class)->middleware(['
 
 // HRM
 
-Route::get('registered-users', UsersComponent::class)->name('get-all-users');
+Route::get('registered-users', UsersComponent::class)->name('get-all-users')->middleware(['auth', 'XSS']);
 Route::resource('user', UserController::class)->middleware(['auth', 'XSS']);
 Route::post('employee/json', [EmployeeController::class, 'json'])->name('employee.json')->middleware(['auth','XSS']);
 Route::post('branch/employee/json', [EmployeeController::class, 'employeeJson'])->name('branch.employee.json')->middleware(['auth','XSS']);
