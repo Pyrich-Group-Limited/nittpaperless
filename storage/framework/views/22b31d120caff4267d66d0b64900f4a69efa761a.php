@@ -9,9 +9,9 @@
                     <input type="text" value="<?php echo e($file->file_name); ?>" name="file_id" class="form-control" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="">Share with</label>
-                    <select name="user_id" id="" class="form-control" >
-                        <option value="#">Select User</option>
+                    <label for="">Share with: (<span class="text-xs text-muted"><?php echo e(__('You can select one or more users to share file with')); ?></span>) </label>
+                    <select name="user_id[]" id="choices-multiple1" class="form-control select2" multiple>
+                        <option value="#">Select one or more Users</option>
                         <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($user->id); ?>"><?php echo e($user->name); ?></option>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
