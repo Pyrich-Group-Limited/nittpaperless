@@ -162,6 +162,7 @@ class UsersComponent extends Component
         $this->selUser = User::find($id);
 
         $lisasonOffices = LiasonOffice::where('id',$this->selUser->location_type)->first();
+        $designation = Designation::where('name',$this->selUser->designation)->first();
         $location_type= null;
 
         if($this->selUser->location == "Headquarters"){
@@ -176,10 +177,10 @@ class UsersComponent extends Component
         $this->surname = $name[0];
         $this->firstname = $name[1];
         $this->email = $this->selUser->email;
-        $this->location = $this->selUser->location;
-        $this->location_type =  $location_type;
+        $this->location = ucwords($this->selUser->location);
+        $this->location_type =  ucwords($location_type);
         $this->department = $this->selUser->department_id;
-        $this->designation = Designation::where('name',$this->selUser->designation)->first()->id;
+        $this->designation = $designation!=null? $designation->id : "";
         $this->level = $this->selUser->level;
         $this->unit = $this->selUser->unit_id;
         $this->subunit = $this->selUser->subunit;
@@ -265,12 +266,12 @@ class UsersComponent extends Component
             $valUser = User::where('email',$row[3])->first();
             if($row[0]!=null && $valUser==null){
                 $user = User::create([
-                    'designation'  => $row[0],
+                    'designation'  => $row[8],
                     'name' => $row[0],
                     'email' => $row[1],
                     'type' => $role->name,
-                    'location' => $location,
-                    'location_type' =>   $lisasonOffice,
+                    'location' => ucwords($location),
+                    'location_type' =>   ucwords($lisasonOffice),
                     'department_id' => $departments->id,
                     'unit_id' => $units,
                     'sub_unit_id' => $subunit!=null? $subunit->id : null ,
