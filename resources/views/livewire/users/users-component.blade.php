@@ -102,7 +102,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
         </div>
     </div>
 
-    <x-toast-notification />
+    {{-- <x-toast-notification /> --}}
     @include('user.upload-users')
     @include('livewire.users.modals.edit-user-modal')
     @include('livewire.users.modals.new-user-modal')

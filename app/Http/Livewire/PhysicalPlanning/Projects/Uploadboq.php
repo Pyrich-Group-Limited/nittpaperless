@@ -4,18 +4,78 @@ namespace App\Http\Livewire\PhysicalPlanning\Projects;
 
 use Livewire\Component;
 use App\Models\ProjectCreation;
+use Livewire\WithFileUploads;
+use Carbon\Carbon;
+use App\Models\PPProjectBOQ;
+
+use Illuminate\Support\Collection;
 
 class Uploadboq extends Component
 {
     public $selProject;
-    protected $listeners = ['project' => 'incrementPostCount'];
+    public $budget;
+    public $boq_file;
+    public Collection $inputs;
 
+    protected $listeners = ['project' => 'incrementPostCount'];
+    use WithFileUploads;
 
     public function mount($project = null){
         $this->selProject = $project;
+        $this->fill([
+            'inputs' => collect([['item' => '','description' => '','unit_price' => '','quantity' => '']]),
+        ]);
     }
 
+    public function addInput(){
+        $this->inputs->push(['item' => '','description' => '','unit_price' => '','quantity' => '']);
+    }
 
+    public function removeInput($key){
+        $this->inputs->pull($key);
+    }
+
+    public function uploadBOQ(){
+
+        $this->validate([
+            'budget' => ['required'],
+            'boq_file' => ['required','max:5000'],
+            'inputs.*.item' => 'required',
+            'inputs.*.description' => 'required',
+            'inputs.*.unit_price' => 'required',
+            'inputs.*.quantity' => 'required',
+        ]);
+
+        try{
+            $boqDocumentName = Carbon::now()->timestamp. '.' . $this->boq_file->getClientOriginalName();
+            $this->boq_file->storePubliclyAs('boqs', 'public');
+
+            $this->selProject->update([
+                'budget' => $this->budget,
+                'project_boq' => $boqDocumentName
+            ]);
+
+            foreach($this->inputs as $input){
+                PPProjectBOQ::create([
+                    'project_id' => $this->selProject->id,
+                    'item' => $input['item'],
+                    'description' => $input['description'],
+                    'unit_price' => $input['unit_price'],
+                    'quantity' => $input['quantity'],
+                ]);
+            }
+
+            $this->fill([
+                'inputs' => collect([['item' => '','description' => '','unit_price' => '','quantity' => '']]),
+            ]);
+            $this->dispatchBrowserEvent('success',['success'=>'Bill of quantity successfully uploaded']);
+            // $this->dispatchBrowserEvent('success',['success'=>'Upload Successful']);
+            $this->reset('budget','boq_file');
+        }catch(\Exception $e){
+            $this->dispatchBrowserEvent('error',['error'=>'Sorry there was an error uploading bill of quantity']);
+        }
+
+    }
 
     public function incrementPostCount(ProjectCreation $project)
     {

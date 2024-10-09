@@ -166,10 +166,6 @@
     </div>
 </div>
 
-
-
- <x-toast-notification />
- @include('livewire.projects.modals.create-project')
  @livewire('physical-planning.projects.uploadboq')
 
 <div>

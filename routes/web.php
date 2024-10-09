@@ -172,7 +172,7 @@ use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials;
 */
 
 //procurment routes
-Route::middleware(['XSS', 'revalidate'])->prefix('physical-planning')->group(function () {
+Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->group(function () {
     Route::get('projects',PhysicalPlanningProjectsComponent::class)->name('pp.projects');
     Route::get('projects/{id}',PhysicalPlanningProjectDetials::class)->name('pp.projects.show');
     // Route::get('adverts',ProcurementAdvertsComponent::class)->name('projects.adverts');

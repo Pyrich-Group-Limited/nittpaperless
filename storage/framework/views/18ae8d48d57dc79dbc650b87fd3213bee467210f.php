@@ -310,6 +310,67 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center justify-content-between">
+                    <h5><?php echo e(__('Bill of Quantity')); ?></h5>
+                    <div class="float-end">
+                        <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#viewBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="<?php echo e(__('Create')); ?>"  class="btn btn-sm btn-primary">
+                            <i class="ti ti-eye"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <?php if(count($project->boqs)>0): ?>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th><?php echo e(__('SN')); ?></th>
+                                <th><?php echo e(__('Item')); ?></th>
+                                <th><?php echo e(__('Unit Price')); ?></th>
+                                <th><?php echo e(__('QTY')); ?></th>
+                                <th><?php echo e(__('Total')); ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php $__currentLoopData = $project->boqs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $boq): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php
+                                    $totalSum = $totalSum + ($boq->quantity * $boq->unit_price);
+                                ?>
+                                    <tr>
+                                        <td> <p><?php echo e($key+1); ?></p> </td>
+                                        <td> <p><?php echo e($boq->description); ?></p> </td>
+                                        <td> <p><?php echo e(number_format($boq->unit_price)); ?></p> </td>
+                                        <td> <p><?php echo e($boq->quantity); ?></p> </td>
+                                        <td> <p><?php echo e(number_format($boq->quantity * $boq->unit_price)); ?></p> </td>
+                                    </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td></td>
+                                    <td><b>TOTAL</b></td>
+                                    <td> <b><?php echo e(number_format($totalSum)); ?></b> </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <?php else: ?>
+                        <div class="py-5">
+                            <h6 class="h6 text-center"><?php echo e(__('No Bill of Quantity Uploaded yet!')); ?></h6>
+                        </div>
+                    <?php endif; ?>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center justify-content-between">
                     <h5><?php echo e(__('Milestones')); ?> (<?php echo e(count($project->milestones)); ?>)</h5>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create milestone')): ?>
                         <div class="float-end">
@@ -376,67 +437,38 @@
             </div>
         </div>
     </div>
-    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view activity')): ?>
-        <div class="col-xl-6">
-            <div class="card activity-scroll">
-                <div class="card-header">
-                    <h5><?php echo e(__('Activity Log')); ?></h5>
-                    <small><?php echo e(__('Activity Log of this project')); ?></small>
-                </div>
-                <div class="card-body vertical-scroll-cards">
-                    <?php $__currentLoopData = $project->activities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $activity): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="card p-2 mb-2">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <div class="theme-avtar bg-primary">
-                                        <i class="ti <?php echo e($activity->logIcon($activity->log_type)); ?>"></i>
-                                    </div>
-                                    <div class="ms-3">
-                                        <h6 class="mb-0"><?php echo e(__($activity->log_type)); ?></h6>
-                                        <p class="text-muted text-sm mb-0"><?php echo $activity->getRemark(); ?></p>
-                                    </div>
-                                </div>
-                                <p class="text-muted text-sm mb-0"><?php echo e($activity->created_at->diffForHumans()); ?></p>
-                            </div>
-                        </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
     <div class="col-lg-6 col-md-6">
-        <div class="card activity-scroll">
+        <div class="card">
             <div class="card-header">
-                <h5><?php echo e(__('Attachments')); ?></h5>
-                <small><?php echo e(__('Attachment that uploaded in this project')); ?></small>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5><?php echo e(__('Attachements')); ?></h5>
+                </div>
             </div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    <?php if($project->projectAttachments()->count() > 0): ?>
-                        <?php $__currentLoopData = $project->projectAttachments(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attachment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li class="list-group-item px-0">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col mb-3 mb-sm-0">
-                                        <div class="d-flex align-items-center">
-                                            <div class="div">
-                                                <h6 class="m-0"><?php echo e($attachment->name); ?></h6>
-                                                <small class="text-muted"><?php echo e($attachment->file_size); ?></small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto text-sm-end d-flex align-items-center">
-                                        <div class="action-btn bg-info ms-2">
-                                            <a href="<?php echo e(asset(Storage::url('tasks/'.$attachment->file))); ?>"  data-bs-toggle="tooltip" title="<?php echo e(__('Download')); ?>" class="btn btn-sm" download>
-                                                <i class="ti ti-download text-white"></i>
-                                            </a>
+                    <?php if($project->project_boq!=null): ?>
+                        <li class="list-group-item px-0">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col mb-3 mb-sm-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="div">
+                                            <h6 class="m-0"><?php echo e($project->project_name); ?> Bill of Quantity</h6>
+                                            <small class="text-muted"><?php echo e($project->file_size); ?></small>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <div class="col-auto text-sm-end d-flex align-items-center">
+                                    <div class="action-btn bg-info ms-2">
+                                        <a href="<?php echo e(asset(Storage::url('tasks/'.$project->file))); ?>"  data-bs-toggle="tooltip" title="<?php echo e(__('Download')); ?>" class="btn btn-sm" download>
+                                            <i class="ti ti-download text-white"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                     <?php else: ?>
                         <div class="py-5">
-                            <h6 class="h6 text-center"><?php echo e(__('No Attachments Found.')); ?></h6>
+                            <h6 class="h6 text-center"><?php echo e(__('No Milestone Found.')); ?></h6>
                         </div>
                     <?php endif; ?>
                 </ul>
@@ -461,4 +493,5 @@ if (! isset($_instance)) {
 }
 echo $html;
 ?>
+<?php echo $__env->make('livewire.physical-planning.projects.modals.view-boq', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/physical-planning/projects/physical-planning-project-detials.blade.php ENDPATH**/ ?>

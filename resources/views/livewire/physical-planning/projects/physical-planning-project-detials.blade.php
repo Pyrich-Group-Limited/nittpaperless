@@ -307,6 +307,67 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center justify-content-between">
+                    <h5>{{__('Bill of Quantity')}}</h5>
+                    <div class="float-end">
+                        <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#viewBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="{{__('Create')}}"  class="btn btn-sm btn-primary">
+                            <i class="ti ti-eye"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    @if(count($project->boqs)>0)
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>{{__('SN')}}</th>
+                                <th>{{__('Item')}}</th>
+                                <th>{{__('Unit Price')}}</th>
+                                <th>{{__('QTY')}}</th>
+                                <th>{{__('Total')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($project->boqs as $key => $boq)
+                                @php
+                                    $totalSum = $totalSum + ($boq->quantity * $boq->unit_price);
+                                @endphp
+                                    <tr>
+                                        <td> <p>{{ $key+1 }}</p> </td>
+                                        <td> <p>{{ $boq->description }}</p> </td>
+                                        <td> <p>{{ number_format($boq->unit_price) }}</p> </td>
+                                        <td> <p>{{ $boq->quantity }}</p> </td>
+                                        <td> <p>{{ number_format($boq->quantity * $boq->unit_price) }}</p> </td>
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td></td>
+                                    <td><b>TOTAL</b></td>
+                                    <td> <b>{{ number_format($totalSum) }}</b> </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    @else
+                        <div class="py-5">
+                            <h6 class="h6 text-center">{{__('No Bill of Quantity Uploaded yet!')}}</h6>
+                        </div>
+                    @endif
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center justify-content-between">
                     <h5>{{__('Milestones')}} ({{count($project->milestones)}})</h5>
                     @can('create milestone')
                         <div class="float-end">
@@ -370,67 +431,38 @@
             </div>
         </div>
     </div>
-    @can('view activity')
-        <div class="col-xl-6">
-            <div class="card activity-scroll">
-                <div class="card-header">
-                    <h5>{{__('Activity Log')}}</h5>
-                    <small>{{__('Activity Log of this project')}}</small>
-                </div>
-                <div class="card-body vertical-scroll-cards">
-                    @foreach($project->activities as $activity)
-                        <div class="card p-2 mb-2">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <div class="theme-avtar bg-primary">
-                                        <i class="ti {{$activity->logIcon($activity->log_type)}}"></i>
-                                    </div>
-                                    <div class="ms-3">
-                                        <h6 class="mb-0">{{ __($activity->log_type) }}</h6>
-                                        <p class="text-muted text-sm mb-0">{!! $activity->getRemark() !!}</p>
-                                    </div>
-                                </div>
-                                <p class="text-muted text-sm mb-0">{{$activity->created_at->diffForHumans()}}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    @endcan
     <div class="col-lg-6 col-md-6">
-        <div class="card activity-scroll">
+        <div class="card">
             <div class="card-header">
-                <h5>{{__('Attachments')}}</h5>
-                <small>{{__('Attachment that uploaded in this project')}}</small>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5>{{__('Attachements')}}</h5>
+                </div>
             </div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    @if($project->projectAttachments()->count() > 0)
-                        @foreach($project->projectAttachments() as $attachment)
-                            <li class="list-group-item px-0">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col mb-3 mb-sm-0">
-                                        <div class="d-flex align-items-center">
-                                            <div class="div">
-                                                <h6 class="m-0">{{ $attachment->name }}</h6>
-                                                <small class="text-muted">{{ $attachment->file_size }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto text-sm-end d-flex align-items-center">
-                                        <div class="action-btn bg-info ms-2">
-                                            <a href="{{asset(Storage::url('tasks/'.$attachment->file))}}"  data-bs-toggle="tooltip" title="{{__('Download')}}" class="btn btn-sm" download>
-                                                <i class="ti ti-download text-white"></i>
-                                            </a>
+                    @if($project->project_boq!=null)
+                        <li class="list-group-item px-0">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col mb-3 mb-sm-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="div">
+                                            <h6 class="m-0">{{ $project->project_name }} Bill of Quantity</h6>
+                                            <small class="text-muted">{{ $project->file_size }}</small>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-                        @endforeach
+                                <div class="col-auto text-sm-end d-flex align-items-center">
+                                    <div class="action-btn bg-info ms-2">
+                                        <a href="{{asset(Storage::url('tasks/'.$project->file))}}"  data-bs-toggle="tooltip" title="{{__('Download')}}" class="btn btn-sm" download>
+                                            <i class="ti ti-download text-white"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                     @else
                         <div class="py-5">
-                            <h6 class="h6 text-center">{{__('No Attachments Found.')}}</h6>
+                            <h6 class="h6 text-center">{{__('No Milestone Found.')}}</h6>
                         </div>
                     @endif
                 </ul>
@@ -441,3 +473,4 @@
 </div>
 
 @livewire('physical-planning.projects.uploadboq', ['project' => $project], key($project->id))
+@include('livewire.physical-planning.projects.modals.view-boq')
