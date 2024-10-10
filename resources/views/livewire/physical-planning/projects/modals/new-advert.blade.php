@@ -39,9 +39,9 @@
                                 <div class="mb-3" >
                                     <label class="form-label" for="description">Blog Description</label>
                                     <div wire:ignore>
-                                        <textarea id="message" wire:model="description" class="form-control tinymce-basic" name="description"></textarea>
+                                        <textarea id="message" wire:model="ad_description" class="form-control tinymce-basic" name="description"></textarea>
                                     </div>
-                                    @error('description')
+                                    @error('ad_description')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
