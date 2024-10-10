@@ -28,7 +28,7 @@ class ShowProjectComponent extends Component
     public $supervising_staff_id;
     public $selectedStaff = [];
     public $status;
-
+    public $totalSum;
     public $project_id;
     public $selProject;
     public $setActionId;
