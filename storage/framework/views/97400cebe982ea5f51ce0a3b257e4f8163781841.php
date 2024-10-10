@@ -45,7 +45,7 @@
                             </div>
                             <!-- Col-md -->
                             <?php $__currentLoopData = $adverts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $advert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <!--events Inner-->
                                 <div class="events-inner margin-bottom-30">
                                     <!--events Thumb-->
@@ -56,13 +56,13 @@
                                     <div class="events-details pad-30">
 
                                         <div class="event-title mb-3">
-                                            <h5><a href="#"><?php echo e($advert->project->project_title); ?></a></h5>
+                                            <h5><a href="<?php echo e(route('adverts.show',[str_replace("/","",$advert->project->project_name),$advert->id])); ?>"><?php echo e($advert->project->project_name); ?></a></h5>
                                         </div>
                                         <div class="event-excerpt mb-3">
-                                            <p><?php echo Str::limit(strip_tags($advert->description),70); ?></p>
+                                            <p><?php echo Str::limit(strip_tags($advert->description),150); ?></p>
                                         </div>
                                         <div class="read-more">
-                                            
+                                            <a href="<?php echo e(route('adverts.show',[str_replace("/","",$advert->project->project_name),$advert->id])); ?>">Learn more</a>
                                         </div>
                                     </div>
                                     <!--events details-->

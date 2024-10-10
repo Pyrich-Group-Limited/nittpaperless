@@ -59,6 +59,8 @@
     <link rel="stylesheet" href="<?php echo e(asset('guest/css/style.css')); ?>" class="main-style">
     <style>	#rev_slider_6_1_wrapper .tp-loader.spinner1{ background-color: #FFFFFF !important; } </style>
 	<style>.rs-layer.Concept-Content a,.rs-layer.Concept-Content a:visited{color:#fff !important; border-bottom:1px solid #fff !important; font-weight:700 !important}.rs-layer.Concept-Content a:hover{border-bottom:1px solid transparent !important}.rs-layer.Concept-Content-Dark a,.rs-layer.Concept-Content-Dark a:visited{color:#000 !important; border-bottom:1px solid #000 !important; font-weight:700 !important}.rs-layer.Concept-Content-Dark a:hover{border-bottom:1px solid transparent !important}@media only screen and (max-width:575px){rs-layer.res-slide-btn{padding:7px 16px !important;  font-size:13px !important}}#rev_slider_2_1_wrapper .uranus.tparrows{width:50px; height:50px; background:rgba(255,255,255,0)}#rev_slider_2_1_wrapper .uranus.tparrows:before{width:50px; height:50px; line-height:50px; font-size:40px; transition:all 0.3s;-webkit-transition:all 0.3s}#rev_slider_2_1_wrapper .uranus.tparrows.rs-touchhover:before{opacity:0.75}</style>
+    <?php echo \Livewire\Livewire::styles(); ?>
+
 </head>
 <!--Body Start-->
 <body data-res-from="1025">
@@ -215,6 +217,8 @@
 	<script src="<?php echo e(asset('guest/rs-plugin/js/home-2/rbtools.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('guest/rs-plugin/js/home-2/rs6.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('guest/rs-plugin/js/home-2/home-2.js')); ?>"></script>
+    <?php echo \Livewire\Livewire::scripts(); ?>
+
 </body>
 <!-- Body End -->
 </html>

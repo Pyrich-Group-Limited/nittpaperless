@@ -10,7 +10,7 @@
                         </ul>
                         <ul class="nav mobile-header-items pull-left">
                             <li>
-                                <a href="#" class="img-before"><img width="60%" src="{{ asset('logo-dark.png')}}" width="70" class="img-fluid" width="149" height="45" alt="Logo"></a>
+                                <a href="{{ route('welcome')}}" class="img-before"><img width="60%" src="{{ asset('logo-dark.png')}}" width="70" class="img-fluid" width="149" height="45" alt="Logo"></a>
                             </li>
                         </ul>
 
@@ -36,8 +36,8 @@
                             <!--Overlay Menu Switch-->
                             <ul class="nav navbar-items pull-left">
                                 <li class="list-item">
-                                    <a href="#" class="logo-general"><img src="{{ asset('logo-dark.png')}}" class="img-fluid" width="70" alt="Marketwell Solutions" /></a>
-                                    <a href="#" class="logo-sticky"><img src="{{ asset('logo-dark.png')}}" class="img-fluid" width="70" alt="Marketwell Solutions" /></a>
+                                    <a href="{{ route('welcome')}}" class="logo-general"><img src="{{ asset('logo-dark.png')}}" class="img-fluid" width="70" alt="Marketwell Solutions" /></a>
+                                    <a href="{{ route('welcome')}}" class="logo-sticky"><img src="{{ asset('logo-dark.png')}}" class="img-fluid" width="70" alt="Marketwell Solutions" /></a>
                                 </li>
                             </ul>
                             <!-- Menu -->

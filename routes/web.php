@@ -160,6 +160,9 @@ use App\Http\Livewire\Projects\ShowProjectComponent;
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials;
 
+//contractor routes
+use App\Http\Livewire\Contractor\ContractorDashboard;
+
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 
@@ -181,6 +184,11 @@ Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->gr
     Route::get('projects',PhysicalPlanningProjectsComponent::class)->name('pp.projects');
     Route::get('projects/{id}',PhysicalPlanningProjectDetials::class)->name('pp.projects.show');
     // Route::get('adverts',ProcurementAdvertsComponent::class)->name('projects.adverts');
+});
+
+
+Route::middleware(['auth','contractor'])->prefix('contractor')->group(function () {
+    Route::get('dashbaord',ContractorDashboard::class)->name('contractor.dashboard');
 });
 
 Route::get('/contract-Advert',ServicesComponent::class)->name('all-adverts');
