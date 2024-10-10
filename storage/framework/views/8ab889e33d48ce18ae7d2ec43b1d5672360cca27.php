@@ -15,41 +15,11 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('action-btn'); ?>
     <div class="float-end">
-        <?php if($view == 'grid'): ?>
-            <a href="<?php echo e(route('projects.list','list')); ?>"  data-bs-toggle="tooltip" title="<?php echo e(__('List View')); ?>" class="btn btn-sm btn-primary">
-                <i class="ti ti-list"></i>
-            </a>
-
-        <?php else: ?>
-            <a href="<?php echo e(route('created-projects')); ?>"  data-bs-toggle="tooltip" title="<?php echo e(__('Grid View')); ?>" class="btn btn-sm btn-primary">
-                <i class="ti ti-layout-grid"></i>
-            </a>
-        <?php endif; ?>
+        
 
 
         
-                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="ti ti-filter"></i>
-                </a>
-                <div class="dropdown-menu  dropdown-steady" id="project_sort">
-                    <a class="dropdown-item active" href="#" data-val="created_at-desc">
-                        <i class="ti ti-sort-descending"></i><?php echo e(__('Newest')); ?>
-
-                    </a>
-                    <a class="dropdown-item" href="#" data-val="created_at-asc">
-                        <i class="ti ti-sort-ascending"></i><?php echo e(__('Oldest')); ?>
-
-                    </a>
-
-                    <a class="dropdown-item" href="#" data-val="project_name-desc">
-                        <i class="ti ti-sort-descending-letters"></i><?php echo e(__('From Z-A')); ?>
-
-                    </a>
-                    <a class="dropdown-item" href="#" data-val="project_name-asc">
-                        <i class="ti ti-sort-ascending-letters"></i><?php echo e(__('From A-Z')); ?>
-
-                    </a>
-                </div>
+                
 
             
 
@@ -73,7 +43,8 @@
 <?php $__env->stopSection(); ?>
 
 
-    <div class="col-xl-12">
+    <div class="col-xl-12 mt-5">
+
         <div class="card">
             <div class="card-body table-border-style">
                 <div class="table-responsive">
@@ -155,15 +126,34 @@
                                                 </div>
                                             <?php endif; ?>
                                             
+                                            <?php if($project->project_boq==null): ?>
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete project')): ?>
+                                                    <div class="action-btn bg-danger ms-2">
+                                                            <?php echo Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy', [$project->id,$user->id]]]); ?>
 
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete project')): ?>
-                                                <div class="action-btn bg-danger ms-2">
-                                                        <?php echo Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy', [$project->id,$user->id]]]); ?>
+                                                            <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"><i class="ti ti-trash text-white"></i></a>
+                                                            <?php echo Form::close(); ?>
 
-                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"><i class="ti ti-trash text-white"></i></a>
-                                                        <?php echo Form::close(); ?>
+                                                        </div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
 
-                                                    </div>
+                                            <?php if($project->project_boq==null): ?>
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
+                                                    <div class="action-btn bg-info ms-2">
+                                                            <a href="#" wire:click="setProject('<?php echo e($project->id); ?>')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Upload Bill of Quantity')); ?>" data-title="<?php echo e(__('Upload Bill of Quantity')); ?>">
+                                                                <i class="ti ti-upload text-white"></i>
+                                                            </a>
+                                                        </div>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
+                                            <div class="action-btn bg-info ms-2">
+                                                    <a href="#" wire:click="setProject('<?php echo e($project->id); ?>')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Edit Bill of Quantity')); ?>" data-title="<?php echo e(__('Edit Bill of Quantity')); ?>">
+                                                        <i class="ti ti-edit text-white"></i>
+                                                    </a>
+                                                </div>
+                                            <?php endif; ?>
                                             <?php endif; ?>
                                         </span>
                                     </td>
@@ -199,6 +189,21 @@
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
+<?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('physical-planning.projects.uploadboq')->html();
+} elseif ($_instance->childHasBeenRendered('l3578411368-0')) {
+    $componentId = $_instance->getRenderedChildComponentId('l3578411368-0');
+    $componentTag = $_instance->getRenderedChildComponentTagName('l3578411368-0');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('l3578411368-0');
+} else {
+    $response = \Livewire\Livewire::mount('physical-planning.projects.uploadboq');
+    $html = $response->html();
+    $_instance->logRenderedChild('l3578411368-0', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
 <?php echo $__env->make('livewire.projects.modals.create-project', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 </div>

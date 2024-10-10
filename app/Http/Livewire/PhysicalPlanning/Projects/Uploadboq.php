@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\ProjectCreation;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
+use App\Models\Ergp;
 use App\Models\PPProjectBOQ;
 
 use Illuminate\Support\Collection;
@@ -84,6 +85,7 @@ class Uploadboq extends Component
 
     public function render()
     {
-        return view('livewire.physical-planning.projects.uploadboq');
+        $projAccounts = Ergp::all();
+        return view('livewire.physical-planning.projects.uploadboq',compact('projAccounts'));
     }
 }

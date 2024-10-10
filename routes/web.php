@@ -85,6 +85,10 @@ use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobStageController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\CustomQuestionController;
+use App\Http\Controllers\JobberController;
+use App\Http\Controllers\JobberCategoryController;
+use App\Http\Controllers\JobberStageController;
+use App\Http\Controllers\JobberApplicationController;
 use App\Http\Controllers\InterviewScheduleController;
 use App\Http\Controllers\ProjectTaskController;
 use App\Http\Controllers\DucumentUploadController;
@@ -159,6 +163,7 @@ use App\Http\Livewire\Projects\ShowProjectComponent;
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials;
+use App\Http\Livewire\PhysicalPlanning\ErgpComponent;
 
 //contractor routes
 use App\Http\Livewire\Contractor\ContractorDashboard;
@@ -183,6 +188,8 @@ use App\Http\Livewire\Contractor\ContractorDashboard;
 Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->group(function () {
     Route::get('projects',PhysicalPlanningProjectsComponent::class)->name('pp.projects');
     Route::get('projects/{id}',PhysicalPlanningProjectDetials::class)->name('pp.projects.show');
+    Route::get('ergps',ErgpComponent::class)->name('pp.ergp');
+
     // Route::get('adverts',ProcurementAdvertsComponent::class)->name('projects.adverts');
 });
 
@@ -889,6 +896,11 @@ Route::get('show-employee-profile/{id}', [EmployeeController::class, 'profileSho
 Route::get('lastlogin', [EmployeeController::class, 'lastLogin'])->name('lastlogin')->middleware(['auth','XSS']);
 
 Route::resource('employee', EmployeeController::class)->middleware(['auth', 'XSS']);
+
+//Route::get('employee', [EmployeeController::class, 'display'])->name('employee.index');
+
+Route::get('/employee/create', [EmployeeController::class, 'display'])->name('employee.create');
+Route::post('/employee/assign', [EmployeeController::class, 'assignEmployees'])->name('users.assign');
 
 Route::post('employee/getdepartment', [EmployeeController::class, 'getDepartment'])->name('employee.getdepartment')->middleware(['auth','XSS']);
 
@@ -1794,3 +1806,47 @@ Route::group(
 
 }
 );
+
+
+
+
+
+
+
+//------------------------------------  Recurtment --------------------------------
+
+Route::resource('jobber-category', JobberCategoryController::class)->middleware(['auth', 'XSS']);
+
+Route::resource('jobber-stage', JobberStageController::class)->middleware(['auth', 'XSS']);
+Route::post('jobber-stage/order', [JobberStageController::class, 'order'])->name('jobber.stage.order');
+
+Route::resource('jobber', JobberController::class)->middleware(['auth', 'XSS']);
+
+Route::get('career/{id}/{lang}', [JobberController::class, 'career'])->name('career')->middleware(['XSS']);
+Route::get('jobber/requirement/{code}/{lang}', [JobberController::class, 'jobRequirement'])->name('Jobber.requirement')->middleware(['XSS']);
+
+Route::get('jobber/apply/{code}/{lang}', [JobberController::class, 'jobApply'])->name('jobber.apply')->middleware(['XSS']);
+Route::post('jobber/apply/data/{code}', [JobberController::class, 'jobApplyData'])->name('Jobber.apply.data')->middleware(['XSS']);
+Route::get('candidates-jobber-applications', [JobberApplicationController::class, 'candidate'])->name('jobber.application.candidate')->middleware(['XSS']);
+
+Route::resource('jobber-application', JobberApplicationController::class)->middleware(['auth', 'XSS']);
+Route::post('jobber-application/order', [JobberApplicationController::class, 'order'])->name('Jobber.application.order')->middleware(['XSS']);
+Route::post('jobber-application/{id}/rating', [JobberApplicationController::class, 'rating'])->name('Jobber.application.rating')->middleware(['XSS']);
+Route::delete('jobber-application/{id}/archive', [JobberApplicationController::class, 'archive'])->name('jobber.application.archive')->middleware(['auth', 'XSS']);
+Route::post('jobber-application/{id}/skill/store', [JobberApplicationController::class, 'addSkill'])->name('Jobber.application.skill.store')->middleware(['auth', 'XSS']);
+Route::post('jobber-application/{id}/note/store', [JobberApplicationController::class, 'addNote'])->name('jobber.application.note.store')->middleware(['auth', 'XSS']);
+Route::delete('jobber-application/{id}/note/destroy', [JobberApplicationController::class, 'destroyNote'])->name('Jobber.application.note.destroy')->middleware(['auth', 'XSS']);
+Route::post('jobber-application/getByJob', [JobberApplicationController::class, 'getByJob'])->name('get.jobber.application')->middleware(['auth', 'XSS']);
+Route::get('jobber-onboard', [JobberApplicationController::class, 'jobOnBoard'])->name('Jobber.on.board')->middleware(['auth', 'XSS']);
+Route::get('jobber-onboard/create/{id}', [JobberApplicationController::class, 'jobBoardCreate'])->name('Jobber.on.board.create')->middleware(['auth', 'XSS']);
+Route::post('jobber-onboard/store/{id}', [JobberApplicationController::class, 'jobBoardStore'])->name('jobber.on.board.store')->middleware(['auth', 'XSS']);
+Route::get('jobber-onboard/edit/{id}', [JobberApplicationController::class, 'jobBoardEdit'])->name('Jobber.on.board.edit')->middleware(['auth', 'XSS']);
+Route::post('jobber-onboard/update/{id}', [JobberApplicationController::class, 'jobBoardUpdate'])->name('Jobber.on.board.update')->middleware(['auth', 'XSS']);
+Route::delete('jobber-onboard/delete/{id}', [JobberApplicationController::class, 'jobBoardDelete'])->name('Jobber.on.board.delete')->middleware(['auth', 'XSS']);
+Route::get('jobber-onboard/convert/{id}', [JobberApplicationController::class, 'jobBoardConvert'])->name('Jobber.on.board.convert')->middleware(['auth', 'XSS']);
+Route::post('jobber-onboard/convert/{id}', [JobberApplicationController::class, 'jobBoardConvertData'])->name('Jobber.on.board.convert')->middleware(['auth', 'XSS']);
+Route::post('jobber-application/stage/change', [JobberApplicationController::class, 'stageChange'])->name('jobber.application.stage.change')->middleware(['auth', 'XSS']);
+
+Route::resource('custom-question', CustomQuestionController::class)->middleware(['auth', 'XSS']);
+Route::resource('interview-schedule', InterviewScheduleController::class)->middleware(['auth', 'XSS']);
+Route::get('interview-schedule/create/{id?}', [Dta::class, 'create'])->name('interview-schedule.create')->middleware(['auth', 'XSS']);

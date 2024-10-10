@@ -51,11 +51,10 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="ad_description">Contract Description</label>
+                                <div class="mb-3" >
+                                    <label class="form-label" for="description">Blog Description</label>
                                     <div wire:ignore>
-                                        <textarea id="ad_description" wire:model.defer="ad_description" class="form-control tinymce-basic"
-                                            name="ad_description"></textarea>
+                                        <textarea id="message" wire:model="ad_description" class="form-control tinymce-basic" name="description"></textarea>
                                     </div>
                                     <?php $__errorArgs = ['ad_description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -132,27 +131,11 @@ unset($__errorArgs, $__bag); ?>
 
 </div>
 <?php $__env->startPush('script'); ?>
-    <script src="https://cdn.tiny.cloud/1/cvjfkxqlo8ylwqn3xgo15h2bd4xl6n7m6k5d0avjcq93c1i7/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
-
-    <script>
-        tinymce.init({
-            selector: '#ad_description',
-            setup: function(editor) {
-                editor.on('init change', function() {
-                    editor.save();
-                });
-                editor.on('change', function(e) {
-                    window.livewire.find('<?php echo e($_instance->id); ?>').set('ad_description', editor.getContent());
-                });
-            }
-        });
-
-
-        window.addEventListener('feedback', event => {
-            tinyMCE.activeEditor.setContent("");
-        });
-    </script>
+        <script>
+            window.addEventListener('feedback', event => {
+                tinyMCE.activeEditor.setContent("");
+            });
+        </script>
 <?php $__env->stopPush(); ?>
 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.toast-notification','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>

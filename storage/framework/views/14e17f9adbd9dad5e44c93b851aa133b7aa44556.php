@@ -68,48 +68,7 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <?php echo e(Form::label('start_date', __('Start Date'), ['class' => 'form-label'])); ?>
-
-                                    
-                                    <input type="date" class="form-control" wire:model.defer="start_date">
-                                    <?php $__errorArgs = ['start_date'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                        <small class="invalid-type_of_leave" role="alert">
-                                            <strong class="text-danger"><?php echo e($message); ?></strong>
-                                        </small>
-                                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <?php echo e(Form::label('end_date', __('End Date'), ['class' => 'form-label'])); ?>
-
-                                    
-                                    <input type="date" class="form-control" wire:model.defer="end_date">
-                                    <?php $__errorArgs = ['end_date'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class="invalid-type_of_leave" role="alert">
-                                        <strong class="text-danger"><?php echo e($message); ?></strong>
-                                    </small>
-                                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <!-- <div class="row"> -->
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
@@ -139,8 +98,6 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <?php echo e(Form::label('selectedStaff', __('Supervising Staff'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
                                     <select wire:model="selectedStaff" id="choices-multiple1" class="form-control sel_users select2 " multiple>
-                                    
-                                        
                                         <?php if(is_array($users) || is_object($users)): ?>
                                         <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($user->id); ?>"><?php echo e($user->name); ?></option>

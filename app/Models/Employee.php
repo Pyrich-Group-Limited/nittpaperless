@@ -267,10 +267,21 @@ class Employee extends Model
         return $this->hasOne('App\Models\PayslipType', 'id', 'salary_type');
     }
 
+   // public function user()
+   // {
+    //    return $this->belongsTo(User::class);
+       // return $this->hasOne('App\Models\User', 'id', 'user_id');
+   // }
+
+
     public function user()
     {
-        return $this->hasOne('App\Models\User', 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
+
+
+
+
 
     public function paySlip()
     {

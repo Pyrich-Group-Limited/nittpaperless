@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
     <li class="breadcrumb-item"><a href="{{route('employee.index')}}">{{__('Employee')}}</a></li>
-    <li class="breadcrumb-item">{{$employeesId}}</li>
+    <li class="breadcrumb-item">{{$employee->employee_id}}</li>
 @endsection
 
 
@@ -71,20 +71,17 @@
                             @csrf
                             <div class="form-group col-md-12">
                                 {!! Form::label('employee_id', __('Employee ID'),['class'=>'form-label']) !!}
-                                {!! Form::text('employee_id',$employeesId, ['class' => 'form-control','disabled'=>'disabled']) !!}
+                                {!! Form::text('employee_id',$employee->employee_id, ['class' => 'form-control','disabled'=>'disabled']) !!}
                             </div>
 
                             <div class="form-group col-md-6">
                                 {{ Form::label('branch_id', __('Branch'),['class'=>'form-label']) }}
-                                {{ Form::select('branch_id', $branches,null, array('class' => 'form-control select','required'=>'required','id' => 'branch_id')) }}
+                               {{--- {{ Form::select('branch_id', $branches,null, array('class' => 'form-control select','required'=>'required','id' => 'branch_id')) }}---}}
                             </div>
                             <div class="form-group col-md-6">
                                 {{ Form::label('department_id', __('Department'),['class'=>'form-label']) }}
                                 <select class=" select form-control " id="department_id" name="department_id"  >
-                                    {{--                                    <option value="">{{__('Select any Department')}}</option>--}}
-                                    @foreach($departmentData as $key=>$val )
-                                        <option value="{{$key}}" {{$key==$employee->department_id?'selected':''}}>{{$val}}</option>
-                                    @endforeach
+                              
                                 </select>
 
                             </div>

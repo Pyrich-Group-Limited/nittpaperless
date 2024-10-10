@@ -110,120 +110,114 @@ class  UserController extends Controller
             return redirect()->back();
         }
     }
-
     public function store(Request $request)
+{
+    if(\Auth::user()->can('create user'))
     {
-        $data;
-        if(\Auth::user()->can('create user'))
-        {
+        $default_language = DB::table('settings')
+            ->select('value')
+            ->where('name', 'default_language')
+            ->first();
 
-            $data = $request->validate([
-                'surname' => ['required','max:120'],
-                'firstname' => ['required','max:120'],
-                'email' => 'required|email|unique:users',
-                'surname' => ['required'],
-                'designation' => ['required'],
-                'level' => ['required'],
-                'location' => ['required'],
-                'headquarters' => ['required'],
+        $data = $request->validate([
+            'surname' => ['required', 'max:120'],
+            'firstname' => ['required', 'max:120'],
+            'email' => 'required|email|unique:users',
+            'designation' => ['required'],
+            'level' => ['required'],
+            'location' => ['required'],
+            'headquarters' => ['required_if:location,Headquarter'],
+            'password' => 'required|min:6',  // Password validation
+            'role' => 'required',
+            'directorate' => ['nullable'],
+            'liason' => ['nullable'],
+            'department' => ['nullable'],
+            'unit' => ['nullable'],
+            'sub_unit' => ['nullable'],
+        ]);
+
+        // Handle additional validation for location type
+        if($data['location'] == "Headquarter") {
+            $data += $request->validate([
+                'directorate' => ['required'],
             ]);
-
-            if($data['location']=="headquater"){
-                $data = $request->validate([
-                    'directorate' => ['required'],
-                ]);
-            }else{
-                $data = $request->validate([
-                    'liason' => ['required'],
-                    'department' => ['required'],
-                    'unit' => ['required'],
-                ]);
-            }
-
-            $location_type = $data['location']=="Headquater"? $data['headquaters'] : "Liason Office";
-
-            $user = User::create([
-                'name' => $data['surname']." ".$data['firstname'],
-                'location' => $data['location'],
-                'location_type' =>  $location_typ,
-                'department_id' => $data['department'],
-                'directorate_id' => $data['directorate'],
-                'unit_id' => $data['unit'],
-                'sub_unit_id' => $data['subunit'],
+        } else {
+            $data += $request->validate([
+                'liason' => ['required'],
+                'department' => ['required'],
+                'unit' => ['required'],
+                'sub_unit' => ['required'],
             ]);
-            // $default_language = DB::table('settings')->select('value')->where('name', 'default_language')->first();
-            // $validator = \Validator::make(
-            //     $request->all(), [
-            //                        'firsname' => 'required|max:120',
-            //                        'surname' => 'required|max:120',
-            //                        'email' => 'required|email|unique:users',
-            //                        'password' => 'required|min:6',
-            //                        'role' => 'required',
-            //                        'designation' => 'required',
-            //                        'directorate' => 'required',
-            //                        'department' => 'required',
-            //                        'unit' => 'required',
-            //                        'level' => 'required',
-            //                    ]
-            // );
-
-            // if($validator->fails())
-            // {
-            //     $messages = $validator->getMessageBag();
-            //     return redirect()->back()->with('error', $messages->first());
-            // }
-
-
-            $objUser    = \Auth::user();
-            $role_r                = Role::findById($request->role);
-
-
-            // $branch                = Branch::where('id', $request->branch_id)->first();
-            // $department            = Department::where('id', $request->department_id)->first();
-            // $unit                  = Unit::where('id', $request->unit_id)->first();
-            // $designation           = Designation::where('id', $request->designation_id)->first();
-
-            $psw                   = "NITT@2024";
-            $request['password']   = Hash::make($request->password);
-            $request['type']       =  $role_r->name;
-            $request['designation']       = $request->designation;
-            $request['department_id']       = $request->department;
-            $request['unit_id']       = $request->unit;
-            $request['name']       = $request->surname." ".$request->firstname;
-            $request['level']       = $request->level;
-            $request['lang']       = !empty($default_language) ? $default_language->value : 'en';
-            $request['created_by'] = \Auth::user()->creatorId();
-            $user = User::create($request->all());
-            $user->assignRole($role_r);
-
-            if($request['type'] != 'client')
-                \App\Models\Utility::employeeDetails($user->id,\Auth::user()->creatorId());
-
-            //Send Email
-            $setings = Utility::settings();
-            if($setings['new_user'] == 1)
-            {
-                $user->password = $psw;
-                $user->type     = $role_r->name;
-
-
-                $userArr = [
-                    'email' => $user->email,
-                    'password' =>  $user->password,
-                ];
-                $resp = Utility::sendEmailTemplate('new_user', [$user->id => $user->email], $userArr);
-
-                return redirect()->route('users.index')->with('success', __('User successfully created.') . ((!empty($resp) && $resp['is_success'] == false && !empty($resp['error'])) ? '<br> <span class="text-danger">' . $resp['error'] . '</span>' : ''));
-            }
-
-            return redirect()->route('users.index')->with('success', __('User successfully created.'));
-        }
-        else
-        {
-            return redirect()->back();
         }
 
+        // Prepare user data
+        $role_r = Role::findById($request->role);
+        $location_type = $data['location'] == "Headquarter" ? $data['headquarters'] : "Liason Office";
+        $psw = "NITT@2024";
+
+        // Create the user
+        $user = User::create([
+            'name' => $data['surname'] . " " . $data['firstname'],
+            'email' => $data['email'],
+            'password' => Hash::make($psw), // Hashing the password
+            'location' => $data['location'],
+            'location_type' => $location_type,
+            'department_id' => $data['department'] ?? null,
+            'directorate_id' => $data['directorate'] ?? null,
+            'unit_id' => $data['unit'] ?? null,
+            'sub_unit_id' => $data['sub_unit'] ?? null,
+            'designation' => $data['designation'],
+            'level' => $data['level'],
+            'lang' => $default_language->value ?? 'en',
+            'created_by' => \Auth::user()->creatorId(),
+        ]);
+
+        // Assign role to the user
+        $user->assignRole($role_r);
+
+        // Create associated employee
+        $employee = Employee::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'location' => $user->location,
+            'location_type' => $user->location_type,
+            'department_id' => $user->department_id,
+            'directorate_id' => $user->directorate_id,
+            'unit_id' => $user->unit_id,
+            'sub_unit_id' => $user->sub_unit_id,
+            'user_id' => $user->id,
+        ]);
+
+        // Call utility function to handle additional employee details
+        if($request['type'] != 'client') {
+            \App\Models\Utility::employeeDetails($user->id, \Auth::user()->creatorId());
+        }
+
+        // Send email if settings allow
+        $settings = Utility::settings();
+        if ($settings['new_user'] == 1) {
+            $user->password = $psw;
+            $userArr = [
+                'email' => $user->email,
+                'password' => $psw,
+            ];
+
+            $resp = Utility::sendEmailTemplate('new_user', [$user->id => $user->email], $userArr);
+            return redirect()->route('users.index')
+                ->with('success', __('User successfully created.') . 
+                    ((!empty($resp) && $resp['is_success'] == false && !empty($resp['error'])) ? 
+                    '<br> <span class="text-danger">' . $resp['error'] . '</span>' : ''));
+        }
+
+        // Success response
+        return redirect()->route('users.index')
+            ->with('success', __('User successfully created.'));
     }
+
+    // Unauthorized response
+    return redirect()->back()->with('error', __('Unauthorized action.'));
+}
+
     public function show()
     {
         return redirect()->route('user.index');

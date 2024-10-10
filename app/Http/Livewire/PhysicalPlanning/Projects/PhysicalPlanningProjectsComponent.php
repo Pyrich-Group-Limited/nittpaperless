@@ -5,6 +5,7 @@ namespace App\Http\Livewire\PhysicalPlanning\Projects;
 use Livewire\Component;
 use App\Models\Utility;
 use App\Models\Project;
+use App\Models\Ergp;
 use App\Models\ProjectCategory;
 use App\Models\ProjectCreation;
 use App\Models\ProjectUser;
@@ -57,12 +58,13 @@ class PhysicalPlanningProjectsComponent extends Component
 
     public function render()
     {
+        $projAccounts = Ergp::all();
         $view = 'grid';
         $categories = ProjectCategory::all();
         $projects = ProjectCreation::all();
         $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'client')->get()->pluck('name', 'id');
         $clients->prepend('Select Client', '');
         $users   = User::where('type', '!=', 'client')->get();
-        return view('livewire.physical-planning.projects.physical-planning-projects-component',compact('view','projects','clients','users','categories'));
+        return view('livewire.physical-planning.projects.physical-planning-projects-component',compact('view','projects','clients','users','categories','projAccounts'));
     }
 }

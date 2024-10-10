@@ -49,11 +49,11 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
-                                <div class="form-group">
+                                <div class="form-group" wire:ignore>
                                     <?php echo e(Form::label('description', __('Project Description'), ['class' => 'form-label'])); ?>
 
                                     
-                                    <textarea wire:model="description" id="" cols="50" rows="4" class="form-control"></textarea>
+                                    <textarea wire:model="description" id="message" cols="50" rows="4" class="form-control"></textarea>
                                     <?php $__errorArgs = ['description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -185,7 +185,7 @@ unset($__errorArgs, $__bag); ?>
     <?php $__env->startPush('script'); ?>
         <script>
             $(document).ready(function(){
-                $('.sel_users').select2();
+                $('.sel_users');
             }).on('change', function(){
                 var data = $('.sel_users').val();
                 window.livewire.find('<?php echo e($_instance->id); ?>').set('selectedStaff',data);
