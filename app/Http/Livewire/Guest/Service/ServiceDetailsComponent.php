@@ -3,20 +3,19 @@
 namespace App\Http\Livewire\Guest\Service;
 
 use Livewire\Component;
-use App\Models\Service;
+use App\Models\ProjectAdvert;
 
 class ServiceDetailsComponent extends Component
 {
-    public $service;
+    public $advert;
 
 
     public function mount($title,$id){
-        $this->service = Service::find($id);
+        $this->advert = ProjectAdvert::find($id);
     }
 
     public function render()
     {
-        $services = Service::all();
-        return view('livewire.guest.service.service-details-component',compact('services'))->layout('layouts.guest');
+        return view('livewire.guest.service.service-details-component')->layout('layouts.guest');
     }
 }
