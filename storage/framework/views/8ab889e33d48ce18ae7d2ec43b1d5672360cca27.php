@@ -163,7 +163,7 @@
                                             
                                             
                                             <div class="action-btn bg-primary ms-2">
-                                                <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject" wire:click="selProject(<?php echo e($project->id); ?>)"  data-bs-toggle="tooltip" title="<?php echo e(__('Advertise Project')); ?>"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
+                                                <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject" wire:click="selProject2(<?php echo e($project); ?>)"  data-bs-toggle="tooltip" title="<?php echo e(__('Advertise Project')); ?>"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
                                                     <i class="ti ti-share text-white"></i>
                                                 </a>
                                             </div>
