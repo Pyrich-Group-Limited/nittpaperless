@@ -16,29 +16,32 @@ class ERGPSeeder extends Seeder
      */
     public function run()
     {
-        $projectCategories = ProjectCategory::all();
+        // $projectCategories = ProjectCategory::all();
 
         Ergp::create([
-            'project_category_id' => $projectCategories->where('category_name','Supply')->first()->id,
+            'code' => 'ERGP/2024/001',
+            'title' => 'ERGP for Supply',
             'year' => 2024,
             'project_sum' => 1000000.00,
-            'amount_paid' => 600000.00,
+            'amount_paid' => 0.00,
             'deficit' => 0.00,
         ]);
 
         Ergp::create([
-            'project_category_id' => $projectCategories->where('category_name','Service')->first()->id,
+            'code' => 'ERGP/2024/002',
+            'title' => 'ERGP for Services',
             'year' => 2024,
             'project_sum' => 500000.00,
-            'amount_paid' => 300000.00,
+            'amount_paid' => 0.00,
             'deficit' => 0.00,
         ]);
 
         Ergp::create([
-            'project_category_id' => $projectCategories->where('category_name','Works')->first()->id,
+            'code' => 'ERGP/2024/003',
+            'title' => 'ERGP for works',
             'year' => 2024,
             'project_sum' => 1500000.00,
-            'amount_paid' => 1400000.00,
+            'amount_paid' => 0.00,
             'deficit' => 0.00,
         ]);
 

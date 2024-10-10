@@ -163,6 +163,7 @@ use App\Http\Livewire\Projects\ShowProjectComponent;
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials;
+use App\Http\Livewire\PhysicalPlanning\ErgpComponent;
 
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
@@ -184,6 +185,8 @@ use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials;
 Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->group(function () {
     Route::get('projects',PhysicalPlanningProjectsComponent::class)->name('pp.projects');
     Route::get('projects/{id}',PhysicalPlanningProjectDetials::class)->name('pp.projects.show');
+    Route::get('ergps',ErgpComponent::class)->name('pp.ergp');
+
     // Route::get('adverts',ProcurementAdvertsComponent::class)->name('projects.adverts');
 });
 
