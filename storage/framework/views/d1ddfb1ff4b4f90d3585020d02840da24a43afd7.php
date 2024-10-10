@@ -143,20 +143,20 @@
                                     <div class="col-md-6">
                                         <div class="info text-sm">
                                             <strong class="font-bold"><?php echo e(__('Branch')); ?> : </strong>
-                                            <span><?php echo e(!empty($employee->branch)?$employee->branch->name:''); ?></span>
+                                            <span><?php echo e($employee->user->branch); ?></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="info text-sm font-style">
                                             <strong class="font-bold"><?php echo e(__('Department')); ?> :</strong>
-                                            <span><?php echo e(!empty($employee->department)?$employee->department->name:''); ?></span>
+                                            <span><?php echo e($employee->user->department->name); ?></span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="info text-sm">
                                             <strong class="font-bold"><?php echo e(__('Designation')); ?> :</strong>
-                                            <span><?php echo e(!empty($employee->designation)?$employee->designation->name:''); ?></span>
+                                            <span><?php echo e($employee->user->designation); ?></span>
                                         </div>
                                     </div>
 

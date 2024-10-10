@@ -97,6 +97,7 @@ class DashboardController extends Controller
      public function dashboard_index()
     {
 
+
         if(Auth::check())
         {
            if(Auth::user()->type == 'client')

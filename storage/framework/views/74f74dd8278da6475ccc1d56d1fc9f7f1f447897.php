@@ -34,8 +34,8 @@
                             <tr>
                                 <th><?php echo e(__('Employee ID')); ?></th>
                                 <th><?php echo e(__('Name')); ?></th>
-                                <th><?php echo e(__('Email')); ?></th>
-                                <th><?php echo e(__('Branch')); ?></th>
+                                <th><?php echo e(__('EmaLil')); ?></th>
+                                <th><?php echo e(__('Location')); ?></th>
                                 <th><?php echo e(__('Department')); ?></th>
                                 <th><?php echo e(__('Designation')); ?></th>
                                 <th><?php echo e(__('Date Of Joining')); ?></th>
@@ -59,15 +59,15 @@
                                     <?php if($employee->branch_id): ?>
                                         <td class="font-style"><?php echo e(!empty(\Auth::user()->getBranch($employee->branch_id ))?\Auth::user()->getBranch($employee->branch_id )->name:''); ?></td>
                                     <?php else: ?>
-                                        <td>-</td>
+                                        <td><?php echo e($employee->user->location); ?></td>
                                     <?php endif; ?>
-                                    <?php if($employee->department_id): ?>
-                                        <td class="font-style"><?php echo e(!empty(\Auth::user()->getDepartment($employee->department_id ))?\Auth::user()->getDepartment($employee->department_id )->name:''); ?></td>
+                                    <?php if($employee->user->department!=null): ?>
+                                        <td class="font-style"><?php echo e($employee->user->department->name); ?></td>
                                     <?php else: ?>
                                         <td>-</td>
                                     <?php endif; ?>
-                                    <?php if($employee->designation_id): ?>
-                                        <td class="font-style"><?php echo e(!empty(\Auth::user()->getDesignation($employee->designation_id ))?\Auth::user()->getDesignation($employee->designation_id )->name:''); ?></td>
+                                    <?php if($employee->user->designation!=null): ?>
+                                        <td class="font-style"><?php echo e($employee->user->designation); ?></td>
                                     <?php else: ?>
                                         <td>-</td>
                                     <?php endif; ?>

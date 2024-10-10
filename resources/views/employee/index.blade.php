@@ -34,8 +34,8 @@
                             <tr>
                                 <th>{{__('Employee ID')}}</th>
                                 <th>{{__('Name')}}</th>
-                                <th>{{__('Email')}}</th>
-                                <th>{{__('Branch') }}</th>
+                                <th>{{__('EmaLil')}}</th>
+                                <th>{{__('Location') }}</th>
                                 <th>{{__('Department') }}</th>
                                 <th>{{__('Designation') }}</th>
                                 <th>{{__('Date Of Joining') }}</th>
@@ -59,15 +59,15 @@
                                     @if($employee->branch_id)
                                         <td class="font-style">{{!empty(\Auth::user()->getBranch($employee->branch_id ))?\Auth::user()->getBranch($employee->branch_id )->name:''}}</td>
                                     @else
-                                        <td>-</td>
+                                        <td>{{ $employee->user->location }}</td>
                                     @endif
-                                    @if($employee->department_id)
-                                        <td class="font-style">{{!empty(\Auth::user()->getDepartment($employee->department_id ))?\Auth::user()->getDepartment($employee->department_id )->name:''}}</td>
+                                    @if($employee->user->department!=null)
+                                        <td class="font-style">{{ $employee->user->department->name }}</td>
                                     @else
                                         <td>-</td>
                                     @endif
-                                    @if($employee->designation_id)
-                                        <td class="font-style">{{!empty(\Auth::user()->getDesignation($employee->designation_id ))?\Auth::user()->getDesignation($employee->designation_id )->name:''}}</td>
+                                    @if($employee->user->designation!=null)
+                                        <td class="font-style">{{ $employee->user->designation }}</td>
                                     @else
                                         <td>-</td>
                                     @endif

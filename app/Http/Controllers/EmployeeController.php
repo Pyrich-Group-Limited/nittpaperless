@@ -255,7 +255,7 @@ class EmployeeController extends Controller
                          'name' => $user->name, // Assuming you have a 'name' field in employees
                          'email' => $user->email, // Assuming you have an 'email' field in employees
                          'branch_id' => $user->location,
-                        // 'department_id' => $user->department_id,
+                         'department_id' => $user->department_id,
                          'designation_id' => $user->designation,
                          'employee_id' => $employeeID,
                          'password' => $user->password,

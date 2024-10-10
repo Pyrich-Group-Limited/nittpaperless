@@ -148,10 +148,24 @@ use App\Http\Controllers\FileManagement\FolderController;
 use App\Http\Controllers\DtaController;
 use App\Http\Controllers\DtaReportController;
 use App\Http\Controllers\MemoController;
-
+use App\Http\Livewire\Guest\Service\ServicesComponent;
+use App\Http\Livewire\Guest\Service\ServiceDetailsComponent;
+use App\Http\Livewire\Guest\ContractorLoginComponent;
+use App\Http\Livewire\Guest\ContractorRegisterComponent;
 
 //livewire component for user
 use App\Http\Livewire\Users\UsersComponent;
+
+use App\Http\Livewire\Projects\ProjectsComponent;
+use App\Http\Livewire\Projects\EditProjectComponent;
+use App\Http\Livewire\Projects\ShowProjectComponent;
+
+//procurement component import
+use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
+use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials;
+
+//advert components
+// use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 
 
 
@@ -166,9 +180,21 @@ use App\Http\Livewire\Users\UsersComponent;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+//procurment routes
+Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->group(function () {
+    Route::get('projects',PhysicalPlanningProjectsComponent::class)->name('pp.projects');
+    Route::get('projects/{id}',PhysicalPlanningProjectDetials::class)->name('pp.projects.show');
+    // Route::get('adverts',ProcurementAdvertsComponent::class)->name('projects.adverts');
+});
+
+Route::get('/contract-Advert',ServicesComponent::class)->name('all-adverts');
+Route::get('/contractort-signin',ContractorLoginComponent::class)->name('contractor.login');
+Route::get('/contractort-signup',ContractorRegisterComponent::class)->name('contractor.register');
+Route::get('/contract-Advert/{title?}/{id}',ServiceDetailsComponent::class)->name('adverts.show');
+Route::get('/project-advert', function () {
+    $adverts = App\Models\ProjectAdvert::all();
+    return view('livewire.guest.contract-advert',compact('adverts'));
+})->name('welcome');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -178,9 +204,9 @@ Route::get('/', function () {
 });
 
 require __DIR__.'/auth.php';
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+// Route::get('/', function () {
+//     return redirect()->route('login');
+// });
 
 //
 //Route::get('/', ['as' => 'home','uses' =>'HomeController@index'])->middleware(['XSS']);
@@ -849,7 +875,7 @@ Route::resource('email_template', EmailTemplateController::class)->middleware(['
 
 // HRM
 
-Route::get('registered-users', UsersComponent::class)->name('get-all-users');
+Route::get('registered-users', UsersComponent::class)->name('get-all-users')->middleware(['auth', 'XSS']);
 Route::resource('user', UserController::class)->middleware(['auth', 'XSS']);
 Route::post('employee/json', [EmployeeController::class, 'json'])->name('employee.json')->middleware(['auth','XSS']);
 Route::post('branch/employee/json', [EmployeeController::class, 'employeeJson'])->name('branch.employee.json')->middleware(['auth','XSS']);
@@ -1116,6 +1142,12 @@ Route::get('projects/milestone/{id}/show', [ProjectController::class, 'milestone
 // End Milestone
 
 // Project Module
+Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function () {
+    Route::get('all-projects', ProjectsComponent::class)->name('created-projects');
+    Route::get('project/{id}/show',ShowProjectComponent::class)->name('project.details');
+    Route::get('project/{id}/edit',EditProjectComponent::class)->name('project.edit');
+});
+
 
 Route::get('invite-project-member/{id}', [ProjectController::class, 'inviteMemberView'])->name('invite.project.member.view')->middleware(['auth', 'XSS']);
 Route::post('invite-project-user-member', [ProjectController::class, 'inviteProjectUserMember'])->name('invite.project.user.member')->middleware(['auth', 'XSS']);

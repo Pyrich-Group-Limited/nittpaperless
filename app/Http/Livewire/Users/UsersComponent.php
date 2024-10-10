@@ -9,7 +9,7 @@ use App\Models\UserCompany;
 use App\Models\Designation;
 use App\Models\LiasonOffice;
 use App\Models\Unit;
-use App\Models\SubUnit;
+use App\Models\Subunit;
 use App\Models\Employee;
 use Spatie\Permission\Models\Role;
 use App\Services\DataService;
@@ -151,7 +151,7 @@ class UsersComponent extends Component
     }
 
     public function updatedUnit($id){
-        $this->subunits = SubUnit::where('unit_id',$id)->get();
+        $this->subunits = Subunit::where('unit_id',$id)->get();
     }
 
     public function setActionId($id){
@@ -162,6 +162,7 @@ class UsersComponent extends Component
         $this->selUser = User::find($id);
 
         $lisasonOffices = LiasonOffice::where('id',$this->selUser->location_type)->first();
+        $designation = Designation::where('name',$this->selUser->designation)->first();
         $location_type= null;
 
         if($this->selUser->location == "Headquarters"){
@@ -176,10 +177,10 @@ class UsersComponent extends Component
         $this->surname = $name[0];
         $this->firstname = $name[1];
         $this->email = $this->selUser->email;
-        $this->location = $this->selUser->location;
-        $this->location_type =  $location_type;
+        $this->location = ucwords($this->selUser->location);
+        $this->location_type =  ucwords($location_type);
         $this->department = $this->selUser->department_id;
-        $this->designation = Designation::where('name',$this->selUser->designation)->first()->id;
+        $this->designation = $designation!=null? $designation->id : "";
         $this->level = $this->selUser->level;
         $this->unit = $this->selUser->unit_id;
         $this->subunit = $this->selUser->subunit;
@@ -231,9 +232,13 @@ class UsersComponent extends Component
     public function uploadUserRecord($row){
 
         $subunit = null;
+        $units = null;
         $departments = Department::where('name',$row['4'])->first();
         $designations = Designation::where('name',$row['8'])->first();
-        $units = Unit::where('name',$row[5])->where('department_id',$departments->id)->first();
+        if($departments!=null){
+            $units = Unit::where('name',$row[5])->where('department_id',$departments->id)->first();
+        }
+
         if($units!=null){
             $subunit = SubUnit::where('name',$row[6])->where('unit_id',$units->id)->first();
         }
@@ -265,12 +270,12 @@ class UsersComponent extends Component
             $valUser = User::where('email',$row[3])->first();
             if($row[0]!=null && $valUser==null){
                 $user = User::create([
-                    'designation'  => $row[0],
+                    'designation'  => $row[8],
                     'name' => $row[0],
                     'email' => $row[1],
                     'type' => $role->name,
-                    'location' => $location,
-                    'location_type' =>   $lisasonOffice,
+                    'location' => ucwords($location),
+                    'location_type' =>   ucwords($lisasonOffice),
                     'department_id' => $departments->id,
                     'unit_id' => $units,
                     'sub_unit_id' => $subunit!=null? $subunit->id : null ,

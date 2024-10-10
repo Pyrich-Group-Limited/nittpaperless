@@ -34,4 +34,9 @@ class Memo extends Model
         return $this->belongsToMany(User::class, 'memo_signatures')
                     ->withTimestamps();
     }
+
+    public function sharedWithUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'shared_with');
+    }
 }

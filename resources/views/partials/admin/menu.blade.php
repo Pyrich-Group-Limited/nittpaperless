@@ -19,7 +19,7 @@
     <div class="navbar-wrapper">
         <div class="m-header main-logo">
             <a href="#" class="b-brand">
-                <img src="{{  'logo-dark.png' }}" alt="NITT" class="logo logo-lg">
+                <img src="{{  asset('logo-dark.png') }}" alt="NITTs" class="logo logo-lg">
             </a>
         </div>
         <div class="navbar-content">
@@ -299,6 +299,69 @@
                         @endif
                     @endif
 
+                        <li class="dash-item dash-hasmenu {{ ( Request::segment(1) == 'project' || Request::segment(1) == 'bugs-report' || Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' || Request::segment(1) == 'calendar' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'project' || Request::segment(1) == 'projects' || Request::segment(1) == 'project_report')
+                            ? 'active dash-trigger' : ''}}">
+                            <a href="#!" class="dash-link"
+                            ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
+                                ><span class="dash-mtext">{{__('e-Procurement')}}</span
+                                ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                ></a>
+                                <ul class="dash-submenu">
+                                    @can('manage project')
+                                        <li class="dash-item  {{Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' ||Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : ''}}">
+                                            <a class="dash-link" href="{{route('created-projects')}}">{{__('Projects')}}</a>
+                                        </li>
+                                    @endcan
+                                    @can('manage client')
+                                        <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
+                                            <a class="dash-link" href="{{ route('clients.index') }}">{{__('Contractor')}}</a>
+                                        </li>
+                                    @endcan
+                                    @if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client')
+                                        <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
+                                            <a class="dash-link" href="{{route('contract.index')}}">{{__('Contract')}}</a>
+                                        </li>
+                                    @endif
+                                    <!-- @can('manage project task')
+                                        <li class="dash-item {{ (request()->is('taskboard*') ? 'active' : '')}}">
+                                            <a class="dash-link" href="{{ route('taskBoard.view', 'list') }}">{{__('Tasks')}}</a>
+                                        </li>
+                                    @endcan
+                                    @can('manage timesheet')
+                                        <li class="dash-item {{ (request()->is('timesheet-list*') ? 'active' : '')}}">
+                                            <a class="dash-link" href="{{route('timesheet.list')}}">{{__('Timesheet')}}</a>
+                                        </li>
+                                    @endcan
+                                    @can('manage project task')
+                                        <li class="dash-item {{ (request()->is('calendar*') ? 'active' : '')}}">
+                                            <a class="dash-link" href="{{ route('task.calendar',['all']) }}">{{__('Task Calendar')}}</a>
+                                        </li>
+                                    @endcan -->
+                                    @if(\Auth::user()->type!='super admin')
+                                        <li class="dash-item  {{ (Request::segment(1) == 'time-tracker')?'active open':''}}">
+                                            <a class="dash-link" href="{{ route('time.tracker') }}">{{__('Tracker')}}</a>
+                                        </li>
+                                    @endif
+                                    @if (\Auth::user()->type == 'super admin')
+                                        <li class="dash-item  {{(Request::route()->getName() == 'project_report.index' || Request::route()->getName() == 'project_report.show') ? 'active' : ''}}">
+                                            <a class="dash-link" href="{{route('project_report.index') }}">{{__('Project Report')}}</a>
+                                        </li>
+                                    @endif
+                                    <!-- @if(Gate::check('manage project task stage') || Gate::check('manage bug status'))
+                                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages') ? 'active dash-trigger' : ''}}">
+                                            <a class="dash-link" href="#">{{__('Project System Setup')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                            <ul class="dash-submenu">
+                                                @can('manage project task stage')
+                                                    <li class="dash-item  {{ (Request::route()->getName() == 'project-task-stages.index') ? 'active' : '' }}">
+                                                        <a class="dash-link" href="{{route('project-task-stages.index')}}">{{__('Project Task Stages')}}</a>
+                                                    </li>
+                                                @endcan
+                                            </ul>
+                                        </li>
+                                    @endif -->
+                                </ul>
+                        </li>
+
                     @if(\Auth::user()->type=='super admin' && ( Gate::check('manage user') || Gate::check('manage role') || Gate::check('manage client')))
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
                             || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''}}">
@@ -541,8 +604,27 @@
 
                     @if(\Auth::user()->show_project() == 1)
                         @if( Gate::check('manage project'))
-                            <li class="dash-item dash-hasmenu {{ ( Request::segment(1) == 'project' || Request::segment(1) == 'bugs-report' || Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' || Request::segment(1) == 'calendar' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'project' || Request::segment(1) == 'projects' || Request::segment(1) == 'project_report')
-                            ? 'active dash-trigger' : ''}}">
+                            <li class="dash-item dash-hasmenu {{Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''}}">
+                                <a href="#!" class="dash-link"
+                                ><span class="dash-micon"><i class="ti ti-list"></i></span
+                                    ><span class="dash-mtext">{{__('New PM/PP')}}</span
+                                    ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                    ></a>
+                                    <ul class="dash-submenu">
+                                        @can('manage project')
+                                            <li class="dash-item  {{Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''}}">
+                                                <a class="dash-link" href="{{ route('pp.projects')}}">{{__('Projects')}}</a>
+                                            </li>
+                                        @endcan
+
+                                    </ul>
+                            </li>
+                        @endif
+                    @endif
+
+                    @if(\Auth::user()->show_project() == 1)
+                        @if( Gate::check('manage project'))
+                            <li class="dash-item dash-hasmenu ">
                                 <a href="#!" class="dash-link"
                                 ><span class="dash-micon"><i class="ti ti-share"></i></span
                                     ><span class="dash-mtext">{{__('PM/PP')}}</span
@@ -841,11 +923,6 @@
                                 <a class="dash-link" href="{{ route('storeVoucher.list') }}">{{__('Store Issue Voucher')}}</a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'procurement')?'active':''}}">
-                        <a href="" class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-write"></i></span><span class="dash-mtext">{{__('e-Procurement')}}</span>
-                        </a>
                     </li>
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'procurement')?'active':''}}">
                         <a href="" class="dash-link">

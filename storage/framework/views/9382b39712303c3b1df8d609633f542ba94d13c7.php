@@ -19,7 +19,7 @@
     <div class="navbar-wrapper">
         <div class="m-header main-logo">
             <a href="#" class="b-brand">
-                <img src="<?php echo e('logo-dark.png'); ?>" alt="NITT" class="logo logo-lg">
+                <img src="<?php echo e(asset('logo-dark.png')); ?>" alt="NITTs" class="logo logo-lg">
             </a>
         </div>
         <div class="navbar-content">
@@ -297,6 +297,69 @@
                         <?php endif; ?>
                     <?php endif; ?>
 
+                        <li class="dash-item dash-hasmenu <?php echo e(( Request::segment(1) == 'project' || Request::segment(1) == 'bugs-report' || Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' || Request::segment(1) == 'calendar' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'project' || Request::segment(1) == 'projects' || Request::segment(1) == 'project_report')
+                            ? 'active dash-trigger' : ''); ?>">
+                            <a href="#!" class="dash-link"
+                            ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
+                                ><span class="dash-mtext"><?php echo e(__('e-Procurement')); ?></span
+                                ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                ></a>
+                                <ul class="dash-submenu">
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project')): ?>
+                                        <li class="dash-item  <?php echo e(Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' ||Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : ''); ?>">
+                                            <a class="dash-link" href="<?php echo e(route('created-projects')); ?>"><?php echo e(__('Projects')); ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage client')): ?>
+                                        <li class="dash-item <?php echo e((Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : ''); ?>">
+                                            <a class="dash-link" href="<?php echo e(route('clients.index')); ?>"><?php echo e(__('Contractor')); ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client'): ?>
+                                        <li class="dash-item  <?php echo e((Request::segment(1) == 'contract')?'active':''); ?>">
+                                            <a class="dash-link" href="<?php echo e(route('contract.index')); ?>"><?php echo e(__('Contract')); ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <!-- <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project task')): ?>
+                                        <li class="dash-item <?php echo e((request()->is('taskboard*') ? 'active' : '')); ?>">
+                                            <a class="dash-link" href="<?php echo e(route('taskBoard.view', 'list')); ?>"><?php echo e(__('Tasks')); ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage timesheet')): ?>
+                                        <li class="dash-item <?php echo e((request()->is('timesheet-list*') ? 'active' : '')); ?>">
+                                            <a class="dash-link" href="<?php echo e(route('timesheet.list')); ?>"><?php echo e(__('Timesheet')); ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project task')): ?>
+                                        <li class="dash-item <?php echo e((request()->is('calendar*') ? 'active' : '')); ?>">
+                                            <a class="dash-link" href="<?php echo e(route('task.calendar',['all'])); ?>"><?php echo e(__('Task Calendar')); ?></a>
+                                        </li>
+                                    <?php endif; ?> -->
+                                    <?php if(\Auth::user()->type!='super admin'): ?>
+                                        <li class="dash-item  <?php echo e((Request::segment(1) == 'time-tracker')?'active open':''); ?>">
+                                            <a class="dash-link" href="<?php echo e(route('time.tracker')); ?>"><?php echo e(__('Tracker')); ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if(\Auth::user()->type == 'super admin'): ?>
+                                        <li class="dash-item  <?php echo e((Request::route()->getName() == 'project_report.index' || Request::route()->getName() == 'project_report.show') ? 'active' : ''); ?>">
+                                            <a class="dash-link" href="<?php echo e(route('project_report.index')); ?>"><?php echo e(__('Project Report')); ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <!-- <?php if(Gate::check('manage project task stage') || Gate::check('manage bug status')): ?>
+                                        <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages') ? 'active dash-trigger' : ''); ?>">
+                                            <a class="dash-link" href="#"><?php echo e(__('Project System Setup')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                            <ul class="dash-submenu">
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project task stage')): ?>
+                                                    <li class="dash-item  <?php echo e((Request::route()->getName() == 'project-task-stages.index') ? 'active' : ''); ?>">
+                                                        <a class="dash-link" href="<?php echo e(route('project-task-stages.index')); ?>"><?php echo e(__('Project Task Stages')); ?></a>
+                                                    </li>
+                                                <?php endif; ?>
+                                            </ul>
+                                        </li>
+                                    <?php endif; ?> -->
+                                </ul>
+                        </li>
+
                     <?php if(\Auth::user()->type=='super admin' && ( Gate::check('manage user') || Gate::check('manage role') || Gate::check('manage client'))): ?>
                         <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'users' || Request::segment(1) == 'roles'
                             || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''); ?>">
@@ -539,8 +602,27 @@
 
                     <?php if(\Auth::user()->show_project() == 1): ?>
                         <?php if( Gate::check('manage project')): ?>
-                            <li class="dash-item dash-hasmenu <?php echo e(( Request::segment(1) == 'project' || Request::segment(1) == 'bugs-report' || Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' || Request::segment(1) == 'calendar' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'project' || Request::segment(1) == 'projects' || Request::segment(1) == 'project_report')
-                            ? 'active dash-trigger' : ''); ?>">
+                            <li class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''); ?>">
+                                <a href="#!" class="dash-link"
+                                ><span class="dash-micon"><i class="ti ti-list"></i></span
+                                    ><span class="dash-mtext"><?php echo e(__('New PM/PP')); ?></span
+                                    ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                    ></a>
+                                    <ul class="dash-submenu">
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project')): ?>
+                                            <li class="dash-item  <?php echo e(Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''); ?>">
+                                                <a class="dash-link" href="<?php echo e(route('pp.projects')); ?>"><?php echo e(__('Projects')); ?></a>
+                                            </li>
+                                        <?php endif; ?>
+
+                                    </ul>
+                            </li>
+                        <?php endif; ?>
+                    <?php endif; ?>
+
+                    <?php if(\Auth::user()->show_project() == 1): ?>
+                        <?php if( Gate::check('manage project')): ?>
+                            <li class="dash-item dash-hasmenu ">
                                 <a href="#!" class="dash-link"
                                 ><span class="dash-micon"><i class="ti ti-share"></i></span
                                     ><span class="dash-mtext"><?php echo e(__('PM/PP')); ?></span
@@ -831,11 +913,6 @@
                                 <a class="dash-link" href="<?php echo e(route('storeVoucher.list')); ?>"><?php echo e(__('Store Issue Voucher')); ?></a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'procurement')?'active':''); ?>">
-                        <a href="" class="dash-link">
-                            <span class="dash-micon"><i class="ti ti-write"></i></span><span class="dash-mtext"><?php echo e(__('e-Procurement')); ?></span>
-                        </a>
                     </li>
                     <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'procurement')?'active':''); ?>">
                         <a href="" class="dash-link">
