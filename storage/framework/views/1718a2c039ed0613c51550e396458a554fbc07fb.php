@@ -10,6 +10,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
+                        <?php if($selProject): ?>
                             <div class="form-group col-md-12">
                                 <label for="type_of_advert" class="form-label">Type of Advert</label>
                                 <select wire:model="type_of_advert" id="type_of_advert" class="form-control">
@@ -34,7 +35,7 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <?php echo e(Form::label('name', __('Project Name'), ['class' => 'form-label'])); ?>
 
-                                    <input type="text" id="project_name" disabled wire:model.defer="project_name" class="form-control"
+                                    <input type="text" id="project_name" value="<?php echo e($selProject->project_name); ?>" class="form-control"
                                         placeholder="Project Name" />
                                     <?php $__errorArgs = ['project_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -53,7 +54,7 @@ unset($__errorArgs, $__bag); ?>
                             <div class="mb-3">
                                 <label class="form-label" for="ad_description">Contract Description</label>
                                 <div wire:ignore>
-                                    <textarea id="ad_description" wire:model="ad_description" class="form-control tinymce-basic" name="ad_description"></textarea>
+                                    <textarea id="ad_description" wire:model.defer="ad_description" class="form-control tinymce-basic" name="ad_description"></textarea>
                                 </div>
                                 <?php $__errorArgs = ['ad_description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -72,7 +73,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <input type="date" id="start_date" wire:model.defer="ad_start_date" class="form-control"
                                         placeholder="Project Start Date" />
-                                    <?php $__errorArgs = ['start_date'];
+                                    <?php $__errorArgs = ['ad_start_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -92,7 +93,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     <input type="date" id="end_date" wire:model.defer="ad_end_date" class="form-control"
                                         placeholder="Project End Date" />
-                                    <?php $__errorArgs = ['end_date'];
+                                    <?php $__errorArgs = ['ad_end_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -106,11 +107,14 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
+                        <?php else: ?>
+                        <label align="center">Loading...</label>
+                        <?php endif; ?>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <input type="button" id="closeAdvertPublishModal" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
+                        <input type="button" id="closeAdvertiseProject" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
                             data-bs-dismiss="modal">
                         <input type="button" wire:click="advertiseProject" value="<?php echo e(__('Publish Advert')); ?>" class="btn  btn-primary">
                     </div>
@@ -118,16 +122,11 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </div>
     </div>
-
-    <?php $__env->startPush('script'); ?>
-        <?php if($errors->any() || Session::has('error')): ?>
-            <script>
-                $(document).ready(function() {
-                    document.getElementById("toggleOldUser").click();
-                });
-            </script>
-        <?php endif; ?>
-    <?php $__env->stopPush(); ?>
+    <script>
+        window.addEventListener('success', event => {
+            document.getElementById("closeAdvertiseProject").click();
+        })
+    </script>
 
 </div>
 <?php $__env->startPush('script'); ?>

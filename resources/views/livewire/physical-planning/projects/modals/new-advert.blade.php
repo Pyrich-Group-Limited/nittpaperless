@@ -10,6 +10,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
+                        @if($selProject)
                             <div class="form-group col-md-12">
                                 <label for="type_of_advert" class="form-label">Type of Advert</label>
                                 <select wire:model="type_of_advert" id="type_of_advert" class="form-control">
@@ -26,7 +27,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     {{ Form::label('name', __('Project Name'), ['class' => 'form-label']) }}
-                                    <input type="text" id="project_name" disabled wire:model.defer="project_name" class="form-control"
+                                    <input type="text" id="project_name" value="{{  $selProject->project_name }}" class="form-control"
                                         placeholder="Project Name" />
                                     @error('project_name')
                                         <small class="invalid-name" role="alert">
@@ -38,7 +39,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="ad_description">Contract Description</label>
                                 <div wire:ignore>
-                                    <textarea id="ad_description" wire:model="ad_description" class="form-control tinymce-basic" name="ad_description"></textarea>
+                                    <textarea id="ad_description" wire:model.defer="ad_description" class="form-control tinymce-basic" name="ad_description"></textarea>
                                 </div>
                                 @error('ad_description')
                                     <p class="text-danger">{{ $message }}</p>
@@ -49,7 +50,7 @@
                                     {{ Form::label('start_date', __('Start Date'), ['class' => 'form-label']) }}
                                     <input type="date" id="start_date" wire:model.defer="ad_start_date" class="form-control"
                                         placeholder="Project Start Date" />
-                                    @error('start_date')
+                                    @error('ad_start_date')
                                         <small class="invalid-name" role="alert">
                                             <strong class="text-danger">{{ $message }}</strong>
                                         </small>
@@ -61,18 +62,21 @@
                                     {{ Form::label('end_date', __('End Date'), ['class' => 'form-label']) }}
                                     <input type="date" id="end_date" wire:model.defer="ad_end_date" class="form-control"
                                         placeholder="Project End Date" />
-                                    @error('end_date')
+                                    @error('ad_end_date')
                                         <small class="invalid-name" role="alert">
                                             <strong class="text-danger">{{ $message }}</strong>
                                         </small>
                                     @enderror
                                 </div>
                             </div>
+                        @else
+                        <label align="center">Loading...</label>
+                        @endif
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <input type="button" id="closeAdvertPublishModal" value="{{ __('Cancel') }}" class="btn  btn-light"
+                        <input type="button" id="closeAdvertiseProject" value="{{ __('Cancel') }}" class="btn  btn-light"
                             data-bs-dismiss="modal">
                         <input type="button" wire:click="advertiseProject" value="{{ __('Publish Advert') }}" class="btn  btn-primary">
                     </div>
@@ -80,16 +84,11 @@
             </div>
         </div>
     </div>
-
-    @push('script')
-        @if ($errors->any() || Session::has('error'))
-            <script>
-                $(document).ready(function() {
-                    document.getElementById("toggleOldUser").click();
-                });
-            </script>
-        @endif
-    @endpush
+    <script>
+        window.addEventListener('success', event => {
+            document.getElementById("closeAdvertiseProject").click();
+        })
+    </script>
 
 </div>
 @push('script')
