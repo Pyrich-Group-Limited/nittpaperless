@@ -9,6 +9,13 @@ class ProjectAdvert extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'advert_type',
+        'project_id',
+        'state_date',
+        'end_date',
+        'description',
+    ];
      // A project advert belongs to a project
      public function project()
      {

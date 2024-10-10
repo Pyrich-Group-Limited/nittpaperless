@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Projects;
 
+use App\Models\Project;
 use Livewire\Component;
 // use App\Models\Utility;
 use App\Models\ProjectAdvert;
@@ -9,6 +10,7 @@ use App\Models\ProjectCategory;
 use App\Models\ProjectCreation;
 use App\Models\ProjectUser;
 use App\Models\User;
+use Google\Service\CloudSourceRepositories\ProjectConfig;
 // use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
@@ -110,8 +112,11 @@ class ProjectsComponent extends Component
         $this->start_date = $this->selProject->start_date;
         $this->end_date = $this->selProject->end_date;
         $this->project_category_id = $this->selProject->project_category_id;
+        $this->selectedStaff;
 
     }
+
+
 
 
     public function updateProject(){
@@ -155,21 +160,30 @@ class ProjectsComponent extends Component
     }
 
 
+    public function selProject2(ProjectCreation $project){
+        $this->selProject = $project;
+    }
+
     Public function advertiseProject(){
-        $project = ProjectCreation::find($this->selProject->id);
+
+        // $project = ProjectCreation::find($selProject->id);
+        // $projectDuration = round(strtotime($data['end_date']) - strtotime($data['start_date']))/ 86400;
+
+        $project = ProjectAdvert::find($this->selProject->id);
+
         $projectDuration = round(strtotime($this->ad_end_date) - strtotime($this->ad_start_date))/ 86400;
 
         if($project!=null){
             $this->dispatchBrowserEvent('error',['error' => 'Sorry this project has already been advertised for applications']);
-        }elseif(strtotime($this->start_date)<strtotime(date('Y-m-d'))){
+        }elseif(strtotime($this->ad_end_date)<strtotime(date('Y-m-d'))){
             $this->dispatchBrowserEvent('error',['error' => 'Sorry your start date can not be later than today']);
         }elseif($projectDuration<=0){
             $this->dispatchBrowserEvent('error',['error' => 'Sorry your start date can not be later than start']);
         }else{
             $this->validate([
-                'start_date' => ['required','string'],
-                'end_date' => ['required','string'],
-                'description' => ['required','string'],
+                'ad_start_date' => ['required','string'],
+                'ad_end_date' => ['required','string'],
+                'ad_description' => ['required','string'],
                 'type_of_advert' => ['required','string'],
             ]);
 
@@ -181,12 +195,12 @@ class ProjectsComponent extends Component
                 'advert_type' => $this->type_of_advert,
             ]);
 
-            $this->reset();
+            // $this->reset();
             $this->dispatchBrowserEvent('success',['success' => 'Project successfully Published']);
         }
     }
     public function setProject(ProjectCreation $project){
-        $this->selProject = $project;
+        $this->selProject2 = $project;
         $this->emit('project', $project);
     }
 
