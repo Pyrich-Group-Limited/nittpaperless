@@ -54,15 +54,15 @@
                                 <!--List Item-->
                                     <li class="list-item">
                                         <ul class="nav navbar-main menu-dark">
-                                            <li class="@yield('home')"><a href="#">Home</a></li>
-                                            <li class="@yield('about')"><a href="#">Contracts Adverts</a></li>
-                                            <li class="@yield('login')"><a href="#">Login</a></li>
+                                            <li class="@yield('home')"><a href="{{ route('welcome')}}">Home</a></li>
+                                            <li class="@yield('about')"><a href="{{ route('all-adverts')}}">Contracts Adverts</a></li>
+                                            <li class="@yield('login')"><a href="{{ route('contractor.login')}}">Login</a></li>
                                         </ul>
                                     </li>
                                     <!--List Item End-->
                                     <!--List Item-->
                                     <li class="list-item">
-                                        <div class="header-navbar-text-1"><a href="#" class="h-donate-btn">Sign Up</a></div>
+                                        <div class="header-navbar-text-1"><a href="{{ route('contractor.register') }}" class="h-donate-btn">Sign Up</a></div>
                                     </li>
                                 <!--List Item End-->
                             </ul>

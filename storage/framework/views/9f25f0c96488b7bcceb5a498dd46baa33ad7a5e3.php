@@ -54,15 +54,15 @@
                                 <!--List Item-->
                                     <li class="list-item">
                                         <ul class="nav navbar-main menu-dark">
-                                            <li class="<?php echo $__env->yieldContent('home'); ?>"><a href="#">Home</a></li>
-                                            <li class="<?php echo $__env->yieldContent('about'); ?>"><a href="#">Contracts Adverts</a></li>
-                                            <li class="<?php echo $__env->yieldContent('login'); ?>"><a href="#">Login</a></li>
+                                            <li class="<?php echo $__env->yieldContent('home'); ?>"><a href="<?php echo e(route('welcome')); ?>">Home</a></li>
+                                            <li class="<?php echo $__env->yieldContent('about'); ?>"><a href="<?php echo e(route('all-adverts')); ?>">Contracts Adverts</a></li>
+                                            <li class="<?php echo $__env->yieldContent('login'); ?>"><a href="<?php echo e(route('contractor.login')); ?>">Login</a></li>
                                         </ul>
                                     </li>
                                     <!--List Item End-->
                                     <!--List Item-->
                                     <li class="list-item">
-                                        <div class="header-navbar-text-1"><a href="#" class="h-donate-btn">Sign Up</a></div>
+                                        <div class="header-navbar-text-1"><a href="<?php echo e(route('contractor.register')); ?>" class="h-donate-btn">Sign Up</a></div>
                                     </li>
                                 <!--List Item End-->
                             </ul>

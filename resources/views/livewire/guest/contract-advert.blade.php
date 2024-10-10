@@ -259,97 +259,48 @@ if(typeof revslider_showDoubleJqueryError === "undefined") {function revslider_s
     <!-- Page Content -->
     <div class="content-wrapper pad-none">
         <div class="content-inner">
-
-            <!-- About Section -->
-            <section id="section-about" class="section-about pad-top-none pad-bottom-none pb-5 pb-lg-0 pad-bottom-md-none">
-                <div class="container">
-                    <!-- Row -->
-                    <div class="row d-flex align-items-center">
-                        <!-- Col -->
-                        <div class="col-lg-6">
-                            <!-- about wrap -->
-                            <div class="about-wrap relative">
-                                <div class="about-wrap-inner">
-                                    <!-- about details -->
-                                    <div class="about-wrap-details">
-                                        <!-- about button -->
-                                        <div class="text-center">
-                                            <div class="about-img mb-4 mb-md-0">
-                                                <img src="{{ asset('guest/images/about-us/about-us-img.png') }}" width="60%" class="" alt="about-img">
-                                            </div>
-                                            <!-- .col -->
-                                        </div>
-                                    </div>
-                                    <!-- about details End-->
-                                </div>
-                            </div>
-                            <!-- about wrap end -->
-                        </div>
-                        <!-- .col -->
-                        <!-- Col -->
-                        <div class="col-lg-6 ps-lg-0">
-                            <div class="title-wrap margin-bottom-50">
-                                <div class="section-title">
-                                    <span class="sub-title theme-color text-uppercase">About</span>
-                                    <h2 class="section-title margin-top-5">Castle Education Consult</h2>
-                                    <span class="border-bottom"></span>
-                                </div>
-                                <div class="pad-top-15">
-                                    <p class="margin-bottom-20">Castle Education Consult is dedicated to reorienting individuals across various fields to foster progressive and productive learning outcomes in Africa. </p>
-                                    <p class="margin-bottom-20">We are committed to identifying and addressing educational challenges while building capacities for future leaders through innovation and creativity. Our goal is to ensure that education encompasses all knowledge, skills, and experiences that contribute to a better life and society, regardless of the learning format.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- Col -->
-                    </div>
-                    <!-- Row -->
-                </div>
-                <!-- Container -->
-            </section>
-            <!-- About Section End -->
-            <!-- Day Counter Section -->
             
-            {{-- <section id="events-section" class="events-section pad-bottom-70">
+            <section id="events-section" class="events-section pad-bottom-70">
                 <!-- Screan Reader Text -->
-                <h2 class="screen-reader-text">What we do</h2>
+                <h2 class="screen-reader-text">Contract Adverts</h2>
                 <div class="container">
                     <!-- Row -->
                     <div class="row">
                         <!-- Col -->
                         <div class="col-md-12">
+                            @if(count($adverts)>0)
                             <!--events Main wrap-->
                             <div class="events-main-wrapper events-grid events-style-4">
                                 <div class="row">
                                     <div class="offset-md-2 col-md-8">
                                         <div class="title-wrap text-center">
                                             <div class="section-title">
-                                                <span class="sub-title theme-color text-uppercase">Services</span>
-                                                <h2 class="section-title margin-top-5">What we do</h2>
+                                                <span class="sub-title theme-color text-uppercase">Published</span>
+                                                <h2 class="section-title margin-top-5">Contract Advert</h2>
                                                 <span class="border-bottom center"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Col-md -->
-                                    @foreach($services as $service)
+                                    @foreach($adverts as $advert)
                                     <div class="col-lg-4 col-md-6">
                                         <!--events Inner-->
                                         <div class="events-inner margin-bottom-30">
                                             <!--events Thumb-->
                                             <div class="events-thumb mb-0 relative">
-                                                <img src="{{ asset('guest/images/uploads/'.$service->service_image)}}" class="img-fluid thumb w-100" width="768" height="456" alt="{{ $service->title }}">
+                                                <img src="@if($advert->image){{ asset('guest/images/uploads/'.$advert->image) }} @else {{ asset('uploads/procurement.png')}} @endif" class="img-fluid thumb w-100" width="768" height="456" alt="{{ $advert->project->project_title }}">
                                             </div>
                                             <!--events details-->
                                             <div class="events-details pad-30">
 
                                                 <div class="event-title mb-3">
-                                                    <h5><a href="{{ route('services.show',[str_replace("/","",$service->service_title),$service->id])}}">{{ $service->service_title }}</a></h5>
+                                                    <h5><a href="#">{{ $advert->project->project_title }}</a></h5>
                                                 </div>
                                                 <div class="event-excerpt mb-3">
-                                                    <p>{!! Str::limit(strip_tags($service->service_description),70) !!}</p>
+                                                    <p>{!! Str::limit(strip_tags($advert->description),70) !!}</p>
                                                 </div>
                                                 <div class="read-more">
-                                                    <a href="{{ route('services.show',[str_replace("/","",$service->service_title),$service->id])}}">Learn more</a>
+                                                    {{-- <a href="{{ route('services.show',[str_replace("/","",$advert->project_pro),$service->id])}}">Learn more</a> --}}
                                                 </div>
                                             </div>
                                             <!--events details-->
@@ -361,13 +312,20 @@ if(typeof revslider_showDoubleJqueryError === "undefined") {function revslider_s
                                 </div>
                                 <!-- events Row -->
                             </div>
+                            @else
+                            <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                                no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                                alt="No results found" >
+                                <p class="mt-2 text-danger">No Contract Advert</p>
+                                </div>
+                            @endif
                             <!-- events Main wrap Ends -->
                         </div>
                         <!-- Col -->
                     </div>
                     <!-- Row -->
                 </div>
-            </section> --}}
+            </section>
 
         </div>
     </div>

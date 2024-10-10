@@ -19,7 +19,7 @@ class ProjectAdvert extends Model
      // A project advert belongs to a project
      public function project()
      {
-         return $this->belongsTo(ProjectCreation::class);
+         return $this->belongsTo(ProjectCreation::class,'project_id');
      }
 
      // A project advert has many applications

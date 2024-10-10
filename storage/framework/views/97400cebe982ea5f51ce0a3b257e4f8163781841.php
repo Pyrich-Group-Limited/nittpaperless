@@ -1,16 +1,16 @@
 <div>
-    <x-slot name="title">Contract Adverts</x-slot>
-    @section('services') active @endsection
+     <?php $__env->slot('title', null, []); ?> Contract Adverts <?php $__env->endSlot(); ?>
+    <?php $__env->startSection('services'); ?> active <?php $__env->stopSection(); ?>
 
     <div class="page-title-wrap typo-white" wire:ignore>
-        <div class="page-title-wrap-inner section-bg-img" data-bg="{{ asset('/guest/rs-plugin/assets/z2-slider-1.jpg') }}">
+        <div class="page-title-wrap-inner section-bg-img" data-bg="<?php echo e(asset('/guest/rs-plugin/assets/z2-slider-1.jpg')); ?>">
             <span class="theme-overlay"></span>
             <div class="container">
                 <div class="row text-center">
                     <div class="col-md-12">
                         <div class="page-title-inner">
                             <div id="breadcrumb" class="breadcrumb margin-bottom-10">
-                                <a href="{{ route('welcome')}}" class="theme-color">Home</a>
+                                <a href="<?php echo e(route('welcome')); ?>" class="theme-color">Home</a>
                                 <span class="current">Adverts</span>
                             </div>
                             <h1 class="page-title mb-0">Contract Adverts</h1>
@@ -30,7 +30,7 @@
             <div class="row">
                 <!-- Col -->
                 <div class="col-md-12">
-                    @if(count($adverts)>0)
+                    <?php if(count($adverts)>0): ?>
                     <!--events Main wrap-->
                     <div class="events-main-wrapper events-grid events-style-4">
                         <div class="row">
@@ -44,25 +44,25 @@
                                 </div>
                             </div>
                             <!-- Col-md -->
-                            @foreach($adverts as $advert)
+                            <?php $__currentLoopData = $adverts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $advert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-lg-4 col-md-6">
                                 <!--events Inner-->
                                 <div class="events-inner margin-bottom-30">
                                     <!--events Thumb-->
                                     <div class="events-thumb mb-0 relative">
-                                        <img src="@if($advert->image){{ asset('guest/images/uploads/'.$advert->image) }} @else {{ asset('uploads/procurement.png')}} @endif" class="img-fluid thumb w-100" width="768" height="456" alt="{{ $advert->project->project_title }}">
+                                        <img src="<?php if($advert->image): ?><?php echo e(asset('guest/images/uploads/'.$advert->image)); ?> <?php else: ?> <?php echo e(asset('uploads/procurement.png')); ?> <?php endif; ?>" class="img-fluid thumb w-100" width="768" height="456" alt="<?php echo e($advert->project->project_title); ?>">
                                     </div>
                                     <!--events details-->
                                     <div class="events-details pad-30">
 
                                         <div class="event-title mb-3">
-                                            <h5><a href="#">{{ $advert->project->project_title }}</a></h5>
+                                            <h5><a href="#"><?php echo e($advert->project->project_title); ?></a></h5>
                                         </div>
                                         <div class="event-excerpt mb-3">
-                                            <p>{!! Str::limit(strip_tags($advert->description),70) !!}</p>
+                                            <p><?php echo Str::limit(strip_tags($advert->description),70); ?></p>
                                         </div>
                                         <div class="read-more">
-                                            {{-- <a href="{{ route('services.show',[str_replace("/","",$advert->project_pro),$service->id])}}">Learn more</a> --}}
+                                            
                                         </div>
                                     </div>
                                     <!--events details-->
@@ -70,17 +70,17 @@
                                 <!--events Inner Ends-->
                             </div>
                             <!--Col-md Ends-->
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                         <!-- events Row -->
                     </div>
-                    @else
+                    <?php else: ?>
                     <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
                         no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
                         alt="No results found" >
                         <p class="mt-2 text-danger">No Contract Advert</p>
                         </div>
-                    @endif
+                    <?php endif; ?>
                     <!-- events Main wrap Ends -->
                 </div>
                 <!-- Col -->
@@ -90,3 +90,4 @@
     </section>
 </div>
 <!-- .page-wrapper-inner -->
+<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/guest/service/services-component.blade.php ENDPATH**/ ?>

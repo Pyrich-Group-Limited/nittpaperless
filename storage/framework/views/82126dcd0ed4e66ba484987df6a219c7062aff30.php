@@ -10,25 +10,25 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_NG">
     <meta property="og:url" content="<?php echo e(\URL::current()); ?>">
-    <meta property="og:title" content="<?php echo e($title ?? 'Castle Education Consult'); ?>">
-    <meta property="og:description"  content="<?php echo e($description ?? 'CASTLE EDUCATION CONSULT is a firm with a passion to re-orient the minds of students, schools, and educational administrators at all levels on progressively productive learning outcomes in Africa.'); ?>">
+    <meta property="og:title" content="<?php echo e($title ?? 'Nigeria Institute of Transport Technology'); ?>">
+    <meta property="og:description"  content="<?php echo e($description ?? 'The leading Transport and Logistics Development Institute in Nigeria and the entire West African sub-region, setting the standard for excellence and innovation in the industry'); ?>">
     <meta property="og:image" content="<?php echo e($logo ?? asset('guest/images/meta-logo.png')); ?>">
 
     <meta property="twitter:type" content="website">
     <meta property="twitter:locale" content="en_NG">
     <meta property="twitter:url" content="<?php echo e(\URL::current()); ?>">
-    <meta property="twitter:title" content="<?php echo e($title ?? 'Castle Education Consult'); ?>">
-    <meta property="twitter:description"  content="<?php echo e($description ?? 'CASTLE EDUCATION CONSULT is a firm with a passion to re-orient the minds of students, schools, and educational administrators at all levels on progressively productive learning outcomes in Africa.'); ?>">
+    <meta property="twitter:title" content="<?php echo e($title ?? 'Nigeria Institute of Transport Technology'); ?>">
+    <meta property="twitter:description"  content="<?php echo e($description ?? 'The leading Transport and Logistics Development Institute in Nigeria and the entire West African sub-region, setting the standard for excellence and innovation in the industry'); ?>">
     <meta property="twitter:image" content="<?php echo e($logo ?? asset('guest/images/meta-logo.png')); ?>">
 
     <meta name="google:card" content="summary_large_image">
     <meta name="google:url" content="<?php echo e(\URL::current()); ?>">
-    <meta name="google:description" content="<?php echo e($description ?? 'CASTLE EDUCATION CONSULT is a firm with a passion to re-orient the minds of students, schools, and educational administrators at all levels on progressively productive learning outcomes in Africa.'); ?>">
-    <meta name="google:title" content="<?php echo e($title ?? 'Castle Education Consult'); ?>">
+    <meta name="google:description" content="<?php echo e($description ?? 'The leading Transport and Logistics Development Institute in Nigeria and the entire West African sub-region, setting the standard for excellence and innovation in the industry'); ?>">
+    <meta name="google:title" content="<?php echo e($title ?? 'Nigeria Institute of Transport Technology'); ?>">
     <meta name="google:image" content="<?php echo e($logo ?? asset('guest/images/meta-logo.png')); ?>">
 
-    <meta name="description" content="<?php echo e($description ?? 'CASTLE EDUCATION CONSULT is a firm with a passion to re-orient the minds of students, schools, and educational administrators at all levels on progressively productive learning outcomes in Africa.'); ?>" />
-    <meta name="author" content="Castle Education Consult" />
+    <meta name="description" content="<?php echo e($description ?? 'The leading Transport and Logistics Development Institute in Nigeria and the entire West African sub-region, setting the standard for excellence and innovation in the industry'); ?>" />
+    <meta name="author" content="Nigeria Institute of Transport Technology" />
     <meta name="url" content="<?php echo e(\URL::current()); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="mission, mobilizing, igniting, training, seminars, Grow with Mike " />
@@ -115,7 +115,7 @@
                             </div>
                             <!-- Text -->
                             <div class="widget-text margin-bottom-30">
-                                <p>CASTLE EDUCATION CONSULT is a firm with a passion to re-orient the minds of students, schools, and educational administrators at all levels on progressively productive learning outcomes in Africa.</p>
+                                <p>The leading Transport and Logistics Development Institute in Nigeria and the entire West African sub-region, setting the standard for excellence and innovation in the industry.</p>
                             </div>
                             
                         </div>
@@ -128,10 +128,10 @@
                             <!-- Text -->
                             <div class="menu-quick-links">
                                 <ul class="menu">
-                                    <li class="menu-item"><a href="">What we do</a></li>
-                                    <li class="menu-item"><a href="">About</a></li>
-                                    <li class="menu-item"><a href="">Contact</a></li>
-                                    <li class="menu-item"><a href="">Events</a></li>
+                                    <li class="menu-item"><a href="">Hoe</a></li>
+                                    <li class="menu-item"><a href="">Adverts</a></li>
+                                    <li class="menu-item"><a href="">Login</a></li>
+                                    <li class="menu-item"><a href="">Signup</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                                 <!-- Title -->
                                 <h3 class="title typo-white">Newsletter</h3>
                             </div>
-                            <p>Sign up for our newsletter to stay updated on all events at Castle Education Consult, Special Promotions and More.</p>
+                            <p>Sign up for our newsletter to stay updated on all events at Nigeria Institute of Transport Technology, Contract Adverts.</p>
                             <div class="mailchimp-widget-wrap">
                                 <!-- subscribe form -->
                                 <form id="subscribe-form-1" class="subscribe-form" action="inc/function.php">
