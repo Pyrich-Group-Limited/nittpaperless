@@ -43,7 +43,8 @@ class EmployeeController extends Controller
             }
             else
             {
-                $employees = Employee::where('created_by', \Auth::user()->creatorId())->get();
+                // $employees = Employee::where('created_by', \Auth::user()->creatorId())->get();
+                $employees = Employee::all();
             }
 
             return view('employee.index', compact('employees'));
@@ -219,6 +220,148 @@ class EmployeeController extends Controller
         }
     }
 
+
+
+
+
+
+
+
+
+     // Display the users with checkboxes
+     public function display()
+     {
+         $users = User::all();
+         return view('employee.create', compact('users'));
+     }
+ 
+     // Assign selected users to the employee table
+     public function assignEmployees(Request $request)
+     {
+         $selectedUsers = $request->input('users');
+ 
+         if ($selectedUsers) {
+             foreach ($selectedUsers as $userId) {
+                 $user = User::find($userId);
+ 
+                 // Check if the user is not already in the employee table
+                 if (!Employee::where('user_id', $user->id)->exists()) {
+
+                    $employeeID = $this->generateEmployeeID();
+
+
+                     Employee::create([
+                         'user_id' => $user->id,
+                         'name' => $user->name, // Assuming you have a 'name' field in employees
+                         'email' => $user->email, // Assuming you have an 'email' field in employees
+                         'branch_id' => $user->location,
+                         'department_id' => $user->department_id,
+                         'designation_id' => $user->designation,
+                         'employee_id' => $employeeID,
+                         'password' => $user->password,
+                        
+                         
+                     ]);
+                 }
+             }
+         }
+ 
+         return redirect()->route('employee.index')->with('success', 'Selected users have been assigned to employees.');
+     }
+
+
+
+
+
+     private function generateEmployeeID()
+     {
+         // Get the last employee record
+         $lastEmployee = Employee::orderBy('id', 'desc')->first();
+ 
+         // Generate a new ID
+         if (!$lastEmployee) {
+             $newID = 'EMP000001';  // If there are no employees, start with this ID
+         } else {
+             $lastID = (int) substr($lastEmployee->employee_id, 3);  // Extract the number part
+             $newID = 'EMP' . str_pad($lastID + 1, 6, '0', STR_PAD_LEFT);  // Increment and pad the number
+         }
+ 
+         return $newID;
+     }
+ 
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function edit($id)
     {
         $id = Crypt::decrypt($id);
@@ -231,10 +374,10 @@ class EmployeeController extends Controller
             $designations = Designation::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
             $employee     = Employee::find($id);
             $employeesId  = \Auth::user()->employeeIdFormat(!empty($employee->employee_id) ? $employee->employee_id :'');
-            $departmentData  = Department::where('created_by', \Auth::user()->creatorId())->where('branch_id',$employee->branch_id)->get()->pluck('name', 'id');
+           // $departmentData  = Department::where('created_by', \Auth::user()->creatorId())->where('branch_id',$employee->branch_id)->get()->pluck('name', 'id');
 
 
-            return view('employee.edit', compact('employee', 'employeesId', 'branches', 'departments', 'designations', 'documents','departmentData'));
+            return view('employee.edit', compact('employee', 'employeesId', 'branches', 'departments', 'designations', 'documents'));
         }
         else
         {

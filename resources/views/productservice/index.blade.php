@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{__('Assets/Inventory/Stock')}}
+    {{__('Assets/Store')}}
 @endsection
 @push('script-page')
 @endpush
@@ -38,6 +38,9 @@
                                     <option value="">--Select Filter--</option>
                                     <option value="">Asset Type</option>
                                     <option value="">Asset Code</option>
+                                    <option value="">Model Number</option>
+                                    <option value="">Location</option>
+                                    <option value="">Year</option>
                                 </select>
                                 {{-- <div class="btn-box">
                                     {{ Form::label('category', __('Filter'),['class'=>'form-label']) }}
@@ -89,35 +92,19 @@
                             <tbody>
                             @foreach ($productServices as $productService)
                                 <tr class="font-style">
-                                    <td>{{ $productService->name}}</td>
-                                    <td>{{ $productService->sku }}</td>
-                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
-                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
-                                    <td>
-                                        @if(!empty($productService->tax_id))
-                                            @php
-                                                $taxes=\App\Models\Utility::tax($productService->tax_id);
-                                            @endphp
-
-                                            @foreach($taxes as $tax)
-                                                <span class="">{{!empty($tax)?$tax->name:'' .' ('.$tax->rate .'%)'}}</span><br>
-
-                                            @endforeach
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                    <td>{{ !empty($productService->category)?$productService->category->name:'' }}</td>
-                                    <td>{{ !empty($productService->unit())?$productService->unit()->name:'' }}</td>
-                                    @if($productService->type == 'product')
-                                        <td>{{$productService->quantity}}</td>
-                                    @else
-                                        <td>-</td>
-                                    @endif
-                                    <td>{{ucwords($productService->type)}}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $productService->sn}}</td>
+                                    <td>{{ $productService->asset_identification_code }}</td>
+                                    <td>{{ $productService->asset_type }}</td>
+                                    <td>{{ $productService->asset_description }}</td>
+                                    <td>{{ $productService->location}}</td>
+                                    <td>{{ $productService->no_of_unit }}</td>
+                                    <td>{{ $productService->model_number }}</td>
+                                    <td>{{ $productService->year_of_manufacture }}</td>
+                                    <td>{{ $productService->serial_no_other }}</td>
+                                    <td>{{ $productService->date_of_purchase }}</td>
+                                    <td>{{ $productService->initial_cost }}</td>
+                                    <td>{{ $productService->measure_improvement_of_asset }}</td>
+                                    
 
                                     @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
                                         <td class="Action">

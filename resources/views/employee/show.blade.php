@@ -6,7 +6,7 @@
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
     <li class="breadcrumb-item"><a href="{{route('employee.index')}}">{{__('Employee')}}</a></li>
-    <li class="breadcrumb-item">{{$employeesId}}</li>
+    <li class="breadcrumb-item">{{$employee->employee_id}}</li>
 @endsection
 
 @section('action-btn')
@@ -85,7 +85,7 @@
                                     <div class="col-md-6">
                                         <div class="info text-sm">
                                             <strong class="font-bold">{{__('EmployeeId')}} : </strong>
-                                            <span>{{$employeesId}}</span>
+                                            <span>{{$employee->employee_id}}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -144,20 +144,20 @@
                                     <div class="col-md-6">
                                         <div class="info text-sm">
                                             <strong class="font-bold">{{__('Branch')}} : </strong>
-                                            <span>{{!empty($employee->branch)?$employee->branch->name:''}}</span>
+                                            <span>{{$employee->user->branch}}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="info text-sm font-style">
                                             <strong class="font-bold">{{__('Department')}} :</strong>
-                                            <span>{{!empty($employee->department)?$employee->department->name:''}}</span>
+                                            <span>{{ $employee->user->department->name }}</span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="info text-sm">
                                             <strong class="font-bold">{{__('Designation')}} :</strong>
-                                            <span>{{!empty($employee->designation)?$employee->designation->name:''}}</span>
+                                            <span>{{ $employee->user->designation }}</span>
                                         </div>
                                     </div>
 
