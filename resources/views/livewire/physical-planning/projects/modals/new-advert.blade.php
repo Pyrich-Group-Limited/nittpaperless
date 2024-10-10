@@ -36,11 +36,10 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="ad_description">Contract Description</label>
+                                <div class="mb-3" >
+                                    <label class="form-label" for="description">Blog Description</label>
                                     <div wire:ignore>
-                                        <textarea id="ad_description" wire:model.defer="ad_description" class="form-control tinymce-basic"
-                                            name="ad_description"></textarea>
+                                        <textarea id="message" wire:model="ad_description" class="form-control tinymce-basic" name="description"></textarea>
                                     </div>
                                     @error('ad_description')
                                         <p class="text-danger">{{ $message }}</p>
@@ -94,26 +93,10 @@
 
 </div>
 @push('script')
-    <script src="https://cdn.tiny.cloud/1/cvjfkxqlo8ylwqn3xgo15h2bd4xl6n7m6k5d0avjcq93c1i7/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
-
-    <script>
-        tinymce.init({
-            selector: '#ad_description',
-            setup: function(editor) {
-                editor.on('init change', function() {
-                    editor.save();
-                });
-                editor.on('change', function(e) {
-                    @this.set('ad_description', editor.getContent());
-                });
-            }
-        });
-
-
-        window.addEventListener('feedback', event => {
-            tinyMCE.activeEditor.setContent("");
-        });
-    </script>
+        <script>
+            window.addEventListener('feedback', event => {
+                tinyMCE.activeEditor.setContent("");
+            });
+        </script>
 @endpush
 <x-toast-notification />
