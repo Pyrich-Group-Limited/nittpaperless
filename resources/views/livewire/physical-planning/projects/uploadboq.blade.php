@@ -27,8 +27,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {{ Form::label('bduget', __('Estimated Budget'), ['class' => 'form-label']) }}
-                                    <input type="text" id="boq_file" wire:model.defer="budget" class="form-control"
-                                        placeholder="Estimated Budget" />
+                                    {{-- <input type="text" id="boq_file" wire:model.defer="budget" class="form-control"
+                                        placeholder="Estimated Budget"  /> --}}
+                                        <select name="" id="" wire:model.defer="budget" class="form-control">
+                                            @foreach ($projAccounts as $projAccount)
+                                                <option value="{{ $projAccount->project_sum }}">₦{{ $projAccount->project_sum }} ({{ $projAccount->projectCategory->category_name}})  </option>
+                                            @endforeach
+                                        </select>
                                     @error('boq_file')
                                         <small class="invalid-name" role="alert">
                                             <strong class="text-danger">{{ $message }}</strong>

@@ -7,6 +7,7 @@ use Livewire\Component;
 // use App\Models\Utility;
 use App\Models\ProjectAdvert;
 use App\Models\ProjectCategory;
+use App\Models\Ergp;
 use App\Models\ProjectCreation;
 use App\Models\ProjectUser;
 use App\Models\User;
@@ -41,6 +42,12 @@ class ProjectsComponent extends Component
     public $type_of_project;
     public $type_of_advert;
 
+    // public $selProject;
+    // public $budget;
+    // public $boq_file;
+    // public Collection $inputs;
+
+
     public function mount()
     {
 
@@ -57,8 +64,8 @@ class ProjectsComponent extends Component
             'project_name' => ['required'],
             'project_number' => ['required'],
             'description' => ['required'],
-            'start_date' => ['required'],
-            'end_date' => ['required'],
+            // 'start_date' => ['required'],
+            // 'end_date' => ['required'],
             'project_category_id' => ['required'],
             'selectedStaff' => 'required|array|min:1',
             'selectedStaff.*' => 'exists:users,id',
@@ -68,11 +75,9 @@ class ProjectsComponent extends Component
             'project_name' => $this->project_name,
             'projectId' => $this->project_number,
             'description' => $this->description,
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
+            'start_date' => null,
+            'end_date' => null,
             'project_category_id' => $this->project_category_id,
-            // 'supervising_staff_id' => $this->supervising_staff_id,
-            // 'status' => $this->status,
             'created_by' => Auth::user()->id
         ]);
 
@@ -94,15 +99,21 @@ class ProjectsComponent extends Component
         $this->dispatchBrowserEvent('success',["success" =>"Project Successfully Created"]);
     }
 
+    public function setProject(ProjectCreation $project){
+        $this->selProject = $project;
+        $this->emit('project', $project);
+    }
+
 
     public function render()
     {
+        $projAccounts = Ergp::all();
         $view = 'grid';
         $categories = ProjectCategory::all();
         $projects = ProjectCreation::all();
         $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'client')->get()->pluck('name', 'id');
         $clients->prepend('Select Client', '');
         $users   = User::where('type', '!=', 'client')->get();
-        return view('livewire.projects.projects-component',compact('view','projects','clients','users','categories'));
+        return view('livewire.projects.projects-component',compact('view','projects','clients','users','categories','projAccounts'));
     }
 }

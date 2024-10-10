@@ -46,11 +46,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     {{ Form::label('start_date', __('Start Date'), ['class' => 'form-label']) }}
-                                    {{-- {{ Form::date('start_date', null, ['class' => 'form-control']) }} --}}
                                     <input type="date" class="form-control" wire:model.defer="start_date">
                                     @error('start_date')
                                         <small class="invalid-type_of_leave" role="alert">
@@ -62,7 +61,6 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     {{ Form::label('end_date', __('End Date'), ['class' => 'form-label']) }}
-                                    {{-- {{ Form::date('end_date', null, ['class' => 'form-control']) }} --}}
                                     <input type="date" class="form-control" wire:model.defer="end_date">
                                     @error('end_date')
                                     <small class="invalid-type_of_leave" role="alert">
@@ -71,7 +69,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- <div class="row"> -->
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
@@ -94,8 +92,6 @@
                                 <div class="form-group">
                                     {{ Form::label('selectedStaff', __('Supervising Staff'),['class'=>'form-label']) }}<span class="text-danger">*</span>
                                     <select wire:model="selectedStaff" id="choices-multiple1" class="form-control sel_users select2 " multiple>
-                                    {{-- <select wire:model="supervising_staff_id" class="form-control"> --}}
-                                        {{-- <option value="">---Select---</option> --}}
                                         @if (is_array($users) || is_object($users))
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
