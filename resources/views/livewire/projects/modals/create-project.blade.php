@@ -37,7 +37,7 @@
                                 <div class="form-group">
                                     {{ Form::label('description', __('Project Description'), ['class' => 'form-label']) }}
                                     {{-- {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => '4', 'cols' => '50']) }} --}}
-                                    <textarea wire:model="description" id="" cols="50" rows="4" class="form-control"></textarea>
+                                    <textarea wire:model="description" id="description" cols="50" rows="4" class="form-control"></textarea>
                                     @error('description')
                                         <small class="invalid-type_of_leave" role="alert">
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -113,15 +113,43 @@
                     </div>
 
                     <div class="modal-footer">
-                        <input type="button" value="{{ __('Cancel') }}" class="btn  btn-light"
+                        <input type="button" id="closeNewProject" value="{{ __('Cancel') }}" class="btn  btn-light"
                             data-bs-dismiss="modal">
-                        <input type="button" id="button" wire:click="createProject" value="{{ __('Create') }}" class="btn  btn-primary">
+                        <input type="button"  wire:click="createProject" value="{{ __('Create') }}" class="btn  btn-primary">
                     </div>
                     {{Form::close()}}
                 </div>
             </div>
         </div>
+        <script>
+            window.addEventListener('success', event => {
+                document.getElementById("closeNewProject").click();
+            })
+        </script>
     </div>
+    @push('script')
+    <script src="https://cdn.tiny.cloud/1/cvjfkxqlo8ylwqn3xgo15h2bd4xl6n7m6k5d0avjcq93c1i7/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#rdescription',
+            setup: function(editor) {
+                editor.on('init change', function() {
+                    editor.save();
+                });
+                editor.on('change', function(e) {
+                    @this.set('rdescription', editor.getContent());
+                });
+            }
+        });
+
+
+        window.addEventListener('feedback', event => {
+            tinyMCE.activeEditor.setContent("");
+        });
+    </script>
+@endpush
 
     @push('script')
         <script>
@@ -136,16 +164,6 @@
                 document.getElementById("print").click();
             });
         </script>
-    @endpush
-
-    @push('script')
-        @if ($errors->any() || Session::has('error'))
-            <script>
-                $(document).ready(function() {
-                    document.getElementById("toggleOldProject").click();
-                });
-            </script>
-        @endif
     @endpush
 
 </div>

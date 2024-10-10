@@ -142,27 +142,27 @@
                                     </td>
                                     <td class="text-end">
                                         <span>
-                                            {{-- @can('edit project') --}}
+                                            @can('edit project')
                                                 <div class="action-btn bg-warning ms-2">
                                                     <a href="{{ route('project.details', $project->id) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="" data-ajax-popup="false" data-size="lg" data-bs-toggle="tooltip" title="{{__('Show Details')}}" data-title="{{__('Show Details')}}">
                                                         <i class="ti ti-eye text-white"></i>
                                                     </a>
                                                 </div>
-                                            {{-- @endcan --}}
-                                            {{-- @can('edit project') --}}
+                                            @endcan
+                                            {{-- @can('edit project')
                                                 <div class="action-btn bg-info ms-2">
                                                         <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#editProject" id="toggleOldProject"  wire:click="selProject({{$project->id}})"  data-bs-toggle="tooltip" title="{{__('Modify Project')}}"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
                                                             <i class="ti ti-pencil text-white"></i>
                                                         </a>
                                                     </div>
-                                            {{-- @endcan --}}
-                                            {{-- @can('edit project') --}}
+                                            @endcan
+                                            @can('edit project')
                                             <div class="action-btn bg-primary ms-2">
                                                 <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject" wire:click="selProject2({{$project}})"  data-bs-toggle="tooltip" title="{{__('Advertise Project')}}"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
                                                     <i class="ti ti-share text-white"></i>
                                                 </a>
                                             </div>
-                                    {{-- @endcan --}}
+                                            @endcan --}}
 
                                             @can('delete project')
                                                 <div class="action-btn bg-danger ms-2">
@@ -192,6 +192,5 @@
 
 <x-toast-notification />
 @include('livewire.projects.modals.create-project')
-@include('livewire.projects.modals.edit-project')
-@include('livewire.physical-planning.projects.modals.new-advert')
+
 </div>
