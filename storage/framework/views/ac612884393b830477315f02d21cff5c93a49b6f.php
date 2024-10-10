@@ -1,13 +1,14 @@
 <div id="createUser">
-    <div class="modal" id="newProject" tabindex="-1" role="dialog" wire:ignore.self>
+    <div class="modal" id="editProject" tabindex="-1" role="dialog" wire:ignore.self>
         <div class="modal-dialog modal-lg" role="document" wire:ignore.self>
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="applyLeave">Create Project</h5>
+                        <h5 class="modal-title" id="applyLeave">Modify Project</h5>
                     </div>
                     <div class="modal-body">
                         
+                        <?php if($project): ?>
                         <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
@@ -48,11 +49,11 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
-                                <div class="form-group">
+                                <div class="form-group" wire:ignore>
                                     <?php echo e(Form::label('description', __('Project Description'), ['class' => 'form-label'])); ?>
 
                                     
-                                    <textarea wire:model="description" id="description" cols="50" rows="4" class="form-control"></textarea>
+                                    <textarea wire:model="description" id="message" cols="50" rows="4" class="form-control"></textarea>
                                     <?php $__errorArgs = ['description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -139,8 +140,6 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <?php echo e(Form::label('selectedStaff', __('Supervising Staff'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
                                     <select wire:model="selectedStaff" id="choices-multiple1" class="form-control sel_users select2 " multiple>
-                                    
-                                        
                                         <?php if(is_array($users) || is_object($users)): ?>
                                         <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($user->id); ?>"><?php echo e($user->name); ?></option>
@@ -162,61 +161,50 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <input type="button" id="closeNewProject" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
-                            data-bs-dismiss="modal">
-                        <input type="button"  wire:click="createProject" value="<?php echo e(__('Create')); ?>" class="btn  btn-primary">
-                    </div>
-                    <?php echo e(Form::close()); ?>
+                        <div class="modal-footer">
+                            <input type="button" id="closeEditProjectModal" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
+                                data-bs-dismiss="modal">
+                            <input type="button" id="button" wire:click="updateProject" value="<?php echo e(__('Update')); ?>" class="btn  btn-primary">
+                        </div>
+                    <?php else: ?>
+                    <lable align="center">Loading...</lable>
+                    <?php endif; ?>
 
+                    </div>
+                    
                 </div>
             </div>
         </div>
-        <script>
-            window.addEventListener('success', event => {
-                document.getElementById("closeNewProject").click();
-            })
-        </script>
     </div>
-    <?php $__env->startPush('script'); ?>
-    <script src="https://cdn.tiny.cloud/1/cvjfkxqlo8ylwqn3xgo15h2bd4xl6n7m6k5d0avjcq93c1i7/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
-
     <script>
-        tinymce.init({
-            selector: '#rdescription',
-            setup: function(editor) {
-                editor.on('init change', function() {
-                    editor.save();
-                });
-                editor.on('change', function(e) {
-                    window.livewire.find('<?php echo e($_instance->id); ?>').set('rdescription', editor.getContent());
-                });
-            }
-        });
-
-
-        window.addEventListener('feedback', event => {
-            tinyMCE.activeEditor.setContent("");
-        });
+        window.addEventListener('success', event => {
+            document.getElementById("closeEditProjectModal").click();
+        })
     </script>
-<?php $__env->stopPush(); ?>
-
     <?php $__env->startPush('script'); ?>
         <script>
             $(document).ready(function(){
-                $('.sel_users').select2();
+                $('.sel_users');
             }).on('change', function(){
-                var data = $('.sel_users').select2("val");
-                window.livewire.find('<?php echo e($_instance->id); ?>').set('byproduct',data);
+                var data = $('.sel_users').val();
+                window.livewire.find('<?php echo e($_instance->id); ?>').set('selectedStaff',data);
             });
 
             window.addEventListener('print',event => {
                 document.getElementById("print").click();
             });
         </script>
+    <?php $__env->stopPush(); ?>
+
+    <?php $__env->startPush('script'); ?>
+        <?php if($errors->any() || Session::has('error')): ?>
+            <script>
+                $(document).ready(function() {
+                    document.getElementById("toggleOldProject").click();
+                });
+            </script>
+        <?php endif; ?>
     <?php $__env->stopPush(); ?>
 
 </div>
@@ -235,4 +223,4 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
-<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/projects/modals/create-project.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/projects/modals/edit-project.blade.php ENDPATH**/ ?>

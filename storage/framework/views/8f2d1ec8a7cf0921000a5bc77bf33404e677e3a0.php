@@ -302,7 +302,7 @@ if(typeof revslider_showDoubleJqueryError === "undefined") {function revslider_s
                                             <div class="events-details pad-30">
 
                                                 <div class="event-title mb-3">
-                                                    <h5><a href="#"><?php echo e($advert->project->project_title); ?></a></h5>
+                                                    <h5><a href="#"><?php echo e($advert->project->project_name); ?></a></h5>
                                                 </div>
                                                 <div class="event-excerpt mb-3">
                                                     <p><?php echo Str::limit(strip_tags($advert->description),70); ?></p>

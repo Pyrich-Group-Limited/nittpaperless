@@ -71,6 +71,7 @@
 
 {{-- @section('content') --}}
     <div class="col-xl-12">
+        
         <div class="card">
             <div class="card-body table-border-style">
                 <div class="table-responsive">

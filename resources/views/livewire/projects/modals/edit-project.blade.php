@@ -35,10 +35,10 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
-                                <div class="form-group">
+                                <div class="form-group" wire:ignore>
                                     {{ Form::label('description', __('Project Description'), ['class' => 'form-label']) }}
                                     {{-- {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => '4', 'cols' => '50']) }} --}}
-                                    <textarea wire:model="description" id="" cols="50" rows="4" class="form-control"></textarea>
+                                    <textarea wire:model="description" id="message" cols="50" rows="4" class="form-control"></textarea>
                                     @error('description')
                                         <small class="invalid-type_of_leave" role="alert">
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -133,7 +133,7 @@
     @push('script')
         <script>
             $(document).ready(function(){
-                $('.sel_users').select2();
+                $('.sel_users');
             }).on('change', function(){
                 var data = $('.sel_users').val();
                 @this.set('selectedStaff',data);
