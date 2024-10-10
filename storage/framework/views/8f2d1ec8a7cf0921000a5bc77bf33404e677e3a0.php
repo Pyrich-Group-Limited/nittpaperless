@@ -1,11 +1,19 @@
-<x-guest-layout>
+<?php if (isset($component)) { $__componentOriginalc3251b308c33b100480ddc8862d4f9c79f6df015 = $component; } ?>
+<?php $component = App\View\Components\GuestLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('guest-layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\GuestLayout::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
 
-    @section('home') active @endsection
+    <?php $__env->startSection('home'); ?> active <?php $__env->stopSection(); ?>
     <rs-module-wrap id="rev_slider_2_1_wrapper" data-alias="Zegen-Home-2" data-source="gallery" style="visibility:hidden;background:#000000;padding:0;margin:0px auto;margin-top:0;margin-bottom:0;">
         <rs-module id="rev_slider_2_1" style="" data-version="6.6.5">
             <rs-slides style="overflow: hidden; position: absolute;">
-                <rs-slide style="position: absolute;" data-key="rs-5" data-title="Web Show" data-thumb="{{ asset('/guest/rs-plugin/assets/z2-slider-1-100x100.jpg') }}" data-anim="adpr:false;f:random;" data-in="o:0;r:ran(-45|45);sx:0;sy:0;row:5;col:5;" data-out="a:false;">
-                    <img src="{{ asset('guest/rs-plugin/assets/dummy.png') }}" alt="Non Profit Wordpress Theme - Slider" title="z2-slider-1" width="1920" height="1080" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="{{ asset('/guest/rs-plugin/assets/z2-slider-1.jpg') }}" data-parallax="5" data-no-retina>
+                <rs-slide style="position: absolute;" data-key="rs-5" data-title="Web Show" data-thumb="<?php echo e(asset('/guest/rs-plugin/assets/z2-slider-1-100x100.jpg')); ?>" data-anim="adpr:false;f:random;" data-in="o:0;r:ran(-45|45);sx:0;sy:0;row:5;col:5;" data-out="a:false;">
+                    <img src="<?php echo e(asset('guest/rs-plugin/assets/dummy.png')); ?>" alt="Non Profit Wordpress Theme - Slider" title="z2-slider-1" width="1920" height="1080" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="<?php echo e(asset('/guest/rs-plugin/assets/z2-slider-1.jpg')); ?>" data-parallax="5" data-no-retina>
 <!--
                     --><h1
                         id="slider-2-slide-5-layer-2"
@@ -84,8 +92,8 @@
                     >Learn more
                     </a><!--
 -->						</rs-slide>
-                <rs-slide style="position: absolute;" data-key="rs-7" data-title="Web Show" data-thumb="{{ asset('/guest/rs-plugin/assets/z2-slider-2-100x100.jpg') }}" data-anim="adpr:false;f:random;" data-in="o:0;r:ran(-45|45);sx:0;sy:0;row:5;col:5;" data-out="a:false;">
-                    <img src="{{ asset('guest/rs-plugin/assets/dummy.png') }}" alt="Non Profit Wordpress Theme - Slider" title="z2-slider-2" width="1920" height="1080" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="{{ asset('/guest/rs-plugin/assets/z2-slider-2.jpg') }}" data-parallax="5" data-no-retina>
+                <rs-slide style="position: absolute;" data-key="rs-7" data-title="Web Show" data-thumb="<?php echo e(asset('/guest/rs-plugin/assets/z2-slider-2-100x100.jpg')); ?>" data-anim="adpr:false;f:random;" data-in="o:0;r:ran(-45|45);sx:0;sy:0;row:5;col:5;" data-out="a:false;">
+                    <img src="<?php echo e(asset('guest/rs-plugin/assets/dummy.png')); ?>" alt="Non Profit Wordpress Theme - Slider" title="z2-slider-2" width="1920" height="1080" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="<?php echo e(asset('/guest/rs-plugin/assets/z2-slider-2.jpg')); ?>" data-parallax="5" data-no-retina>
 <!--
                     --><h1
                         id="slider-2-slide-7-layer-2"
@@ -164,8 +172,8 @@
                     >Learn More
                     </a><!--
 -->						</rs-slide>
-                <rs-slide style="position: absolute;" data-key="rs-8" data-title="Web Show" data-thumb="{{ asset('/guest/rs-plugin/assets/z2-slider-3-100x100.jpg') }}" data-anim="adpr:false;f:random;" data-in="o:0;r:ran(-45|45);sx:0;sy:0;row:5;col:5;" data-out="a:false;">
-                    <img src="{{ asset('guest/rs-plugin/assets/dummy.png') }}" alt="Non Profit Wordpress Theme - Slider" title="z2-slider-3" width="1920" height="1080" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="{{ asset('/guest/rs-plugin/assets/z2-slider-3.jpg') }}" data-parallax="5" data-no-retina>
+                <rs-slide style="position: absolute;" data-key="rs-8" data-title="Web Show" data-thumb="<?php echo e(asset('/guest/rs-plugin/assets/z2-slider-3-100x100.jpg')); ?>" data-anim="adpr:false;f:random;" data-in="o:0;r:ran(-45|45);sx:0;sy:0;row:5;col:5;" data-out="a:false;">
+                    <img src="<?php echo e(asset('guest/rs-plugin/assets/dummy.png')); ?>" alt="Non Profit Wordpress Theme - Slider" title="z2-slider-3" width="1920" height="1080" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="<?php echo e(asset('/guest/rs-plugin/assets/z2-slider-3.jpg')); ?>" data-parallax="5" data-no-retina>
 <!--
                     --><h1
                         id="slider-2-slide-8-layer-2"
@@ -228,7 +236,7 @@
                     --><a
                         id="slider-2-slide-8-layer-19"
                         class="rs-layer rev-btn"
-                        href="{{ route('register')}}" target="_self"
+                        href="<?php echo e(route('register')); ?>" target="_self"
                         data-type="button"
                         data-rsp_ch="on"
                         data-xy="x:c;xo:0,0,0,5px;yo:526px,404px,361px,315px;"
@@ -275,7 +283,7 @@ if(typeof revslider_showDoubleJqueryError === "undefined") {function revslider_s
                                         <!-- about button -->
                                         <div class="text-center">
                                             <div class="about-img mb-4 mb-md-0">
-                                                <img src="{{ asset('guest/images/about-us/about-us-img.png') }}" width="60%" class="" alt="about-img">
+                                                <img src="<?php echo e(asset('guest/images/about-us/about-us-img.png')); ?>" width="60%" class="" alt="about-img">
                                             </div>
                                             <!-- .col -->
                                         </div>
@@ -310,65 +318,14 @@ if(typeof revslider_showDoubleJqueryError === "undefined") {function revslider_s
             <!-- About Section End -->
             <!-- Day Counter Section -->
             
-            {{-- <section id="events-section" class="events-section pad-bottom-70">
-                <!-- Screan Reader Text -->
-                <h2 class="screen-reader-text">What we do</h2>
-                <div class="container">
-                    <!-- Row -->
-                    <div class="row">
-                        <!-- Col -->
-                        <div class="col-md-12">
-                            <!--events Main wrap-->
-                            <div class="events-main-wrapper events-grid events-style-4">
-                                <div class="row">
-                                    <div class="offset-md-2 col-md-8">
-                                        <div class="title-wrap text-center">
-                                            <div class="section-title">
-                                                <span class="sub-title theme-color text-uppercase">Services</span>
-                                                <h2 class="section-title margin-top-5">What we do</h2>
-                                                <span class="border-bottom center"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Col-md -->
-                                    @foreach($services as $service)
-                                    <div class="col-lg-4 col-md-6">
-                                        <!--events Inner-->
-                                        <div class="events-inner margin-bottom-30">
-                                            <!--events Thumb-->
-                                            <div class="events-thumb mb-0 relative">
-                                                <img src="{{ asset('guest/images/uploads/'.$service->service_image)}}" class="img-fluid thumb w-100" width="768" height="456" alt="{{ $service->title }}">
-                                            </div>
-                                            <!--events details-->
-                                            <div class="events-details pad-30">
-
-                                                <div class="event-title mb-3">
-                                                    <h5><a href="{{ route('services.show',[str_replace("/","",$service->service_title),$service->id])}}">{{ $service->service_title }}</a></h5>
-                                                </div>
-                                                <div class="event-excerpt mb-3">
-                                                    <p>{!! Str::limit(strip_tags($service->service_description),70) !!}</p>
-                                                </div>
-                                                <div class="read-more">
-                                                    <a href="{{ route('services.show',[str_replace("/","",$service->service_title),$service->id])}}">Learn more</a>
-                                                </div>
-                                            </div>
-                                            <!--events details-->
-                                        </div>
-                                        <!--events Inner Ends-->
-                                    </div>
-                                    <!--Col-md Ends-->
-                                    @endforeach
-                                </div>
-                                <!-- events Row -->
-                            </div>
-                            <!-- events Main wrap Ends -->
-                        </div>
-                        <!-- Col -->
-                    </div>
-                    <!-- Row -->
-                </div>
-            </section> --}}
+            
 
         </div>
     </div>
-</x-guest-layout>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc3251b308c33b100480ddc8862d4f9c79f6df015)): ?>
+<?php $component = $__componentOriginalc3251b308c33b100480ddc8862d4f9c79f6df015; ?>
+<?php unset($__componentOriginalc3251b308c33b100480ddc8862d4f9c79f6df015); ?>
+<?php endif; ?>
+<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/guest/contract-advert.blade.php ENDPATH**/ ?>

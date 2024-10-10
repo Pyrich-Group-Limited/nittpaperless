@@ -939,4 +939,4 @@
         </div>
     </div>
 </nav>
-<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/partials/admin/menu.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/partials/admin/menu.blade.php ENDPATH**/ ?>

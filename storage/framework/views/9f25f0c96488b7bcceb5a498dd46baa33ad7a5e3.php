@@ -10,7 +10,7 @@
                         </ul>
                         <ul class="nav mobile-header-items pull-left">
                             <li>
-                                <a href="#" class="img-before"><img width="60%" src="{{ asset('logo-dark.png')}}" width="70" class="img-fluid" width="149" height="45" alt="Logo"></a>
+                                <a href="#" class="img-before"><img width="60%" src="<?php echo e(asset('logo-dark.png')); ?>" width="70" class="img-fluid" width="149" height="45" alt="Logo"></a>
                             </li>
                         </ul>
 
@@ -36,8 +36,8 @@
                             <!--Overlay Menu Switch-->
                             <ul class="nav navbar-items pull-left">
                                 <li class="list-item">
-                                    <a href="#" class="logo-general"><img src="{{ asset('logo-dark.png')}}" class="img-fluid" width="70" alt="Marketwell Solutions" /></a>
-                                    <a href="#" class="logo-sticky"><img src="{{ asset('logo-dark.png')}}" class="img-fluid" width="70" alt="Marketwell Solutions" /></a>
+                                    <a href="#" class="logo-general"><img src="<?php echo e(asset('logo-dark.png')); ?>" class="img-fluid" width="70" alt="Marketwell Solutions" /></a>
+                                    <a href="#" class="logo-sticky"><img src="<?php echo e(asset('logo-dark.png')); ?>" class="img-fluid" width="70" alt="Marketwell Solutions" /></a>
                                 </li>
                             </ul>
                             <!-- Menu -->
@@ -54,9 +54,9 @@
                                 <!--List Item-->
                                     <li class="list-item">
                                         <ul class="nav navbar-main menu-dark">
-                                            <li class="@yield('home')"><a href="#">Home</a></li>
-                                            <li class="@yield('about')"><a href="#">Contracts Adverts</a></li>
-                                            <li class="@yield('login')"><a href="#">Login</a></li>
+                                            <li class="<?php echo $__env->yieldContent('home'); ?>"><a href="#">Home</a></li>
+                                            <li class="<?php echo $__env->yieldContent('about'); ?>"><a href="#">Contracts Adverts</a></li>
+                                            <li class="<?php echo $__env->yieldContent('login'); ?>"><a href="#">Login</a></li>
                                         </ul>
                                     </li>
                                     <!--List Item End-->
@@ -76,3 +76,4 @@
         <!--sticky-outer-->
     </div>
 </header>
+<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/includes/page-navbar.blade.php ENDPATH**/ ?>
