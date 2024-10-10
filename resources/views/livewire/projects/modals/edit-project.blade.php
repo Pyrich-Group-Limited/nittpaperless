@@ -8,13 +8,24 @@
                     </div>
                     <div class="modal-body">
                         {{-- {{ Form::open(['url' => 'projects', 'method' => 'post','enctype' => 'multipart/form-data']) }} --}}
-                        @if($selProject)
+                        @if($project)
                         <div class="row">
-                            <div class="col-sm-12 col-md-12">
+                            <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     {{ Form::label('project_name', __('Project Name'), ['class' => 'form-label']) }}<span class="text-danger">*</span>
                                     <input type="text" wire:model="project_name" class="form-control">
                                     @error('project_name')
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    {{ Form::label('project_number', __('Project Number'), ['class' => 'form-label']) }}<span class="text-danger">*</span>
+                                    <input type="text" wire:model="project_number" class="form-control">
+                                    @error('project_number')
                                         <small class="invalid-type_of_leave" role="alert">
                                             <strong class="text-danger">{{ $message }}</strong>
                                     </small>
@@ -100,9 +111,9 @@
                         </div>
 
                         <div class="modal-footer">
-                            <input type="button" value="{{ __('Cancel') }}" class="btn  btn-light"
+                            <input type="button" id="closeEditProjectModal" value="{{ __('Cancel') }}" class="btn  btn-light"
                                 data-bs-dismiss="modal">
-                            <input type="button" id="button" wire:click="updateProject" value="{{ __('Create') }}" class="btn  btn-primary">
+                            <input type="button" id="button" wire:click="updateProject" value="{{ __('Update') }}" class="btn  btn-primary">
                         </div>
                     @else
                     <lable align="center">Loading...</lable>
@@ -114,14 +125,18 @@
             </div>
         </div>
     </div>
-
+    <script>
+        window.addEventListener('success', event => {
+            document.getElementById("closeEditProjectModal").click();
+        })
+    </script>
     @push('script')
         <script>
             $(document).ready(function(){
                 $('.sel_users').select2();
             }).on('change', function(){
-                var data = $('.sel_users').select2("val");
-                @this.set('byproduct',data);
+                var data = $('.sel_users').val();
+                @this.set('selectedStaff',data);
             });
 
             window.addEventListener('print',event => {

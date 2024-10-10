@@ -8,13 +8,31 @@
                     </div>
                     <div class="modal-body">
                         
-                        <?php if($selProject): ?>
+                        <?php if($project): ?>
                         <div class="row">
-                            <div class="col-sm-12 col-md-12">
+                            <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <?php echo e(Form::label('project_name', __('Project Name'), ['class' => 'form-label'])); ?><span class="text-danger">*</span>
                                     <input type="text" wire:model="project_name" class="form-control">
                                     <?php $__errorArgs = ['project_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger"><?php echo e($message); ?></strong>
+                                    </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <?php echo e(Form::label('project_number', __('Project Number'), ['class' => 'form-label'])); ?><span class="text-danger">*</span>
+                                    <input type="text" wire:model="project_number" class="form-control">
+                                    <?php $__errorArgs = ['project_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -145,9 +163,9 @@ unset($__errorArgs, $__bag); ?>
                         </div>
 
                         <div class="modal-footer">
-                            <input type="button" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
+                            <input type="button" id="closeEditProjectModal" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
                                 data-bs-dismiss="modal">
-                            <input type="button" id="button" wire:click="updateProject" value="<?php echo e(__('Create')); ?>" class="btn  btn-primary">
+                            <input type="button" id="button" wire:click="updateProject" value="<?php echo e(__('Update')); ?>" class="btn  btn-primary">
                         </div>
                     <?php else: ?>
                     <lable align="center">Loading...</lable>
@@ -159,14 +177,18 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </div>
     </div>
-
+    <script>
+        window.addEventListener('success', event => {
+            document.getElementById("closeEditProjectModal").click();
+        })
+    </script>
     <?php $__env->startPush('script'); ?>
         <script>
             $(document).ready(function(){
                 $('.sel_users').select2();
             }).on('change', function(){
-                var data = $('.sel_users').select2("val");
-                window.livewire.find('<?php echo e($_instance->id); ?>').set('byproduct',data);
+                var data = $('.sel_users').val();
+                window.livewire.find('<?php echo e($_instance->id); ?>').set('selectedStaff',data);
             });
 
             window.addEventListener('print',event => {

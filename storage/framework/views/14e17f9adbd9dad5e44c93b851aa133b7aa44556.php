@@ -52,7 +52,7 @@ unset($__errorArgs, $__bag); ?>
                                     <?php echo e(Form::label('description', __('Project Description'), ['class' => 'form-label'])); ?>
 
                                     
-                                    <textarea wire:model="description" id="" cols="50" rows="4" class="form-control"></textarea>
+                                    <textarea wire:model="description" id="description" cols="50" rows="4" class="form-control"></textarea>
                                     <?php $__errorArgs = ['description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -165,16 +165,44 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="modal-footer">
-                        <input type="button" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
+                        <input type="button" id="closeNewProject" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
                             data-bs-dismiss="modal">
-                        <input type="button" id="button" wire:click="createProject" value="<?php echo e(__('Create')); ?>" class="btn  btn-primary">
+                        <input type="button"  wire:click="createProject" value="<?php echo e(__('Create')); ?>" class="btn  btn-primary">
                     </div>
                     <?php echo e(Form::close()); ?>
 
                 </div>
             </div>
         </div>
+        <script>
+            window.addEventListener('success', event => {
+                document.getElementById("closeNewProject").click();
+            })
+        </script>
     </div>
+    <?php $__env->startPush('script'); ?>
+    <script src="https://cdn.tiny.cloud/1/cvjfkxqlo8ylwqn3xgo15h2bd4xl6n7m6k5d0avjcq93c1i7/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#rdescription',
+            setup: function(editor) {
+                editor.on('init change', function() {
+                    editor.save();
+                });
+                editor.on('change', function(e) {
+                    window.livewire.find('<?php echo e($_instance->id); ?>').set('rdescription', editor.getContent());
+                });
+            }
+        });
+
+
+        window.addEventListener('feedback', event => {
+            tinyMCE.activeEditor.setContent("");
+        });
+    </script>
+<?php $__env->stopPush(); ?>
 
     <?php $__env->startPush('script'); ?>
         <script>
@@ -189,16 +217,6 @@ unset($__errorArgs, $__bag); ?>
                 document.getElementById("print").click();
             });
         </script>
-    <?php $__env->stopPush(); ?>
-
-    <?php $__env->startPush('script'); ?>
-        <?php if($errors->any() || Session::has('error')): ?>
-            <script>
-                $(document).ready(function() {
-                    document.getElementById("toggleOldProject").click();
-                });
-            </script>
-        <?php endif; ?>
     <?php $__env->stopPush(); ?>
 
 </div>

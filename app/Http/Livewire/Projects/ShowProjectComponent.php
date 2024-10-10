@@ -9,13 +9,47 @@ use App\Models\ProjectTask;
 use App\Models\User;
 use Carbon\Carbon;
 use Auth;
+use App\Models\ProjectAdvert;
+use App\Models\ProjectCategory;
+use App\Models\ProjectUser;
+use Livewire\WithFileUploads;
 
 class ShowProjectComponent extends Component
 {
+    use WithFileUploads;
+
+    // public $project_id;
+    public $project_name;
+    public $project_number;
+    public $description;
+    public $start_date;
+    public $end_date;
+    public $project_category_id;
+    public $supervising_staff_id;
+    public $selectedStaff = [];
+    public $status;
+
     public $project_id;
+    public $selProject;
+    public $setActionId;
+
+    public $selProject2;
+    public $ad_start_date;
+    public $ad_end_date;
+    public $ad_description;
+    public $type_of_project;
+    public $type_of_advert;
 
     public function mount($id){
         $this->project_id = $id;
+        $this->selProject = ProjectCreation::find($id);
+        $this->project_name = $this->selProject->project_name;
+        $this->project_number = $this->selProject->projectId;
+        $this->description = $this->selProject->description;
+        $this->start_date = $this->selProject->start_date;
+        $this->end_date = $this->selProject->end_date;
+        $this->project_category_id = $this->selProject->project_category_id;
+        $this->selectedStaff = $this->selProject->users->pluck('id')->toArray();
     }
 
     public function getProjectDetails($project){
@@ -147,10 +181,99 @@ class ShowProjectComponent extends Component
             }
     }
 
+
+    public function setActionId($id){
+        $this->setActionId = $id;
+    }
+
+    public function selProject($id){
+        $this->selProject = ProjectCreation::find($id);
+        // $this->selectedStaff = $this->selProject->users()->pluck('id')->toArray();
+
+    }
+
+
+
+
+    public function updateProject(){
+        $this->validate([
+            'project_name' => ['required'],
+            'project_number' => ['required'],
+            'description' => ['required'],
+            'start_date' => ['required'],
+            'end_date' => ['required'],
+            'project_category_id' => ['required'],
+            'selectedStaff' => 'required|array|min:1',
+            'selectedStaff.*' => 'exists:users,id',
+        ]);
+
+        // $project = ProjectCreation::find($this->project_id);
+        $this->selProject->update([
+            'project_name' => $this->project_name,
+            'projectId' => $this->project_number,
+            'projectId' => $this->project_number,
+            'description' => $this->description,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'project_category_id' => $this->project_category_id,
+            'created_by' => Auth::user()->id
+        ]);
+
+        ProjectUser::where('project_id',$this->selProject->id)->delete();
+
+        $this->selProject->users()->attach($this->selectedStaff);
+
+        $this->dispatchBrowserEvent('success',["success" =>"Project Successfully Updated"]);
+    }
+
+
+    public function selProject2(ProjectCreation $project){
+        $this->selProject = $project;
+    }
+
+    Public function advertiseProject(){
+        $this->validate([
+            'ad_start_date' => ['required','string'],
+            'ad_end_date' => ['required','string'],
+            'ad_description' => ['required','string'],
+            'type_of_advert' => ['required','string'],
+        ]);
+
+        $project = ProjectAdvert::find($this->selProject->id);
+
+        $projectDuration = round(strtotime($this->ad_end_date) - strtotime($this->ad_start_date))/ 86400;
+
+        if($project!=null){
+            $this->dispatchBrowserEvent('error',['error' => 'Sorry this project has already been advertised for applications']);
+        }elseif(strtotime($this->ad_end_date)<strtotime(date('Y-m-d'))){
+            $this->dispatchBrowserEvent('error',['error' => 'Sorry your start date can not be later than today']);
+        }elseif($projectDuration<=0){
+            $this->dispatchBrowserEvent('error',['error' => 'Sorry your start date can not be later than start']);
+        }else{
+            ProjectAdvert::create([
+                'project_id' => $this->selProject->id,
+                'start_date' => $this->ad_start_date,
+                'end_date' => $this->ad_end_date,
+                'descripton' => $this->ad_description,
+                'advert_type' => $this->type_of_advert,
+            ]);
+
+            // $this->reset();
+            $this->dispatchBrowserEvent('success',['success' => 'Project successfully Published']);
+        }
+    }
+    public function setProject(ProjectCreation $project){
+        $this->selProject2 = $project;
+        $this->emit('project', $project);
+    }
+
     public function render()
     {
         $project = ProjectCreation::find($this->project_id);
+        // dd($project->project_name);
         $project_data =  $this->getProjectDetails($project);
-        return view('livewire.projects.show-project-component',compact('project','project_data'));
+        $categories = ProjectCategory::all();
+        $users = User::all();
+        return view('livewire.projects.show-project-component',compact('project','project_data','categories','users'));
     }
 }

@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use App\Models\ActivityLog;
 use App\Models\ProjectTask;
 use App\Models\ProjectUser;
+use App\Models\ProjectCreation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -499,7 +500,7 @@ class ProjectController extends Controller
 
     public function destroyProjectUser($id, $user_id)
     {
-        $project = Project::find($id);
+        $project = ProjectCreation::find($id);
             if($project->created_by == \Auth::user()->ownerId())
             {
                 ProjectUser::where('project_id', '=', $project->id)->where('user_id', '=', $user_id)->delete();
