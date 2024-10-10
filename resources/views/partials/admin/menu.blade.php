@@ -164,7 +164,7 @@
                                         </ul>
                                     </li>
                                     @endif
-                                    @if( Gate::check('manage job') || Gate::check('create job') || Gate::check('manage job application') || Gate::check('manage custom question') || Gate::check('show interview schedule') || Gate::check('show career'))
+                                    @if( Gate::check('manage job') || Gate::check('create job') || Gate::check('manage job application') || Gate::check('manage custom question') || Gate::check('show interview schedule') || Gate::check('show career') )
                                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'job' || Request::segment(1) == 'job-application' || Request::segment(1) == 'candidates-job-applications' || Request::segment(1) == 'job-onboard' || Request::segment(1) == 'custom-question' || Request::segment(1) == 'interview-schedule' || Request::segment(1) == 'career') ? 'active dash-trigger' : ''}}    ">
                                         <a class="dash-link" href="#">{{__('Recruitments & Onboarding')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu">
@@ -189,15 +189,56 @@
                                                 </li>
                                             @endcan
                                             @can('manage custom question')
-                                                <li class="dash-item  {{ (request()->is('custom-question*') ? 'active' : '')}}">
+                                            <!----    <li class="dash-item  {{ (request()->is('custom-question*') ? 'active' : '')}}">
                                                     <a class="dash-link" href="{{route('custom-question.index')}}">{{__('Custom Question')}}</a>
-                                                </li>
+                                                </li> ---->
                                             @endcan
                                             @can('show interview schedule')
                                                 <li class="dash-item {{ (request()->is('interview-schedule*') ? 'active' : '')}}">
                                                     <a class="dash-link" href="{{route('interview-schedule.index')}}">{{__('Interview Schedule')}}</a>
                                                 </li>
                                             @endcan
+
+
+
+                                            @can('manage job')
+                                                <li class="dash-item {{ (Request::route()->getName() == 'jobber.index' || Request::route()->getName() == 'jobber.create' || Request::route()->getName() == 'jobber.edit' || Request::route()->getName() == 'jobber.show'   ? 'active' : '')}}">
+                                                    <a class="dash-link" href="{{route('jobber.index')}}">{{__('Contracts')}}</a>
+                                                </li>
+                                            @endcan
+                                            @can('create job')
+                                                <li class="dash-item {{ ( Request::route()->getName() == 'jobber.create' ? 'active' : '')}} ">
+                                                    <a class="dash-link" href="{{route('jobber.create')}}">{{__('Contracts Posting')}}</a>
+                                                </li>
+                                            @endcan
+                                            @can('manage job application')
+                                                <li class="dash-item {{ (request()->is('jobber-application*') ? 'active' : '')}}">
+                                                    <a class="dash-link" href="{{route('jobber-application.index')}}">{{__('Contracts Application')}}</a>
+                                                </li>
+                                            @endcan
+                                            @can('manage job application')
+                                                <li class="dash-item {{ (request()->is('jobber-onboard*') ? 'active' : '')}}">
+                                                    <a class="dash-link" href="{{route('job.on.board')}}">{{__('Contract Onboarding')}}</a>
+                                                </li>
+                                            @endcan
+                                            @can('manage custom question')
+                                            <!----    <li class="dash-item  {{ (request()->is('custom-question*') ? 'active' : '')}}">
+                                                    <a class="dash-link" href="{{route('custom-question.index')}}">{{__('Custom Question')}}</a>
+                                                </li> ---->
+                                            @endcan
+                                            @can('show interview schedule')
+                                                <li class="dash-item {{ (request()->is('interview-schedule*') ? 'active' : '')}}">
+                                                    <a class="dash-link" href="{{route('interview-schedule.index')}}">{{__('Contract Meeting Schedule')}}</a>
+                                                </li>
+                                            @endcan
+
+
+
+
+
+
+
+
                                             {{-- @can('show career')
                                                 <li class="dash-item {{ (request()->is('career*') ? 'active' : '')}}">
                                                     <a class="dash-link" href="{{route('career',[\Auth::user()->creatorId(),$lang])}}">{{__('Career')}}</a></li>
@@ -622,23 +663,23 @@
                             <ul class="dash-submenu">
                                 @if(Gate::check('manage product & service'))
                                     <li class="dash-item {{ (Request::segment(1) == 'productservice')?'active':''}}">
-                                        <a href="{{ route('productservice.index') }}" class="dash-link">{{__('Assets/Inventory/Stocks')}}
+                                        <a href="{{ route('productservice.index') }}" class="dash-link">{{__('Assets/Store')}}
                                         </a>
                                     </li>
                                 @endif
                                 @can('manage warehouse')
-                                    <li class="dash-item {{ (Request::route()->getName() == 'warehouse.index' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
-                                        <a class="dash-link" href="{{ route('warehouse.index') }}">{{__('Location')}}</a>
-                                    </li>
+                                 <!---   <li class="dash-item {{ (Request::route()->getName() == 'goodsReceived.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
+                                        <a class="dash-link" href="{{ route('goodsReceived.list') }}">{{__('Goods Recieved Notes')}}</a>
+                                    </li>   --->
                                 @endcan
                             @can('manage pos')
-                                <li class="dash-item {{ (Request::route()->getName() == 'pos.index' ) ? ' active' : '' }}">
-                                    <a class="dash-link" href="{{ route('pos.index') }}">{{__(' Add Assets')}}</a>
-                                </li>
+                          <!---      <li class="dash-item {{ (Request::route()->getName() == 'pos.index' ) ? ' active' : '' }}">
+                                    <a class="dash-link" href="{{  ('pos.index') }}">{{__(' Add Assets')}}</a>
+                                </li>   --->
 
-                                <li class="dash-item {{ (Request::route()->getName() == 'pos.report' || Request::route()->getName() == 'pos.show') ? ' active' : '' }}">
+                             <!---   <li class="dash-item {{ (Request::route()->getName() == 'pos.report' || Request::route()->getName() == 'pos.show') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('pos.report') }}">{{__('Stock/Inventory')}}</a>
-                                </li>
+                                </li> ---->
                             @endcan
                                 @can('manage warehouse')
                                     <li class="dash-item {{ (Request::route()->getName() == 'warehouse-transfer.index' || Request::route()->getName() == 'warehouse-transfer.show') ? ' active' : '' }}">
@@ -783,11 +824,22 @@
                                     <i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="dash-submenu">
+                            <li class="dash-item {{ (Request::route()->getName() == 'store.dashboard' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('store.dashboard') }}">{{__('Supply')}}</a>
+                            </li> 
                             @can('manage purchase')
-                                <li class="dash-item {{ (Request::route()->getName() == 'purchase.index' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                    <a class="dash-link" href="{{ route('purchase.index') }}">{{__('Purchase')}}</a>
+                                <li class="dash-item {{ (Request::route()->getName() == 'req.list' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                    <a class="dash-link" href="{{ route('req.list') }}">{{__('Purchase requisition')}}</a>
                                 </li>
                             @endcan
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'goodsReceived.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('goodsReceived.list') }}">{{__('Goods Recieved Notes')}}</a>
+                            </li> 
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'storeVoucher.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('storeVoucher.list') }}">{{__('Store Issue Voucher')}}</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'procurement')?'active':''}}">

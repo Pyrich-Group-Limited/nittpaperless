@@ -844,11 +844,12 @@ class User extends Authenticatable
         return $designation;
     }
 
-    public function getEmployee($employee)
+    public function getEmployee($creatorId)
     {
-        $employee = Employee::where('id', '=', $employee)->first();
-
-        return $employee;
+        // Count the number of employees created by the user
+        $employeeCount = Employee::where('created_by', '=', $creatorId)->count();
+    
+        return $employeeCount;
     }
 
     public function getLeaveType($leave_type)
@@ -929,9 +930,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\UserToDo', 'user_id', 'id');
     }
 
+   // public function employee()
+   // {
+      //  return $this->hasOne(Employee::class);
+        //return $this->hasOne('App\Models\Employee', 'user_id', 'id');
+   // }
+
     public function employee()
     {
-        return $this->hasOne('App\Models\Employee', 'user_id', 'id');
+        return $this->hasOne(Employee::class, 'user_id');
     }
 
     public function total_lead()

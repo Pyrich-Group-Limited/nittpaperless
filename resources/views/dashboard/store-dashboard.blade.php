@@ -27,7 +27,7 @@
                                                             </div>
                                                             <div class="ms-3">
                                                                 {{-- <small class="text-muted">{{__('Total')}}</small> --}}
-                                                                <h6 class="m-0">{{__('Purchase Requisition')}}</h6>
+                                                                <h6 class="m-0">{{__('Approved Supply')}}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -50,7 +50,7 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0">{{__('Store Requisition Note')}}</h6>
+                                                                <h6 class="m-0">{{__('Supply Delivered')}}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6">
+                         <!----       <div class="col-lg-3 col-md-6">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row align-items-center justify-content-between">
@@ -107,7 +107,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>   ----->
                             </div>
                         </div>
 

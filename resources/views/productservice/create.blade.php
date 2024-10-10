@@ -16,18 +16,72 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                {{ Form::label('name', __('Name'),['class'=>'form-label']) }}<span class="text-danger">*</span>
-                {{ Form::text('name', '', array('class' => 'form-control','required'=>'required')) }}
+                {{ Form::label('sn', __('SN'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('sn', '', array('class' => 'form-control','required'=>'required')) }}
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                {{ Form::label('sku', __('SKU'),['class'=>'form-label']) }}<span class="text-danger">*</span>
-                {{ Form::text('sku', '', array('class' => 'form-control','required'=>'required')) }}
+                {{ Form::label('asset_identification_code', __('Asset Identification Code'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('asset_identification_code', '', array('class' => 'form-control','required'=>'required')) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ Form::label('asset_type', __('Asset Type'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('asset_type', '', array('class' => 'form-control','required'=>'required')) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ Form::label('location', __('Location'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('location', '', array('class' => 'form-control','required'=>'required')) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ Form::label('no_of_unit', __('No of Unit'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('no_of_unit', '', array('class' => 'form-control','required'=>'required')) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ Form::label('model_number', __('Model Number'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('model_number', '', array('class' => 'form-control','required'=>'required')) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ Form::label('year_of_manufacture', __('Year Of Manufacture'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('year_of_manufacture', '', array('class' => 'form-control','required'=>'required')) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ Form::label('serial_no_other', __('Serial No/Other'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('serial_no_other', '', array('class' => 'form-control','required'=>'required')) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ Form::label('date_of_purchase', __('Date Of Purchase'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('date_of_purchase', '', array('class' => 'form-control','required'=>'required')) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ Form::label('initial_cost', __('Initial Cost'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('initial_cost', '', array('class' => 'form-control','required'=>'required')) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ Form::label('measure_improvement_of_asset', __('Measure Improvement Of Asset'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {{ Form::text('measure_improvement_of_asset', '', array('class' => 'form-control','required'=>'required')) }}
             </div>
         </div>
 
-        <div class="col-md-6">
+<!-----        <div class="col-md-6">
             <div class="form-group">
                 {{ Form::label('sale_price', __('Sale Price'),['class'=>'form-label']) }}<span class="text-danger">*</span>
                 {{ Form::number('sale_price', '', array('class' => 'form-control','required'=>'required','step'=>'0.01')) }}
@@ -63,7 +117,7 @@
         <div class="form-group col-md-6">
             {{ Form::label('unit_id', __('Unit'),['class'=>'form-label']) }}<span class="text-danger">*</span>
             {{ Form::select('unit_id', $unit,null, array('class' => 'form-control select','required'=>'required')) }}
-        </div>
+        </div>    ---->
         <div class="col-md-6 form-group">
             {{Form::label('pro_image',__('Product Image'),['class'=>'form-label'])}}
             <div class="choose-file ">
@@ -77,7 +131,7 @@
 
 
 
-        <div class="col-md-6">
+<!----        <div class="col-md-6">
             <div class="form-group">
                 <div class="btn-box">
                     <label class="d-block form-label">{{__('Type')}}</label>
@@ -102,10 +156,10 @@
         <div class="form-group col-md-6 quantity">
             {{ Form::label('quantity', __('Quantity'),['class'=>'form-label']) }}<span class="text-danger">*</span>
             {{ Form::text('quantity',null, array('class' => 'form-control')) }}
-        </div>
+        </div>  ----->
 
         <div class="form-group col-md-12">
-            {{ Form::label('description', __('Description'),['class'=>'form-label']) }}
+            {{ Form::label('description', __('Asset Description'),['class'=>'form-label']) }}
             {!! Form::textarea('description', null, ['class'=>'form-control','rows'=>'2']) !!}
         </div>
 

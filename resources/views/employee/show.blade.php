@@ -6,7 +6,7 @@
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
     <li class="breadcrumb-item"><a href="{{route('employee.index')}}">{{__('Employee')}}</a></li>
-    <li class="breadcrumb-item">{{$employeesId}}</li>
+    <li class="breadcrumb-item">{{$employee->employee_id}}</li>
 @endsection
 
 @section('action-btn')
@@ -85,7 +85,7 @@
                                     <div class="col-md-6">
                                         <div class="info text-sm">
                                             <strong class="font-bold">{{__('EmployeeId')}} : </strong>
-                                            <span>{{$employeesId}}</span>
+                                            <span>{{$employee->employee_id}}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

@@ -1,25 +1,35 @@
-{{Form::open(array('url'=>'employee','method'=>'post'))}}
-<div class="modal-body">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                {{Form::label('name',__('Name'),['class'=>'form-label']) }}
-                {{Form::text('name',null,array('class'=>'form-control','placeholder'=>__('Enter User Name'),'required'=>'required'))}}
-                @error('name')
-                <small class="invalid-name" role="alert">
-                    <strong class="text-danger">{{ $message }}</strong>
-                </small>
-                @enderror
-            </div>
+<div class="container">
+    <h4>Select Users to Add as Employees</h4>
+
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
-    </div>
+    @endif
 
+    <form action="{{ route('users.assign') }}" method="POST">
+        @csrf
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($users as $user)
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="users[]" value="{{ $user->id }}">
+                        </td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-primary">Make Employees</button>
+    </form>
 </div>
-
-<div class="modal-footer">
-    <input type="button" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
-    <input type="submit" value="{{__('Create')}}" class="btn  btn-primary">
-</div>
-
-{{Form::close()}}
-
