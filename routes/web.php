@@ -144,7 +144,10 @@ use App\Http\Controllers\FileManagement\FolderController;
 use App\Http\Controllers\DtaController;
 use App\Http\Controllers\DtaReportController;
 use App\Http\Controllers\MemoController;
-
+use App\Http\Livewire\Guest\Service\ServicesComponent;
+use App\Http\Livewire\Guest\Service\ServiceDetailsComponent;
+use App\Http\Livewire\Guest\ContractorLoginComponent;
+use App\Http\Livewire\Guest\ContractorRegisterComponent;
 
 //livewire component for user
 use App\Http\Livewire\Users\UsersComponent;
@@ -179,6 +182,16 @@ Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->gr
     Route::get('projects/{id}',PhysicalPlanningProjectDetials::class)->name('pp.projects.show');
     // Route::get('adverts',ProcurementAdvertsComponent::class)->name('projects.adverts');
 });
+
+Route::get('/contract-Advert',ServicesComponent::class)->name('all-adverts');
+Route::get('/contractort-signin',ContractorLoginComponent::class)->name('contractor.login');
+Route::get('/contractort-signup',ContractorRegisterComponent::class)->name('contractor.register');
+Route::get('/contract-Advert/{title?}/{id}',ServiceDetailsComponent::class)->name('adverts.show');
+Route::get('/project-advert', function () {
+    $adverts = App\Models\ProjectAdvert::all();
+    return view('livewire.guest.contract-advert',compact('adverts'));
+})->name('welcome');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');

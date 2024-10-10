@@ -56,7 +56,7 @@ unset($__errorArgs, $__bag); ?>
                                     <?php echo e(Form::label('start_date', __('Start Date'), ['class' => 'form-label'])); ?>
 
                                     
-                                    <input type="date" class="form-control" wire:model="start_date">
+                                    <input type="date" class="form-control" wire:model.defer="start_date">
                                     <?php $__errorArgs = ['start_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -76,7 +76,7 @@ unset($__errorArgs, $__bag); ?>
                                     <?php echo e(Form::label('end_date', __('End Date'), ['class' => 'form-label'])); ?>
 
                                     
-                                    <input type="date" class="form-control" wire:model="end_date">
+                                    <input type="date" class="form-control" wire:model.defer="end_date">
                                     <?php $__errorArgs = ['end_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -92,8 +92,8 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-6">
+                        <!-- <div class="row"> -->
+                            <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <?php echo e(Form::label('category', __('Project Category'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
                                     <select wire:model="project_category_id" id="" class="form-control">
@@ -116,39 +116,20 @@ unset($__errorArgs, $__bag); ?>
                                     </select>
                                 </div>
                             </div>
-
-                            <div class="form-group col-sm-6 col-md-6">
-                                <?php echo e(Form::label('project_boq', __('Project BoQ'), ['class' => 'form-label'])); ?><span class="text-danger">*</span>
-                                <div class="form-file mb-3">
-                                    <input type="file" class="form-control" wire:model="project_boq" required="">
-                                    
-                                <?php $__errorArgs = ['project_boq'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class="invalid-type_of_leave" role="alert">
-                                        <strong class="text-danger"><?php echo e($message); ?></strong>
-                                    </small>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="row">
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-6" wire:ignore>
                                 <div class="form-group">
-                                    <?php echo e(Form::label('supervising_staff_id', __('Supervising Staff'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
-                                    <select wire:model="supervising_staff_id[]" id="choices-multiple1" class="form-control select2" multiple>
+                                    <?php echo e(Form::label('selectedStaff', __('Supervising Staff'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
+                                    <select wire:model="selectedStaff" id="choices-multiple1" class="form-control sel_users select2 " multiple>
+                                    
                                         <option value="">---Select---</option>
+                                        <?php if(is_array($users) || is_object($users)): ?>
                                         <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($user->id); ?>"><?php echo e($user->name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endif; ?>
                                     </select>
-                                    <?php $__errorArgs = ['supervising_staff_id'];
+                                    <?php $__errorArgs = ['selectedStaff'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -183,25 +164,16 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <?php echo e(Form::label('status', __('Status'), ['class' => 'form-label'])); ?>
+                        
 
-                                    <select wire:model.defer="status" id="status" class="form-control main-element">
-                                        <?php $__currentLoopData = \App\Models\ProjectCreation::$project_status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($k); ?>"><?php echo e(__($v)); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                        
+
                     </div>
 
                     <div class="modal-footer">
                         <input type="button" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
                             data-bs-dismiss="modal">
-                        <input type="button" wire:click="createProject" value="<?php echo e(__('Create')); ?>" class="btn  btn-primary">
+                        <input type="button" id="button" wire:click="createProject" value="<?php echo e(__('Create')); ?>" class="btn  btn-primary">
                     </div>
                     <?php echo e(Form::close()); ?>
 
@@ -209,6 +181,32 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </div>
     </div>
+
+    <?php $__env->startPush('script'); ?>
+        <script>    
+            $(document).ready(function(){
+                $('.sel_users').select2();
+            }).on('change', function(){
+                var data = $('.sel_users').select2("val");
+                window.livewire.find('<?php echo e($_instance->id); ?>').set('byproduct',data);
+            });
+
+            window.addEventListener('print',event => {
+                document.getElementById("print").click();
+            });
+        </script>
+    <?php $__env->stopPush(); ?>
+
+    <?php $__env->startPush('script'); ?>
+    <script>
+         $('#button').submit(function(e) {
+                e.preventDefault();
+                // Coding
+                $('#newProject').modal('toggle'); //or  $('#IDModal').modal('hide');
+                return false;
+            });
+    </script>
+    <?php $__env->stopPush(); ?>
 
     <?php $__env->startPush('script'); ?>
         <?php if($errors->any() || Session::has('error')): ?>
