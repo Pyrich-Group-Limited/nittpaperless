@@ -4,7 +4,7 @@
 
 ?>
 <!-- [ Main Content ] end -->
-<footer class="dash-footer">
+<footer class="dash-footer" style="top: 200px">
     <div class="footer-wrapper">
         <div class="py-1">
             <p class="mb-0 text-muted"> &copy;

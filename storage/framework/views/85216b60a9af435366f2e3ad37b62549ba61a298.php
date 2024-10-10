@@ -342,6 +342,7 @@
                     });
                     editor.on('change', function(e) {
                         window.livewire.find('<?php echo e($_instance->id); ?>').set('description', editor.getContent());
+                        window.livewire.find('<?php echo e($_instance->id); ?>').set('ad_description', editor.getContent());
                     });
                 }
             });
