@@ -615,6 +615,9 @@
                                             <li class="dash-item  {{Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''}}">
                                                 <a class="dash-link" href="{{ route('pp.projects')}}">{{__('Projects')}}</a>
                                             </li>
+                                            <li class="dash-item  {{Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''}}">
+                                                <a class="dash-link" href="{{ route('pp.ergp')}}">{{__('ERGP')}}</a>
+                                            </li>
                                         @endcan
 
                                     </ul>
@@ -908,7 +911,7 @@
                         <ul class="dash-submenu">
                             <li class="dash-item {{ (Request::route()->getName() == 'store.dashboard' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('store.dashboard') }}">{{__('Supply')}}</a>
-                            </li> 
+                            </li>
                             @can('manage purchase')
                                 <li class="dash-item {{ (Request::route()->getName() == 'req.list' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('req.list') }}">{{__('Purchase requisition')}}</a>
@@ -917,7 +920,7 @@
 
                             <li class="dash-item {{ (Request::route()->getName() == 'goodsReceived.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('goodsReceived.list') }}">{{__('Goods Recieved Notes')}}</a>
-                            </li> 
+                            </li>
 
                             <li class="dash-item {{ (Request::route()->getName() == 'storeVoucher.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('storeVoucher.list') }}">{{__('Store Issue Voucher')}}</a>
