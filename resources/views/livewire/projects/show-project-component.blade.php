@@ -338,6 +338,7 @@
                     });
                     editor.on('change', function(e) {
                         @this.set('description', editor.getContent());
+                        @this.set('ad_description', editor.getContent());
                     });
                 }
             });
