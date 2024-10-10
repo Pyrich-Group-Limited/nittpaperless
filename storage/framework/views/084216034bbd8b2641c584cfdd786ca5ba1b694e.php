@@ -54,9 +54,9 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="mb-3" >
                                     <label class="form-label" for="description">Blog Description</label>
                                     <div wire:ignore>
-                                        <textarea id="message" wire:model="description" class="form-control tinymce-basic" name="description"></textarea>
+                                        <textarea id="message" wire:model="ad_description" class="form-control tinymce-basic" name="description"></textarea>
                                     </div>
-                                    <?php $__errorArgs = ['description'];
+                                    <?php $__errorArgs = ['ad_description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
