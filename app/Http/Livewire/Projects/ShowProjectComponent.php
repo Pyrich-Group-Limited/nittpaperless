@@ -254,7 +254,7 @@ class ShowProjectComponent extends Component
                 'project_id' => $this->selProject->id,
                 'start_date' => $this->ad_start_date,
                 'end_date' => $this->ad_end_date,
-                'descripton' => $this->ad_description,
+                'description' => $this->ad_description,
                 'advert_type' => $this->type_of_advert,
             ]);
 
