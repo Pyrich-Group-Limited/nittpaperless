@@ -181,7 +181,8 @@ Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->gr
 });
 
 Route::get('/project-advert', function () {
-    return view('livewire.guest.contract-advert');
+    $adverts = App\Models\ProjectAdvert::all();
+    return view('livewire.guest.contract-advert',compact('adverts'));
 })->name('welcome');
 
 // Route::get('/dashboard', function () {
