@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             $this->call(LeaveSeeader::class);
             $this->call(LiasonOfficerSeeder::class);
             $this->call(ProjectCategorySeeder::class);
+            $this->call(ERGPSeeder::class);
 
        /*  }else{
             Utility::languagecreate();

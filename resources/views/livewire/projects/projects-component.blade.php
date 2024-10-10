@@ -14,7 +14,7 @@
 @endsection
 @section('action-btn')
     <div class="float-end">
-        @if($view == 'grid')
+        {{-- @if($view == 'grid')
             <a href="{{ route('projects.list','list') }}"  data-bs-toggle="tooltip" title="{{__('List View')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-list"></i>
             </a>
@@ -23,11 +23,11 @@
             <a href="{{ route('created-projects') }}"  data-bs-toggle="tooltip" title="{{__('Grid View')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-layout-grid"></i>
             </a>
-        @endif
+        @endif --}}
 
 
         {{------------ Start Filter ----------------}}
-                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{-- <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="ti ti-filter"></i>
                 </a>
                 <div class="dropdown-menu  dropdown-steady" id="project_sort">
@@ -44,7 +44,7 @@
                     <a class="dropdown-item" href="#" data-val="project_name-asc">
                         <i class="ti ti-sort-ascending-letters"></i>{{__('From A-Z')}}
                     </a>
-                </div>
+                </div> --}}
 
             {{------------ End Filter ----------------}}
 
@@ -70,8 +70,8 @@
 @endsection
 
 {{-- @section('content') --}}
-    <div class="col-xl-12">
-        
+    <div class="col-xl-12 mt-5">
+
         <div class="card">
             <div class="card-body table-border-style">
                 <div class="table-responsive">
@@ -164,14 +164,33 @@
                                                 </a>
                                             </div>
                                             @endcan --}}
+                                            @if($project->project_boq==null)
+                                                @can('delete project')
+                                                    <div class="action-btn bg-danger ms-2">
+                                                            {!! Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy', [$project->id,$user->id]]]) !!}
+                                                            <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}"><i class="ti ti-trash text-white"></i></a>
+                                                            {!! Form::close() !!}
+                                                        </div>
+                                                @endcan
+                                            @endif
 
-                                            @can('delete project')
-                                                <div class="action-btn bg-danger ms-2">
-                                                        {!! Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy', [$project->id,$user->id]]]) !!}
-                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}"><i class="ti ti-trash text-white"></i></a>
-                                                        {!! Form::close() !!}
-                                                    </div>
+                                            @if($project->project_boq==null)
+                                                @can('edit project')
+                                                    <div class="action-btn bg-info ms-2">
+                                                            <a href="#" wire:click="setProject('{{ $project->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Upload Bill of Quantity')}}" data-title="{{__('Upload Bill of Quantity')}}">
+                                                                <i class="ti ti-upload text-white"></i>
+                                                            </a>
+                                                        </div>
+                                                @endcan
+                                            @else
+                                            @can('edit project')
+                                            <div class="action-btn bg-info ms-2">
+                                                    <a href="#" wire:click="setProject('{{ $project->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Edit Bill of Quantity')}}" data-title="{{__('Edit Bill of Quantity')}}">
+                                                        <i class="ti ti-edit text-white"></i>
+                                                    </a>
+                                                </div>
                                             @endcan
+                                            @endif
                                         </span>
                                     </td>
                                 </tr>
@@ -192,6 +211,7 @@
 {{-- @endsection --}}
 
 <x-toast-notification />
+@livewire('physical-planning.projects.uploadboq')
 @include('livewire.projects.modals.create-project')
 
 </div>
