@@ -202,36 +202,7 @@
 
 
 
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage job')): ?>
-                                                <li class="dash-item <?php echo e((Request::route()->getName() == 'jobber.index' || Request::route()->getName() == 'jobber.create' || Request::route()->getName() == 'jobber.edit' || Request::route()->getName() == 'jobber.show'   ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('jobber.index')); ?>"><?php echo e(__('Contracts')); ?></a>
-                                                </li>
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create job')): ?>
-                                                <li class="dash-item <?php echo e(( Request::route()->getName() == 'jobber.create' ? 'active' : '')); ?> ">
-                                                    <a class="dash-link" href="<?php echo e(route('jobber.create')); ?>"><?php echo e(__('Contracts Posting')); ?></a>
-                                                </li>
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage job application')): ?>
-                                                <li class="dash-item <?php echo e((request()->is('jobber-application*') ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('jobber-application.index')); ?>"><?php echo e(__('Contracts Application')); ?></a>
-                                                </li>
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage job application')): ?>
-                                                <li class="dash-item <?php echo e((request()->is('jobber-onboard*') ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('job.on.board')); ?>"><?php echo e(__('Contract Onboarding')); ?></a>
-                                                </li>
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage custom question')): ?>
-                                            <!----    <li class="dash-item  <?php echo e((request()->is('custom-question*') ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('custom-question.index')); ?>"><?php echo e(__('Custom Question')); ?></a>
-                                                </li> ---->
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('show interview schedule')): ?>
-                                                <li class="dash-item <?php echo e((request()->is('interview-schedule*') ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('interview-schedule.index')); ?>"><?php echo e(__('Contract Meeting Schedule')); ?></a>
-                                                </li>
-                                            <?php endif; ?>
+                                        
 
 
 

@@ -85,7 +85,8 @@
                             <div class="form-group col-md-6">
                                 <?php echo e(Form::label('branch_id', __('Branch'),['class'=>'form-label'])); ?>
 
-                               
+                               <?php echo e(Form::select('branch_id', $branches,null, array('class' => 'form-control select','disabled'=>'disabled','id' => 'branch_id'))); ?>
+
                             </div>
                             <div class="form-group col-md-6">
                                 <?php echo e(Form::label('department_id', __('Department'),['class'=>'form-label'])); ?>

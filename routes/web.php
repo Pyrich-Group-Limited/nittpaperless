@@ -360,6 +360,24 @@ Route::get('goods-received-notes', [AccountantDashControl::class, 'goodsReceived
 Route::get('goods-received-note/create', [AccountantDashControl::class, 'newGoodsReceived'])->name('goodsReceived.add');
 Route::get('goods-received-note/details', [AccountantDashControl::class, 'goodsReceivedNoteDetails'])->name('goodsReceived.details');
 
+Route::get('approved-supply-notes', [AccountantDashControl::class, 'approvedSupplyNotes'])->name('approvedSupply.list');
+Route::get('approved-supply-note/create', [AccountantDashControl::class, 'newApprovedSupply'])->name('approvedSupply.add');
+Route::get('approved-supply-note/details', [AccountantDashControl::class, 'approvedSupplyNoteDetails'])->name('approvedSupply.details');
+
+
+Route::get('delivered-supply-notes', [AccountantDashControl::class, 'deliveredSupplyNotes'])->name('deliveredSupply.list');
+Route::get('delivered-supply-note/create', [AccountantDashControl::class, 'newDeliveredSupply'])->name('deliveredSupply.add');
+Route::get('delivered-supply-note/details', [AccountantDashControl::class, 'deliveredSupplyNoteDetails'])->name('deliveredSupply.details');
+
+
+
+
+
+
+
+
+
+
 Route::get('comment', [AccountantDashControl::class, 'commentModal'])->name('comment.modal');
 
 Route::get('hrm-budget', [HrmDashControl::class, 'budget'])->name('hrm.budget');

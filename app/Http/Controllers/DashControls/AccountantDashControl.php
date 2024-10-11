@@ -71,4 +71,26 @@ class AccountantDashControl extends Controller
     }
 
 
+    public function deliveredSupplyNotes(Request $request){
+        return view('accountant.delivered-supply-notes');
+    }
+
+
+    public function approvedSupplyNotes(Request $request){
+        return view('accountant.approved-supply-notes');
+    }
+
+    
+    public function deliveredSupplyNoteDetails(Request $request){
+        return view('accountant.delivered-supply-note-details');
+    }
+
+    public function approvedSupplyNoteDetails(Request $request){
+        return view('accountant.approved-supply-note-details');
+    }
+
+
+
+
+
 }

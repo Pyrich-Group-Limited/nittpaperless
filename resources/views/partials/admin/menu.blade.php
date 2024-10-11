@@ -201,7 +201,7 @@
 
 
 
-                                            @can('manage job')
+                                        {{---    @can('manage job')
                                                 <li class="dash-item {{ (Request::route()->getName() == 'jobber.index' || Request::route()->getName() == 'jobber.create' || Request::route()->getName() == 'jobber.edit' || Request::route()->getName() == 'jobber.show'   ? 'active' : '')}}">
                                                     <a class="dash-link" href="{{route('jobber.index')}}">{{__('Contracts')}}</a>
                                                 </li>
@@ -231,6 +231,7 @@
                                                     <a class="dash-link" href="{{route('interview-schedule.index')}}">{{__('Contract Meeting Schedule')}}</a>
                                                 </li>
                                             @endcan
+                                            -----}}
 
 
 
