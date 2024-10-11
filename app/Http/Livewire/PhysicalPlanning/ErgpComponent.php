@@ -4,9 +4,11 @@ namespace App\Http\Livewire\PhysicalPlanning;
 
 use Livewire\Component;
 use App\Models\Ergp;
+use App\Models\ProjectCategory;
 
 class ErgpComponent extends Component
 {
+    public $projectCat;
     public $code;
     public $title;
     public $value;
@@ -14,6 +16,7 @@ class ErgpComponent extends Component
 
     public function createProject(){
         $this->validate([
+            'projectCat' => ['required'],
             'code' => ['required'],
             'title' => ['required'],
             'value' => ['required'],
@@ -22,6 +25,7 @@ class ErgpComponent extends Component
         ]);
 
         Ergp::create([
+            'project_category_id' => $this->projectCat,
             'code' => $this->code,
             'title' => $this->title,
             'project_sum' => $this->value,
@@ -34,6 +38,7 @@ class ErgpComponent extends Component
     public function render()
     {
         $ergps = Ergp::all();
-        return view('livewire.physical-planning.ergp-component',compact('ergps'));
+        $projectCats = ProjectCategory::all();
+        return view('livewire.physical-planning.ergp-component',compact('ergps','projectCats'));
     }
 }

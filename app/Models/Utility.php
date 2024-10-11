@@ -834,7 +834,7 @@ class Utility extends Model
             '2' => 'Internally Generated Revenue',
             '3' => 'Interest Revenue',
             '4' => 'Other Revenue',
-        
+
         ),
         "equity" => array(
             '1' => 'Owners Equity',
@@ -850,8 +850,8 @@ class Utility extends Model
             '3' => 'Share Capital',
             '4' => 'Retained Earnings',
         ),
-       
-        
+
+
         "costs of goods sold" => array(
             '1' => 'Costs of Goods Sold',
         ),
@@ -1228,9 +1228,9 @@ class Utility extends Model
             'type' => 1,
             'sub_type' => 1,
         ],
-        
-        
-        
+
+
+
         [
             'code' => '2100',
             'name' => 'Account Payable',
@@ -2529,7 +2529,7 @@ class Utility extends Model
                     'code' => $account['code'],
                     'name' => $account['name'],
                     'type' => $account['type'],
-                    'sub_type' => $account['sub_type'],
+                    // 'sub_type' => $account['sub_type'],
                     'is_enabled' => 1,
                     'created_by' => $user->id,
                 ]
