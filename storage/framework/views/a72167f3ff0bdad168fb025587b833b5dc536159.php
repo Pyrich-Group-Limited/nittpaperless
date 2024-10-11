@@ -24,7 +24,7 @@
         </div>
         <div class="navbar-content">
 
-            <?php if(\Auth::user()->type != 'client' || \Auth::user()->type == 'client'): ?>
+            <?php if(\Auth::user()->type != 'client' || \Auth::user()->type == 'contractor'): ?>
                 <ul class="dash-navbar">
                     <?php if( Gate::check('show hrm dashboard') || Gate::check('show project dashboard') || Gate::check('show account dashboard') || Gate::check('show crm dashboard')): ?>
                         <li class="dash-item dash-hasmenu
@@ -308,6 +308,9 @@
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project')): ?>
                                         <li class="dash-item  <?php echo e(Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' ||Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : ''); ?>">
                                             <a class="dash-link" href="<?php echo e(route('created-projects')); ?>"><?php echo e(__('Projects')); ?></a>
+                                        </li>
+                                        <li class="dash-item  <?php echo e(Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' ||Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : ''); ?>">
+                                            <a class="dash-link" href="<?php echo e(route('pp.ergp')); ?>"><?php echo e(__('ERGP')); ?></a>
                                         </li>
                                     <?php endif; ?>
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage client')): ?>
@@ -639,10 +642,10 @@
                                     <?php endif; ?>
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage client')): ?>
                                         <li class="dash-item <?php echo e((Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : ''); ?>">
-                                            <a class="dash-link" href="<?php echo e(route('clients.index')); ?>"><?php echo e(__('Client')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('clients.index')); ?>"><?php echo e(__('Contractor')); ?></a>
                                         </li>
                                     <?php endif; ?>
-                                    <?php if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client'): ?>
+                                    <?php if(\Auth::user()->type=='super admin'): ?>
                                         <li class="dash-item  <?php echo e((Request::segment(1) == 'contract')?'active':''); ?>">
                                             <a class="dash-link" href="<?php echo e(route('contract.index')); ?>"><?php echo e(__('Contract')); ?></a>
                                         </li>
