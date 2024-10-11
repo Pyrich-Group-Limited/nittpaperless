@@ -17,7 +17,7 @@ class Uploadboq extends Component
     public $budget;
     public $boq_file;
     public Collection $inputs;
-
+    public $sumTotal;
     protected $listeners = ['project' => 'incrementPostCount'];
     use WithFileUploads;
 
@@ -36,6 +36,13 @@ class Uploadboq extends Component
         $this->inputs->pull($key);
     }
 
+
+    public function Updated(){
+        foreach($this->inputs as $input){
+            $this->sumTotal =  $this->sumTotal + ((double)$input['unit_price'] * (double)$input['quantity']); 
+        }
+    }
+
     public function uploadBOQ(){
 
         $this->validate([
@@ -52,7 +59,7 @@ class Uploadboq extends Component
             $this->boq_file->storePubliclyAs('boqs', 'public');
 
             $this->selProject->update([
-                'budget' => $this->budget,
+                'budget' => (7.5/100 * $this->sumTotal) + ($this->sumTotal),
                 'project_boq' => $boqDocumentName
             ]);
 
