@@ -168,6 +168,8 @@ use App\Http\Livewire\PhysicalPlanning\ErgpComponent;
 //contractor routes
 use App\Http\Livewire\Contractor\ContractorDashboard;
 
+use App\Http\Livewire\DG\DgProjectsComponent;
+
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 
@@ -196,6 +198,10 @@ Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->gr
 
 Route::middleware(['auth','contractor'])->prefix('contractor')->group(function () {
     Route::get('dashbaord',ContractorDashboard::class)->name('contractor.dashboard');
+});
+
+Route::middleware(['auth','revalidate'])->prefix('director-general')->group(function () {
+    Route::get('/dg-projects',DgProjectsComponent::class)->name('dg.projects');
 });
 
 Route::get('/contract-Advert',ServicesComponent::class)->name('all-adverts');
@@ -255,6 +261,8 @@ Route::get('/pos-dashboard', [DashboardController::class, 'pos_dashboard_index']
 Route::get('/unit-head-dashboard', [DashboardController::class, 'unit_dashboard'])->name('unit.dashboard')->middleware(['auth']);
 Route::get('/liason-head-dashboard', [DashboardController::class, 'liason_dashboard'])->name('liason.dashboard')->middleware(['auth']);
 Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard')->middleware(['auth']);
+Route::get('/hod-dashboard', [DashboardController::class, 'hod_dashboard'])->name('hod.dashboard')->middleware(['auth']);
+Route::get('/dg-dashboard', [DashboardController::class, 'dg_dashboard'])->name('dg.dashboard')->middleware(['auth']);
 
 Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard')->middleware(['auth']);
 Route::get('/store-keeper-dashboard', [DashboardController::class, 'store_dashboard'])->name('store.dashboard')->middleware(['auth']);

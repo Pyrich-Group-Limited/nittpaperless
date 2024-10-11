@@ -94,6 +94,14 @@ class DashboardController extends Controller
         return view('dashboard.supervisor-dashboard');
      }
 
+     public function dg_dashboard(){
+        return view('dashboard.dg-dashboard');
+     }
+
+     public function hod_dashboard(){
+        return view('dashboard.hod-dashboard');
+     }
+
      public function dashboard_index()
     {
 
@@ -119,6 +127,14 @@ class DashboardController extends Controller
             elseif(Auth::user()->type == 'store keeper')
             {
                 return redirect()->route('store.dashboard');
+            }
+            elseif(Auth::user()->type == 'HOD')
+            {
+                return redirect()->route('hod.dashboard');
+            }
+            elseif(Auth::user()->type == 'DG')
+            {
+                return redirect()->route('dg.dashboard');
             }
             else
             {
@@ -243,6 +259,14 @@ class DashboardController extends Controller
             {
                 return redirect()->route('store.dashboard');
             }
+            elseif(Auth::user()->type == 'HOD')
+            {
+                return redirect()->route('hod.dashboard');
+            }
+            elseif(Auth::user()->type == 'DG')
+            {
+                return redirect()->route('dg.dashboard');
+            }
             else
             {
                 if(\Auth::user()->can('show account dashboard'))
@@ -365,6 +389,14 @@ class DashboardController extends Controller
             elseif(Auth::user()->type == 'store keeper')
             {
                 return redirect()->route('store.dashboard');
+            }
+            elseif(Auth::user()->type == 'HOD')
+            {
+                return redirect()->route('hod.dashboard');
+            }
+            elseif(Auth::user()->type == 'DG')
+            {
+                return redirect()->route('dg.dashboard');
             }
             else
             {
@@ -567,7 +599,7 @@ class DashboardController extends Controller
             if(\Auth::user()->can('show hrm dashboard'))
             {
                 $user = Auth::user();
-                if($user->type != 'client' && $user->type != 'super admin')
+                if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
                 {
                     $emp = Employee::where('user_id', '=', $user->id)->first();
 

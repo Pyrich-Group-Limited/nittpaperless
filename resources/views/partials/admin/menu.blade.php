@@ -22,9 +22,32 @@
                 <img src="{{  asset('logo-dark.png') }}" alt="NITTs" class="logo logo-lg">
             </a>
         </div>
-        <div class="navbar-content">
 
-            @if(\Auth::user()->type != 'client' || \Auth::user()->type == 'client')
+        <div class="navbar-content">
+            @if(\Auth::user()->type =='DG')
+            <ul class="dash-navbar">
+                <li class="dash-item dash-hasmenu ">
+                    <a href="{{ route('dg.dashboard') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                    ><span class="dash-micon"><i class="ti ti-home"></i></span
+                        ><span class="dash-mtext">{{__('Dashboard')}}</span
+                        ></a>
+                </li>
+                <li class="dash-item dash-hasmenu ">
+                    <a href="{{ route('dg.projects') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                    ><span class="dash-micon"><i class="ti ti-settings"></i></span
+                        ><span class="dash-mtext">{{__('Projects')}}</span
+                        ></a>
+                </li>
+                <li class="dash-item dash-hasmenu ">
+                    <a href="#" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                    ><span class="dash-micon"><i class="ti ti-file"></i></span
+                        ><span class="dash-mtext">{{__('Contracts')}}</span
+                        ></a>
+                </li>
+            </ul>
+            @else
+
+            @if(\Auth::user()->type != 'client' || \Auth::user()->type == 'contractor')
                 <ul class="dash-navbar">
                     @if( Gate::check('show hrm dashboard') || Gate::check('show project dashboard') || Gate::check('show account dashboard') || Gate::check('show crm dashboard'))
                         <li class="dash-item dash-hasmenu
@@ -310,6 +333,9 @@
                                     @can('manage project')
                                         <li class="dash-item  {{Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' ||Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : ''}}">
                                             <a class="dash-link" href="{{route('created-projects')}}">{{__('Projects')}}</a>
+                                        </li>
+                                        <li class="dash-item  {{Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' ||Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : ''}}">
+                                            <a class="dash-link" href="{{route('pp.ergp')}}">{{__('ERGP')}}</a>
                                         </li>
                                     @endcan
                                     @can('manage client')
@@ -625,7 +651,7 @@
                         @endif
                     @endif
 
-                    @if(\Auth::user()->show_project() == 1)
+                    {{-- @if(\Auth::user()->show_project() == 1)
                         @if( Gate::check('manage project'))
                             <li class="dash-item dash-hasmenu ">
                                 <a href="#!" class="dash-link"
@@ -641,10 +667,10 @@
                                     @endcan
                                     @can('manage client')
                                         <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
-                                            <a class="dash-link" href="{{ route('clients.index') }}">{{__('Client')}}</a>
+                                            <a class="dash-link" href="{{ route('clients.index') }}">{{__('Contractor')}}</a>
                                         </li>
                                     @endcan
-                                    @if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client')
+                                    @if(\Auth::user()->type=='super admin')
                                         <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
                                             <a class="dash-link" href="{{route('contract.index')}}">{{__('Contract')}}</a>
                                         </li>
@@ -689,7 +715,7 @@
                                 </ul>
                             </li>
                         @endif
-                    @endif
+                    @endif --}}
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'memos' || Request::segment(1) == 'files'
                             || Request::segment(1) == 'folders'  || Request::segment(1) == 'archived')?' active dash-trigger':''}}">
                         <a href="#!" class="dash-link active dash-trigger"
@@ -1000,6 +1026,7 @@
                         </a>
                     </li>
                 </ul>
+            @endif
             @endif
         </div>
     </div>

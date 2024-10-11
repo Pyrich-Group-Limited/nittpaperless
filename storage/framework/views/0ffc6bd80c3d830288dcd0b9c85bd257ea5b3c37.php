@@ -34,15 +34,15 @@ unset($__errorArgs, $__bag); ?>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <?php echo e(Form::label('bduget', __('Estimated Budget'), ['class' => 'form-label'])); ?>
+                                    <?php echo e(Form::label('bduget', __('ERGP'), ['class' => 'form-label'])); ?>
 
                                     
                                         <select name="" id="" wire:model.defer="budget" class="form-control">
                                             <?php $__currentLoopData = $projAccounts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $projAccount): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($projAccount->project_sum); ?>">₦<?php echo e($projAccount->project_sum); ?> (<?php echo e($projAccount->projectCategory->category_name); ?>)  </option>
+                                                <option value="<?php echo e($projAccount->code); ?>"><?php echo e($projAccount->code); ?>  </option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
-                                    <?php $__errorArgs = ['boq_file'];
+                                    <?php $__errorArgs = ['bduget'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
