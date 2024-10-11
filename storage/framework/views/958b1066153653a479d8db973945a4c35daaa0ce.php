@@ -1,25 +1,25 @@
 <div>
-    @section('advert')
+    <?php $__env->startSection('advert'); ?>
         active
-    @endsection
+    <?php $__env->stopSection(); ?>
 
-    <x-slot name="title">What we do</x-slot>
-    <x-slot name="logo">@if($advert->image){{ asset('guest/images/uploads/'.$advert->image) }} @else {{ asset('uploads/procurement.png')}} @endif</x-slot>
-    <x-slot name="description">{!! Str::limit(strip_tags($advert->description), 100) !!}</x-slot>
-    <x-slot name="title">{{ $advert->service_title }}</x-slot>
+     <?php $__env->slot('title', null, []); ?> What we do <?php $__env->endSlot(); ?>
+     <?php $__env->slot('logo', null, []); ?> <?php if($advert->image): ?><?php echo e(asset('guest/images/uploads/'.$advert->image)); ?> <?php else: ?> <?php echo e(asset('uploads/procurement.png')); ?> <?php endif; ?> <?php $__env->endSlot(); ?>
+     <?php $__env->slot('description', null, []); ?> <?php echo Str::limit(strip_tags($advert->description), 100); ?> <?php $__env->endSlot(); ?>
+     <?php $__env->slot('title', null, []); ?> <?php echo e($advert->service_title); ?> <?php $__env->endSlot(); ?>
 
     <div class="page-title-wrap typo-white">
-        <div class="page-title-wrap-inner section-bg-img" data-bg="@if($advert->image){{ asset('guest/images/uploads/'.$advert->image) }} @else {{ asset('uploads/procurement.png')}} @endif">
+        <div class="page-title-wrap-inner section-bg-img" data-bg="<?php if($advert->image): ?><?php echo e(asset('guest/images/uploads/'.$advert->image)); ?> <?php else: ?> <?php echo e(asset('uploads/procurement.png')); ?> <?php endif; ?>">
             <span class="theme-overlay"></span>
             <div class="container">
                 <div class="row text-center">
                     <div class="col-md-12">
                         <div class="page-title-inner">
                             <div id="breadcrumb" class="breadcrumb margin-bottom-10">
-                                <a href="{{ route('welcome') }}" class="theme-color">Home</a>
+                                <a href="<?php echo e(route('welcome')); ?>" class="theme-color">Home</a>
                                 <span class="current">Contract Advert</span>
                             </div>
-                            <h1 class="page-title mb-0">{{ $advert->project->project_name }}</h1>
+                            <h1 class="page-title mb-0"><?php echo e($advert->project->project_name); ?></h1>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                                         <!-- sermon img -->
                                         <div class="zoom-gallery">
                                             <div class="ministries-thumb relative margin-bottom-35">
-                                                <img src="@if($advert->image){{ asset('guest/images/uploads/'.$advert->image) }} @else {{ asset('uploads/procurement.png')}} @endif"
+                                                <img src="<?php if($advert->image): ?><?php echo e(asset('guest/images/uploads/'.$advert->image)); ?> <?php else: ?> <?php echo e(asset('uploads/procurement.png')); ?> <?php endif; ?>"
                                                     class="img-fluid single-sermon-img b-radius-10" width="1170"
                                                     height="694" alt="ministries-img">
                                             </div>
@@ -58,9 +58,9 @@
                                 <div class="row">
                                     <!-- Col -->
                                     <div class="col-md-12">
-                                        <p class="margin-bottom-15">{!! $advert->description !!}.</p>
+                                        <p class="margin-bottom-15"><?php echo $advert->description; ?>.</p>
                                     </div>
-                                        <div class="header-navbar-text-1"><a href="{{ route('contractor.register') }}" class="h-donate-btn">Apply</a></div>
+                                        <div class="header-navbar-text-1"><a href="<?php echo e(route('contractor.register')); ?>" class="h-donate-btn">Apply</a></div>
                                     <!-- Col -->
                                 </div>
 
@@ -80,3 +80,4 @@
 </div>
 <!-- .page-wrapper-inner -->
 <!--page-wrapper-->
+<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/guest/service/service-details-component.blade.php ENDPATH**/ ?>

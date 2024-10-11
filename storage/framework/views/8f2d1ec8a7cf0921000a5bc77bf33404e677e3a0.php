@@ -343,4 +343,4 @@ if(typeof revslider_showDoubleJqueryError === "undefined") {function revslider_s
 <?php $component = $__componentOriginalc3251b308c33b100480ddc8862d4f9c79f6df015; ?>
 <?php unset($__componentOriginalc3251b308c33b100480ddc8862d4f9c79f6df015); ?>
 <?php endif; ?>
-<?php /**PATH /var/www/html/nittpaperless/resources/views/livewire/guest/contract-advert.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/guest/contract-advert.blade.php ENDPATH**/ ?>
