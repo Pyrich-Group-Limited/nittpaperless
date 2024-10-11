@@ -8,6 +8,6 @@ class ContractorDashboard extends Component
 {
     public function render()
     {
-        return view('livewire.contractor.contractor-dashboard');
+        return view('livewire.contractor.contractor-dashboard')->layout('layouts.contractor');
     }
 }

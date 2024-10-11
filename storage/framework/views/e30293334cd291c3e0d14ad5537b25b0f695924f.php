@@ -29,7 +29,7 @@
                                                 <div class="col-md-6">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input class="form-control" wire:model="surname" surname="surname" placeholder="Surname"  type="text" />
+                                                        <input class="form-control" wire:model.defer="surname" placeholder="Surname"  type="text" />
                                                         <?php $__errorArgs = ['surname'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -43,8 +43,8 @@ unset($__errorArgs, $__bag); ?>
                                                 <div class="col-md-6">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input class="form-control" wire:model="othername" othername="othername" placeholder="Othername"  type="text" />
-                                                        <?php $__errorArgs = ['othername'];
+                                                        <input class="form-control" wire:model.defer="othernames"  placeholder="Othername"  type="text" />
+                                                        <?php $__errorArgs = ['othernames'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -57,7 +57,7 @@ unset($__errorArgs, $__bag); ?>
                                                 <div class="col-md-12">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input class="form-control" wire:model="company_name" company_name="company_name" placeholder="Company Name"  type="text" />
+                                                        <input class="form-control" wire:model.defer="company_name"  placeholder="Company Name"  type="text" />
                                                         <?php $__errorArgs = ['company_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -71,7 +71,7 @@ unset($__errorArgs, $__bag); ?>
                                                 <div class="col-md-12">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input id="email" class="form-control" wire:model="email" name="email" placeholder="Email"  type="email">
+                                                        <input id="email" class="form-control" wire:model.defer="email" placeholder="Email"  type="email">
                                                         <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -85,8 +85,8 @@ unset($__errorArgs, $__bag); ?>
                                                 <div class="col-md-12">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input id="phone" class="form-control" wire:model="phone" name="phone" placeholder="Phone"  type="text">
-                                                        <?php $__errorArgs = ['phone'];
+                                                        <input id="phone" class="form-control" wire:model="phoneno" placeholder="Phone Number"  type="text">
+                                                        <?php $__errorArgs = ['phoneno'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -99,7 +99,7 @@ unset($__errorArgs, $__bag); ?>
                                                 <div class="col-md-6">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input id="phone" class="form-control" wire:model="password" name="password" placeholder="password"  type="password">
+                                                        <input id="phone" class="form-control" wire:model="password" placeholder="password"  type="password">
                                                         <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

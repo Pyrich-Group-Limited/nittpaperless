@@ -20,7 +20,22 @@
                                 <div class="contact-form-wrap">
                                     <h4 class="title">Authorized Access</h4><hr>
                                     <!-- form inputs -->
-                                    <form class="contact-form" wire:submit.prevent="sendMessage" enctype="multipart/form-data">
+                                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.feedback-alert','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('feedback-alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+                                    <form class="contact-form" wire:submit.prevent="login" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <!-- form group -->
@@ -52,8 +67,7 @@ unset($__errorArgs, $__bag); ?>
                                             </div>
                                             <div class="col-md-12">
                                                 <!-- form button -->
-                                                <button wire:loading.remove wire:target="sendMessage" type="submit" class="btn btn-default mt-0 theme-btn">Login</button> Don't have an account ? <a href="<?php echo e(route('contractor.register')); ?>"> register</a>
-                                                <button wire:loading wire:target="sendMessage" class="btn btn-default" type="submit"><?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+                                                <button  type="submit" class="btn btn-default mt-0 theme-btn">Register <div wire:loading wire:target="login"><?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.guest-loader','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('guest-loader'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -67,8 +81,7 @@ unset($__errorArgs, $__bag); ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
-<?php endif; ?></i></button>
-
+<?php endif; ?></div></button> Arleady have an account ? <a href="<?php echo e(route('contractor.login')); ?>"> Login</a>
                                             </div>
                                         </div>
                                     </form>
