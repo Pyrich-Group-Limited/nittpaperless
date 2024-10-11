@@ -311,4 +311,5 @@ if (! isset($_instance)) {
 echo $html;
 ?>
 <?php echo $__env->make('livewire.physical-planning.projects.modals.view-boq', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('livewire.projects.modals.new-project-user', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php /**PATH C:\xampp\htdocs\nittpaperless\resources\views/livewire/physical-planning/projects/physical-planning-project-detials.blade.php ENDPATH**/ ?>

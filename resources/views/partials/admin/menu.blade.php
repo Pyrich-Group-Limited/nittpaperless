@@ -22,7 +22,30 @@
                 <img src="{{  asset('logo-dark.png') }}" alt="NITTs" class="logo logo-lg">
             </a>
         </div>
+
         <div class="navbar-content">
+            @if(\Auth::user()->type =='DG')
+            <ul class="dash-navbar">
+                <li class="dash-item dash-hasmenu ">
+                    <a href="{{ route('dg.dashboard') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                    ><span class="dash-micon"><i class="ti ti-home"></i></span
+                        ><span class="dash-mtext">{{__('Dashboard')}}</span
+                        ></a>
+                </li>
+                <li class="dash-item dash-hasmenu ">
+                    <a href="{{ route('dg.projects') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                    ><span class="dash-micon"><i class="ti ti-settings"></i></span
+                        ><span class="dash-mtext">{{__('Projects')}}</span
+                        ></a>
+                </li>
+                <li class="dash-item dash-hasmenu ">
+                    <a href="#" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                    ><span class="dash-micon"><i class="ti ti-file"></i></span
+                        ><span class="dash-mtext">{{__('Contracts')}}</span
+                        ></a>
+                </li>
+            </ul>
+            @else
 
             @if(\Auth::user()->type != 'client' || \Auth::user()->type == 'contractor')
                 <ul class="dash-navbar">
@@ -628,7 +651,7 @@
                         @endif
                     @endif
 
-                    @if(\Auth::user()->show_project() == 1)
+                    {{-- @if(\Auth::user()->show_project() == 1)
                         @if( Gate::check('manage project'))
                             <li class="dash-item dash-hasmenu ">
                                 <a href="#!" class="dash-link"
@@ -692,7 +715,7 @@
                                 </ul>
                             </li>
                         @endif
-                    @endif
+                    @endif --}}
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'memos' || Request::segment(1) == 'files'
                             || Request::segment(1) == 'folders'  || Request::segment(1) == 'archived')?' active dash-trigger':''}}">
                         <a href="#!" class="dash-link active dash-trigger"
@@ -1003,6 +1026,7 @@
                         </a>
                     </li>
                 </ul>
+            @endif
             @endif
         </div>
     </div>
