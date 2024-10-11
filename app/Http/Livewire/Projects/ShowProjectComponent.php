@@ -3,12 +3,14 @@
 namespace App\Http\Livewire\Projects;
 
 use Livewire\Component;
+use Illuminate\Http\Request;
 use App\Models\ProjectCreation;
 use App\Models\Utility;
 use App\Models\ProjectTask;
 use App\Models\User;
 use Carbon\Carbon;
 use Auth;
+use App\Models\ActivityLog;
 use App\Models\ProjectAdvert;
 use App\Models\ProjectCategory;
 use App\Models\ProjectUser;
@@ -265,6 +267,39 @@ class ShowProjectComponent extends Component
     public function setProject(ProjectCreation $project){
         $this->selProject2 = $project;
         $this->emit('project', $project);
+    }
+
+
+    public function inviteProjectUserMember(Request $request, $user_id)
+    {
+        $authuser = Auth::user();
+
+        $userCheck = ProjectUser::find($user_id);
+
+        if($userCheck!=null){
+            $this->dispatchBrowserEvent('error',['error' => 'this user has already been added to this project']);
+        }else{
+            ProjectUser::create(
+                [
+                    'project_id' => $this->selProject->id,
+                    'user_id' => $user_id,
+                    'invited_by' => $authuser->id,
+                ]
+            );
+
+
+        // Make entry in activity_log tbl
+        ActivityLog::create(
+            [
+                'user_id' => $authuser->id,
+                'project_id' => $this->selProject->id,
+                'log_type' => 'Invite User',
+                'remark' => json_encode(['title' => $authuser->name]),
+            ]
+        );
+
+        $this->dispatchBrowserEvent('success',["success" =>"User invited successfully."]);
+        }
     }
 
     public function render()

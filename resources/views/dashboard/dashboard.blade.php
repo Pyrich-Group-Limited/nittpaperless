@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{__('Dashboard')}}
+    {{ Ucfirst(Auth::user()->type.' '.'Dashboard' )}}
 @endsection
 @push('script-page')
     <script>
@@ -99,7 +99,7 @@
     $setting = \App\Models\Utility::settings();
 @endphp
 @section('content')
-    @if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin')
+    @if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'DG')
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">

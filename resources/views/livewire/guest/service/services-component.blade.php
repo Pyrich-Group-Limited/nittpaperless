@@ -45,7 +45,7 @@
                             </div>
                             <!-- Col-md -->
                             @foreach($adverts as $advert)
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <!--events Inner-->
                                 <div class="events-inner margin-bottom-30">
                                     <!--events Thumb-->
@@ -56,13 +56,13 @@
                                     <div class="events-details pad-30">
 
                                         <div class="event-title mb-3">
-                                            <h5><a href="#">{{ $advert->project->project_title }}</a></h5>
+                                            <h5><a href="{{ route('adverts.show',[str_replace("/","",$advert->project->project_name),$advert->id])}}">{{ $advert->project->project_name }}</a></h5>
                                         </div>
                                         <div class="event-excerpt mb-3">
-                                            <p>{!! Str::limit(strip_tags($advert->description),70) !!}</p>
+                                            <p>{!! Str::limit(strip_tags($advert->description),150) !!}</p>
                                         </div>
                                         <div class="read-more">
-                                            {{-- <a href="{{ route('services.show',[str_replace("/","",$advert->project_pro),$service->id])}}">Learn more</a> --}}
+                                            <a href="{{ route('adverts.show',[str_replace("/","",$advert->project->project_name),$advert->id])}}">Learn more</a>
                                         </div>
                                     </div>
                                     <!--events details-->

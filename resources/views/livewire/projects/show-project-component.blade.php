@@ -234,11 +234,10 @@
                         <h5>{{ __('Members') }}</h5>
                         @can('edit project')
                             <div class="float-end">
-                                <a href="#" data-size="lg"
-                                    data-url="{{ route('invite.project.member.view', $project->id) }}"
-                                    data-ajax-popup="true" data-bs-toggle="tooltip" title=""
-                                    class="btn btn-sm btn-primary" data-bs-original-title="{{ __('Add Member') }}">
-                                    <i class="ti ti-plus"></i>
+                                <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#addProjectUser"
+                                id="toggleUploadProjectUser" data-bs-toggle="tooltip" title="{{ __('Add Member') }}"
+                                class="btn btn-sm btn-primary">
+                                <i class="ti ti-plus"></i>
                                 </a>
                             </div>
                         @endcan
@@ -322,6 +321,7 @@
             </div>
         </div>
     </div>
+    @include('livewire.projects.modals.new-project-user')
     @include('livewire.projects.modals.edit-project')
     @include('livewire.physical-planning.projects.modals.new-advert')
     @include('livewire.physical-planning.projects.modals.view-boq')

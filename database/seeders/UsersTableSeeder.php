@@ -276,7 +276,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'show account dashboard',
+                'name' => '',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3472,7 +3472,6 @@ class UsersTableSeeder extends Seeder
 
 
         // Super Admin
-
         $companyRole = Role::create(
             [
                 'name' => 'super admin',
@@ -3488,7 +3487,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show crm dashboard'],
             ['name' => 'show hrm dashboard'],
             ['name' => 'show project dashboard'],
-            ['name' => 'show account dashboard'],
+            ['name' => ''],
             ['name' => 'manage user'],
             ['name' => 'create user'],
             ['name' => 'edit user'],
@@ -4035,6 +4034,53 @@ class UsersTableSeeder extends Seeder
         $company->assignRole($companyRole);
 
 
+        // Director General
+        $dgRole = Role::create(
+            [
+                'name' => 'DG',
+                'created_by' => 0,
+            ]
+        );
+
+        $dgPermissions = [
+            // ['name' => 'approve dta'],
+            // ['name' => 'reject dta'],
+            // ['name' => 'view leave report'],
+            // ['name' => 'manage report'],
+            ['name' => 'manage project'],
+            // ['name' => 'create project'],
+            // ['name' => 'view project'],
+            // ['name' => 'edit project'],
+            // ['name' => 'delete project'],
+            // ['name' => 'share project'],
+
+        ];
+
+        $dgRole->givePermissionTo($dgPermissions);
+
+        $dg = User::create(
+            [
+                'name' => 'Ishaq Kamaldeen',
+                'email' => 'dg@nitt.com',
+
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 15",
+                'email' => 'dg@nitt.com',
+
+                'password' => Hash::make('1234'),
+                'type' => 'DG',
+                'default_pipeline' => 1,
+                'plan' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => 1,
+            ]
+        );
+        $dg->assignRole($dgRole);
+
+
         // user
         $userRole       = Role::create(
             [
@@ -4192,6 +4238,69 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liason->assignRole($liasonRole);
+
+
+         // Liason office head
+         $hodRole = Role::create(
+            [
+                'name' => 'HOD',
+                'created_by' => 0,
+            ]
+        );
+        $hodPermission = [
+            ['name' => 'view leave report'],
+            ['name' => 'create budget plan'],
+            ['name' => 'show invoice'],
+            ['name' => 'show proposal'],
+            ['name' => 'show profile'],
+            ['name' => 'manage client dashboard'],
+            ['name' => 'manage bug report'],
+            ['name' => 'create bug report'],
+            ['name' => 'edit bug report'],
+            ['name' => 'delete bug report'],
+            ['name' => 'move bug report'],
+            ['name' => 'view deal'],
+            ['name' => 'manage deal'],
+            ['name' => 'manage project'],
+            ['name' => 'view project'],
+            ['name' => 'view grant chart'],
+            ['name' => 'view timesheet'],
+            ['name' => 'manage timesheet'],
+            ['name' => 'manage project task'],
+            ['name' => 'create project task'],
+            ['name' => 'edit project task'],
+            ['name' => 'view project task'],
+            ['name' => 'delete project task'],
+            ['name' => 'view activity'],
+            ['name' => 'view task'],
+            ['name' => 'manage pipeline'],
+            ['name' => 'manage lead stage'],
+            ['name' => 'manage label'],
+            ['name' => 'manage source'],
+            ['name' => 'move deal'],
+            ['name' => 'manage stage'],
+            ['name' => 'manage contract'],
+            ['name' => 'show contract'],
+        ];
+        $hodRole->givePermissionTo($hodPermission);
+
+        $hod = User::create(
+            [
+                'name' => 'Emmanuel Thompson',
+                'email' => 'hod@nitt.com',
+                'password' => Hash::make('1234'),
+                'type' => 'HOD',
+                'default_pipeline' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 09",
+            ]
+        );
+        $hod->assignRole($hodRole);
 
         // Create an array to store all unit head roles
         // $unitHeadRoles = [];
@@ -4397,7 +4506,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage warehouse'],
             ['name' => 'create barcode'],
             ['name' => 'manage pos'],
-            ['name' => 'show account dashboard'],
+            ['name' => ''],
             ['name' => 'manage expense'],
             ['name' => 'create expense'],
             ['name' => 'edit expense'],

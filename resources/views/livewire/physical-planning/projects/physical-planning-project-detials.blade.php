@@ -134,7 +134,7 @@
 
                         </div>
                         <div class="row">
-                            <span class="text-white text-sm">{{__('Client')}}</span>
+                            <span class="text-white text-sm">{{__('Contractor')}}</span>
                             <h5 class="text-white text-nowrap">{{ (!empty($project->client)?$project->client->name: '-') }}</h5>
                         </div>
                     </div>
@@ -186,9 +186,25 @@
                                     <td> </td>
                                     <td> </td>
                                     <td></td>
-                                    <td><b>TOTAL</b></td>
+                                    <td><b>SUB TOTAL</b></td>
                                     <td> <b>{{ number_format($totalSum) }}</b> </td>
                                 </tr>
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td></td>
+                                    <td><b>VAT(7.5%)</b></td>
+                                    <td> <b>{{ number_format(7.5/100 * ($totalSum)) }}</b> </td>
+                                </tr>
+
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td></td>
+                                    <td><b>SUM TOTAL</b></td>
+                                    <td> <b>{{ number_format((7.5/100 * ($totalSum)) + $totalSum) }}</b> </td>
+                                </tr>
+
 
                             </tbody>
                         </table>
@@ -210,11 +226,11 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <h5>{{__('Members')}}</h5>
                     @can('edit project')
-                        <div class="float-end">
-                            <a href="#" data-size="lg" data-url="{{ route('invite.project.member.view', $project->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary" data-bs-original-title="{{__('Add Member')}}">
-                                <i class="ti ti-plus"></i>
-                            </a>
-                        </div>
+                        <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#addProjectUser"
+                        id="toggleUploadProjectUser" data-bs-toggle="tooltip" title="{{ __('Add Member') }}"
+                        class="btn btn-sm btn-primary">
+                        <i class="ti ti-plus"></i>
+                        </a>
                     @endcan
                 </div>
             </div>
@@ -294,3 +310,4 @@
 
 @livewire('physical-planning.projects.uploadboq', ['project' => $project], key($project->id))
 @include('livewire.physical-planning.projects.modals.view-boq')
+@include('livewire.projects.modals.new-project-user')

@@ -16,7 +16,7 @@ class PhysicalPlanningProjectDetials extends Component
 
     public $project_id;
     public $totalSum;
-
+    
     public function mount($id){
         $this->project_id = $id;
     }
@@ -154,6 +154,7 @@ class PhysicalPlanningProjectDetials extends Component
     {
         $project = ProjectCreation::find($this->project_id);
         $project_data =  $this->getProjectDetails($project);
-        return view('livewire.physical-planning.projects.physical-planning-project-detials',compact('project','project_data'));
+        $users = User::all();
+        return view('livewire.physical-planning.projects.physical-planning-project-detials',compact('project','project_data','users'));
     }
 }
