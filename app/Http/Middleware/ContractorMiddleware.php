@@ -20,7 +20,7 @@ class ContractorMiddleware
     {
         $auth_user_type = Auth::user()->type;// get the type of user loged in
 
-        if(Auth::user()->type==="Contrator"){
+        if(Auth::user()->type==="Contractor"){
                 return $next($request);
         }else{
             Session::flush();

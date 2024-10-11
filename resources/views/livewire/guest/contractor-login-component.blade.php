@@ -20,7 +20,8 @@
                                 <div class="contact-form-wrap">
                                     <h4 class="title">Authorized Access</h4><hr>
                                     <!-- form inputs -->
-                                    <form class="contact-form" wire:submit.prevent="sendMessage" enctype="multipart/form-data">
+                                    <x-feedback-alert />
+                                    <form class="contact-form" wire:submit.prevent="login" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <!-- form group -->
@@ -38,7 +39,7 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <!-- form button -->
-                                                <button  type="submit" class="btn btn-default mt-0 theme-btn">Register <div wire:loading wire:target="signup"><x-guest-loader/></div></button> Arleady have an account ? <a href="{{ route('contractor.login')}}"> Login</a>
+                                                <button  type="submit" class="btn btn-default mt-0 theme-btn">Register <div wire:loading wire:target="login"><x-guest-loader/></div></button> Arleady have an account ? <a href="{{ route('contractor.login')}}"> Login</a>
                                             </div>
                                         </div>
                                     </form>

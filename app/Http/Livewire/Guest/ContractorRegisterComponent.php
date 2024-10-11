@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Livewire\Guest;
-
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\User;
+use Hash;
 
 class ContractorRegisterComponent extends Component
 {
@@ -22,16 +24,18 @@ class ContractorRegisterComponent extends Component
             'phoneno' => ['required','string','min:11','max:11'],
             'email' => ['required','string','unique:users'],
             'password' => ['required', 'string', 'min:8','confirmed'],
+            'password_confirmation' => ['required', 'string', 'min:8'],
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $this->surname." ".$this->othernames,
             'email' => $this->email,
             'phoneno' => $this->phoneno,
             'password' =>Hash::make($this->password),
+            'type' => "Contractor"
         ]);
 
-        $this->dispatch('success',['success' => 'Regsitraiton Successful']);
+        $this->dispatchBrowserEvent('success',['success' => 'Regsitraiton Successful']);
         Auth::login($user);
         return redirect()->route('contractor.dashboard');
 

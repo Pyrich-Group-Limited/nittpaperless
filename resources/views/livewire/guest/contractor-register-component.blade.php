@@ -47,42 +47,42 @@
                                                 <div class="col-md-6">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input class="form-control" wire:model="surname" surname="surname" placeholder="Surname"  type="text" />
+                                                        <input class="form-control" wire:model.defer="surname" placeholder="Surname"  type="text" />
                                                         @error('surname') <p class="text-danger">{{$message}}</p>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input class="form-control" wire:model="othername" othername="othername" placeholder="Othername"  type="text" />
-                                                        @error('othername') <p class="text-danger">{{$message}}</p>@enderror
+                                                        <input class="form-control" wire:model.defer="othernames"  placeholder="Othername"  type="text" />
+                                                        @error('othernames') <p class="text-danger">{{$message}}</p>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input class="form-control" wire:model="company_name" company_name="company_name" placeholder="Company Name"  type="text" />
+                                                        <input class="form-control" wire:model.defer="company_name"  placeholder="Company Name"  type="text" />
                                                         @error('company_name') <p class="text-danger">{{$message}}</p>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input id="email" class="form-control" wire:model="email" name="email" placeholder="Email"  type="email">
+                                                        <input id="email" class="form-control" wire:model.defer="email" placeholder="Email"  type="email">
                                                         @error('email') <p class="text-danger">{{$message}}</p>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input id="phone" class="form-control" wire:model="phone" name="phone" placeholder="Phone"  type="text">
-                                                        @error('phone') <p class="text-danger">{{$message}}</p>@enderror
+                                                        <input id="phone" class="form-control" wire:model="phoneno" placeholder="Phone Number"  type="text">
+                                                        @error('phoneno') <p class="text-danger">{{$message}}</p>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <!-- form group -->
                                                     <div class="form-group">
-                                                        <input id="phone" class="form-control" wire:model="password" name="password" placeholder="password"  type="password">
+                                                        <input id="phone" class="form-control" wire:model="password" placeholder="password"  type="password">
                                                         @error('password') <p class="text-danger">{{$message}}</p>@enderror
                                                     </div>
                                                 </div>
