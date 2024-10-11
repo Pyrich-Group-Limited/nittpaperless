@@ -38,6 +38,7 @@
                         <thead>
                             <tr>
                                 <th>{{ __('SN') }}</th>
+                                <th>{{ __('Project Category') }}</th>
                                 <th>{{ __('ERGP CODE') }}</th>
                                 <th>{{ __('ERGP TITLE') }}</th>
                                 <th>{{ __('Total Value') }}</th>
@@ -54,6 +55,7 @@
                                 @foreach ($ergps as $ergp)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $ergp->projectCategory->category_name }}</td>
                                         <td>{{ $ergp->code }}</td>
                                         <td>{{ $ergp->title }}</td>
                                         <td>₦ {{ number_format($ergp->project_sum, 2) }}</td>
