@@ -134,7 +134,7 @@
 
                         </div>
                         <div class="row">
-                            <span class="text-white text-sm">{{__('Client')}}</span>
+                            <span class="text-white text-sm">{{__('Contractor')}}</span>
                             <h5 class="text-white text-nowrap">{{ (!empty($project->client)?$project->client->name: '-') }}</h5>
                         </div>
                     </div>
@@ -186,9 +186,25 @@
                                     <td> </td>
                                     <td> </td>
                                     <td></td>
-                                    <td><b>TOTAL</b></td>
+                                    <td><b>SUB TOTAL</b></td>
                                     <td> <b>{{ number_format($totalSum) }}</b> </td>
                                 </tr>
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td></td>
+                                    <td><b>VAT(7.5%)</b></td>
+                                    <td> <b>{{ number_format(7.5/100 * ($totalSum)) }}</b> </td>
+                                </tr>
+
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td></td>
+                                    <td><b>SUM TOTAL</b></td>
+                                    <td> <b>{{ number_format((7.5/100 * ($totalSum)) + $totalSum) }}</b> </td>
+                                </tr>
+
 
                             </tbody>
                         </table>
