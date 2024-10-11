@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ergps', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('title');
             $table->decimal('project_sum', 15, 2); // Total project sum for the category
             $table->decimal('amount_paid', 15, 2)->default(0); // Amount paid out from the project sum
