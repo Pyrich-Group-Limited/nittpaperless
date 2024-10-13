@@ -4759,6 +4759,36 @@ class UsersTableSeeder extends Seeder
         );
         $client->assignRole($clientRole);
 
+        // contractor
+        $contractorRole       = Role::create(
+            [
+                'name' => 'contractor',
+                'created_by' => 0,
+            ]
+        );
+        $contractorPermission = [
+            ['name' => 'view project'],
+        ];
+        $contractorRole->givePermissionTo($contractorPermission);
+
+        $contractor = User::create(
+            [
+                'name' => 'Test Contractor',
+                'email' => 'contractor@nitt.com',
+                'password' => Hash::make('1234'),
+                'designation' => Designation::first()->name,
+                'department_id' => '',
+                'unit_id' => '',
+                'level' => "Level 08",
+                'type' => 'contractor',
+                'default_pipeline' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => $company->id,
+            ]
+        );
+        $user->assignRole($contractorRole);
+
         Utility::employeeDetails($accountant->id, $company->id);
         // Utility::employeeDetails($client->id,$company->id);
         Utility::chartOfAccountTypeData($company->id);
