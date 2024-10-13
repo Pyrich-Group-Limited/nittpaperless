@@ -39,7 +39,7 @@
                         ></a>
                 </li>
                 <li class="dash-item dash-hasmenu ">
-                    <a href="#" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                    <a href="{{ route('dg.contracts') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
                     ><span class="dash-micon"><i class="ti ti-file"></i></span
                         ><span class="dash-mtext">{{__('Contracts')}}</span
                         ></a>

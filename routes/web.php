@@ -159,6 +159,7 @@ use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Projects\ProjectsComponent;
 use App\Http\Livewire\Projects\EditProjectComponent;
 use App\Http\Livewire\Projects\ShowProjectComponent;
+use App\Http\Livewire\Projects\ProjectApplicantsComponent;
 
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
@@ -169,6 +170,9 @@ use App\Http\Livewire\PhysicalPlanning\ErgpComponent;
 use App\Http\Livewire\Contractor\ContractorDashboard;
 
 use App\Http\Livewire\DG\DgProjectsComponent;
+use App\Http\Livewire\DG\DgProjectDetailsComponent;
+use App\Http\Livewire\DG\ProjectRecommendedApplicantsComponent;
+use App\Http\Livewire\DG\ContractComponent;
 
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
@@ -202,6 +206,10 @@ Route::middleware(['auth','contractor'])->prefix('contractor')->group(function (
 
 Route::middleware(['auth','revalidate'])->prefix('director-general')->group(function () {
     Route::get('/dg-projects',DgProjectsComponent::class)->name('dg.projects');
+    Route::get('/dg-project-details/{id}',DgProjectDetailsComponent::class)->name('dg.projectDetails');
+    Route::get('/dg-project/{id}/applicants',ProjectRecommendedApplicantsComponent::class)->name('dg.projectApplicants');
+    Route::get('/contracts',ContractComponent::class)->name('dg.contracts');
+
 });
 
 Route::get('/contract-Advert',ServicesComponent::class)->name('all-adverts');
@@ -1183,6 +1191,8 @@ Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function 
     Route::get('all-projects', ProjectsComponent::class)->name('created-projects');
     Route::get('project/{id}/show',ShowProjectComponent::class)->name('project.details');
     Route::get('project/{id}/edit',EditProjectComponent::class)->name('project.edit');
+
+    Route::get('/project/{id}/applicants',ProjectApplicantsComponent::class)->name('project.applicants');
 });
 
 

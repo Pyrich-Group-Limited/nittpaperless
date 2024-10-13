@@ -33,7 +33,7 @@
                                             class="form-control">
                                             <option value="" selected>-- Select ERGP -- </option>
                                             @foreach ($projAccounts as $projAccount)
-                                                <option value="{{ $projAccount->code }}">{{ $projAccount->code }} </option>
+                                                <option value="{{ $projAccount->code }}">{{ $projAccount->code }} &nbsp; ({{ $projAccount->projectCategory->category_name }}) </option>
                                             @endforeach
                                         </select>
                                         @error('bduget')

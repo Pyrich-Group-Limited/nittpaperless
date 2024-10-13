@@ -39,7 +39,7 @@
                         ></a>
                 </li>
                 <li class="dash-item dash-hasmenu ">
-                    <a href="#" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                    <a href="<?php echo e(route('dg.contracts')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
                     ><span class="dash-micon"><i class="ti ti-file"></i></span
                         ><span class="dash-mtext"><?php echo e(__('Contracts')); ?></span
                         ></a>

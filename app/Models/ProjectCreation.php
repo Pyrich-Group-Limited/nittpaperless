@@ -21,6 +21,7 @@ class ProjectCreation extends Model
         'supervising_staff_id',
         'status',
         'budget',
+        'advert_approval_status',
         'created_by'
     ];
 
@@ -44,10 +45,16 @@ class ProjectCreation extends Model
         'canceled' => 'danger',
     ];
 
-    // public function users()
+    public function contractors()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    // public function contractors()
     // {
-    //     return $this->belongsToMany(User::class);
+    //     return $this->belongsToMany(Contractor::class, 'project_applications');
     // }
+
 
     public function milestones()
     {

@@ -61,6 +61,11 @@ class ProjectTask extends Model
         return $this->hasOne('App\Models\Project', 'id', 'project_id');
     }
 
+    // public function project()
+    // {
+    //     return $this->hasOne('App\Models\ProjectCreation', 'id', 'project_id');
+    // }
+
     public function stage()
     {
         return $this->hasOne('App\Models\TaskStage', 'id', 'stage_id');

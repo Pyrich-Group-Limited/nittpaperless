@@ -30,8 +30,13 @@
         <div class="float-end">
 
             @can('edit project')
+            @if ($project->project_boq != null && $project->advert_approval_status == false)
+                <div class="alert alert-danger">You cannot advertise this project before DG's approval</div>
+            @elseif($project->project_boq == null)
+                <div class="alert alert-danger">Kindly upload project's BoQ for DG's approval</div>
+            @else
                 <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject"
-                    data-bs-toggle="tooltip" title="{{ __('Advertise Project') }}" class="btn btn-sm btn-primary">
+                data-bs-toggle="tooltip" title="{{ __('Advertise Project') }}" class="btn btn-sm btn-primary">
                     <i class="ti ti-share"></i>
                 </a>
 
@@ -39,6 +44,8 @@
                     data-bs-toggle="tooltip" title="{{ __('Modify Project') }}" class="btn btn-sm btn-primary">
                     <i class="ti ti-pencil text-white"></i>
                 </a>
+            @endif
+
             @endcan
 
 
@@ -312,7 +319,7 @@
                             </li>
                         @else
                             <div class="py-5">
-                                <h6 class="h6 text-center">{{ __('No Milestone Found.') }}</h6>
+                                <h6 class="h6 text-center">{{ __('No BoQ Found.') }}</h6>
                             </div>
                         @endif
                     </ul>

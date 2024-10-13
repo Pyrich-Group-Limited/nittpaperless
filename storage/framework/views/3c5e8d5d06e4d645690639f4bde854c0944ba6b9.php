@@ -45,9 +45,10 @@
                             <th><?php echo e(__('#')); ?></th>
                             <th><?php echo e(__('Project')); ?></th>
                             <th><?php echo e(__('Project No.')); ?></th>
-                            <th><?php echo e(__('Status')); ?></th>
+                            <th><?php echo e(__('Project Status')); ?></th>
                             <th><?php echo e(__('Users')); ?></th>
                             <th><?php echo e(__('Completion')); ?></th>
+                            <th><?php echo e(__('Approval Status')); ?></th>
                             <th class="text-end"><?php echo e(__('Action')); ?></th>
                         </tr>
                         </thead>
@@ -107,52 +108,39 @@
                                             <div class="progress-bar bg-<?php echo e($project->project_progress()['color']); ?>" style="width: <?php echo e($project->project_progress()['percentage']); ?>;"></div>
                                         </div>
                                     </td>
+                                    <td class="">
+                                        <?php if($project->advert_approval_status == false): ?>
+                                            <span class="badge bg-warning p-2 px-3 rounded">Pending advert</span>
+                                        <?php elseif($project->advert_approval_status== true): ?>
+                                            <span class="badge bg-success p-2 px-3 rounded">Approved for advert</span>
+                                        <?php endif; ?>
+                                    </td>
                                     <td class="text-end">
                                         <span>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
+                                            
                                                 <div class="action-btn bg-warning ms-2">
-                                                    <a href="<?php echo e(route('project.details', $project->id)); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="" data-ajax-popup="false" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Show Details')); ?>" data-title="<?php echo e(__('Show Details')); ?>">
+                                                    <a href="<?php echo e(route('dg.projectDetails', $project->id)); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="" data-ajax-popup="false" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Show Details')); ?>" data-title="<?php echo e(__('Show Details')); ?>">
                                                         <i class="ti ti-eye text-white"></i>
                                                     </a>
                                                 </div>
-                                            <?php endif; ?>
+                                            
+                                        </span>
 
-                                            <?php if($project->project_boq==null): ?>
-                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete project')): ?>
-                                                    <div class="action-btn bg-danger ms-2">
-                                                            <?php echo Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy', [$project->id,$user->id]]]); ?>
-
-                                                            <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"><i class="ti ti-trash text-white"></i></a>
-                                                            <?php echo Form::close(); ?>
-
-                                                        </div>
-                                                <?php endif; ?>
-                                            <?php endif; ?>
-
-                                            <?php if($project->project_boq==null): ?>
-                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
-                                                    <div class="action-btn bg-info ms-2">
-                                                            <a href="#" wire:click="setProject('<?php echo e($project->id); ?>')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Upload Bill of Quantity')); ?>" data-title="<?php echo e(__('Upload Bill of Quantity')); ?>">
-                                                                <i class="ti ti-upload text-white"></i>
-                                                            </a>
-                                                        </div>
-                                                <?php endif; ?>
-                                            <?php else: ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
-                                            <div class="action-btn bg-info ms-2">
-                                                    <a href="#" wire:click="setProject('<?php echo e($project->id); ?>')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Edit Bill of Quantity')); ?>" data-title="<?php echo e(__('Edit Bill of Quantity')); ?>">
-                                                        <i class="ti ti-edit text-white"></i>
+                                        <?php if($project->project_boq!=null && $project->advert_approval_status==true): ?>
+                                            
+                                                <div class="action-btn bg-primary ms-2">
+                                                    <a href="<?php echo e(route('dg.projectApplicants',$project->id)); ?>" data-size="lg"  data-bs-toggle="tooltip" title="<?php echo e(__('View Recommended Applicant')); ?>"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
+                                                        <i class="ti ti-users text-white"></i>
                                                     </a>
                                                 </div>
-                                            <?php endif; ?>
-                                            <?php endif; ?>
-                                        </span>
+                                            
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <?php else: ?>
                             <tr>
-                                <th scope="col" colspan="7"><h6 class="text-center"><?php echo e(__('No Projects Found.')); ?></h6></th>
+                                <th scope="col" colspan="7"><h6 class="text-center"><?php echo e(__('No Projects Pending approval Found.')); ?></h6></th>
                             </tr>
                         <?php endif; ?>
                         </tbody>
