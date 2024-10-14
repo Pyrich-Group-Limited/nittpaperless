@@ -15,7 +15,7 @@
                                 <div class="col-md-12">
                                     <div class="table-responsive">
                                         <table class="table table-bordered mb-0">
-                    
+
                                             <tbody>
                                                 <style>
                                                     th{
@@ -65,19 +65,35 @@
                                                     <th scope="row">Application Date</th>
                                                     <td>{{ date('d-M-Y', strtotime($projectApplicant->created_at)) }}</td>
                                                 </tr>
-                                                
+
                                                 {{-- <tr>
                                                     <th scope="row">Estimated Expenses</th>
                                                     <td>₦ {{ number_format($dta->estimated_expense,2)  }}</td>
                                                 </tr> --}}
-                                               
-                                               
+
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                               
+
                             </div>
+                            {{-- // Check if an application exists
+                            @if ($projectApplicants) {
+                                // Load the documents related to this application
+                                {{ $documents = $application->documents; }}
+
+                                // Display the documents
+                                @if ($documents->isEmpty()) {
+                                    <p>kkkkkk</p>
+                                } @else {
+                                    @foreach ($documents as $document) {
+                                        <p>------olkokok</p>
+                                    @endforeach
+                                }
+                            }@else {
+                                <p>No application found for this project and applicant.</p>
+                            }@endif --}}
 
                             <hr>
                                 <div class="row">
@@ -85,21 +101,18 @@
                                         <h5 class="text-primary"><b>Uploaded Documents</b></h5>
                                         <table class="table table">
                                             <tbody class="tbody-class">
-                                                <tr>
-                                                    <th scope="row">Doc 1</th>
-                                                    <td>title</td>
-                                                    <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Doc 2</th>
-                                                    <td>title</td>
-                                                    <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Doc 3</th>
-                                                    <td>title</td>
-                                                    <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                </tr>
+                                                {{-- @foreach ($applicationDocuments as $applicationDocument) --}}
+                                                    <tr>
+                                                        <th scope="row">Doc 1</th>
+                                                        <td>title</td>
+                                                        <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Doc 1</th>
+                                                        <td>title</td>
+                                                        <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
+                                                    </tr>
+                                                {{-- @endforeach --}}
                                             </tbody>
                                         </table>
                                     </div>

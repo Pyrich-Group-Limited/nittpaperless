@@ -33,6 +33,12 @@
                         ></a>
                 </li>
                 <li class="dash-item dash-hasmenu ">
+                    <a href="{{ route('dg.ergps') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                    ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                        ><span class="dash-mtext">{{__('ERGP')}}</span
+                        ></a>
+                </li>
+                <li class="dash-item dash-hasmenu ">
                     <a href="{{ route('dg.projects') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
                     ><span class="dash-micon"><i class="ti ti-settings"></i></span
                         ><span class="dash-mtext">{{__('Projects')}}</span
@@ -44,6 +50,7 @@
                         ><span class="dash-mtext">{{__('Contracts')}}</span
                         ></a>
                 </li>
+
             </ul>
             @else
 

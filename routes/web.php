@@ -173,6 +173,7 @@ use App\Http\Livewire\DG\DgProjectsComponent;
 use App\Http\Livewire\DG\DgProjectDetailsComponent;
 use App\Http\Livewire\DG\ProjectRecommendedApplicantsComponent;
 use App\Http\Livewire\DG\ContractComponent;
+use App\Http\Livewire\DG\DgErgpCompnent;
 
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
@@ -209,6 +210,7 @@ Route::middleware(['auth','revalidate'])->prefix('director-general')->group(func
     Route::get('/dg-project-details/{id}',DgProjectDetailsComponent::class)->name('dg.projectDetails');
     Route::get('/dg-project/{id}/applicants',ProjectRecommendedApplicantsComponent::class)->name('dg.projectApplicants');
     Route::get('/contracts',ContractComponent::class)->name('dg.contracts');
+    Route::get('/view-erpg',DgErgpCompnent::class)->name('dg.ergps');
 
 });
 

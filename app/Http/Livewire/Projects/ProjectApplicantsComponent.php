@@ -10,6 +10,7 @@ use App\Models\Ergp;
 use App\Models\ProjectCreation;
 use App\Models\ProjectUser;
 use App\Models\ProjectApplication;
+use App\Models\ProjectApplicationDocument;
 use App\Models\User;
 
 class ProjectApplicantsComponent extends Component
@@ -38,10 +39,11 @@ class ProjectApplicantsComponent extends Component
         }
     }
 
-   
+
     public function render()
     {
-        $projectApplicants = ProjectApplication::where('project_id',$this->project_id)->get();
+        $projectApplicants = ProjectApplication::where('project_id',$this->project_id)
+        ->get();
         return view('livewire.projects.project-applicants-component',compact('projectApplicants'));
     }
 }
