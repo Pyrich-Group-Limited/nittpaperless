@@ -15,7 +15,7 @@
                                 <div class="col-md-12">
                                     <div class="table-responsive">
                                         <table class="table table-bordered mb-0">
-                    
+
                                             <tbody>
                                                 <style>
                                                     th{
@@ -66,16 +66,17 @@
                                                     <th scope="row">Application Date</th>
                                                     <td><?php echo e(date('d-M-Y', strtotime($projectApplicant->created_at))); ?></td>
                                                 </tr>
+
                                                 
-                                                
-                                               
-                                               
+
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                               
+
                             </div>
+                            
 
                             <hr>
                                 <div class="row">
@@ -83,21 +84,18 @@
                                         <h5 class="text-primary"><b>Uploaded Documents</b></h5>
                                         <table class="table table">
                                             <tbody class="tbody-class">
-                                                <tr>
-                                                    <th scope="row">Doc 1</th>
-                                                    <td>title</td>
-                                                    <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Doc 2</th>
-                                                    <td>title</td>
-                                                    <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Doc 3</th>
-                                                    <td>title</td>
-                                                    <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                </tr>
+                                                
+                                                    <tr>
+                                                        <th scope="row">Doc 1</th>
+                                                        <td>title</td>
+                                                        <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Doc 1</th>
+                                                        <td>title</td>
+                                                        <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
+                                                    </tr>
+                                                
                                             </tbody>
                                         </table>
                                     </div>

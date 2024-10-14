@@ -33,6 +33,12 @@
                         ></a>
                 </li>
                 <li class="dash-item dash-hasmenu ">
+                    <a href="<?php echo e(route('dg.ergps')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                    ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                        ><span class="dash-mtext"><?php echo e(__('ERGP')); ?></span
+                        ></a>
+                </li>
+                <li class="dash-item dash-hasmenu ">
                     <a href="<?php echo e(route('dg.projects')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
                     ><span class="dash-micon"><i class="ti ti-settings"></i></span
                         ><span class="dash-mtext"><?php echo e(__('Projects')); ?></span
@@ -44,6 +50,7 @@
                         ><span class="dash-mtext"><?php echo e(__('Contracts')); ?></span
                         ></a>
                 </li>
+
             </ul>
             <?php else: ?>
 

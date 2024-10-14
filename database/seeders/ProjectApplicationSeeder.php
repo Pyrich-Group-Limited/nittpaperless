@@ -8,6 +8,7 @@ use App\Models\ProjectApplication;
 use App\Models\ProjectAdvert;
 use App\Models\User;
 use App\Models\ProjectApplicant;
+use App\Models\ProjectApplicationDocument;
 
 class ProjectApplicationSeeder extends Seeder
 {
@@ -28,7 +29,7 @@ class ProjectApplicationSeeder extends Seeder
             'application_status' => 'pending'
         ]);
 
-        ProjectApplicant::create([
+        $applicant = ProjectApplicant::create([
             'user_id' => $projectApp->user_id,
             'company_name' => 'Kamzone IT',
             'year_of_incorporation' => '2020',
@@ -36,6 +37,18 @@ class ProjectApplicationSeeder extends Seeder
             'company_address' => 'Utako Abuja',
             'email' => 'kamzone@gmail.com',
             'phone' => '08012341234'
+        ]);
+
+        ProjectApplicationDocument::create([
+            'project_application_id' => $projectApp->id,
+            'document_name' => 'Company profile',
+            'document' => 'profile.pdf'
+        ]);
+
+        ProjectApplicationDocument::create([
+            'project_application_id' => $projectApp->id,
+            'document_name' => 'Company Account Statement',
+            'document' => 'statement.pdf'
         ]);
     }
 }

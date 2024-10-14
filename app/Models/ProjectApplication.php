@@ -27,11 +27,22 @@ class ProjectApplication extends Model
         return $this->belongsTo(ProjectCreation::class);
     }
 
+    // Relationship to ProjectApplicationDocument
+    public function documents()
+    {
+        return $this->hasMany(ProjectApplicationDocument::class, 'project_application_id');
+    }
+
     public function contractor()
     {
         return $this->belongsTo(User::class,'user_id');
     }
-    
+
+    //  public function documentUploads()
+    // {
+    //     return $this->hasMany(ProjectApplicationDocument::class,'project_application_id');
+    // }
+
     // public function project()
     // {
     //     return $this->belongsTo(ProjectCreation::class,'project_id');
@@ -51,8 +62,5 @@ class ProjectApplication extends Model
     // }
 
     // // A project application has many document uploads (One-to-Many)
-    // public function documentUploads()
-    // {
-    //     return $this->hasMany(ProjectApplicationDocument::class);
-    // }
+
 }
