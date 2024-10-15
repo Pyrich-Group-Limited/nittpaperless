@@ -64,7 +64,7 @@ class ProjectCreation extends Model
     // A project belongs to one category
     public function category()
     {
-        return $this->belongsTo(ProjectCategory::class);
+        return $this->belongsTo(ProjectCategory::class,'project_category_id');
     }
 
     // A project has many adverts

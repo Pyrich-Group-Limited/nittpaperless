@@ -89,28 +89,50 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
 
-                        <div class="col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <?php echo e(Form::label('projectCat', __('Project Category'), ['class' => 'form-label'])); ?>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <?php echo e(Form::label('projectCat', __('Project Category'), ['class' => 'form-label'])); ?>
 
-                                <select name="" id="" class="form-control" wire:model="projectCat">
-                                    <option value=""></option>
-                                    <?php $__currentLoopData = $projectCats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $projectCat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($projectCat->id); ?>"><?php echo e($projectCat->category_name); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>
-                                <?php $__errorArgs = ['projectCat'];
+                                    <select name="" id="" class="form-control" wire:model="projectCat">
+                                        <option value=""></option>
+                                        <?php $__currentLoopData = $projectCats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $projectCat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($projectCat->id); ?>"><?php echo e($projectCat->category_name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                    <?php $__errorArgs = ['projectCat'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class="invalid-type_of_leave" role="alert">
-                                        <strong class="text-danger"><?php echo e($message); ?></strong>
-                                    </small>
-                                <?php unset($message);
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger"><?php echo e($message); ?></strong>
+                                        </small>
+                                    <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <?php echo e(Form::label('category', __('ERGP Category'), ['class' => 'form-label'])); ?><span
+                                        class="text-danger">*</span>
+                                    <input type="text" wire:model="category" class="form-control">
+                                    <?php $__errorArgs = ['category'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger"><?php echo e($message); ?></strong>
+                                        </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
                             </div>
                         </div>
 

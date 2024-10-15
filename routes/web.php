@@ -160,6 +160,8 @@ use App\Http\Livewire\Projects\ProjectsComponent;
 use App\Http\Livewire\Projects\EditProjectComponent;
 use App\Http\Livewire\Projects\ShowProjectComponent;
 use App\Http\Livewire\Projects\ProjectApplicantsComponent;
+use App\Http\Livewire\Projects\ProjectContractsComponent;
+use App\Http\Livewire\Projects\ProjectContractorsComponent;
 
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
@@ -174,6 +176,7 @@ use App\Http\Livewire\DG\DgProjectDetailsComponent;
 use App\Http\Livewire\DG\ProjectRecommendedApplicantsComponent;
 use App\Http\Livewire\DG\ContractComponent;
 use App\Http\Livewire\DG\DgErgpCompnent;
+use App\Http\Livewire\DG\ViewErgpExpenseComponent;
 
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
@@ -211,6 +214,7 @@ Route::middleware(['auth','revalidate'])->prefix('director-general')->group(func
     Route::get('/dg-project/{id}/applicants',ProjectRecommendedApplicantsComponent::class)->name('dg.projectApplicants');
     Route::get('/contracts',ContractComponent::class)->name('dg.contracts');
     Route::get('/view-erpg',DgErgpCompnent::class)->name('dg.ergps');
+    Route::get('/erpg-expense/{id}/view',ViewErgpExpenseComponent::class)->name('dg.showErgp.expense');
 
 });
 
@@ -1195,6 +1199,8 @@ Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function 
     Route::get('project/{id}/edit',EditProjectComponent::class)->name('project.edit');
 
     Route::get('/project/{id}/applicants',ProjectApplicantsComponent::class)->name('project.applicants');
+    Route::get('/project-contracts',ProjectContractsComponent::class)->name('project.contracts');
+    Route::get('/project-contractors',ProjectContractorsComponent::class)->name('project.contractors');
 });
 
 

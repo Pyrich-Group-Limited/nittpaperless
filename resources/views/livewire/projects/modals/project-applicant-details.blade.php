@@ -65,54 +65,32 @@
                                                     <th scope="row">Application Date</th>
                                                     <td>{{ date('d-M-Y', strtotime($projectApplicant->created_at)) }}</td>
                                                 </tr>
-
-                                                {{-- <tr>
-                                                    <th scope="row">Estimated Expenses</th>
-                                                    <td>₦ {{ number_format($dta->estimated_expense,2)  }}</td>
-                                                </tr> --}}
-
-
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
 
                             </div>
-                            {{-- // Check if an application exists
-                            @if ($projectApplicants) {
-                                // Load the documents related to this application
-                                {{ $documents = $application->documents; }}
-
-                                // Display the documents
-                                @if ($documents->isEmpty()) {
-                                    <p>kkkkkk</p>
-                                } @else {
-                                    @foreach ($documents as $document) {
-                                        <p>------olkokok</p>
-                                    @endforeach
-                                }
-                            }@else {
-                                <p>No application found for this project and applicant.</p>
-                            }@endif --}}
-
                             <hr>
                                 <div class="row">
                                     <div class="col-md-12 col-sm-6">
                                         <h5 class="text-primary"><b>Uploaded Documents</b></h5>
-                                        <table class="table table">
-                                            <tbody class="tbody-class">
-                                                {{-- @foreach ($applicationDocuments as $applicationDocument) --}}
-                                                    <tr>
-                                                        <th scope="row">Doc 1</th>
-                                                        <td>title</td>
-                                                        <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Doc 1</th>
-                                                        <td>title</td>
-                                                        <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                    </tr>
-                                                {{-- @endforeach --}}
+                                        <table class="table table-bordered mb-0">
+                                            <tbody>
+                                                @if($projectApplicant->documents->isEmpty())
+                                                    <p>No documents uploaded for this application.</p>
+                                                @else
+                                                    @foreach ($projectApplicant->documents  as $applicationDocument)
+                                                        <tr>
+                                                            <td scope="row">{{ $loop->iteration }}</td>
+                                                            <td>{{ $applicationDocument->document_name }}</td>
+                                                            <td class="text-end">
+                                                                <a href="#" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
+                                                                <a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download" download></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>

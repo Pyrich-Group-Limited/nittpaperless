@@ -19,9 +19,9 @@ class CreateContractsTable extends Migration
             $table->integer('client_name');
             $table->string('subject')->nullable();
             $table->string('value')->nullable();
-            $table->integer('type');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->integer('type')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->string('description')->nullable();
             $table->string('project_id')->nullable();
             $table->text('contract_description')->nullable();

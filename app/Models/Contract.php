@@ -14,6 +14,7 @@ class Contract extends Model
         'start_date',
         'end_date',
         'description',
+        'project_id',
         'status',
         'contract_description',
         'company_signature',
@@ -53,22 +54,31 @@ class Contract extends Model
         return \Auth::user()->priceFormat($total);
     }
 
+    // public function projects()
+    // {
+    //     return $this->hasOne('App\Models\Project', 'id', 'project_id');
+    // }
+
     public function projects()
     {
-        return $this->hasOne('App\Models\Project', 'id', 'project_id');
+        return $this->hasOne('App\Models\ProjectCreation', 'id', 'project_id');
     }
+
     public function files()
     {
         return $this->hasMany('App\Models\Contract_attachment', 'contract_id' , 'id');
     }
+
     public function notes()
     {
         return $this->hasMany('App\Models\ContractNotes', 'contract_id' , 'id');
     }
+
     public function comment()
     {
         return $this->hasMany('App\Models\ContractComment', 'contract_id', 'id');
     }
+
     public function note()
     {
         return $this->hasMany('App\Models\ContractNotes', 'contract_id', 'id');

@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-        <?php if(Auth::user()->type != 'client'): ?>
+        <?php if(Auth::user()->type != 'contractor'): ?>
             <div class="col-lg-6 col-md-6">
                 <div class="card">
                     <div class="card-body">

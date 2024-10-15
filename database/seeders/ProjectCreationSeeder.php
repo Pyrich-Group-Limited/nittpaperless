@@ -71,7 +71,7 @@ class ProjectCreationSeeder extends Seeder
             'project_boq' => '1728813908.fJn0ST7rAFRy2SRhOjHDAguKTg3gEyTaG5ChelOh.pdf',
             'supervising_staff_id' => $staff->where('type','user')->first()->id,
             'status' => 'pending',
-            'budget' => 34567,
+            'budget' => 11345670,
             'advert_approval_status' => true,
             'created_by' => $staff->where('type','super admin')->first()->id,
         ]);

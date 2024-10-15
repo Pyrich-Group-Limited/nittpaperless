@@ -66,36 +66,32 @@
                                                     <th scope="row">Application Date</th>
                                                     <td><?php echo e(date('d-M-Y', strtotime($projectApplicant->created_at))); ?></td>
                                                 </tr>
-
-                                                
-
-
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
 
                             </div>
-                            
-
                             <hr>
                                 <div class="row">
                                     <div class="col-md-12 col-sm-6">
                                         <h5 class="text-primary"><b>Uploaded Documents</b></h5>
-                                        <table class="table table">
-                                            <tbody class="tbody-class">
-                                                
-                                                    <tr>
-                                                        <th scope="row">Doc 1</th>
-                                                        <td>title</td>
-                                                        <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Doc 1</th>
-                                                        <td>title</td>
-                                                        <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                    </tr>
-                                                
+                                        <table class="table table-bordered mb-0">
+                                            <tbody>
+                                                <?php if($projectApplicant->documents->isEmpty()): ?>
+                                                    <p>No documents uploaded for this application.</p>
+                                                <?php else: ?>
+                                                    <?php $__currentLoopData = $projectApplicant->documents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $applicationDocument): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <tr>
+                                                            <td scope="row"><?php echo e($loop->iteration); ?></td>
+                                                            <td><?php echo e($applicationDocument->document_name); ?></td>
+                                                            <td class="text-end">
+                                                                <a href="#" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
+                                                                <a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download" download></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                <?php endif; ?>
                                             </tbody>
                                         </table>
                                     </div>

@@ -1,124 +1,110 @@
 <div>
-    <?php
-   $profile=\App\Models\Utility::get_file('uploads/avatar');
-   ?>
-<?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Awarded Contracts')); ?>
+    
+    <?php $__env->startSection('page-title'); ?>
+        <?php echo e(__('Awarded Contracts')); ?>
 
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startPush('script-page'); ?>
-<?php $__env->stopPush(); ?>
-<?php $__env->startSection('breadcrumb'); ?>
-    <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
-    <li class="breadcrumb-item"><?php echo e(__('Contracts')); ?></li>
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('action-btn'); ?>
-    <div class="float-end">
-            
-                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="btn-inner--icon"><?php echo e(__('Status')); ?></span>
-                </a>
-                <div class="dropdown-menu  project-filter-actions dropdown-steady" id="project_status">
-                    <a class="dropdown-item filter-action filter-show-all pl-4 active" href="#"><?php echo e(__('Show All')); ?></a>
-                </div>
-            
-
-
-        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create project')): ?>
-            <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newProject" id="toggleOldProject"  data-bs-toggle="tooltip" title="<?php echo e(__('Create New Project')); ?>"  class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startPush('script-page'); ?>
+    <?php $__env->stopPush(); ?>
+    <?php $__env->startSection('breadcrumb'); ?>
+        <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
+        <li class="breadcrumb-item"><?php echo e(__('Contracts')); ?></li>
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('action-btn'); ?>
+        <div class="float-end">
+            <a href="<?php echo e(route('contract.grid')); ?>"  data-bs-toggle="tooltip" title="<?php echo e(__('Grid View')); ?>" class="btn btn-sm btn-primary">
+                <i class="ti ti-layout-grid"></i>
             </a>
-        <?php endif; ?>
-    </div>
-<?php $__env->stopSection(); ?>
-
-
-    <div class="col-xl-12 mt-5">
-
-        <div class="card">
-            <div class="card-body table-border-style">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th><?php echo e(__('#')); ?></th>
-                            <th><?php echo e(__('Subject')); ?></th>
-                            <th><?php echo e(__('Contractor')); ?></th>
-                            <th><?php echo e(__('Project')); ?></th>
-                            <th><?php echo e(__('Contract Type')); ?></th>
-                            <th><?php echo e(__('Contract Value')); ?></th>
-                            <th><?php echo e(__('Start Date')); ?></th>
-                            <th><?php echo e(__('End Date')); ?></th>
-                            <th class="text-end"><?php echo e(__('Action')); ?></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        
-                            
+            <?php if(\Auth::user()->type == 'super admin'): ?>
+                <a href="#" data-size="md" data-url="<?php echo e(route('contract.create')); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('Create New Contract')); ?>" class="btn btn-sm btn-primary">
+                    <i class="ti ti-plus"></i>
+                </a>
+            <?php endif; ?>
+        </div>
+    <?php $__env->stopSection(); ?>
+    
+    
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table datatable">
+                                <thead>
                                 <tr>
-                                    <td></td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            
-                                        </div>
-                                    </td>
-                                    <td>
-
-                                        <div class="d-flex align-items-center">
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="">
-                                        
-                                    </td>
-                                    
-                                    <td class="text-end">
-                                        <h5 class="mb-0 text-success">
-                                            
-                                        </h5>
-                                        <div class="progress mb-0">
-                                            
-                                        </div>
-                                    </td>
-                                    
-                                    <td class="text-end">
-                                        
-                                    </td>
+                                    <th scope="col"><?php echo e(__('#')); ?></th>
+                                    <th scope="col"><?php echo e(__('Subject')); ?></th>
+                                    <?php if(\Auth::user()->type!='client'): ?>
+                                        <th scope="col"><?php echo e(__('Client')); ?></th>
+                                    <?php endif; ?>
+                                    <th scope="col"><?php echo e(__('Project')); ?></th>
+    
+                                    <th scope="col"><?php echo e(__('Contract Type')); ?></th>
+                                    <th scope="col"><?php echo e(__('Contract Value')); ?></th>
+                                    <th scope="col"><?php echo e(__('Start Date')); ?></th>
+                                    <th scope="col"><?php echo e(__('End Date')); ?></th>
+                                    <th scope="col"><?php echo e(__('')); ?></th>
+                                    <th scope="col" ><?php echo e(__('Action')); ?></th>
+    
                                 </tr>
-                            
-                        
-                            <tr>
-                                <th scope="col" colspan="7"><h6 class="text-center"><?php echo e(__('No contracts Found.')); ?></h6></th>
-                            </tr>
-                        
-                        </tbody>
-                    </table>
+                                </thead>
+                                <tbody>
+                                <?php $__currentLoopData = $contracts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $contract): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    
+                                    <tr class="font-style">
+                                        <td>
+                                            <a href="<?php echo e(route('contract.show',$contract->id)); ?>" class="btn btn-outline-primary"><?php echo e(\Auth::user()->contractNumberFormat($contract->id)); ?></a>
+                                        </td>
+                                        <td><?php echo e($contract->subject); ?></td>
+                                        <?php if(\Auth::user()->type!='contractor'): ?>
+                                            <td><?php echo e(!empty($contract->clients)?$contract->clients->name:'-'); ?></td>
+                                        <?php endif; ?>
+                                        <td><?php echo e(!empty($contract->projects)?$contract->projects->project_name:'-'); ?></td>
+    
+                                        <td><?php echo e(!empty($contract->types)?$contract->types->name:''); ?></td>
+                                        <td><?php echo e(\Auth::user()->priceFormat($contract->value)); ?></td>
+                                        <td><?php echo e(\Auth::user()->dateFormat($contract->start_date )); ?></td>
+                                        <td><?php echo e(\Auth::user()->dateFormat($contract->end_date )); ?></td>
+                                        <td>
+                                            <a href="#" class="action-item" data-url="<?php echo e(route('contract.description',$contract->id)); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('Description')); ?>" data-title="<?php echo e(__('Desciption')); ?>"><i class="fa fa-comment"></i></a>
+                                        </td>
+    
+                                        <td class="action ">
+                                            <?php if(\Auth::user()->type=='super admin'): ?>
+                                                <?php if($contract->status=='accept'): ?>
+                                                    <div class="action-btn bg-primary ms-2">
+                                                        <a href="#" data-size="lg"
+                                                           data-url="<?php echo e(route('contract.copy', $contract->id)); ?>"
+                                                           data-ajax-popup="true"
+                                                           data-title="<?php echo e(__('Copy Contract')); ?>"
+                                                           class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                                           title="<?php echo e(__('Duplicate')); ?>"><i
+                                                                class="ti ti-copy text-white"></i>
+                                                        </a>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                            
+                                                <div class="action-btn bg-warning ms-2">
+                                                    <a href="<?php echo e(route('contract.show',$contract->id)); ?>"
+                                                       class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                       data-bs-whatever="<?php echo e(__('View Budget Planner')); ?>" data-bs-toggle="tooltip"
+                                                       data-bs-original-title="<?php echo e(__('View')); ?>"> <span class="text-white"> <i class="ti ti-eye"></i></span></a>
+                                                </div>
+                                            
+                                        </td>
+                                    </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    
+    
     </div>
-
-
-
-
-<?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.toast-notification','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
-<?php $component->withName('toast-notification'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
-<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
-<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
-<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
-<?php endif; ?>
-
-
-
-</div>
-<?php /**PATH C:\xampp\htdocs\nittpaperless-1\resources\views/livewire/d-g/contract-component.blade.php ENDPATH**/ ?>
+    <?php /**PATH C:\xampp\htdocs\nittpaperless-1\resources\views/livewire/d-g/contract-component.blade.php ENDPATH**/ ?>

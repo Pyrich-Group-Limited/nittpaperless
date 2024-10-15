@@ -13,6 +13,7 @@ class ErgpComponent extends Component
     public $title;
     public $value;
     public $ergp_year;
+    public $category;
 
     public function createProject(){
         $this->validate([
@@ -28,6 +29,7 @@ class ErgpComponent extends Component
             'project_category_id' => $this->projectCat,
             'code' => $this->code,
             'title' => $this->title,
+            'category' => $this->category,
             'project_sum' => $this->value,
             'year' => $this->ergp_year,
         ]);

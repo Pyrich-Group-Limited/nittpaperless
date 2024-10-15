@@ -3,7 +3,7 @@
    $profile=\App\Models\Utility::get_file('uploads/avatar');
    ?>
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Top 3 Applicants')); ?>
+    <?php echo e(__('Recommended Top Applicants')); ?>
 
 <?php $__env->stopSection(); ?>
 
@@ -127,7 +127,7 @@
                                             
                                             
                                             <div class="action-btn bg-info ms-2">
-                                                    <a href="#" wire:click="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Recommend to DG')); ?>" data-title="<?php echo e(__('Recommend contractor for DG Approval')); ?>">
+                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#shareProjectDetails" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Recommend to DG')); ?>" data-title="<?php echo e(__('Recommend contractor for DG Approval')); ?>">
                                                         <i class="ti ti-share text-white"></i>
                                                     </a>
                                                 </div>
@@ -138,7 +138,7 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <?php else: ?>
                             <tr>
-                                <th scope="col" colspan="9"><h6 class="text-center"><?php echo e(__('No Appplicants yet.')); ?></h6></th>
+                                <th scope="col" colspan="9"><h6 class="text-center"><?php echo e(__('No records yet.')); ?></h6></th>
                             </tr>
                         <?php endif; ?>
                         </tbody>
@@ -168,6 +168,7 @@
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
 <?php echo $__env->make('livewire.d-g.modals.recommended-applicant-details', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('livewire.d-g.modals.share-project', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 
 </div>
