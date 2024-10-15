@@ -41,6 +41,7 @@
                                 <th>{{ __('Project Category') }}</th>
                                 <th>{{ __('ERGP CODE') }}</th>
                                 <th>{{ __('ERGP TITLE') }}</th>
+                                <th>{{ __('ERGP Category') }}</th>
                                 <th>{{ __('Total Value') }}</th>
                                 <th>{{ __('Amount Paid') }}</th>
                                 <th>{{ __('Balance') }}</th>
@@ -58,6 +59,7 @@
                                         <td>{{ $ergp->projectCategory->category_name }}</td>
                                         <td>{{ $ergp->code }}</td>
                                         <td>{{ $ergp->title }}</td>
+                                        <td>{{ $ergp->category ? : 'N/A' }}</td>
                                         <td>₦ {{ number_format($ergp->project_sum, 2) }}</td>
                                         <td>₦ {{ number_format($ergp->amount_paid, 2) }}</td>
                                         <td>₦ {{ number_format($ergp->balance, 2) }}</td>
@@ -65,7 +67,7 @@
                                         <td>{{ $ergp->year }}</td>
                                         <td>
                                             <div class="action-btn bg-primary ms-2">
-                                                <a href="{{ route('project.details', $ergp->id) }}"
+                                                <a href="{{ route('dg.showErgp.expense', $ergp->id) }}"
                                                     class="mx-3 btn btn-sm d-inline-flex align-items-center"
                                                     data-url="" data-ajax-popup="false" data-size="lg"
                                                     data-bs-toggle="tooltip" title="{{ __('Show Details') }}"
@@ -89,6 +91,5 @@
             </div>
         </div>
     </div>
-    {{-- @include('livewire.physical-planning.projects.modals.add-ergp') --}}
     <x-toast-notification />
 <div>

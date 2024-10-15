@@ -3,7 +3,7 @@
    $profile=\App\Models\Utility::get_file('uploads/avatar');
    @endphp
 @section('page-title')
-    {{__('Top 3 Applicants')}}
+    {{__('Recommended Top Applicants')}}
 @endsection
 
 @push('script-page')
@@ -124,7 +124,7 @@
                                             {{-- @endcan  --}}
                                             {{-- @can('edit project') --}}
                                             <div class="action-btn bg-info ms-2">
-                                                    <a href="#" wire:click="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Recommend to DG')}}" data-title="{{__('Recommend contractor for DG Approval')}}">
+                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#shareProjectDetails" data-size="lg" data-bs-toggle="tooltip" title="{{__('Recommend to DG')}}" data-title="{{__('Recommend contractor for DG Approval')}}">
                                                         <i class="ti ti-share text-white"></i>
                                                     </a>
                                                 </div>
@@ -135,7 +135,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <th scope="col" colspan="9"><h6 class="text-center">{{__('No Appplicants yet.')}}</h6></th>
+                                <th scope="col" colspan="9"><h6 class="text-center">{{__('No records yet.')}}</h6></th>
                             </tr>
                         @endif
                         </tbody>
@@ -151,6 +151,7 @@
 
 <x-toast-notification />
 @include('livewire.d-g.modals.recommended-applicant-details')
+@include('livewire.d-g.modals.share-project')
 {{-- @livewire('physical-planning.projects.uploadboq') --}}
 
 </div>

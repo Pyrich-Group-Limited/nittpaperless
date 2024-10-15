@@ -347,13 +347,19 @@
                                         </li>
                                     @endcan
                                     @can('manage client')
-                                        <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
+                                        {{-- <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
                                             <a class="dash-link" href="{{ route('clients.index') }}">{{__('Contractor')}}</a>
+                                        </li> --}}
+                                        <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
+                                            <a class="dash-link" href="{{ route('project.contractors') }}">{{__('Contractors')}}</a>
                                         </li>
                                     @endcan
                                     @if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client')
-                                        <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
+                                        {{-- <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
                                             <a class="dash-link" href="{{route('contract.index')}}">{{__('Contract')}}</a>
+                                        </li> --}}
+                                        <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
+                                            <a class="dash-link" href="{{route('project.contracts')}}">{{__('Contracts')}}</a>
                                         </li>
                                     @endif
                                     <!-- @can('manage project task')

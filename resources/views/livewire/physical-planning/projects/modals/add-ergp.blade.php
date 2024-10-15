@@ -60,20 +60,36 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-12 col-md-12">
-                            <div class="form-group">
-                                {{ Form::label('projectCat', __('Project Category'), ['class' => 'form-label']) }}
-                                <select name="" id="" class="form-control" wire:model="projectCat">
-                                    <option value=""></option>
-                                    @foreach ($projectCats as $projectCat)
-                                        <option value="{{ $projectCat->id }}">{{ $projectCat->category_name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('projectCat')
-                                    <small class="invalid-type_of_leave" role="alert">
-                                        <strong class="text-danger">{{ $message }}</strong>
-                                    </small>
-                                @enderror
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    {{ Form::label('projectCat', __('Project Category'), ['class' => 'form-label']) }}
+                                    <select name="" id="" class="form-control" wire:model="projectCat">
+                                        <option value=""></option>
+                                        @foreach ($projectCats as $projectCat)
+                                            <option value="{{ $projectCat->id }}">{{ $projectCat->category_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('projectCat')
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    {{ Form::label('category', __('ERGP Category'), ['class' => 'form-label']) }}<span
+                                        class="text-danger">*</span>
+                                    <input type="text" wire:model="category" class="form-control">
+                                    @error('category')
+                                        <small class="invalid-type_of_leave" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
@@ -96,4 +112,3 @@
         document.getElementById("closeAddErgpModal").click();
     })
 </script>
-

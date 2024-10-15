@@ -134,13 +134,13 @@
                                                     </a>
                                                 </div>
                                             @endcan 
-                                            @can('edit project')
+                                            {{-- @can('edit project')
                                             <div class="action-btn bg-info ms-2">
                                                     <a href="#" wire:click="setProject('{{ $projectApplicant->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Recommend to DG')}}" data-title="{{__('Recommend contractor for DG Approval')}}">
                                                         <i class="ti ti-share text-white"></i>
                                                     </a>
                                                 </div>
-                                            @endcan
+                                            @endcan --}}
                                         </span>
                                     </td>
                                 </tr>

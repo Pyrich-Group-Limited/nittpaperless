@@ -38,6 +38,7 @@
                                 <th><?php echo e(__('SN')); ?></th>
                                 <th><?php echo e(__('Project Category')); ?></th>
                                 <th><?php echo e(__('ERGP CODE')); ?></th>
+                                <th><?php echo e(__('ERGP Category')); ?></th>
                                 <th><?php echo e(__('ERGP TITLE')); ?></th>
                                 <th><?php echo e(__('Total Value')); ?></th>
                                 <th><?php echo e(__('Amount Paid')); ?></th>
@@ -55,6 +56,7 @@
                                         <td><?php echo e($loop->iteration); ?></td>
                                         <td><?php echo e($ergp->projectCategory->category_name); ?></td>
                                         <td><?php echo e($ergp->code); ?></td>
+                                        <td><?php echo e($ergp->category ? : 'N/A'); ?></td>
                                         <td><?php echo e($ergp->title); ?></td>
                                         <td>₦ <?php echo e(number_format($ergp->project_sum, 2)); ?></td>
                                         <td>₦ <?php echo e(number_format($ergp->amount_paid, 2)); ?></td>
@@ -63,7 +65,7 @@
                                         <td><?php echo e($ergp->year); ?></td>
                                         <td>
                                             <div class="action-btn bg-warning ms-2">
-                                                <a href="<?php echo e(route('project.details', $ergp->id)); ?>"
+                                                <a href="<?php echo e(route('dg.showErgp.expense', $ergp->id)); ?>"
                                                     class="mx-3 btn btn-sm d-inline-flex align-items-center"
                                                     data-url="" data-ajax-popup="false" data-size="lg"
                                                     data-bs-toggle="tooltip" title="<?php echo e(__('Show Details')); ?>"
@@ -86,8 +88,7 @@
                                                     class="mx-3 btn btn-sm  align-items-center bs-pass-para"
                                                     data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"><i
                                                         class="ti ti-trash text-white"></i></a>
-                                                <?php echo Form::close(); ?>
-
+                                                
                                             </div>
 
                                         </td>

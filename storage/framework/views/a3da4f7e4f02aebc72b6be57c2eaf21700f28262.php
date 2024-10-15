@@ -128,13 +128,7 @@
                                                     </a>
                                                 </div>
                                             <?php endif; ?> 
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
-                                            <div class="action-btn bg-info ms-2">
-                                                    <a href="#" wire:click="setProject('<?php echo e($projectApplicant->id); ?>')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Recommend to DG')); ?>" data-title="<?php echo e(__('Recommend contractor for DG Approval')); ?>">
-                                                        <i class="ti ti-share text-white"></i>
-                                                    </a>
-                                                </div>
-                                            <?php endif; ?>
+                                            
                                         </span>
                                     </td>
                                 </tr>

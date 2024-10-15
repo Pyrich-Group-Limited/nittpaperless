@@ -3,7 +3,6 @@
         <div class="modal-dialog modal-lg" role="document" wire:ignore.self>
             <div class="modal-content">
                 <div class="modal-body">
-
                     <div class="modal-header">
                         <h5 class="modal-title" id="applyLeave">TOP APPLICANT DETAILS
                         </h5>
@@ -11,14 +10,13 @@
                     <div class="modal-body">
                         <?php if($projectApplicant): ?>
                             <div class="row">
-
                                 <div class="col-md-12">
                                     <div class="table-responsive">
                                         <table class="table table-bordered mb-0">
-                    
+
                                             <tbody>
                                                 <style>
-                                                    th{
+                                                    th {
                                                         width: 200px !important;
                                                     }
                                                 </style>
@@ -32,7 +30,8 @@
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Year of Incorporation</th>
-                                                    <td style="white-space: pre-wrap"><?php echo e($projectApplicant->applicant->year_of_incorporation); ?></td>
+                                                    <td style="white-space: pre-wrap">
+                                                        <?php echo e($projectApplicant->applicant->year_of_incorporation); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company TIN</th>
@@ -50,63 +49,68 @@
                                                     <th scope="row">Company Phone</th>
                                                     <td><?php echo e($projectApplicant->applicant->phone); ?></td>
                                                 </tr>
-                                                 <tr>
+                                                <tr>
                                                     <th scope="row">Application Status</th>
                                                     <td>
-                                                        <span class="badge <?php if($projectApplicant->application_status=='pending'): ?> bg-warning
-                                                            <?php elseif($projectApplicant->application_status=='on_review'): ?> bg-info
-                                                            <?php elseif($projectApplicant->application_status=='selected'): ?> bg-primary
-                                                            <?php elseif($projectApplicant->application_status=='rejected'): ?> bg-danger
-                                                            <?php endif; ?> p-2 px-3 rounded"><?php echo e($projectApplicant->application_status); ?>
+                                                        <span
+                                                            class="badge <?php if($projectApplicant->application_status == 'pending'): ?> bg-warning
+                                                            <?php elseif($projectApplicant->application_status == 'on_review'): ?> bg-info
+                                                            <?php elseif($projectApplicant->application_status == 'selected'): ?> bg-primary
+                                                            <?php elseif($projectApplicant->application_status == 'rejected'): ?> bg-danger <?php endif; ?> p-2 px-3 rounded"><?php echo e($projectApplicant->application_status); ?>
 
                                                         </span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Application Date</th>
-                                                    <td><?php echo e(date('d-M-Y', strtotime($projectApplicant->created_at))); ?></td>
+                                                    <td><?php echo e(date('d-M-Y', strtotime($projectApplicant->created_at))); ?>
+
+                                                    </td>
                                                 </tr>
+
                                                 
-                                                
-                                               
-                                               
+
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                               
+
                             </div>
 
                             <hr>
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-6">
-                                        <h5 class="text-primary"><b>Uploaded Documents</b></h5>
-                                        <table class="table table">
-                                            <tbody class="tbody-class">
-                                                <tr>
-                                                    <th scope="row">Doc 1</th>
-                                                    <td>title</td>
-                                                    <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Doc 2</th>
-                                                    <td>title</td>
-                                                    <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Doc 3</th>
-                                                    <td>title</td>
-                                                    <td><a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download"></i> Download</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-6">
+                                    <h5 class="text-primary"><b>Uploaded Documents</b></h5>
+                                    <table class="table table-bordered mb-0">
+                                        <tbody>
+                                            <?php if($projectApplicant->documents->isEmpty()): ?>
+                                                <p>No documents uploaded for this application.</p>
+                                            <?php else: ?>
+                                                <?php $__currentLoopData = $projectApplicant->documents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $applicationDocument): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <tr>
+                                                        <td scope="row"><?php echo e($loop->iteration); ?></td>
+                                                        <td><?php echo e($applicationDocument->document_name); ?></td>
+                                                        <td class="text-end">
+                                                            <a href="#" target="_blank"
+                                                                class="btn btn-primary btn-sm"><i
+                                                                    class="ti ti-eye"></i></a>
+                                                            <a href="#" class="btn btn-primary btn-sm"><i
+                                                                    class="ti ti-download" download></i></a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
+                            </div>
 
                             <div class="modal-footer">
-                                <input type="button" id="closeApplicantDetails" value="<?php echo e(__('Close')); ?>"
+                                <input type="button" id="closeDetails" value="<?php echo e(__('Close')); ?>"
                                     class="btn  btn-light" data-bs-dismiss="modal">
-                                <input type="button"  wire:click="recommendToDg('<?php echo e($projectApplicant->id); ?>')" value="<?php echo e(__('Approve')); ?>" class="btn  btn-primary">
+                                <input type="button" wire:click="recommendToDg('<?php echo e($projectApplicant->id); ?>')"
+                                    value="<?php echo e(__('Approve')); ?>" class="btn  btn-primary">
                             </div>
                         <?php else: ?>
                             <label align="center" class="mb-4" style="color: red">Loading...</label>
@@ -118,7 +122,7 @@
     </div>
     <script>
         window.addEventListener('success', event => {
-            document.getElementById("closeApplicantDetails").click();
+            document.getElementById("closeDetails").click();
         })
     </script>
     <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>

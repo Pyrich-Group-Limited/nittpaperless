@@ -39,6 +39,7 @@
                                 <th><?php echo e(__('Project Category')); ?></th>
                                 <th><?php echo e(__('ERGP CODE')); ?></th>
                                 <th><?php echo e(__('ERGP TITLE')); ?></th>
+                                <th><?php echo e(__('ERGP Category')); ?></th>
                                 <th><?php echo e(__('Total Value')); ?></th>
                                 <th><?php echo e(__('Amount Paid')); ?></th>
                                 <th><?php echo e(__('Balance')); ?></th>
@@ -56,6 +57,7 @@
                                         <td><?php echo e($ergp->projectCategory->category_name); ?></td>
                                         <td><?php echo e($ergp->code); ?></td>
                                         <td><?php echo e($ergp->title); ?></td>
+                                        <td><?php echo e($ergp->category ? : 'N/A'); ?></td>
                                         <td>₦ <?php echo e(number_format($ergp->project_sum, 2)); ?></td>
                                         <td>₦ <?php echo e(number_format($ergp->amount_paid, 2)); ?></td>
                                         <td>₦ <?php echo e(number_format($ergp->balance, 2)); ?></td>
@@ -63,7 +65,7 @@
                                         <td><?php echo e($ergp->year); ?></td>
                                         <td>
                                             <div class="action-btn bg-primary ms-2">
-                                                <a href="<?php echo e(route('project.details', $ergp->id)); ?>"
+                                                <a href="<?php echo e(route('dg.showErgp.expense', $ergp->id)); ?>"
                                                     class="mx-3 btn btn-sm d-inline-flex align-items-center"
                                                     data-url="" data-ajax-popup="false" data-size="lg"
                                                     data-bs-toggle="tooltip" title="<?php echo e(__('Show Details')); ?>"
@@ -87,7 +89,6 @@
             </div>
         </div>
     </div>
-    
     <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.toast-notification','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('toast-notification'); ?>

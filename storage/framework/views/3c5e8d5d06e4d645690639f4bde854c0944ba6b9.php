@@ -110,9 +110,9 @@
                                     </td>
                                     <td class="">
                                         <?php if($project->advert_approval_status == false): ?>
-                                            <span class="badge bg-warning p-2 px-3 rounded">Pending advert</span>
+                                            <span class="badge bg-warning p-2 px-3 rounded">Pending</span>
                                         <?php elseif($project->advert_approval_status== true): ?>
-                                            <span class="badge bg-success p-2 px-3 rounded">Approved for advert</span>
+                                            <span class="badge bg-success p-2 px-3 rounded">Approved</span>
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-end">
