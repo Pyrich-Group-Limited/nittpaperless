@@ -44,9 +44,10 @@
                             <th>{{__('#')}}</th>
                             <th>{{__('Project')}}</th>
                             <th>{{__('Project No.')}}</th>
-                            <th>{{__('Status')}}</th>
+                            <th>{{__('Project Status')}}</th>
                             <th>{{__('Users')}}</th>
                             <th>{{__('Completion')}}</th>
+                            <th>{{__('Approval Status')}}</th>
                             <th class="text-end">{{__('Action')}}</th>
                         </tr>
                         </thead>
@@ -104,50 +105,39 @@
                                             <div class="progress-bar bg-{{ $project->project_progress()['color'] }}" style="width: {{ $project->project_progress()['percentage'] }};"></div>
                                         </div>
                                     </td>
+                                    <td class="">
+                                        @if($project->advert_approval_status == false)
+                                            <span class="badge bg-warning p-2 px-3 rounded">Pending</span>
+                                        @elseif ($project->advert_approval_status== true)
+                                            <span class="badge bg-success p-2 px-3 rounded">Approved</span>
+                                        @endif
+                                    </td>
                                     <td class="text-end">
                                         <span>
-                                            @can('edit project')
+                                            {{-- @can('edit project') --}}
                                                 <div class="action-btn bg-warning ms-2">
-                                                    <a href="{{ route('project.details', $project->id) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="" data-ajax-popup="false" data-size="lg" data-bs-toggle="tooltip" title="{{__('Show Details')}}" data-title="{{__('Show Details')}}">
+                                                    <a href="{{ route('dg.projectDetails', $project->id) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="" data-ajax-popup="false" data-size="lg" data-bs-toggle="tooltip" title="{{__('Show Details')}}" data-title="{{__('Show Details')}}">
                                                         <i class="ti ti-eye text-white"></i>
                                                     </a>
                                                 </div>
-                                            @endcan
+                                            {{-- @endcan --}}
+                                        </span>
 
-                                            @if($project->project_boq==null)
-                                                @can('delete project')
-                                                    <div class="action-btn bg-danger ms-2">
-                                                            {!! Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy', [$project->id,$user->id]]]) !!}
-                                                            <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}"><i class="ti ti-trash text-white"></i></a>
-                                                            {!! Form::close() !!}
-                                                        </div>
-                                                @endcan
-                                            @endif
-
-                                            @if($project->project_boq==null)
-                                                @can('edit project')
-                                                    <div class="action-btn bg-info ms-2">
-                                                            <a href="#" wire:click="setProject('{{ $project->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Upload Bill of Quantity')}}" data-title="{{__('Upload Bill of Quantity')}}">
-                                                                <i class="ti ti-upload text-white"></i>
-                                                            </a>
-                                                        </div>
-                                                @endcan
-                                            @else
-                                            @can('edit project')
-                                            <div class="action-btn bg-info ms-2">
-                                                    <a href="#" wire:click="setProject('{{ $project->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Edit Bill of Quantity')}}" data-title="{{__('Edit Bill of Quantity')}}">
-                                                        <i class="ti ti-edit text-white"></i>
+                                        @if($project->project_boq!=null && $project->advert_approval_status==true)
+                                            {{-- @can('edit project') --}}
+                                                <div class="action-btn bg-primary ms-2">
+                                                    <a href="{{ route('dg.projectApplicants',$project->id) }}" data-size="lg"  data-bs-toggle="tooltip" title="{{__('View Recommended Applicant')}}"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
+                                                        <i class="ti ti-users text-white"></i>
                                                     </a>
                                                 </div>
-                                            @endcan
-                                            @endif
-                                        </span>
+                                            {{-- @endcan --}}
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
                         @else
                             <tr>
-                                <th scope="col" colspan="7"><h6 class="text-center">{{__('No Projects Found.')}}</h6></th>
+                                <th scope="col" colspan="7"><h6 class="text-center">{{__('No Projects Pending approval Found.')}}</h6></th>
                             </tr>
                         @endif
                         </tbody>

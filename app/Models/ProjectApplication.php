@@ -9,31 +9,58 @@ class ProjectApplication extends Model
 {
     use HasFactory;
 
-    protected $fillable =[
+    protected $fillable = [
         'project_id',
         'user_id',
         'application_status'
     ];
-    // A project application belongs to a project advert
-    public function advert()
+
+    // Define the relationship with the ProjectApplicant model
+    public function applicant()
     {
-        return $this->belongsTo(ProjectAdvert::class);
+        return $this->belongsTo(ProjectApplicant::class, 'user_id', 'user_id');
     }
 
+    // Define the relationship with the Project model (assuming it exists)
     public function project()
     {
         return $this->belongsTo(ProjectCreation::class);
     }
 
-    // A project application has one applicant details (One-to-One)
-    public function applicantDetails()
+    // Relationship to ProjectApplicationDocument
+    public function documents()
     {
-        return $this->hasOne(ProjectApplicant::class);
+        return $this->hasMany(ProjectApplicationDocument::class, 'project_application_id');
     }
 
-    // A project application has many document uploads (One-to-Many)
-    public function documentUploads()
+    public function contractor()
     {
-        return $this->hasMany(ProjectApplicationDocument::class);
+        return $this->belongsTo(User::class,'user_id');
     }
+
+    //  public function documentUploads()
+    // {
+    //     return $this->hasMany(ProjectApplicationDocument::class,'project_application_id');
+    // }
+
+    // public function project()
+    // {
+    //     return $this->belongsTo(ProjectCreation::class,'project_id');
+    // }
+
+
+    // // A project application belongs to a project advert
+    // public function advert()
+    // {
+    //     return $this->belongsTo(ProjectAdvert::class);
+    // }
+
+    // // A project application has one applicant details (One-to-One)
+    // public function applicantDetails()
+    // {
+    //     return $this->hasOne(ProjectApplicant::class);
+    // }
+
+    // // A project application has many document uploads (One-to-Many)
+
 }

@@ -305,7 +305,6 @@ class ShowProjectComponent extends Component
     public function render()
     {
         $project = ProjectCreation::find($this->project_id);
-        // dd($project->project_name);
         $project_data =  $this->getProjectDetails($project);
         $categories = ProjectCategory::all();
         $users = User::all();

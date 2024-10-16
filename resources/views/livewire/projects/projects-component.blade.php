@@ -110,6 +110,8 @@
                                             @elseif ($project->status=='completed') bg-primary
                                             @elseif ($project->status=='canceled') bg-danger
                                             @endif p-2 px-3 rounded">{{ $project->status }}</span>
+
+                                            @if($project->project_boq==null) <span class="badge bg-danger p-2 px-3 rounded">Pending BoQ</span> @endif
                                     </td>
                                     <td class="">
                                         <div class="avatar-group" id="project_{{ $project->id }}">
@@ -150,20 +152,16 @@
                                                     </a>
                                                 </div>
                                             @endcan
-                                            {{-- @can('edit project')
-                                                <div class="action-btn bg-info ms-2">
-                                                        <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#editProject" id="toggleOldProject"  wire:click="selProject({{$project->id}})"  data-bs-toggle="tooltip" title="{{__('Modify Project')}}"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
-                                                            <i class="ti ti-pencil text-white"></i>
+                                            
+                                            @if($project->project_boq!=null && $project->advert_approval_status==true)
+                                                @can('edit project')
+                                                    <div class="action-btn bg-primary ms-2">
+                                                        <a href="{{ route('project.applicants',$project->id) }}" data-size="lg"  data-bs-toggle="tooltip" title="{{__('View Project Applicant')}}"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
+                                                            <i class="ti ti-users text-white"></i>
                                                         </a>
                                                     </div>
-                                            @endcan
-                                            @can('edit project')
-                                            <div class="action-btn bg-primary ms-2">
-                                                <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject" wire:click="selProject2({{$project}})"  data-bs-toggle="tooltip" title="{{__('Advertise Project')}}"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
-                                                    <i class="ti ti-share text-white"></i>
-                                                </a>
-                                            </div>
-                                            @endcan --}}
+                                                @endcan
+                                            @endif
                                             @if($project->project_boq==null)
                                                 @can('delete project')
                                                     <div class="action-btn bg-danger ms-2">

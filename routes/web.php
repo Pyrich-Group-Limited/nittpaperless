@@ -159,6 +159,9 @@ use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Projects\ProjectsComponent;
 use App\Http\Livewire\Projects\EditProjectComponent;
 use App\Http\Livewire\Projects\ShowProjectComponent;
+use App\Http\Livewire\Projects\ProjectApplicantsComponent;
+use App\Http\Livewire\Projects\ProjectContractsComponent;
+use App\Http\Livewire\Projects\ProjectContractorsComponent;
 
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
@@ -174,6 +177,11 @@ use App\Http\Livewire\Contractor\DocumentsComponent;
 use App\Http\Livewire\Contractor\ApplicationsComponent;
 
 use App\Http\Livewire\DG\DgProjectsComponent;
+use App\Http\Livewire\DG\DgProjectDetailsComponent;
+use App\Http\Livewire\DG\ProjectRecommendedApplicantsComponent;
+use App\Http\Livewire\DG\ContractComponent;
+use App\Http\Livewire\DG\DgErgpCompnent;
+use App\Http\Livewire\DG\ViewErgpExpenseComponent;
 
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
@@ -215,6 +223,12 @@ Route::get('/contractor/profile',ContractorProfile::class)->name('contractor.pro
 
 Route::middleware(['auth','revalidate'])->prefix('director-general')->group(function () {
     Route::get('/dg-projects',DgProjectsComponent::class)->name('dg.projects');
+    Route::get('/dg-project-details/{id}',DgProjectDetailsComponent::class)->name('dg.projectDetails');
+    Route::get('/dg-project/{id}/applicants',ProjectRecommendedApplicantsComponent::class)->name('dg.projectApplicants');
+    Route::get('/contracts',ContractComponent::class)->name('dg.contracts');
+    Route::get('/view-erpg',DgErgpCompnent::class)->name('dg.ergps');
+    Route::get('/erpg-expense/{id}/view',ViewErgpExpenseComponent::class)->name('dg.showErgp.expense');
+
 });
 
 Route::get('/contract-Advert',ServicesComponent::class)->name('all-adverts');
@@ -391,6 +405,24 @@ Route::get('store-issued-voucher/details', [AccountantDashControl::class, 'store
 Route::get('goods-received-notes', [AccountantDashControl::class, 'goodsReceivedNotes'])->name('goodsReceived.list');
 Route::get('goods-received-note/create', [AccountantDashControl::class, 'newGoodsReceived'])->name('goodsReceived.add');
 Route::get('goods-received-note/details', [AccountantDashControl::class, 'goodsReceivedNoteDetails'])->name('goodsReceived.details');
+
+Route::get('approved-supply-notes', [AccountantDashControl::class, 'approvedSupplyNotes'])->name('approvedSupply.list');
+Route::get('approved-supply-note/create', [AccountantDashControl::class, 'newApprovedSupply'])->name('approvedSupply.add');
+Route::get('approved-supply-note/details', [AccountantDashControl::class, 'approvedSupplyNoteDetails'])->name('approvedSupply.details');
+
+
+Route::get('delivered-supply-notes', [AccountantDashControl::class, 'deliveredSupplyNotes'])->name('deliveredSupply.list');
+Route::get('delivered-supply-note/create', [AccountantDashControl::class, 'newDeliveredSupply'])->name('deliveredSupply.add');
+Route::get('delivered-supply-note/details', [AccountantDashControl::class, 'deliveredSupplyNoteDetails'])->name('deliveredSupply.details');
+
+
+
+
+
+
+
+
+
 
 Route::get('comment', [AccountantDashControl::class, 'commentModal'])->name('comment.modal');
 
@@ -1178,6 +1210,10 @@ Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function 
     Route::get('all-projects', ProjectsComponent::class)->name('created-projects');
     Route::get('project/{id}/show',ShowProjectComponent::class)->name('project.details');
     Route::get('project/{id}/edit',EditProjectComponent::class)->name('project.edit');
+
+    Route::get('/project/{id}/applicants',ProjectApplicantsComponent::class)->name('project.applicants');
+    Route::get('/project-contracts',ProjectContractsComponent::class)->name('project.contracts');
+    Route::get('/project-contractors',ProjectContractorsComponent::class)->name('project.contractors');
 });
 
 

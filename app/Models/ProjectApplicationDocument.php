@@ -18,6 +18,6 @@ class ProjectApplicationDocument extends Model
     // document upload belongs to one project application
     public function application()
     {
-        return $this->belongsTo(ProjectApplication::class);
+        return $this->belongsTo(ProjectApplication::class,'project_application_id');
     }
 }

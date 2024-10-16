@@ -38,7 +38,9 @@
                         <thead>
                             <tr>
                                 <th>{{ __('SN') }}</th>
+                                <th>{{ __('Project Category') }}</th>
                                 <th>{{ __('ERGP CODE') }}</th>
+                                <th>{{ __('ERGP Category') }}</th>
                                 <th>{{ __('ERGP TITLE') }}</th>
                                 <th>{{ __('Total Value') }}</th>
                                 <th>{{ __('Amount Paid') }}</th>
@@ -54,7 +56,9 @@
                                 @foreach ($ergps as $ergp)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $ergp->projectCategory->category_name }}</td>
                                         <td>{{ $ergp->code }}</td>
+                                        <td>{{ $ergp->category ? : 'N/A' }}</td>
                                         <td>{{ $ergp->title }}</td>
                                         <td>₦ {{ number_format($ergp->project_sum, 2) }}</td>
                                         <td>₦ {{ number_format($ergp->amount_paid, 2) }}</td>
@@ -63,7 +67,7 @@
                                         <td>{{ $ergp->year }}</td>
                                         <td>
                                             <div class="action-btn bg-warning ms-2">
-                                                <a href="{{ route('project.details', $ergp->id) }}"
+                                                <a href="{{ route('dg.showErgp.expense', $ergp->id) }}"
                                                     class="mx-3 btn btn-sm d-inline-flex align-items-center"
                                                     data-url="" data-ajax-popup="false" data-size="lg"
                                                     data-bs-toggle="tooltip" title="{{ __('Show Details') }}"
@@ -86,7 +90,7 @@
                                                     class="mx-3 btn btn-sm  align-items-center bs-pass-para"
                                                     data-bs-toggle="tooltip" title="{{ __('Delete') }}"><i
                                                         class="ti ti-trash text-white"></i></a>
-                                                {!! Form::close() !!}
+                                                {{-- {!! Form::close() !!} --}}
                                             </div>
 
                                         </td>

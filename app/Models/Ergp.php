@@ -12,8 +12,10 @@ class Ergp extends Model
     protected $table = 'ergps';
 
     protected $fillable = [
+        'project_category_id',
         'code',
         'title',
+        'category',
         'year',
         'project_sum',
         'amount_paid',
@@ -21,9 +23,9 @@ class Ergp extends Model
     ];
 
 
-    // public function projectCategory(){
-    //     return $this->belongsTo(projectCategory::class);
-    // }
+    public function projectCategory(){
+        return $this->belongsTo(ProjectCategory::class,'project_category_id');
+    }
 
     /**
      * Accessor to calculate balance as a dynamic attribute

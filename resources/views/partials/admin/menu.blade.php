@@ -33,17 +33,24 @@
                         ></a>
                 </li>
                 <li class="dash-item dash-hasmenu ">
+                    <a href="{{ route('dg.ergps') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                    ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                        ><span class="dash-mtext">{{__('ERGP')}}</span
+                        ></a>
+                </li>
+                <li class="dash-item dash-hasmenu ">
                     <a href="{{ route('dg.projects') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
                     ><span class="dash-micon"><i class="ti ti-settings"></i></span
                         ><span class="dash-mtext">{{__('Projects')}}</span
                         ></a>
                 </li>
                 <li class="dash-item dash-hasmenu ">
-                    <a href="#" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                    <a href="{{ route('dg.contracts') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
                     ><span class="dash-micon"><i class="ti ti-file"></i></span
                         ><span class="dash-mtext">{{__('Contracts')}}</span
                         ></a>
                 </li>
+
             </ul>
             @else
 
@@ -224,7 +231,7 @@
 
 
 
-                                            @can('manage job')
+                                        {{---    @can('manage job')
                                                 <li class="dash-item {{ (Request::route()->getName() == 'jobber.index' || Request::route()->getName() == 'jobber.create' || Request::route()->getName() == 'jobber.edit' || Request::route()->getName() == 'jobber.show'   ? 'active' : '')}}">
                                                     <a class="dash-link" href="{{route('jobber.index')}}">{{__('Contracts')}}</a>
                                                 </li>
@@ -254,6 +261,7 @@
                                                     <a class="dash-link" href="{{route('interview-schedule.index')}}">{{__('Contract Meeting Schedule')}}</a>
                                                 </li>
                                             @endcan
+                                            -----}}
 
 
 
@@ -339,13 +347,19 @@
                                         </li>
                                     @endcan
                                     @can('manage client')
-                                        <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
+                                        {{-- <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
                                             <a class="dash-link" href="{{ route('clients.index') }}">{{__('Contractor')}}</a>
+                                        </li> --}}
+                                        <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
+                                            <a class="dash-link" href="{{ route('project.contractors') }}">{{__('Contractors')}}</a>
                                         </li>
                                     @endcan
                                     @if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client')
-                                        <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
+                                        {{-- <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
                                             <a class="dash-link" href="{{route('contract.index')}}">{{__('Contract')}}</a>
+                                        </li> --}}
+                                        <li class="dash-item  {{ (Request::segment(1) == 'contract')?'active':''}}">
+                                            <a class="dash-link" href="{{route('project.contracts')}}">{{__('Contracts')}}</a>
                                         </li>
                                     @endif
                                     <!-- @can('manage project task')

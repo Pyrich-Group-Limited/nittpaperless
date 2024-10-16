@@ -22,6 +22,22 @@ class ProjectApplicant extends Model
     // Applicant details belong to one project application (One-to-One)
     public function application()
     {
-        return $this->belongsTo(ProjectApplication::class);
+        return $this->hasMany(ProjectApplication::class, 'user_id', 'user_id');
     }
+
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class,'user_id');
+    // }
+
+    // Applicant details belong to one project application (One-to-One)
+    // public function application()
+    // {
+    //     return $this->belongsTo(ProjectApplication::class,'project_applications');
+    // }
+
+    // public function projects()
+    // {
+    //     return $this->belongsToMany(ProjectCreation::class);
+    // }
 }
