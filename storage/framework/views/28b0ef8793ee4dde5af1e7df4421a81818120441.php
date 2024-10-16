@@ -11,11 +11,7 @@
                             <?php echo csrf_field(); ?>
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="form-group">
-                                        <label for="">Project Applicant</label>
-                                        <h2><?php echo e($projectApplicant->applicant->company_name); ?></h2>
-                                        
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <label for="">Share with: (<span class="text-xs text-muted"><?php echo e(__('You can select one or more users to share file with')); ?></span>) </label>
                                         <select name="user_id[]" id="choices-multiple1" class="form-control select2" multiple>

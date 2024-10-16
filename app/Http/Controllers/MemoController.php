@@ -72,9 +72,9 @@ class MemoController extends Controller
             'description' => $data['description'],
             'file_path' => $filePath,
         ]);
-
+        
         // return redirect()->route('memos.index')->with('success', 'Memo created successfully.');
-        return back()->with('success', 'Memo created successfully.');
+        return redirect()->back()->with('success', 'Memo created successfully.');
     }
 
     /**

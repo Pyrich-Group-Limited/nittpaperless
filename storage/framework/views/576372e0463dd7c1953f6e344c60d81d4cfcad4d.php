@@ -50,6 +50,12 @@
                         ><span class="dash-mtext"><?php echo e(__('Contracts')); ?></span
                         ></a>
                 </li>
+                <li class="dash-item dash-hasmenu ">
+                    <a href="<?php echo e(route('memos.index')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                    ><span class="dash-micon"><i class="ti ti-files"></i></span
+                        ><span class="dash-mtext"><?php echo e(__('Memo')); ?></span
+                        ></a>
+                </li>
 
             </ul>
             <?php else: ?>
