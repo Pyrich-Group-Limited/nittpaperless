@@ -31,8 +31,13 @@
         <div class="float-end">
 
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
+            <?php if($project->project_boq != null && $project->advert_approval_status == false): ?>
+                <div class="alert alert-danger">You cannot advertise this project before DG's approval</div>
+            <?php elseif($project->project_boq == null): ?>
+                <div class="alert alert-danger">Kindly upload project's BoQ for DG's approval</div>
+            <?php else: ?>
                 <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject"
-                    data-bs-toggle="tooltip" title="<?php echo e(__('Advertise Project')); ?>" class="btn btn-sm btn-primary">
+                data-bs-toggle="tooltip" title="<?php echo e(__('Advertise Project')); ?>" class="btn btn-sm btn-primary">
                     <i class="ti ti-share"></i>
                 </a>
 
@@ -40,6 +45,8 @@
                     data-bs-toggle="tooltip" title="<?php echo e(__('Modify Project')); ?>" class="btn btn-sm btn-primary">
                     <i class="ti ti-pencil text-white"></i>
                 </a>
+            <?php endif; ?>
+
             <?php endif; ?>
 
 
@@ -70,7 +77,7 @@
                 </div>
             </div>
         </div>
-        <?php if(Auth::user()->type != 'client'): ?>
+        <?php if(Auth::user()->type != 'contractor'): ?>
             <div class="col-lg-6 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -316,7 +323,7 @@
                             </li>
                         <?php else: ?>
                             <div class="py-5">
-                                <h6 class="h6 text-center"><?php echo e(__('No Milestone Found.')); ?></h6>
+                                <h6 class="h6 text-center"><?php echo e(__('No BoQ Found.')); ?></h6>
                             </div>
                         <?php endif; ?>
                     </ul>

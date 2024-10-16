@@ -175,7 +175,7 @@ class UsersComponent extends Component
         $this->updatedLocationType($this->selUser->location_type);
         $this->updatedDepartment($this->selUser->department_id);
         $this->surname = $name[0];
-        $this->firstname = $name[1];
+        $this->firstname = isset($name[1]) ? $name[1] : '';
         $this->email = $this->selUser->email;
         $this->location = ucwords($this->selUser->location);
         $this->location_type =  ucwords($location_type);
@@ -299,7 +299,7 @@ class UsersComponent extends Component
         if(\Auth::user()->can('manage user'))
         {
             $roles = [];
-            $users = User::paginate(12);
+            $users = User::where('type','!=','Contractor')->paginate(12);
             $roles = [];
             $departments = Department::where('category','department')->get();
             $designations = Designation::all();

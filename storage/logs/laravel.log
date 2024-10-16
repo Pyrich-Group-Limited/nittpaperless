@@ -1,0 +1,726 @@
+[2024-10-16 07:36:58] local.ERROR: Undefined array key 1 {"userId":1,"exception":"[object] (ErrorException(code: 0): Undefined array key 1 at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Users\\UsersComponent.php:178)
+[stacktrace]
+#0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined array...', 'C:\\\\xampp-server...', 178)
+#1 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Users\\UsersComponent.php(178): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined array...', 'C:\\\\xampp-server...', 178)
+#2 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\Users\\UsersComponent->selUser(10)
+#3 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#4 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#5 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#6 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php(149): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array)
+#7 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\HydrationMiddleware\\PerformActionCalls.php(36): Livewire\\Component->callMethod('selUser', Array, Object(Closure))
+#8 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\LifecycleManager.php(89): Livewire\\HydrationMiddleware\\PerformActionCalls::hydrate(Object(App\\Http\\Livewire\\Users\\UsersComponent), Object(Livewire\\Request))
+#9 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Connection\\ConnectionHandler.php(13): Livewire\\LifecycleManager->hydrate()
+#10 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Controllers\\HttpConnectionHandler.php(19): Livewire\\Connection\\ConnectionHandler->handle(Array)
+#11 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(46): Livewire\\Controllers\\HttpConnectionHandler->__invoke('users.users-com...')
+#12 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Livewire\\Controllers\\HttpConnectionHandler), '__invoke')
+#13 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#14 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#15 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(36): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#52 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
+#55 {main}
+"} 
+[2024-10-16 07:52:58] local.ERROR: Attempt to read property "name" on null {"view":{"view":"C:\\xampp-server\\htdocs\\nittpaperless\\resources\\views\\livewire\\users\\users-component.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-30263497 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#3596</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-30263497\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","view":"<pre class=sf-dump id=sf-dump-2044465718 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"11 characters\">layouts.app</span>\"
+</pre><script>Sfdump(\"sf-dump-2044465718\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","params":"<pre class=sf-dump id=sf-dump-124665219 data-indent-pad=\"  \"><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+  \"<span class=sf-dump-key>attributes</span>\" => <span class=sf-dump-note title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentAttributeBag</span> {<a class=sf-dump-ref>#4864</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+  </samp>}
+</samp>]
+</pre><script>Sfdump(\"sf-dump-124665219\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","slotOrSection":"<pre class=sf-dump id=sf-dump-698713677 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"4 characters\">slot</span>\"
+</pre><script>Sfdump(\"sf-dump-698713677\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","manager":"<pre class=sf-dump id=sf-dump-167462761 data-indent-pad=\"  \"><span class=sf-dump-note>Livewire\\LifecycleManager</span> {<a class=sf-dump-ref>#3814</a><samp data-depth=1 class=sf-dump-expanded>
+  +<span class=sf-dump-public title=\"Public property\">request</span>: <span class=sf-dump-note title=\"Livewire\\Request
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Livewire</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Request</span> {<a class=sf-dump-ref href=#sf-dump-167462761-ref23832 title=\"2 occurrences\">#3832</a><samp data-depth=2 id=sf-dump-167462761-ref23832 class=sf-dump-compact>
+    +<span class=sf-dump-public title=\"Public property\">fingerprint</span>: <span class=sf-dump-note>array:5</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>id</span>\" => \"<span class=sf-dump-str title=\"20 characters\">8OBMMr1OIF64nhGbQEv2</span>\"
+      \"<span class=sf-dump-key>name</span>\" => \"<span class=sf-dump-str title=\"21 characters\">users.users-component</span>\"
+      \"<span class=sf-dump-key>locale</span>\" => \"<span class=sf-dump-str title=\"2 characters\">en</span>\"
+      \"<span class=sf-dump-key>path</span>\" => \"<span class=sf-dump-str title=\"16 characters\">registered-users</span>\"
+      \"<span class=sf-dump-key>method</span>\" => \"<span class=sf-dump-str title=\"3 characters\">GET</span>\"
+    </samp>]
+    +<span class=sf-dump-public title=\"Public property\">updates</span>: []
+    +<span class=sf-dump-public title=\"Public property\">memo</span>: []
+  </samp>}
+  +<span class=sf-dump-public title=\"Public property\">instance</span>: <span class=sf-dump-note title=\"App\\Http\\Livewire\\Users\\UsersComponent
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\Http\\Livewire\\Users</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>UsersComponent</span> {<a class=sf-dump-ref href=#sf-dump-167462761-ref23805 title=\"3 occurrences\">#3805</a><samp data-depth=2 id=sf-dump-167462761-ref23805 class=sf-dump-compact>
+    +<span class=sf-dump-public title=\"Public property\">id</span>: \"<span class=sf-dump-str title=\"20 characters\">8OBMMr1OIF64nhGbQEv2</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">queryString</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">computedPropertyCache</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">shouldSkipRender</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">preRenderedView</span>: <span class=sf-dump-note title=\"Illuminate\\View\\View
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>View</span> {<a class=sf-dump-ref>#3833</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">factory</span>: <span class=sf-dump-note title=\"Illuminate\\View\\Factory
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Factory</span> {<a class=sf-dump-ref>#269</a> &#8230;23}
+      #<span class=sf-dump-protected title=\"Protected property\">engine</span>: <span class=sf-dump-note title=\"Livewire\\LivewireViewCompilerEngine
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Livewire</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>LivewireViewCompilerEngine</span> {<a class=sf-dump-ref>#3831</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">view</span>: \"<span class=sf-dump-str title=\"30 characters\">livewire.users.users-component</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">data</span>: <span class=sf-dump-note>array:27</span> [ &#8230;27]
+      #<span class=sf-dump-protected title=\"Protected property\">path</span>: \"<span class=sf-dump-str title=\"93 characters\">C:\\xampp-server\\htdocs\\nittpaperless\\resources\\views/livewire/users/users-component.blade.php</span>\"
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">forStack</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">errorBag</span>: <span class=sf-dump-note title=\"Illuminate\\Support\\MessageBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Support</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>MessageBag</span> {<a class=sf-dump-ref href=#sf-dump-167462761-ref23840 title=\"2 occurrences\">#3840</a><samp data-depth=3 id=sf-dump-167462761-ref23840 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">messages</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">format</span>: \"<span class=sf-dump-str title=\"8 characters\">:message</span>\"
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">withValidatorCallback</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">eventQueue</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">dispatchQueue</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">listeners</span>: []
+    +<span class=sf-dump-public title=\"Public property\">redirectTo</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">renderedChildren</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">previouslyRenderedChildren</span>: []
+    +<span class=sf-dump-public title=\"Public property\">uploadFile</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">failed_upload</span>: []
+    +<span class=sf-dump-public title=\"Public property\">actionId</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">selUser</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">departments</span>: []
+    +<span class=sf-dump-public title=\"Public property\">units</span>: []
+    +<span class=sf-dump-public title=\"Public property\">subunits</span>: []
+    +<span class=sf-dump-public title=\"Public property\">surname</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">firstname</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">email</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">location</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">location_type</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">department</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">designation</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">level</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">unit</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">subunit</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">user_role</span>: <span class=sf-dump-const>null</span>
+  </samp>}
+  +<span class=sf-dump-public title=\"Public property\">response</span>: <span class=sf-dump-note title=\"Livewire\\Response
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Livewire</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Response</span> {<a class=sf-dump-ref>#4855</a><samp data-depth=2 class=sf-dump-compact>
+    +<span class=sf-dump-public title=\"Public property\">request</span>: <span class=sf-dump-note title=\"Livewire\\Request
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Livewire</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Request</span> {<a class=sf-dump-ref href=#sf-dump-167462761-ref23832 title=\"2 occurrences\">#3832</a>}
+    +<span class=sf-dump-public title=\"Public property\">fingerprint</span>: <span class=sf-dump-note>array:5</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>id</span>\" => \"<span class=sf-dump-str title=\"20 characters\">8OBMMr1OIF64nhGbQEv2</span>\"
+      \"<span class=sf-dump-key>name</span>\" => \"<span class=sf-dump-str title=\"21 characters\">users.users-component</span>\"
+      \"<span class=sf-dump-key>locale</span>\" => \"<span class=sf-dump-str title=\"2 characters\">en</span>\"
+      \"<span class=sf-dump-key>path</span>\" => \"<span class=sf-dump-str title=\"16 characters\">registered-users</span>\"
+      \"<span class=sf-dump-key>method</span>\" => \"<span class=sf-dump-str title=\"3 characters\">GET</span>\"
+    </samp>]
+    +<span class=sf-dump-public title=\"Public property\">effects</span>: []
+    +<span class=sf-dump-public title=\"Public property\">memo</span>: []
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-167462761\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"userId":1,"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Attempt to read property \"name\" on null at C:\\xampp-server\\htdocs\\nittpaperless\\resources\\views\\livewire\\users\\users-component.blade.php:61)
+[stacktrace]
+#0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'C:\\\\xampp-server...', 62)
+#1 C:\\xampp-server\\htdocs\\nittpaperless\\resources\\views\\livewire\\users\\users-component.blade.php(61): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Attempt to read...', 'C:\\\\xampp-server...', 62)
+#2 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(83): include('C:\\\\xampp-server...')
+#3 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(84): App\\Http\\Livewire\\Users\\UsersComponent->Livewire\\ComponentConcerns\\{closure}()
+#4 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(59): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#5 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp-server...', Array)
+#6 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#7 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#8 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Component.php(235): Illuminate\\View\\View->render()
+#9 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\HydrationMiddleware\\RenderView.php(14): Livewire\\Component->output()
+#10 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\LifecycleManager.php(141): Livewire\\HydrationMiddleware\\RenderView::dehydrate(Object(App\\Http\\Livewire\\Users\\UsersComponent), Object(Livewire\\Response))
+#11 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Macros\\livewire-view-component.blade.php(3): Livewire\\LifecycleManager->initialDehydrate()
+#12 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('C:\\\\xampp-server...')
+#13 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#14 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp-server...', Array)
+#15 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(69): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#16 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#17 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(35): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp-server...', Array)
+#18 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp-server...', Array)
+#19 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#20 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#21 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#22 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#23 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#24 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#25 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#26 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Middleware\\XSS.php(60): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#39 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#46 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#47 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#48 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#56 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#61 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#62 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#63 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#64 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#65 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#66 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#67 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#68 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#69 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#70 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#71 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
+#72 {main}
+
+[previous exception] [object] (ErrorException(code: 0): Attempt to read property \"name\" on null at C:\\xampp-server\\htdocs\\nittpaperless\\storage\\framework\\views\\cdbda3374542ec5e8af55bf5cd73fabf35178ffd.php:62)
+[stacktrace]
+#0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'C:\\\\xampp-server...', 62)
+#1 C:\\xampp-server\\htdocs\\nittpaperless\\storage\\framework\\views\\cdbda3374542ec5e8af55bf5cd73fabf35178ffd.php(62): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Attempt to read...', 'C:\\\\xampp-server...', 62)
+#2 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(83): include('C:\\\\xampp-server...')
+#3 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(84): App\\Http\\Livewire\\Users\\UsersComponent->Livewire\\ComponentConcerns\\{closure}()
+#4 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(59): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#5 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp-server...', Array)
+#6 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#7 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#8 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Component.php(235): Illuminate\\View\\View->render()
+#9 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\HydrationMiddleware\\RenderView.php(14): Livewire\\Component->output()
+#10 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\LifecycleManager.php(141): Livewire\\HydrationMiddleware\\RenderView::dehydrate(Object(App\\Http\\Livewire\\Users\\UsersComponent), Object(Livewire\\Response))
+#11 C:\\xampp-server\\htdocs\\nittpaperless\\storage\\framework\\views\\b1cb200e5d4a329f46ac3415b14307a17f1043e1.php(3): Livewire\\LifecycleManager->initialDehydrate()
+#12 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('C:\\\\xampp-server...')
+#13 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#14 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp-server...', Array)
+#15 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(69): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#16 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#17 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(35): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp-server...', Array)
+#18 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp-server...', Array)
+#19 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#20 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#21 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#22 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#23 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#24 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#25 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#26 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Middleware\\XSS.php(60): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#39 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#46 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#47 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#48 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#56 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#61 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#62 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#63 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#64 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#65 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#66 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#67 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#68 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#69 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#70 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#71 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
+#72 {main}
+"} 
+[2024-10-16 07:56:24] local.ERROR: Undefined array key 1 {"userId":1,"exception":"[object] (ErrorException(code: 0): Undefined array key 1 at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Users\\UsersComponent.php:178)
+[stacktrace]
+#0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined array...', 'C:\\\\xampp-server...', 178)
+#1 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Users\\UsersComponent.php(178): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined array...', 'C:\\\\xampp-server...', 178)
+#2 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\Users\\UsersComponent->selUser(1)
+#3 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#4 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#5 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#6 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php(149): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array)
+#7 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\HydrationMiddleware\\PerformActionCalls.php(36): Livewire\\Component->callMethod('selUser', Array, Object(Closure))
+#8 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\LifecycleManager.php(89): Livewire\\HydrationMiddleware\\PerformActionCalls::hydrate(Object(App\\Http\\Livewire\\Users\\UsersComponent), Object(Livewire\\Request))
+#9 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Connection\\ConnectionHandler.php(13): Livewire\\LifecycleManager->hydrate()
+#10 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Controllers\\HttpConnectionHandler.php(19): Livewire\\Connection\\ConnectionHandler->handle(Array)
+#11 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(46): Livewire\\Controllers\\HttpConnectionHandler->__invoke('users.users-com...')
+#12 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Livewire\\Controllers\\HttpConnectionHandler), '__invoke')
+#13 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#14 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#15 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(36): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#52 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
+#55 {main}
+"} 
+[2024-10-16 07:56:34] local.ERROR: Undefined array key 1 {"userId":1,"exception":"[object] (ErrorException(code: 0): Undefined array key 1 at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Users\\UsersComponent.php:178)
+[stacktrace]
+#0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined array...', 'C:\\\\xampp-server...', 178)
+#1 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Users\\UsersComponent.php(178): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined array...', 'C:\\\\xampp-server...', 178)
+#2 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\Users\\UsersComponent->selUser(1)
+#3 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#4 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#5 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#6 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php(149): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array)
+#7 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\HydrationMiddleware\\PerformActionCalls.php(36): Livewire\\Component->callMethod('selUser', Array, Object(Closure))
+#8 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\LifecycleManager.php(89): Livewire\\HydrationMiddleware\\PerformActionCalls::hydrate(Object(App\\Http\\Livewire\\Users\\UsersComponent), Object(Livewire\\Request))
+#9 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Connection\\ConnectionHandler.php(13): Livewire\\LifecycleManager->hydrate()
+#10 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Controllers\\HttpConnectionHandler.php(19): Livewire\\Connection\\ConnectionHandler->handle(Array)
+#11 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(46): Livewire\\Controllers\\HttpConnectionHandler->__invoke('users.users-com...')
+#12 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Livewire\\Controllers\\HttpConnectionHandler), '__invoke')
+#13 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#14 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#15 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(36): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#52 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
+#55 {main}
+"} 
+[2024-10-16 07:58:27] local.ERROR: Undefined array key 1 {"userId":1,"exception":"[object] (ErrorException(code: 0): Undefined array key 1 at C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Users\\UsersComponent.php:178)
+[stacktrace]
+#0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined array...', 'C:\\\\xampp-server...', 178)
+#1 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Livewire\\Users\\UsersComponent.php(178): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined array...', 'C:\\\\xampp-server...', 178)
+#2 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\Users\\UsersComponent->selUser(1)
+#3 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#4 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#5 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#6 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php(149): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array)
+#7 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\HydrationMiddleware\\PerformActionCalls.php(36): Livewire\\Component->callMethod('selUser', Array, Object(Closure))
+#8 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\LifecycleManager.php(89): Livewire\\HydrationMiddleware\\PerformActionCalls::hydrate(Object(App\\Http\\Livewire\\Users\\UsersComponent), Object(Livewire\\Request))
+#9 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Connection\\ConnectionHandler.php(13): Livewire\\LifecycleManager->hydrate()
+#10 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Controllers\\HttpConnectionHandler.php(19): Livewire\\Connection\\ConnectionHandler->handle(Array)
+#11 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(46): Livewire\\Controllers\\HttpConnectionHandler->__invoke('users.users-com...')
+#12 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Livewire\\Controllers\\HttpConnectionHandler), '__invoke')
+#13 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#14 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#15 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(36): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#52 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
+#55 {main}
+"} 
+[2024-10-16 08:01:48] local.ERROR: Call to undefined method App\Models\User::links() {"view":{"view":"C:\\xampp-server\\htdocs\\nittpaperless\\resources\\views\\livewire\\users\\users-component.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1922486794 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#3596</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1922486794\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","view":"<pre class=sf-dump id=sf-dump-30634431 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"11 characters\">layouts.app</span>\"
+</pre><script>Sfdump(\"sf-dump-30634431\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","params":"<pre class=sf-dump id=sf-dump-2121328284 data-indent-pad=\"  \"><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+  \"<span class=sf-dump-key>attributes</span>\" => <span class=sf-dump-note title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentAttributeBag</span> {<a class=sf-dump-ref>#4863</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+  </samp>}
+</samp>]
+</pre><script>Sfdump(\"sf-dump-2121328284\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","slotOrSection":"<pre class=sf-dump id=sf-dump-1228475136 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"4 characters\">slot</span>\"
+</pre><script>Sfdump(\"sf-dump-1228475136\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","manager":"<pre class=sf-dump id=sf-dump-1277304442 data-indent-pad=\"  \"><span class=sf-dump-note>Livewire\\LifecycleManager</span> {<a class=sf-dump-ref>#3814</a><samp data-depth=1 class=sf-dump-expanded>
+  +<span class=sf-dump-public title=\"Public property\">request</span>: <span class=sf-dump-note title=\"Livewire\\Request
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Livewire</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Request</span> {<a class=sf-dump-ref href=#sf-dump-1277304442-ref23832 title=\"2 occurrences\">#3832</a><samp data-depth=2 id=sf-dump-1277304442-ref23832 class=sf-dump-compact>
+    +<span class=sf-dump-public title=\"Public property\">fingerprint</span>: <span class=sf-dump-note>array:5</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>id</span>\" => \"<span class=sf-dump-str title=\"20 characters\">js4WFHOqYYBWV3XAofUR</span>\"
+      \"<span class=sf-dump-key>name</span>\" => \"<span class=sf-dump-str title=\"21 characters\">users.users-component</span>\"
+      \"<span class=sf-dump-key>locale</span>\" => \"<span class=sf-dump-str title=\"2 characters\">en</span>\"
+      \"<span class=sf-dump-key>path</span>\" => \"<span class=sf-dump-str title=\"16 characters\">registered-users</span>\"
+      \"<span class=sf-dump-key>method</span>\" => \"<span class=sf-dump-str title=\"3 characters\">GET</span>\"
+    </samp>]
+    +<span class=sf-dump-public title=\"Public property\">updates</span>: []
+    +<span class=sf-dump-public title=\"Public property\">memo</span>: []
+  </samp>}
+  +<span class=sf-dump-public title=\"Public property\">instance</span>: <span class=sf-dump-note title=\"App\\Http\\Livewire\\Users\\UsersComponent
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\Http\\Livewire\\Users</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>UsersComponent</span> {<a class=sf-dump-ref href=#sf-dump-1277304442-ref23805 title=\"3 occurrences\">#3805</a><samp data-depth=2 id=sf-dump-1277304442-ref23805 class=sf-dump-compact>
+    +<span class=sf-dump-public title=\"Public property\">id</span>: \"<span class=sf-dump-str title=\"20 characters\">js4WFHOqYYBWV3XAofUR</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">queryString</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">computedPropertyCache</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">shouldSkipRender</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">preRenderedView</span>: <span class=sf-dump-note title=\"Illuminate\\View\\View
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>View</span> {<a class=sf-dump-ref>#3831</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">factory</span>: <span class=sf-dump-note title=\"Illuminate\\View\\Factory
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Factory</span> {<a class=sf-dump-ref>#269</a> &#8230;23}
+      #<span class=sf-dump-protected title=\"Protected property\">engine</span>: <span class=sf-dump-note title=\"Livewire\\LivewireViewCompilerEngine
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Livewire</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>LivewireViewCompilerEngine</span> {<a class=sf-dump-ref>#3833</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">view</span>: \"<span class=sf-dump-str title=\"30 characters\">livewire.users.users-component</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">data</span>: <span class=sf-dump-note>array:27</span> [ &#8230;27]
+      #<span class=sf-dump-protected title=\"Protected property\">path</span>: \"<span class=sf-dump-str title=\"93 characters\">C:\\xampp-server\\htdocs\\nittpaperless\\resources\\views/livewire/users/users-component.blade.php</span>\"
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">forStack</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">errorBag</span>: <span class=sf-dump-note title=\"Illuminate\\Support\\MessageBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Support</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>MessageBag</span> {<a class=sf-dump-ref href=#sf-dump-1277304442-ref23840 title=\"2 occurrences\">#3840</a><samp data-depth=3 id=sf-dump-1277304442-ref23840 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">messages</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">format</span>: \"<span class=sf-dump-str title=\"8 characters\">:message</span>\"
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">withValidatorCallback</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">eventQueue</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">dispatchQueue</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">listeners</span>: []
+    +<span class=sf-dump-public title=\"Public property\">redirectTo</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">renderedChildren</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">previouslyRenderedChildren</span>: []
+    +<span class=sf-dump-public title=\"Public property\">uploadFile</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">failed_upload</span>: []
+    +<span class=sf-dump-public title=\"Public property\">actionId</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">selUser</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">departments</span>: []
+    +<span class=sf-dump-public title=\"Public property\">units</span>: []
+    +<span class=sf-dump-public title=\"Public property\">subunits</span>: []
+    +<span class=sf-dump-public title=\"Public property\">surname</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">firstname</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">email</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">location</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">location_type</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">department</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">designation</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">level</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">unit</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">subunit</span>: <span class=sf-dump-const>null</span>
+    +<span class=sf-dump-public title=\"Public property\">user_role</span>: <span class=sf-dump-const>null</span>
+  </samp>}
+  +<span class=sf-dump-public title=\"Public property\">response</span>: <span class=sf-dump-note title=\"Livewire\\Response
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Livewire</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Response</span> {<a class=sf-dump-ref>#4854</a><samp data-depth=2 class=sf-dump-compact>
+    +<span class=sf-dump-public title=\"Public property\">request</span>: <span class=sf-dump-note title=\"Livewire\\Request
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Livewire</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Request</span> {<a class=sf-dump-ref href=#sf-dump-1277304442-ref23832 title=\"2 occurrences\">#3832</a>}
+    +<span class=sf-dump-public title=\"Public property\">fingerprint</span>: <span class=sf-dump-note>array:5</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>id</span>\" => \"<span class=sf-dump-str title=\"20 characters\">js4WFHOqYYBWV3XAofUR</span>\"
+      \"<span class=sf-dump-key>name</span>\" => \"<span class=sf-dump-str title=\"21 characters\">users.users-component</span>\"
+      \"<span class=sf-dump-key>locale</span>\" => \"<span class=sf-dump-str title=\"2 characters\">en</span>\"
+      \"<span class=sf-dump-key>path</span>\" => \"<span class=sf-dump-str title=\"16 characters\">registered-users</span>\"
+      \"<span class=sf-dump-key>method</span>\" => \"<span class=sf-dump-str title=\"3 characters\">GET</span>\"
+    </samp>]
+    +<span class=sf-dump-public title=\"Public property\">effects</span>: []
+    +<span class=sf-dump-public title=\"Public property\">memo</span>: []
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1277304442\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"userId":1,"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Call to undefined method App\\Models\\User::links() at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\ForwardsCalls.php:71)
+[stacktrace]
+#0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\ForwardsCalls.php(36): Illuminate\\Database\\Eloquent\\Model::throwBadMethodCallException('links')
+#1 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'links', Array)
+#2 C:\\xampp-server\\htdocs\\nittpaperless\\resources\\views\\livewire\\users\\users-component.blade.php(112): Illuminate\\Database\\Eloquent\\Model->__call('links', Array)
+#3 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(83): include('C:\\\\xampp-server...')
+#4 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(84): App\\Http\\Livewire\\Users\\UsersComponent->Livewire\\ComponentConcerns\\{closure}()
+#5 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(59): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#6 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp-server...', Array)
+#7 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#8 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#9 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Component.php(235): Illuminate\\View\\View->render()
+#10 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\HydrationMiddleware\\RenderView.php(14): Livewire\\Component->output()
+#11 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\LifecycleManager.php(141): Livewire\\HydrationMiddleware\\RenderView::dehydrate(Object(App\\Http\\Livewire\\Users\\UsersComponent), Object(Livewire\\Response))
+#12 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Macros\\livewire-view-component.blade.php(3): Livewire\\LifecycleManager->initialDehydrate()
+#13 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('C:\\\\xampp-server...')
+#14 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#15 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp-server...', Array)
+#16 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(69): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#17 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#18 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(35): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp-server...', Array)
+#19 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp-server...', Array)
+#20 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#21 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#22 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#23 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#24 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#25 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#26 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#27 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Middleware\\XSS.php(60): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#40 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#47 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#48 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#49 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#56 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#60 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#61 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#65 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#70 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#71 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#72 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
+#73 {main}
+
+[previous exception] [object] (BadMethodCallException(code: 0): Call to undefined method App\\Models\\User::links() at C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\ForwardsCalls.php:71)
+[stacktrace]
+#0 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\ForwardsCalls.php(36): Illuminate\\Database\\Eloquent\\Model::throwBadMethodCallException('links')
+#1 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'links', Array)
+#2 C:\\xampp-server\\htdocs\\nittpaperless\\storage\\framework\\views\\cdbda3374542ec5e8af55bf5cd73fabf35178ffd.php(115): Illuminate\\Database\\Eloquent\\Model->__call('links', Array)
+#3 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(83): include('C:\\\\xampp-server...')
+#4 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(84): App\\Http\\Livewire\\Users\\UsersComponent->Livewire\\ComponentConcerns\\{closure}()
+#5 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(59): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#6 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp-server...', Array)
+#7 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#8 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#9 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\Component.php(235): Illuminate\\View\\View->render()
+#10 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\HydrationMiddleware\\RenderView.php(14): Livewire\\Component->output()
+#11 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\LifecycleManager.php(141): Livewire\\HydrationMiddleware\\RenderView::dehydrate(Object(App\\Http\\Livewire\\Users\\UsersComponent), Object(Livewire\\Response))
+#12 C:\\xampp-server\\htdocs\\nittpaperless\\storage\\framework\\views\\b1cb200e5d4a329f46ac3415b14307a17f1043e1.php(3): Livewire\\LifecycleManager->initialDehydrate()
+#13 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('C:\\\\xampp-server...')
+#14 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#15 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp-server...', Array)
+#16 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(69): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#17 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp-server...', Array)
+#18 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(35): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp-server...', Array)
+#19 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp-server...', Array)
+#20 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#21 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#22 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#23 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#24 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#25 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#26 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#27 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp-server\\htdocs\\nittpaperless\\app\\Http\\Middleware\\XSS.php(60): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#40 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#47 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#48 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#49 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#56 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#60 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#61 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#65 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#70 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#71 C:\\xampp-server\\htdocs\\nittpaperless\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#72 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
+#73 {main}
+"} 
