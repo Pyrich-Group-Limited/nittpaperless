@@ -31,17 +31,64 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
-
+                                <?php if($this->ergp): ?>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row align-items-center justify-content-between">
+                                                    <div class="col-auto mb-3 mb-sm-0">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="theme-avtar bg-danger">
+                                                                <i class="ti ti-report-money"></i>
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <small class="text-muted"><?php echo e(__('PROJECT')); ?></small>
+                                                                <h6 class="m-0"><?php echo e(__('SUM')); ?></h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto text-end">
+                                                        <h4 class="m-0"><?php echo e(number_format($ergp->project_sum)); ?></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row align-items-center justify-content-between">
+                                                    <div class="col-auto mb-3 mb-sm-0">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="theme-avtar bg-danger">
+                                                                <i class="ti ti-report-money"></i>
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <small class="text-muted"><?php echo e(__('PROJECT')); ?></small>
+                                                                <h6 class="m-0"><?php echo e(__('BALLANCE')); ?></h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto text-end">
+                                                        <h4 class="m-0"><?php echo e(number_format( $ergp->ballance)); ?></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php endif; ?>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?php echo e(Form::label('bduget', __('ERGP'), ['class' => 'form-label'])); ?>
 
                                         
-                                        <select name="" id="" wire:model.defer="budget"
+                                        <select name="" id="" wire:model="budget"
                                             class="form-control">
                                             <option value="" selected>-- Select ERGP -- </option>
                                             <?php $__currentLoopData = $projAccounts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $projAccount): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($projAccount->code); ?>"><?php echo e($projAccount->code); ?> </option>
+                                                <option value="<?php echo e($projAccount->code); ?>"><?php echo e($projAccount->code); ?> &nbsp; (<?php echo e($projAccount->projectCategory->category_name); ?>) </option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <?php $__errorArgs = ['bduget'];

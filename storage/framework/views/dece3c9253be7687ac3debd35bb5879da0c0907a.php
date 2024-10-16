@@ -83,6 +83,8 @@
                                             <?php elseif($project->status=='completed'): ?> bg-primary
                                             <?php elseif($project->status=='canceled'): ?> bg-danger
                                             <?php endif; ?> p-2 px-3 rounded"><?php echo e($project->status); ?></span>
+
+                                            <?php if($project->project_boq==null): ?> <span class="badge bg-danger p-2 px-3 rounded">Pending BoQ</span> <?php endif; ?>
                                     </td>
                                     <td class="">
                                         <div class="avatar-group" id="project_<?php echo e($project->id); ?>">
@@ -126,6 +128,15 @@
                                                 </div>
                                             <?php endif; ?>
                                             
+                                            <?php if($project->project_boq!=null && $project->advert_approval_status==true): ?>
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
+                                                    <div class="action-btn bg-primary ms-2">
+                                                        <a href="<?php echo e(route('project.applicants',$project->id)); ?>" data-size="lg"  data-bs-toggle="tooltip" title="<?php echo e(__('View Project Applicant')); ?>"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
+                                                            <i class="ti ti-users text-white"></i>
+                                                        </a>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                             <?php if($project->project_boq==null): ?>
                                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete project')): ?>
                                                     <div class="action-btn bg-danger ms-2">

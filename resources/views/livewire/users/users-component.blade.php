@@ -33,72 +33,85 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 
 <div>
     <div class="row">
-        <div class="col-xxl-12">
-            <div class="row">
-                @foreach($users as $user)
-                    <div class="col-md-3 mb-4">
-                        <div class="card text-center card-2">
-                            <div class="card-header border-0 pb-0">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-0">
-                                        <div class=" badge bg-primary p-2 px-3 rounded">
-                                            {{ ucfirst($user->type) }}
-                                        </div>
-                                    </h6>
+        <div class="col-xl-12">
 
-                                </div>
+            <div class="card mt-4">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>{{ __('SN') }}</th>
+                                    <th>{{ __('Staff Name') }}</th>
+                                    <th>{{ __('Branch') }}</th>
+                                    <th>{{ __('Department') }}</th>
+                                    <th>{{ __('Unit') }}</th>
+                                    <th>{{ __('Role') }}</th>
+                                    <th>{{ __('Action') }}</th>
+                                </tr>
+                            </thead>
 
-                                <div class="card-header-right">
-                                    <div class="btn-group card-option">
-                                        <button type="button" class="btn dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                            <i class="ti ti-dots-vertical"></i>
-                                        </button>
+                            <tbody>
+                                @if (count($users)>0)
+                                    @foreach ($users as $user)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->location_type }}</td>
+                                            <td>@if($user->department){{ $user->department->name ? : '-' }} @else - @endif</td>
+                                            <td>@if($user->unit){{ $user->unit->name ? : '-' }} @else - @endif</td>
+                                            <td>{{ $user->type }}</td>
+                                            <td>
+                                                <div class="card-header-right">
+                                                    <div class="btn-group card-option">
+                                                        <button type="button" class="btn dropdown-toggle"
+                                                                data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                            <i class="ti ti-dots-vertical"></i>
+                                                        </button>
 
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            @can('edit user')
-                                                <a href="" wire:click="selUser({{$user->id}})" data-bs-toggle="modal" data-bs-target="#editUser" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
-                                                    <i class="ti ti-pencil"></i>
-                                                    <span>{{__('Edit')}}</span>
-                                                </a>
-                                            @endcan
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            @can('edit user')
+                                                                <a href="" wire:click="selUser({{$user->id}})" data-bs-toggle="modal" data-bs-target="#editUser" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                                                    <i class="ti ti-pencil"></i>
+                                                                    <span>{{__('Edit')}}</span>
+                                                                </a>
+                                                            @endcan
 
-                                            @can('delete user')
-                                                    {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user['id']],'id'=>'delete-form-'.$user['id']]) !!}
-                                                <a href="#!"  class="dropdown-item bs-pass-para">
-                                                    <i class="ti ti-archive"></i>
-                                                    <span> @if($user->delete_status!=0){{__('Delete')}} @else {{__('Restore')}}@endif</span>
-                                                </a>
+                                                            @can('delete user')
+                                                                    {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user['id']],'id'=>'delete-form-'.$user['id']]) !!}
+                                                                <a href="#!"  class="dropdown-item bs-pass-para">
+                                                                    <i class="ti ti-archive"></i>
+                                                                    <span> @if($user->delete_status!=0){{__('Delete')}} @else {{__('Restore')}}@endif</span>
+                                                                </a>
 
-                                                {!! Form::close() !!}
-                                            @endcan
-                                            <a href="#!" data-url="{{route('users.reset',\Crypt::encrypt($user->id))}}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Reset Password')}}">
-                                                <i class="ti ti-adjustments"></i>
-                                                <span>  {{__('Reset Password')}}</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body full-card">
-                                <div class="img-fluid rounded-circle card-avatar">
-                                    <img src="{{(!empty($user->avatar))? asset(Storage::url("uploads/avatar/".$user->avatar)): asset('uploads/user.png') }}"  class="img-user wid-80 rounded-circle">
-                                </div>
-                                <h4 class=" mt-2 text-primary">{{ $user->name }}</h4>
-                                <small class="text-primary">{{ $user->email }}</small>
-                                <p></p>
+                                                                {!! Form::close() !!}
+                                                            @endcan
+                                                            <a href="#!" data-url="{{route('users.reset',\Crypt::encrypt($user->id))}}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Reset Password')}}">
+                                                                <i class="ti ti-adjustments"></i>
+                                                                <span>  {{__('Reset Password')}}</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
+                                            </td>
+                                        </tr>
 
-                                <div class="col text-center d-block h6 mb-0" data-bs-toggle="tooltip" title="{{__('Last Login')}}">
-                                    {{ (!empty($user->last_login_at)) ? $user->last_login_at : '' }}
-                                </div>
-                            </div>
-                        </div>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <th scope="col" colspan="9">
+                                            <h6 class="text-center">{{ __('No Record Found.') }}</h6>
+                                        </th>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
                     </div>
-                @endforeach
+                    <div class="paginate">{{ $users->links('pagination::bootstrap-5') }}</div>
+                </div>
             </div>
-            {{ $users->links() }}
         </div>
     </div>
 

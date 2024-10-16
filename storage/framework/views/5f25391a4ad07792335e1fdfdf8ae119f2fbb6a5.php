@@ -33,17 +33,24 @@
                         ></a>
                 </li>
                 <li class="dash-item dash-hasmenu ">
+                    <a href="<?php echo e(route('dg.ergps')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                    ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                        ><span class="dash-mtext"><?php echo e(__('ERGP')); ?></span
+                        ></a>
+                </li>
+                <li class="dash-item dash-hasmenu ">
                     <a href="<?php echo e(route('dg.projects')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
                     ><span class="dash-micon"><i class="ti ti-settings"></i></span
                         ><span class="dash-mtext"><?php echo e(__('Projects')); ?></span
                         ></a>
                 </li>
                 <li class="dash-item dash-hasmenu ">
-                    <a href="#" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                    <a href="<?php echo e(route('dg.contracts')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
                     ><span class="dash-micon"><i class="ti ti-file"></i></span
                         ><span class="dash-mtext"><?php echo e(__('Contracts')); ?></span
                         ></a>
                 </li>
+
             </ul>
             <?php else: ?>
 
@@ -225,36 +232,7 @@
 
 
 
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage job')): ?>
-                                                <li class="dash-item <?php echo e((Request::route()->getName() == 'jobber.index' || Request::route()->getName() == 'jobber.create' || Request::route()->getName() == 'jobber.edit' || Request::route()->getName() == 'jobber.show'   ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('jobber.index')); ?>"><?php echo e(__('Contracts')); ?></a>
-                                                </li>
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create job')): ?>
-                                                <li class="dash-item <?php echo e(( Request::route()->getName() == 'jobber.create' ? 'active' : '')); ?> ">
-                                                    <a class="dash-link" href="<?php echo e(route('jobber.create')); ?>"><?php echo e(__('Contracts Posting')); ?></a>
-                                                </li>
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage job application')): ?>
-                                                <li class="dash-item <?php echo e((request()->is('jobber-application*') ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('jobber-application.index')); ?>"><?php echo e(__('Contracts Application')); ?></a>
-                                                </li>
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage job application')): ?>
-                                                <li class="dash-item <?php echo e((request()->is('jobber-onboard*') ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('job.on.board')); ?>"><?php echo e(__('Contract Onboarding')); ?></a>
-                                                </li>
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage custom question')): ?>
-                                            <!----    <li class="dash-item  <?php echo e((request()->is('custom-question*') ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('custom-question.index')); ?>"><?php echo e(__('Custom Question')); ?></a>
-                                                </li> ---->
-                                            <?php endif; ?>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('show interview schedule')): ?>
-                                                <li class="dash-item <?php echo e((request()->is('interview-schedule*') ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('interview-schedule.index')); ?>"><?php echo e(__('Contract Meeting Schedule')); ?></a>
-                                                </li>
-                                            <?php endif; ?>
+                                        
 
 
 
@@ -337,13 +315,15 @@
                                         </li>
                                     <?php endif; ?>
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage client')): ?>
+                                        
                                         <li class="dash-item <?php echo e((Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : ''); ?>">
-                                            <a class="dash-link" href="<?php echo e(route('clients.index')); ?>"><?php echo e(__('Contractor')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('project.contractors')); ?>"><?php echo e(__('Contractors')); ?></a>
                                         </li>
                                     <?php endif; ?>
                                     <?php if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client'): ?>
+                                        
                                         <li class="dash-item  <?php echo e((Request::segment(1) == 'contract')?'active':''); ?>">
-                                            <a class="dash-link" href="<?php echo e(route('contract.index')); ?>"><?php echo e(__('Contract')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('project.contracts')); ?>"><?php echo e(__('Contracts')); ?></a>
                                         </li>
                                     <?php endif; ?>
                                     <!-- <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project task')): ?>

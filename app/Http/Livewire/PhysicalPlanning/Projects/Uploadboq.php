@@ -18,6 +18,7 @@ class Uploadboq extends Component
     public $boq_file;
     public Collection $inputs;
     public $sumTotal;
+    public $ergp;
     protected $listeners = ['project' => 'incrementPostCount'];
     use WithFileUploads;
 
@@ -26,6 +27,10 @@ class Uploadboq extends Component
         $this->fill([
             'inputs' => collect([['item' => '','description' => '','unit_price' => '','quantity' => '']]),
         ]);
+    }
+
+    public function updatedBudget($id){
+        $this->ergp = Ergp::where('code',$id)->first();
     }
 
     public function addInput(){
@@ -39,7 +44,7 @@ class Uploadboq extends Component
 
     public function Updated(){
         foreach($this->inputs as $input){
-            $this->sumTotal =  $this->sumTotal + ((double)$input['unit_price'] * (double)$input['quantity']); 
+            $this->sumTotal =  $this->sumTotal + ((double)$input['unit_price'] * (double)$input['quantity']);
         }
     }
 
