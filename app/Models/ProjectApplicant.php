@@ -10,17 +10,17 @@ class ProjectApplicant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'company_name',
-        'year_of_incorporation',
+        'year_of_incoperation',
         'company_tin',
         'company_address',
         'email',
-        'phone'
+        'user_id',
+        'phone',
     ];
 
-    // Define the relationship with the ProjectApplication model
-    public function applications()
+    // Applicant details belong to one project application (One-to-One)
+    public function application()
     {
         return $this->hasMany(ProjectApplication::class, 'user_id', 'user_id');
     }
