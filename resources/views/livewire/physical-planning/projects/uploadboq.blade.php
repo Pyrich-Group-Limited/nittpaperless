@@ -23,13 +23,60 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                @if($this->ergp)
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row align-items-center justify-content-between">
+                                                    <div class="col-auto mb-3 mb-sm-0">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="theme-avtar bg-danger">
+                                                                <i class="ti ti-report-money"></i>
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <small class="text-muted">{{ __('PROJECT') }}</small>
+                                                                <h6 class="m-0">{{ __('SUM') }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto text-end">
+                                                        <h4 class="m-0">{{ number_format($ergp->project_sum) }}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row align-items-center justify-content-between">
+                                                    <div class="col-auto mb-3 mb-sm-0">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="theme-avtar bg-danger">
+                                                                <i class="ti ti-report-money"></i>
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <small class="text-muted">{{ __('PROJECT') }}</small>
+                                                                <h6 class="m-0">{{ __('BALLANCE') }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto text-end">
+                                                        <h4 class="m-0">{{number_format( $ergp->ballance) }}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         {{ Form::label('bduget', __('ERGP'), ['class' => 'form-label']) }}
                                         {{-- <input type="text" id="boq_file" wire:model.defer="budget" class="form-control"
                                         placeholder="Estimated Budget"  /> --}}
-                                        <select name="" id="" wire:model.defer="budget"
+                                        <select name="" id="" wire:model="budget"
                                             class="form-control">
                                             <option value="" selected>-- Select ERGP -- </option>
                                             @foreach ($projAccounts as $projAccount)

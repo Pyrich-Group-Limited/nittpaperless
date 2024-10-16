@@ -12,9 +12,9 @@ class ProjectApplicationDocument extends Model
     protected $fillable = [
         'project_application_id',
         'document_name',
-        'document'
+        'document',
+        'user_id',
     ];
-
     // document upload belongs to one project application
     public function application()
     {

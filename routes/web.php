@@ -170,6 +170,11 @@ use App\Http\Livewire\PhysicalPlanning\ErgpComponent;
 
 //contractor routes
 use App\Http\Livewire\Contractor\ContractorDashboard;
+use App\Http\Livewire\Contractor\ContractorProfile;
+use App\Http\Livewire\Contractor\AdvertComponent;
+use App\Http\Livewire\Contractor\AdvertDetailsComponent;
+use App\Http\Livewire\Contractor\DocumentsComponent;
+use App\Http\Livewire\Contractor\ApplicationsComponent;
 
 use App\Http\Livewire\DG\DgProjectsComponent;
 use App\Http\Livewire\DG\DgProjectDetailsComponent;
@@ -206,7 +211,15 @@ Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->gr
 
 Route::middleware(['auth','contractor'])->prefix('contractor')->group(function () {
     Route::get('dashbaord',ContractorDashboard::class)->name('contractor.dashboard');
+    Route::get('advert',AdvertComponent::class)->name('contractor.advert');
+    Route::get('advert/{id}',AdvertDetailsComponent::class)->name('contractor.advert.show');
+    Route::get('advert-application',AdvertDetailsComponent::class,'applyContract')->name('contractor.advert.apply');
+    Route::get('document',DocumentsComponent::class)->name('contractor.document');
+    Route::get('applicatons',ApplicationsComponent::class)->name('contractor.applications');
 });
+
+Route::get('/contractor/profile',ContractorProfile::class)->name('contractor.profile')->middleware('auth');
+
 
 Route::middleware(['auth','revalidate'])->prefix('director-general')->group(function () {
     Route::get('/dg-projects',DgProjectsComponent::class)->name('dg.projects');

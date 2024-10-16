@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="col-auto text-end">
-                        <h4 class="m-0">0</h4>
+                        <h4 class="m-0">{{ count(App\Models\ProjectAdvert::where('advert_type','External')->get()) }}</h4>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="col-auto text-end">
-                            <h4 class="m-0">0</h4>
+                            <h4 class="m-0">{{ count(App\Models\ProjectApplication::where('user_id',Auth::user()->id)->get()) }}</h4>
                         </div>
                     </div>
                 </div>

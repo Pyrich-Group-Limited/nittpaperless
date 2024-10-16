@@ -25,24 +25,26 @@
         <div class="navbar-content">
 
                 <ul class="dash-navbar">
-                                      
+
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'contractor/dashboard')?'active':''}}">
                         <a href="{{route('contractor.dashboard')}}" class="dash-link">
                             <span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext">{{__('Dasboard')}}</span>
                         </a>
                     </li>
-                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'stages' || Request::segment(1) == 'contract') ?' active dash-trigger':''}}">
-                        <a href="#!" class="dash-link"
-                        ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
-                            ><span class="dash-mtext">{{__('Contractors')}}</span
-                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
-                            ></a>
-                        <ul class="dash-submenu {{ (Request::segment(1) == 'deals' || Request::segment(1) == 'pipelines')?'show':''}}">
-                            <li class="dash-item {{ (\Request::route()->getName()=='crm.dashboard') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{route('crm.dashboard')}}">{{__(' Overview')}}</a>
-                            </li>
-                            
-                        </ul>
+                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'contractor/dashboard')?'active':''}}">
+                        <a href="{{route('contractor.advert')}}" class="dash-link">
+                            <span class="dash-micon"><i class="ti ti-notification"></i></span><span class="dash-mtext">{{__('Advert')}}</span>
+                        </a>
+                    </li>
+                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'contractor/document')?'active':''}}">
+                        <a href="{{route('contractor.document')}}" class="dash-link">
+                            <span class="dash-micon"><i class="ti ti-folder"></i></span><span class="dash-mtext">{{__('Documents')}}</span>
+                        </a>
+                    </li>
+                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'contractor/applications')?'active':''}}">
+                        <a href="{{route('contractor.applications')}}" class="dash-link">
+                            <span class="dash-micon"><i class="ti ti-edit"></i></span><span class="dash-mtext">{{__('My Applications')}}</span>
+                        </a>
                     </li>
                 </ul>
         </div>
