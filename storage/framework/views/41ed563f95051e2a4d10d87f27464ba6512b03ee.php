@@ -1,10 +1,10 @@
-@section('page-title')
+<?php $__env->startSection('page-title'); ?>
    Contractor Dashbaord
-@endsection
-@push('script-page')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('script-page'); ?>
     </script>
 
-    {{--share project copy link--}}
+    
     <script>
         function copyToClipboard(element) {
 
@@ -19,12 +19,12 @@
             show_toastr('success', 'Url copied to clipboard', 'success');
         }
     </script>
-@endpush
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item"><a href="{{route('projects.index')}}">{{__('Contractor')}}</a></li>
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('projects.index')); ?>"><?php echo e(__('Contractor')); ?></a></li>
     <li class="breadcrumb-item">Dashboard</li>
-@endsection
+<?php $__env->stopSection(); ?>
 
 <div class="row">
 
@@ -38,13 +38,13 @@
                                 <i class="ti ti-report-money"></i>
                             </div>
                             <div class="ms-3">
-                                <small class="text-muted">{{__('Total')}}</small>
-                                <h6 class="m-0">{{__('Advert')}}</h6>
+                                <small class="text-muted"><?php echo e(__('Total')); ?></small>
+                                <h6 class="m-0"><?php echo e(__('Advert')); ?></h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-auto text-end">
-                        <h4 class="m-0">{{ count(App\Models\ProjectAdvert::where('advert_type','External')->get()) }}</h4>
+                        <h4 class="m-0"><?php echo e(count(App\Models\ProjectAdvert::where('advert_type','External')->get())); ?></h4>
                     </div>
                 </div>
             </div>
@@ -60,13 +60,13 @@
                                     <i class="ti ti-report-money"></i>
                                 </div>
                                 <div class="ms-3">
-                                    <small class="text-muted">{{__('Total')}}</small>
-                                    <h6 class="m-0">{{__('Applications')}}</h6>
+                                    <small class="text-muted"><?php echo e(__('Total')); ?></small>
+                                    <h6 class="m-0"><?php echo e(__('Applications')); ?></h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-auto text-end">
-                            <h4 class="m-0">{{ count(App\Models\ProjectApplication::where('user_id',Auth::user()->id)->get()) }}</h4>
+                            <h4 class="m-0"><?php echo e(count(App\Models\ProjectApplication::where('user_id',Auth::user()->id)->get())); ?></h4>
                         </div>
                     </div>
                 </div>
@@ -75,3 +75,4 @@
 
 
 </div>
+<?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/contractor/contractor-dashboard.blade.php ENDPATH**/ ?>

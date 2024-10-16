@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('project_application_documents', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('project_application_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('project_application_id')->references('id')->on('project_applications')->onDelete('cascade');
             $table->string('document_name');
             $table->string('document');

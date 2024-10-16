@@ -9,6 +9,12 @@ class ProjectApplicationDocument extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'project_application_id',
+        'document_name',
+        'document',
+        'user_id',
+    ];
     // document upload belongs to one project application
     public function application()
     {

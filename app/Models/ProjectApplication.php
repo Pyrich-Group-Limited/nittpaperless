@@ -9,10 +9,20 @@ class ProjectApplication extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'project_id',
+        'user_id',
+        'application_status'
+    ];
     // A project application belongs to a project advert
     public function advert()
     {
         return $this->belongsTo(ProjectAdvert::class);
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(ProjectCreation::class);
     }
 
     // A project application has one applicant details (One-to-One)

@@ -47,6 +47,19 @@ class User extends Authenticatable
         // 'signature',
     ];
 
+    public function companyProfile(){
+        return $this->hasOne(ProjectApplicant::class,'user_id')->ofMany();
+    }
+
+    public function documents(){
+        return $this->hasMany(ProjectApplicationDocument::class);
+    }
+
+    public function projectApplications($id){
+        return $this->hasMany(projectApplication::class)->where('project_id',$id)->get();
+    }
+
+
     public function department(){
         return $this->belongsTo(Department::class);
     }
@@ -848,7 +861,7 @@ class User extends Authenticatable
     {
         // Count the number of employees created by the user
         $employeeCount = Employee::where('created_by', '=', $creatorId)->count();
-    
+
         return $employeeCount;
     }
 

@@ -9,6 +9,16 @@ class ProjectApplicant extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'company_name',
+        'year_of_incoperation',
+        'company_tin',
+        'company_address',
+        'email',
+        'user_id',
+        'phone',
+    ];
+
     // Applicant details belong to one project application (One-to-One)
     public function application()
     {

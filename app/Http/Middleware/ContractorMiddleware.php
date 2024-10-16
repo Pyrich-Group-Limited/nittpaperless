@@ -21,7 +21,11 @@ class ContractorMiddleware
         $auth_user_type = Auth::user()->type;// get the type of user loged in
 
         if(Auth::user()->type==="Contractor"){
+            if(Auth::user()->companyProfile==null){
+                return redirect()->route('contractor.profile');
+            }else{
                 return $next($request);
+            }
         }else{
             Session::flush();
             return redirect()->route('login');
