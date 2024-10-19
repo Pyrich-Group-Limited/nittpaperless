@@ -760,13 +760,18 @@
                                 ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                                 ></a>
                             <ul class="dash-submenu">
-                                <?php if( Gate::check('manage leave') || Gate::check('manage attendance')): ?>
+                                <?php if( Gate::check('manage leave') || Gate::check('manage attendance') || Gate::check('approve leave')): ?>
                                     <li class="dash-item dash-hasmenu  <?php echo e((Request::segment(1) == 'leave' || Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' :''); ?>">
                                         <a class="dash-link" href="#"><?php echo e(__('Leave Management')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu">
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage leave')): ?>
                                                 <li class="dash-item <?php echo e((Request::route()->getName() == 'leave.index') ?'active' :''); ?>">
                                                     <a class="dash-link" href="<?php echo e(route('leave.index')); ?>"><?php echo e(__('Manage Leave')); ?></a>
+                                                </li>
+                                            <?php endif; ?>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve leave')): ?>
+                                                <li class="dash-item <?php echo e((Request::route()->getName() == 'leave.index') ?'active' :''); ?>">
+                                                    <a class="dash-link" href="<?php echo e(route('approvals.index')); ?>"><?php echo e(__('Pending Leaves')); ?></a>
                                                 </li>
                                             <?php endif; ?>
 

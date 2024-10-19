@@ -87,7 +87,7 @@
                                         <?php endif; ?>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('show contract')): ?>
                                             <div class="action-btn bg-warning ms-2">
-                                                <a href="<?php echo e(route('contract.show',$contract->id)); ?>"
+                                                <a href="<?php echo e(route('contract.details',$contract->id)); ?>"
                                                    class="mx-3 btn btn-sm d-inline-flex align-items-center"
                                                    data-bs-whatever="<?php echo e(__('View Budget Planner')); ?>" data-bs-toggle="tooltip"
                                                    data-bs-original-title="<?php echo e(__('View')); ?>"> <span class="text-white"> <i class="ti ti-eye"></i></span></a>

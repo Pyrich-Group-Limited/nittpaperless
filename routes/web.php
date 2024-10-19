@@ -141,6 +141,7 @@ use App\Http\Controllers\WarehouseTransferController;
 
 use App\Http\Controllers\DashControls\AccountantDashControl;
 use App\Http\Controllers\DashControls\HrmDashControl;
+use App\Http\Controllers\DashControls\LeaveApprovalContoller;
 
 use App\Http\Controllers\FileManagement\FilesController;
 use App\Http\Controllers\FileManagement\FolderController;
@@ -162,6 +163,7 @@ use App\Http\Livewire\Projects\ShowProjectComponent;
 use App\Http\Livewire\Projects\ProjectApplicantsComponent;
 use App\Http\Livewire\Projects\ProjectContractsComponent;
 use App\Http\Livewire\Projects\ProjectContractorsComponent;
+use App\Http\Livewire\Projects\ShowContractDetailsComponent;
 
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
@@ -428,13 +430,17 @@ Route::get('comment', [AccountantDashControl::class, 'commentModal'])->name('com
 
 Route::get('hrm-budget', [HrmDashControl::class, 'budget'])->name('hrm.budget');
 Route::get('hrm-query', [HrmDashControl::class, 'hrmQuery'])->name('hrm.query');
-Route::get('hrm-leave', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
 Route::get('hrm-dta', [HrmDashControl::class, 'hrmDta'])->name('hrm.dta');
 Route::get('hrm-memo', [HrmDashControl::class, 'hrmMemo'])->name('hrm.memo');
-Route::get('hrm-apply-leave', [HrmDashControl::class, 'applyLeave'])->name('hrm.applyLeave');
-Route::post('apply-leave', [HrmDashControl::class, 'applyLeavePost'])->name('leave.apply');
 Route::get('hrm-apply-query', [HrmDashControl::class, 'applyQuery'])->name('hrm.applyQuery');
 Route::get('hrm-apply-dta', [HrmDashControl::class, 'applyDta'])->name('hrm.applyDta');
+
+Route::get('hrm-apply-leave', [HrmDashControl::class, 'applyLeave'])->name('hrm.applyLeave');
+Route::get('hrm-leave', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
+Route::post('apply-leave', [HrmDashControl::class, 'applyLeavePost'])->name('leave.apply');
+
+Route::get('/approvals', [LeaveApprovalContoller::class, 'index'])->name('approvals.index');
+Route::post('/approvals/{id}', [LeaveApprovalContoller::class, 'update'])->name('approvals.update');
 
 // file management
 Route::get('/files',[FilesController::class, 'index'])->name('file.index');
@@ -1214,6 +1220,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function 
     Route::get('/project/{id}/applicants',ProjectApplicantsComponent::class)->name('project.applicants');
     Route::get('/project-contracts',ProjectContractsComponent::class)->name('project.contracts');
     Route::get('/project-contractors',ProjectContractorsComponent::class)->name('project.contractors');
+    Route::get('/contract/{id}/details',ShowContractDetailsComponent::class)->name('contract.details');
 });
 
 

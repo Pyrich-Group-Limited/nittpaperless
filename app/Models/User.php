@@ -99,6 +99,14 @@ class User extends Authenticatable
                     ->withTimestamps();
     }
 
+    public function leaves() {
+        return $this->hasMany(Leave::class);
+    }
+
+    public function approvals() {
+        return $this->hasMany(LeaveApproval::class, 'approver_id');
+    }
+
 
     protected $hidden = [
         'password',

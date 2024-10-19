@@ -864,13 +864,18 @@
                                 ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                                 ></a>
                             <ul class="dash-submenu">
-                                @if( Gate::check('manage leave') || Gate::check('manage attendance'))
+                                @if( Gate::check('manage leave') || Gate::check('manage attendance') || Gate::check('approve leave'))
                                     <li class="dash-item dash-hasmenu  {{ (Request::segment(1) == 'leave' || Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' :''}}">
                                         <a class="dash-link" href="#">{{__('Leave Management')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu">
                                             @can('manage leave')
                                                 <li class="dash-item {{ (Request::route()->getName() == 'leave.index') ?'active' :''}}">
                                                     <a class="dash-link" href="{{route('leave.index')}}">{{__('Manage Leave')}}</a>
+                                                </li>
+                                            @endcan
+                                            @can('approve leave')
+                                                <li class="dash-item {{ (Request::route()->getName() == 'leave.index') ?'active' :''}}">
+                                                    <a class="dash-link" href="{{route('approvals.index')}}">{{__('Pending Leaves')}}</a>
                                                 </li>
                                             @endcan
 

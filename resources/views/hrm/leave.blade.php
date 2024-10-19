@@ -36,7 +36,7 @@
                                 <th>{{__('Employee Name')}}</th>
                                 <th>{{__('Employee Department')}}</th>
                                 <th>{{__('Type of Leave')}}</th>
-                                <th>{{__('Leave Date')}}</th>
+                                <th>{{__(' Date Applied')}}</th>
                                 <th>{{__('Number of Days')}}</th>
                                 <th>{{__('Resumption Date')}}</th>
                                 <th>{{__('Status')}}</th>
@@ -49,10 +49,16 @@
                                     <td>{{ $leave->user->name }}</td>
                                     <td>{{ $leave->user->department->name }}</td>
                                     <td>{{ $leave->leaveType->title}}</td>
-                                    <td>11-10-2024</td>
+                                    <td>{{  $leave->applied_on }}</td>
                                     <td>{{ $leave->total_leave_days }}</td>
                                     <td>{{ $leave->end_date }}</td>
-                                    <td>{{ $leave->status  }}</td>
+                                    <td>
+                                        <span class="badge @if($leave->status=='Pending') bg-warning
+                                            @elseif ($leave->status=='Approved') bg-primary
+                                            @elseif ($leave->status=='reject') bg-danger
+                                            @endif p-2 px-3 rounded">{{ $leave->status }}
+                                        </span>
+                                    </td>
                                     <td class="Action">
                                     @can('manage leave')
                                         <div class="action-btn bg-success ms-2">

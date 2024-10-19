@@ -25,24 +25,26 @@
         <div class="navbar-content">
 
                 <ul class="dash-navbar">
-                                      
+
                     <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'contractor/dashboard')?'active':''); ?>">
                         <a href="<?php echo e(route('contractor.dashboard')); ?>" class="dash-link">
                             <span class="dash-micon"><i class="ti ti-home"></i></span><span class="dash-mtext"><?php echo e(__('Dasboard')); ?></span>
                         </a>
                     </li>
-                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'stages' || Request::segment(1) == 'contract') ?' active dash-trigger':''); ?>">
-                        <a href="#!" class="dash-link"
-                        ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
-                            ><span class="dash-mtext"><?php echo e(__('Contractors')); ?></span
-                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
-                            ></a>
-                        <ul class="dash-submenu <?php echo e((Request::segment(1) == 'deals' || Request::segment(1) == 'pipelines')?'show':''); ?>">
-                            <li class="dash-item <?php echo e((\Request::route()->getName()=='crm.dashboard') ? ' active' : ''); ?>">
-                                <a class="dash-link" href="<?php echo e(route('crm.dashboard')); ?>"><?php echo e(__(' Overview')); ?></a>
-                            </li>
-                            
-                        </ul>
+                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'contractor/dashboard')?'active':''); ?>">
+                        <a href="<?php echo e(route('contractor.advert')); ?>" class="dash-link">
+                            <span class="dash-micon"><i class="ti ti-notification"></i></span><span class="dash-mtext"><?php echo e(__('Advert')); ?></span>
+                        </a>
+                    </li>
+                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'contractor/document')?'active':''); ?>">
+                        <a href="<?php echo e(route('contractor.document')); ?>" class="dash-link">
+                            <span class="dash-micon"><i class="ti ti-folder"></i></span><span class="dash-mtext"><?php echo e(__('Documents')); ?></span>
+                        </a>
+                    </li>
+                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'contractor/applications')?'active':''); ?>">
+                        <a href="<?php echo e(route('contractor.applications')); ?>" class="dash-link">
+                            <span class="dash-micon"><i class="ti ti-edit"></i></span><span class="dash-mtext"><?php echo e(__('My Applications')); ?></span>
+                        </a>
                     </li>
                 </ul>
         </div>

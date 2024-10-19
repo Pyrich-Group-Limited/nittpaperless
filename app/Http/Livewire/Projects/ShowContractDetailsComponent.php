@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Http\Livewire\Projects;
+
+use Livewire\Component;
+use App\Models\Client;
+use App\Models\Contract;
+use App\Models\Contract_attachment;
+use App\Models\ContractComment;
+use App\Models\ContractNotes;
+use App\Models\ContractType;
+use App\Models\Project;
+use App\Models\User;
+use App\Models\UserDefualtView;
+use App\Models\Utility;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class ShowContractDetailsComponent extends Component
+{
+    public $contract_id;
+
+    public function mount($id){
+
+        $this->contract_id = $id;
+        $contract = Contract::find($id);
+    }
+
+    public function show($id)
+    {
+        if(\Auth::user()->can('show contract'))
+        {
+            $contract =Contract::find($id);
+
+            if($contract->created_by == \Auth::user()->creatorId())
+            {
+                $client   = $contract->client;
+                return view('contract.show', compact('contract', 'client'));
+            }
+            else
+            {
+                return redirect()->back()->with('error', __('Permission Denied.'));
+            }
+        }
+        else
+        {
+            return redirect()->back()->with('error', __('Permission denied.'));
+        }
+    }
+
+    public function render()
+    {
+        $contract =Contract::find($this->contract_id);
+        return view('livewire.projects.show-contract-details-component',compact('contract'));
+    }
+}

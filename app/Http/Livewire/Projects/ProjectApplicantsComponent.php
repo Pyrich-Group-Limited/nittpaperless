@@ -31,6 +31,8 @@ class ProjectApplicantsComponent extends Component
         $projectApplicant = ProjectApplication::find($user_id);
         if($projectApplicant->application_status=='on_review'){
             $this->dispatchBrowserEvent('error',['error' => 'This applicant has already been recommended to the DG']);
+        }elseif($projectApplicant->application_status=='selected'){
+            $this->dispatchBrowserEvent('error',['error' => 'This applicant has already been selected']);
         }else{
             $projectApplicant->update([
                 'application_status' => 'on_review',

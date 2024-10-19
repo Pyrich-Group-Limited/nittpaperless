@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('leave_approvals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('leave_id');
-            $table->foreign('leave_id')->references('id')->on('leaves')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('status')->default('pending');
+            // $table->foreign('leave_id')->references('id')->on('leaves')->onDelete('cascade');
+            $table->unsignedBigInteger('approver_id');
+            // $table->foreign('approver_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('approval_stage'); // 'supervisor', 'unit_head', 'hod'
+            $table->string('status')->default('pending');  // 'pending', 'approved', 'rejected'
             $table->timestamps();
         });
     }
