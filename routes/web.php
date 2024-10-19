@@ -156,6 +156,7 @@ use App\Http\Livewire\Guest\ContractorRegisterComponent;
 
 //livewire component for user
 use App\Http\Livewire\Users\UsersComponent;
+use App\Http\Livewire\Users\UserPermission;
 
 use App\Http\Livewire\Projects\ProjectsComponent;
 use App\Http\Livewire\Projects\EditProjectComponent;
@@ -946,6 +947,7 @@ Route::resource('email_template', EmailTemplateController::class)->middleware(['
 // HRM
 
 Route::get('registered-users', UsersComponent::class)->name('get-all-users')->middleware(['auth', 'XSS']);
+Route::get('user-permissions', UserPermission::class)->name('user.permission')->middleware(['auth', 'XSS']);
 Route::resource('user', UserController::class)->middleware(['auth', 'XSS']);
 Route::post('employee/json', [EmployeeController::class, 'json'])->name('employee.json')->middleware(['auth','XSS']);
 Route::post('branch/employee/json', [EmployeeController::class, 'employeeJson'])->name('branch.employee.json')->middleware(['auth','XSS']);
