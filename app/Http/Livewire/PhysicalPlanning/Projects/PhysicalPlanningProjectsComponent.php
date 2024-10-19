@@ -58,6 +58,7 @@ class PhysicalPlanningProjectsComponent extends Component
 
     public function render()
     {
+        // dd(Auth::user()->getDirectPermissions());
         $projAccounts = Ergp::all();
         $view = 'grid';
         $categories = ProjectCategory::all();
