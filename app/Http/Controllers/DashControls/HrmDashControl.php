@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\LeaveType;
 use App\Models\Leave;
+use App\Models\User;
+use App\Models\LeaveApproval;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class HrmDashControl extends Controller
 {
@@ -30,6 +33,8 @@ class HrmDashControl extends Controller
         $leaveTypes = LeaveType::all();
         return view('hrm.leave',compact('leaves','leaveTypes'));
     }
+
+
     public function hrmDta(Request $request)
     {
         return view('hrm.dta');
@@ -68,12 +73,13 @@ class HrmDashControl extends Controller
             return back()->with('error','Sorry you can not apply for more than '.$leaveType->days. ' for '.$leaveType->name)->withInput();
 
         }else{
-            Leave::create([
+            $leave = Leave::create([
                 'employee_id' => Auth::user()->id,
                 'department_id' => Auth::user()->department->id,
                 'unit_id' => Auth::user()->unit->id,
                 'created_by' => Auth::user()->id,
                 'leave_type_id' => $data['type_of_leave'],
+                'applied_on' => Carbon::now(),
                 'start_date' => $data['start_date'],
                 'end_date' => $data['end_date'],
                 'leave_reason' => $data['reason'],
@@ -81,10 +87,38 @@ class HrmDashControl extends Controller
                 'total_leave_days' => $leaveDuration,
             ]);
 
-            return back()->with('success','Leave Application Successful');
+            // Create first approval request (Supervisor)
+            LeaveApproval::create([
+                'leave_id' => $leave->id,
+                'approver_id' => $this->getSupervisorId(auth()->user()->id),
+                'approval_stage' => 'supervisor',
+                'status' => 'pending'
+            ]);
+
+            return back()->with('success','Leave Application Submitted Successful');
         }
 
     }
+
+    private function getSupervisorId($userId) {
+        // Get the user who is applying for leave
+        $user = User::find($userId);
+
+        // Fetch the supervisor in the same unit and department
+        $supervisor = User::where('type', 'supervisor')
+            ->where('unit_id', $user->unit_id)
+            ->where('department_id', $user->department_id)
+            ->first();
+
+        // Check if a supervisor was found
+        if ($supervisor) {
+            return $supervisor->id;
+        } else {
+            // If no supervisor is found, handle appropriately (return null or throw exception)
+            throw new Exception('Supervisor not found in the same unit and department.');
+        }
+    }
+
     public function applyQuery(Request $request)
     {
         return view('hrm.modals.apply-query');

@@ -175,6 +175,10 @@ class DashboardController extends Controller
             {
                 return redirect()->route('store.dashboard');
             }
+            elseif(Auth::user()->type == 'supervisor')
+            {
+                return redirect()->route('supervisor.dashboard');
+            }
             elseif(Auth::user()->type == 'HOD')
             {
                 return redirect()->route('hod.dashboard');
@@ -306,6 +310,10 @@ class DashboardController extends Controller
             {
                 return redirect()->route('store.dashboard');
             }
+            elseif(Auth::user()->type == 'supervisor')
+            {
+                return redirect()->route('supervisor.dashboard');
+            }
             elseif(Auth::user()->type == 'HOD')
             {
                 return redirect()->route('hod.dashboard');
@@ -436,6 +444,10 @@ class DashboardController extends Controller
             elseif(Auth::user()->type == 'store keeper')
             {
                 return redirect()->route('store.dashboard');
+            }
+            elseif(Auth::user()->type == 'supervisor')
+            {
+                return redirect()->route('supervisor.dashboard');
             }
             elseif(Auth::user()->type == 'HOD')
             {
@@ -778,7 +790,7 @@ class DashboardController extends Controller
         $user = Auth::user();
         if(\Auth::user()->can('show crm dashboard'))
         {
-            if($user->type == 'admin')
+            if($user->type == 'super admin')
             {
                 return view('admin.dashboard');
             }
@@ -848,7 +860,7 @@ class DashboardController extends Controller
         $user = Auth::user();
         if(\Auth::user()->can('show pos dashboard'))
         {
-            if($user->type == 'admin')
+            if($user->type == 'super admin')
             {
                 return view('admin.dashboard');
             }
@@ -1094,7 +1106,7 @@ class DashboardController extends Controller
         return Utility::error_res('Tracker not found.');
     }
 
-   
 
-   
+
+
 }

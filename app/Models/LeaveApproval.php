@@ -10,8 +10,17 @@ class LeaveApproval extends Model
     use HasFactory;
 
     protected $fillable = [
-        'leave_d',
-        'user_id',
+        'leave_id',
+        'approver_id',
+        'approval_stage',
         'status',
     ];
+
+    public function leave() {
+        return $this->belongsTo(Leave::class);
+    }
+
+    public function approver() {
+        return $this->belongsTo(User::class, 'approver_id');
+    }
 }

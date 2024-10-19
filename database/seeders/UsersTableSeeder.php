@@ -3210,6 +3210,12 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+                'name' => 'approve leave',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
                 'name' => 'create leave',
                 'module' => 'Leave',
                 'guard_name' => 'web',
@@ -4044,6 +4050,7 @@ class UsersTableSeeder extends Seeder
         );
 
         $companyPermissions = [
+            ['name' => 'approve leave'],
             ['name' => 'approve dta'],
             ['name' => 'reject dta'],
             ['name' => 'view leave report'],
@@ -4688,6 +4695,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $supervisorPermission = [
+            ['name' => 'approve leave'],
             ['name' => 'approve dta'],
             ['name' => 'reject dta'],
             ['name' => 'show invoice'],
@@ -4752,6 +4760,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liasonPermission = [
+            ['name' => 'approve leave'],
             ['name' => 'view leave report'],
             ['name' => 'create budget plan'],
             ['name' => 'show invoice'],
@@ -4816,6 +4825,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $hodPermission = [
+            ['name' => 'approve leave'],
             ['name' => 'view leave report'],
             ['name' => 'create budget plan'],
             ['name' => 'show invoice'],
@@ -4926,6 +4936,8 @@ class UsersTableSeeder extends Seeder
 
         // Define the permissions for the unit head role
         $unitHeadPermissions = [
+            ['name' => 'approve leave'],
+            ['name' => 'manage leave'],
             ['name' => 'approve dta'],
             ['name' => 'reject dta'],
             ['name' => 'view leave report'],
@@ -4973,6 +4985,8 @@ class UsersTableSeeder extends Seeder
                 'created_by' => $company->id,
             ],
         );
+
+        $unitHeadRole->givePermissionTo($unitHeadPermissions);
 
         $unitHead = User::create(
             [

@@ -86,10 +86,11 @@
                                         @endif
                                         @can('show contract')
                                             <div class="action-btn bg-warning ms-2">
-                                                <a href="{{ route('contract.show',$contract->id) }}"
+                                                <a href="{{ route('contract.details',$contract->id) }}"
                                                    class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                   data-bs-whatever="{{__('View Budget Planner')}}" data-bs-toggle="tooltip"
-                                                   data-bs-original-title="{{__('View')}}"> <span class="text-white"> <i class="ti ti-eye"></i></span></a>
+                                                   data-bs-whatever="{{__('View Contract Details')}}" data-bs-toggle="tooltip"
+                                                   data-bs-original-title="{{__('View')}}"> <span class="text-white"> <i class="ti ti-eye"></i></span>
+                                                </a>
                                             </div>
                                         @endcan
                                         @can('edit contract')

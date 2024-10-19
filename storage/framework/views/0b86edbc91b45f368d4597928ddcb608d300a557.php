@@ -28,7 +28,7 @@
                                 <th><?php echo e(__('Employee Name')); ?></th>
                                 <th><?php echo e(__('Employee Department')); ?></th>
                                 <th><?php echo e(__('Type of Leave')); ?></th>
-                                <th><?php echo e(__('Leave Date')); ?></th>
+                                <th><?php echo e(__(' Date Applied')); ?></th>
                                 <th><?php echo e(__('Number of Days')); ?></th>
                                 <th><?php echo e(__('Resumption Date')); ?></th>
                                 <th><?php echo e(__('Status')); ?></th>
@@ -41,10 +41,17 @@
                                     <td><?php echo e($leave->user->name); ?></td>
                                     <td><?php echo e($leave->user->department->name); ?></td>
                                     <td><?php echo e($leave->leaveType->title); ?></td>
-                                    <td>11-10-2024</td>
+                                    <td><?php echo e($leave->applied_on); ?></td>
                                     <td><?php echo e($leave->total_leave_days); ?></td>
                                     <td><?php echo e($leave->end_date); ?></td>
-                                    <td><?php echo e($leave->status); ?></td>
+                                    <td>
+                                        <span class="badge <?php if($leave->status=='Pending'): ?> bg-warning
+                                            <?php elseif($leave->status=='Approved'): ?> bg-primary
+                                            <?php elseif($leave->status=='reject'): ?> bg-danger
+                                            <?php endif; ?> p-2 px-3 rounded"><?php echo e($leave->status); ?>
+
+                                        </span>
+                                    </td>
                                     <td class="Action">
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage leave')): ?>
                                         <div class="action-btn bg-success ms-2">
