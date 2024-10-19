@@ -1,12 +1,12 @@
-@extends('layouts.admin')
-@section('page-title')
-    {{ 'Dashboard' . ' - ' . ' ' . Ucfirst(Auth::user()->type) }}
-@endsection
+<?php $__env->startSection('page-title'); ?>
+    <?php echo e('Dashboard' . ' - ' . ' ' . Ucfirst(Auth::user()->type)); ?>
 
-@push('theme-script')
-    <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-@endpush
-@push('script-page')
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('theme-script'); ?>
+    <script src="<?php echo e(asset('assets/libs/apexcharts/dist/apexcharts.min.js')); ?>"></script>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('script-page'); ?>
     <script>
         (function() {
             var options = {
@@ -25,23 +25,25 @@
                     curve: 'smooth'
                 },
                 series: [{
-                    name: '{{ __('Purchase') }}',
-                    data: {!! json_encode($purchasesArray['value']) !!}
+                    name: '<?php echo e(__('Purchase')); ?>',
+                    data: <?php echo json_encode($purchasesArray['value']); ?>
+
                     // data:  [70,270,80,245,115,260,135,280,70,215]
 
                 },
                     {
-                        name: '{{ __('POS') }}',
-                        data: {!! json_encode($posesArray['value']) !!}
+                        name: '<?php echo e(__('POS')); ?>',
+                        data: <?php echo json_encode($posesArray['value']); ?>
+
 
                         // data:  [100,300,100,260,140,290,150,300,100,250]
 
                     },
                 ],
                 xaxis: {
-                    categories: {!! json_encode($purchasesArray['label']) !!},
+                    categories: <?php echo json_encode($purchasesArray['label']); ?>,
                     title: {
-                        text: '{{ __('Days') }}'
+                        text: '<?php echo e(__('Days')); ?>'
                     }
                 },
                 colors: ['#ff3a6e', '#0C7885'],
@@ -63,7 +65,7 @@
                 },
                 yaxis: {
                     title: {
-                        text: '{{ __('Amount') }}'
+                        text: '<?php echo e(__('Amount')); ?>'
                     },
                 }
             };
@@ -72,17 +74,18 @@
         })();
 
     </script>
-@endpush
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
-    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name) }}
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
+    <li class="breadcrumb-item"><b>Welcome </b><?php echo e(Ucfirst(Auth::user()->name)); ?>
+
     </li>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-lg-4 col-md-6">
             <div class="card">
-                <a href="{{ route('dta.index') }}">
+                <a href="<?php echo e(route('dta.index')); ?>">
                     <div class="card-body p-3">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center mb-3 mt-3">
@@ -90,10 +93,10 @@
                                     <i class="ti ti-users"></i>
                                 </div>
                                 <div class="ms-3 mb-3 mt-3">
-                                    <h6 class="ml-4">{{ __('DTA') }}</h6>
+                                    <h6 class="ml-4"><?php echo e(__('DTA')); ?></h6>
                                 </div>
                             </div>
-                            <h3 class="ms-4">{{ $dta->count() }}</h3>
+                            <h3 class="ms-4"><?php echo e($dta->count()); ?></h3>
                         </div>
                     </div>
                 </a>
@@ -102,7 +105,7 @@
 
         <div class="col-lg-4 col-md-6">
             <div class="card">
-                <a href="{{ route('hrm.leave') }}">
+                <a href="<?php echo e(route('hrm.leave')); ?>">
                     <div class="card-body p-3">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center mb-3 mt-3">
@@ -110,10 +113,10 @@
                                     <i class="ti ti-shopping-cart"></i>
                                 </div>
                                 <div class="ms-3 mb-3 mt-3">
-                                    <h6 class="ml-4">{{ __('Leave') }}</h6>
+                                    <h6 class="ml-4"><?php echo e(__('Leave')); ?></h6>
                                 </div>
                             </div>
-                            <h3 class="ms-4">{{ $leave->count() }}</h3>
+                            <h3 class="ms-4"><?php echo e($leave->count()); ?></h3>
                         </div>
                     </div>
                 </a>
@@ -130,7 +133,7 @@
                                     <i class="ti ti-trophy"></i>
                                 </div>
                                 <div class="ms-3 mb-3 mt-3">
-                                    <h6 class="ml-4">{{ __('Budget') }}</h6>
+                                    <h6 class="ml-4"><?php echo e(__('Budget')); ?></h6>
                                 </div>
                             </div>
                             <h3 class="ms-4">6</h3>
@@ -147,10 +150,10 @@
                 <div class="card-header">
                     <div class="row ">
                         <div class="col-6">
-                            <h5>{{ __('Expense Report') }}</h5>
+                            <h5><?php echo e(__('Expense Report')); ?></h5>
                         </div>
                         <div class="col-6 text-end">
-                            <h6>{{ __('Last 10 Days') }}</h6>
+                            <h6><?php echo e(__('Last 10 Days')); ?></h6>
                         </div>
                     </div>
                 </div>
@@ -161,4 +164,6 @@
         </div>
 
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\nittpaperless-1\resources\views/dashboard/dg-dashboard.blade.php ENDPATH**/ ?>

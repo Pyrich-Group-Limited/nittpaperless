@@ -47,6 +47,41 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+
+use App\Exports\AccountStatementExport;
+use App\Exports\PayrollExport;
+use App\Exports\ProductStockExport;
+use App\Exports\TrialBalancExport;
+use App\Exports\BalanceSheetExport;
+
+use App\Models\BillAccount;
+
+use App\Models\Branch;
+use App\Models\ClientDeal;
+use App\Models\Department;
+use App\Models\Leave;
+use App\Models\PaySlip;
+use App\Models\BillProduct;
+use App\Models\ChartOfAccount;
+use App\Models\ChartOfAccountSubType;
+use App\Models\ChartOfAccountType;
+use App\Models\Customer;
+use App\Models\InvoiceProduct;
+use App\Models\JournalItem;
+use App\Models\Pipeline;
+use App\Models\Source;
+use App\Models\StockReport;
+use App\Models\Transaction;
+use App\Models\UserDeal;
+use App\Models\LeaveType;
+use App\Models\BankTransfer;
+use App\Models\Vender;
+use App\Models\warehouse;
+use App\Models\WarehouseProduct;
+use App\Models\Dta;
+use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+
 class DashboardController extends Controller
 {
     /**
@@ -95,7 +130,19 @@ class DashboardController extends Controller
      }
 
      public function dg_dashboard(){
-        return view('dashboard.dg-dashboard');
+
+        $pos_data=[];
+        $pos_data['monthlyPosAmount'] = Pos::totalPosAmount(true);
+        $pos_data['totalPosAmount'] = Pos::totalPosAmount();
+        $pos_data['monthlyPurchaseAmount'] = Purchase::totalPurchaseAmount(true);
+        $pos_data['totalPurchaseAmount'] = Purchase::totalPurchaseAmount();
+
+        $purchasesArray = Purchase::getPurchaseReportChart();
+        $posesArray = Pos::getPosReportChart();
+
+        $dta = Dta::all();
+        $leave = Leave::all();
+        return view('dashboard.dg-dashboard',compact('pos_data','purchasesArray','posesArray','dta','leave'));
      }
 
      public function hod_dashboard(){
@@ -1047,4 +1094,7 @@ class DashboardController extends Controller
         return Utility::error_res('Tracker not found.');
     }
 
+   
+
+   
 }
