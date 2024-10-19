@@ -101,12 +101,16 @@
                                     ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                                     ></a>
                                 <ul class="dash-submenu {{ (Request::segment(1) == 'stages' || Request::segment(1) == 'labels' || Request::segment(1) == 'sources' || Request::segment(1) == 'lead_stages' || Request::segment(1) == 'leads'  || Request::segment(1) == 'form_builder' || Request::segment(1) == 'form_response' || Request::segment(1) == 'deals' || Request::segment(1) == 'pipelines')?'show':''}}">
+                                    @can('show hrm dashboard')
                                     <li class="dash-item {{ (\Request::route()->getName()=='hrm.dashboard') ? ' active' : '' }}">
                                         <a class="dash-link" href="{{route('hrm.dashboard')}}">{{__(' Overview')}}</a>
                                     </li>
+                                    @endcan
+                                    @can('manage payment')
                                     <li class="dash-item {{ request()->is('reports-payroll') ? 'active' : '' }}">
                                         <a class="dash-link" href="{{ route('report.payroll') }}">{{__('Payroll')}}</a>
                                     </li>
+                                    @endcan
                                     @can('manage report')
                                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'active dash-trigger' : ''}}" href="#hr-report" data-toggle="collapse" role="button" aria-expanded="{{(Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'true' : 'false'}}">
                                             <a class="dash-link" href="#">{{__('Reports/Analytics')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
@@ -330,6 +334,7 @@
                         @endif
                     @endif
 
+                    @can('manage project')
                         <li class="dash-item dash-hasmenu {{ ( Request::segment(1) == 'project' || Request::segment(1) == 'bugs-report' || Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' || Request::segment(1) == 'calendar' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'project' || Request::segment(1) == 'projects' || Request::segment(1) == 'project_report')
                             ? 'active dash-trigger' : ''}}">
                             <a href="#!" class="dash-link"
@@ -401,6 +406,7 @@
                                     @endif -->
                                 </ul>
                         </li>
+                    @endcan
 
                     @if(\Auth::user()->type=='super admin' && ( Gate::check('manage user') || Gate::check('manage role') || Gate::check('manage client')))
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
