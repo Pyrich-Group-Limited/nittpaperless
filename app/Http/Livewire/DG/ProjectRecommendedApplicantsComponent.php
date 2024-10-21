@@ -12,23 +12,82 @@ use App\Models\ProjectUser;
 use App\Models\ProjectApplication;
 use App\Models\User;
 use App\Models\Contract;
+use App\Models\ProjectHod;
+use App\Models\ProjectComment;
 use Carbon\Carbon;
 use Auth;
+use App\Notifications\ProjectSharedNotification;
 
 class ProjectRecommendedApplicantsComponent extends Component
 {
     public $projectApplicant;
     public $project_id;
+
+    public $selectedHods = [];
+
     public function mount($id){
 
         $this->project_id = $id;
     }
 
+
+    public function shareProjectDetails()
+    {
+        $this->validate([
+            'selectedHods' => 'required|array',
+            'selectedHods' => 'required|exists:users,id'
+        ]);
+
+        $project = ProjectCreation::find($this->project_id);
+         // Track duplicate HODs
+        $duplicates = [];
+
+        foreach ($this->selectedHods as $hodId) {
+            // Check if the project has already been shared with this HOD
+            $existing = ProjectHod::where('project_id', $this->project_id)
+                ->where('hod_id', $hodId)
+                ->first();
+            
+            if ($existing) {
+                // Add to duplicate list and skip
+                $duplicates[] = User::find($hodId)->name;
+                continue;
+            }
+
+            try {
+                // Associate the HOD with the project if not already associated
+                ProjectHod::create([
+                    'project_id' => $this->project_id,
+                    'hod_id' => $hodId,
+                ]);
+                // ProjectComment::create([
+                //     'project_creation_id' => $this->project_id,
+                //     'user_id' => $hodId,
+                // ]);
+                 // Send notification to HOD
+                // $hod = User::find($hodId);
+                // $hod->notify(new ProjectSharedNotification($project, auth()->user())); // Notify HOD
+
+            } catch (QueryException $e) {
+                $this->dispatchBrowserEvent('error',["error" =>"Error sharing project with HOD."]);
+            }
+        }
+
+        // If there are duplicates, show a warning message
+        if (count($duplicates) > 0) {
+            $this->dispatchBrowserEvent('error',["error" =>"The project has already been shared with the following HODs: ". implode(', ', $duplicates)]);
+        } else {
+            $this->dispatchBrowserEvent('success',["success" =>"Project shared with selected HODs successfully!"]);
+        }
+    
+    }
+
+
     public function setApplicant(ProjectApplication $projectApplicant){
         $this->selApplicant = $projectApplicant;
     }
 
-    public function recommendToDg($user_id){
+    public function approveContractor($user_id){
         $projectApplicant = ProjectApplication::find($user_id);
         // dd($projectApplicant->user_id);
         if($projectApplicant->application_status=='selected'){

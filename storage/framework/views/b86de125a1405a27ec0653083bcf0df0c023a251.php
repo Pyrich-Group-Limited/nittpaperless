@@ -9,6 +9,29 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <div class="row">
+            
+
+            <?php if($projectsWithoutComments->isEmpty()): ?>
+                <p class="">No projects pending your comment.</p>
+            <?php else: ?>
+                <div class="row">
+                    <h4 class="text-danger">Projects awaiting your comment.</h4>
+                    <?php $__currentLoopData = $projectsWithoutComments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body bg-warning">
+                                    <h5 class="card-title"><?php echo e($project->project_name); ?></h5>
+                                    
+                                    <a href="<?php echo e(route('project.shared', $project->id)); ?>" class="btn btn-primary btn-sm">
+                                        View Project
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </div>
+            <?php endif; ?>
+
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-xxl-7">

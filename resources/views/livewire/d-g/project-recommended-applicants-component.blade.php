@@ -146,12 +146,7 @@
         </div>
     </div>
 
-
-{{-- @endsection --}}
-
 <x-toast-notification />
 @include('livewire.d-g.modals.recommended-applicant-details')
 @include('livewire.d-g.modals.share-project')
-{{-- @livewire('physical-planning.projects.uploadboq') --}}
-
 </div>
