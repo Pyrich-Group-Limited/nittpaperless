@@ -50,6 +50,23 @@ class ProjectCreation extends Model
         return $this->belongsToMany(User::class);
     }
 
+    // public function hods()
+    // {
+    //     return $this->belongsToMany(User::class, 'project_hod', 'project_id', 'hod_id')
+    //         ->withPivot('comment')
+    //         ->withTimestamps();
+    // }
+
+    public function hods()
+    {
+        return $this->belongsToMany(User::class, 'project_hods', 'project_id', 'hod_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(ProjectComment::class);
+    }
+
     // public function contractors()
     // {
     //     return $this->belongsToMany(Contractor::class, 'project_applications');

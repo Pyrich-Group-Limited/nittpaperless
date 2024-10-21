@@ -150,10 +150,10 @@
     @push('script')
         <script>
             $(document).ready(function(){
-                $('.sel_users').select2();
+                $('.sel_users');
             }).on('change', function(){
-                var data = $('.sel_users').select2("val");
-                @this.set('byproduct',data);
+                var data = $('.sel_users').val();
+                @this.set('selectedStaff',data);
             });
 
             window.addEventListener('print',event => {

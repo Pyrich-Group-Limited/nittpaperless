@@ -107,6 +107,24 @@ class User extends Authenticatable
         return $this->hasMany(LeaveApproval::class, 'approver_id');
     }
 
+    // A user (HOD) can be assigned to many projects
+    // public function sharedProjects()
+    // {
+    //     return $this->belongsToMany(ProjectCreation::class, 'project_hod', 'hod_id', 'project_id')
+    //         ->withPivot('comment')
+    //         ->withTimestamps();
+    // }
+
+    public function sharedProjects()
+    {
+        return $this->belongsToMany(ProjectCreation::class, 'project_hods', 'hod_id', 'project_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(ProjectComment::class, 'user_id');
+    }
+
 
     protected $hidden = [
         'password',
