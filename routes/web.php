@@ -165,6 +165,7 @@ use App\Http\Livewire\Projects\ProjectApplicantsComponent;
 use App\Http\Livewire\Projects\ProjectContractsComponent;
 use App\Http\Livewire\Projects\ProjectContractorsComponent;
 use App\Http\Livewire\Projects\ShowContractDetailsComponent;
+use App\Http\Livewire\Projects\SharedProjectDetailsComponent;
 
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
@@ -1223,6 +1224,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function 
     Route::get('/project-contracts',ProjectContractsComponent::class)->name('project.contracts');
     Route::get('/project-contractors',ProjectContractorsComponent::class)->name('project.contractors');
     Route::get('/contract/{id}/details',ShowContractDetailsComponent::class)->name('contract.details');
+    Route::get('/shared-project/{id}',SharedProjectDetailsComponent::class)->name('project.shared');
 });
 
 

@@ -81,6 +81,7 @@ use App\Models\WarehouseProduct;
 use App\Models\Dta;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\ProjectCreation;
 
 class DashboardController extends Controller
 {
@@ -146,7 +147,15 @@ class DashboardController extends Controller
      }
 
      public function hod_dashboard(){
-        return view('dashboard.hod-dashboard');
+        $hod = Auth::user();
+        // Get all projects shared with the HOD
+        $sharedProjects = $hod->sharedProjects;
+        // Filter projects where the HOD has not commented yet
+        $projectsWithoutComments = $sharedProjects->filter(function ($project) use ($hod) {
+            return !$project->comments->contains('user_id', $hod->id);
+        });
+
+        return view('dashboard.hod-dashboard',compact('projectsWithoutComments'));
      }
 
      public function dashboard_index()

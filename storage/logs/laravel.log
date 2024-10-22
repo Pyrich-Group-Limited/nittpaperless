@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 [2024-10-17 19:46:33] local.ERROR: Unable to set component data. Public property [$doc_name] not found on component: [contractor.applications-component] {"userId":12,"exception":"[object] (Livewire\\Exceptions\\PublicPropertyNotFoundException(code: 0): Unable to set component data. Public property [$doc_name] not found on component: [contractor.applications-component] at C:\\xampp\\htdocs\\nittpaperless-1\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\HandlesActions.php:31)
 [stacktrace]
@@ -8841,3 +8842,5 @@ Location:      http://127.0.0.1:8000/approvals
 #71 C:\\xampp-server\\htdocs\\nittpaperless\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp-server...')
 #72 {main}
 "} 
+=======
+>>>>>>> ccb3246ec145b45169190c60ee7dedfb9edc6992

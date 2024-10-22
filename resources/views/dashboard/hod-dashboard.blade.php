@@ -9,6 +9,44 @@
 @endsection
 @section('content')
     <div class="row">
+            {{-- @if (auth()->user()->unreadNotifications->count() > 0)
+                <div class="notification-popup">
+                    <h4>New Project Shared</h4>
+                    <ul>
+                        @foreach (auth()->user()->unreadNotifications as $notification)
+                            <li>
+                                {{ $notification->data['message'] }}: 
+                                <a href="{{ route('project.shared', $notification->data['project_id']) }}">
+                                    {{ $notification->data['project_title'] }}
+                                </a>
+                                <button wire:click="markAsRead('{{ $notification->id }}')">Mark as Read</button>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif --}}
+
+            @if ($projectsWithoutComments->isEmpty())
+                <p class="">No projects pending your comment.</p>
+            @else
+                <div class="row">
+                    <h4 class="text-danger">Projects awaiting your comment.</h4>
+                    @foreach ($projectsWithoutComments as $project)
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body bg-warning">
+                                    <h5 class="card-title">{{ $project->project_name }}</h5>
+                                    {{-- <p class="card-text">{{ Str::limit($project->description, 100) }}</p> --}}
+                                    <a href="{{ route('project.shared', $project->id) }}" class="btn btn-primary btn-sm">
+                                        View Project
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-xxl-7">
