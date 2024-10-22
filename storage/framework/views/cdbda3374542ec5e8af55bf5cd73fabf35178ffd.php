@@ -77,7 +77,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                     <i class="ti ti-pencil"></i>
                                                                     <span><?php echo e(__('Edit')); ?></span>
                                                                 </a>
-                                                                <a href="<?php echo e(route('user.permission')); ?>" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit Permission')); ?>">
+                                                                <a href="<?php echo e(route('user.permission',$user->id)); ?>" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit Permission')); ?>">
                                                                     <i class="ti ti-pencil"></i>
                                                                     <span><?php echo e(__('Edit Permission')); ?></span>
                                                                 </a>

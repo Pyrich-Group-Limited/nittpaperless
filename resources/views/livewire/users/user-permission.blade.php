@@ -1,4 +1,14 @@
 <div>
+    @section('page-title')
+    {{ $selStaff->name}}
+@endsection
+@push('script-page')
+
+@endpush
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="#">{{__('Permission ')}}</a></li>
+    <li class="breadcrumb-item">{{__('Setup')}}</li><hr>
+@endsection
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
