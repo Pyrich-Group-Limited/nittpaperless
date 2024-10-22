@@ -76,7 +76,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                     <i class="ti ti-pencil"></i>
                                                                     <span>{{__('Edit')}}</span>
                                                                 </a>
-                                                                <a href="{{ route('user.permission')}}" class="dropdown-item" data-bs-original-title="{{__('Edit Permission')}}">
+                                                                <a href="{{ route('user.permission',$user->id)}}" class="dropdown-item" data-bs-original-title="{{__('Edit Permission')}}">
                                                                     <i class="ti ti-pencil"></i>
                                                                     <span>{{__('Edit Permission')}}</span>
                                                                 </a>

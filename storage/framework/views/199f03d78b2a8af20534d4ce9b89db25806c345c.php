@@ -1,4 +1,15 @@
 <div>
+    <?php $__env->startSection('page-title'); ?>
+    <?php echo e($selStaff->name); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('script-page'); ?>
+
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+    <li class="breadcrumb-item"><a href="#"><?php echo e(__('Permission ')); ?></a></li>
+    <li class="breadcrumb-item"><?php echo e(__('Setup')); ?></li><hr>
+<?php $__env->stopSection(); ?>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">

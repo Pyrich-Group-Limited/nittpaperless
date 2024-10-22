@@ -7,6 +7,11 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="applyLeave">{{ $selModule  }} Permissions
                         </h5>
+                        <label class="form-check-label mt-1">
+                            <input type="checkbox" wire:model="selectAll"  class="form-check-input" />
+                            Select All
+                        </label>
+
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
