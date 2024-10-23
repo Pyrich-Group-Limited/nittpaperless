@@ -62,7 +62,7 @@ class NewUserComponent extends Component
             'level' => ['required'],
             'location' => ['required'],
             'location_type' => ['required'],
-            'password' => Hash::make('Thinkway@2024'),
+            'password' => Hash::make('12345678'),
             'user_role' => ['required'],
         ]);
 
