@@ -13,6 +13,7 @@ use App\Models\SubUnit;
 use App\Models\Employee;
 use Spatie\Permission\Models\Role;
 use App\Services\DataService;
+use Illuminate\Support\Facades\Hash;
 
 class NewUserComponent extends Component
 {
@@ -61,6 +62,7 @@ class NewUserComponent extends Component
             'level' => ['required'],
             'location' => ['required'],
             'location_type' => ['required'],
+            'password' => Hash::make('Thinkway@2024'),
             'user_role' => ['required'],
         ]);
 
