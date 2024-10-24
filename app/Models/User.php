@@ -56,7 +56,7 @@ class User extends Authenticatable
     }
 
     public function projectApplications($id){
-        return $this->hasMany(projectApplication::class)->where('project_id',$id)->get();
+        return $this->hasMany(ProjectApplication::class)->where('project_id',$id)->get();
     }
 
 
