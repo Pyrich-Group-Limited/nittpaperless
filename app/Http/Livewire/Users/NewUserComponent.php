@@ -62,7 +62,6 @@ class NewUserComponent extends Component
             'level' => ['required'],
             'location' => ['required'],
             'location_type' => ['required'],
-            'password' => Hash::make('12345678'),
             'user_role' => ['required'],
         ]);
 
@@ -85,6 +84,7 @@ class NewUserComponent extends Component
             'sub_unit_id' => $this->subunit,
             'type' => $this->user_role=="Human Resource (HR)"? "client" : strtolower($this->user_role),
             'designation' => $designation->name,
+            'password' => Hash::make('12345678'),
             'level' => $this->level,
         ]);
 
