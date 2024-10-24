@@ -39,7 +39,7 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <!-- form button -->
-                                                <button  type="submit" class="btn btn-default mt-0 theme-btn">Register <div wire:loading wire:target="login"><x-guest-loader/></div></button> Arleady have an account ? <a href="{{ route('contractor.login')}}"> Login</a>
+                                                <button  type="submit" class="btn btn-default mt-0 theme-btn">Login <div wire:loading wire:target="login"><x-guest-loader/></div></button> Arleady have an account ? <a href="{{ route('contractor.register')}}"> Register</a>
                                             </div>
                                         </div>
                                     </form>
