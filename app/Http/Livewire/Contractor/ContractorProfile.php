@@ -20,8 +20,8 @@ class ContractorProfile extends Component
         $this->validate([
             'company_name' => ['required','string'],
             'tin' => ['required','string'],
-            'email' => ['required','string'],
-            'phoneno' => ['required','string'],
+            'email' => ['required','string','unique:project_applicants,email'],
+            'phoneno' => ['required','string','unique:project_applicants,phone'],
             'address' => ['required','string'],
             'year' => ['required','string'],
         ]);
