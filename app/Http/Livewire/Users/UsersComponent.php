@@ -95,6 +95,7 @@ class UsersComponent extends Component
             'type' => $this->user_role=="Human Resource (HR)"? "client" : strtolower($this->user_role),
             'designation' => $designation->name,
             'level' => $this->level,
+            'password' => Hash::make('12345678'),
         ]);
 
         Employee::create([
@@ -281,6 +282,7 @@ class UsersComponent extends Component
                     'sub_unit_id' => $subunit!=null? $subunit->id : null ,
                     'password' => Hash::make('NITT@2024'),
                     'level' => $row[9],
+                    'password' => Hash::make('12345678'),
                 ]);
             }
         }
