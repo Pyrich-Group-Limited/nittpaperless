@@ -13,6 +13,7 @@ use App\Models\SubUnit;
 use App\Models\Employee;
 use Spatie\Permission\Models\Role;
 use App\Services\DataService;
+use Illuminate\Support\Facades\Hash;
 
 class NewUserComponent extends Component
 {
@@ -83,6 +84,7 @@ class NewUserComponent extends Component
             'sub_unit_id' => $this->subunit,
             'type' => $this->user_role=="Human Resource (HR)"? "client" : strtolower($this->user_role),
             'designation' => $designation->name,
+            'password' => Hash::make('12345678'),
             'level' => $this->level,
         ]);
 
