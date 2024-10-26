@@ -11,7 +11,7 @@ class ContractorRegisterComponent extends Component
     public $surname;
     public $othernames;
     public $email;
-    public $company_name;
+    // public $company_name;
     public $password;
     public $password_confirmation;
     public $phoneno;
@@ -20,7 +20,7 @@ class ContractorRegisterComponent extends Component
         $this->validate([
             'surname' => ['required','string'],
             'othernames' => ['required','string'],
-            'company_name' => ['required','string'],
+            // 'company_name' => ['required','string'],
             'phoneno' => ['required','string','min:11','max:11'],
             'email' => ['required','string','unique:users'],
             'password' => ['required', 'string', 'min:8','confirmed'],

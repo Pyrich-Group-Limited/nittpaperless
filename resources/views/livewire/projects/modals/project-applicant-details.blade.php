@@ -9,7 +9,7 @@
                         </h5>
                     </div>
                     <div class="modal-body">
-                        @if ($projectApplicant)
+                        @if ($selApplicant)
                             <div class="row">
 
                                 <div class="col-md-12">
@@ -24,46 +24,46 @@
                                                 </style>
                                                 <tr>
                                                     <th scope="row">Applicant Name</th>
-                                                    <td>{{ $projectApplicant->contractor->name }}</td>
+                                                    <td>{{ $selApplicant->contractor->name }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company Name</th>
-                                                    <td>{{ $projectApplicant->applicant->company_name}}</td>
+                                                    <td>{{ $selApplicant->applicant->company_name}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Year of Incorporation</th>
-                                                    <td style="white-space: pre-wrap">{{ $projectApplicant->applicant->year_of_incorporation }}</td>
+                                                    <td style="white-space: pre-wrap">{{ $selApplicant->applicant->year_of_incorporation }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company TIN</th>
-                                                    <td>{{ $projectApplicant->applicant->company_tin}}</td>
+                                                    <td>{{ $selApplicant->applicant->company_tin}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company Address</th>
-                                                    <td>{{ $projectApplicant->applicant->company_address}}</td>
+                                                    <td>{{ $selApplicant->applicant->company_address}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company Email</th>
-                                                    <td>{{ $projectApplicant->applicant->email}}</td>
+                                                    <td>{{ $selApplicant->applicant->email}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company Phone</th>
-                                                    <td>{{ $projectApplicant->applicant->phone}}</td>
+                                                    <td>{{ $selApplicant->applicant->phone}}</td>
                                                 </tr>
                                                  <tr>
                                                     <th scope="row">Application Status</th>
                                                     <td>
-                                                        <span class="badge @if($projectApplicant->application_status=='pending') bg-warning
-                                                            @elseif ($projectApplicant->application_status=='on_review') bg-info
-                                                            @elseif ($projectApplicant->application_status=='selected') bg-primary
-                                                            @elseif ($projectApplicant->application_status=='rejected') bg-danger
-                                                            @endif p-2 px-3 rounded">{{ $projectApplicant->application_status }}
+                                                        <span class="badge @if($selApplicant->application_status=='pending') bg-warning
+                                                            @elseif ($selApplicant->application_status=='on_review') bg-info
+                                                            @elseif ($selApplicant->application_status=='selected') bg-primary
+                                                            @elseif ($selApplicant->application_status=='rejected') bg-danger
+                                                            @endif p-2 px-3 rounded">{{ $selApplicant->application_status }}
                                                         </span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Application Date</th>
-                                                    <td>{{ date('d-M-Y', strtotime($projectApplicant->created_at)) }}</td>
+                                                    <td>{{ date('d-M-Y', strtotime($selApplicant->created_at)) }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -77,15 +77,15 @@
                                         <h5 class="text-primary"><b>Uploaded Documents</b></h5>
                                         <table class="table table-bordered mb-0">
                                             <tbody>
-                                                @if($projectApplicant->documents->isEmpty())
+                                                @if($selApplicant->documents->isEmpty())
                                                     <p>No documents uploaded for this application.</p>
                                                 @else
-                                                    @foreach ($projectApplicant->documents  as $applicationDocument)
+                                                    @foreach ($selApplicant->documents  as $applicationDocument)
                                                         <tr>
                                                             <td scope="row">{{ $loop->iteration }}</td>
                                                             <td>{{ $applicationDocument->document_name }}</td>
                                                             <td class="text-end">
-                                                                <a href="#" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
+                                                                <a href="{{ asset('assets/documents/documents') }}/{{$applicationDocument->document}}" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
                                                                 <a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download" download></i></a>
                                                             </td>
                                                         </tr>
@@ -99,7 +99,9 @@
                             <div class="modal-footer">
                                 <input type="button" id="closeApplicantDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light" data-bs-dismiss="modal">
-                                <input type="button"  wire:click="recommendToDg('{{ $projectApplicant->id }}')" value="{{ __('Recommend') }}" class="btn  btn-primary">
+                                @if($selApplicant->application_status!='selected')
+                                    <input type="button"  wire:click="recommendToDg('{{ $selApplicant->id }}')" value="{{ __('Recommend') }}" class="btn  btn-primary">
+                                @endif
                             </div>
                         @else
                             <label align="center" class="mb-4" style="color: red">Loading...</label>

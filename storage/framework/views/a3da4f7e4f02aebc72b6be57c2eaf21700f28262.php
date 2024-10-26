@@ -123,10 +123,11 @@
                                         <span>
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
                                                 <div class="action-btn bg-primary ms-2">
-                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" data-bs-target="#viewApplicantModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('View Applicant Details')); ?>" data-title="<?php echo e(__('View Applicant Details')); ?>">
+                                                    <a href="#" wire:click="setApplicant('<?php echo e($projectApplicant->id); ?>')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" data-bs-target="#viewApplicantModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('View Applicant Details')); ?>" data-title="<?php echo e(__('View Applicant Details')); ?>">
                                                         <i class="ti ti-eye text-white"></i>
                                                     </a>
                                                 </div>
+                                                
                                             <?php endif; ?> 
                                             
                                         </span>

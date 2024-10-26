@@ -3,7 +3,7 @@
     $profile=\App\Models\Utility::get_file('uploads/avatar');
     ?>
  <?php $__env->startSection('page-title'); ?>
-     <?php echo e(__('Manage Projects')); ?>
+     <?php echo e(__('Manage Project Documents')); ?>
 
  <?php $__env->stopSection(); ?>
 
@@ -11,7 +11,7 @@
  <?php $__env->stopPush(); ?>
  <?php $__env->startSection('breadcrumb'); ?>
      <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
-     <li class="breadcrumb-item"><?php echo e(__('Projects')); ?></li>
+     <li class="breadcrumb-item"><?php echo e(__('Project Documents')); ?></li>
  <?php $__env->stopSection(); ?>
  <?php $__env->startSection('action-btn'); ?>
      <div class="float-end">
@@ -32,6 +32,7 @@
                     <thead>
                     <tr>
                         <th></th>
+                        <th><?php echo e(__('Project Name')); ?></th>
                         <th><?php echo e(__('Document Name')); ?></th>
                         <th class="text-end"><?php echo e(__('Action')); ?></th>
                     </tr>
@@ -46,19 +47,24 @@
                                 </td>
 
                                 <td class="">
+                                    
+                                </td>
+
+                                <td class="">
                                     <?php echo e($document->document_name); ?>
 
                                 </td>
                                 <td class="text-end">
                                     <span>
 
+                                            
                                             <div class="action-btn bg-warning ms-2">
-                                                <a href="<?php echo e(asset('assets/images/documents.png')); ?>" target="_blank" class="mx-3 btn btn-sm d-inline-flex align-items-center"  data-bs-toggle="tooltip" title="<?php echo e(__('View Document')); ?>" data-title="<?php echo e(__('View Document')); ?>">
+                                                <a href="<?php echo e(asset('assets/documents/documents')); ?>/<?php echo e($document->document); ?>" target="_blank" class="mx-3 btn btn-sm d-inline-flex align-items-center"  data-bs-toggle="tooltip" title="<?php echo e(__('View Document')); ?>" data-title="<?php echo e(__('View Document')); ?>">
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>
                                             <div class="action-btn bg-warning ms-2">
-                                                <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center"  data-bs-toggle="tooltip" title="<?php echo e(__('Download Document')); ?>" data-title="<?php echo e(__('Download Document')); ?>">
+                                                <a href="<?php echo e(route('download.file', $document->document)); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center"  data-bs-toggle="tooltip" title="<?php echo e(__('Download Document')); ?>" data-title="<?php echo e(__('Download Document')); ?>">
                                                     <i class="ti ti-download text-white"></i>
                                                 </a>
                                             </div>

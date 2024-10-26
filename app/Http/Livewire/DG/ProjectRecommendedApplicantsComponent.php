@@ -22,6 +22,7 @@ class ProjectRecommendedApplicantsComponent extends Component
 {
     public $projectApplicant;
     public $project_id;
+    public $selApplicant;
 
     public $selectedHods = [];
 

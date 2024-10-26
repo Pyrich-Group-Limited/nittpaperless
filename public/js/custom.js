@@ -351,7 +351,7 @@ $(document).on("click", '.confirm-application', function () {
     })
     swalWithBootstrapButtons.fire({
         title: 'Are you sure?',
-        text: "you want to apply for this contract?",
+        text: "you want to bid for this contract?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes',

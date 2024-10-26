@@ -17,6 +17,8 @@ class ProjectApplicantsComponent extends Component
 {
     public $projectApplicant;
     public $project_id;
+    public $selApplicant;
+
     public function mount($id){
 
         $this->project_id = $id;

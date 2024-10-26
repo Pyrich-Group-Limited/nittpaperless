@@ -36,7 +36,7 @@
                 </div><hr>
                 <p style="padding: 20px; font-weight:500"><?php echo $advert->description; ?></p>
                 <div class="col-md-6" style="padding-left: 20px; padding-bottom: 20px">
-                    <a href="#"><input type="button"  data-bs-toggle="tooltip" title="<?php echo e(__('Apply')); ?>"  value="<?php echo e(__('Apply')); ?>" class="btn  btn-primary confirm-application"></a>
+                    <a href="#"><input type="button"  data-bs-toggle="tooltip" title="<?php echo e(__('Bid for contract')); ?>"  value="<?php echo e(__('BID')); ?>" class="btn  btn-primary confirm-application"></a>
 
                     <div wire:loading wire:target="applyContract"><?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.g-loader','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>

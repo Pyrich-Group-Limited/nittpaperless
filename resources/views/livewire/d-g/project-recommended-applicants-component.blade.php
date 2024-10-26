@@ -117,8 +117,13 @@
                                         <span>
                                             {{-- @can('edit project') --}}
                                                 <div class="action-btn bg-primary ms-2">
-                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" data-bs-target="#viewApplicantModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('View Applicant Details')}}" data-title="{{__('View Applicant Details')}}">
+                                                    <a href="#" wire:click="setApplicant('{{ $projectApplicant->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" data-bs-target="#viewApplicantModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('View Applicant Details')}}" data-title="{{__('View Applicant Details')}}">
                                                         <i class="ti ti-eye text-white"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="action-btn bg-primary ms-2">
+                                                    <a href="{{ route('dg.hods.comment', $projectApplicant->project->id ) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-size="lg" data-bs-toggle="tooltip" title="{{__('View HoDs Comments')}}">
+                                                        <i class="fa fa-comment text-white"></i>
                                                     </a>
                                                 </div>
                                             {{-- @endcan  --}}
@@ -135,7 +140,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <th scope="col" colspan="9"><h6 class="text-center">{{__('No records yet.')}}</h6></th>
+                                <th scope="col" colspan="9"><h6 class="text-center">{{__('No records found.')}}</h6></th>
                             </tr>
                         @endif
                         </tbody>

@@ -12,6 +12,22 @@
                         <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        {{ Form::label('name', __('Project'), ['class' => 'form-label']) }}
+                                        <select wire:model.defer="project" id="" class="form-control">
+                                            @foreach ($applications as $application)
+                                                <option value="">---Select Project---</option>
+                                                <option value="{{ $application->id }}">{{ $application->project->project_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('project')
+                                            <small class="invalid-name" role="alert">
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         {{ Form::label('name', __('Document Name'), ['class' => 'form-label']) }}
                                         <input type="fie" id="doc_name" wire:model="doc_name"
                                             class="form-control" placeholder="Document Name" />
@@ -25,10 +41,10 @@
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        {{ Form::label('Doucmet File', __('Start Date'), ['class' => 'form-label']) }}
+                                        {{ Form::label('Doucmet File', __('Doucmet File'), ['class' => 'form-label']) }}
                                         <div wire:loading wire:target="doc_file"><x-g-loader /></div>
                                         <input type="file" id="start_date" wire:model.defer="doc_file"
-                                            class="form-control" placeholder="Project Start Date" />
+                                            class="form-control" />
                                         @error('doc_file')
                                             <small class="invalid-name" role="alert">
                                                 <strong class="text-danger">{{ $message }}</strong>

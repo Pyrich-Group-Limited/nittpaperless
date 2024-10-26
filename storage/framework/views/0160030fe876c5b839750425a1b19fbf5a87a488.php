@@ -4,11 +4,11 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="applyLeave">TOP APPLICANT DETAILS
+                        <h5 class="modal-title" id="applyLeave">RECOMMENDED APPLICANT DETAILS
                         </h5>
                     </div>
                     <div class="modal-body">
-                        <?php if($projectApplicant): ?>
+                        <?php if($selApplicant): ?>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
@@ -22,48 +22,48 @@
                                                 </style>
                                                 <tr>
                                                     <th scope="row">Applicant Name</th>
-                                                    <td><?php echo e($projectApplicant->contractor->name); ?></td>
+                                                    <td><?php echo e($selApplicant->contractor->name); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company Name</th>
-                                                    <td><?php echo e($projectApplicant->applicant->company_name); ?></td>
+                                                    <td><?php echo e($selApplicant->applicant->company_name); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Year of Incorporation</th>
                                                     <td style="white-space: pre-wrap">
-                                                        <?php echo e($projectApplicant->applicant->year_of_incorporation); ?></td>
+                                                        <?php echo e($selApplicant->applicant->year_of_incorporation); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company TIN</th>
-                                                    <td><?php echo e($projectApplicant->applicant->company_tin); ?></td>
+                                                    <td><?php echo e($selApplicant->applicant->company_tin); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company Address</th>
-                                                    <td><?php echo e($projectApplicant->applicant->company_address); ?></td>
+                                                    <td><?php echo e($selApplicant->applicant->company_address); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company Email</th>
-                                                    <td><?php echo e($projectApplicant->applicant->email); ?></td>
+                                                    <td><?php echo e($selApplicant->applicant->email); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Company Phone</th>
-                                                    <td><?php echo e($projectApplicant->applicant->phone); ?></td>
+                                                    <td><?php echo e($selApplicant->applicant->phone); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Application Status</th>
                                                     <td>
                                                         <span
-                                                            class="badge <?php if($projectApplicant->application_status == 'pending'): ?> bg-warning
-                                                            <?php elseif($projectApplicant->application_status == 'on_review'): ?> bg-info
-                                                            <?php elseif($projectApplicant->application_status == 'selected'): ?> bg-primary
-                                                            <?php elseif($projectApplicant->application_status == 'rejected'): ?> bg-danger <?php endif; ?> p-2 px-3 rounded"><?php echo e($projectApplicant->application_status); ?>
+                                                            class="badge <?php if($selApplicant->application_status == 'pending'): ?> bg-warning
+                                                            <?php elseif($selApplicant->application_status == 'on_review'): ?> bg-info
+                                                            <?php elseif($selApplicant->application_status == 'selected'): ?> bg-primary
+                                                            <?php elseif($selApplicant->application_status == 'rejected'): ?> bg-danger <?php endif; ?> p-2 px-3 rounded"><?php echo e($selApplicant->application_status); ?>
 
                                                         </span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Application Date</th>
-                                                    <td><?php echo e(date('d-M-Y', strtotime($projectApplicant->created_at))); ?>
+                                                    <td><?php echo e(date('d-M-Y', strtotime($selApplicant->created_at))); ?>
 
                                                     </td>
                                                 </tr>
@@ -84,15 +84,15 @@
                                     <h5 class="text-primary"><b>Uploaded Documents</b></h5>
                                     <table class="table table-bordered mb-0">
                                         <tbody>
-                                            <?php if($projectApplicant->documents->isEmpty()): ?>
+                                            <?php if($selApplicant->documents->isEmpty()): ?>
                                                 <p>No documents uploaded for this application.</p>
                                             <?php else: ?>
-                                                <?php $__currentLoopData = $projectApplicant->documents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $applicationDocument): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php $__currentLoopData = $selApplicant->documents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $applicationDocument): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <tr>
                                                         <td scope="row"><?php echo e($loop->iteration); ?></td>
                                                         <td><?php echo e($applicationDocument->document_name); ?></td>
                                                         <td class="text-end">
-                                                            <a href="#" target="_blank"
+                                                            <a href="<?php echo e(asset('assets/documents/documents')); ?>/<?php echo e($applicationDocument->document); ?>" target="_blank"
                                                                 class="btn btn-primary btn-sm"><i
                                                                     class="ti ti-eye"></i></a>
                                                             <a href="#" class="btn btn-primary btn-sm"><i
@@ -109,7 +109,7 @@
                             <div class="modal-footer">
                                 <input type="button" id="closeDetails" value="<?php echo e(__('Close')); ?>"
                                     class="btn  btn-light" data-bs-dismiss="modal">
-                                <input type="button" wire:click="approveContractor('<?php echo e($projectApplicant->id); ?>')"
+                                <input type="button" wire:click="approveContractor('<?php echo e($selApplicant->id); ?>')"
                                     value="<?php echo e(__('Approve')); ?>" class="btn  btn-primary">
                             </div>
                         <?php else: ?>

@@ -2,7 +2,7 @@
     <div>
         <x-slot name="title">User Authentitcation</x-slot>
         @section('contact') active @endsection
-    
+
         {{-- <div class="page-title-wrap typo-white" wire:ignore>
             <div class="page-title-wrap-inner section-bg-img" data-bg="{{ asset('guest/images/contact/contact_bg1.jpg') }}">
                 <span class="theme-overlay"></span>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <!-- page-header --> --}}
-    
+
         <!-- Page Content -->
         <div class="content-wrapper pad-none">
             <div class="content-inner">
@@ -58,13 +58,12 @@
                                                         @error('othernames') <p class="text-danger">{{$message}}</p>@enderror
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <!-- form group -->
+                                                {{-- <div class="col-md-12">
                                                     <div class="form-group">
                                                         <input class="form-control" wire:model.defer="company_name"  placeholder="Company Name"  type="text" />
                                                         @error('company_name') <p class="text-danger">{{$message}}</p>@enderror
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-md-12">
                                                     <!-- form group -->
                                                     <div class="form-group">
@@ -106,7 +105,7 @@
                                 <!-- contact-form-1 -->
                             </div>
                             <!-- .col -->
-    
+
                              <!-- Col -->
                         </div>
                     </div>
@@ -116,5 +115,5 @@
         </div>
     </div>
     <!-- .page-wrapper-inner -->
-    
+
 </div>

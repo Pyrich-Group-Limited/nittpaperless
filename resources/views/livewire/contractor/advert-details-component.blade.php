@@ -36,7 +36,7 @@
                 </div><hr>
                 <p style="padding: 20px; font-weight:500">{!! $advert->description !!}</p>
                 <div class="col-md-6" style="padding-left: 20px; padding-bottom: 20px">
-                    <a href="#"><input type="button"  data-bs-toggle="tooltip" title="{{__('Apply')}}"  value="{{ __('Apply') }}" class="btn  btn-primary confirm-application"></a>
+                    <a href="#"><input type="button"  data-bs-toggle="tooltip" title="{{__('Bid for contract')}}"  value="{{ __('BID') }}" class="btn  btn-primary confirm-application"></a>
 
                     <div wire:loading wire:target="applyContract"><x-g-loader /></div>
                 </div>
