@@ -129,10 +129,14 @@
                                         <span>
                                             @can('edit project')
                                                 <div class="action-btn bg-primary ms-2">
-                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" data-bs-target="#viewApplicantModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('View Applicant Details')}}" data-title="{{__('View Applicant Details')}}">
+                                                    <a href="#" wire:click="setApplicant('{{ $projectApplicant->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" data-bs-target="#viewApplicantModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('View Applicant Details')}}" data-title="{{__('View Applicant Details')}}">
                                                         <i class="ti ti-eye text-white"></i>
                                                     </a>
                                                 </div>
+                                                {{-- <a href="" wire:click="selApplicant({{$projectApplicant->id}})" data-bs-toggle="modal" data-bs-target="#editUser" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                                    <i class="ti ti-eye text-white"></i>
+                                                    <span>{{__('Edit')}}</span>
+                                                </a> --}}
                                             @endcan 
                                             {{-- @can('edit project')
                                             <div class="action-btn bg-info ms-2">

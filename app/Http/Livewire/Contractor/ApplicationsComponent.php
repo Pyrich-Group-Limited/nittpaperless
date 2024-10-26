@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplicationsComponent extends Component
 {
+    public $project;
+
     public function render()
     {
         $applications = ProjectApplication::where('user_id',Auth::user()->id)->get();

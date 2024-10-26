@@ -188,7 +188,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('supervisor.dashboard');
             }
-            elseif(Auth::user()->type == 'HOD')
+            elseif(Auth::user()->type == 'hod')
             {
                 return redirect()->route('hod.dashboard');
             }
@@ -323,7 +323,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('supervisor.dashboard');
             }
-            elseif(Auth::user()->type == 'HOD')
+            elseif(Auth::user()->type == 'hod')
             {
                 return redirect()->route('hod.dashboard');
             }
@@ -458,7 +458,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('supervisor.dashboard');
             }
-            elseif(Auth::user()->type == 'HOD')
+            elseif(Auth::user()->type == 'hod')
             {
                 return redirect()->route('hod.dashboard');
             }

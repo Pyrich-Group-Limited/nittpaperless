@@ -15,8 +15,8 @@ class DtaController extends Controller
     {
         if(auth()->user()->type=='unit head' || auth()->user()->type=='supervisor'){
             $dtaRequests = Dta::where('current_approver','Unit Head')->orWhere('user_id', auth()->id())->orderBy('status','DESC')->with('approval', 'rejectionComment')->get();
-        }elseif(auth()->user()->type=='liason office head' || auth()->user()->type=='HOD'){
-            $dtaRequests = Dta::where('current_approver','HOD')->orWhere('user_id', auth()->id())->orderBy('status','DESC')->with('approval', 'rejectionComment')->get();
+        }elseif(auth()->user()->type=='liason office head' || auth()->user()->type=='hod'){
+            $dtaRequests = Dta::where('current_approver','hod')->orWhere('user_id', auth()->id())->orderBy('status','DESC')->with('approval', 'rejectionComment')->get();
 
         }elseif(auth()->user()->type=='accountant'){
             $dtaRequests = Dta::where('current_approver','Bursary/Accountant')->orWhere('user_id', auth()->id())->orderBy('status','DESC')->with('approval', 'rejectionComment')->get();
@@ -89,7 +89,7 @@ class DtaController extends Controller
         $approval->save();
 
         // Set next approver as Unit Head
-        $travelRequest->current_approver = 'HOD';
+        $travelRequest->current_approver = 'hod';
         $travelRequest->save();
 
         return redirect()->route('dta.index')->with('success', 'Request approved by Unit Head.');

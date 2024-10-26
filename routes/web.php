@@ -186,10 +186,11 @@ use App\Http\Livewire\DG\ProjectRecommendedApplicantsComponent;
 use App\Http\Livewire\DG\ContractComponent;
 use App\Http\Livewire\DG\DgErgpCompnent;
 use App\Http\Livewire\DG\ViewErgpExpenseComponent;
+use App\Http\Livewire\DG\ViewHodsCommentComponent;
 
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
-
+use Illuminate\Support\Facades\Storage;
 
 
 /*
@@ -202,6 +203,21 @@ use App\Http\Livewire\DG\ViewErgpExpenseComponent;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// {{ asset('assets/documents/documents') }}/{{$document->document}}
+
+Route::get('/download/{filename}', function ($filename) {
+    $path =  'assets/documents/documents/' . $filename;
+    // dd($path);
+    // $path = 'assets/documents/documents'.$document;
+
+    if (Storage::exists($path)) {
+        return Storage::download($path);
+    }else{
+        return redirect()->back()->with('error', 'Document file does not exist!');
+    }
+    // abort(404); // If the file doesn't exist, show a 404 error
+})->name('download.file');
+
 
 //procurment routes
 Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->group(function () {
@@ -232,12 +248,13 @@ Route::middleware(['auth','revalidate'])->prefix('director-general')->group(func
     Route::get('/contracts',ContractComponent::class)->name('dg.contracts');
     Route::get('/view-erpg',DgErgpCompnent::class)->name('dg.ergps');
     Route::get('/erpg-expense/{id}/view',ViewErgpExpenseComponent::class)->name('dg.showErgp.expense');
+    Route::get('/hods-comments/{id}',ViewHodsCommentComponent::class)->name('dg.hods.comment');
 
 });
 
 Route::get('/contract-Advert',ServicesComponent::class)->name('all-adverts');
 Route::get('/contractort-signin',ContractorLoginComponent::class)->name('contractor.login');
-Route::get('/contractort-signup',ContractorRegisterComponent::class)->name('contractor.register');
+Route::get('/contractor-signup',ContractorRegisterComponent::class)->name('contractor.register');
 Route::get('/contract-Advert/{title?}/{id}',ServiceDetailsComponent::class)->name('adverts.show');
 Route::get('/project-advert', function () {
     $adverts = App\Models\ProjectAdvert::all();

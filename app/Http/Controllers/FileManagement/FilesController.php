@@ -138,7 +138,7 @@ class FilesController extends Controller
         }elseif($authUser->type=='unit head'){
             $sameUnitAndDepartmentUsers = User::where('unit_id', $authUser->unit_id)
             ->where('department_id', $authUser->department_id)
-            ->where('type', 'user')->orWhere('type', 'HOD')
+            ->where('type', 'user')->orWhere('type', 'hod')
             ->get();
 
             $unitHeadsOtherDepartments = User::where('type', 'unit head')
@@ -148,18 +148,18 @@ class FilesController extends Controller
         }elseif($authUser->type=='liason office head'){
             $hQUsers = User::where('location','Headquarters')
             ->where('type', 'DG')
-            ->where('type', 'HOD')->get();
+            ->where('type', 'hod')->get();
 
             $liasonOfficeUsers = User::where('location', 'Liaison-Offices')
             ->where('location_type', $authUser->location_type)->get();
             $users = $hQUsers->merge($liasonOfficeUsers);
 
-        }elseif($authUser->type=='HOD'){
-            $otherHods = User::where('type','HOD')
+        }elseif($authUser->type=='hod'){
+            $otherHods = User::where('type','hod')
             ->get();
 
             $others = User::where('department_id',$authUser->department_id)
-            ->where('type','!=','HOD')->get();
+            ->where('type','!=','hod')->get();
             $users = $otherHods->merge($others);
 
         }elseif($authUser->type=='DG' || $authUser->type=='super admin'){

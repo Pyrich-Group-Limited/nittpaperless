@@ -120,8 +120,13 @@
                                         <span>
                                             
                                                 <div class="action-btn bg-primary ms-2">
-                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" data-bs-target="#viewApplicantModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('View Applicant Details')); ?>" data-title="<?php echo e(__('View Applicant Details')); ?>">
+                                                    <a href="#" wire:click="setApplicant('<?php echo e($projectApplicant->id); ?>')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" data-bs-target="#viewApplicantModal" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('View Applicant Details')); ?>" data-title="<?php echo e(__('View Applicant Details')); ?>">
                                                         <i class="ti ti-eye text-white"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="action-btn bg-primary ms-2">
+                                                    <a href="<?php echo e(route('dg.hods.comment', $projectApplicant->project->id )); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('View HoDs Comments')); ?>">
+                                                        <i class="fa fa-comment text-white"></i>
                                                     </a>
                                                 </div>
                                             
@@ -138,7 +143,7 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <?php else: ?>
                             <tr>
-                                <th scope="col" colspan="9"><h6 class="text-center"><?php echo e(__('No records yet.')); ?></h6></th>
+                                <th scope="col" colspan="9"><h6 class="text-center"><?php echo e(__('No records found.')); ?></h6></th>
                             </tr>
                         <?php endif; ?>
                         </tbody>

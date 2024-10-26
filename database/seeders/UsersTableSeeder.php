@@ -4821,7 +4821,7 @@ class UsersTableSeeder extends Seeder
          // Liason office head
          $hodRole = Role::create(
             [
-                'name' => 'HOD',
+                'name' => 'hod',
                 'created_by' => 0,
             ]
         );
@@ -4868,7 +4868,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Emmanuel Thompson',
                 'email' => 'hod@nitt.com',
                 'password' => Hash::make('1234'),
-                'type' => 'HOD',
+                'type' => 'hod',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',

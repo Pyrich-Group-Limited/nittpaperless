@@ -12,6 +12,30 @@
                         <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <?php echo e(Form::label('name', __('Project'), ['class' => 'form-label'])); ?>
+
+                                        <select wire:model.defer="project" id="" class="form-control">
+                                            <?php $__currentLoopData = $applications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $application): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="">---Select Project---</option>
+                                                <option value="<?php echo e($application->id); ?>"><?php echo e($application->project->project_name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <?php $__errorArgs = ['project'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <small class="invalid-name" role="alert">
+                                                <strong class="text-danger"><?php echo e($message); ?></strong>
+                                            </small>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <?php echo e(Form::label('name', __('Document Name'), ['class' => 'form-label'])); ?>
 
                                         <input type="fie" id="doc_name" wire:model="doc_name"
@@ -33,7 +57,7 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <?php echo e(Form::label('Doucmet File', __('Start Date'), ['class' => 'form-label'])); ?>
+                                        <?php echo e(Form::label('Doucmet File', __('Doucmet File'), ['class' => 'form-label'])); ?>
 
                                         <div wire:loading wire:target="doc_file"><?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.g-loader','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -51,7 +75,7 @@ unset($__errorArgs, $__bag); ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?></div>
                                         <input type="file" id="start_date" wire:model.defer="doc_file"
-                                            class="form-control" placeholder="Project Start Date" />
+                                            class="form-control" />
                                         <?php $__errorArgs = ['doc_file'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
