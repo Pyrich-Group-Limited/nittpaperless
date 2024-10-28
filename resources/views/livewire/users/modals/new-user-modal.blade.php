@@ -191,7 +191,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <input type="button" value="{{ __('Cancel') }}" class="btn  btn-light"
+                        <input type="button" id="closeUserModal" value="{{ __('Cancel') }}" class="btn  btn-light"
                             data-bs-dismiss="modal">
                         <input type="button" wire:click="registerUser" value="{{ __('Create') }}" class="btn  btn-primary">
                     </div>
@@ -208,6 +208,12 @@
                 });
             </script>
         @endif
+
+        <script>
+            window.addEventListener('success', event => {
+                document.getElementById("closeUserModal").click();
+            })
+        </script>
     @endpush
 
 </div>

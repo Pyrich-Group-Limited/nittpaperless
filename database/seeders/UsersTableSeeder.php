@@ -1266,6 +1266,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            
             [
                 'name' => 'manage journal entry',
                 'module' => 'Journal Entry',
@@ -3603,6 +3604,13 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+                'name' => 'show account dashboard',
+                'module' => 'Dashboard',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
                 'name' => 'manage system settings',
                 'module' => 'Settings',
                 'guard_name' => 'web',
@@ -5083,6 +5091,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
+            ['name' => 'show account dashboard'],
             ['name' => 'approve dta'],
             ['name' => 'reject dta'],
             ['name' => 'manage purchase'],

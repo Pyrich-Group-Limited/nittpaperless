@@ -271,7 +271,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="modal-footer">
-                        <input type="button" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
+                        <input type="button" id="closeUserModal" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light"
                             data-bs-dismiss="modal">
                         <input type="button" wire:click="registerUser" value="<?php echo e(__('Create')); ?>" class="btn  btn-primary">
                     </div>
@@ -288,6 +288,12 @@ unset($__errorArgs, $__bag); ?>
                 });
             </script>
         <?php endif; ?>
+
+        <script>
+            window.addEventListener('success', event => {
+                document.getElementById("closeUserModal").click();
+            })
+        </script>
     <?php $__env->stopPush(); ?>
 
 </div>
