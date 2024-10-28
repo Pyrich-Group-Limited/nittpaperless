@@ -196,6 +196,15 @@
                                     <td><b>VAT(7.5%)</b></td>
                                     <td> <b>{{ number_format(7.5/100 * ($totalSum)) }}</b> </td>
                                 </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>Profit Margin(10%)</b></td>
+                                    @php
+                                        $PM = 10/100 * ($totalSum);
+                                    @endphp
+                                    <td> <b>{{number_format($PM) }}</b> </td>
+                                </tr>
 
                                 <tr>
                                     <td> </td>
