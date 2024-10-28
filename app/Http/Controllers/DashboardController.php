@@ -130,6 +130,10 @@ class DashboardController extends Controller
         return view('dashboard.supervisor-dashboard');
      }
 
+    //  public function accountant_dashboard(){
+    //     return view('dashboard.account-dashboard');
+    //  }
+
      public function dg_dashboard(){
 
         $pos_data=[];
