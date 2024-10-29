@@ -170,7 +170,7 @@ class DashboardController extends Controller
         {
            if(Auth::user()->type == 'client')
             {
-                return redirect()->route('client.dashboard.view');
+                return redirect()->route('hrm.dashboard');
             }
             elseif(Auth::user()->type == 'unit head')
             {
@@ -305,7 +305,7 @@ class DashboardController extends Controller
         {
            if(Auth::user()->type == 'client')
             {
-                return redirect()->route('client.dashboard.view');
+                return redirect()->route('hrm.dashboard');
             }
             elseif(Auth::user()->type == 'unit head')
             {
@@ -440,7 +440,7 @@ class DashboardController extends Controller
         {
            if(Auth::user()->type == 'client')
             {
-                return redirect()->route('client.dashboard.view');
+                return redirect()->route('hrm.dashboard');
             }
             elseif(Auth::user()->type == 'unit head')
             {

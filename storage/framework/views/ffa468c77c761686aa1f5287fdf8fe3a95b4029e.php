@@ -1,6 +1,10 @@
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(Ucfirst(Auth::user()->type.' '.'Dashboard' )); ?>
+    <?php if(Auth::user()->type=='client'): ?>
+        HRM Dashboard
+    <?php else: ?>
+        <?php echo e(Ucfirst(Auth::user()->type.' '.'Dashboard' )); ?>
 
+    <?php endif; ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('script-page'); ?>
     <script>
@@ -322,7 +326,7 @@
                                                     <i class="ti ti-user"></i>
                                                 </div>
                                                 <div class="ms-2">
-                                                    <p class="text-muted text-sm mb-0"><?php echo e(__('Total Client')); ?></p>
+                                                    <p class="text-muted text-sm mb-0"><?php echo e(__('Total Contractors')); ?></p>
                                                     <h4 class="mb-0 text-danger"><?php echo e($countClient); ?></h4>
 
                                                 </div>
