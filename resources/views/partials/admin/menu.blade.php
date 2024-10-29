@@ -25,42 +25,42 @@
 
         <div class="navbar-content">
             @if(\Auth::user()->type =='DG')
-            <ul class="dash-navbar">
-                <li class="dash-item dash-hasmenu ">
-                    <a href="{{ route('dg.dashboard') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
-                    ><span class="dash-micon"><i class="ti ti-home"></i></span
-                        ><span class="dash-mtext">{{__('Dashboard')}}</span
-                        ></a>
-                </li>
-                <li class="dash-item dash-hasmenu ">
-                    <a href="{{ route('dg.ergps') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
-                    ><span class="dash-micon"><i class="ti ti-cash"></i></span
-                        ><span class="dash-mtext">{{__('ERGP')}}</span
-                        ></a>
-                </li>
-                <li class="dash-item dash-hasmenu ">
-                    <a href="{{ route('dg.projects') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
-                    ><span class="dash-micon"><i class="ti ti-settings"></i></span
-                        ><span class="dash-mtext">{{__('Projects')}}</span
-                        ></a>
-                </li>
-                <li class="dash-item dash-hasmenu ">
-                    <a href="{{ route('dg.contracts') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
-                    ><span class="dash-micon"><i class="ti ti-file"></i></span
-                        ><span class="dash-mtext">{{__('Contracts')}}</span
-                        ></a>
-                </li>
-                <li class="dash-item dash-hasmenu ">
-                    <a href="{{ route('memos.index') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
-                    ><span class="dash-micon"><i class="ti ti-files"></i></span
-                        ><span class="dash-mtext">{{__('Memo')}}</span
-                        ></a>
-                </li>
+                <ul class="dash-navbar">
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="{{ route('dg.dashboard') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-home"></i></span
+                            ><span class="dash-mtext">{{__('Dashboard')}}</span
+                            ></a>
+                    </li>
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="{{ route('dg.ergps') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                            ><span class="dash-mtext">{{__('ERGP')}}</span
+                            ></a>
+                    </li>
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="{{ route('dg.projects') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-settings"></i></span
+                            ><span class="dash-mtext">{{__('Projects')}}</span
+                            ></a>
+                    </li>
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="{{ route('dg.contracts') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-file"></i></span
+                            ><span class="dash-mtext">{{__('Contracts')}}</span
+                            ></a>
+                    </li>
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="{{ route('memos.index') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-files"></i></span
+                            ><span class="dash-mtext">{{__('Memo')}}</span
+                            ></a>
+                    </li>
 
-            </ul>
-            @else
+                </ul>
+            @endif
 
-            @if(\Auth::user()->type != 'client' || \Auth::user()->type == 'contractor')
+            {{-- @if(\Auth::user()->type == 'client') --}}
                 <ul class="dash-navbar">
                     @if( Gate::check('show hrm dashboard') || Gate::check('show project dashboard') || Gate::check('show account dashboard') || Gate::check('show crm dashboard'))
                         <li class="dash-item dash-hasmenu
@@ -629,7 +629,7 @@
                                             </ul>
                                         </li>
                                     @endif
-                                    @if(\Auth::user()->type =='super admin')
+                                    @if(\Auth::user()->type =='super admin' || \Auth::user()->type =='accountant')
                                         <li class="dash-item {{ (Request::segment(1) == 'budget')?'active':''}}">
                                             <a class="dash-link" href="{{ route('budget.index') }}">{{__('Budget Planner')}}</a>
                                         </li>
@@ -1057,8 +1057,8 @@
                         </a>
                     </li>
                 </ul>
-            @endif
-            @endif
+            {{-- @endif --}}
+            {{-- @endif --}}
         </div>
     </div>
 </nav>

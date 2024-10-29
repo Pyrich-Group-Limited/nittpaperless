@@ -25,42 +25,42 @@
 
         <div class="navbar-content">
             <?php if(\Auth::user()->type =='DG'): ?>
-            <ul class="dash-navbar">
-                <li class="dash-item dash-hasmenu ">
-                    <a href="<?php echo e(route('dg.dashboard')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
-                    ><span class="dash-micon"><i class="ti ti-home"></i></span
-                        ><span class="dash-mtext"><?php echo e(__('Dashboard')); ?></span
-                        ></a>
-                </li>
-                <li class="dash-item dash-hasmenu ">
-                    <a href="<?php echo e(route('dg.ergps')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
-                    ><span class="dash-micon"><i class="ti ti-cash"></i></span
-                        ><span class="dash-mtext"><?php echo e(__('ERGP')); ?></span
-                        ></a>
-                </li>
-                <li class="dash-item dash-hasmenu ">
-                    <a href="<?php echo e(route('dg.projects')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
-                    ><span class="dash-micon"><i class="ti ti-settings"></i></span
-                        ><span class="dash-mtext"><?php echo e(__('Projects')); ?></span
-                        ></a>
-                </li>
-                <li class="dash-item dash-hasmenu ">
-                    <a href="<?php echo e(route('dg.contracts')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
-                    ><span class="dash-micon"><i class="ti ti-file"></i></span
-                        ><span class="dash-mtext"><?php echo e(__('Contracts')); ?></span
-                        ></a>
-                </li>
-                <li class="dash-item dash-hasmenu ">
-                    <a href="<?php echo e(route('memos.index')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
-                    ><span class="dash-micon"><i class="ti ti-files"></i></span
-                        ><span class="dash-mtext"><?php echo e(__('Memo')); ?></span
-                        ></a>
-                </li>
+                <ul class="dash-navbar">
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="<?php echo e(route('dg.dashboard')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                        ><span class="dash-micon"><i class="ti ti-home"></i></span
+                            ><span class="dash-mtext"><?php echo e(__('Dashboard')); ?></span
+                            ></a>
+                    </li>
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="<?php echo e(route('dg.ergps')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                            ><span class="dash-mtext"><?php echo e(__('ERGP')); ?></span
+                            ></a>
+                    </li>
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="<?php echo e(route('dg.projects')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                        ><span class="dash-micon"><i class="ti ti-settings"></i></span
+                            ><span class="dash-mtext"><?php echo e(__('Projects')); ?></span
+                            ></a>
+                    </li>
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="<?php echo e(route('dg.contracts')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                        ><span class="dash-micon"><i class="ti ti-file"></i></span
+                            ><span class="dash-mtext"><?php echo e(__('Contracts')); ?></span
+                            ></a>
+                    </li>
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="<?php echo e(route('memos.index')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                        ><span class="dash-micon"><i class="ti ti-files"></i></span
+                            ><span class="dash-mtext"><?php echo e(__('Memo')); ?></span
+                            ></a>
+                    </li>
 
-            </ul>
-            <?php else: ?>
+                </ul>
+            <?php endif; ?>
 
-            <?php if(\Auth::user()->type != 'client' || \Auth::user()->type == 'contractor'): ?>
+            
                 <ul class="dash-navbar">
                     <?php if( Gate::check('show hrm dashboard') || Gate::check('show project dashboard') || Gate::check('show account dashboard') || Gate::check('show crm dashboard')): ?>
                         <li class="dash-item dash-hasmenu
@@ -593,7 +593,7 @@
                                             </ul>
                                         </li>
                                     <?php endif; ?>
-                                    <?php if(\Auth::user()->type =='super admin'): ?>
+                                    <?php if(\Auth::user()->type =='super admin' || \Auth::user()->type =='accountant'): ?>
                                         <li class="dash-item <?php echo e((Request::segment(1) == 'budget')?'active':''); ?>">
                                             <a class="dash-link" href="<?php echo e(route('budget.index')); ?>"><?php echo e(__('Budget Planner')); ?></a>
                                         </li>
@@ -949,8 +949,8 @@
                         </a>
                     </li>
                 </ul>
-            <?php endif; ?>
-            <?php endif; ?>
+            
+            
         </div>
     </div>
 </nav>

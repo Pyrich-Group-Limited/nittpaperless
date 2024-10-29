@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{ Ucfirst(Auth::user()->type.' '.'Dashboard' )}}
+    @if(Auth::user()->type=='client')
+        HRM Dashboard
+    @else
+        {{ Ucfirst(Auth::user()->type.' '.'Dashboard' )}}
+    @endif
 @endsection
 @push('script-page')
     <script>
@@ -317,7 +321,7 @@
                                                     <i class="ti ti-user"></i>
                                                 </div>
                                                 <div class="ms-2">
-                                                    <p class="text-muted text-sm mb-0">{{__('Total Client')}}</p>
+                                                    <p class="text-muted text-sm mb-0">{{__('Total Contractors')}}</p>
                                                     <h4 class="mb-0 text-danger">{{$countClient}}</h4>
 
                                                 </div>
