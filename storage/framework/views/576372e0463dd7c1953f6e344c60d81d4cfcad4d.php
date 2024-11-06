@@ -308,6 +308,35 @@
                         <?php endif; ?>
                     <?php endif; ?>
 
+                    <?php if( Gate::check('set budget') || Gate::check('manage budget') || Gate::check('view budget') || Gate::check('manage ergp') || Gate::check('view ergp')): ?>
+                    <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp' || Request::segment(1) == 'ergp') ? 'active dash-trigger' : ''); ?>" href="#navbar-performance" data-toggle="collapse" role="button" aria-expanded="<?php echo e((Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp') ? 'true' : 'false'); ?>">
+                            <a class="dash-link" href="#"><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
+                                ><?php echo e(__('Budget')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                            <ul class="dash-submenu <?php echo e((Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp' || Request::segment(1) == 'ergp') ? 'show' : 'collapse'); ?>">
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('set budget')): ?>
+                                    <li class="dash-item <?php echo e((request()->is('indicator*') ? 'active' : '')); ?>">
+                                        <a class="dash-link" href="<?php echo e(route('department.budget')); ?>"><?php echo e(__('Set Budget')); ?></a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage budget')): ?>
+                                <li class="dash-item">
+                                    <a class="dash-link" href="<?php echo e(route('budget.category')); ?>"><?php echo e(__('Manage Budgets')); ?></a>
+                                </li>
+                                <?php endif; ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage budget')): ?>
+                                    <li class="dash-item">
+                                        <a class="dash-link" href="<?php echo e(route('budget.pending')); ?>"><?php echo e(__('Pending Approval')); ?></a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage ergp')): ?>
+                                    <li class="dash-item  <?php echo e((request()->is('goaltracking*') ? 'active' : '')); ?>">
+                                        <a class="dash-link" href="<?php echo e(route('pp.ergp')); ?>"><?php echo e(__('Manage ERGP')); ?></a>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
+
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project')): ?>
                         <li class="dash-item dash-hasmenu <?php echo e(( Request::segment(1) == 'project' || Request::segment(1) == 'bugs-report' || Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' || Request::segment(1) == 'calendar' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'project' || Request::segment(1) == 'projects' || Request::segment(1) == 'project_report')
                             ? 'active dash-trigger' : ''); ?>">

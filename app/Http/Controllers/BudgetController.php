@@ -184,7 +184,7 @@ class BudgetController extends Controller
             try {
                 $id       = Crypt::decrypt($ids);
             } catch (\Throwable $th) {
-                return redirect()->back()->with('error', __('Budget Not Found.'));
+                return redirect()->back()->with('error', __('Budget Not Founddddddd.'));
             }
             $id                    = Crypt::decrypt($ids);
             $budget                = Budget::find($id);

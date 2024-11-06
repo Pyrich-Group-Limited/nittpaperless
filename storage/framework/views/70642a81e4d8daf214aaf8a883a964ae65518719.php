@@ -61,7 +61,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             <td><?php echo e($user->location_type); ?></td>
                                             <td><?php if($user->department): ?><?php echo e($user->department->name ? : '-'); ?> <?php else: ?> - <?php endif; ?></td>
                                             <td><?php if($user->unit): ?><?php echo e($user->unit->name ? : '-'); ?> <?php else: ?> - <?php endif; ?></td>
-                                            <td><?php echo e($user->type); ?></td>
+                                            <td>
+                                                <?php if($user->type=='client'): ?>
+                                                    HR
+                                                <?php else: ?>
+                                                <?php echo e($user->type); ?>
+
+                                                <?php endif; ?>
+                                            </td>
                                             <td>
                                                 <div class="card-header-right">
                                                     <div class="btn-group card-option">

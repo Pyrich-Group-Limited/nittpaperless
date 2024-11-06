@@ -193,6 +193,7 @@
 @section('content')
     <div class="row">
         @include('accountant.includes.nav')
+        
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-xxl-7">

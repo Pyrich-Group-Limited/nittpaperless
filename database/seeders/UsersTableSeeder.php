@@ -1266,7 +1266,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-            
+
             [
                 'name' => 'manage journal entry',
                 'module' => 'Journal Entry',
@@ -4045,6 +4045,49 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+
+            [   'name' => 'set budget',
+                'module' => 'Budget',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'manage budget',
+                'module' => 'Budget',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'approve budget',
+                'module' => 'Budget',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'view budget',
+                'module' => 'Budget',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'set ergp',
+                'module' => 'Budget',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'manage ergp',
+                'module' => 'Budget',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'view ergp',
+                'module' => 'Budget',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ];
 
         Permission::insert($arrPermissions);
@@ -4059,6 +4102,13 @@ class UsersTableSeeder extends Seeder
         );
 
         $companyPermissions = [
+            ['name' => 'set budget'],
+            ['name' => 'manage budget'],
+            ['name' => 'approve budget'],
+            ['name' => 'view budget'],
+            ['name' => 'set ergp'],
+            ['name' => 'manage ergp'],
+            ['name' => 'view ergp'],
             ['name' => 'approve leave'],
             ['name' => 'approve dta'],
             ['name' => 'reject dta'],
@@ -5091,6 +5141,13 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
+            ['name' => 'set budget'],
+            ['name' => 'manage budget'],
+            ['name' => 'approve budget'],
+            ['name' => 'view budget'],
+            ['name' => 'set ergp'],
+            ['name' => 'manage ergp'],
+            ['name' => 'view ergp'],
             ['name' => 'show account dashboard'],
             ['name' => 'approve dta'],
             ['name' => 'reject dta'],

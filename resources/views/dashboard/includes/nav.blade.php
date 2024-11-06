@@ -5,13 +5,14 @@
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
-                            <a href="{{ route('purchase.requisition') }}">
+                            <a href="{{ route('setbudget.index') }}">
                                 <div class="d-flex align-items-center">
                                     <div class="theme-avtar bg-primary">
                                         <i class="ti ti-cast"></i>
                                     </div>
                                     <div class="ms-3">
-                                        <h6 class="m-0">{{__('Purchase Requisition')}}</h6>
+                                        {{-- <small class="text-muted">{{__('Total')}}</small> --}}
+                                        <h6 class="m-0">{{__('Budget')}}</h6>
                                     </div>
                                 </div>
                             </a>
@@ -34,31 +35,14 @@
                                         <i class="ti ti-cast"></i>
                                     </div>
                                     <div class="ms-3">
-                                        <h6 class="m-0">{{__('Income By Category')}}</h6>
+                                        <h6 class="m-0">{{__('Requisition')}}</h6>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-auto mb-3 mb-sm-0">
-                            <a href="{{ route('purchase.requisition') }}">
-                                <div class="d-flex align-items-center">
-                                    <div class="theme-avtar bg-primary">
-                                        <i class="ti ti-cast"></i>
-                                    </div>
-                                    <div class="ms-3">
-                                        <h6 class="m-0">{{__('Expense By Category')}}</h6>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        {{-- <div class="col-auto text-end">
+                            <h3 class="m-0">0</h3>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -105,6 +89,27 @@
                         {{-- <div class="col-auto text-end">
                             <h3 class="m-0">0</h3>
                         </div> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mb-3 mb-sm-0">
+                            <a href="{{ route('storeVoucher.list') }}">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-primary">
+                                        <i class="ti ti-cast"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="m-0">{{__('Store Issue Voucher')}}</h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
