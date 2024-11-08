@@ -197,6 +197,7 @@
 <?php $__env->startSection('content'); ?>
     <div class="row">
         <?php echo $__env->make('accountant.includes.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-xxl-7">

@@ -340,6 +340,35 @@
                         @endif
                     @endif
 
+                    @if( Gate::check('set budget') || Gate::check('manage budget') || Gate::check('view budget') || Gate::check('manage ergp') || Gate::check('view ergp'))
+                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp' || Request::segment(1) == 'ergp') ? 'active dash-trigger' : ''}}" href="#navbar-performance" data-toggle="collapse" role="button" aria-expanded="{{ (Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp') ? 'true' : 'false'}}">
+                            <a class="dash-link" href="#"><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
+                                >{{__('Budget')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                            <ul class="dash-submenu {{ (Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp' || Request::segment(1) == 'ergp') ? 'show' : 'collapse'}}">
+                                @can('set budget')
+                                    <li class="dash-item {{ (request()->is('indicator*') ? 'active' : '')}}">
+                                        <a class="dash-link" href="{{route('department.budget')}}">{{__('Set Budget')}}</a>
+                                    </li>
+                                @endcan
+                                @can('manage budget')
+                                <li class="dash-item">
+                                    <a class="dash-link" href="{{route('budget.category')}}">{{__('Manage Budgets')}}</a>
+                                </li>
+                                @endcan
+                                @can('manage budget')
+                                    <li class="dash-item">
+                                        <a class="dash-link" href="{{route('budget.pending')}}">{{__('Pending Approval')}}</a>
+                                    </li>
+                                @endcan
+                                @can('manage ergp')
+                                    <li class="dash-item  {{ (request()->is('goaltracking*') ? 'active' : '')}}">
+                                        <a class="dash-link" href="{{route('pp.ergp')}}">{{__('Manage ERGP')}}</a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endif
+
                     @can('manage project')
                         <li class="dash-item dash-hasmenu {{ ( Request::segment(1) == 'project' || Request::segment(1) == 'bugs-report' || Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' || Request::segment(1) == 'calendar' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'project' || Request::segment(1) == 'projects' || Request::segment(1) == 'project_report')
                             ? 'active dash-trigger' : ''}}">

@@ -369,6 +369,35 @@ $(document).on("click", '.confirm-application', function () {
     })
 });
 
+$(document).on("click", '.confirm-delete', function () {
+    var form = $(this).closest("form");
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "This action can not be undone. Do you want to continue?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            Livewire.emit('delete-confirmed');
+
+        } else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+        }
+    })
+});
+
 //only pos system delete button
 $(document).on("click", '.bs-pass-para-pos', function () {
 

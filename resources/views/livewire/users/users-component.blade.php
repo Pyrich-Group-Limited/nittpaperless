@@ -60,7 +60,13 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             <td>{{ $user->location_type }}</td>
                                             <td>@if($user->department){{ $user->department->name ? : '-' }} @else - @endif</td>
                                             <td>@if($user->unit){{ $user->unit->name ? : '-' }} @else - @endif</td>
-                                            <td>{{ $user->type }}</td>
+                                            <td>
+                                                @if($user->type=='client')
+                                                    HR
+                                                @else
+                                                {{ $user->type }}
+                                                @endif
+                                            </td>
                                             <td>
                                                 <div class="card-header-right">
                                                     <div class="btn-group card-option">

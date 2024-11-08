@@ -188,6 +188,11 @@ use App\Http\Livewire\DG\DgErgpCompnent;
 use App\Http\Livewire\DG\ViewErgpExpenseComponent;
 use App\Http\Livewire\DG\ViewHodsCommentComponent;
 
+//budgets 
+use App\Http\Livewire\Budgets\ManageBudgetsComponent;
+use App\Http\Livewire\Budgets\DepartmentBudgetRequest;
+use App\Http\Livewire\Budgets\AccountantApproveBudget;
+
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 use Illuminate\Support\Facades\Storage;
@@ -1242,6 +1247,13 @@ Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function 
     Route::get('/project-contractors',ProjectContractorsComponent::class)->name('project.contractors');
     Route::get('/contract/{id}/details',ShowContractDetailsComponent::class)->name('contract.details');
     Route::get('/shared-project/{id}',SharedProjectDetailsComponent::class)->name('project.shared');
+});
+
+// Project Module
+Route::middleware(['XSS', 'revalidate'])->prefix('budgets')->group(function () {
+    Route::get('budget-category', ManageBudgetsComponent::class)->name('budget.category');
+    Route::get('sumitted-budgets', DepartmentBudgetRequest::class)->name('department.budget');
+    Route::get('pending-budgets', AccountantApproveBudget::class)->name('budget.pending');
 });
 
 
