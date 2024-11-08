@@ -10,8 +10,6 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            {{-- @if ($selProject) --}}
-
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         {{ Form::label('bduget', __('Budget Category'), ['class' => 'form-label']) }}
@@ -31,22 +29,38 @@
 
                                 @foreach ($items as $index => $item)
                                     <div class="row mb-2">
-                                        <div class="col-md-8">
-                                            <input type="text" wire:model="items.{{ $index }}.description"  class="form-control" placeholder="Description" required>
+                                        <div class="col-md-6">
+                                            <input type="text" wire:model="items.{{ $index }}.description"  class="form-control" placeholder="Item Description" required>
                                             @error("items.{$index}.description")
                                             <small class="invalid-name" role="alert">
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             </small>
                                             @enderror
                                         </div>
-                                        <div class="col-md-3">
-                                            <input type="number" wire:model="items.{{ $index }}.amount" wire:change="calculateTotal" class="form-control" placeholder="Price" required>
-                                            @error("items.{$index}.amount")
+                                        <div class="col-md-2">
+                                            <input type="number" wire:model="items.{{ $index }}.quantity" wire:change="calculateTotal" min="1" class="form-control" placeholder="Qty" required>
+                                            @error("items.{$index}.quantity")
                                             <small class="invalid-name" role="alert">
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             </small>
                                             @enderror
                                         </div>
+                                        <div class="col-md-3">
+                                            <input type="number" wire:model="items.{{ $index }}.unit_price" wire:change="calculateTotal" min="0.1" class="form-control" placeholder="Unit Price" required>
+                                            @error("items.{$index}.unit_price")
+                                            <small class="invalid-name" role="alert">
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            </small>
+                                            @enderror
+                                        </div>
+                                        {{-- <div class="col-md-2">
+                                            <input type="number" wire:model="items.{{ $index }}.amount" wire:change="calculateTotal" class="form-control" placeholder="Amount" required>
+                                            @error("items.{$index}.amount")
+                                            <small class="invalid-name" role="alert">
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            </small>
+                                            @enderror
+                                        </div> --}}
                                         <div class="col-md-1">
                                             @if ($index > 0)
                                                 <a href="#" wire:click="removeItem({{ $index }})"
@@ -59,12 +73,9 @@
                                     </div>
                                 @endforeach
                                 <a href="#" wire:click="addItem" data-bs-toggle="tooltip"
-                                    title="{{ __('Add Field') }}" class="btn btn-sm btn-primary mt-3">
-                                    <i class="ti ti-plus"></i>
+                                title="{{ __('Add Field') }}" class="btn btn-sm btn-primary mt-3">
+                                <i class="ti ti-plus">Add</i>
                                 </a>
-                            {{-- @else
-                                <label align="center" class="mb-4" style="color: red">Loading...</label>
-                            @endif --}}
                         </div>
                     </div>
                     <div class="row">

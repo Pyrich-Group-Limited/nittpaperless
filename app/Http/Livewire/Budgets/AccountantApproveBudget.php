@@ -28,13 +28,6 @@ class AccountantApproveBudget extends Component
         $this->showDetails = $this->showDetails == $budgetId ? null : $budgetId;
     }
 
-    // public function mount(DepartmentBudget $budget)
-    // {
-    //     // $this->setBudget($budget);
-    //     $this->selBudget = $budget;
-    //     // $this->departmentBudgets = DepartmentBudget::where('status', 'pending')->get();
-    // }
-
     public function setBudget(DepartmentBudget $budget){
         $this->selBudget = $budget;
     }

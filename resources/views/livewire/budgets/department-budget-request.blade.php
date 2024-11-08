@@ -14,7 +14,7 @@
 
     @section('action-btn')
         <div class="float-end">
-        @can('create appraisal')
+        @can('set budget')
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newBudgetModal" id="toggleOldProject"
             data-bs-toggle="tooltip" title="{{ __('Create new budget') }}" class="btn btn-sm btn-primary">
             <i class="ti ti-plus text-white"> </i>New
@@ -28,7 +28,7 @@
                 <div class="card">
                 <div class="card-body table-border-style">
                         <div class="table-responsive">
-                        <table class="table datatable">
+                        <table class="table">
                                 <thead>
                                 <tr>
                                     <th>{{__('#')}}</th>
@@ -37,57 +37,67 @@
                                     <th>{{__('Total Amount')}}</th>
                                     <th>{{__('Submitted On')}}</th>
                                     <th>{{__('Status')}}</th>
+                                    @if( Gate::check('edit budget') ||Gate::check('delete budget') ||Gate::check('view budget'))
                                     <th width="200px">{{__('Action')}}</th>
-                                    {{-- @if( Gate::check('edit appraisal') ||Gate::check('delete appraisal') ||Gate::check('show appraisal'))
-                                    @endif --}}
+                                    @endif
                                 </tr>
                                 </thead>
                                 <tbody class="font-style">
-                                    @foreach ($departmentBudgets as $budget)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        {{-- <td>{{ $budget->department->name }}</td> --}}
-                                        <td>{{ $budget->budgetCategory->name }}</td>
-                                        <td>₦ {{ number_format($budget->total_requested,2) }}</td>
-                                        <td>{{ $budget->created_at->format('d M Y') }}</td>
-                                        <td>
-                                            {{-- {{ $budget->status }} --}}
-                                            @if ($budget->status == 'pending')
-                                                <span style="color: orange;">Pending</span>
-                                            @elseif ($budget->status == 'approved')
-                                                <span style="color: green;">Approved</span>
-                                            @elseif ($budget->status == 'rejected')
-                                                <span style="color: red;">Rejected</span>
-                                            @endif
-                                        </td>
-                                        {{-- @if( Gate::check('edit appraisal') ||Gate::check('delete appraisal') ||Gate::check('show appraisal')) --}}
+                                    @if (isset($departmentBudgets) && !empty($departmentBudgets) && count($departmentBudgets) > 0)
+                                        @foreach ($departmentBudgets as $budget)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            {{-- <td>{{ $budget->department->name }}</td> --}}
+                                            <td>{{ $budget->budgetCategory->name }}</td>
+                                            <td>₦ {{ number_format($budget->total_requested,2) }}</td>
+                                            <td>{{ $budget->created_at->format('d M Y') }}</td>
                                             <td>
-                                                @can('show appraisal')
-                                                <div class="action-btn bg-info ms-2">
-                                                    <a href="#" data-url="{{ route('appraisal.show',$budget->id) }}" data-size="lg" data-ajax-popup="true" data-title="{{__('Appraisal Detail')}}" data-bs-toggle="tooltip" title="{{__('View')}}" data-original-title="{{__('View Detail')}}" class="mx-3 btn btn-sm align-items-center">
-                                                        <i class="ti ti-eye text-white"></i></a>
-                                                </div>
-                                                    @endcan
-                                                @can('edit appraisal')
-                                                <div class="action-btn bg-primary ms-2">
-                                                    <a href="#" data-url="{{ route('appraisal.edit',$budget->id) }}" data-size="lg" data-ajax-popup="true" data-title="{{__('Edit Appraisal')}}" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-original-title="{{__('Edit')}}" class="mx-3 btn btn-sm align-items-center">
-                                                    <i class="ti ti-pencil text-white"></i></a>
-                                                </div>
-                                                    @endcan
-                                                @can('delete appraisal')
-                                                <div class="action-btn bg-danger ms-2">
-                                                    <form action="" method="DELETE" wire:submit.prevent='destroy'>
-                                                {{-- {!! Form::open(['method' => 'DELETE', 'route' => ['appraisal.destroy', $budget->id],'id'=>'delete-form-'.$budget->id]) !!} --}}
-                                                    <a href="#" class="mx-3 btn btn-sm align-items-center bs-pass-para" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}" data-confirm-yes="document.getElementById('delete-form-{{$budget->id}}').submit();">
-                                                    <i class="ti ti-trash text-white"></i></a>
-                                                    </form>
-                                                    {{-- {!! Form::close() !!} --}}
-                                                </div>
-                                                @endcan
+                                                {{-- {{ $budget->status }} --}}
+                                                @if ($budget->status == 'pending')
+                                                    <span style="color: orange;">Pending</span>
+                                                @elseif ($budget->status == 'approved')
+                                                    <span style="color: green;">Approved</span>
+                                                @elseif ($budget->status == 'rejected')
+                                                    <span style="color: red;">Rejected</span>
+                                                @endif
                                             </td>
-                                        {{-- @endif --}}
-                                    </tr>
-                                @endforeach
+                                            @if( Gate::check('edit budget') ||Gate::check('delete budget') ||Gate::check('view budget'))
+                                                <td>
+                                                    @can('view budget')
+                                                    <div class="action-btn bg-primary ms-2">
+                                                        <a href="#" wire:click="setBudget('{{ $budget->id }}')"
+                                                            class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                            data-bs-toggle="modal" id="toggleApplicantDetails"
+                                                            data-bs-target="#viewBudgetModal" data-size="lg"
+                                                            data-bs-toggle="tooltip" title="{{ __('View Budget Details') }}"
+                                                            data-title="{{ __('View Budget Details') }}">
+                                                            <i class="ti ti-eye text-white"></i>
+                                                        </a>
+                                                    </div>
+                                                    @endcan
+                                                    @can('edit budget')
+                                                    <div class="action-btn bg-primary ms-2">
+                                                        <a href="#" data-url="{{ route('appraisal.edit',$budget->id) }}" data-size="lg" data-ajax-popup="true" data-title="{{__('Edit Appraisal')}}" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-original-title="{{__('Edit')}}" class="mx-3 btn btn-sm align-items-center">
+                                                        <i class="ti ti-pencil text-white"></i></a>
+                                                    </div>
+                                                        @endcan
+                                                    @can('delete budget')
+                                                        <div class="action-btn bg-danger ms-2">
+                                                            <a href="#" wire:click="setActionId('{{$budget->id}}')" class="mx-3 btn btn-sm align-items-center confirm-delete" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}">
+                                                            <i class="ti ti-trash text-white"></i></a>
+                                                        </div>
+                                                    @endcan
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+                                @else
+                                <tr>
+                                    <th scope="col" colspan="9">
+                                        <h6 class="text-center">{{ __('No Record Found.') }}</h6>
+                                    </th>
+                                </tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -97,5 +107,6 @@
             </div>
         </div>
         @include('livewire.budgets.modals.set-budget-request')
+        {{-- @include('livewire.budgets.modals.budget-details') --}}
         <x-toast-notification />
     </div>

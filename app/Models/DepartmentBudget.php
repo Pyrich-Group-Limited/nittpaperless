@@ -10,7 +10,7 @@ class DepartmentBudget extends Model
     use HasFactory;
 
     protected $fillable = [
-        'budget_category_id', 'department_id', 'total_requested', 'status'
+        'budget_category_id', 'department_id', 'total_requested', 'user_id', 'status'
     ];
 
     // Belongs to a specific BudgetCategory
@@ -29,5 +29,10 @@ class DepartmentBudget extends Model
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
     }
 }

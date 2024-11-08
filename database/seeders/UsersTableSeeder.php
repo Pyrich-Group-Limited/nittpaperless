@@ -4070,6 +4070,21 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+
+            [   'name' => 'edit budget',
+                'module' => 'Budget',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [   'name' => 'delete budget',
+                'module' => 'Budget',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
             [   'name' => 'set ergp',
                 'module' => 'Budget',
                 'guard_name' => 'web',
@@ -4106,6 +4121,8 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage budget'],
             ['name' => 'approve budget'],
             ['name' => 'view budget'],
+            ['name' => 'edit budget'],
+            ['name' => 'delete budget'],
             ['name' => 'set ergp'],
             ['name' => 'manage ergp'],
             ['name' => 'view ergp'],
@@ -4884,6 +4901,10 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $hodPermission = [
+            ['name' => 'set budget'],
+            ['name' => 'view budget'],
+            ['name' => 'edit budget'],
+            ['name' => 'delete budget'],
             ['name' => 'approve leave'],
             ['name' => 'view leave report'],
             ['name' => 'create budget plan'],

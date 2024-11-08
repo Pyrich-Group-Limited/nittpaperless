@@ -6,7 +6,9 @@
 
                     <div class="modal-header">
                         <h5 class="modal-title" id="applyLeave">BUDGET DETAILS FOR :  
-                            {{ strtoupper($budget->department->name)}}
+                            @if ($budget != null)
+                                {{ strtoupper($budget->department->name)}}
+                            @endif
                         </h5>
                     </div>
                     <div class="modal-body">

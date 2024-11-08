@@ -51,7 +51,10 @@
                         <div class="col-sm-12 col-md-12">
                             <div class="form-group">
                                 {{ Form::label('ergp_year', __('ERGP Year'), ['class' => 'form-label']) }}
-                                <input type="month" class="form-control" wire:model="ergp_year">
+                                {{-- <input type="month" class="form-control" wire:model="ergp_year"> --}}
+                                <select id="year" class="form-control" wire:model="ergp_year">
+                                    <option value="" disabled selected>Select Year</option>
+                                </select>
                                 @error('ergp_year')
                                     <small class="invalid-type_of_leave" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
@@ -107,6 +110,21 @@
 
     </div>
 </div>
+@push('script')
+    <script>
+        const select = document.getElementById("year");
+        const currentYear = new Date().getFullYear();
+        const startYear = 1900;
+        const endYear = 2100;
+
+        for (let year = startYear; year <= endYear; year++) {
+        let option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        select.appendChild(option);
+        }
+    </script>
+@endpush
 <script>
     window.addEventListener('success', event => {
         document.getElementById("closeAddErgpModal").click();

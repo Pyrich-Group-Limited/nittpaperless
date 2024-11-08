@@ -32,48 +32,56 @@
                                 </tr>
                             </thead>
                             <tbody class="font-style">
-                                @foreach ($departmentBudgets as $budget)
+                                @if (isset($departmentBudgets) && !empty($departmentBudgets) && count($departmentBudgets) > 0)
+                                    @foreach ($departmentBudgets as $budget)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $budget->department->name }}</td>
+                                            <td>{{ $budget->budgetCategory->name }}</td>
+                                            <td>₦ {{ number_format($budget->total_requested, 2) }}</td>
+                                            <td>{{ $budget->created_at->format('d M Y') }}</td>
+                                            <td>
+                                                @if ($budget->status == 'pending')
+                                                    <span style="color: orange;">Pending</span>
+                                                @elseif ($budget->status == 'approved')
+                                                    <span style="color: green;">Approved</span>
+                                                @elseif ($budget->status == 'rejected')
+                                                    <span style="color: red;">Rejected</span>
+                                                @endif
+                                            </td>
+                                            {{-- @if (Gate::check('edit appraisal') || Gate::check('delete appraisal') || Gate::check('show appraisal')) --}}
+                                            <td>
+                                                
+                                                {{-- <button type="button" wire:click="approveBudget({{ $budget->id }})" wire:key="budget-{{ $budget->id }}">Approve</button> --}}
+                                                @can('approve budget')
+                                                    <div class="action-btn bg-primary ms-2">
+                                                        <a href="#" wire:click="setBudget('{{ $budget->id }}')"
+                                                            class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                            data-bs-toggle="modal" id="toggleApplicantDetails"
+                                                            data-bs-target="#viewBudgetModal" data-size="lg"
+                                                            data-bs-toggle="tooltip" title="{{ __('View Budget Details') }}"
+                                                            data-title="{{ __('View Budget Details') }}">
+                                                            <i class="ti ti-eye text-white"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="action-btn bg-primary ms-2">
+                                                        <a href="#" wire:click="approveBudget({{ $budget->id }})"
+                                                            title="{{ __('Approve Budget') }}"
+                                                            class="mx-3 btn btn-sm align-items-center @if ($budget->status == 'approved') disabled @endif" >
+                                                            <i class="ti ti-check text-white"></i></a>
+                                                    </div>
+                                                @endcan
+                                            </td>
+                                            {{-- @endif --}}
+                                        </tr>
+                                    @endforeach
+                                @else
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $budget->department->name }}</td>
-                                        <td>{{ $budget->budgetCategory->name }}</td>
-                                        <td>₦ {{ number_format($budget->total_requested, 2) }}</td>
-                                        <td>{{ $budget->created_at->format('d M Y') }}</td>
-                                        <td>
-                                            @if ($budget->status == 'pending')
-                                                <span style="color: orange;">Pending</span>
-                                            @elseif ($budget->status == 'approved')
-                                                <span style="color: green;">Approved</span>
-                                            @elseif ($budget->status == 'rejected')
-                                                <span style="color: red;">Rejected</span>
-                                            @endif
-                                        </td>
-                                        {{-- @if (Gate::check('edit appraisal') || Gate::check('delete appraisal') || Gate::check('show appraisal')) --}}
-                                        <td>
-                                            
-                                            {{-- <button type="button" wire:click="approveBudget({{ $budget->id }})" wire:key="budget-{{ $budget->id }}">Approve</button> --}}
-                                            @can('approve budget')
-                                                <div class="action-btn bg-primary ms-2">
-                                                    <a href="#" wire:click="setBudget('{{ $budget->id }}')"
-                                                        class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                        data-bs-toggle="modal" id="toggleApplicantDetails"
-                                                        data-bs-target="#viewBudgetModal" data-size="lg"
-                                                        data-bs-toggle="tooltip" title="{{ __('View Budget Details') }}"
-                                                        data-title="{{ __('View Budget Details') }}">
-                                                        <i class="ti ti-eye text-white"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="action-btn bg-primary ms-2">
-                                                    <a href="#" wire:click="approveBudget({{ $budget->id }})"
-                                                        title="{{ __('Approve Budget') }}"
-                                                        class="mx-3 btn btn-sm align-items-center @if ($budget->status == 'approved') disabled @endif" >
-                                                        <i class="ti ti-check text-white"></i></a>
-                                                </div>
-                                            @endcan
-                                        </td>
-                                        {{-- @endif --}}
+                                        <th scope="col" colspan="9">
+                                            <h6 class="text-center">{{ __('No Record Found.') }}</h6>
+                                        </th>
                                     </tr>
-                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('budget_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('chart_of_account_id')->constrained();
             $table->decimal('total_amount', 15, 2);
             $table->decimal('remaining_amount', 15, 2);
+            $table->year('year');
             $table->enum('status', ['open', 'closed'])->default('open');
             $table->timestamps();
         });
