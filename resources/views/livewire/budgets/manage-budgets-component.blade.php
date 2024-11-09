@@ -62,16 +62,29 @@
                                         <td>{{ $category->year }}</td>
                                         @if( Gate::check('edit budget') ||Gate::check('delete budget') || Gate::check('view budget'))
                                             <td>
-                                                @can('view budget')
-                                                <div class="action-btn bg-info ms-2">
-                                                    <a href="#" data-url="{{ route('appraisal.show',$category->id) }}" data-size="lg" data-ajax-popup="true" data-title="{{__('Appraisal Detail')}}" data-bs-toggle="tooltip" title="{{__('View')}}" data-original-title="{{__('View Detail')}}" class="mx-3 btn btn-sm align-items-center">
-                                                        <i class="ti ti-eye text-white"></i></a>
-                                                </div>
-                                                    @endcan
+                                                @can('edit budget')
+                                                    @if($category->status=="closed")
+                                                        <div class="action-btn bg-success ms-2">
+                                                            <a href="#" wire:click="setActionId('{{$category->id}}')" class="mx-3 btn btn-sm align-items-center confirm-open" data-bs-toggle="tooltip" title="{{__('Open')}}" data-original-title="{{__('Open')}}">
+                                                            {{-- <i class="ti ti-unlock text-white"></i></a> --}}
+                                                            <i class="fa fa-unlock text-white"></i></a>
+                                                        </div>
+                                                    @else
+                                                        <div class="action-btn bg-warning ms-2">
+                                                            <a href="#" wire:click="setActionId('{{$category->id}}')" class="mx-3 btn btn-sm align-items-center confirm-close" data-bs-toggle="tooltip" title="{{__('Close')}}" data-original-title="{{__('Close')}}">
+                                                            <i class="ti ti-lock text-white"></i></a>
+                                                        </div>
+                                                    @endif
+                                                @endcan
                                                 @can('edit budget')
                                                 <div class="action-btn bg-primary ms-2">
-                                                    <a href="#" data-url="{{ route('appraisal.edit',$category->id) }}" data-size="lg" data-ajax-popup="true" data-title="{{__('Edit Appraisal')}}" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-original-title="{{__('Edit')}}" class="mx-3 btn btn-sm align-items-center">
-                                                    <i class="ti ti-pencil text-white"></i></a>
+                                                    <a href="#" wire:click="setBudget('{{ $category->id }}')"
+                                                        class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#updateBudgetCategory" data-size="lg"
+                                                        data-bs-toggle="tooltip" title="{{ __('Update Budget') }}">
+                                                        <i class="ti ti-pencil text-white"></i>
+                                                    </a>
                                                 </div>
                                                     @endcan
                                                 @can('delete budget')
@@ -100,5 +113,6 @@
         </div>
     </div>
     @include('livewire.budgets.modals.set-budget')
+    @include('livewire.budgets.modals.edit-budget-modal')
     <x-toast-notification />
 </div>
