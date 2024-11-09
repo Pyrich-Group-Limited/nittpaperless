@@ -51,8 +51,13 @@
                             <div class="modal-footer">
                                 <input type="button" id="closeBudgetDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
-                                @can('manage budget')
-                                    <input type="button"  wire:click="approveBudget('{{ $selBudget->id }}')" value="{{ __('Approve') }}" class="btn  btn-primary btn-sm @if ($selBudget->status == 'approved') disabled @endif ">
+                                @if(auth()->user()->type=="accountant" && $selBudget->status == 'pending')
+                                    <input type="button" wire:click="markPendingDgApproval({{ $budget->id }})" value="{{ __('Forward to DG') }}" class="btn  btn-primary btn-sm">
+                                @endif
+                                @can('approve budget')
+                                    @if(auth()->user()->type=="DG")
+                                        <input type="button"  wire:click="approveBudget('{{ $selBudget->id }}')" value="{{ __('Approve') }}" class="btn  btn-primary btn-sm @if ($selBudget->status == 'approved') disabled @endif ">
+                                    @endif
                                 @endcan
                             </div>
                         @else

@@ -52,14 +52,22 @@
                                             <td>
                                                 @if ($budget->status == 'pending')
                                                     <span style="color: orange;">Pending</span>
+                                                @elseif ($budget->status == 'pending_dg_approval')
+                                                    <span style="color: rgb(8, 110, 128);">Pending DG Approval</span>
                                                 @elseif ($budget->status == 'approved')
                                                     <span style="color: green;">Approved</span>
                                                 @elseif ($budget->status == 'rejected')
                                                     <span style="color: red;">Rejected</span>
                                                 @endif
                                             </td>
+                                            
                                             @if( Gate::check('edit budget') ||Gate::check('delete budget') ||Gate::check('view budget'))
                                                 <td>
+                                                    @if ($budget->status == 'rejected')
+                                                {{-- <td> --}}
+                                                    <a href="#" class="action-item" data-url="{{ route('contract.description',$budget->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Read Rejection Comment')}}" data-title="{{__('Read Rejection Comment')}}"><i class="fa fa-comment"></i></a>
+                                                {{-- </td> --}}
+                                                    @endif
                                                     @can('view budget')
                                                     <div class="action-btn bg-primary ms-2">
                                                         <a href="#" wire:click="setBudget('{{ $budget->id }}')"

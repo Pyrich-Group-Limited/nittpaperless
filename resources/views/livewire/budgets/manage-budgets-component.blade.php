@@ -34,8 +34,9 @@
                                 <th>{{__('#')}}</th>
                                 <th>{{__('Budget Category')}}</th>
                                 <th>{{__('Chart of Account')}}</th>
-                                <th>{{__('Credit')}}</th>
-                                <th>{{__('Debit')}}</th>
+                                <th>{{__('Budgeted Amount')}}</th>
+                                <th>{{__('Expected Expenditure')}}</th>
+                                <th>{{__('Variance')}}</th>
                                 <th>{{__('Status')}}</th>
                                 <th>{{__('Year')}}</th>
                                 @if( Gate::check('edit budget') ||Gate::check('delete budget') ||Gate::check('view budget'))
@@ -51,7 +52,16 @@
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->chartOfAccounts->code }}</td>
                                         <td> ₦ {{ number_format($category->total_amount,2) }}</td>
-                                        <td>₦ {{ number_format($category->remaining_amount,2) }}</td>
+                                        <td>
+                                            @if($category->remaining_amount==0)
+                                                ₦ {{ number_format($category->total_amount + $category->deficit,2) }}
+                                            {{-- @elseif($category->remaining_amount!=0) --}}
+                                            @else
+                                            {{-- ₦  0.00 --}}
+                                            ₦ {{ number_format($category->remaining_amount,2) }}
+                                            @endif
+                                        </td>
+                                        <td>₦ {{ number_format($category->deficit,2) }}</td>
                                         <td>
                                             @if ($category->status == 'open')
                                                 <span style="color: green;">Open</span>

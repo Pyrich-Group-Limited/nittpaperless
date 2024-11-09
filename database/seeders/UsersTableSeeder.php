@@ -4064,6 +4064,12 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [   'name' => 'reject budget',
+                'module' => 'Budget',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
             [   'name' => 'view budget',
                 'module' => 'Budget',
                 'guard_name' => 'web',
@@ -4120,6 +4126,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'set budget'],
             ['name' => 'manage budget'],
             ['name' => 'approve budget'],
+            ['name' => 'reject budget'],
             ['name' => 'view budget'],
             ['name' => 'edit budget'],
             ['name' => 'delete budget'],
@@ -4691,32 +4698,23 @@ class UsersTableSeeder extends Seeder
         );
 
         $dgPermissions = [
-            // ['name' => 'approve dta'],
-            // ['name' => 'reject dta'],
-            // ['name' => 'view leave report'],
-            // ['name' => 'manage report'],
             ['name' => 'manage project'],
-            // ['name' => 'create project'],
-            // ['name' => 'view project'],
-            // ['name' => 'edit project'],
-            // ['name' => 'delete project'],
-            // ['name' => 'share project'],
-
+            ['name' => 'approve budget'],
+            ['name' => 'reject budget'],
+            ['name' => 'view budget'],
         ];
 
-        // $dgRole->givePermissionTo($dgPermissions);
+        $dgRole->givePermissionTo($dgPermissions);
 
         $dg = User::create(
             [
                 'name' => 'Ishaq Kamaldeen',
                 'email' => 'dg@nitt.com',
-
                 'designation' => Designation::first()->name,
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 15",
                 'email' => 'dg@nitt.com',
-
                 'password' => Hash::make('1234'),
                 'type' => 'DG',
                 'default_pipeline' => 1,

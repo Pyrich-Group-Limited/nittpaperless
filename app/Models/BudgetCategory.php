@@ -14,6 +14,7 @@ class BudgetCategory extends Model
         'name',
         'total_amount',
         'remaining_amount',
+        'deficit',
         'status',
         'year'
     ];

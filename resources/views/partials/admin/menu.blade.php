@@ -39,6 +39,12 @@
                             ></a>
                     </li>
                     <li class="dash-item dash-hasmenu ">
+                        <a href="{{ route('budget.pending') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                            ><span class="dash-mtext">{{__('Budgets')}}</span
+                            ></a>
+                    </li>
+                    <li class="dash-item dash-hasmenu ">
                         <a href="{{ route('dg.projects') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
                         ><span class="dash-micon"><i class="ti ti-settings"></i></span
                             ><span class="dash-mtext">{{__('Projects')}}</span
