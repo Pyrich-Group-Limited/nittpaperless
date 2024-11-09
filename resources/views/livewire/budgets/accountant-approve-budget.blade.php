@@ -43,6 +43,8 @@
                                             <td>
                                                 @if ($budget->status == 'pending')
                                                     <span style="color: orange;">Pending</span>
+                                                @elseif ($budget->status == 'pending_dg_approval')
+                                                    <span style="color: rgb(8, 110, 128);">Pending DG Approval</span>
                                                 @elseif ($budget->status == 'approved')
                                                     <span style="color: green;">Approved</span>
                                                 @elseif ($budget->status == 'rejected')
@@ -51,10 +53,8 @@
                                             </td>
                                             {{-- @if (Gate::check('edit appraisal') || Gate::check('delete appraisal') || Gate::check('show appraisal')) --}}
                                             <td>
-                                                
-                                                {{-- <button type="button" wire:click="approveBudget({{ $budget->id }})" wire:key="budget-{{ $budget->id }}">Approve</button> --}}
-                                                @can('approve budget')
-                                                    <div class="action-btn bg-primary ms-2">
+                                                @can('view budget') 
+                                                    <div class="action-btn bg-success ms-2">
                                                         <a href="#" wire:click="setBudget('{{ $budget->id }}')"
                                                             class="mx-3 btn btn-sm d-inline-flex align-items-center"
                                                             data-bs-toggle="modal" id="toggleApplicantDetails"
@@ -64,12 +64,39 @@
                                                             <i class="ti ti-eye text-white"></i>
                                                         </a>
                                                     </div>
-                                                    <div class="action-btn bg-primary ms-2">
-                                                        <a href="#" wire:click="approveBudget({{ $budget->id }})"
-                                                            title="{{ __('Approve Budget') }}"
-                                                            class="mx-3 btn btn-sm align-items-center @if ($budget->status == 'approved') disabled @endif" >
-                                                            <i class="ti ti-check text-white"></i></a>
-                                                    </div>
+                                                    @if(auth()->user()->type=="accountant" && $budget->status == 'pending')
+                                                        <div class="action-btn bg-primary ms-2">
+                                                            <a href="#" wire:click="markPendingDgApproval({{ $budget->id }})"
+                                                                title="{{ __('Forward to DG') }}"
+                                                                class="mx-3 btn btn-sm align-items-center" >
+                                                                <i class="ti ti-check text-white"></i></a>
+                                                        </div>
+                                                    @endif
+                                                @endcan
+                                                @can('approve budget')
+                                                    @if(auth()->user()->type=="DG")
+                                                        <div class="action-btn bg-primary ms-2">
+                                                            <a href="#" wire:click="approveBudget({{ $budget->id }})"
+                                                                title="{{ __('Approve Budget') }}"
+                                                                class="mx-3 btn btn-sm align-items-center @if ($budget->status == 'approved') disabled @endif" >
+                                                                <i class="ti ti-check text-white"></i></a>
+                                                        </div>
+                                                    @endif
+                                                @endcan
+
+                                                @can('approve budget')
+                                                    @if($budget->status != 'rejected')
+                                                        <div class="action-btn bg-danger ms-2">
+                                                            <a href="#" wire:click="$set('selectedBudgetId', {{ $budget->id }})"
+                                                                class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                                data-bs-toggle="modal" id="toggleApplicantDetails"
+                                                                data-bs-target="#rejectModal" data-size="lg"
+                                                                data-bs-toggle="tooltip" title="{{ __('Reject Budget') }}"
+                                                                >
+                                                                <i class="ti ti-arrow-left text-white"></i>
+                                                            </a>
+                                                        </div>
+                                                    @endif
                                                 @endcan
                                             </td>
                                             {{-- @endif --}}
@@ -91,5 +118,6 @@
         </div>
     </div>
     @include('livewire.budgets.modals.budget-details')
+    @include('livewire.budgets.modals.reject-budget-modal')
     <x-toast-notification />
 </div>
