@@ -14,6 +14,24 @@
 
 @section('action-btn')
     <div class="float-end">
+        <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="ti ti-filter"></i>
+        </a>
+        <div class="dropdown-menu  dropdown-steady" id="project_sort">
+            <a class="dropdown-item active" href="#" data-val="created_at-desc">
+                <i class="ti ti-sort-descending"></i>{{__('Newest')}}
+            </a>
+            <a class="dropdown-item" href="#" data-val="created_at-asc">
+                <i class="ti ti-sort-ascending"></i>{{__('Oldest')}}
+            </a>
+
+            <a class="dropdown-item" href="#" data-val="project_name-desc">
+                <i class="ti ti-sort-descending-letters"></i>{{__('From Z-A')}}
+            </a>
+            <a class="dropdown-item" href="#" data-val="project_name-asc">
+                <i class="ti ti-sort-ascending-letters"></i>{{__('From A-Z')}}
+            </a>
+        </div>
     @can('manage budget')
         <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newBudgetCategory" id="toggleOldProject"
         data-bs-toggle="tooltip" title="{{ __('Create new budget Category') }}" class="btn btn-sm btn-primary">

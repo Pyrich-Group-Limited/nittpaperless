@@ -9,11 +9,43 @@
     @push('css-page')
         <style>
             @import url({{ asset('css/font-awesome.css') }});
+
+            .center {
+                margin: auto;
+                width: 5%;
+                padding: 10px;
+            }
+            .float{
+                /* float: right; */
+                /* margin-left: 35px; */
+                padding-left: 90%;
+            }
         </style>
     @endpush
 
-    @section('action-btn')
-        <div class="float-end">
+    {{-- @section('action-btn') --}}
+        <div class="float">
+            <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="ti ti-filter"></i>
+            </a>
+            <div class="dropdown-menu  dropdown-steady" id="project_sort">
+                <a class="dropdown-item {{ $filterStatus === 'all' ? 'active' : '' }}" wire:click="setFilter('all')" href="#" data-val="created_at-desc">
+                    <i class="ti ti-list"></i>{{__('All')}}
+                </a>
+                <a class="dropdown-item {{ $filterStatus === 'pending' ? 'active' : '' }}" wire:model="setFilter('pending')" href="#" data-val="created_at-desc">
+                    <i class="ti ti-list"></i>{{__('Pending')}}
+                </a>
+                <a class="dropdown-item {{ $filterStatus === 'pending_dg_approval' ? 'active' : '' }}" wire:click="setFilter('pending_dg_approval')" href="#" data-val="created_at-asc">
+                    <i class="ti ti-list"></i>{{__('Pending DG Approval')}}
+                </a>
+                <a class="dropdown-item {{ $filterStatus === 'approved' ? 'active' : '' }}"  wire:click="setFilter('approved')" href="#" data-val="project_name-desc">
+                    <i class="ti ti-list"></i>{{__('Approved')}}
+                </a>
+                <a class="dropdown-item {{ $filterStatus === 'rejected' ? 'active' : '' }}" wire:click="setFilter('rejected')" href="#" >
+                    <i class="ti ti-list"></i>{{__('Rejected')}}
+                </a>
+            </div>
+
         @can('set budget')
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newBudgetModal" id="toggleOldProject"
             data-bs-toggle="tooltip" title="{{ __('Create new budget') }}" class="btn btn-sm btn-primary">
@@ -21,7 +53,10 @@
             </a>
             @endcan
         </div>
-    @endsection
+    {{-- @endsection --}}
+            <div class="center">
+                <div wire:loading wire:target="setFilter"><x-g-loader /></div>
+            </div>
 
         <div class="row">
             <div class="col-md-12 mt-3">
@@ -63,11 +98,6 @@
                                             
                                             @if( Gate::check('edit budget') ||Gate::check('delete budget') ||Gate::check('view budget'))
                                                 <td>
-                                                    @if ($budget->status == 'rejected')
-                                                {{-- <td> --}}
-                                                    <a href="#" class="action-item" data-url="{{ route('contract.description',$budget->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Read Rejection Comment')}}" data-title="{{__('Read Rejection Comment')}}"><i class="fa fa-comment"></i></a>
-                                                {{-- </td> --}}
-                                                    @endif
                                                     @can('view budget')
                                                     <div class="action-btn bg-primary ms-2">
                                                         <a href="#" wire:click="setBudget('{{ $budget->id }}')"
