@@ -12,6 +12,29 @@
         </style>
     @endpush
 
+    @section('action-btn')
+    <div class="float-end">
+        <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="ti ti-filter"></i>
+        </a>
+        <div class="dropdown-menu  dropdown-steady" id="project_sort">
+            <a class="dropdown-item active" href="#" data-val="created_at-desc">
+                <i class="ti ti-sort-descending"></i>{{__('Newest')}}
+            </a>
+            <a class="dropdown-item" href="#" data-val="created_at-asc">
+                <i class="ti ti-sort-ascending"></i>{{__('Oldest')}}
+            </a>
+
+            <a class="dropdown-item" href="#" data-val="project_name-desc">
+                <i class="ti ti-sort-descending-letters"></i>{{__('From Z-A')}}
+            </a>
+            <a class="dropdown-item" href="#" data-val="project_name-asc">
+                <i class="ti ti-sort-ascending-letters"></i>{{__('From A-Z')}}
+            </a>
+        </div>
+    </div>
+@endsection
+
     <div class="row">
         <div class="col-md-12 mt-3">
             <div class="card">

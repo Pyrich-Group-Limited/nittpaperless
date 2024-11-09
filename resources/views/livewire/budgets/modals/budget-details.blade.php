@@ -48,6 +48,12 @@
                                     </div>
                                 @endif
                             </div>
+                                @if ($selBudget->status=='rejected')
+                                    <div class="form-group">
+                                        <label class="form-label" for="exampleFormControlTextarea1">{{__('Rejection Comment')}}</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" readonly>{{ $selBudget->comment }}</textarea>
+                                    </div>
+                                @endif
                             <div class="modal-footer">
                                 <input type="button" id="closeBudgetDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
