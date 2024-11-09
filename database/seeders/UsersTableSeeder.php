@@ -5166,6 +5166,8 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage budget'],
             ['name' => 'approve budget'],
             ['name' => 'view budget'],
+            ['name' => 'edit budget'],
+            ['name' => 'delete budget'],
             ['name' => 'set ergp'],
             ['name' => 'manage ergp'],
             ['name' => 'view ergp'],

@@ -14,7 +14,7 @@
 
 @section('action-btn')
     <div class="float-end">
-    @can('create appraisal')
+    @can('manage budget')
         <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newBudgetCategory" id="toggleOldProject"
         data-bs-toggle="tooltip" title="{{ __('Create new budget Category') }}" class="btn btn-sm btn-primary">
         <i class="ti ti-plus text-white"> </i>Create
@@ -38,7 +38,7 @@
                                 <th>{{__('Debit')}}</th>
                                 <th>{{__('Status')}}</th>
                                 <th>{{__('Year')}}</th>
-                                @if( Gate::check('edit appraisal') ||Gate::check('delete appraisal') ||Gate::check('show appraisal'))
+                                @if( Gate::check('edit budget') ||Gate::check('delete budget') ||Gate::check('view budget'))
                                     <th width="200px">{{__('Action')}}</th>
                                 @endif
                             </tr>
