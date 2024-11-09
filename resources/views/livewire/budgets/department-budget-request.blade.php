@@ -32,7 +32,6 @@
                                 <thead>
                                 <tr>
                                     <th>{{__('#')}}</th>
-                                    {{-- <th>{{__('Department')}}</th> --}}
                                     <th>{{__('Budget Category')}}</th>
                                     <th>{{__('Total Amount')}}</th>
                                     <th>{{__('Submitted On')}}</th>
@@ -47,12 +46,10 @@
                                         @foreach ($departmentBudgets as $budget)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            {{-- <td>{{ $budget->department->name }}</td> --}}
                                             <td>{{ $budget->budgetCategory->name }}</td>
                                             <td>₦ {{ number_format($budget->total_requested,2) }}</td>
                                             <td>{{ $budget->created_at->format('d M Y') }}</td>
                                             <td>
-                                                {{-- {{ $budget->status }} --}}
                                                 @if ($budget->status == 'pending')
                                                     <span style="color: orange;">Pending</span>
                                                 @elseif ($budget->status == 'approved')
@@ -75,17 +72,14 @@
                                                         </a>
                                                     </div>
                                                     @endcan
-                                                    @can('edit budget')
-                                                    <div class="action-btn bg-primary ms-2">
-                                                        <a href="#" data-url="{{ route('appraisal.edit',$budget->id) }}" data-size="lg" data-ajax-popup="true" data-title="{{__('Edit Appraisal')}}" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-original-title="{{__('Edit')}}" class="mx-3 btn btn-sm align-items-center">
-                                                        <i class="ti ti-pencil text-white"></i></a>
-                                                    </div>
-                                                        @endcan
+                                                    
                                                     @can('delete budget')
+                                                    @if ($budget->status == 'pending')
                                                         <div class="action-btn bg-danger ms-2">
                                                             <a href="#" wire:click="setActionId('{{$budget->id}}')" class="mx-3 btn btn-sm align-items-center confirm-delete" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}">
                                                             <i class="ti ti-trash text-white"></i></a>
                                                         </div>
+                                                    @endif
                                                     @endcan
                                                 </td>
                                             @endif
@@ -107,6 +101,6 @@
             </div>
         </div>
         @include('livewire.budgets.modals.set-budget-request')
-        {{-- @include('livewire.budgets.modals.budget-details') --}}
+        @include('livewire.budgets.modals.budget-details')
         <x-toast-notification />
     </div>

@@ -5,7 +5,7 @@
                 <div class="modal-body">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="applyLeave">BUDGET DETAILS FOR :  
+                        <h5 class="modal-title">BUDGET DETAILS FOR :  
                             @if ($budget != null)
                                 {{ strtoupper($budget->department->name)}}
                             @endif
@@ -51,7 +51,9 @@
                             <div class="modal-footer">
                                 <input type="button" id="closeBudgetDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
-                                <input type="button"  wire:click="approveBudget('{{ $selBudget->id }}')" value="{{ __('Approve') }}" class="btn  btn-primary btn-sm @if ($selBudget->status == 'approved') disabled @endif ">
+                                @can('manage budget')
+                                    <input type="button"  wire:click="approveBudget('{{ $selBudget->id }}')" value="{{ __('Approve') }}" class="btn  btn-primary btn-sm @if ($selBudget->status == 'approved') disabled @endif ">
+                                @endcan
                             </div>
                         @else
                             <label align="center" class="mb-4" style="color: red">Loading...</label>

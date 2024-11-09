@@ -228,7 +228,7 @@ Route::get('/download/{filename}', function ($filename) {
 Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->group(function () {
     Route::get('projects',PhysicalPlanningProjectsComponent::class)->name('pp.projects');
     Route::get('projects/{id}',PhysicalPlanningProjectDetials::class)->name('pp.projects.show');
-    Route::get('ergps',ErgpComponent::class)->name('pp.ergp');
+    // Route::get('ergps',ErgpComponent::class)->name('pp.ergp');
 
     // Route::get('adverts',ProcurementAdvertsComponent::class)->name('projects.adverts');
 });
@@ -1254,6 +1254,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('budgets')->group(function () {
     Route::get('budget-category', ManageBudgetsComponent::class)->name('budget.category');
     Route::get('sumitted-budgets', DepartmentBudgetRequest::class)->name('department.budget');
     Route::get('pending-budgets', AccountantApproveBudget::class)->name('budget.pending');
+    Route::get('ergps',ErgpComponent::class)->name('pp.ergp');
 });
 
 

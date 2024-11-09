@@ -15,7 +15,7 @@
     @section('action-btn')
         <div class="float-end">
 
-            @can('create project')
+            @can('set ergp')
                 {{-- <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject"
                     data-bs-toggle="tooltip" title="{{ __('Advertise Project') }}" class="btn btn-sm btn-primary">
                     <i class="ti ti-share"></i>

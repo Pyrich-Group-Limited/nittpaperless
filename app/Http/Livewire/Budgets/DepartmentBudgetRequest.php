@@ -15,6 +15,8 @@ class DepartmentBudgetRequest extends Component
     public $selBudget;
     public $actionId;
 
+    public $budget;
+
     protected $listeners = ['delete-confirmed'=>'deleteDeptBudget'];
 
     public function mount()
