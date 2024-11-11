@@ -36,7 +36,6 @@
     <script src="{{asset('css/summernote/summernote-bs4.js')}}"></script>
     <script src="{{asset('assets/js/plugins/dropzone-amd-module.min.js')}}"></script>
     <script>
-        @can('manage contract')
         $('.summernote-simple').on('summernote.blur', function () {
 
             $.ajax({
@@ -62,9 +61,7 @@
                 }
             })
         });
-        @else
-        // $('.summernote-simple').summernote('disable');
-        @endcan
+        
     </script>
     <script>
         Dropzone.autoDiscover = true;
@@ -277,7 +274,7 @@
             $status = App\Models\Contract::status();
         @endphp
 
-        @if(\Auth::user()->type == 'client' )
+        @if(\Auth::user()->type == 'contractor' )
             <ul class="list-unstyled m-0 ">
                 <li class="dropdown dash-h-item status-drp">
                     <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
@@ -321,15 +318,15 @@
         <div class="col-xl-9">
             <div id="useradd-1">
                 <div class="row">
-                    <div class="col-xl-7">
+                    <div class="col-xl-12">
                         <div class="row">
                             <div class="col-lg-4 col-6">
                                 <div class="card">
-                                    <div class="card-body" style="min-height: 205px;">
+                                    <div class="card-body">
                                         <div class="theme-avtar bg-primary">
                                             <i class="ti ti-user-plus"></i>
                                         </div>
-                                        <h6 class="mb-3 mt-4">{{ __('Attachment') }}</h6>
+                                        <h6 class="mb-1 mt-1">{{ __('Attachment') }}</h6>
                                         <h3 class="mb-0">{{count($contract->files)}}</h3>
                                         <h3 class="mb-0"></h3>
                                     </div>
@@ -337,34 +334,73 @@
                             </div>
                             <div class="col-lg-4 col-6">
                                 <div class="card">
-                                    <div class="card-body" style="min-height: 205px;">
+                                    <div class="card-body">
                                         <div class="theme-avtar bg-info">
                                             <i class="ti ti-click"></i>
                                         </div>
-                                        <h6 class="mb-3 mt-4">{{ __('Comment') }}</h6>
+                                        <h6 class="mb-1 mt-1">{{ __('Comment') }}</h6>
                                         <h3 class="mb-0">{{count($contract->comment)}}</h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-6">
                                 <div class="card">
-                                    <div class="card-body" style="min-height: 205px;">
+                                    <div class="card-body">
                                         <div class="theme-avtar bg-warning">
                                             <i class="ti ti-file"></i>
                                         </div>
-                                        <h6 class="mb-3 mt-4 ">{{ __('Notes') }}</h6>
+                                        <h6 class="mb-1 mt-1">{{ __('Notes') }}</h6>
                                         <h3 class="mb-0">{{count($contract->note)}}</h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-lg-4 col-6">
+                                <div class="card">
+                                    <div class="card-body" >
+                                        <h6 class="mb-3"><i class="ti ti-cash"></i>{{ __('Contract Value') }}</h6>
+                                        <h4 class="mb-0 text-primary">{{ \Auth::user()->priceFormat($contract->value) }}</h4>
+                                        <h3 class="mb-0"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-6">
+                                <div class="card">
+                                    <div class="card-body" >
+                                        <h6 class="mb-3"><i class="ti ti-cash"></i>{{ __('Total Paid') }}</h6>
+                                        <h4 class="mb-0 text-primary">{{ \Auth::user()->priceFormat($contract->amount_paid_to_date) }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-6">
+                                <div class="card">
+                                    <div class="card-body" >
+                                        <h6 class="mb-3"><i class="ti ti-cash"></i>{{ __('Balance') }}</h6>
+                                        <h4 class="mb-0 text-danger">{{ \Auth::user()->priceFormat($contract->value - $contract->amount_paid_to_date) }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-xxl-5">
                         <div class="card report_card total_amount_card">
                             <div class="card-body pt-0" style="margin-bottom: -30px; margin-top: -10px;">
                                 <address class="mb-0 text-sm">
                                     <dl class="row mt-4 align-items-center">
+                                       <div class="col-md-6">
                                         <h5>{{ __('Contract Detail') }}</h5>
+                                       </div>
+                                        <div class="col-md-6 text-end mb-1">
+                                            <a href="{{ route('contract.history', $contract->id) }}" class="btn btn-success btn-sm">
+                                                <i class="ti ti-eye"></i> View Payment History
+                                            </a>
+                                        </div>
+                                        <hr>
                                         <br>
                                         <dt class="col-sm-4 h6 text-sm">{{ __('Subject') }}</dt>
                                         <dd class="col-sm-8 text-sm">{{ $contract->subject}}</dd>
@@ -373,7 +409,7 @@
                                         <dt class="col-sm-4 h6 text-sm">{{ __('Value') }}</dt>
                                         <dd class="col-sm-8 text-sm"> {{ \Auth::user()->priceFormat($contract->value) }}</dd>
                                         <dt class="col-sm-4 h6 text-sm">{{__('Type')}}</dt>
-                                        <dd class="col-sm-8 text-sm">{{ !empty($contract->types)?$contract->types->name:'-' }}</dd>
+                                        <dd class="col-sm-8 text-sm">{{ $contract->projects->category->category_name }}</dd>
                                         <dt class="col-sm-4 h6 text-sm">{{__('Status')}}</dt>
                                         <dd class="col-sm-8 text-sm">{{$contract->status }}</dd>
                                         <dt class="col-sm-4 h6 text-sm">{{__('Start Date')}}</dt>
@@ -381,12 +417,18 @@
                                         <dt class="col-sm-4 h6 text-sm">{{__('End Date')}}</dt>
                                         <dd class="col-sm-8 text-sm">{{ Auth::user()->dateFormat($contract->end_date) }}</dd>
                                     </dl>
+                                    <div class="col-md-12 text-end mb-4">
+                                        <a href="{{ route('contract.pay', $contract->id) }}" class="btn btn-success">
+                                            <i class="ti ti-cash"></i> Pay Contractor
+                                        </a>
+                                    </div>
                                 </address>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                {{-- <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0">{{ __('Contract Description ') }}</h5>
                     </div>
@@ -397,7 +439,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <div id="useradd-2">
@@ -407,10 +449,10 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            @if(\Auth::user()->type=='super admin')
+                            @if(\Auth::user()->type!='contractor')
                                 <div class="col-md-12 dropzone top-5-scroll browse-file" id="dropzonewidget"></div>
 
-                            @elseif(\Auth::user()->type == 'client' && $contract->status=='accept' )
+                            @elseif(\Auth::user()->type == 'contractor' && $contract->status=='accept' )
                                 <div class="col-md-12 dropzone top-5-scroll browse-file" id="dropzonewidget"></div>
                             @endif
                         </div>
@@ -439,7 +481,7 @@
                                                     </a>
                                                 </div>
 
-                                                @if ((\Auth::user()->type == 'super admin' && $contract->status == 'accept') || \Auth::user()->id == $file->user_id)
+                                                @if ((\Auth::user()->type != 'contractor' && $contract->status == 'accept') || \Auth::user()->id == $file->user_id)
 
                                                     <div class="col-auto actions">
                                                         <div class="action-btn bg-danger ">
@@ -469,7 +511,7 @@
                         <h5 class="mb-0">{{ __('Comments') }}</h5>
                     </div>
                     <div class="card-body">
-                        @if(\Auth::user()->type == 'super admin')
+                        @if(\Auth::user()->type != 'contractor')
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
                                     <form method="post" class="card-comment-box" id="form-comment" data-action="{{route('comment.store', [$contract->id])}}">
@@ -478,7 +520,7 @@
                                 </div>
                                 <button id="comment_submit" class="btn btn-send mt-2"><i class="f-16 text-primary ti ti-brand-telegram"></i></button>
                             </div>
-                        @elseif(\Auth::user()->type == 'client' && $contract->status=='accept' )
+                        @elseif(\Auth::user()->type == 'contractor' && $contract->status=='accept' )
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
                                     <form method="post" class="card-comment-box" id="form-comment" data-action="{{route('comment.store', [$contract->id])}}">
@@ -509,7 +551,7 @@
                                             <small class="d-block">{{$comment->created_at->diffForHumans()}}</small>
                                         </div>
 
-                                        @if ((\Auth::user()->type == 'super admin' && $contract->status == 'accept') || \Auth::user()->id == $comment->user_id)
+                                        @if ((\Auth::user()->type != 'contractor' && $contract->status == 'accept') || \Auth::user()->id == $comment->user_id)
                                             <div class="col-auto actions">
                                                 <div class="action-btn bg-danger ms-2">
                                                     {!! Form::open(['method' => 'DELETE', 'route' => ['comment_store.destroy',  $comment->id]]) !!}
@@ -549,7 +591,7 @@
                     </div>
 
                     <div class="card-body">
-                        @if(\Auth::user()->type == 'super admin')
+                        @if(\Auth::user()->type != 'contractor')
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
                                     {{ Form::open(['route' => ['note_store.store', $contract->id]]) }}
@@ -562,7 +604,7 @@
                                     {{ Form::close() }}
                                 </div>
                             </div>
-                        @elseif(\Auth::user()->type == 'client' && $contract->status=='accept' )
+                        @elseif(\Auth::user()->type == 'contractor' && $contract->status=='accept' )
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
                                     {{ Form::open(['route' => ['note_store.store', $contract->id]]) }}
@@ -597,7 +639,7 @@
                                             <small class="d-block">{{$note->created_at->diffForHumans()}}</small>
                                         </div>
 
-                                        @if ((\Auth::user()->type == 'super admin' && $contract->status == 'accept') || \Auth::user()->id == $note->user_id)
+                                        @if ((\Auth::user()->type != 'contractor' && $contract->status == 'accept') || \Auth::user()->id == $note->user_id)
 
                                             <div class="col-auto actions">
                                                 <div class="action-btn bg-danger ms-2">

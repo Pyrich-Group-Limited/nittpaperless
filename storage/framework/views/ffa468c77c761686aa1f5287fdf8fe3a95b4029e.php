@@ -1,10 +1,9 @@
 <?php $__env->startSection('page-title'); ?>
-    <?php if(Auth::user()->type=='client'): ?>
-        HRM Dashboard
-    <?php else: ?>
-        <?php echo e(Ucfirst(Auth::user()->type.' '.'Dashboard' )); ?>
-
-    <?php endif; ?>
+    
+        <?php echo e('Dashboard'); ?> <br>
+        <i class="ti ti-user"></i> (<?php echo e(Ucfirst(Auth::user()->designation)); ?>)<br>
+        <i class="ti ti-location"></i> <?php echo e(Ucfirst(Auth::user()->location)); ?> 
+    
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('script-page'); ?>
     <script>

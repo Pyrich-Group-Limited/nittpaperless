@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{__('Dashboard')}}
+    {{__('Dashboard')}} <br>
+    <i class="ti ti-user"></i> ({{ Ucfirst(Auth::user()->designation) }})<br>
+        <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}}  
 @endsection
 
 @section('breadcrumb')
