@@ -188,10 +188,13 @@ use App\Http\Livewire\DG\DgErgpCompnent;
 use App\Http\Livewire\DG\ViewErgpExpenseComponent;
 use App\Http\Livewire\DG\ViewHodsCommentComponent;
 
-//budgets 
+//budgets
 use App\Http\Livewire\Budgets\ManageBudgetsComponent;
 use App\Http\Livewire\Budgets\DepartmentBudgetRequest;
 use App\Http\Livewire\Budgets\AccountantApproveBudget;
+
+use App\Http\Livewire\Contracts\ContractorPaymentComponent;
+use App\Http\Livewire\Contracts\PaymentHistoryComponent;
 
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
@@ -250,7 +253,7 @@ Route::middleware(['auth','revalidate'])->prefix('director-general')->group(func
     Route::get('/dg-projects',DgProjectsComponent::class)->name('dg.projects');
     Route::get('/dg-project-details/{id}',DgProjectDetailsComponent::class)->name('dg.projectDetails');
     Route::get('/dg-project/{id}/applicants',ProjectRecommendedApplicantsComponent::class)->name('dg.projectApplicants');
-    Route::get('/contracts',ContractComponent::class)->name('dg.contracts');
+    // Route::get('/contracts',ContractComponent::class)->name('dg.contracts');
     Route::get('/view-erpg',DgErgpCompnent::class)->name('dg.ergps');
     Route::get('/erpg-expense/{id}/view',ViewErgpExpenseComponent::class)->name('dg.showErgp.expense');
     Route::get('/hods-comments/{id}',ViewHodsCommentComponent::class)->name('dg.hods.comment');
@@ -1241,10 +1244,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function 
     Route::get('all-projects', ProjectsComponent::class)->name('created-projects');
     Route::get('project/{id}/show',ShowProjectComponent::class)->name('project.details');
     Route::get('project/{id}/edit',EditProjectComponent::class)->name('project.edit');
-
     Route::get('/project/{id}/applicants',ProjectApplicantsComponent::class)->name('project.applicants');
-    Route::get('/project-contracts',ProjectContractsComponent::class)->name('project.contracts');
-    Route::get('/project-contractors',ProjectContractorsComponent::class)->name('project.contractors');
     Route::get('/contract/{id}/details',ShowContractDetailsComponent::class)->name('contract.details');
     Route::get('/shared-project/{id}',SharedProjectDetailsComponent::class)->name('project.shared');
 });
@@ -1255,6 +1255,15 @@ Route::middleware(['XSS', 'revalidate'])->prefix('budgets')->group(function () {
     Route::get('sumitted-budgets', DepartmentBudgetRequest::class)->name('department.budget');
     Route::get('pending-budgets', AccountantApproveBudget::class)->name('budget.pending');
     Route::get('ergps',ErgpComponent::class)->name('pp.ergp');
+});
+
+// Contracts
+Route::middleware(['XSS', 'revalidate'])->prefix('contracts')->group(function () {
+    Route::get('/contract',ContractComponent::class)->name('dg.contracts');
+    Route::get('/project-contracts',ProjectContractsComponent::class)->name('project.contracts');
+    Route::get('/project-contractors',ProjectContractorsComponent::class)->name('project.contractors');
+    Route::get('/payment/{contractId}',ContractorPaymentComponent::class)->name('contract.pay');
+    Route::get('/history/{contractId}',PaymentHistoryComponent::class)->name('contract.history');
 });
 
 

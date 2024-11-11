@@ -316,7 +316,7 @@
 
                     <?php if( Gate::check('set budget') || Gate::check('manage budget') || Gate::check('view budget') || Gate::check('manage ergp') || Gate::check('view ergp')): ?>
                     <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp' || Request::segment(1) == 'ergp') ? 'active dash-trigger' : ''); ?>" href="#navbar-performance" data-toggle="collapse" role="button" aria-expanded="<?php echo e((Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp') ? 'true' : 'false'); ?>">
-                            <a class="dash-link" href="#"><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
+                            <a class="dash-link" href="#"><span class="dash-micon"><i class="ti ti-cash"></i></span
                                 ><?php echo e(__('Budget')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                             <ul class="dash-submenu <?php echo e((Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp' || Request::segment(1) == 'ergp') ? 'show' : 'collapse'); ?>">
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('set budget')): ?>
@@ -658,7 +658,7 @@
                             <li class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''); ?>">
                                 <a href="#!" class="dash-link"
                                 ><span class="dash-micon"><i class="ti ti-list"></i></span
-                                    ><span class="dash-mtext"><?php echo e(__('New PM/PP')); ?></span
+                                    ><span class="dash-mtext"><?php echo e(__('PM/PP')); ?></span
                                     ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                                     ></a>
                                     <ul class="dash-submenu">
@@ -669,7 +669,14 @@
                                             <li class="dash-item  <?php echo e(Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''); ?>">
                                                 <a class="dash-link" href="<?php echo e(route('pp.ergp')); ?>"><?php echo e(__('ERGP')); ?></a>
                                             </li>
+                                            <li class="dash-item <?php echo e((Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : ''); ?>">
+                                                <a class="dash-link" href="<?php echo e(route('project.contractors')); ?>"><?php echo e(__('Contractors')); ?></a>
+                                            </li>
+                                            <li class="dash-item  <?php echo e((Request::segment(1) == 'contract')?'active':''); ?>">
+                                                <a class="dash-link" href="<?php echo e(route('project.contracts')); ?>"><?php echo e(__('Contracts')); ?></a>
+                                            </li>
                                         <?php endif; ?>
+
 
                                     </ul>
                             </li>

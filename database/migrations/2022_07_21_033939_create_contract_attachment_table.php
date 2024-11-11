@@ -18,6 +18,7 @@ class CreateContractAttachmentTable extends Migration
             $table->integer('contract_id')->default(0);
             $table->integer('user_id')->default(0);
             $table->string('files')->nullable();
+            $table->string('created_by')->nullable();
             $table->timestamps();
         });
     }

@@ -18,8 +18,13 @@ class CreateContractsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('client_name');
             $table->string('subject')->nullable();
-            $table->string('value')->nullable();
-            $table->integer('type')->nullable();
+            $table->decimal('value', 15, 2)->nullable();
+            $table->decimal('amount_paid_to_date', 15, 2)->default(0);
+
+            $table->unsignedBigInteger('type')->nullable();
+            $table->foreign('type')->references('id')->on('project_categories')->onDelete('cascade');
+
+            // $table->integer('type')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->string('description')->nullable();

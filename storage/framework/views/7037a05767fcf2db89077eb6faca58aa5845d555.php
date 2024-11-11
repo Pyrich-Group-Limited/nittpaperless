@@ -61,7 +61,7 @@
                                     <?php endif; ?>
                                     <td><?php echo e(!empty($contract->projects)?$contract->projects->project_name:'-'); ?></td>
 
-                                    <td><?php echo e(!empty($contract->types)?$contract->types->name:''); ?></td>
+                                    <td><?php echo e($contract->projects->category->category_name); ?></td>
                                     <td><?php echo e(\Auth::user()->priceFormat($contract->value)); ?></td>
                                     <td><?php echo e(\Auth::user()->dateFormat($contract->start_date )); ?></td>
                                     <td><?php echo e(\Auth::user()->dateFormat($contract->end_date )); ?></td>
@@ -89,8 +89,9 @@
                                             <div class="action-btn bg-warning ms-2">
                                                 <a href="<?php echo e(route('contract.details',$contract->id)); ?>"
                                                    class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                   data-bs-whatever="<?php echo e(__('View Budget Planner')); ?>" data-bs-toggle="tooltip"
-                                                   data-bs-original-title="<?php echo e(__('View')); ?>"> <span class="text-white"> <i class="ti ti-eye"></i></span></a>
+                                                   data-bs-whatever="<?php echo e(__('View Contract Details')); ?>" data-bs-toggle="tooltip"
+                                                   data-bs-original-title="<?php echo e(__('View')); ?>"> <span class="text-white"> <i class="ti ti-eye"></i></span>
+                                                </a>
                                             </div>
                                         <?php endif; ?>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit contract')): ?>

@@ -60,7 +60,7 @@
                                     @endif
                                     <td>{{ !empty($contract->projects)?$contract->projects->project_name:'-' }}</td>
 
-                                    <td>{{ !empty($contract->types)?$contract->types->name:'' }}</td>
+                                    <td>{{$contract->projects->category->category_name }}</td>
                                     <td>{{ \Auth::user()->priceFormat($contract->value) }}</td>
                                     <td>{{  \Auth::user()->dateFormat($contract->start_date )}}</td>
                                     <td>{{  \Auth::user()->dateFormat($contract->end_date )}}</td>

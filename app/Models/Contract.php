@@ -20,6 +20,7 @@ class Contract extends Model
         'company_signature',
         'client_signature',
         'created_by',
+        'amount_paid_to_date'
     ];
 
     public static function status()
@@ -31,6 +32,15 @@ class Contract extends Model
 
         ];
         return $status;
+    }
+
+    public function projectCategory(){
+        return $this->belongsTo(projectCategory::class,'type');
+    }
+
+    public function contractorPayments()
+    {
+        return $this->hasMany(ContractorPaymentHistory::class);
     }
 
     public function clients()

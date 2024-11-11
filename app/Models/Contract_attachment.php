@@ -13,6 +13,6 @@ class Contract_attachment extends Model
         'contract_id',
         'user_id',
         'files',
-        'reated_by',
+        'created_by',
     ];
 }
