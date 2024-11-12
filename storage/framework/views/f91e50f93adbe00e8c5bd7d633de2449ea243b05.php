@@ -363,36 +363,37 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-lg-4 col-6">
-                                <div class="card">
-                                    <div class="card-body" >
-                                        <h6 class="mb-3"><i class="ti ti-cash"></i><?php echo e(__('Contract Value')); ?></h6>
-                                        <h4 class="mb-0 text-primary"><?php echo e(\Auth::user()->priceFormat($contract->value)); ?></h4>
-                                        <h3 class="mb-0"></h3>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view contract value')): ?>
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-lg-4 col-6">
+                                    <div class="card">
+                                        <div class="card-body" >
+                                            <h6 class="mb-3"><i class="ti ti-cash"></i><?php echo e(__('Contract Value')); ?></h6>
+                                            <h4 class="mb-0 text-primary"><?php echo e(\Auth::user()->priceFormat($contract->value)); ?></h4>
+                                            <h3 class="mb-0"></h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                <div class="card">
-                                    <div class="card-body" >
-                                        <h6 class="mb-3"><i class="ti ti-cash"></i><?php echo e(__('Total Paid')); ?></h6>
-                                        <h4 class="mb-0 text-primary"><?php echo e(\Auth::user()->priceFormat($contract->amount_paid_to_date)); ?></h4>
+                                <div class="col-lg-4 col-6">
+                                    <div class="card">
+                                        <div class="card-body" >
+                                            <h6 class="mb-3"><i class="ti ti-cash"></i><?php echo e(__('Total Paid')); ?></h6>
+                                            <h4 class="mb-0 text-primary"><?php echo e(\Auth::user()->priceFormat($contract->amount_paid_to_date)); ?></h4>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                <div class="card">
-                                    <div class="card-body" >
-                                        <h6 class="mb-3"><i class="ti ti-cash"></i><?php echo e(__('Balance')); ?></h6>
-                                        <h4 class="mb-0 text-danger"><?php echo e(\Auth::user()->priceFormat($contract->value - $contract->amount_paid_to_date)); ?></h4>
+                                <div class="col-lg-4 col-6">
+                                    <div class="card">
+                                        <div class="card-body" >
+                                            <h6 class="mb-3"><i class="ti ti-cash"></i><?php echo e(__('Balance')); ?></h6>
+                                            <h4 class="mb-0 text-danger"><?php echo e(\Auth::user()->priceFormat($contract->value - $contract->amount_paid_to_date)); ?></h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
 
                     <div class="col-xxl-5">
                         <div class="card report_card total_amount_card">
@@ -403,18 +404,32 @@
                                         <h5><?php echo e(__('Contract Detail')); ?></h5>
                                        </div>
                                         <div class="col-md-6 text-end mb-1">
-                                            <a href="<?php echo e(route('contract.history', $contract->id)); ?>" class="btn btn-success btn-sm">
-                                                <i class="ti ti-eye"></i> View Payment History
-                                            </a>
-                                            <div class="action-btn bg-success ms-2">
-                                                <a href="<?php echo e(route('contracts.recommend', $contract->id)); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                    data-bs-whatever="<?php echo e(__('Recommend Payment')); ?>" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="<?php echo e(__('Recommend Payment')); ?>"
-                                                    >
-                                                    <span class="text-white"> <i class="ti ti-cash"></i></span>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view payment history')): ?>
+                                                <a href="<?php echo e(route('contract.history', $contract->id)); ?>" class="btn btn-success btn-sm">
+                                                    <i class="ti ti-eye"></i> View Payment History
                                                 </a>
-                                            </div>
-                                            
+                                            <?php endif; ?>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('recommend payment')): ?>
+                                                <div class="action-btn bg-success ms-2">
+                                                    <a href="<?php echo e(route('contracts.recommend', $contract->id)); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                        data-bs-whatever="<?php echo e(__('Recommend Payment')); ?>" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="<?php echo e(__('Recommend Payment')); ?>"
+                                                        >
+                                                        <span class="text-white"> <i class="ti ti-cash"></i></span>
+                                                    </a>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view recommended payment')): ?>
+                                                <div class="action-btn bg-success ms-2">
+                                                    <a href="<?php echo e(route('contracts.recommend', $contract->id)); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                        data-bs-whatever="<?php echo e(__('View Recommended Payment')); ?>" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="<?php echo e(__('View Recommended Payment')); ?>"
+                                                        >
+                                                        <span class="text-white"> <i class="ti ti-eye"></i></span>
+                                                    </a>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                         <hr>
                                         <br>
@@ -437,8 +452,6 @@
                                         
 
                                         
-
-                                        
                                     </div>
                                 </address>
                                 
@@ -457,7 +470,9 @@
                     <div class="card-body">
                         <div class="form-group">
                             <?php if(\Auth::user()->type!='contractor'): ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('comment on contract')): ?>
                                 <div class="col-md-12 dropzone top-5-scroll browse-file" id="dropzonewidget"></div>
+                            <?php endif; ?>
 
                             <?php elseif(\Auth::user()->type == 'contractor' && $contract->status=='accept' ): ?>
                                 <div class="col-md-12 dropzone top-5-scroll browse-file" id="dropzonewidget"></div>
@@ -469,7 +484,6 @@
                                 <?php $__currentLoopData = $contract->files; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $file): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="card mb-3 border shadow-none">
                                         <div class="px-3 py-3">
-
                                             <div class="row align-items-center">
                                                 <div class="col">
                                                     <h6 class="text-sm mb-0">
@@ -522,6 +536,7 @@
                     </div>
                     <div class="card-body">
                         <?php if(\Auth::user()->type != 'contractor'): ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('comment on contract')): ?>
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
                                     <form method="post" class="card-comment-box" id="form-comment" data-action="<?php echo e(route('comment.store', [$contract->id])); ?>">
@@ -530,6 +545,7 @@
                                 </div>
                                 <button id="comment_submit" class="btn btn-send mt-2"><i class="f-16 text-primary ti ti-brand-telegram"></i></button>
                             </div>
+                        <?php endif; ?>
                         <?php elseif(\Auth::user()->type == 'contractor' && $contract->status=='accept' ): ?>
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
@@ -604,21 +620,23 @@
 
                     <div class="card-body">
                         <?php if(\Auth::user()->type != 'contractor'): ?>
-                            <div class="col-12 d-flex">
-                                <div class="form-group mb-0 form-send w-100">
-                                    <?php echo e(Form::open(['route' => ['note_store.store', $contract->id]])); ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('comment on contract')): ?>
+                                <div class="col-12 d-flex">
+                                    <div class="form-group mb-0 form-send w-100">
+                                        <?php echo e(Form::open(['route' => ['note_store.store', $contract->id]])); ?>
 
-                                    <div class="form-group">
-                                        <textarea rows="3" class="form-control grammer_textarea" name="notes" data-toggle="autosize" placeholder="<?php echo e(__('Add a Notes...')); ?>" required></textarea>
+                                        <div class="form-group">
+                                            <textarea rows="3" class="form-control grammer_textarea" name="notes" data-toggle="autosize" placeholder="<?php echo e(__('Add a Notes...')); ?>" required></textarea>
+                                        </div>
+                                        <div class="col-md-12 text-end mb-0">
+                                            <?php echo e(Form::submit(__('Add'), ['class' => 'btn  btn-primary'])); ?>
+
+                                        </div>
+                                        <?php echo e(Form::close()); ?>
+
                                     </div>
-                                    <div class="col-md-12 text-end mb-0">
-                                        <?php echo e(Form::submit(__('Add'), ['class' => 'btn  btn-primary'])); ?>
-
-                                    </div>
-                                    <?php echo e(Form::close()); ?>
-
                                 </div>
-                            </div>
+                            <?php endif; ?>
                         <?php elseif(\Auth::user()->type == 'contractor' && $contract->status=='accept' ): ?>
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">

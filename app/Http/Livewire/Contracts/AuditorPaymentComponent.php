@@ -20,6 +20,9 @@ class AuditorPaymentComponent extends Component
     public function mount($paymentRequestId)
     {
         $this->paymentRequest = PaymentRequest::find($paymentRequestId);
+
+        $this->percentage = $this->paymentRequest->recommended_percentage;
+        $this->amount = $this->paymentRequest->recommended_amount;
     }
 
     public function calculateAmountFromPercentage()
@@ -56,7 +59,7 @@ class AuditorPaymentComponent extends Component
             ]);
 
             $this->paymentRequest->update([
-                'audited_by' => auth()->id(),
+                'paid_by' => auth()->id(),
                 'status' => 'paid',
                 'isCompleted' => true,
             ]);

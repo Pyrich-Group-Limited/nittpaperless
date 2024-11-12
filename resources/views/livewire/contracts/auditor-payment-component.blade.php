@@ -1,18 +1,6 @@
 @section('page-title')
    Contractor Payment
 @endsection
-    @push('script-page')
-        </script>
-
-        <script>
-            function copyToClipboard(element) {
-
-                var copyText = element.id;
-                navigator.clipboard.writeText(copyText);
-                show_toastr('success', 'Url copied to clipboard', 'success');
-            }
-        </script>
-    @endpush
     @section('breadcrumb')
         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
         <li class="breadcrumb-item"><a href="#">{{__('Payment')}}</a></li>
@@ -29,7 +17,7 @@
                     {{-- <form wire:submit.prevent="makePayment"> --}}
                         <div>
                             <label for="percentage"><b>Percentage</b></label>
-                            <input type="number" class="form-control" wire:model="percentage" wire:change="calculateAmountFromPercentage" min="0" max="100" step="0.01" required>
+                            <input type="number" class="form-control" value="{{ $paymentRequest->recommended_percentage }}" wire:model="percentage" wire:change="calculateAmountFromPercentage" min="0" max="100" step="0.01" required>
                         </div>
                 
                         <div>

@@ -23,7 +23,8 @@ return new class extends Migration
             $table->foreignId('signed_by')->nullable()->constrained('users')->onDelete('cascade'); // Bursar
             $table->foreignId('voucher_raised_by')->nullable()->constrained('users')->onDelete('cascade'); // Voucher Unit Head
             $table->foreignId('audited_by')->nullable()->constrained('users')->onDelete('cascade'); // Auditor
-            $table->enum('status', ['pending', 'recommended', 'approved', 'signed', 'voucher_raised', 'paid'])->default('pending');
+            $table->foreignId('paid_by')->nullable()->constrained('users')->onDelete('cascade'); // Auditor
+            $table->enum('status', ['pending', 'recommended', 'approved', 'signed', 'voucher_raised','audited', 'paid'])->default('pending');
             $table->text('remarks')->nullable();
             $table->boolean('isCompleted')->nullable();
 
