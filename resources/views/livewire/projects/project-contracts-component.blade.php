@@ -52,7 +52,7 @@
 
                                 <tr class="font-style">
                                     <td>
-                                        <a href="{{route('contract.show',$contract->id)}}" class="btn btn-outline-primary">{{\Auth::user()->contractNumberFormat($contract->id)}}</a>
+                                        <a href="{{route('contract.details',$contract->id)}}" class="btn btn-outline-primary">{{\Auth::user()->contractNumberFormat($contract->id)}}</a>
                                     </td>
                                     <td>{{ $contract->subject}}</td>
                                     @if(\Auth::user()->type!='contractor')
@@ -69,6 +69,17 @@
                                     </td>
 
                                     <td class="action ">
+                                        {{-- <button class="default-btn" type="submit" target="popup" 
+                                                onclick="window.open('{{ route('contracts.voucher', $contract->id) }}','popup', 'width=550, height=600')">Print
+                                                </button> --}}
+                                                <div class="action-btn bg-success ms-2">
+                                                    <a href="{{ route('contracts.recommend', $contract->id) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                        data-bs-whatever="{{__('Recommend Payment')}}" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="{{__('Recommend Payment')}}"
+                                                        >
+                                                        <span class="text-white"> <i class="ti ti-cash"></i></span>
+                                                    </a>
+                                                </div>
                                         @if(\Auth::user()->type=='super admin')
                                             @if($contract->status=='accept')
                                                 <div class="action-btn bg-primary ms-2">

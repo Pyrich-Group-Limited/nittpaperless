@@ -196,6 +196,13 @@ use App\Http\Livewire\Budgets\AccountantApproveBudget;
 use App\Http\Livewire\Contracts\ContractorPaymentComponent;
 use App\Http\Livewire\Contracts\PaymentHistoryComponent;
 
+use App\Http\Livewire\Contracts\PaymentRecommendationComponent;
+use App\Http\Livewire\Contracts\DGApprovalComponent;
+use App\Http\Livewire\Contracts\BursarSignatureComponent;
+use App\Http\Livewire\Contracts\VoucherCreationComponent;
+use App\Http\Livewire\Contracts\AuditorPaymentComponent;
+use App\Http\Livewire\Contracts\PaymentVoucher;
+
 //advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 use Illuminate\Support\Facades\Storage;
@@ -1264,6 +1271,13 @@ Route::middleware(['XSS', 'revalidate'])->prefix('contracts')->group(function ()
     Route::get('/project-contractors',ProjectContractorsComponent::class)->name('project.contractors');
     Route::get('/payment/{contractId}',ContractorPaymentComponent::class)->name('contract.pay');
     Route::get('/history/{contractId}',PaymentHistoryComponent::class)->name('contract.history');
+
+    Route::get('/contracts/{contractId}/recommend', PaymentRecommendationComponent::class)->name('contracts.recommend');
+    Route::get('/payment-requests/{paymentRequestId}/approve', DGApprovalComponent::class)->name('payment-requests.approve');
+    Route::get('/payment-requests/{paymentRequestId}/sign', BursarSignatureComponent::class)->name('payment-requests.sign');
+    Route::get('/payment-requests/{paymentRequestId}/voucher', VoucherCreationComponent::class)->name('payment-requests.voucher');
+    Route::get('/payment-requests/{paymentRequestId}/finalize', AuditorPaymentComponent::class)->name('payment-requests.finalize');
+    Route::get('/contracts/{paymentRequestId}/voucher', PaymentVoucher::class)->name('contracts.voucher');
 });
 
 

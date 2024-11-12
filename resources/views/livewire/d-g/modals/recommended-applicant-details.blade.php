@@ -108,6 +108,7 @@
                             </div>
 
                             <div class="modal-footer">
+                                <div wire:loading wire:target="approveContractor"><x-g-loader /></div>
                                 <input type="button" id="closeDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light" data-bs-dismiss="modal">
                                 <input type="button" wire:click="approveContractor('{{ $selApplicant->id }}')"

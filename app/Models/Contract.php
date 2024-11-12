@@ -43,6 +43,11 @@ class Contract extends Model
         return $this->hasMany(ContractorPaymentHistory::class);
     }
 
+    public function paymentRequests()
+    {
+        return $this->hasMany(PaymentRequest::class);
+    }
+
     public function clients()
     {
         return $this->hasOne('App\Models\User', 'id', 'client_name');

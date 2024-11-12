@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Contracts;
 use Livewire\Component;
 use App\Models\Contract;
 use App\Models\ContractorPaymentHistory;
+use App\Models\PaymentRequest;
 use Illuminate\Support\Facades\DB;
 
 class ContractorPaymentComponent extends Component
@@ -15,6 +16,26 @@ class ContractorPaymentComponent extends Component
     public $remarks;
     public $contract;
     public $paymentHistory;
+
+    // public $paymentRequest;
+
+    // public function mount($paymentRequestId)
+    // {
+    //     $this->paymentRequest = PaymentRequest::find($paymentRequestId);
+    // }
+
+    // public function finalizePayment()
+    // {
+    //     DB::transaction(function () {
+    //         // Finalize payment and update contractor’s contract balance here
+    //         $this->paymentRequest->update([
+    //             'audited_by' => auth()->id(),
+    //             'status' => 'paid',
+    //         ]);
+    //     });
+    //     $this->dispatchBrowserEvent('success',["success" =>"Payment recorded successfully."]);
+    // }
+
 
     public function mount($contractId)
     {
@@ -39,6 +60,7 @@ class ContractorPaymentComponent extends Component
 
         DB::transaction(function () use ($remainingBalance) {
             ContractorPaymentHistory::create([
+                'payment_request_id' => $this->contract->paymentRequest->id,
                 'contractor_id' => $this->contract->client_name,
                 'project_id' => $this->contract->project_id,
                 'contract_id' => $this->contract->id,
@@ -46,6 +68,7 @@ class ContractorPaymentComponent extends Component
                 'payment_date' => now(),
                 'remarks' => $this->remarks,
                 'remaining_balance' => $remainingBalance - $this->amount,
+                'processed_by' => auth()->id(),
             ]);
 
             $this->contract->update([

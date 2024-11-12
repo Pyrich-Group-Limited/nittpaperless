@@ -27,28 +27,6 @@ class ShowContractDetailsComponent extends Component
         $contract = Contract::find($id);
     }
 
-    // public function show($id)
-    // {
-    //     if(\Auth::user()->can('show contract'))
-    //     {
-    //         $contract = Contract::find($id);
-
-    //         if($contract->created_by == \Auth::user()->creatorId())
-    //         {
-    //             $client   = $contract->client;
-    //             return view('contract.show', compact('contract', 'client'));
-    //         }
-    //         else
-    //         {
-    //             return redirect()->back()->with('error', __('Permission Denied.'));
-    //         }
-    //     }
-    //     else
-    //     {
-    //         return redirect()->back()->with('error', __('Permission denied.'));
-    //     }
-    // }
-
     public function calculateAmountFromPercentage()
     {
         $this->amount = ($this->contract->total_contract_sum * $this->percentage) / 100;
@@ -56,7 +34,7 @@ class ShowContractDetailsComponent extends Component
 
     public function render()
     {
-        $contract = Contract::find($this->contract_id);
+        $contract = Contract::find($this->contract_id)->first();
         return view('livewire.projects.show-contract-details-component',compact('contract'));
     }
 }

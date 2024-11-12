@@ -33,6 +33,7 @@ class CreateContractsTable extends Migration
             $table->string('status')->default('pending');;
             $table->longText('client_signature')->nullable();
             $table->longText('company_signature')->nullable();
+            $table->boolean('is_complete')->nullable();
             $table->integer('created_by');
             $table->timestamps();
         }

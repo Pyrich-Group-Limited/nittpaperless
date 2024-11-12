@@ -97,8 +97,10 @@
                                 </div>
 
                             <div class="modal-footer">
+                                <div wire:loading wire:target="recommendToDg"><x-g-loader /></div>
                                 <input type="button" id="closeApplicantDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light" data-bs-dismiss="modal">
+
                                 @if($selApplicant->application_status!='selected')
                                     <input type="button"  wire:click="recommendToDg('{{ $selApplicant->id }}')" value="{{ __('Recommend') }}" class="btn  btn-primary">
                                 @endif

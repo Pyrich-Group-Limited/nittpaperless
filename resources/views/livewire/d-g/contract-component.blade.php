@@ -52,7 +52,7 @@
     
                                     <tr class="font-style">
                                         <td>
-                                            <a href="{{route('contract.show',$contract->id)}}" class="btn btn-outline-primary">{{\Auth::user()->contractNumberFormat($contract->id)}}</a>
+                                            <a href="{{route('contract.details',$contract->id)}}" class="btn btn-outline-primary">{{\Auth::user()->contractNumberFormat($contract->id)}}</a>
                                         </td>
                                         <td>{{ $contract->subject}}</td>
                                         @if(\Auth::user()->type!='contractor')
@@ -60,7 +60,7 @@
                                         @endif
                                         <td>{{ !empty($contract->projects)?$contract->projects->project_name:'-' }}</td>
     
-                                        <td>{{ !empty($contract->types)?$contract->types->name:'' }}</td>
+                                        <td>{{ $contract->projects->category->category_name }}</td>
                                         <td>{{ \Auth::user()->priceFormat($contract->value) }}</td>
                                         <td>{{  \Auth::user()->dateFormat($contract->start_date )}}</td>
                                         <td>{{  \Auth::user()->dateFormat($contract->end_date )}}</td>

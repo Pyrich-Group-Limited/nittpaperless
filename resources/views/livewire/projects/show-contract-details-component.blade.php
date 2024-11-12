@@ -399,6 +399,21 @@
                                             <a href="{{ route('contract.history', $contract->id) }}" class="btn btn-success btn-sm">
                                                 <i class="ti ti-eye"></i> View Payment History
                                             </a>
+                                            <div class="action-btn bg-success ms-2">
+                                                <a href="{{ route('contracts.recommend', $contract->id) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                    data-bs-whatever="{{__('Recommend Payment')}}" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="{{__('Recommend Payment')}}"
+                                                    >
+                                                    <span class="text-white"> <i class="ti ti-cash"></i></span>
+                                                </a>
+                                            </div>
+                                            {{-- @if($contract->paymentRequests->status == 'voucher_raised')
+                                                <button class="btn btn-success btn-sm" type="submit" target="popup" 
+                                                onclick="window.open('{{ route('contracts.voucher', $contract->paymentRequests->id) }}','popup', 'width=994, height=1123')">
+                                                <i class="fa fa-print"></i> Print Voucher
+                                                </button>
+                                                
+                                            @endif --}}
                                         </div>
                                         <hr>
                                         <br>
@@ -418,9 +433,37 @@
                                         <dd class="col-sm-8 text-sm">{{ Auth::user()->dateFormat($contract->end_date) }}</dd>
                                     </dl>
                                     <div class="col-md-12 text-end mb-4">
-                                        <a href="{{ route('contract.pay', $contract->id) }}" class="btn btn-success">
-                                            <i class="ti ti-cash"></i> Pay Contractor
-                                        </a>
+                                        {{-- @if($contract->paymentRequests->isCompleted)
+                                            <a href="{{ route('contracts.recommend', $contract->id) }}" class="btn btn-success">
+                                                <i class="ti ti-cash"></i> Recommend Payment
+                                            </a>
+                                        @endif --}}
+
+                                        {{-- @if (Auth::user()->type=='DG' && $contract->paymentRequests->status == 'recommended')
+                                            <a href="{{ route('payment-requests.approve', $contract->paymentRequests->id) }}" class="btn btn-success">
+                                                <i class="ti ti-check"></i> Approve Payment
+                                            </a>
+                                        @endif
+
+                                            @if($contract->paymentRequests->status == 'approved' && $contract->paymentRequests->isCompleted == false && $contract->amount_paid_to_date != $contract->value)
+                                                <a href="{{ route('payment-requests.sign', $contract->paymentRequests->id) }}" class="btn btn-success">
+                                                    <i class="ti ti-check"></i> Sign
+                                                </a>
+                                            @endif
+
+                                            @if($contract->paymentRequests->status == 'signed' && $contract->paymentRequests->isCompleted == false && $contract->amount_paid_to_date != $contract->value)
+                                                <a href="{{ route('payment-requests.voucher', $contract->paymentRequests->id) }}" class="btn btn-success">
+                                                    <i class="ti ti-check"></i> Raise Voucher
+                                                </a>
+                                            @endif
+
+                                            @if($contract->paymentRequests->status == 'voucher_raised' && $contract->paymentRequests->isCompleted == false && $contract->amount_paid_to_date != $contract->value)
+                                                <a href="{{ route('payment-requests.finalize', $contract->paymentRequests->id) }}" class="btn btn-success">
+                                                    <i class="ti ti-check"></i> Make Payment
+                                                </a>
+                                            @endif --}}
+
+                                        
                                     </div>
                                 </address>
                                 

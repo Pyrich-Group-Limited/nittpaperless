@@ -53,7 +53,7 @@
 
                                 <tr class="font-style">
                                     <td>
-                                        <a href="<?php echo e(route('contract.show',$contract->id)); ?>" class="btn btn-outline-primary"><?php echo e(\Auth::user()->contractNumberFormat($contract->id)); ?></a>
+                                        <a href="<?php echo e(route('contract.details',$contract->id)); ?>" class="btn btn-outline-primary"><?php echo e(\Auth::user()->contractNumberFormat($contract->id)); ?></a>
                                     </td>
                                     <td><?php echo e($contract->subject); ?></td>
                                     <?php if(\Auth::user()->type!='contractor'): ?>
@@ -70,6 +70,8 @@
                                     </td>
 
                                     <td class="action ">
+                                        
+                                                
                                         <?php if(\Auth::user()->type=='super admin'): ?>
                                             <?php if($contract->status=='accept'): ?>
                                                 <div class="action-btn bg-primary ms-2">
@@ -86,6 +88,14 @@
                                             <?php endif; ?>
                                         <?php endif; ?>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('show contract')): ?>
+                                        <div class="action-btn bg-success ms-2">
+                                            <a href="<?php echo e(route('contracts.recommend', $contract->id)); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                data-bs-whatever="<?php echo e(__('Recommend Payment')); ?>" data-bs-toggle="tooltip"
+                                                data-bs-original-title="<?php echo e(__('Recommend Payment')); ?>"
+                                                >
+                                                <span class="text-white"> <i class="ti ti-cash"></i></span>
+                                            </a>
+                                        </div>
                                             <div class="action-btn bg-warning ms-2">
                                                 <a href="<?php echo e(route('contract.details',$contract->id)); ?>"
                                                    class="mx-3 btn btn-sm d-inline-flex align-items-center"
