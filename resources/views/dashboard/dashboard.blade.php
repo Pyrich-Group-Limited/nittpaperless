@@ -1,14 +1,8 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{-- @if(Auth::user()->type=='client')
-        HRM Dashboard <br>
-        <i class="ti ti-user"></i>({{ Ucfirst(Auth::user()->designation) }})<br>
-        <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}} 
-    @else --}}
         {{'Dashboard'}} <br>
         <i class="ti ti-user"></i> ({{ Ucfirst(Auth::user()->designation) }})<br>
         <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}} 
-    {{-- @endif --}}
 @endsection
 @push('script-page')
     <script>

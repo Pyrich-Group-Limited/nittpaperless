@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('contractor_payment_histories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('payment_request_id')->nullable();
+            $table->foreign('payment_request_id')->references('id')->on('payment_requests')->onDelete('cascade');
+
             $table->unsignedBigInteger('contract_id')->nullable();
             $table->foreign('contract_id')->references('id')->on('contracts')->onDelete('cascade');
 
@@ -27,6 +30,10 @@ return new class extends Migration
             $table->decimal('amount_paid', 15, 2);
             $table->date('payment_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('remarks')->nullable();
+
+            $table->unsignedBigInteger('processed_by')->nullable();
+            $table->foreign('processed_by')->references('id')->on('users')->onDelete('cascade');
+
             $table->decimal('remaining_balance', 15, 2);
             $table->timestamps();
         });

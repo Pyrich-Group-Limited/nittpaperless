@@ -111,6 +111,7 @@
                         </div>
 
                         <div class="modal-footer">
+                            <div wire:loading wire:target="updateProject"><x-g-loader /></div>
                             <input type="button" id="closeEditProjectModal" value="{{ __('Cancel') }}" class="btn  btn-light"
                                 data-bs-dismiss="modal">
                             <input type="button" id="button" wire:click="updateProject" value="{{ __('Update') }}" class="btn  btn-primary">

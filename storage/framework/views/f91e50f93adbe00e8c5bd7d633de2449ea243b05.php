@@ -406,6 +406,15 @@
                                             <a href="<?php echo e(route('contract.history', $contract->id)); ?>" class="btn btn-success btn-sm">
                                                 <i class="ti ti-eye"></i> View Payment History
                                             </a>
+                                            <div class="action-btn bg-success ms-2">
+                                                <a href="<?php echo e(route('contracts.recommend', $contract->id)); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                    data-bs-whatever="<?php echo e(__('Recommend Payment')); ?>" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="<?php echo e(__('Recommend Payment')); ?>"
+                                                    >
+                                                    <span class="text-white"> <i class="ti ti-cash"></i></span>
+                                                </a>
+                                            </div>
+                                            
                                         </div>
                                         <hr>
                                         <br>
@@ -425,9 +434,11 @@
                                         <dd class="col-sm-8 text-sm"><?php echo e(Auth::user()->dateFormat($contract->end_date)); ?></dd>
                                     </dl>
                                     <div class="col-md-12 text-end mb-4">
-                                        <a href="<?php echo e(route('contract.pay', $contract->id)); ?>" class="btn btn-success">
-                                            <i class="ti ti-cash"></i> Pay Contractor
-                                        </a>
+                                        
+
+                                        
+
+                                        
                                     </div>
                                 </address>
                                 

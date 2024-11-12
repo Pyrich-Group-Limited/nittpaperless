@@ -53,7 +53,7 @@
     
                                     <tr class="font-style">
                                         <td>
-                                            <a href="<?php echo e(route('contract.show',$contract->id)); ?>" class="btn btn-outline-primary"><?php echo e(\Auth::user()->contractNumberFormat($contract->id)); ?></a>
+                                            <a href="<?php echo e(route('contract.details',$contract->id)); ?>" class="btn btn-outline-primary"><?php echo e(\Auth::user()->contractNumberFormat($contract->id)); ?></a>
                                         </td>
                                         <td><?php echo e($contract->subject); ?></td>
                                         <?php if(\Auth::user()->type!='contractor'): ?>
@@ -61,7 +61,7 @@
                                         <?php endif; ?>
                                         <td><?php echo e(!empty($contract->projects)?$contract->projects->project_name:'-'); ?></td>
     
-                                        <td><?php echo e(!empty($contract->types)?$contract->types->name:''); ?></td>
+                                        <td><?php echo e($contract->projects->category->category_name); ?></td>
                                         <td><?php echo e(\Auth::user()->priceFormat($contract->value)); ?></td>
                                         <td><?php echo e(\Auth::user()->dateFormat($contract->start_date )); ?></td>
                                         <td><?php echo e(\Auth::user()->dateFormat($contract->end_date )); ?></td>
