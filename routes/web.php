@@ -201,6 +201,7 @@ use App\Http\Livewire\Contracts\DGApprovalComponent;
 use App\Http\Livewire\Contracts\BursarSignatureComponent;
 use App\Http\Livewire\Contracts\VoucherCreationComponent;
 use App\Http\Livewire\Contracts\AuditorPaymentComponent;
+use App\Http\Livewire\Contracts\AuditApprocalComponent;
 use App\Http\Livewire\Contracts\PaymentVoucher;
 
 //advert components
@@ -1277,6 +1278,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('contracts')->group(function ()
     Route::get('/payment-requests/{paymentRequestId}/sign', BursarSignatureComponent::class)->name('payment-requests.sign');
     Route::get('/payment-requests/{paymentRequestId}/voucher', VoucherCreationComponent::class)->name('payment-requests.voucher');
     Route::get('/payment-requests/{paymentRequestId}/finalize', AuditorPaymentComponent::class)->name('payment-requests.finalize');
+    Route::get('/payment-requests/{paymentRequestId}/audit', AuditApprocalComponent::class)->name('payment-requests.audit');
     Route::get('/contracts/{paymentRequestId}/voucher', PaymentVoucher::class)->name('contracts.voucher');
 });
 

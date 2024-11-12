@@ -4109,6 +4109,87 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+
+
+            [   'name' => 'manage contract',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'view contract',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'recommend payment',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'view contract value',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'comment on contract',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'view payment history',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'print voucher',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'approve payment',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'bursar approval',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'raise contract voucher',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'audit approval',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'make payment',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [   'name' => 'view recommended payment',
+                'module' => 'Contract Payment',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ];
 
         Permission::insert($arrPermissions);
@@ -4123,6 +4204,20 @@ class UsersTableSeeder extends Seeder
         );
 
         $companyPermissions = [
+            ['name' => 'manage contract'],
+            ['name' => 'view contract'],
+            ['name' => 'recommend payment'],
+            ['name' => 'view contract value'],
+            ['name' => 'comment on contract'],
+            ['name' => 'view payment history'],
+            ['name' => 'print voucher'],
+            ['name' => 'approve payment'],
+            ['name' => 'bursar approval'],
+            ['name' => 'raise contract voucher'],
+            ['name' => 'audit approval'],
+            ['name' => 'make payment'],
+            ['name' => 'view recommended payment'],
+
             ['name' => 'set budget'],
             ['name' => 'manage budget'],
             ['name' => 'approve budget'],
@@ -4141,7 +4236,6 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show crm dashboard'],
             ['name' => 'show hrm dashboard'],
             ['name' => 'show project dashboard'],
-            ['name' => ''],
             ['name' => 'manage user'],
             ['name' => 'create user'],
             ['name' => 'edit user'],
@@ -4516,9 +4610,6 @@ class UsersTableSeeder extends Seeder
             ['name' => 'edit jobber stage'],
             ['name' => 'delete jobber stage'],
 
-
-
-
             ['name' => 'Manage Competencies'],
             ['name' => 'Create Competencies'],
             ['name' => 'Edit Competencies'],
@@ -4660,10 +4751,9 @@ class UsersTableSeeder extends Seeder
             ['name' => 'create employee'],
             ['name' => 'edit employee'],
             ['name' => 'delete employee'],
-            // ['name' => 'show employee'],
         ];
 
-        // $companyRole->givePermissionTo($companyPermissions);
+        $companyRole->givePermissionTo($companyPermissions);
 
         $company = User::create(
             [
@@ -4702,6 +4792,15 @@ class UsersTableSeeder extends Seeder
             ['name' => 'approve budget'],
             ['name' => 'reject budget'],
             ['name' => 'view budget'],
+            
+            ['name' => 'view contract'],
+            ['name' => 'approve payment'],
+            ['name' => 'view payment history'],
+            ['name' => 'view contract value'],
+            ['name' => 'print voucher'],
+            ['name' => 'comment on contract'],
+            ['name' => 'manage contract'],
+            ['name' => 'view recommended payment'],
         ];
 
         $dgRole->givePermissionTo($dgPermissions);
@@ -4804,7 +4903,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage contract'],
             ['name' => 'show contract'],
         ];
-        // $supervisorRole->givePermissionTo($supervisorPermission);
+        $supervisorRole->givePermissionTo($supervisorPermission);
 
         $supervisor = User::create(
             [
@@ -4841,35 +4940,9 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
             ['name' => 'manage client dashboard'],
-            ['name' => 'manage bug report'],
-            ['name' => 'create bug report'],
-            ['name' => 'edit bug report'],
-            ['name' => 'delete bug report'],
-            ['name' => 'move bug report'],
-            ['name' => 'view deal'],
-            ['name' => 'manage deal'],
-            ['name' => 'manage project'],
-            ['name' => 'view project'],
-            ['name' => 'view grant chart'],
-            ['name' => 'view timesheet'],
-            ['name' => 'manage timesheet'],
-            ['name' => 'manage project task'],
-            ['name' => 'create project task'],
-            ['name' => 'edit project task'],
-            ['name' => 'view project task'],
-            ['name' => 'delete project task'],
-            ['name' => 'view activity'],
-            ['name' => 'view task'],
-            ['name' => 'manage pipeline'],
-            ['name' => 'manage lead stage'],
-            ['name' => 'manage label'],
-            ['name' => 'manage source'],
-            ['name' => 'move deal'],
-            ['name' => 'manage stage'],
-            ['name' => 'manage contract'],
-            ['name' => 'show contract'],
+                      
         ];
-        // $liasonRole->givePermissionTo($liasonPermission);
+        $liasonRole->givePermissionTo($liasonPermission);
 
         $liason = User::create(
             [
@@ -4910,35 +4983,9 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
             ['name' => 'manage client dashboard'],
-            ['name' => 'manage bug report'],
-            ['name' => 'create bug report'],
-            ['name' => 'edit bug report'],
-            ['name' => 'delete bug report'],
-            ['name' => 'move bug report'],
-            ['name' => 'view deal'],
-            ['name' => 'manage deal'],
-            ['name' => 'manage project'],
-            ['name' => 'view project'],
-            ['name' => 'view grant chart'],
-            ['name' => 'view timesheet'],
-            ['name' => 'manage timesheet'],
-            ['name' => 'manage project task'],
-            ['name' => 'create project task'],
-            ['name' => 'edit project task'],
-            ['name' => 'view project task'],
-            ['name' => 'delete project task'],
-            ['name' => 'view activity'],
-            ['name' => 'view task'],
-            ['name' => 'manage pipeline'],
-            ['name' => 'manage lead stage'],
-            ['name' => 'manage label'],
-            ['name' => 'manage source'],
-            ['name' => 'move deal'],
-            ['name' => 'manage stage'],
-            ['name' => 'manage contract'],
-            ['name' => 'show contract'],
+            
         ];
-        // $hodRole->givePermissionTo($hodPermission);
+        $hodRole->givePermissionTo($hodPermission);
 
         $hod = User::create(
             [
@@ -5020,41 +5067,11 @@ class UsersTableSeeder extends Seeder
             ['name' => 'reject dta'],
             ['name' => 'view leave report'],
             ['name' => 'show unithead dashboard'],
-            ['name' => 'manage client dashboard'],
-            ['name' => 'manage bug report'],
-            ['name' => 'create bug report'],
-            ['name' => 'edit bug report'],
-            ['name' => 'delete bug report'],
-            ['name' => 'move bug report'],
-            ['name' => 'view deal'],
-            ['name' => 'manage deal'],
-            ['name' => 'manage project'],
-            ['name' => 'view project'],
-            ['name' => 'view grant chart'],
-            ['name' => 'view timesheet'],
-            ['name' => 'manage timesheet'],
-            ['name' => 'manage project task'],
-            ['name' => 'create project task'],
-            ['name' => 'edit project task'],
-            ['name' => 'view project task'],
-            ['name' => 'delete project task'],
-            ['name' => 'view activity'],
-            ['name' => 'view task'],
-            ['name' => 'manage pipeline'],
-            ['name' => 'manage lead stage'],
-            ['name' => 'manage label'],
-            ['name' => 'manage source'],
-            ['name' => 'move deal'],
-            ['name' => 'manage stage'],
-            ['name' => 'manage contract'],
-            ['name' => 'show contract'],
-            ['name' => 'view budget plan'],
-            ['name' => 'manage report'],
         ];
 
         // Loop through each unit head role and assign permissions
-        // foreach ($unitHeadRoles as $role) {
         //     $role->givePermissionTo($unitHeadPermissions);
+        // foreach ($unitHeadRoles as $role) {
         // }
 
         $unitHeadRole = Role::create(
@@ -5100,37 +5117,9 @@ class UsersTableSeeder extends Seeder
             ['name' => 'create barcode'],
             ['name' => 'manage pos'],
             ['name' => 'show unithead dashboard'],
-            ['name' => 'manage client dashboard'],
-            ['name' => 'manage bug report'],
-            ['name' => 'create bug report'],
-            ['name' => 'edit bug report'],
-            ['name' => 'delete bug report'],
-            ['name' => 'move bug report'],
-            ['name' => 'view deal'],
-            ['name' => 'manage deal'],
-            ['name' => 'manage project'],
-            ['name' => 'view project'],
-            ['name' => 'view grant chart'],
-            ['name' => 'view timesheet'],
-            ['name' => 'manage timesheet'],
-            ['name' => 'manage project task'],
-            ['name' => 'create project task'],
-            ['name' => 'edit project task'],
-            ['name' => 'view project task'],
-            ['name' => 'delete project task'],
-            ['name' => 'view activity'],
-            ['name' => 'view task'],
-            ['name' => 'manage pipeline'],
-            ['name' => 'manage lead stage'],
-            ['name' => 'manage label'],
-            ['name' => 'manage source'],
-            ['name' => 'move deal'],
-            ['name' => 'manage stage'],
-            ['name' => 'manage contract'],
-            ['name' => 'show contract'],
         ];
 
-        // $storeKeeperRole->givePermissionTo($storePermission);
+        $storeKeeperRole->givePermissionTo($storePermission);
 
         $storeKeeper = User::create(
             [
@@ -5177,7 +5166,6 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage warehouse'],
             ['name' => 'create barcode'],
             ['name' => 'manage pos'],
-            ['name' => ''],
             ['name' => 'manage expense'],
             ['name' => 'create expense'],
             ['name' => 'edit expense'],
@@ -5300,13 +5288,9 @@ class UsersTableSeeder extends Seeder
             ['name' => 'delete budget plan'],
             ['name' => 'view budget plan'],
             ['name' => 'create barcode'],
-            ['name' => 'create webhook'],
-            ['name' => 'edit webhook'],
-            ['name' => 'delete webhook'],
+           
         ];
-
-
-        // $accountantRole->givePermissionTo($accountantPermission);
+        $accountantRole->givePermissionTo($accountantPermission);
 
         $accountant = User::create(
             [
@@ -5375,43 +5359,15 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage assets'],
             ['name' => 'manage document'],
             ['name' => 'manage company policy'],
-
             ['name' => 'show career'],
             ['name' => 'manage report'],
             ['name' => 'manage user'],
             ['name' => 'manage role'],
             ['name' => 'manage client'],
-            ['name' => 'manage client dashboard'],
-            ['name' => 'manage bug report'],
-            ['name' => 'create bug report'],
-            ['name' => 'edit bug report'],
-            ['name' => 'delete bug report'],
-            ['name' => 'move bug report'],
-            ['name' => 'view deal'],
-            ['name' => 'manage deal'],
-            ['name' => 'manage project'],
-            ['name' => 'view project'],
-            ['name' => 'view grant chart'],
-            ['name' => 'view timesheet'],
-            ['name' => 'manage timesheet'],
-            ['name' => 'manage project task'],
-            ['name' => 'create project task'],
-            ['name' => 'edit project task'],
-            ['name' => 'view project task'],
-            ['name' => 'delete project task'],
-            ['name' => 'view activity'],
-            ['name' => 'view task'],
-            ['name' => 'manage pipeline'],
-            ['name' => 'manage lead stage'],
-            ['name' => 'manage label'],
-            ['name' => 'manage source'],
-            ['name' => 'move deal'],
-            ['name' => 'manage stage'],
-            ['name' => 'manage contract'],
-            ['name' => 'show contract'],
+            
         ];
 
-        // $clientRole->givePermissionTo($clientPermission);
+        $clientRole->givePermissionTo($clientPermission);
 
         $client = User::create(
             [
@@ -5446,7 +5402,7 @@ class UsersTableSeeder extends Seeder
 
         $contractor = User::create(
             [
-                'name' => 'Test Contractor',
+                'name' => 'Ember Ugbon',
                 'email' => 'contractor@nitt.com',
                 'password' => Hash::make('1234'),
                 'designation' => Designation::first()->name,

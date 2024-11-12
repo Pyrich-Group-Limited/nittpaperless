@@ -356,36 +356,37 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-lg-4 col-6">
-                                <div class="card">
-                                    <div class="card-body" >
-                                        <h6 class="mb-3"><i class="ti ti-cash"></i>{{ __('Contract Value') }}</h6>
-                                        <h4 class="mb-0 text-primary">{{ \Auth::user()->priceFormat($contract->value) }}</h4>
-                                        <h3 class="mb-0"></h3>
+                    @can('view contract value')
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-lg-4 col-6">
+                                    <div class="card">
+                                        <div class="card-body" >
+                                            <h6 class="mb-3"><i class="ti ti-cash"></i>{{ __('Contract Value') }}</h6>
+                                            <h4 class="mb-0 text-primary">{{ \Auth::user()->priceFormat($contract->value) }}</h4>
+                                            <h3 class="mb-0"></h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                <div class="card">
-                                    <div class="card-body" >
-                                        <h6 class="mb-3"><i class="ti ti-cash"></i>{{ __('Total Paid') }}</h6>
-                                        <h4 class="mb-0 text-primary">{{ \Auth::user()->priceFormat($contract->amount_paid_to_date) }}</h4>
+                                <div class="col-lg-4 col-6">
+                                    <div class="card">
+                                        <div class="card-body" >
+                                            <h6 class="mb-3"><i class="ti ti-cash"></i>{{ __('Total Paid') }}</h6>
+                                            <h4 class="mb-0 text-primary">{{ \Auth::user()->priceFormat($contract->amount_paid_to_date) }}</h4>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-6">
-                                <div class="card">
-                                    <div class="card-body" >
-                                        <h6 class="mb-3"><i class="ti ti-cash"></i>{{ __('Balance') }}</h6>
-                                        <h4 class="mb-0 text-danger">{{ \Auth::user()->priceFormat($contract->value - $contract->amount_paid_to_date) }}</h4>
+                                <div class="col-lg-4 col-6">
+                                    <div class="card">
+                                        <div class="card-body" >
+                                            <h6 class="mb-3"><i class="ti ti-cash"></i>{{ __('Balance') }}</h6>
+                                            <h4 class="mb-0 text-danger">{{ \Auth::user()->priceFormat($contract->value - $contract->amount_paid_to_date) }}</h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endcan
 
                     <div class="col-xxl-5">
                         <div class="card report_card total_amount_card">
@@ -396,24 +397,32 @@
                                         <h5>{{ __('Contract Detail') }}</h5>
                                        </div>
                                         <div class="col-md-6 text-end mb-1">
-                                            <a href="{{ route('contract.history', $contract->id) }}" class="btn btn-success btn-sm">
-                                                <i class="ti ti-eye"></i> View Payment History
-                                            </a>
-                                            <div class="action-btn bg-success ms-2">
-                                                <a href="{{ route('contracts.recommend', $contract->id) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                    data-bs-whatever="{{__('Recommend Payment')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="{{__('Recommend Payment')}}"
-                                                    >
-                                                    <span class="text-white"> <i class="ti ti-cash"></i></span>
+                                            @can('view payment history')
+                                                <a href="{{ route('contract.history', $contract->id) }}" class="btn btn-success btn-sm">
+                                                    <i class="ti ti-eye"></i> View Payment History
                                                 </a>
-                                            </div>
-                                            {{-- @if($contract->paymentRequests->status == 'voucher_raised')
-                                                <button class="btn btn-success btn-sm" type="submit" target="popup" 
-                                                onclick="window.open('{{ route('contracts.voucher', $contract->paymentRequests->id) }}','popup', 'width=994, height=1123')">
-                                                <i class="fa fa-print"></i> Print Voucher
-                                                </button>
-                                                
-                                            @endif --}}
+                                            @endcan
+                                            @can('recommend payment')
+                                                <div class="action-btn bg-success ms-2">
+                                                    <a href="{{ route('contracts.recommend', $contract->id) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                        data-bs-whatever="{{__('Recommend Payment')}}" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="{{__('Recommend Payment')}}"
+                                                        >
+                                                        <span class="text-white"> <i class="ti ti-cash"></i></span>
+                                                    </a>
+                                                </div>
+                                            @endcan
+
+                                            @can('view recommended payment')
+                                                <div class="action-btn bg-success ms-2">
+                                                    <a href="{{ route('contracts.recommend', $contract->id) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                        data-bs-whatever="{{__('View Recommended Payment')}}" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="{{__('View Recommended Payment')}}"
+                                                        >
+                                                        <span class="text-white"> <i class="ti ti-eye"></i></span>
+                                                    </a>
+                                                </div>
+                                            @endcan
                                         </div>
                                         <hr>
                                         <br>
@@ -462,8 +471,6 @@
                                                     <i class="ti ti-check"></i> Make Payment
                                                 </a>
                                             @endif --}}
-
-                                        
                                     </div>
                                 </address>
                                 
@@ -493,7 +500,9 @@
                     <div class="card-body">
                         <div class="form-group">
                             @if(\Auth::user()->type!='contractor')
+                            @can('comment on contract')
                                 <div class="col-md-12 dropzone top-5-scroll browse-file" id="dropzonewidget"></div>
+                            @endcan
 
                             @elseif(\Auth::user()->type == 'contractor' && $contract->status=='accept' )
                                 <div class="col-md-12 dropzone top-5-scroll browse-file" id="dropzonewidget"></div>
@@ -505,7 +514,6 @@
                                 @foreach($contract->files as $file)
                                     <div class="card mb-3 border shadow-none">
                                         <div class="px-3 py-3">
-
                                             <div class="row align-items-center">
                                                 <div class="col">
                                                     <h6 class="text-sm mb-0">
@@ -555,6 +563,7 @@
                     </div>
                     <div class="card-body">
                         @if(\Auth::user()->type != 'contractor')
+                        @can('comment on contract')
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
                                     <form method="post" class="card-comment-box" id="form-comment" data-action="{{route('comment.store', [$contract->id])}}">
@@ -563,6 +572,7 @@
                                 </div>
                                 <button id="comment_submit" class="btn btn-send mt-2"><i class="f-16 text-primary ti ti-brand-telegram"></i></button>
                             </div>
+                        @endcan
                         @elseif(\Auth::user()->type == 'contractor' && $contract->status=='accept' )
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
@@ -635,18 +645,20 @@
 
                     <div class="card-body">
                         @if(\Auth::user()->type != 'contractor')
-                            <div class="col-12 d-flex">
-                                <div class="form-group mb-0 form-send w-100">
-                                    {{ Form::open(['route' => ['note_store.store', $contract->id]]) }}
-                                    <div class="form-group">
-                                        <textarea rows="3" class="form-control grammer_textarea" name="notes" data-toggle="autosize" placeholder="{{__('Add a Notes...')}}" required></textarea>
+                            @can('comment on contract')
+                                <div class="col-12 d-flex">
+                                    <div class="form-group mb-0 form-send w-100">
+                                        {{ Form::open(['route' => ['note_store.store', $contract->id]]) }}
+                                        <div class="form-group">
+                                            <textarea rows="3" class="form-control grammer_textarea" name="notes" data-toggle="autosize" placeholder="{{__('Add a Notes...')}}" required></textarea>
+                                        </div>
+                                        <div class="col-md-12 text-end mb-0">
+                                            {{ Form::submit(__('Add'), ['class' => 'btn  btn-primary']) }}
+                                        </div>
+                                        {{ Form::close() }}
                                     </div>
-                                    <div class="col-md-12 text-end mb-0">
-                                        {{ Form::submit(__('Add'), ['class' => 'btn  btn-primary']) }}
-                                    </div>
-                                    {{ Form::close() }}
                                 </div>
-                            </div>
+                            @endcan
                         @elseif(\Auth::user()->type == 'contractor' && $contract->status=='accept' )
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">

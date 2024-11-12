@@ -44,18 +44,22 @@
                             ><span class="dash-mtext"><?php echo e(__('Budgets')); ?></span
                             ></a>
                     </li>
+                    
                     <li class="dash-item dash-hasmenu ">
                         <a href="<?php echo e(route('dg.projects')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
                         ><span class="dash-micon"><i class="ti ti-settings"></i></span
                             ><span class="dash-mtext"><?php echo e(__('Projects')); ?></span
                             ></a>
                     </li>
-                    <li class="dash-item dash-hasmenu ">
-                        <a href="<?php echo e(route('dg.contracts')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
-                        ><span class="dash-micon"><i class="ti ti-file"></i></span
-                            ><span class="dash-mtext"><?php echo e(__('Contracts')); ?></span
-                            ></a>
-                    </li>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage contract')): ?>
+                        <li class="dash-item dash-hasmenu ">
+                            <a href="<?php echo e(route('dg.contracts')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                            ><span class="dash-micon"><i class="ti ti-file"></i></span
+                                ><span class="dash-mtext"><?php echo e(__('Contracts')); ?></span
+                                ></a>
+                        </li>
+                    <?php endif; ?>
+
                     <li class="dash-item dash-hasmenu ">
                         <a href="<?php echo e(route('memos.index')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
                         ><span class="dash-micon"><i class="ti ti-files"></i></span
@@ -366,8 +370,7 @@
                                             <a class="dash-link" href="<?php echo e(route('project.contractors')); ?>"><?php echo e(__('Contractors')); ?></a>
                                         </li>
                                     <?php endif; ?>
-                                    <?php if(\Auth::user()->type=='super admin' || \Auth::user()->type=='client'): ?>
-                                        
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage contract')): ?>
                                         <li class="dash-item  <?php echo e((Request::segment(1) == 'contract')?'active':''); ?>">
                                             <a class="dash-link" href="<?php echo e(route('project.contracts')); ?>"><?php echo e(__('Contracts')); ?></a>
                                         </li>
@@ -672,9 +675,11 @@
                                             <li class="dash-item <?php echo e((Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : ''); ?>">
                                                 <a class="dash-link" href="<?php echo e(route('project.contractors')); ?>"><?php echo e(__('Contractors')); ?></a>
                                             </li>
-                                            <li class="dash-item  <?php echo e((Request::segment(1) == 'contract')?'active':''); ?>">
-                                                <a class="dash-link" href="<?php echo e(route('project.contracts')); ?>"><?php echo e(__('Contracts')); ?></a>
-                                            </li>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage contract')): ?>
+                                                <li class="dash-item  <?php echo e((Request::segment(1) == 'contract')?'active':''); ?>">
+                                                    <a class="dash-link" href="<?php echo e(route('project.contracts')); ?>"><?php echo e(__('Contracts')); ?></a>
+                                                </li>
+                                            <?php endif; ?>
                                         <?php endif; ?>
 
 
