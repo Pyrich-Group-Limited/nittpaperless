@@ -28,7 +28,7 @@ return new class extends Migration
             $table->foreign('project_id')->references('id')->on('project_creations')->onDelete('cascade');
             
             $table->decimal('amount_paid', 15, 2);
-            $table->date('payment_date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('payment_date')->nullable();
             $table->string('remarks')->nullable();
 
             $table->unsignedBigInteger('processed_by')->nullable();
