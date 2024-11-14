@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Requisitions;
 use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
+use App\Models\ChartOfAccount;
 use Illuminate\Support\Facades\Auth;
 
 class PvRequisitionApprovalComponent extends Component
@@ -13,11 +14,15 @@ class PvRequisitionApprovalComponent extends Component
     public $comments;
     public $selRequisition;
     public $actionId;
+
+    public $chartAccount;
     
     public function mount()
     {
         $this->requisitions = StaffRequisition::where('status','bursar_approved')
         ->orderBy('created_at','desc')->get();
+
+        $this->accounts = ChartOfAccount::all();
     }
 
     public function setRequisition(StaffRequisition $requisition){
@@ -27,10 +32,17 @@ class PvRequisitionApprovalComponent extends Component
 
     public function pvApproveRequisition()
     {
+        $this->validate([
+            'chartAccount' => 'required',
+        ]);
+
         if ($this->selRequisition->status != 'bursar_approved') {
             $this->dispatchBrowserEvent('error',["error" =>"Requisition required bursar approval."]);
         } else {
-            $this->selRequisition->update(['status' => 'pv_approved']);
+            $this->selRequisition->update([
+                'status' => 'pv_approved',
+                'account_id' => $this->chartAccount
+            ]);
         }
 
         RequisitionApprovalRecord::create([

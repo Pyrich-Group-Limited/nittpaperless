@@ -27,8 +27,9 @@ return new class extends Migration
 
             $table->string('purpose')->nullable();
             $table->text('description')->nullable();
-            $table->decimal('amount', 15, 2);
+            $table->decimal('amount', 15, 2); 
             $table->string('supporting_document')->nullable();
+            $table->string('payment_evidence')->nullable();
             $table->enum('status', ['hod_approved', 'bursar_approved','waiting_dg_approval','dg_approved',
             'pv_approved','audit_approved','cash_office_approved','pending'])->default('pending');
             $table->timestamps();

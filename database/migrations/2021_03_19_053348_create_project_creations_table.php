@@ -32,6 +32,10 @@ return new class extends Migration
             $table->string('status')->default('pending');
             $table->integer('budget')->nullable();
 
+            $table->decimal('profit_margin')->nullable();
+            $table->decimal('consultation_fee')->nullable();
+            $table->decimal('vat')->nullable();
+
             $table->boolean('advert_approval_status')->default(false);
 
             $table->unsignedBigInteger('created_by')->nullable();

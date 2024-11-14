@@ -19,6 +19,16 @@ class Uploadboq extends Component
     public Collection $inputs;
     public $sumTotal;
     public $ergp;
+
+
+    public $profitPercentage = 0;
+    public $profitAmount;
+    public $consultation_fee;
+
+    public $subTotal;
+    public $vatPercentage = 0;
+    public $vatAmount;
+
     protected $listeners = ['project' => 'incrementPostCount'];
     use WithFileUploads;
 
@@ -41,12 +51,33 @@ class Uploadboq extends Component
         $this->inputs->pull($key);
     }
 
+    // public function calculatePM()
+    // {
+    //     $this->profitAmount = $this->subTotal * ((double)$this->profitPercentage / 100);
+
+    // }
 
     public function Updated(){
-        foreach($this->inputs as $input){
-            $this->sumTotal =  $this->sumTotal + ((double)$input['unit_price'] * (double)$input['quantity']);
+
+        $this->subTotal = 0;
+        $this->vat = 0;
+        $this->sumTotal = 0;
+        $this->profitAmount = 0;
+        $this->vatAmount = 0;
+        // $this->consultation_fee = 0;
+
+        foreach($this->inputs as $index => $input){
+            $this->inputTotal =   ((double)$input['unit_price'] * (double)$input['quantity']);
+
+            $this->subTotal += $this->inputTotal;
         }
+        $this->vatAmount = $this->subTotal * ((double)$this->vatPercentage / 100);
+
+        $this->profitAmount = $this->subTotal * ((double)$this->profitPercentage / 100);
+
+        $this->sumTotal = $this->subTotal + $this->vatAmount + $this->profitAmount + (double)$this->consultation_fee;
     }
+
 
     public function uploadBOQ(){
 
@@ -64,8 +95,12 @@ class Uploadboq extends Component
             $this->boq_file->storePubliclyAs('boqs', 'public');
 
             $this->selProject->update([
-                'budget' => (7.5/100 * $this->sumTotal) + ($this->sumTotal),
-                'project_boq' => $boqDocumentName
+                // 'budget' => (7.5/100 * $this->sumTotal) + ($this->sumTotal) + (double)$this->consultation_fee + (double)$this->profitAmount,
+                'budget' => $this->sumTotal,
+                'project_boq' => $boqDocumentName,
+                'profit_margin' => $this->profitAmount,
+                'consultation_fee' =>$this->consultation_fee,
+                'vat' => $this->vatAmount
             ]);
 
             foreach($this->inputs as $input){
@@ -82,7 +117,6 @@ class Uploadboq extends Component
                 'inputs' => collect([['item' => '','description' => '','unit_price' => '','quantity' => '']]),
             ]);
             $this->dispatchBrowserEvent('success',['success'=>'Bill of quantity successfully uploaded']);
-            // $this->dispatchBrowserEvent('success',['success'=>'Upload Successful']);
             $this->reset('budget','boq_file');
         }catch(\Exception $e){
             $this->dispatchBrowserEvent('error',['error'=>'Sorry there was an error uploading bill of quantity']);

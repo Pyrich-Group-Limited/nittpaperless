@@ -18,7 +18,8 @@ class StaffRequisition extends Model
         'status',
         'department_id',
         'supporting_document',
-        'account_id'
+        'account_id',
+        'payment_evidence'
     ];
 
     public function staff()

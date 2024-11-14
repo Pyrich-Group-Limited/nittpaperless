@@ -96,6 +96,9 @@
                                                             </button>
                                                         {{-- @endcan --}}
                                                     @endif
+
+                                                    
+
                                                     {{-- <div class="action-btn bg-warning ms-2">
                                                         <a href="#" wire:click="setRequisition('{{ $requisition->id }}')"
                                                             class="mx-3 btn btn-sm d-inline-flex align-items-center"

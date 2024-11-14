@@ -22,7 +22,10 @@ class ProjectCreation extends Model
         'status',
         'budget',
         'advert_approval_status',
-        'created_by'
+        'created_by',
+        'profit_margin',
+        'consultation_fee',
+        'vat'
     ];
 
     public function boqs(){

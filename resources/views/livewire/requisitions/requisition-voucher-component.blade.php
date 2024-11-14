@@ -243,19 +243,20 @@
                 <table class="table table-bordered">
                     @foreach ($requisition->approvalRecords as $approval)
                         <tr>
-                            <td style=""><b>Approved by:</b> {{ $approval->staff->name }}</td>
+                            <td><b>Approved by:</b> {{ $approval->staff->name }}</td>
                             <td style="white-space: normal;"><strong>Signature:</strong>  <strike>{{ $approval->staff->name }}</strike> 
-                                {{-- {{ dd($approval->staff->signature) }}
-                                @if($approval->staff->signature->signature_path=='') 
-                                    <strike>{{ $approval->staff->name }}</strike> 
-                                @else
-                                    <img src="{{ asset('storage/' . $approval->staff->signature->signature_path) }}" alt="Signature" width="200">
-                                @endif --}}
                             </td>
                             <td style=""><b>Date:</b> {{ $approval->created_at->format('d-M-Y') }}</td>
                         </tr>
                     @endforeach
                 </table>
+
+                {{-- {{ dd($approval->staff->signature) }}
+                @if($approval->staff->signature->signature_path=='') 
+                    <strike>{{ $approval->staff->name }}</strike> 
+                @else
+                    <img src="{{ asset('storage/' . $approval->staff->signature->signature_path) }}" alt="Signature" width="200">
+                @endif --}}
     
                 <table class="table table-bordered">
                     <tr>
