@@ -4190,6 +4190,57 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+
+
+            [   'name' => 'manage requisition',
+                'module' => 'Requsition',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'approve as hod',
+                'module' => 'Requsition',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'approve as bursar',
+                'module' => 'Requsition',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'approve as dg',
+                'module' => 'Requsition',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'approve as pv',
+                'module' => 'Requsition',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'approve as audit',
+                'module' => 'Requsition',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'approve as cash office',
+                'module' => 'Requsition',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'final account view',
+                'module' => 'Requsition',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
         ];
 
         Permission::insert($arrPermissions);
@@ -4204,6 +4255,7 @@ class UsersTableSeeder extends Seeder
         );
 
         $companyPermissions = [
+            ['name' => 'manage requisition'],
             ['name' => 'manage contract'],
             ['name' => 'view contract'],
             ['name' => 'recommend payment'],
@@ -4788,6 +4840,7 @@ class UsersTableSeeder extends Seeder
         );
 
         $dgPermissions = [
+            ['name' => 'manage requisition'],
             ['name' => 'manage project'],
             ['name' => 'approve budget'],
             ['name' => 'reject budget'],
@@ -4972,6 +5025,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $hodPermission = [
+            ['name' => 'manage requisition'],
             ['name' => 'set budget'],
             ['name' => 'view budget'],
             ['name' => 'edit budget'],

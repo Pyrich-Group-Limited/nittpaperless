@@ -1,6 +1,7 @@
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Dashboard')); ?>
-
+    <?php echo e(__('Dashboard')); ?> <br>
+    <i class="ti ti-user"></i> (<?php echo e(Ucfirst(Auth::user()->designation)); ?>)<br>
+        <i class="ti ti-location"></i> <?php echo e(Ucfirst(Auth::user()->location)); ?> 
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('breadcrumb'); ?>
