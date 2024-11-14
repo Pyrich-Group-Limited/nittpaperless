@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="applyLeave">RECOMMENDED APPLICANT DETAILS
+                        <h5 class="modal-title" id="applyLeave">RECOMMENDED CONTRACTOR BIDDERS DETAILS
                         </h5>
                     </div>
                     <div class="modal-body">
@@ -21,15 +21,15 @@
                                                     }
                                                 </style>
                                                 <tr>
-                                                    <th scope="row">Applicant Name</th>
+                                                    <th scope="row">Contractor Name</th>
                                                     <td>{{ $selApplicant->contractor->name }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">Company Name</th>
+                                                    <th scope="row">Registered Company Name</th>
                                                     <td>{{ $selApplicant->applicant->company_name }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">Year of Incorporation</th>
+                                                    <th scope="row">CAC Year of Incorporation</th>
                                                     <td style="white-space: pre-wrap">
                                                         {{ $selApplicant->applicant->year_of_incorporation }}</td>
                                                 </tr>
