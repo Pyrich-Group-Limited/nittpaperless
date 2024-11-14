@@ -192,7 +192,7 @@
                         <td><h4>No. {{ sprintf('%04d', $requisition->id) }}</h4></td>
                     </tr>
                     <tr id="tb1tr2">
-                        <td><b>Account to be charged:</b></td>
+                        <td><b>Account to be charged:</b> {{ $requisition->account->name }}</td>
                         <td>Expenditure Control No.</td>
                     </tr>
                 </table>
@@ -225,7 +225,7 @@
                             {{ $requisition->requisition_type }} <br>
                             {{ $requisition->description }}
                         </td>
-                        <td></td>
+                        <td>{{ $requisition->account->code }}</td>
                         <td>₦ {{ number_format($requisition->amount, 2) }}</td>
                         <td style="white-space: normal;">
                             Payment Schedule No. <br>
@@ -241,55 +241,38 @@
                 </table>
                 
                 <table class="table table-bordered">
-                    {{-- {{ dd($requisition->approvalRecords) }} --}}
                     @foreach ($requisition->approvalRecords as $approval)
                         <tr>
-                            
-                            <td style=""><p class=""><b>Approved by:</b> {{ $approval->staff->name }}</p></td>
-                            <td style="white-space: normal;"><p class=""><strong>Signature:</strong> <strike>{{ $approval->staff->name }}</strike> </p></td>
-                            <td style=""><p class=""><b>Date:</b> {{ $approval->created_at->format('d-M-Y') }}</p></td>
-                        </tr>
-                        {{-- <tr>
-                        </tr>
-                        <tr> --}}
+                            <td style=""><b>Approved by:</b> {{ $approval->staff->name }}</td>
+                            <td style="white-space: normal;"><strong>Signature:</strong>  <strike>{{ $approval->staff->name }}</strike> 
+                                {{-- {{ dd($approval->staff->signature) }}
+                                @if($approval->staff->signature->signature_path=='') 
+                                    <strike>{{ $approval->staff->name }}</strike> 
+                                @else
+                                    <img src="{{ asset('storage/' . $approval->staff->signature->signature_path) }}" alt="Signature" width="200">
+                                @endif --}}
+                            </td>
+                            <td style=""><b>Date:</b> {{ $approval->created_at->format('d-M-Y') }}</td>
                         </tr>
                     @endforeach
                 </table>
-                
-                {{-- <table class="table table-bordered">
-                    <tr>
-                        <th>Officer Controlling Expenditure</th>
-                        <th>Officer Authorizing Expenditure</th>
-                        <th>Audit Post-payment Stamp</th>
-                    </tr>
-                    <tr>
-                        <td><p class="text-with-line-5">Name: </p></td>
-                        <td><p class="text-with-line-5">Name: </p></td>
-                        <td><p class="text-with-line-5">Name: </p></td>
-                    </tr>
-                    <tr>
-                        <td><p class="text-with-line-6">Designation: </p></td>
-                        <td><p class="text-with-line-6">Designation: </p></td>
-                        <td><p class="text-with-line-6">Designation: </p></td>
-                    </tr>
-                    <tr>
-                        <td><p class="text-with-line-7">Signature: </p></td>
-                        <td><p class="text-with-line-7">Signature: </p></td>
-                        <td><p class="text-with-line-7">Signature: </p></td>
-                    </tr>
-                    <tr>
-                        <td><p class="text-with-line-5">Date: </p></td>
-                        <td><p class="text-with-line-5">Date: </p></td>
-                        <td><p class="text-with-line-5">Date: </p></td>
-                    </tr>
-                </table> --}}
     
                 <table class="table table-bordered">
                     <tr>
-                        <td style="border: 0px !important"><h4>RECEIPT</h4></td>
+                        <td><h4>RECEIPT : 
+                            @if($requisition->status=='cash_office_approved')
+                            <span class="text-success">Paid</span>
+                            <span align="right">
+                                {!! QrCode::size(80)->generate( sprintf('%04d', $requisition->id).' - '.$requisition->staff->name.' - '.number_format($requisition->amount,2).
+                                " ".$requisition->requisition_type." - ".$requisition->purpose." - ".$requisition->description.", ".
+                                $requisition->status.' - '.$requisition->created_at->format('d-M-Y') ) !!}
+                            </span>
+                            @else
+                            <span class="text-warning">Pending</span>
+                            @endif
+                        </h4></td>
                     </tr>
                     <tr>
-                        
                         <td>
                             I certify the receipt of the sum of:<hr class="solid">
                             Amount in words:
@@ -319,16 +302,6 @@
                         </td>
                     </tr>
                 </table>
-                {{-- <p><strong>Contract ID:</strong> {{ $requisition->contract->id }}</p> --}}
-                {{-- <p><strong>Project Name:</strong> {{ $requisition->contract->subject }}</p> --}}
-                {{-- <p><strong>Contractor:</strong> {{ $requisition->contract->clients->name }}</p> --}}
-                {{-- <p><strong>Voucher ID:</strong> {{ $requisition->id }}</p> --}}
-                {{-- <p><strong>Amount:</strong> ₦{{ number_format($requisition->recommended_amount, 2) }}</p> --}}
-                {{-- <p><strong>Recommended By:</strong> {{ $requisition->recommendedBy->name }}</p> --}}
-                {{-- <p><strong>Approved By DG:</strong> {{ $requisition->approvedBy->name }}</p>
-                <p><strong>Signed By Bursar:</strong> {{ $requisition->signedBy->name }}</p>
-                <p><strong>Payment Date:</strong> {{ $requisition->created_at->format('Y-m-d') }}</p> --}}
-            
                 <div class="text-center print-button">
                     <button onclick="window.print()" class="btn btn-primary"><i class="fa fa-print"></i> Print Voucher</button>
                 </div>

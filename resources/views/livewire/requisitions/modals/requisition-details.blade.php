@@ -67,6 +67,22 @@
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" readonly>{{ $selRequisition->comment }}</textarea>
                                     </div>
                                 @endif
+                                @if ($selRequisition->status=='audit_approved')
+                                    <div class="form-group">
+                                        <label class="form-label text-warning" >{{__('Account to be charged')}}</label>
+                                        <select class="form-control" wire:model="account">
+                                            <option value="">Select Account</option>
+                                            @foreach ($accounts as $account)
+                                                <option value="{{ $account->id }}">{{ $account->name }} - ({{ $account->code }})</option>
+                                            @endforeach
+                                        </select>
+                                        @error('account')
+                                            <small class="invalid-type_of_leave" role="alert">
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            </small>
+                                        @enderror
+                                    </div>
+                                @endif
                             <div class="modal-footer">
                                 <div wire:loading wire:target="hodApproveRequisition"><x-g-loader /></div>
                                 <div wire:loading wire:target="approveRequisition"><x-g-loader /></div>
@@ -77,12 +93,12 @@
 
                                 <input type="button" id="closeRequisitionDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
-                                @if(auth()->user()->type=="hod")
+                                {{-- @if(auth()->user()->type=="hod") --}}
                                     @can('approve as hod')
                                         <input type="button" wire:click="hodApproveRequisition({{ $selRequisition->id }})" value="{{ __('Approve as HoD') }}" class="btn  btn-primary btn-sm">
                                     @endcan
-                                @endif
-                                    @if(auth()->user()->type!="hod")
+                                {{-- @endif --}}
+                                    {{-- @if(auth()->user()->type!="hod") --}}
                                         @can('approve as dg')
                                             <input type="button"  wire:click="dgApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as DG') }}" class="btn  btn-primary btn-sm ">
                                         @endcan 
@@ -98,7 +114,7 @@
                                         @can('approve as cash office')
                                             <input type="button"  wire:click="cashOfficeApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Cash Office') }}" class="btn  btn-primary btn-sm ">
                                         @endcan      
-                                    @endif
+                                    {{-- @endif --}}
                             </div>
                         @else
                             <label align="center" class="mb-4" style="color: red">Loading...</label>

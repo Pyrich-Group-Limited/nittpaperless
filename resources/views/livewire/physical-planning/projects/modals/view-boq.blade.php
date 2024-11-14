@@ -43,7 +43,6 @@
                                                 <td><b>TOTAL</b></td>
                                                 <td> <b>{{ number_format($totalSum) }}</b> </td>
                                             </tr>
-
                                         </tbody>
                                     </table>
                                 </div>

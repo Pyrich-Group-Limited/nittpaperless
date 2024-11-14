@@ -17,12 +17,23 @@ class StaffRequisition extends Model
         'amount',
         'status',
         'department_id',
-        'supporting_document'
+        'supporting_document',
+        'account_id'
     ];
 
     public function staff()
     {
         return $this->belongsTo(User::class);
+    }
+
+    // public function signature()
+    // {
+    //     return $this->hasOne(Signature::class,'user_id');
+    // }
+
+    public function account()
+    {
+        return $this->belongsTo(ChartOfAccount::class);
     }
 
     public function approvalRecords()

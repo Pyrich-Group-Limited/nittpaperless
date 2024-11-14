@@ -88,6 +88,12 @@
                                                             <i class="ti ti-eye text-white"></i>
                                                         </a>
                                                     </div>
+                                                    {{-- @if($requisition->status == 'pv_approved')
+                                                        <button class="btn btn-success btn-sm" type="submit" target="popup" 
+                                                        onclick="window.open('{{ route('requisition.voucher', $requisition->id) }}','popup', 'width=994, height=1123')">
+                                                        <i class="fa fa-print"></i> Print Voucher
+                                                        </button>
+                                                    @endif --}}
                                                     {{-- <div class="action-btn bg-warning ms-2">
                                                         <a href="#" wire:click="setRequisition('{{ $requisition->id }}')"
                                                             class="mx-3 btn btn-sm d-inline-flex align-items-center"
