@@ -7,22 +7,26 @@ use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ChartOfAccount;
+use Livewire\WithFileUploads;
+use Carbon\Carbon;
 
 class CashOfficeRequisitionApprovalComponent extends Component
 {
+    use WithFileUploads;
     public $requisition;
     public $comments;
     public $selRequisition;
     public $actionId;
 
-    public $account;
+    // public $account;
+    public $paymentEvidence;
     
     public function mount()
     {
         $this->requisitions = StaffRequisition::where('status','audit_approved')
         ->orderBy('created_at','desc')->get();
 
-        $this->accounts = ChartOfAccount::all();
+        // $this->accounts = ChartOfAccount::all();
     }
 
     public function setRequisition(StaffRequisition $requisition){
@@ -33,15 +37,18 @@ class CashOfficeRequisitionApprovalComponent extends Component
     public function cashOfficeApproveRequisition()
     {
         $this->validate([
-            'account' => 'required',
+            'paymentEvidence' => 'required',
         ]);
+
+        $payEvidence = Carbon::now()->timestamp. '.' . $this->paymentEvidence->getClientOriginalName();
+        $this->paymentEvidence->storeAs('documents',$payEvidence);
 
         if ($this->selRequisition->status != 'audit_approved') {
             $this->dispatchBrowserEvent('error',["error" =>"Requisition required audit approval."]);
         } else { 
             $this->selRequisition->update([
                 'status' => 'cash_office_approved',
-                'account_id' => $this->account
+                'payment_evidence' => $payEvidence
             ]);
         }
 

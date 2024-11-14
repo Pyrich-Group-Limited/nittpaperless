@@ -217,35 +217,47 @@
                                             <td> </td>
                                             <td></td>
                                             <td><b>SUB TOTAL</b></td>
-                                            <td> <b>{{ number_format($totalSum) }}</b> </td>
+                                            <td> <b>{{ number_format($totalSum,2) }}</b> </td>
                                         </tr>
 
                                         <tr>
                                             <td> </td>
                                             <td> </td>
                                             <td></td>
-                                            <td><b>VAT(7.5%)</b></td>
-                                            <td> <b>{{ number_format(7.5/100 * ($totalSum)) }}</b> </td>
+                                            <td><b>VAT</b></td>
+                                            <td> <b>{{ number_format($project->vat,2) }}</b> </td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td><b>Profit Margin(10%)</b></td>
-                                            @php
-                                                $PM = (10/100 * ($totalSum));
-                                            @endphp
-                                            <td> <b>{{number_format($PM) }}</b> </td>
+                                            <td><b>Profit Margin </b></td>
+                                            <td> <b>{{number_format($project->profit_margin,2) }}</b> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><b>Consultation fee </b></td>
+                                            <td> <b>{{number_format($project->consultation_fee,2) }}</b> </td>
                                         </tr>
         
                                         <tr>
                                             <td> </td>
                                             <td> </td>
                                             <td></td>
-                                            <td><b>SUM TOTAL</b></td>
-                                            {{-- <td> <b>{{ number_format((7.5/100 * ($totalSum)) + $totalSum) }}</b> </td> --}}
-                                            <td> <b>{{ number_format($totalSum + $PM) }}</b> </td>
+                                            <td class="text-primary"><b>SUM TOTAL</b></td>
+                                            <td class="text-primary"> <b>{{ number_format($project->budget,2) }}</b> </td>
                                         </tr>
+        
+                                        {{-- <tr>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td></td>
+                                            <td><b>SUM TOTAL</b></td>
+                                            <td> <b>{{ number_format($totalSum + $PM) }}</b> </td>
+                                        </tr> --}}
 
                                     </tbody>
                                 </table>

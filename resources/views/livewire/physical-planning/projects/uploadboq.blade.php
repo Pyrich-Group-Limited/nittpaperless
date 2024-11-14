@@ -1,6 +1,6 @@
 <div id="uploadBOQ">
     <div class="modal" id="uploadBOQModal" tabindex="-1" role="dialog" wire:ignore.self>
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-body">
 
@@ -23,64 +23,69 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @if($this->ergp)
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row align-items-center justify-content-between">
-                                                    <div class="col-auto mb-3 mb-sm-0">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-danger">
-                                                                <i class="ti ti-report-money"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <small class="text-muted">{{ __('PROJECT') }}</small>
-                                                                <h6 class="m-0">{{ __('SUM') }}</h6>
+                                @if ($this->ergp)
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center justify-content-between">
+                                                        <div class="col-auto mb-3 mb-sm-0">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="theme-avtar bg-danger">
+                                                                    <i class="ti ti-report-money"></i>
+                                                                </div>
+                                                                <div class="ms-3">
+                                                                    <small
+                                                                        class="text-muted">{{ __('PROJECT') }}</small>
+                                                                    <h6 class="m-0">{{ __('SUM') }}</h6>
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-auto text-end">
+                                                            <h4 class="m-0">{{ number_format($ergp->project_sum) }}
+                                                            </h4>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-auto text-end">
-                                                        <h4 class="m-0">{{ number_format($ergp->project_sum) }}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center justify-content-between">
+                                                        <div class="col-auto mb-3 mb-sm-0">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="theme-avtar bg-danger">
+                                                                    <i class="ti ti-report-money"></i>
+                                                                </div>
+                                                                <div class="ms-3">
+                                                                    <small
+                                                                        class="text-muted">{{ __('PROJECT') }}</small>
+                                                                    <h6 class="m-0">{{ __('BALLANCE') }}</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto text-end">
+                                                            <h4 class="m-0">{{ number_format($ergp->ballance) }}
+                                                            </h4>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row align-items-center justify-content-between">
-                                                    <div class="col-auto mb-3 mb-sm-0">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-danger">
-                                                                <i class="ti ti-report-money"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <small class="text-muted">{{ __('PROJECT') }}</small>
-                                                                <h6 class="m-0">{{ __('BALLANCE') }}</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto text-end">
-                                                        <h4 class="m-0">{{number_format( $ergp->ballance) }}</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 @endif
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         {{ Form::label('bduget', __('ERGP'), ['class' => 'form-label']) }}
                                         {{-- <input type="text" id="boq_file" wire:model.defer="budget" class="form-control"
                                         placeholder="Estimated Budget"  /> --}}
-                                        <select name="" id="" wire:model="budget"
-                                            class="form-control">
+                                        <select name="" id="" wire:model="budget" class="form-control">
                                             <option value="" selected>-- Select ERGP -- </option>
                                             @foreach ($projAccounts as $projAccount)
-                                                <option value="{{ $projAccount->code }}">{{ $projAccount->code }} &nbsp; ({{ $projAccount->projectCategory->category_name }}) </option>
+                                                <option value="{{ $projAccount->code }}">{{ $projAccount->code }}
+                                                    &nbsp; ({{ $projAccount->projectCategory->category_name }})
+                                                </option>
                                             @endforeach
                                         </select>
                                         @error('bduget')
@@ -128,7 +133,7 @@
                                             <input type="text"
                                                 @error('inputs.' . $key . '.unit_price') style="border-color: red" @enderror
                                                 id="input_{{ $key }}_unit_price"
-                                                id="input_{{ $key }}_unit_price" placeholder="Unit Price"
+                                                id="input_{{ $key }}_unit_price" placeholder="Amount"
                                                 wire:model="inputs.{{ $key }}.unit_price"
                                                 class="form-control" />
                                         </div>
@@ -161,6 +166,49 @@
                             @endif
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                {{ Form::label('profit_margin', __('Profit Margin'), ['class' => 'form-label']) }}
+                                (%)
+                                <input type="number" wire:model="profitPercentage" class="form-control"
+                                    placeholder="Enter value in percentage">
+                                @error('profitPercentage')
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                {{ Form::label('consultation_fee', __('Consultation Fee'), ['class' => 'form-label']) }}
+                                (₦)<span class="text-danger">*</span>
+                                <input type="number" wire:model="consultation_fee" class="form-control"
+                                    placeholder="Enter amount">
+                                @error('consultation_fee')
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                {{ Form::label('profit_margin', __('VAT'), ['class' => 'form-label']) }}
+                                (%)<span class="text-danger">*</span>
+                                <input type="number" wire:model="vatPercentage" class="form-control"
+                                    placeholder="Enter value in percentage">
+                                @error('vatPercentage')
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    </small>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="card">
@@ -178,13 +226,13 @@
                                             </div>
                                         </div>
                                         <div class="col-auto text-end">
-                                            <h4 class="m-0">{{ number_format($sumTotal) }}</h4>
+                                            <h4 class="m-0">{{ number_format($subTotal) }}</h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        {{-- <div class="col-lg-6 col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row align-items-center justify-content-between">
@@ -200,13 +248,38 @@
                                             </div>
                                         </div>
                                         <div class="col-auto text-end">
-                                            <h4 class="m-0">{{number_format( 7.5/100 * ($sumTotal)) }}</h4>
+                                            <h4 class="m-0">{{ number_format($vat,2) }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
+                        <div class="col-lg-6 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-auto mb-3 mb-sm-0">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-success">
+                                                    <i class="ti ti-report-money"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <small class="text-muted">{{ __('GRAND TOTAL') }}</small>
+                                                    <h6 class="m-0">{{ __('GRAND TOTAL') }}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto text-end">
+                                            <h4 class="m-0">{{ number_format($sumTotal) }}</h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     <div class="modal-footer">
                         <input type="button" id="closeUplaodBOQ" value="{{ __('Cancel') }}"
                             class="btn  btn-light" data-bs-dismiss="modal">

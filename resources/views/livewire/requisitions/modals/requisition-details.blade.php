@@ -67,17 +67,32 @@
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" readonly>{{ $selRequisition->comment }}</textarea>
                                     </div>
                                 @endif
-                                @if ($selRequisition->status=='audit_approved')
+                                @if ($selRequisition->status=='bursar_approved')
                                     <div class="form-group">
                                         <label class="form-label text-warning" >{{__('Account to be charged')}}</label>
-                                        <select class="form-control" wire:model="account">
+                                        <select class="form-control" wire:model="chartAccount">
                                             <option value="">Select Account</option>
                                             @foreach ($accounts as $account)
                                                 <option value="{{ $account->id }}">{{ $account->name }} - ({{ $account->code }})</option>
                                             @endforeach
                                         </select>
-                                        @error('account')
+                                        @error('chartAccount')
                                             <small class="invalid-type_of_leave" role="alert">
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            </small>
+                                        @enderror
+                                    </div>
+                                @endif
+
+                                @if ($selRequisition->status=='audit_approved')
+                                    <div class="form-group">
+                                        {{ Form::label('paymentEvidence', __('Upload Payment Evidence'), ['class' => 'form-label']) }}
+                                        <input type="file" id="paymentEvidence" wire:model.defer="paymentEvidence"
+                                            class="form-control" placeholder="Supporting Document" />
+                                        <strong class="text-danger" wire:loading
+                                            wire:target="paymentEvidence">Loading...</strong>
+                                        @error('paymentEvidence')
+                                            <small class="invalid-name" role="alert">
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             </small>
                                         @enderror
@@ -112,7 +127,7 @@
                                             <input type="button"  wire:click="auditApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Audit') }}" class="btn  btn-primary btn-sm ">
                                         @endcan 
                                         @can('approve as cash office')
-                                            <input type="button"  wire:click="cashOfficeApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Cash Office') }}" class="btn  btn-primary btn-sm ">
+                                            <input type="button"  wire:click="cashOfficeApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Pay') }}" class="btn  btn-primary btn-md ">
                                         @endcan      
                                     {{-- @endif --}}
                             </div>
