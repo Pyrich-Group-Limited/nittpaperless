@@ -108,10 +108,10 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <?php echo e(Form::label('boq_file', __('File Upload'), ['class' => 'form-label'])); ?>
+                                        <?php echo e(Form::label('boq_file', __('Supporting Document'), ['class' => 'form-label'])); ?>
 
                                         <input type="file" id="boq_file" wire:model.defer="boq_file"
-                                            class="form-control" placeholder="File" />
+                                            class="form-control" placeholder="Supporting Document" />
                                         <strong class="text-danger" wire:loading
                                             wire:target="boq_file">Loading...</strong>
                                         <?php $__errorArgs = ['boq_file'];

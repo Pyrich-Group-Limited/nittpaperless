@@ -22,6 +22,9 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
 
+            $table->unsignedBigInteger('account_id')->nullable();
+            $table->foreign('account_id')->references('id')->on('chart_of_accounts')->onDelete('cascade');
+
             $table->string('purpose')->nullable();
             $table->text('description')->nullable();
             $table->decimal('amount', 15, 2);

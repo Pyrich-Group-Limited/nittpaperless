@@ -192,7 +192,7 @@
                                     <tbody>
                                         @foreach ($project->boqs as $key => $boq)
                                             @php
-                                                $totalSum = $totalSum + $boq->quantity * $boq->unit_price;
+                                                $totalSum = $totalSum + ($boq->quantity * $boq->unit_price)
                                             @endphp
                                             <tr>
                                                 <td>
@@ -216,8 +216,35 @@
                                             <td> </td>
                                             <td> </td>
                                             <td></td>
-                                            <td><b>TOTAL</b></td>
+                                            <td><b>SUB TOTAL</b></td>
                                             <td> <b>{{ number_format($totalSum) }}</b> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td></td>
+                                            <td><b>VAT(7.5%)</b></td>
+                                            <td> <b>{{ number_format(7.5/100 * ($totalSum)) }}</b> </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><b>Profit Margin(10%)</b></td>
+                                            @php
+                                                $PM = (10/100 * ($totalSum));
+                                            @endphp
+                                            <td> <b>{{number_format($PM) }}</b> </td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td></td>
+                                            <td><b>SUM TOTAL</b></td>
+                                            {{-- <td> <b>{{ number_format((7.5/100 * ($totalSum)) + $totalSum) }}</b> </td> --}}
+                                            <td> <b>{{ number_format($totalSum + $PM) }}</b> </td>
                                         </tr>
 
                                     </tbody>

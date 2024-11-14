@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ChartOfAccount;
 
 class CashOfficeRequisitionApprovalComponent extends Component
 {
@@ -13,11 +14,15 @@ class CashOfficeRequisitionApprovalComponent extends Component
     public $comments;
     public $selRequisition;
     public $actionId;
+
+    public $account;
     
     public function mount()
     {
         $this->requisitions = StaffRequisition::where('status','audit_approved')
         ->orderBy('created_at','desc')->get();
+
+        $this->accounts = ChartOfAccount::all();
     }
 
     public function setRequisition(StaffRequisition $requisition){
@@ -27,10 +32,17 @@ class CashOfficeRequisitionApprovalComponent extends Component
 
     public function cashOfficeApproveRequisition()
     {
+        $this->validate([
+            'account' => 'required',
+        ]);
+
         if ($this->selRequisition->status != 'audit_approved') {
             $this->dispatchBrowserEvent('error',["error" =>"Requisition required audit approval."]);
-        } else {
-            $this->selRequisition->update(['status' => 'cash_office_approved']);
+        } else { 
+            $this->selRequisition->update([
+                'status' => 'cash_office_approved',
+                'account_id' => $this->account
+            ]);
         }
 
         RequisitionApprovalRecord::create([
