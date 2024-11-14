@@ -350,6 +350,56 @@
                         @endif
                     @endif
 
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="#!" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                            ><span class="dash-mtext">{{__('Payment Requisition')}}</span
+                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                            ></a>
+                        <ul class="dash-submenu">
+                            <li class="dash-item {{ request()->is('requisition.raise') ? 'active' : '' }}">
+                                <a class="dash-link" href="{{ route('requisition.raise') }}">{{__('My Requisitions')}}</a>
+                            </li>
+                            @can('final account view')
+                                <li class="dash-item {{ request()->is('manage.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('manage.requisitions') }}">{{__('Manage Requisitions')}}</a>
+                                </li>
+                            @endcan
+                            @if(auth()->user()->type=='hod')
+                            @can('approve as hod')
+                                <li class="dash-item {{ request()->is('hod.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('hod.requisitions') }}">{{__('HoD Approval')}}</a>
+                                </li>
+                            @endcan
+                            @endif
+                            @can('approve as dg')
+                                <li class="dash-item {{ request()->is('dg.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('dg.requisitions') }}">{{__('DG Approval')}}</a>
+                                </li>
+                            @endcan
+                            @can('approve as bursar')
+                                <li class="dash-item {{ request()->is('bursar.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('bursar.requisitions') }}">{{__('Bursar Approval')}}</a>
+                                </li>
+                            @endcan
+                            @can('approve as pv')
+                                <li class="dash-item {{ request()->is('pv.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('pv.requisitions') }}">{{__('PV Approval')}}</a>
+                                </li>
+                            @endcan
+                            @can('approve as audit')
+                                <li class="dash-item {{ request()->is('audit.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('audit.requisitions') }}">{{__('Audit Approval')}}</a>
+                                </li>
+                            @endcan
+                            @can('approve as cash office')
+                                <li class="dash-item {{ request()->is('cash-office.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('cash-office.requisitions') }}">{{__('Cash Office Approval')}}</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+
                     @if( Gate::check('set budget') || Gate::check('manage budget') || Gate::check('view budget') || Gate::check('manage ergp') || Gate::check('view ergp'))
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp' || Request::segment(1) == 'ergp') ? 'active dash-trigger' : ''}}" href="#navbar-performance" data-toggle="collapse" role="button" aria-expanded="{{ (Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp') ? 'true' : 'false'}}">
                             <a class="dash-link" href="#"><span class="dash-micon"><i class="ti ti-cash"></i></span

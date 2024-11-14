@@ -318,6 +318,56 @@
                         <?php endif; ?>
                     <?php endif; ?>
 
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="#!" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                            ><span class="dash-mtext"><?php echo e(__('Payment Requisition')); ?></span
+                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                            ></a>
+                        <ul class="dash-submenu">
+                            <li class="dash-item <?php echo e(request()->is('requisition.raise') ? 'active' : ''); ?>">
+                                <a class="dash-link" href="<?php echo e(route('requisition.raise')); ?>"><?php echo e(__('My Requisitions')); ?></a>
+                            </li>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('final account view')): ?>
+                                <li class="dash-item <?php echo e(request()->is('manage.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('manage.requisitions')); ?>"><?php echo e(__('Manage Requisitions')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if(auth()->user()->type=='hod'): ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as hod')): ?>
+                                <li class="dash-item <?php echo e(request()->is('hod.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('hod.requisitions')); ?>"><?php echo e(__('HoD Approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as dg')): ?>
+                                <li class="dash-item <?php echo e(request()->is('dg.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('dg.requisitions')); ?>"><?php echo e(__('DG Approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as bursar')): ?>
+                                <li class="dash-item <?php echo e(request()->is('bursar.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('bursar.requisitions')); ?>"><?php echo e(__('Bursar Approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as pv')): ?>
+                                <li class="dash-item <?php echo e(request()->is('pv.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('pv.requisitions')); ?>"><?php echo e(__('PV Approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as audit')): ?>
+                                <li class="dash-item <?php echo e(request()->is('audit.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('audit.requisitions')); ?>"><?php echo e(__('Audit Approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as cash office')): ?>
+                                <li class="dash-item <?php echo e(request()->is('cash-office.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('cash-office.requisitions')); ?>"><?php echo e(__('Cash Office Approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
+
                     <?php if( Gate::check('set budget') || Gate::check('manage budget') || Gate::check('view budget') || Gate::check('manage ergp') || Gate::check('view ergp')): ?>
                     <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp' || Request::segment(1) == 'ergp') ? 'active dash-trigger' : ''); ?>" href="#navbar-performance" data-toggle="collapse" role="button" aria-expanded="<?php echo e((Request::segment(1) == 'budgets' || Request::segment(1) == 'ergp') ? 'true' : 'false'); ?>">
                             <a class="dash-link" href="#"><span class="dash-micon"><i class="ti ti-cash"></i></span
