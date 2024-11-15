@@ -13,11 +13,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <?php echo e(Form::label('name', __('Surname'), ['class' => 'form-label'])); ?>
+                                    <?php echo e(Form::label('name', __('Firstname'), ['class' => 'form-label'])); ?>
 
-                                    <input type="text" wire:model.defer="surname" class="form-control"
-                                        placeholder="Surname" />
-                                    <?php $__errorArgs = ['surname'];
+                                    <input type="text" wire:model.defer="firstname" class="form-control"
+                                        placeholder="Firstname" />
+                                    <?php $__errorArgs = ['firstname'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -33,11 +33,11 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <?php echo e(Form::label('name', __('Firstname'), ['class' => 'form-label'])); ?>
+                                    <?php echo e(Form::label('Othernames', __('Othernames'), ['class' => 'form-label'])); ?>
 
-                                    <input type="text" wire:model.defer="firstname" class="form-control"
-                                        placeholder="Firstname" />
-                                    <?php $__errorArgs = ['firstname'];
+                                    <input type="text" wire:model.defer="surname" class="form-control"
+                                        placeholder="Othernames" />
+                                    <?php $__errorArgs = ['surname'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -63,6 +63,27 @@ if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
                                         <small class="invalid-email" role="alert">
+                                            <strong class="text-danger"><?php echo e($message); ?></strong>
+                                        </small>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <?php echo e(Form::label('ippis', __('IPPIS Number'), ['class' => 'form-label'])); ?>
+
+                                    <input type="text" wire:model.defer="ippis" class="form-control"
+                                        placeholder="IPPIS Number" />
+                                    <?php $__errorArgs = ['ippis'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <small class="invalid-name" role="alert">
                                             <strong class="text-danger"><?php echo e($message); ?></strong>
                                         </small>
                                     <?php unset($message);

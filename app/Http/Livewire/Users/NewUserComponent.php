@@ -27,6 +27,7 @@ class NewUserComponent extends Component
     public $location_type;
     public $department;
     public $designation;
+    public $ippis;
     public $level;
     public $unit;
     public $subunit;
@@ -59,6 +60,7 @@ class NewUserComponent extends Component
             'email' => 'required|email|unique:users',
             'surname' => ['required'],
             'designation' => ['required'],
+            'ippis' => ['required'],
             'level' => ['required'],
             'location' => ['required'],
             'location_type' => ['required'],
@@ -84,6 +86,7 @@ class NewUserComponent extends Component
             'sub_unit_id' => $this->subunit,
             'type' => $this->user_role=="Human Resource (HR)"? "client" : strtolower($this->user_role),
             'designation' => $designation->name,
+            'ippis' => $this->ippis,
             'password' => Hash::make('12345678'),
             'level' => $this->level,
         ]);

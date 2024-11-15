@@ -14,15 +14,11 @@
         <a href="{{ route('contract.grid') }}"  data-bs-toggle="tooltip" title="{{__('Grid View')}}" class="btn btn-sm btn-primary">
             <i class="ti ti-layout-grid"></i>
         </a>
-        @if(\Auth::user()->type == 'super admin')
-            <a href="#" data-size="md" data-url="{{ route('contract.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create New Contract')}}" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
-            </a>
-        @endif
+        <a href="#" data-size="md" data-url="{{ route('contract.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create New Contract')}}" class="btn btn-sm btn-primary">
+            <i class="ti ti-plus"></i>
+        </a>
     </div>
 @endsection
-
-{{-- @section('content') --}}
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -32,9 +28,9 @@
                             <thead>
                             <tr>
                                 <th scope="col">{{__('#')}}</th>
-                                <th scope="col">{{__('Subject')}}</th>
-                                @if(\Auth::user()->type!='client')
-                                    <th scope="col">{{__('Client')}}</th>
+                                <th scope="col">{{__('Project Name')}}</th>
+                                @if(\Auth::user()->type!='contractor')
+                                    <th scope="col">{{__('Contractor')}}</th>
                                 @endif
                                 <th scope="col">{{__('Project')}}</th>
 
@@ -44,7 +40,6 @@
                                 <th scope="col">{{__('End Date')}}</th>
                                 <th scope="col">{{__('')}}</th>
                                 <th scope="col" >{{__('Action')}}</th>
-
                             </tr>
                             </thead>
                             <tbody>

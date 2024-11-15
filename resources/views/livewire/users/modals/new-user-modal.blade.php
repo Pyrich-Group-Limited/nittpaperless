@@ -12,10 +12,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    {{ Form::label('name', __('Surname'), ['class' => 'form-label']) }}
-                                    <input type="text" wire:model.defer="surname" class="form-control"
-                                        placeholder="Surname" />
-                                    @error('surname')
+                                    {{ Form::label('name', __('Firstname'), ['class' => 'form-label']) }}
+                                    <input type="text" wire:model.defer="firstname" class="form-control"
+                                        placeholder="Firstname" />
+                                    @error('firstname')
                                         <small class="invalid-name" role="alert">
                                             <strong class="text-danger">{{ $message }}</strong>
                                         </small>
@@ -24,10 +24,10 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    {{ Form::label('name', __('Firstname'), ['class' => 'form-label']) }}
-                                    <input type="text" wire:model.defer="firstname" class="form-control"
-                                        placeholder="Firstname" />
-                                    @error('firstname')
+                                    {{ Form::label('Othernames', __('Othernames'), ['class' => 'form-label']) }}
+                                    <input type="text" wire:model.defer="surname" class="form-control"
+                                        placeholder="Othernames" />
+                                    @error('surname')
                                         <small class="invalid-name" role="alert">
                                             <strong class="text-danger">{{ $message }}</strong>
                                         </small>
@@ -41,6 +41,19 @@
                                         placeholder="email" />
                                     @error('email')
                                         <small class="invalid-email" role="alert">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ Form::label('ippis', __('IPPIS Number'), ['class' => 'form-label']) }}
+                                    <input type="text" wire:model.defer="ippis" class="form-control"
+                                        placeholder="IPPIS Number" />
+                                    @error('ippis')
+                                        <small class="invalid-name" role="alert">
                                             <strong class="text-danger">{{ $message }}</strong>
                                         </small>
                                     @enderror
@@ -191,6 +204,7 @@
                     </div>
 
                     <div class="modal-footer">
+                        <div wire:loading wire:target="registerUser"><x-g-loader /></div>
                         <input type="button" id="closeUserModal" value="{{ __('Cancel') }}" class="btn  btn-light"
                             data-bs-dismiss="modal">
                         <input type="button" wire:click="registerUser" value="{{ __('Create') }}" class="btn  btn-primary">

@@ -37,6 +37,7 @@ class CreateUsersTable extends Migration
             $table->integer('is_active')->default(1);
             $table->datetime('last_login_at')->nullable();
             $table->string('designation');
+            $table->string('ippis')->nullable();
             $table->string('level');
             $table->integer('department_id')->nullable();
             $table->integer('unit_id')->nullable();

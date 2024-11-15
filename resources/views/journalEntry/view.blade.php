@@ -9,9 +9,56 @@
     <li class="breadcrumb-item">{{ Auth::user()->journalNumberFormat($journalEntry->journal_id) }}</li>
 @endsection
 
-@section('content')
+@push('script-page')
 
-    <div class="row">
+    <script type="text/javascript" src="{{ asset('js/html2pdf.bundle.min.js') }}"></script>
+    <script>
+        var filename = $('#filename').val();
+
+        function saveAsPDF() {
+            var element = document.getElementById('printableArea');
+            var opt = {
+                margin: 0.3,
+                filename: filename,
+                image: {type: 'jpeg', quality: 1},
+                html2canvas: {scale: 4, dpi: 72, letterRendering: true},
+                jsPDF: {unit: 'in', format: 'A2'}
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        $(document).ready(function () {
+            var filename = $('#filename').val();
+            $('#report-dataTable').DataTable({
+                dom: 'lBfrtip',
+                buttons: [
+                    {
+                        extend: 'excel',
+                        title: filename
+                    },
+                    {
+                        extend: 'pdf',
+                        title: filename
+                    }, {
+                        extend: 'csv',
+                        title: filename
+                    }
+                ]
+            });
+        });
+    </script>
+@endpush
+
+@section('action-btn')
+    <div class="float-end">
+        <a href="#" class="btn btn-sm btn-primary" onclick="saveAsPDF()"data-bs-toggle="tooltip" title="{{__('Download Journal')}}" data-original-title="{{__('Download')}}">
+            <span class="btn-inner--icon"><i class="ti ti-download"></i></span>
+        </a>
+    </div>
+@endsection
+
+@section('content')
+    <div class="row" id="printableArea">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -22,7 +69,7 @@
                                     <h2>{{__('Journal')}}</h2>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-nd-6 col-lg-6 col-12 text-end">
-                                    <h3 class="invoice-number">{{ \AUth::user()->journalNumberFormat($journalEntry->journal_id) }}</h3>
+                                    <h3 class="invoice-number" >{{ \AUth::user()->journalNumberFormat($journalEntry->journal_id) }}</h3>
                                 </div>
                                 <div class="col-12">
                                     <hr>
@@ -56,7 +103,7 @@
 
                             <div class="row mt-4">
                                 <div class="col-md-12">
-                                    <div class="font-weight-bold">{{__('Journal Account Summary')}}</div>
+                                    <div class="font-weight-bold" id="filename">{{__('Journal Account Summary')}}</div>
                                     <div class="table-responsive mt-2">
                                         <table class="table mb-0 ">
                                             <tr>

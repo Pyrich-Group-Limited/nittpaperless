@@ -112,7 +112,7 @@
                                 <input type="button" id="closeDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light" data-bs-dismiss="modal">
                                 <input type="button" wire:click="approveContractor('{{ $selApplicant->id }}')"
-                                    value="{{ __('Approve') }}" class="btn  btn-primary">
+                                    value="{{ __('Approve for procurement process') }}" class="btn  btn-primary">
                             </div>
                         @else
                             <label align="center" class="mb-4" style="color: red">Loading...</label>

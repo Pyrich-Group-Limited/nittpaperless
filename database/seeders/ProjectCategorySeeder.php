@@ -24,5 +24,8 @@ class ProjectCategorySeeder extends Seeder
         ProjectCategory::create([
             'category_name' => 'Works',
         ]);
+        ProjectCategory::create([
+            'category_name' => 'Hybrid',
+        ]);
     }
 }
