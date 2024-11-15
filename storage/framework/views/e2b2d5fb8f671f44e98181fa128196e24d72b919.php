@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form wire:submit.prevent="uploadUser" method="POST" enctype="multipart/form-data">
+                <form wire:submit.prevent="uploadUser" method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
                 <?php echo csrf_field(); ?>
                 <div class="modal-header">
                             <h5 class="modal-title" id="applyLeave">Upload Users </h5>
@@ -40,7 +40,7 @@ unset($__errorArgs, $__bag); ?>
                         </div>
 
                     </div>
-
+                    
                     <div class="modal-footer">
                         <input type="button" id="closeUploadUser" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light" data-bs-dismiss="modal">
                         <input type="submit" value="<?php echo e(__('Onboard Users')); ?>" class="btn  btn-primary">
@@ -65,5 +65,7 @@ unset($__errorArgs, $__bag); ?>
         })
     </script>
     <?php endif; ?>
+
+
 <?php $__env->stopPush(); ?>
 <?php /**PATH C:\xampp\htdocs\nittpaperless-1\resources\views/user/upload-users.blade.php ENDPATH**/ ?>

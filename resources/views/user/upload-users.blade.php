@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form wire:submit.prevent="uploadUser" method="POST" enctype="multipart/form-data">
+                <form wire:submit.prevent="uploadUser" method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
                 @csrf
                 <div class="modal-header">
                             <h5 class="modal-title" id="applyLeave">Upload Users </h5>
@@ -33,7 +33,7 @@
                         </div>
 
                     </div>
-
+                    {{-- <div wire:loading wire:target="registerUser"><x-g-loader /></div> --}}
                     <div class="modal-footer">
                         <input type="button" id="closeUploadUser" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
                         <input type="submit" value="{{__('Onboard Users')}}" class="btn  btn-primary">
@@ -58,4 +58,6 @@
         })
     </script>
     @endif
+
+
 @endpush

@@ -33,9 +33,9 @@
                             <thead>
                             <tr>
                                 <th scope="col"><?php echo e(__('#')); ?></th>
-                                <th scope="col"><?php echo e(__('Subject')); ?></th>
-                                <?php if(\Auth::user()->type!='client'): ?>
-                                    <th scope="col"><?php echo e(__('Client')); ?></th>
+                                <th scope="col"><?php echo e(__('Project Name')); ?></th>
+                                <?php if(\Auth::user()->type!='contractor'): ?>
+                                    <th scope="col"><?php echo e(__('Contractor')); ?></th>
                                 <?php endif; ?>
                                 <th scope="col"><?php echo e(__('Project')); ?></th>
 

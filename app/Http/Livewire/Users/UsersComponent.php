@@ -37,6 +37,7 @@ class UsersComponent extends Component
     public $location_type;
     public $department;
     public $designation;
+    public $ippis;
     public $level;
     public $unit;
     public $subunit;
@@ -69,6 +70,7 @@ class UsersComponent extends Component
             'email' => 'required|email|unique:users',
             'surname' => ['required'],
             'designation' => ['required'],
+            'ippis' => ['required'],
             'level' => ['required'],
             'location' => ['required'],
             'location_type' => ['required'],
@@ -94,6 +96,7 @@ class UsersComponent extends Component
             'sub_unit_id' => $this->subunit,
             'type' => $this->user_role=="Human Resource (HR)"? "client" : strtolower($this->user_role),
             'designation' => $designation->name,
+            'ippis' => $this->ippis,
             'level' => $this->level,
             'password' => Hash::make('12345678'),
         ]);
@@ -114,6 +117,7 @@ class UsersComponent extends Component
             'email' => ['required','email','unique:users,email,'.$this->selUser->id],
             'surname' => ['required'],
             'designation' => ['required'],
+            'ippis' => ['required'],
             'level' => ['required'],
             'location' => ['required'],
             'location_type' => ['required'],
@@ -139,6 +143,7 @@ class UsersComponent extends Component
             'sub_unit_id' => $this->subunit,
             'type' => $this->user_role=="Human Resource (HR)"? "client" : strtolower($this->user_role),
             'designation' => $designation->name,
+            'ippis' => $this->ippis,
             'level' => $this->level,
         ]);
 
@@ -182,6 +187,7 @@ class UsersComponent extends Component
         $this->location_type =  ucwords($location_type);
         $this->department = $this->selUser->department_id;
         $this->designation = $designation!=null? $designation->id : "";
+        $this->ippis = $this->selUser->ippis;
         $this->level = $this->selUser->level;
         $this->unit = $this->selUser->unit_id;
         $this->subunit = $this->selUser->subunit;
@@ -226,6 +232,7 @@ class UsersComponent extends Component
             'type' => $row[7],
             'designation'  => $row[8],
             'level' => $row[9],
+            'ippis' => $row[10],
             'comment' => $comment,
         ];
     }
@@ -271,6 +278,7 @@ class UsersComponent extends Component
             $valUser = User::where('email',$row[3])->first();
             if($row[0]!=null && $valUser==null){
                 $user = User::create([
+                    'ippis'  => $row[10],
                     'designation'  => $row[8],
                     'name' => $row[0],
                     'email' => $row[1],

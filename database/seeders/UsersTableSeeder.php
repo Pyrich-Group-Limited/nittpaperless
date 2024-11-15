@@ -1240,28 +1240,76 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'manage chart of account',
-                'module' => 'Chart of Account',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'create chart of account',
-                'module' => 'Chart of Account',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'edit chart of account',
-                'module' => 'Chart of Account',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'delete chart of account',
-                'module' => 'Chart of Account',
+                'module' => 'Double Entry',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'name' => 'show chart of account',
+                'module' => 'Double Entry',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'name' => 'show journal',
+                'module' => 'Double Entry',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'name' => 'show ledger',
+                'module' => 'Double Entry',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'name' => 'show balance sheet',
+                'module' => 'Double Entry',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'name' => 'show profit and loss',
+                'module' => 'Double Entry',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [
+                'name' => 'show trial balance',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1269,56 +1317,56 @@ class UsersTableSeeder extends Seeder
 
             [
                 'name' => 'manage journal entry',
-                'module' => 'Journal Entry',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'create journal entry',
-                'module' => 'Journal Entry',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'edit journal entry',
-                'module' => 'Journal Entry',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'delete journal entry',
-                'module' => 'Journal Entry',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'show journal entry',
-                'module' => 'Journal Entry',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'balance sheet report',
-                'module' => 'Report',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'ledger report',
-                'module' => 'Report',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'trial balance report',
-                'module' => 'Report',
+                'module' => 'Double Entry',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4241,6 +4289,74 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
 
+            [   'name' => 'show bursary menu',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'show reports',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'show banking',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'show voucher',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'show purchases',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [   'name' => 'show double entry',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'show budget planner',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'show financial goal',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'show accounting setup',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'show print setup',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'show account overview',
+                'module' => 'Navigations',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
         ];
 
         Permission::insert($arrPermissions);
@@ -4255,6 +4371,25 @@ class UsersTableSeeder extends Seeder
         );
 
         $companyPermissions = [
+            ['name' => 'show bursary menu'],
+            ['name' => 'show account overview'],
+            ['name' => 'show reports'],
+            ['name' => 'show banking'],
+            ['name' => 'show voucher'],
+            ['name' => 'show purchases'],
+            ['name' => 'show double entry'],
+            ['name' => 'show budget planner'],
+            ['name' => 'show financial goal'],
+            ['name' => 'show accounting setup'],
+            ['name' => 'show print setup'],
+
+             ['name' => 'show chart of account'],
+            ['name' => 'show journal'],
+            ['name' => 'show ledger'],
+            ['name' => 'show balance sheet'],
+            ['name' => 'show profit and loss'],
+            ['name' => 'show trial balance'],
+
             ['name' => 'manage requisition'],
             ['name' => 'manage contract'],
             ['name' => 'view contract'],
@@ -4845,7 +4980,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'approve budget'],
             ['name' => 'reject budget'],
             ['name' => 'view budget'],
-            
+
             ['name' => 'view contract'],
             ['name' => 'approve payment'],
             ['name' => 'view payment history'],
@@ -4856,7 +4991,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'view recommended payment'],
         ];
 
-        $dgRole->givePermissionTo($dgPermissions);
+        // $dgRole->givePermissionTo($dgPermissions);
 
         $dg = User::create(
             [
@@ -4956,7 +5091,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage contract'],
             ['name' => 'show contract'],
         ];
-        $supervisorRole->givePermissionTo($supervisorPermission);
+        // $supervisorRole->givePermissionTo($supervisorPermission);
 
         $supervisor = User::create(
             [
@@ -4993,7 +5128,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
             ['name' => 'manage client dashboard'],
-                      
+
         ];
         $liasonRole->givePermissionTo($liasonPermission);
 
@@ -5037,7 +5172,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
             ['name' => 'manage client dashboard'],
-            
+
         ];
         $hodRole->givePermissionTo($hodPermission);
 
@@ -5342,7 +5477,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'delete budget plan'],
             ['name' => 'view budget plan'],
             ['name' => 'create barcode'],
-           
+
         ];
         $accountantRole->givePermissionTo($accountantPermission);
 
@@ -5418,7 +5553,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage user'],
             ['name' => 'manage role'],
             ['name' => 'manage client'],
-            
+
         ];
 
         $clientRole->givePermissionTo($clientPermission);
