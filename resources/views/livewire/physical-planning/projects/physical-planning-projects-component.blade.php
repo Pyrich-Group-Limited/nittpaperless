@@ -48,17 +48,11 @@
 
              {{------------ End Filter ----------------}}
 
-             {{------------ Start Status Filter ----------------}}
-                 <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <span class="btn-inner--icon">{{__('Status')}}</span>
-                 </a>
-                 <div class="dropdown-menu  project-filter-actions dropdown-steady" id="project_status">
-                     <a class="dropdown-item filter-action filter-show-all pl-4 active" href="#">{{__('Show All')}}</a>
-                     {{-- @foreach(\App\Models\Project::$project_status as $key => $val)
-                         <a class="dropdown-item filter-action pl-4" href="#" data-val="{{ $key }}">{{__($val)}}</a>
-                     @endforeach --}}
-                 </div>
-             {{------------ End Status Filter ----------------}}
+             @can('create project')
+                <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#ppNewProject" id="toggleOldProject"  data-bs-toggle="tooltip" title="{{__('Create New Project')}}"  class="btn btn-sm btn-primary">
+                    <i class="ti ti-plus"></i>
+                </a>
+            @endcan
 
      </div>
  @endsection
@@ -126,6 +120,25 @@
                                 </td>
                                 <td class="text-end">
                                     <span>
+                                        @if($project->project_boq!=null && $project->advert_approval_status==true)
+                                            @can('edit project')
+                                                <div class="action-btn bg-primary ms-2">
+                                                    <a href="{{ route('project.applicants',$project->id) }}" data-size="lg"  data-bs-toggle="tooltip" title="{{__('View Project Applicant')}}"  class="mx-3 btn btn-sm d-inline-flex align-items-center">
+                                                        <i class="ti ti-users text-white"></i>
+                                                    </a>
+                                                </div>
+                                            @endcan
+                                        @endif
+
+                                        @if($project->project_boq==null)
+                                            @can('delete project')
+                                                <div class="action-btn bg-danger ms-2">
+                                                    <a href="#" wire:click="setActionId('{{$project->id}}')" class="mx-3 btn btn-sm align-items-center confirm-delete" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}">
+                                                    <i class="ti ti-trash text-white"></i></a>
+                                                </div>
+                                            @endcan
+                                        @endif
+
                                         @can('edit project')
                                             <div class="action-btn bg-warning ms-2">
                                                 <a href="{{ route('pp.projects.show',$project) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="{{__('View Project')}}" data-title="{{__('View Project')}}">
@@ -175,5 +188,7 @@
 </div>
 
  @livewire('physical-planning.projects.uploadboq')
+ <x-toast-notification />
+@include('livewire.projects.modals.pp-create-project-modal')
 
 <div>

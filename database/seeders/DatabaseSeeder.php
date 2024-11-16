@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             $this->call(ProjectCreationSeeder::class);
             $this->call(ProjectAdvertSeeder::class);
             $this->call(ProjectApplicationSeeder::class);
+            $this->call(JobCategorySeeder::class);
+            $this->call(TrainingTypeSeeder::class);
 
        /*  }else{
             Utility::languagecreate();

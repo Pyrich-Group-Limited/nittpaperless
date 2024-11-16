@@ -12,6 +12,7 @@ use App\Models\EventEmployee;
 use App\Models\Projects;
 use App\Models\Tasks;
 use App\Models\Utility;
+use App\Models\LiasonOffice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ class EventController extends Controller
     {
         if(\Auth::user()->can('manage event'))
         {
-            $employees = Employee::where('created_by', '=', \Auth::user()->creatorId())->get();
+            $employees = Employee::all();
             $events    = LocalEvent::where('created_by', '=', \Auth::user()->creatorId())->get();
             $transdate = date('Y-m-d', time());
 
@@ -53,9 +54,11 @@ class EventController extends Controller
     {
         if(\Auth::user()->can('create event'))
         {
-            $employees   = Employee::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
-            $branch      = Branch::where('created_by', '=', \Auth::user()->creatorId())->get();
-            $departments = Department::where('created_by', '=', \Auth::user()->creatorId())->get();
+            $employees   = Employee::all()->pluck('name', 'id');
+            $branch      = LiasonOffice::where('status','Active')->get();
+            // $branch      = Branch::where('created_by', '=', \Auth::user()->creatorId())->get();
+            // $departments = Department::where('created_by', '=', \Auth::user()->creatorId())->get();
+            $departments = Department::where('status','active')->get();
             $settings = Utility::settings();
 
 
@@ -120,24 +123,24 @@ class EventController extends Controller
             }
 
             //For Notification
-            $setting  = Utility::settings(\Auth::user()->creatorId());
-            $branch = Branch::find($request->branch_id);
-            $eventNotificationArr = [
-                'event_title' => $request->title,
-                'branch_name' => $branch->name,
-                'event_start_date' =>$request->start_date,
-                'event_end_date' =>$request->end_date,
-            ];
+            // $setting  = Utility::settings(\Auth::user()->creatorId());
+            // $branch = Branch::find($request->branch_id);
+            // $eventNotificationArr = [
+            //     'event_title' => $request->title,
+            //     'branch_name' => $branch->name,
+            //     'event_start_date' =>$request->start_date,
+            //     'event_end_date' =>$request->end_date,
+            // ];
             //Slack Notification
-            if(isset($setting['event_notification']) && $setting['event_notification'] ==1)
-            {
-                Utility::send_slack_msg('new_event', $eventNotificationArr);
-            }
-            //Telegram Notification
-            if (isset($setting['telegram_event_notification']) && $setting['telegram_event_notification'] == 1)
-            {
-                Utility::send_telegram_msg('new_event', $eventNotificationArr);
-            }
+            // if(isset($setting['event_notification']) && $setting['event_notification'] ==1)
+            // {
+            //     Utility::send_slack_msg('new_event', $eventNotificationArr);
+            // }
+            // //Telegram Notification
+            // if (isset($setting['telegram_event_notification']) && $setting['telegram_event_notification'] == 1)
+            // {
+            //     Utility::send_telegram_msg('new_event', $eventNotificationArr);
+            // }
 
             //For Google Calendar
             if($request->get('synchronize_type')  == 'google_calender')
@@ -264,14 +267,15 @@ class EventController extends Controller
     public function getdepartment(Request $request)
     {
 
-        if($request->branch_id == 0)
-        {
-            $departments = Department::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id')->toArray();
-        }
-        else
-        {
-            $departments = Department::where('created_by', '=', \Auth::user()->creatorId())->where('branch_id', $request->branch_id)->get()->pluck('name', 'id')->toArray();
-        }
+        $departments = Department::all()->pluck('name', 'id')->toArray();
+        // if($request->branch_id == 0)
+        // {
+        //     $departments = Department::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id')->toArray();
+        // }
+        // else
+        // {
+        //     $departments = Department::where('created_by', '=', \Auth::user()->creatorId())->where('branch_id', $request->branch_id)->get()->pluck('name', 'id')->toArray();
+        // }
 
         return response()->json($departments);
     }
@@ -279,6 +283,7 @@ class EventController extends Controller
     public function getemployee(Request $request)
     {
         $employees=[];
+        // $employees = Employee::all()->pluck('name', 'id')->toArray();
         if(in_array('0',$request->department_id))
         {
             $employees = Employee::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id')->toArray();

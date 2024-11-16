@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Trainer;
 use App\Models\Training;
 use App\Models\TrainingType;
+use App\Models\LiasonOffice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -33,10 +34,11 @@ class TrainingController extends Controller
     {
         if(\Auth::user()->can('create training'))
         {
-            $branches      = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
-            $trainingTypes = TrainingType::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            // $branches      = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            $branches      = LiasonOffice::where('status','Active')->get()->pluck('name', 'id');
+            $trainingTypes = TrainingType::all()->pluck('name', 'id');
             $trainers      = Trainer::where('created_by', \Auth::user()->creatorId())->get()->pluck('firstname', 'id');
-            $employees     = Employee::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            $employees     = Employee::all()->pluck('name', 'id');
             $options       = Training::$options;
 
             return view('training.create', compact('branches', 'trainingTypes', 'trainers', 'employees', 'options'));

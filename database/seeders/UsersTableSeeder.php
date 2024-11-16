@@ -12,6 +12,7 @@ use App\Models\Designation;
 use App\Models\Department;
 use App\Models\Unit;
 use App\Models\Subunit;
+use App\Models\Employee;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
@@ -4962,6 +4963,7 @@ class UsersTableSeeder extends Seeder
                 'created_by' => 1,
             ]
         );
+        Employee::create(['user_id' => $company->id]);
         $company->assignRole($companyRole);
         $company->givePermissionTo($companyPermissions);
 
@@ -5045,6 +5047,7 @@ class UsersTableSeeder extends Seeder
                 'created_by' => $company->id,
             ]
         );
+        Employee::create(['user_id' => $user->id]);
         $user->assignRole($userRole);
 
 
@@ -5109,6 +5112,7 @@ class UsersTableSeeder extends Seeder
                 'level' => "Level 08",
             ]
         );
+        Employee::create(['user_id' => $supervisor->id]);
         $supervisor->assignRole($supervisorRole);
         $supervisor->givePermissionTo($supervisorPermission);
 
@@ -5148,6 +5152,7 @@ class UsersTableSeeder extends Seeder
                 'level' => "Level 08",
             ]
         );
+        Employee::create(['user_id' => $liason->id]);
         $liason->assignRole($liasonRole);
         $liason->givePermissionTo($liasonPermission);
 
@@ -5192,6 +5197,7 @@ class UsersTableSeeder extends Seeder
                 'level' => "Level 09",
             ]
         );
+        Employee::create(['user_id' => $hod->id]);
         $hod->assignRole($hodRole);
         $hod->givePermissionTo($hodPermission);
 
@@ -5288,6 +5294,7 @@ class UsersTableSeeder extends Seeder
                 'level' => "Level 08",
             ]
         );
+        Employee::create(['user_id' => $unitHead->id]);
         $unitHead->assignRole($unitHeadRole);
 
          // store/assets
@@ -5326,6 +5333,7 @@ class UsersTableSeeder extends Seeder
                 'level' => "Level 08",
             ]
         );
+        Employee::create(['user_id' => $storeKeeper->id]);
         $storeKeeper->assignRole($storeKeeperRole);
         $storeKeeper->givePermissionTo($storePermission);
 
@@ -5497,6 +5505,7 @@ class UsersTableSeeder extends Seeder
                 'level' => "Level 08",
             ]
         );
+        Employee::create(['user_id' => $accountant->id]);
         $accountant->assignRole($accountantRole);
         $accountant->givePermissionTo($accountantPermission);
 
@@ -5574,6 +5583,7 @@ class UsersTableSeeder extends Seeder
                 'level' => "Level 08",
             ]
         );
+        Employee::create(['user_id' => $client->id]);
         $client->assignRole($clientRole);
         $client->givePermissionTo($clientPermission);
 

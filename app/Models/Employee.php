@@ -247,6 +247,10 @@ class Employee extends Model
         return !empty($employee) ? $employee->id + 1 : 1;
     }
 
+    public function location(){
+        return $this->belongsTo(LiasonOffice::class);
+    }
+
     public function branch()
     {
         return $this->hasOne('App\Models\Branch', 'id', 'branch_id');

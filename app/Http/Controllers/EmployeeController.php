@@ -234,16 +234,16 @@ class EmployeeController extends Controller
          $users = User::all();
          return view('employee.create', compact('users'));
      }
- 
+
      // Assign selected users to the employee table
      public function assignEmployees(Request $request)
      {
          $selectedUsers = $request->input('users');
- 
+
          if ($selectedUsers) {
              foreach ($selectedUsers as $userId) {
                  $user = User::find($userId);
- 
+
                  // Check if the user is not already in the employee table
                  if (!Employee::where('user_id', $user->id)->exists()) {
 
@@ -259,13 +259,13 @@ class EmployeeController extends Controller
                          'designation_id' => $user->designation,
                          'employee_id' => $employeeID,
                          'password' => $user->password,
-                        
-                         
+
+
                      ]);
                  }
              }
          }
- 
+
          return redirect()->route('employee.index')->with('success', 'Selected users have been assigned to employees.');
      }
 
@@ -277,7 +277,7 @@ class EmployeeController extends Controller
      {
          // Get the last employee record
          $lastEmployee = Employee::orderBy('id', 'desc')->first();
- 
+
          // Generate a new ID
          if (!$lastEmployee) {
              $newID = 'EMP000001';  // If there are no employees, start with this ID
@@ -285,81 +285,9 @@ class EmployeeController extends Controller
              $lastID = (int) substr($lastEmployee->employee_id, 3);  // Extract the number part
              $newID = 'EMP' . str_pad($lastID + 1, 6, '0', STR_PAD_LEFT);  // Increment and pad the number
          }
- 
+
          return $newID;
      }
- 
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public function edit($id)
@@ -371,9 +299,9 @@ class EmployeeController extends Controller
             $branches     = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
             $branches->prepend('Select Branch','');
             $departments  = Department::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
-            $designations = Designation::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
             $employee     = Employee::find($id);
             $employeesId  = \Auth::user()->employeeIdFormat(!empty($employee->employee_id) ? $employee->employee_id :'');
+            $designations = Designation::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
            // $departmentData  = Department::where('created_by', \Auth::user()->creatorId())->where('branch_id',$employee->branch_id)->get()->pluck('name', 'id');
 
 
