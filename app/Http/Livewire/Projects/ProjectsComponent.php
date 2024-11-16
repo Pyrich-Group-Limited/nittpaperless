@@ -18,6 +18,8 @@ use Livewire\WithFileUploads;
 
 class ProjectsComponent extends Component
 {
+    protected $listeners = ['delete-confirmed'=>'deleteProject'];
+
     use WithFileUploads;
     public $project_name;
     public $project_number;
@@ -34,6 +36,7 @@ class ProjectsComponent extends Component
     public $project;
     public $selProject;
     public $setActionId;
+    public $actionId;
 
     public $selProject2;
     public $ad_start_date;
@@ -50,7 +53,6 @@ class ProjectsComponent extends Component
 
     public function mount()
     {
-
         $this->users = User::all();
     }
 
@@ -102,6 +104,22 @@ class ProjectsComponent extends Component
     public function setProject(ProjectCreation $project){
         $this->selProject = $project;
         $this->emit('project', $project);
+    }
+
+    public function setActionId($actionId){
+        $this->actionId = $actionId;
+    }
+
+    public function deleteProject(){
+        $project = ProjectCreation::find($this->actionId);
+
+        // Check if the category has any associated boq project
+        if ($project->boqs()->exists()) {
+            $this->dispatchBrowserEvent('error', ['error' => "This project cannot be deleted because it has associated bill of quantity."]);
+            return;
+        }
+        $project->delete();
+        $this->dispatchBrowserEvent('success', ['success' => "Project Successfully Deleted"]);
     }
 
 

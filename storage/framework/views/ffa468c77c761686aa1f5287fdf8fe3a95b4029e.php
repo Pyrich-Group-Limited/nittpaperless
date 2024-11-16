@@ -1,7 +1,8 @@
 <?php $__env->startSection('page-title'); ?>
         <?php echo e('Dashboard'); ?> <br>
         <i class="ti ti-user"></i> (<?php echo e(Ucfirst(Auth::user()->designation)); ?>)<br>
-        <i class="ti ti-location"></i> <?php echo e(Ucfirst(Auth::user()->location)); ?> 
+        <i class="ti ti-location"></i> <?php echo e(Ucfirst(Auth::user()->location)); ?>
+
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('script-page'); ?>
     <script>
@@ -287,8 +288,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="col-md-3">
                         <div class="col-xxl-12">
                             <div class="card">

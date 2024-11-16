@@ -15,25 +15,29 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('action-btn'); ?>
     <div class="float-end">
-        
+        <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="ti ti-filter"></i>
+        </a>
+        <div class="dropdown-menu  dropdown-steady" id="project_sort">
+            <a class="dropdown-item active" href="#" data-val="created_at-desc">
+                <i class="ti ti-sort-descending"></i><?php echo e(__('Newest')); ?>
 
+            </a>
+            <a class="dropdown-item" href="#" data-val="created_at-asc">
+                <i class="ti ti-sort-ascending"></i><?php echo e(__('Oldest')); ?>
 
-        
-                
+            </a>
 
+            <a class="dropdown-item" href="#" data-val="project_name-desc">
+                <i class="ti ti-sort-descending-letters"></i><?php echo e(__('From Z-A')); ?>
+
+            </a>
+            <a class="dropdown-item" href="#" data-val="project_name-asc">
+                <i class="ti ti-sort-ascending-letters"></i><?php echo e(__('From A-Z')); ?>
+
+            </a>
+        </div>
             
-
-            
-                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="btn-inner--icon"><?php echo e(__('Status')); ?></span>
-                </a>
-                <div class="dropdown-menu  project-filter-actions dropdown-steady" id="project_status">
-                    <a class="dropdown-item filter-action filter-show-all pl-4 active" href="#"><?php echo e(__('Show All')); ?></a>
-                    
-                </div>
-            
-
-
         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create project')): ?>
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newProject" id="toggleOldProject"  data-bs-toggle="tooltip" title="<?php echo e(__('Create New Project')); ?>"  class="btn btn-sm btn-primary">
                 <i class="ti ti-plus"></i>
@@ -67,11 +71,12 @@
                                     <td><?php echo e($loop->iteration); ?></td>
                                     <td>
                                         <div class="d-flex align-items-center">
+                                            <img src="<?php echo e(asset('uploads/project.png')); ?>" class="wid-40 rounded me-3">
                                             <p class="mb-0"><a href="<?php echo e(route('project.details',$project)); ?>" class="name mb-0 h6 text-sm"><?php echo e($project->project_name); ?></a></p>
                                         </div>
                                     </td>
-                                    <td>
 
+                                    <td>
                                         <div class="d-flex align-items-center">
                                             <p class="mb-0"><a href="#" class="name mb-0 h6 text-sm"><?php echo e($project->projectId); ?></a></p>
                                         </div>
@@ -127,7 +132,7 @@
                                                     </a>
                                                 </div>
                                             <?php endif; ?>
-                                            
+
                                             <?php if($project->project_boq!=null && $project->advert_approval_status==true): ?>
                                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit project')): ?>
                                                     <div class="action-btn bg-primary ms-2">
@@ -140,12 +145,9 @@
                                             <?php if($project->project_boq==null): ?>
                                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete project')): ?>
                                                     <div class="action-btn bg-danger ms-2">
-                                                            <?php echo Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy', [$project->id,$user->id]]]); ?>
-
-                                                            <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"><i class="ti ti-trash text-white"></i></a>
-                                                            <?php echo Form::close(); ?>
-
-                                                        </div>
+                                                        <a href="#" wire:click="setActionId('<?php echo e($project->id); ?>')" class="mx-3 btn btn-sm align-items-center confirm-delete" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>" data-original-title="<?php echo e(__('Delete')); ?>">
+                                                        <i class="ti ti-trash text-white"></i></a>
+                                                    </div>
                                                 <?php endif; ?>
                                             <?php endif; ?>
 

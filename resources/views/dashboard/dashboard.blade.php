@@ -2,7 +2,7 @@
 @section('page-title')
         {{'Dashboard'}} <br>
         <i class="ti ti-user"></i> ({{ Ucfirst(Auth::user()->designation) }})<br>
-        <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}} 
+        <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}}
 @endsection
 @push('script-page')
     <script>
@@ -283,8 +283,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="col-md-3">
                         <div class="col-xxl-12">
                             <div class="card">

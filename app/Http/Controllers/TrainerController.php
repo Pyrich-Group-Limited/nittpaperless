@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\Trainer;
+use App\Models\LiasonOffice;
 use Illuminate\Http\Request;
 
 class TrainerController extends Controller
@@ -28,7 +29,8 @@ class TrainerController extends Controller
     {
         if(\Auth::user()->can('create trainer'))
         {
-            $branches = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            // $branches = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            $branches = LiasonOffice::where('status','Active')->get()->pluck('name', 'id');
 
             return view('trainer.create', compact('branches'));
         }

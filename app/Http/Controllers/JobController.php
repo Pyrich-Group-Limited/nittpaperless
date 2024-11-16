@@ -11,6 +11,7 @@ use App\Models\JobApplication;
 use App\Models\JobApplicationNote;
 use App\Models\JobCategory;
 use App\Models\User;
+use App\Models\LiasonOffice;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -40,7 +41,10 @@ class JobController extends Controller
         $categories = JobCategory::where('created_by', \Auth::user()->creatorId())->get()->pluck('title', 'id');
         $categories->prepend('--', '');
 
-        $branches = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+        // $branches = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+        // $branches->prepend('All', 0);
+
+        $branches = LiasonOffice::where('status', 'Active')->get()->pluck('name', 'id');
         $branches->prepend('All', 0);
 
         $status = Job::$status;

@@ -100,9 +100,7 @@ class DashboardController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-     public function unit_dashboard(){
-        return view('dashboard.unit-dashboard');
-     }
+
 
      public function liason_dashboard(){
 
@@ -115,19 +113,284 @@ class DashboardController extends Controller
                 $purchasesArray = Purchase::getPurchaseReportChart();
                 $posesArray = Pos::getPosReportChart();
 
-        return view('dashboard.liason-dashboard',compact('pos_data','purchasesArray','posesArray'));
+                $user = Auth::user();
+                if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+                {
+                    $emp = Employee::where('user_id', '=', $user->id)->first();
+
+                    $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
+                        function ($q){
+                            $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
+                        }
+                    )->get();
+
+                    $employees = Employee::get();
+                    $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
+                        function ($q){
+                            $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
+                        }
+                    )->get();
+                    $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
+                        function ($q){
+                            $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
+                        }
+                    )->get();
+
+                    $arrEvents = [];
+                    foreach($events as $event)
+                    {
+
+                        $arr['id']              = $event['id'];
+                        $arr['title']           = $event['title'];
+                        $arr['start']           = $event['start_date'];
+                        $arr['end']             = $event['end_date'];
+                        $arr['backgroundColor'] = $event['color'];
+                        $arr['borderColor']     = "#fff";
+                        $arr['textColor']       = "white";
+                        $arrEvents[]            = $arr;
+                    }
+
+                    $date               = date("Y-m-d");
+                    $time               = date("H:i:s");
+                    $employeeAttendance = AttendanceEmployee::orderBy('id', 'desc')->where('employee_id', '=', !empty(\Auth::user()->employee) ? \Auth::user()->employee->id : 0)->where('date', '=', $date)->first();
+
+                    $officeTime['startTime'] = Utility::getValByName('company_start_time');
+                    $officeTime['endTime']   = Utility::getValByName('company_end_time');
+
+                    $onGoingTraining = Training::where('status', '=', 1)->where('created_by', '=', \Auth::user()->creatorId())->count();
+                    $doneTraining    = Training::where('status', '=', 2)->where('created_by', '=', \Auth::user()->creatorId())->count();
+                    $activeJob   = Job::where('status', 'active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+                    $inActiveJOb = Job::where('status', 'in_active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+
+            return view('dashboard.liason-dashboard',compact('arrEvents', 'announcements', 'employees', 'meetings', 'employeeAttendance',
+                    'officeTime','onGoingTraining','doneTraining','activeJob','inActiveJOb','pos_data','purchasesArray','posesArray'));
+            }
+
+     }
+
+     public function unit_dashboard(){
+        $user = Auth::user();
+        if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+        {
+            $emp = Employee::where('user_id', '=', $user->id)->first();
+
+            $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
+                }
+            )->get();
+
+            $employees = Employee::get();
+            $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
+                }
+            )->get();
+            $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
+                }
+            )->get();
+
+            $arrEvents = [];
+            foreach($events as $event)
+            {
+
+                $arr['id']              = $event['id'];
+                $arr['title']           = $event['title'];
+                $arr['start']           = $event['start_date'];
+                $arr['end']             = $event['end_date'];
+                $arr['backgroundColor'] = $event['color'];
+                $arr['borderColor']     = "#fff";
+                $arr['textColor']       = "white";
+                $arrEvents[]            = $arr;
+            }
+
+            $date               = date("Y-m-d");
+            $time               = date("H:i:s");
+            $employeeAttendance = AttendanceEmployee::orderBy('id', 'desc')->where('employee_id', '=', !empty(\Auth::user()->employee) ? \Auth::user()->employee->id : 0)->where('date', '=', $date)->first();
+
+            $officeTime['startTime'] = Utility::getValByName('company_start_time');
+            $officeTime['endTime']   = Utility::getValByName('company_end_time');
+
+            $onGoingTraining = Training::where('status', '=', 1)->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $doneTraining    = Training::where('status', '=', 2)->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $activeJob   = Job::where('status', 'active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $inActiveJOb = Job::where('status', 'in_active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+
+            return view('dashboard.unit-dashboard',compact('arrEvents', 'announcements', 'employees', 'meetings', 'employeeAttendance',
+            'officeTime','onGoingTraining','doneTraining','activeJob','inActiveJOb'));
+        }
      }
 
      public function user_dashboard(){
-        return view('dashboard.user-dashboard');
-     }
+        $user = Auth::user();
+        if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+        {
+            $emp = Employee::where('user_id', '=', $user->id)->first();
+
+            $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
+                }
+            )->get();
+
+            $employees = Employee::get();
+            $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
+                }
+            )->get();
+            $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
+                }
+            )->get();
+
+            $arrEvents = [];
+            foreach($events as $event)
+            {
+
+                $arr['id']              = $event['id'];
+                $arr['title']           = $event['title'];
+                $arr['start']           = $event['start_date'];
+                $arr['end']             = $event['end_date'];
+                $arr['backgroundColor'] = $event['color'];
+                $arr['borderColor']     = "#fff";
+                $arr['textColor']       = "white";
+                $arrEvents[]            = $arr;
+            }
+
+            $date               = date("Y-m-d");
+            $time               = date("H:i:s");
+            $employeeAttendance = AttendanceEmployee::orderBy('id', 'desc')->where('employee_id', '=', !empty(\Auth::user()->employee) ? \Auth::user()->employee->id : 0)->where('date', '=', $date)->first();
+
+            $officeTime['startTime'] = Utility::getValByName('company_start_time');
+            $officeTime['endTime']   = Utility::getValByName('company_end_time');
+
+            $onGoingTraining = Training::where('status', '=', 1)->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $doneTraining    = Training::where('status', '=', 2)->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $activeJob   = Job::where('status', 'active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $inActiveJOb = Job::where('status', 'in_active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+
+            return view('dashboard.user-dashboard',compact('arrEvents', 'announcements', 'employees', 'meetings', 'employeeAttendance',
+            'officeTime','onGoingTraining','doneTraining','activeJob','inActiveJOb'));
+
+        }
+    }
+
+
+
+
 
      public function store_dashboard(){
-        return view('dashboard.store-dashboard');
+        $user = Auth::user();
+        if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+        {
+            $emp = Employee::where('user_id', '=', $user->id)->first();
+
+            $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
+                }
+            )->get();
+
+            $employees = Employee::get();
+            $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
+                }
+            )->get();
+            $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
+                }
+            )->get();
+
+            $arrEvents = [];
+            foreach($events as $event)
+            {
+
+                $arr['id']              = $event['id'];
+                $arr['title']           = $event['title'];
+                $arr['start']           = $event['start_date'];
+                $arr['end']             = $event['end_date'];
+                $arr['backgroundColor'] = $event['color'];
+                $arr['borderColor']     = "#fff";
+                $arr['textColor']       = "white";
+                $arrEvents[]            = $arr;
+            }
+
+            $date               = date("Y-m-d");
+            $time               = date("H:i:s");
+            $employeeAttendance = AttendanceEmployee::orderBy('id', 'desc')->where('employee_id', '=', !empty(\Auth::user()->employee) ? \Auth::user()->employee->id : 0)->where('date', '=', $date)->first();
+
+            $officeTime['startTime'] = Utility::getValByName('company_start_time');
+            $officeTime['endTime']   = Utility::getValByName('company_end_time');
+
+            $onGoingTraining = Training::where('status', '=', 1)->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $doneTraining    = Training::where('status', '=', 2)->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $activeJob   = Job::where('status', 'active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $inActiveJOb = Job::where('status', 'in_active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+
+            return view('dashboard.store-dashboard',compact('arrEvents', 'announcements', 'employees', 'meetings', 'employeeAttendance',
+            'officeTime','onGoingTraining','doneTraining','activeJob','inActiveJOb'));
+        }
      }
 
      public function supervisor_dashboard(){
-        return view('dashboard.supervisor-dashboard');
+        $user = Auth::user();
+        if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+        {
+            $emp = Employee::where('user_id', '=', $user->id)->first();
+
+            $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
+                }
+            )->get();
+
+            $employees = Employee::get();
+            $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
+                }
+            )->get();
+            $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
+                }
+            )->get();
+
+            $arrEvents = [];
+            foreach($events as $event)
+            {
+
+                $arr['id']              = $event['id'];
+                $arr['title']           = $event['title'];
+                $arr['start']           = $event['start_date'];
+                $arr['end']             = $event['end_date'];
+                $arr['backgroundColor'] = $event['color'];
+                $arr['borderColor']     = "#fff";
+                $arr['textColor']       = "white";
+                $arrEvents[]            = $arr;
+            }
+
+            $date               = date("Y-m-d");
+            $time               = date("H:i:s");
+            $employeeAttendance = AttendanceEmployee::orderBy('id', 'desc')->where('employee_id', '=', !empty(\Auth::user()->employee) ? \Auth::user()->employee->id : 0)->where('date', '=', $date)->first();
+
+            $officeTime['startTime'] = Utility::getValByName('company_start_time');
+            $officeTime['endTime']   = Utility::getValByName('company_end_time');
+
+            $onGoingTraining = Training::where('status', '=', 1)->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $doneTraining    = Training::where('status', '=', 2)->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $activeJob   = Job::where('status', 'active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $inActiveJOb = Job::where('status', 'in_active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+
+            return view('dashboard.supervisor-dashboard',compact('arrEvents', 'announcements', 'employees', 'meetings', 'employeeAttendance',
+            'officeTime','onGoingTraining','doneTraining','activeJob','inActiveJOb'));
+        }
      }
 
     //  public function accountant_dashboard(){
@@ -159,7 +422,58 @@ class DashboardController extends Controller
             return !$project->comments->contains('user_id', $hod->id);
         });
 
-        return view('dashboard.hod-dashboard',compact('projectsWithoutComments'));
+        $user = Auth::user();
+        if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+        {
+            $emp = Employee::where('user_id', '=', $user->id)->first();
+
+            $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
+                }
+            )->get();
+
+            $employees = Employee::get();
+            $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
+                }
+            )->get();
+            $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
+                function ($q){
+                    $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
+                }
+            )->get();
+
+            $arrEvents = [];
+            foreach($events as $event)
+            {
+
+                $arr['id']              = $event['id'];
+                $arr['title']           = $event['title'];
+                $arr['start']           = $event['start_date'];
+                $arr['end']             = $event['end_date'];
+                $arr['backgroundColor'] = $event['color'];
+                $arr['borderColor']     = "#fff";
+                $arr['textColor']       = "white";
+                $arrEvents[]            = $arr;
+            }
+
+            $date               = date("Y-m-d");
+            $time               = date("H:i:s");
+            $employeeAttendance = AttendanceEmployee::orderBy('id', 'desc')->where('employee_id', '=', !empty(\Auth::user()->employee) ? \Auth::user()->employee->id : 0)->where('date', '=', $date)->first();
+
+            $officeTime['startTime'] = Utility::getValByName('company_start_time');
+            $officeTime['endTime']   = Utility::getValByName('company_end_time');
+
+            $onGoingTraining = Training::where('status', '=', 1)->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $doneTraining    = Training::where('status', '=', 2)->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $activeJob   = Job::where('status', 'active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $inActiveJOb = Job::where('status', 'in_active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+
+            return view('dashboard.hod-dashboard',compact('arrEvents', 'announcements', 'employees', 'meetings', 'employeeAttendance',
+            'officeTime','onGoingTraining','doneTraining','activeJob','inActiveJOb','projectsWithoutComments'));
+        }
      }
 
      public function dashboard_index()
@@ -395,9 +709,58 @@ class DashboardController extends Controller
                     $data['monthlyBill']       = \Auth::user()->monthlyBill();
                     $data['goals']             = Goal::where('created_by', '=', \Auth::user()->creatorId())->where('is_display', 1)->get();
 
-                    return view('dashboard.account-dashboard', $data);
 
+                    $user = Auth::user();
 
+                    $emp = Employee::where('user_id', '=', $user->id)->first();
+
+                    $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
+                        function ($q){
+                            $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
+                        }
+                    )->get();
+
+                    $employees = Employee::get();
+                    $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
+                        function ($q){
+                            $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
+                        }
+                    )->get();
+                    $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
+                        function ($q){
+                            $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
+                        }
+                    )->get();
+
+                    $arrEvents = [];
+                    foreach($events as $event)
+                    {
+
+                        $arr['id']              = $event['id'];
+                        $arr['title']           = $event['title'];
+                        $arr['start']           = $event['start_date'];
+                        $arr['end']             = $event['end_date'];
+                        $arr['backgroundColor'] = $event['color'];
+                        $arr['borderColor']     = "#fff";
+                        $arr['textColor']       = "white";
+                        $arrEvents[]            = $arr;
+                    }
+
+                    $date               = date("Y-m-d");
+                    $time               = date("H:i:s");
+                    $employeeAttendance = AttendanceEmployee::orderBy('id', 'desc')->where('employee_id', '=', !empty(\Auth::user()->employee) ? \Auth::user()->employee->id : 0)->where('date', '=', $date)->first();
+
+                    $officeTime['startTime'] = Utility::getValByName('company_start_time');
+                    $officeTime['endTime']   = Utility::getValByName('company_end_time');
+
+                    $onGoingTraining = Training::where('status', '=', 1)->where('created_by', '=', \Auth::user()->creatorId())->count();
+                    $doneTraining    = Training::where('status', '=', 2)->where('created_by', '=', \Auth::user()->creatorId())->count();
+                    $activeJob   = Job::where('status', 'active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+                    $inActiveJOb = Job::where('status', 'in_active')->where('created_by', '=', \Auth::user()->creatorId())->count();
+
+                    return view('dashboard.account-dashboard',
+                    compact('arrEvents', 'announcements', 'employees', 'meetings', 'employeeAttendance',
+                    'officeTime','onGoingTraining','doneTraining','activeJob','inActiveJOb'),$data);
                 }
                 else {
                     return $this->hrm_dashboard_index();
@@ -762,6 +1125,9 @@ class DashboardController extends Controller
                     $activeJob   = Job::where('status', 'active')->where('created_by', '=', \Auth::user()->creatorId())->count();
                     $inActiveJOb = Job::where('status', 'in_active')->where('created_by', '=', \Auth::user()->creatorId())->count();
 
+                    // zhiocizv
+
+
 
                     $meetings = Meeting::where('created_by', '=', \Auth::user()->creatorId())->limit(5)->get();
 
@@ -903,7 +1269,7 @@ class DashboardController extends Controller
     public function filterView(Request $request)
     {
         $usr   = Auth::user();
-        dd($usr);
+        // dd($usr);
         $users = User::where('id', '!=', $usr->id);
 
         if($request->ajax())

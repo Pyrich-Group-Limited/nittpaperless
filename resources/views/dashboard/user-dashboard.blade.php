@@ -1,297 +1,303 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{__('Dashboard')}} <br>
+    {{ __('Dashboard') }} <br>
     <i class="ti ti-user"></i> ({{ Ucfirst(Auth::user()->designation) }})<br>
-        <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}} 
+    <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location) }}
 @endsection
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")" }}</li>
+    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
+    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name) . '(' . Auth::user()->department->name . ')' }}
+    </li>
 @endsection
 
 @section('content')
-
-<div class="row">
-    <div class="col-sm-12">
-        <div class="row">
-            <div class="col-xxl-7">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row align-items-center justify-content-between">
-                                            <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="#">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="theme-avtar bg-primary">
-                                                            <i class="ti ti-cast"></i>
-                                                        </div>
-                                                        <div class="ms-3">
-
-                                                            <h6 class="m-0">{{__('Purchase Requisition')}}</h6>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row align-items-center justify-content-between">
-                                            <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="#">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="theme-avtar bg-primary">
-                                                            <i class="ti ti-cast"></i>
-                                                        </div>
-                                                        <div class="ms-3">
-                                                            <h6 class="m-0">{{__('Store Requisition Note')}}</h6>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row align-items-center justify-content-between">
-                                            <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="#">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="theme-avtar bg-primary">
-                                                            <i class="ti ti-cast"></i>
-                                                        </div>
-                                                        <div class="ms-3">
-                                                            <h6 class="m-0">{{__('Goods Recieved')}}</h6>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row align-items-center justify-content-between">
-                                            <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="#">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="theme-avtar bg-primary">
-                                                            <i class="ti ti-cast"></i>
-                                                        </div>
-                                                        <div class="ms-3">
-                                                            <h6 class="m-0">{{__('Inventory/Assets')}}</h6>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
     <div class="row">
         <div class="col-sm-12">
-            <div class="mt-2 " id="multiCollapseExample1">
-                <div class="card">
-                    <div class="card-body">
-                        {{ Form::open(array('route' => array('report.invoice.summary'),'method' => 'GET','id'=>'report_invoice_summary')) }}
-                        <div class="row align-items-center justify-content-end">
-                            <div class="col-auto">
-                                <div class="row">
-                                    <div class="col-auto mt-4">
+            <div class="row">
+                <div class="col-xxl-7">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center justify-content-between">
+                                                <div class="col-auto mb-3 mb-sm-0">
+                                                    <a href="#">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="theme-avtar bg-primary">
+                                                                <i class="ti ti-cast"></i>
+                                                            </div>
+                                                            <div class="ms-3">
 
-                                        <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('report_invoice_summary').submit(); return false;" data-bs-toggle="tooltip" title="{{__('Apply')}}" data-original-title="{{__('apply')}}">
-                                            <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
-                                        </a>
+                                                                <h6 class="m-0">{{ __('Purchase Requisition') }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
 
-                                        <a href="{{route('report.invoice.summary')}}" class="btn btn-sm btn-danger " data-bs-toggle="tooltip"  title="{{ __('Reset') }}" data-original-title="{{__('Reset')}}">
-                                            <span class="btn-inner--icon"><i class="ti ti-trash-off text-white-off "></i></span>
-                                        </a>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center justify-content-between">
+                                                <div class="col-auto mb-3 mb-sm-0">
+                                                    <a href="#">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="theme-avtar bg-primary">
+                                                                <i class="ti ti-cast"></i>
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <h6 class="m-0">{{ __('Store Requisition Note') }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center justify-content-between">
+                                                <div class="col-auto mb-3 mb-sm-0">
+                                                    <a href="#">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="theme-avtar bg-primary">
+                                                                <i class="ti ti-cast"></i>
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <h6 class="m-0">{{ __('Goods Recieved') }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center justify-content-between">
+                                                <div class="col-auto mb-3 mb-sm-0">
+                                                    <a href="#">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="theme-avtar bg-primary">
+                                                                <i class="ti ti-cast"></i>
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <h6 class="m-0">{{ __('Inventory/Assets') }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {{ Form::close() }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-xxl-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>{{ __('Mark Attandance') }}</h4>
+                        </div>
+                        <div class="card-body dash-card-body">
+                            <p class="text-muted pb-0-5">
+                                {{ __('My Office Time: ' . $officeTime['startTime'] . ' to ' . $officeTime['endTime']) }}</p>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{ Form::open(['url' => 'attendanceemployee/attendance', 'method' => 'post']) }}
+                                        @if (empty($employeeAttendance) || $employeeAttendance->clock_out != '00:00:00')
+                                            <button type="submit" value="0" name="in" id="clock_in"
+                                                class="btn btn-success ">{{ __('CLOCK IN') }}</button>
+                                        @else
+                                            <button type="submit" value="0" name="in" id="clock_in"
+                                                class="btn btn-success disabled" disabled>{{ __('CLOCK IN') }}</button>
+                                        @endif
+                                        {{ Form::close() }}
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        @if (!empty($employeeAttendance) && $employeeAttendance->clock_out == '00:00:00')
+                                            {{ Form::model($employeeAttendance, ['route' => ['attendanceemployee.update', $employeeAttendance->id], 'method' => 'PUT']) }}
+                                            <button type="submit" value="1" name="out" id="clock_out"
+                                                class="btn btn-danger">{{ __('CLOCK OUT') }}</button>
+                                        @else
+                                            <button type="submit" value="1" name="out" id="clock_out"
+                                                class="btn btn-danger disabled" disabled>{{ __('CLOCK OUT') }}</button>
+                                        @endif
+                                        {{ Form::close() }}
+                                    </div>
+                                </div>
+                            </center>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-xxl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Training</h5>
+                        <div class="row  mt-4">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="theme-avtar bg-primary">
+                                        <i class="ti ti-users"></i>
+                                    </div>
+                                    <div class="ms-2">
+                                        <p class="text-muted text-sm mb-0">Total Training</p>
+                                        <h4 class="mb-0 text-success">{{ $onGoingTraining +   $doneTraining}}</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 my-3 my-sm-0">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="theme-avtar bg-success">
+                                        <i class="ti ti-user-check"></i>
+                                    </div>
+                                    <div class="ms-2">
+                                        <p class="text-muted text-sm mb-0">Active Training</p>
+                                        <h4 class="mb-0 text-danger">{{$onGoingTraining}}</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <h5>Jobs</h5>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="theme-avtar bg-primary">
+                                        <i class="ti ti-award"></i>
+                                    </div>
+                                    <div class="ms-2">
+                                        <p class="text-muted text-sm mb-0">Total Jobs</p>
+                                        <h4 class="mb-0 text-primary">{{$activeJob + $inActiveJOb}}</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <a href="{{route('job.index')}}">
+                                    <div class="d-flex align-items-start mb-3">
+                                        <div class="theme-avtar bg-success">
+                                            <i class="ti ti-award"></i>
+                                        </div>
+                                        <div class="ms-2">
+                                            <p class="text-muted text-sm mb-0">Active Jobs</p>
+                                            <h4 class="mb-0 text-danger">{{$activeJob}}</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card list_card">
+                <div class="card-header">
+                    <h4>{{ __('Announcement List') }}</h4>
+                </div>
+                <div class="card-body dash-card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>{{ __('Title') }}</th>
+                                    <th>{{ __('Start Date') }}</th>
+                                    <th>{{ __('End Date') }}</th>
+                                    <th>{{ __('description') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($announcements as $announcement)
+                                    <tr>
+                                        <td>{{ $announcement->title }}</td>
+                                        <td>{{ \Auth::user()->dateFormat($announcement->start_date) }}</td>
+                                        <td>{{ \Auth::user()->dateFormat($announcement->end_date) }}</td>
+                                        <td>{{ $announcement->description }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="text-center">
+                                                <h6>{{ __('There is no Announcement List') }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card list_card">
+                <div class="card-header">
+                    <h4>{{ __('Meeting List') }}</h4>
+                </div>
+                <div class="card-body dash-card-body">
+                    @if (count($meetings) > 0)
+                        <div class="table-responsive">
+                            <table class="table align-items-center">
+                                <thead>
+                                    <tr>
+                                        <th>{{ __('Meeting title') }}</th>
+                                        <th>{{ __('Meeting Date') }}</th>
+                                        <th>{{ __('Meeting Time') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($meetings as $meeting)
+                                        <tr>
+                                            <td>{{ $meeting->title }}</td>
+                                            <td>{{ \Auth::user()->dateFormat($meeting->date) }}</td>
+                                            <td>{{ \Auth::user()->timeFormat($meeting->time) }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <div class="p-2">
+                            {{ __('No meeting scheduled yet.') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="printableArea">
-        <div class="col-12" id="invoice-container">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between w-100">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="profile-tab3" data-bs-toggle="pill" href="#purchase" role="tab" aria-controls="pills-summary" aria-selected="true">{{__('Purchase Requisition')}}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab4" data-bs-toggle="pill" href="#requisition" role="tab" aria-controls="pills-invoice" aria-selected="false">{{__('Store Requisition Note')}}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab5" data-bs-toggle="pill" href="#goods" role="tab" aria-controls="pills-invoice" aria-selected="false">{{__('Goods Received')}}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab6" data-bs-toggle="pill" href="#inventory" role="tab" aria-controls="pills-invoice" aria-selected="false">{{__('Inventory/Assets')}}</a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="tab-content" id="myTabContent2">
-                                    <div class="tab-pane fade fade" id="purchase" role="tabpanel" aria-labelledby="profile-tab3">
-                                        <table class="table table-flush table datatable" id="report-dataTable">
-                                            <thead>
-                                            <tr>
-                                                <th> {{__('Invoice')}}</th>
-                                                <th> {{__('Date')}}</th>
-                                                <th> {{__('Customer')}}</th>
-                                                <th> {{__('Category')}}</th>
-                                                <th> {{__('Status')}}</th>
-                                                <th> {{__('	Paid Amount')}}</th>
-                                                <th> {{__('Due Amount')}}</th>
-                                                <th> {{__('Payment Date')}}</th>
-                                                <th> {{__('Amount')}}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {{-- @foreach ($invoices as $invoice) --}}
-                                                <tr>
-                                                    <td class="Id">
-                                                        {{--                                                        <a href="{{ route('invoice.show', \Crypt::encrypt($invoice->id)) }}">{{ Auth::user()->invoiceNumberFormat($invoice->invoice_id) }}</a>--}}
-                                                        {{-- <a href="{{ route('invoice.show',\Crypt::encrypt($invoice->id)) }}" class="btn btn-outline-primary">{{ Auth::user()->invoiceNumberFormat($invoice->invoice_id) }}</a>                                                    </td> --}}
-
-
-                                                    </td>
-                                                    <td></td>
-                                                    <td> </td>
-                                                    <td></td>
-                                                    <td>
-
-                                                    </td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td></td>
-                                                    <td> </td>
-                                                </tr>
-                                            {{-- @endforeach --}}
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="tab-pane fade fade" id="requisition" role="tabpanel" aria-labelledby="profile-tab3">
-                                        <table class="table table-flush table datatable" id="report-dataTable">
-                                            <thead>
-                                            <tr>
-                                                <th> {{__('Store Requisition Note')}}</th>
-                                                <th> {{__('Date')}}</th>
-                                                <th> {{__('Customer')}}</th>
-                                                <th> {{__('Category')}}</th>
-                                                <th> {{__('Status')}}</th>
-                                                <th> {{__('	Paid Amount')}}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td></td>
-                                                    <td> </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-
-                                    <div class="tab-pane fade fade" id="goods" role="tabpanel" aria-labelledby="profile-tab3">
-                                        <table class="table table-flush table datatable" id="report-dataTable">
-                                            <thead>
-                                            <tr>
-                                                <th> {{__('Goods')}}</th>
-                                                <th> {{__('Date')}}</th>
-                                                <th> {{__('Customer')}}</th>
-                                                <th> {{__('Category')}}</th>
-                                                <th> {{__('Status')}}</th>
-                                                <th> {{__('	Paid Amount')}}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td></td>
-                                                    <td> </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-
-                                    <div class="tab-pane fade fade" id="inventory" role="tabpanel" aria-labelledby="profile-tab3">
-                                        <table class="table table-flush table datatable" id="report-dataTable">
-                                            <thead>
-                                            <tr>
-                                                <th> {{__('Goods')}}</th>
-                                                <th> {{__('Date')}}</th>
-                                                <th> {{__('Customer')}}</th>
-                                                <th> {{__('Category')}}</th>
-                                                <th> {{__('Status')}}</th>
-                                                <th> {{__('	Paid Amount')}}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td></td>
-                                                    <td> </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection

@@ -14,53 +14,25 @@
 @endsection
 @section('action-btn')
     <div class="float-end">
-        {{-- @if($view == 'grid')
-            <a href="{{ route('projects.list','list') }}"  data-bs-toggle="tooltip" title="{{__('List View')}}" class="btn btn-sm btn-primary">
-                <i class="ti ti-list"></i>
+        <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="ti ti-filter"></i>
+        </a>
+        <div class="dropdown-menu  dropdown-steady" id="project_sort">
+            <a class="dropdown-item active" href="#" data-val="created_at-desc">
+                <i class="ti ti-sort-descending"></i>{{__('Newest')}}
+            </a>
+            <a class="dropdown-item" href="#" data-val="created_at-asc">
+                <i class="ti ti-sort-ascending"></i>{{__('Oldest')}}
             </a>
 
-        @else
-            <a href="{{ route('created-projects') }}"  data-bs-toggle="tooltip" title="{{__('Grid View')}}" class="btn btn-sm btn-primary">
-                <i class="ti ti-layout-grid"></i>
+            <a class="dropdown-item" href="#" data-val="project_name-desc">
+                <i class="ti ti-sort-descending-letters"></i>{{__('From Z-A')}}
             </a>
-        @endif --}}
-
-
-        {{------------ Start Filter ----------------}}
-                {{-- <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="ti ti-filter"></i>
-                </a>
-                <div class="dropdown-menu  dropdown-steady" id="project_sort">
-                    <a class="dropdown-item active" href="#" data-val="created_at-desc">
-                        <i class="ti ti-sort-descending"></i>{{__('Newest')}}
-                    </a>
-                    <a class="dropdown-item" href="#" data-val="created_at-asc">
-                        <i class="ti ti-sort-ascending"></i>{{__('Oldest')}}
-                    </a>
-
-                    <a class="dropdown-item" href="#" data-val="project_name-desc">
-                        <i class="ti ti-sort-descending-letters"></i>{{__('From Z-A')}}
-                    </a>
-                    <a class="dropdown-item" href="#" data-val="project_name-asc">
-                        <i class="ti ti-sort-ascending-letters"></i>{{__('From A-Z')}}
-                    </a>
-                </div> --}}
-
+            <a class="dropdown-item" href="#" data-val="project_name-asc">
+                <i class="ti ti-sort-ascending-letters"></i>{{__('From A-Z')}}
+            </a>
+        </div>
             {{------------ End Filter ----------------}}
-
-            {{------------ Start Status Filter ----------------}}
-                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="btn-inner--icon">{{__('Status')}}</span>
-                </a>
-                <div class="dropdown-menu  project-filter-actions dropdown-steady" id="project_status">
-                    <a class="dropdown-item filter-action filter-show-all pl-4 active" href="#">{{__('Show All')}}</a>
-                    {{-- @foreach(\App\Models\Project::$project_status as $key => $val)
-                        <a class="dropdown-item filter-action pl-4" href="#" data-val="{{ $key }}">{{__($val)}}</a>
-                    @endforeach --}}
-                </div>
-            {{------------ End Status Filter ----------------}}
-
-
         @can('create project')
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newProject" id="toggleOldProject"  data-bs-toggle="tooltip" title="{{__('Create New Project')}}"  class="btn btn-sm btn-primary">
                 <i class="ti ti-plus"></i>
@@ -94,11 +66,12 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
+                                            <img src="{{ asset('uploads/project.png') }}" class="wid-40 rounded me-3">
                                             <p class="mb-0"><a href="{{ route('project.details',$project) }}" class="name mb-0 h6 text-sm">{{ $project->project_name }}</a></p>
                                         </div>
                                     </td>
-                                    <td>
 
+                                    <td>
                                         <div class="d-flex align-items-center">
                                             <p class="mb-0"><a href="#" class="name mb-0 h6 text-sm">{{ $project->projectId }}</a></p>
                                         </div>
@@ -152,7 +125,7 @@
                                                     </a>
                                                 </div>
                                             @endcan
-                                            
+
                                             @if($project->project_boq!=null && $project->advert_approval_status==true)
                                                 @can('edit project')
                                                     <div class="action-btn bg-primary ms-2">
@@ -165,10 +138,9 @@
                                             @if($project->project_boq==null)
                                                 @can('delete project')
                                                     <div class="action-btn bg-danger ms-2">
-                                                            {!! Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy', [$project->id,$user->id]]]) !!}
-                                                            <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}"><i class="ti ti-trash text-white"></i></a>
-                                                            {!! Form::close() !!}
-                                                        </div>
+                                                        <a href="#" wire:click="setActionId('{{$project->id}}')" class="mx-3 btn btn-sm align-items-center confirm-delete" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}">
+                                                        <i class="ti ti-trash text-white"></i></a>
+                                                    </div>
                                                 @endcan
                                             @endif
 
