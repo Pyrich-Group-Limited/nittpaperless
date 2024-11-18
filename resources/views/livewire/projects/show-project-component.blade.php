@@ -31,7 +31,7 @@
 
             @can('edit project')
             @if ($project->project_boq != null && $project->advert_approval_status == false)
-                <div class="alert alert-danger">You cannot advertise this project before DG's approval</div>
+                <div class="alert alert-danger">You cannot proceed procurement process before DG's approval</div>
             @elseif($project->project_boq == null)
                 <div class="alert alert-danger">Kindly upload project's BoQ for DG's approval</div>
             @else
