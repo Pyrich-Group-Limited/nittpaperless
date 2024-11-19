@@ -246,7 +246,7 @@ class ShowProjectComponent extends Component
         $projectDuration = round(strtotime($this->ad_end_date) - strtotime($this->ad_start_date))/ 86400;
 
         if($project!=null){
-            $this->dispatchBrowserEvent('error',['error' => 'Sorry this project has already been advertised for applications']);
+            $this->dispatchBrowserEvent('error',['error' => 'Sorry this project has already been approved for procurement process']);
         }elseif(strtotime($this->ad_end_date)<strtotime(date('Y-m-d'))){
             $this->dispatchBrowserEvent('error',['error' => 'Sorry your start date can not be later than today']);
         }elseif($projectDuration<=0){
