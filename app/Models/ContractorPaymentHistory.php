@@ -25,9 +25,9 @@ class ContractorPaymentHistory extends Model
     {
         return $this->belongsTo(PaymentRequest::class,'payment_request_id');
     }
-    
+
     public function contract()
     {
-        return $this->belongsTo(Contract::class);
+        return $this->belongsTo(Contract::class,'contract_id');
     }
 }

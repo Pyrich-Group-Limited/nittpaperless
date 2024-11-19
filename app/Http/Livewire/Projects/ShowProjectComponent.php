@@ -241,7 +241,7 @@ class ShowProjectComponent extends Component
             'type_of_advert' => ['required','string'],
         ]);
 
-        $project = ProjectAdvert::find($this->selProject->id);
+        $project = ProjectAdvert::find($this->selProject->project_id);
 
         $projectDuration = round(strtotime($this->ad_end_date) - strtotime($this->ad_start_date))/ 86400;
 

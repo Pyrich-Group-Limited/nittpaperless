@@ -27,7 +27,6 @@ return new class extends Migration
             $table->enum('status', ['pending', 'recommended', 'approved', 'signed', 'voucher_raised','audited', 'paid'])->default('pending');
             $table->text('remarks')->nullable();
             $table->boolean('isCompleted')->nullable();
-
             $table->timestamps();
         });
     }

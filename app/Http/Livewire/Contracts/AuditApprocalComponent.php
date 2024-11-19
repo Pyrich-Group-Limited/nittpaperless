@@ -23,7 +23,7 @@ class AuditApprocalComponent extends Component
             'audited_by' => auth()->id(),
             'status' => 'audited',
         ]);
-        $this->dispatchBrowserEvent('success',["success" =>"Payment signed by Bursar."]);
+        $this->dispatchBrowserEvent('success',["success" =>"Payment Request Stamped by Audit."]);
         return redirect()->route('contracts.recommend',$this->paymentRequest->contract->id);
     }
 

@@ -73,6 +73,11 @@
                             <span><?php echo e(__('My DTA')); ?></span>
                         </a>
 
+                        <a href="<?php echo e(route('memos.index')); ?>" class="dropdown-item">
+                            <i class="ti ti-file"></i>
+                            <span><?php echo e(__('Memo')); ?></span>
+                        </a>
+
                         <a href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="dropdown-item">
                             <i class="ti ti-power"></i>
                             <span><?php echo e(__('Logout')); ?></span>

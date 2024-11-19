@@ -15,15 +15,11 @@
         <a href="<?php echo e(route('contract.grid')); ?>"  data-bs-toggle="tooltip" title="<?php echo e(__('Grid View')); ?>" class="btn btn-sm btn-primary">
             <i class="ti ti-layout-grid"></i>
         </a>
-        <?php if(\Auth::user()->type == 'super admin'): ?>
-            <a href="#" data-size="md" data-url="<?php echo e(route('contract.create')); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('Create New Contract')); ?>" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
-            </a>
-        <?php endif; ?>
+        <a href="#" data-size="md" data-url="<?php echo e(route('contract.create')); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('Create New Contract')); ?>" class="btn btn-sm btn-primary">
+            <i class="ti ti-plus"></i>
+        </a>
     </div>
 <?php $__env->stopSection(); ?>
-
-
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -45,7 +41,6 @@
                                 <th scope="col"><?php echo e(__('End Date')); ?></th>
                                 <th scope="col"><?php echo e(__('')); ?></th>
                                 <th scope="col" ><?php echo e(__('Action')); ?></th>
-
                             </tr>
                             </thead>
                             <tbody>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('description');
             $table->decimal('unit_price');
             $table->integer('quantity');
+            $table->decimal('remaining_balance', 15, 2)->nullable();
             $table->string('status')->default('Pending');
             $table->timestamps();
         });

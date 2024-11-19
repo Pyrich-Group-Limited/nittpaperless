@@ -21,6 +21,11 @@
             <a href="#" class="b-brand">
                 <img src="<?php echo e(asset('logo-dark.png')); ?>" alt="NITTs" class="logo logo-lg">
             </a>
+
+        </div>
+        <div class="" align="center">
+             <h6>(<?php echo e(Ucfirst(Auth::user()->designation)); ?>)</h6>
+            <h6><?php echo e(Ucfirst(Auth::user()->location)); ?></h6>
         </div>
 
         <div class="navbar-content">
@@ -51,14 +56,14 @@
                             ><span class="dash-mtext"><?php echo e(__('Projects')); ?></span
                             ></a>
                     </li>
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage contract')): ?>
+                    
                         <li class="dash-item dash-hasmenu ">
                             <a href="<?php echo e(route('dg.contracts')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
                             ><span class="dash-micon"><i class="ti ti-file"></i></span
                                 ><span class="dash-mtext"><?php echo e(__('Contracts')); ?></span
                                 ></a>
                         </li>
-                    <?php endif; ?>
+                    
 
                     <li class="dash-item dash-hasmenu ">
                         <a href="<?php echo e(route('memos.index')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
