@@ -60,7 +60,7 @@
                                     <div class="col-md-12">
                                         <p class="margin-bottom-15"><?php echo $advert->description; ?>.</p>
                                     </div>
-                                        <div class="header-navbar-text-1"><a href="<?php echo e(route('contractor.register')); ?>" class="h-donate-btn">Apply</a></div>
+                                        <div class="header-navbar-text-1"><a href="<?php echo e(route('contractor.register')); ?>" class="h-donate-btn">Bid</a></div>
                                     <!-- Col -->
                                 </div>
 

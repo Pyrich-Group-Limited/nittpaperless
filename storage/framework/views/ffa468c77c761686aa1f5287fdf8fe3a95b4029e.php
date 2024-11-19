@@ -252,7 +252,8 @@
                                 <div class="row g-3 flex-nowrap team-lists horizontal-scroll-cards">
                                     <?php $__currentLoopData = $notClockIns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notClockIn): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="col-auto">
-                                            <img src="<?php echo e((!empty($notClockIn->user))? $notClockIn->user->profile : 'assets/images/user/avatar.png'); ?>" alt="">
+                                            <img src="<?php echo e(asset('uploads/user.png')); ?>" alt="" srcset="">
+                                            
                                             <p class="mt-2"><?php echo e($notClockIn->name); ?></p>
                                         </div>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

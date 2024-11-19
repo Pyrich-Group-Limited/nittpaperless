@@ -1,8 +1,7 @@
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Dashboard')); ?> <br>
-    <i class="ti ti-user"></i> (<?php echo e(Ucfirst(Auth::user()->designation)); ?>)<br>
-        <i class="ti ti-location"></i> <?php echo e(Ucfirst(Auth::user()->location)); ?>
+    <?php echo e(__('Dashboard')); ?>
 
+    
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('breadcrumb'); ?>
@@ -10,112 +9,108 @@
     <li class="breadcrumb-item"><b>Welcome </b><?php echo e(Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")"); ?></li>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
+        <?php if($projectsWithoutComments->isEmpty()): ?>
+            
+        <?php else: ?>
+            <div class="row">
+                <h4 class="text-danger">Projects awaiting your comment.</h4>
+                <?php $__currentLoopData = $projectsWithoutComments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body bg-warning">
+                                <h5 class="card-title"><?php echo e($project->project_name); ?></h5>
+                                
+                                <a href="<?php echo e(route('project.shared', $project->id)); ?>" class="btn btn-primary btn-sm">
+                                    View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        <?php endif; ?>
+
     <div class="row">
-            <?php if($projectsWithoutComments->isEmpty()): ?>
-                
-            <?php else: ?>
-                <div class="row">
-                    <h4 class="text-danger">Projects awaiting your comment.</h4>
-                    <?php $__currentLoopData = $projectsWithoutComments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-md-4">
+        <div class="col-xxl-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
                             <div class="card">
-                                <div class="card-body bg-warning">
-                                    <h5 class="card-title"><?php echo e($project->project_name); ?></h5>
-                                    
-                                    <a href="<?php echo e(route('project.shared', $project->id)); ?>" class="btn btn-primary btn-sm">
-                                        View Project
-                                    </a>
+                                <div class="card-body">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-auto mb-3 mb-sm-0">
+                                            <a href="#">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="theme-avtar bg-primary">
+                                                        <i class="ti ti-cast"></i>
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        
+                                                        <h6 class="m-0"><?php echo e(__('Purchase Requisition')); ?></h6>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </div>
-            <?php endif; ?>
-
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="col-xxl-7">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center justify-content-between">
-                                                <div class="col-auto mb-3 mb-sm-0">
-                                                    <a href="#">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-primary">
-                                                                <i class="ti ti-cast"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                
-                                                                <h6 class="m-0"><?php echo e(__('Purchase Requisition')); ?></h6>
-                                                            </div>
-                                                        </div>
-                                                    </a>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-auto mb-3 mb-sm-0">
+                                            <a href="#">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="theme-avtar bg-primary">
+                                                        <i class="ti ti-cast"></i>
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <h6 class="m-0"><?php echo e(__('Store Requisition Note')); ?></h6>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center justify-content-between">
-                                                <div class="col-auto mb-3 mb-sm-0">
-                                                    <a href="#">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-primary">
-                                                                <i class="ti ti-cast"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <h6 class="m-0"><?php echo e(__('Store Requisition Note')); ?></h6>
-                                                            </div>
-                                                        </div>
-                                                    </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-auto mb-3 mb-sm-0">
+                                            <a href="#">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="theme-avtar bg-primary">
+                                                        <i class="ti ti-cast"></i>
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <h6 class="m-0"><?php echo e(__('Goods Recieved')); ?></h6>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center justify-content-between">
-                                                <div class="col-auto mb-3 mb-sm-0">
-                                                    <a href="#">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-primary">
-                                                                <i class="ti ti-cast"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <h6 class="m-0"><?php echo e(__('Goods Recieved')); ?></h6>
-                                                            </div>
-                                                        </div>
-                                                    </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-auto mb-3 mb-sm-0">
+                                            <a href="#">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="theme-avtar bg-primary">
+                                                        <i class="ti ti-cast"></i>
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <h6 class="m-0"><?php echo e(__('Inventory/Assets')); ?></h6>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center justify-content-between">
-                                                <div class="col-auto mb-3 mb-sm-0">
-                                                    <a href="#">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-primary">
-                                                                <i class="ti ti-cast"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <h6 class="m-0"><?php echo e(__('Inventory/Assets')); ?></h6>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -123,15 +118,16 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+
     </div>
+
 
     <div class="row">
         <div class="col-sm-6">
-            <div class="row">
-                <div class="col-xxl-6">
+            
+                <div class="col-xxl-12">
                     <div class="card">
                         <div class="card-header">
                             <h4><?php echo e(__('Mark Attandance')); ?></h4>
@@ -173,7 +169,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            
         </div>
         <div class="col-sm-6">
             <div class="col-xxl-12">

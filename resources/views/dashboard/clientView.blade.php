@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('title')
-    {{ __('Dashboard') }} <br>
-    <i class="ti ti-user"></i> ({{ Ucfirst(Auth::user()->designation) }})<br>
-    <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}}  
+    {{ __('Dashboard') }}
+    {{-- <i class="ti ti-user"></i> ({{ Ucfirst(Auth::user()->designation) }})<br>
+    <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}}   --}}
 @endsection
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>

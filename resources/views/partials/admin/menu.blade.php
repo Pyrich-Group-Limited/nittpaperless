@@ -21,6 +21,11 @@
             <a href="#" class="b-brand">
                 <img src="{{  asset('logo-dark.png') }}" alt="NITTs" class="logo logo-lg">
             </a>
+
+        </div>
+        <div class="" align="center">
+             <h6>({{ Ucfirst(Auth::user()->designation) }})</h6>
+            <h6>{{ Ucfirst(Auth::user()->location)}}</h6>
         </div>
 
         <div class="navbar-content">
@@ -51,14 +56,14 @@
                             ><span class="dash-mtext">{{__('Projects')}}</span
                             ></a>
                     </li>
-                    @can('manage contract')
+                    {{-- @can('manage contract') --}}
                         <li class="dash-item dash-hasmenu ">
                             <a href="{{ route('dg.contracts') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
                             ><span class="dash-micon"><i class="ti ti-file"></i></span
                                 ><span class="dash-mtext">{{__('Contracts')}}</span
                                 ></a>
                         </li>
-                    @endcan
+                    {{-- @endcan --}}
 
                     <li class="dash-item dash-hasmenu ">
                         <a href="{{ route('memos.index') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"

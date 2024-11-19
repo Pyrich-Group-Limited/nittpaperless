@@ -16,9 +16,16 @@ class PPProjectBOQ extends Model
         'description',
         'status',
         'quantity',
+        'total',
+        'remaining_balance'
     ];
 
     public function project(){
         return $this->belongsTo(ProjectCreation::class,'project_id');
     }
+
+    // public function getBalanceAttribute()
+    // {
+    //     return $this->unit_price * $this->quantity;
+    // }
 }

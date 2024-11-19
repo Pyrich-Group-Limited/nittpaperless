@@ -15,21 +15,21 @@
                 </div>
                 <div class="card-body pt-0">
                     {{-- <form wire:submit.prevent="makePayment"> --}}
-                        <div>
+                        {{-- <div>
                             <label for="percentage"><b>Percentage</b></label>
                             <input type="number" class="form-control" value="{{ $paymentRequest->recommended_percentage }}" wire:model="percentage" wire:change="calculateAmountFromPercentage" min="0" max="100" step="0.01" required>
-                        </div>
-                
+                        </div> --}}
+
                         <div>
                             <label for="amount"><b>Amount</b></label>
                             <input type="number" wire:model="amount" min="0" max="{{ $paymentRequest->contract->total_contract_sum - $paymentRequest->contract->amount_paid_to_date }}" step="0.01" class="form-control" required>
                         </div>
-                
+
                         <div>
                             <label for="remarks"><b>Remarks</b></label>
                             <textarea wire:model="remarks" class="form-control"></textarea>
                         </div>
-    
+
                         <div class="modal-footer mt-3">
                             <div wire:loading wire:target="finalizePayment"><x-g-loader /></div>
                             <input type="button"  wire:click="finalizePayment" value="{{ __('Make Payment') }}" class="btn  btn-primary">

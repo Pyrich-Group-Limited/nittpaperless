@@ -10,8 +10,8 @@ class PaymentRequest extends Model
     use HasFactory;
 
     protected $fillable = [
-        'contract_id', 'recommended_amount', 'recommended_percentage', 'recommended_by', 
-        'approved_by', 'signed_by', 'voucher_raised_by', 'audited_by', 'status', 'remarks', 'isCompleted'
+        'contract_id', 'recommended_amount', 'recommended_percentage', 'recommended_by',
+        'approved_by', 'signed_by', 'voucher_raised_by', 'audited_by', 'status', 'remarks', 'isCompleted',
     ];
 
     public function paymentHistories()
@@ -19,11 +19,16 @@ class PaymentRequest extends Model
         return $this->hasMany(ContractorPaymentHistory::class);
     }
 
+    // public function contractorPaymentHistory()
+    // {
+    //     return $this->hasOne(ContractorPaymentHistory::class, 'payment_request_id');
+    // }
+
     public function contract()
     {
         return $this->belongsTo(Contract::class);
     }
-    
+
     public function recommendedBy()
     {
         return $this->belongsTo(User::class, 'recommended_by');

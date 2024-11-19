@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('page-title')
-        {{'Dashboard'}} <br>
-        <i class="ti ti-user"></i> ({{ Ucfirst(Auth::user()->designation) }})<br>
-        <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}}
+        {{'Dashboard'}}
+        {{-- <i class="ti ti-user"></i> ({{ Ucfirst(Auth::user()->designation) }})<br>
+        <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}} --}}
 @endsection
 @push('script-page')
     <script>
@@ -247,7 +247,8 @@
                                 <div class="row g-3 flex-nowrap team-lists horizontal-scroll-cards">
                                     @foreach($notClockIns as $notClockIn)
                                         <div class="col-auto">
-                                            <img src="{{(!empty($notClockIn->user))? $notClockIn->user->profile : 'assets/images/user/avatar.png'}}" alt="">
+                                            <img src="{{ asset('uploads/user.png') }}" alt="" srcset="">
+                                            {{-- <img src="{{(!empty($notClockIn->user))? $notClockIn->user->profile : asset('uploads/user.png')}}" alt=""> --}}
                                             <p class="mt-2">{{ $notClockIn->name }}</p>
                                         </div>
                                     @endforeach
