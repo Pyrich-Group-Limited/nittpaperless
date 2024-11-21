@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\LeaveApproval;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Exception;
 
 class HrmDashControl extends Controller
 {
@@ -31,7 +32,8 @@ class HrmDashControl extends Controller
             $leaves = Leave::where('employee_id',Auth::user()->id)->get();
         }
         $leaveTypes = LeaveType::all();
-        return view('hrm.leave',compact('leaves','leaveTypes'));
+        $staffs = user::where('type','!=','contractor')->where('department_id',Auth::user()->department->id)->get();
+        return view('hrm.leave',compact('leaves','leaveTypes','staffs'));
     }
 
 
@@ -55,8 +57,9 @@ class HrmDashControl extends Controller
         $data =  $request->validate([
             'type_of_leave' => ['required','string'],
             'start_date' => ['required','string'],
-            'end_date' => ['required','string'],
+            'end_date' => ['required','string'], 
             'reason' => ['required','string'],
+            'relieving_staff' => ['required'],
         ]);
 
         $leaeType = LeaveType::find($data['type_of_leave']);
@@ -76,14 +79,15 @@ class HrmDashControl extends Controller
             $leave = Leave::create([
                 'employee_id' => Auth::user()->id,
                 'department_id' => Auth::user()->department->id,
-                'unit_id' => Auth::user()->unit->id,
+                'unit_id' => Auth::user()->unit ? Auth::user()->unit->id : null, // Set to null if no unit
                 'created_by' => Auth::user()->id,
                 'leave_type_id' => $data['type_of_leave'],
                 'applied_on' => Carbon::now(),
                 'start_date' => $data['start_date'],
                 'end_date' => $data['end_date'],
                 'leave_reason' => $data['reason'],
-                'status' => "Pending",
+                'status' => "Pending", 
+                'relieving_staff_id' => $data['relieving_staff'],
                 'total_leave_days' => $leaveDuration,
             ]);
 

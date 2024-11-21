@@ -38,6 +38,10 @@ return new class extends Migration
 
             $table->boolean('advert_approval_status')->default(false);
 
+            $table->boolean('withAdvert')->default(true);
+
+            $table->boolean('isApproved')->default(false);
+
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

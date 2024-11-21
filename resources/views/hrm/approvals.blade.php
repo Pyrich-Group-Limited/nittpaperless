@@ -49,16 +49,11 @@
                                     <td>{{ $approval->status  }} / {{ $approval->approval_stage }}</td>
                                     <td class="Action">
                                     @can('approve leave')
-
-                                            {{-- <a href="#" class="mx-3 btn btn-sm align-items-center" data-url=""
-                                                data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Approve')}}" data-title="{{__('Approve')}}">
-                                                <i class="ti ti-check text-white"></i>
-                                            </a> --}}
-                                            {{-- <div class="action-btn bg-danger ms-2">
-                                                {!! Form::open(['method' => 'DELETE', 'route' => ['approvals.update', [$approval->id]]]) !!}
-                                                <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}"><i class="ti ti-trash text-white"></i></a>
-                                                {!! Form::close() !!}
-                                            </div> --}}
+                                        <div class="action-btn bg-info ms-2">
+                                            <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="{{ route('view-leave-application',$approval->leave->id)}}" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="{{__('View')}}"  data-title="{{__('Leave Applicaiton Details')}}">
+                                                <i class="ti ti-eye text-white"></i>
+                                            </a>
+                                        </div>
                                             <form method="POST" action="{{ route('approvals.update', $approval->id) }}">
                                                 @csrf
                                                 <select name="status" class="">

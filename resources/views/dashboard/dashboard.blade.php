@@ -95,12 +95,138 @@
 @endpush
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")" }}</li>
+    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). " (" .Auth::user()->department->name. ")" }}</li>
 @endsection
 @php
     $setting = \App\Models\Utility::settings();
 @endphp
 @section('content')
+
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <a href="#">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-cast"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    {{-- <small class="text-muted">{{__('Total')}}</small> --}}
+                                                    <h6 class="m-0">{{__('Payment Requisition')}}</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <a href="#">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-cast"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h6 class="m-0">{{__('Store Requisition Note')}}</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <a href="#">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-cast"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h6 class="m-0">{{__('Query/Complaints')}}</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <a href="#">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-cast"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    {{-- <small class="text-muted">{{__('Total')}}</small> --}}
+                                                    <h6 class="m-0">{{__('Leave Requests')}}</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <a href="#">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-cast"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h6 class="m-0">{{__('Memos')}}</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     @if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'DG')
         <div class="row">
             <div class="col-sm-12">
@@ -236,7 +362,7 @@
         </div>
     @else
         <div class="row">
-            <div class="col-xxl-12">
+            {{-- <div class="col-xxl-12">
                 <div class="card">
                     <div class="card-header">
                         <h5>{{__("Today's Not Clock In")}}</h5>
@@ -248,7 +374,7 @@
                                     @foreach($notClockIns as $notClockIn)
                                         <div class="col-auto">
                                             <img src="{{ asset('uploads/user.png') }}" alt="" srcset="">
-                                            {{-- <img src="{{(!empty($notClockIn->user))? $notClockIn->user->profile : asset('uploads/user.png')}}" alt=""> --}}
+                                            <img src="{{(!empty($notClockIn->user))? $notClockIn->user->profile : asset('uploads/user.png')}}" alt="">
                                             <p class="mt-2">{{ $notClockIn->name }}</p>
                                         </div>
                                     @endforeach
@@ -257,10 +383,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-12">
+            </div> --}}
+
+            <div class="col-sm-12 col-lg-12 col-xxl-12">
                 <div class="row">
-                    <div class="col-md-9">
+                    {{-- <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
@@ -283,8 +410,8 @@
                                 <div id='calendar' class='calendar'></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
+                    </div> --}}
+                    <div class="col-md-4">
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-body">
@@ -328,6 +455,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-md-4">
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-body">
@@ -374,6 +504,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-md-4">
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-body">
@@ -432,6 +565,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header">

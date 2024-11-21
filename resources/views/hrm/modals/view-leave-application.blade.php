@@ -31,6 +31,7 @@
                                     <th scope="row">Start Date</th>
                                     <td>{{ $leave->start_date }}</td>
                                 </tr>
+                                
                                 <tr>
                                     <th scope="row">End Date</th>
                                     <td>{{ $leave->end_date }}</td>
@@ -38,6 +39,20 @@
                                 <tr>
                                     <th scope="row">Leave Duration</th>
                                     <td>{{ $leave->total_leave_days. " Days" }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Relieving Staff</th>
+                                    <td>{{ $leave->relieveStaff->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Leave Status</th>
+                                    <td>
+                                        <span class="badge @if($leave->status=='Pending') bg-warning
+                                            @elseif ($leave->status=='Approved') bg-primary
+                                            @elseif ($leave->status=='reject') bg-danger
+                                            @endif p-2 px-3 rounded">{{ $leave->status }}
+                                        </span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -53,4 +68,19 @@
         </div>
 
         {{Form::close()}}
+
+        {{-- @can('approve leave')
+            <form method="POST" action="{{ route('approvals.update', $leave->id) }}">
+                @csrf
+                <select name="status" class="form-control">
+                    <option value="approved">Approve</option>
+                    <option value="rejected">Reject</option>
+                </select>
+                <button type="submit" class="btn btn-primary btn-sm mt-2" >Update Approval</button>
+            </form>
+            
+        @endcan --}}
+        {{-- <div class="modal-footer">
+                <input type="submit" value="{{__('Approve')}}" class="btn  btn-primary">
+            </div> --}}
     </div>

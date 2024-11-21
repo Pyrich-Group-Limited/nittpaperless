@@ -34,7 +34,8 @@ class ShowContractDetailsComponent extends Component
 
     public function render()
     {
-        $contract = Contract::find($this->contract_id)->first();
+        // $contract = Contract::find($this->contract_id)->first();
+        $contract = Contract::find($this->contract_id);
         return view('livewire.projects.show-contract-details-component',compact('contract'));
     }
 }

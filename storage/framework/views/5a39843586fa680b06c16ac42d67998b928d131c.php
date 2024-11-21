@@ -1,8 +1,7 @@
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Dashboard')); ?> <br>
-    <i class="ti ti-user"></i> (<?php echo e(Ucfirst(Auth::user()->designation)); ?>)<br>
-        <i class="ti ti-location"></i> <?php echo e(Ucfirst(Auth::user()->location)); ?>
+    <?php echo e(__('Dashboard')); ?>
 
+    
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('breadcrumb'); ?>
@@ -10,94 +9,89 @@
     <li class="breadcrumb-item"><b>Welcome </b><?php echo e(Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")"); ?></li>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="col-xxl-7">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center justify-content-between">
-                                                <div class="col-auto mb-3 mb-sm-0">
-                                                    <a href="#">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-primary">
-                                                                <i class="ti ti-cast"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                
-                                                                <h6 class="m-0"><?php echo e(__('Purchase Requisition')); ?></h6>
-                                                            </div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center justify-content-between">
+                                            <div class="col-auto mb-3 mb-sm-0">
+                                                <a href="#">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="theme-avtar bg-primary">
+                                                            <i class="ti ti-cast"></i>
                                                         </div>
-                                                    </a>
-                                                </div>
-                                                
+                                                        <div class="ms-3">
+                                                            
+                                                            <h6 class="m-0"><?php echo e(__('Payment Requisition')); ?></h6>
+                                                        </div>
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center justify-content-between">
-                                                <div class="col-auto mb-3 mb-sm-0">
-                                                    <a href="#">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-primary">
-                                                                <i class="ti ti-cast"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <h6 class="m-0"><?php echo e(__('Store Requisition Note')); ?></h6>
-                                                            </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center justify-content-between">
+                                            <div class="col-auto mb-3 mb-sm-0">
+                                                <a href="<?php echo e(route('dta.index')); ?>">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="theme-avtar bg-primary">
+                                                            <i class="ti ti-cast"></i>
                                                         </div>
-                                                    </a>
-                                                </div>
-                                                
+                                                        <div class="ms-3">
+                                                            <h6 class="m-0"><?php echo e(__('Store Requisition Note')); ?></h6>
+                                                        </div>
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center justify-content-between">
-                                                <div class="col-auto mb-3 mb-sm-0">
-                                                    <a href="#">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-primary">
-                                                                <i class="ti ti-cast"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <h6 class="m-0"><?php echo e(__('Goods Recieved')); ?></h6>
-                                                            </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center justify-content-between">
+                                            <div class="col-auto mb-3 mb-sm-0">
+                                                <a href="#">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="theme-avtar bg-primary">
+                                                            <i class="ti ti-cast"></i>
                                                         </div>
-                                                    </a>
-                                                </div>
-                                                
+                                                        <div class="ms-3">
+                                                            <h6 class="m-0"><?php echo e(__('Leave Requests')); ?></h6>
+                                                        </div>
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center justify-content-between">
-                                                <div class="col-auto mb-3 mb-sm-0">
-                                                    <a href="#">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-primary">
-                                                                <i class="ti ti-cast"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <h6 class="m-0"><?php echo e(__('Inventory/Assets')); ?></h6>
-                                                            </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center justify-content-between">
+                                            <div class="col-auto mb-3 mb-sm-0">
+                                                <a href="#">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="theme-avtar bg-primary">
+                                                            <i class="ti ti-cast"></i>
                                                         </div>
-                                                    </a>
-                                                </div>
-                                                
+                                                        <div class="ms-3">
+                                                            <h6 class="m-0"><?php echo e(__('Memo')); ?></h6>
+                                                        </div>
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -106,54 +100,53 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
+</div>
 
     <div class="row">
         <div class="col-sm-6">
-            <div class="row">
-                <div class="col-xxl-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4><?php echo e(__('Mark Attandance')); ?></h4>
-                        </div>
-                        <div class="card-body dash-card-body">
-                            <p class="text-muted pb-0-5">
-                                <?php echo e(__('My Office Time: ' . $officeTime['startTime'] . ' to ' . $officeTime['endTime'])); ?></p>
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <?php echo e(Form::open(['url' => 'attendanceemployee/attendance', 'method' => 'post'])); ?>
+            <div class="col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><?php echo e(__('Mark Attandance')); ?></h4>
+                    </div>
+                    <div class="card-body dash-card-body">
+                        <p class="text-muted pb-0-5">
+                            <?php echo e(__('My Office Time: ' . $officeTime['startTime'] . ' to ' . $officeTime['endTime'])); ?></p>
+                        <center>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <?php echo e(Form::open(['url' => 'attendanceemployee/attendance', 'method' => 'post'])); ?>
 
-                                        <?php if(empty($employeeAttendance) || $employeeAttendance->clock_out != '00:00:00'): ?>
-                                            <button type="submit" value="0" name="in" id="clock_in"
-                                                class="btn btn-success "><?php echo e(__('CLOCK IN')); ?></button>
-                                        <?php else: ?>
-                                            <button type="submit" value="0" name="in" id="clock_in"
-                                                class="btn btn-success disabled" disabled><?php echo e(__('CLOCK IN')); ?></button>
-                                        <?php endif; ?>
-                                        <?php echo e(Form::close()); ?>
+                                    <?php if(empty($employeeAttendance) || $employeeAttendance->clock_out != '00:00:00'): ?>
+                                        <button type="submit" value="0" name="in" id="clock_in"
+                                            class="btn btn-success "><?php echo e(__('CLOCK IN')); ?></button>
+                                    <?php else: ?>
+                                        <button type="submit" value="0" name="in" id="clock_in"
+                                            class="btn btn-success disabled" disabled><?php echo e(__('CLOCK IN')); ?></button>
+                                    <?php endif; ?>
+                                    <?php echo e(Form::close()); ?>
 
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <?php if(!empty($employeeAttendance) && $employeeAttendance->clock_out == '00:00:00'): ?>
-                                            <?php echo e(Form::model($employeeAttendance, ['route' => ['attendanceemployee.update', $employeeAttendance->id], 'method' => 'PUT'])); ?>
-
-                                            <button type="submit" value="1" name="out" id="clock_out"
-                                                class="btn btn-danger"><?php echo e(__('CLOCK OUT')); ?></button>
-                                        <?php else: ?>
-                                            <button type="submit" value="1" name="out" id="clock_out"
-                                                class="btn btn-danger disabled" disabled><?php echo e(__('CLOCK OUT')); ?></button>
-                                        <?php endif; ?>
-                                        <?php echo e(Form::close()); ?>
-
-                                    </div>
                                 </div>
-                            </center>
+                                <div class="col-md-6 ">
+                                    <?php if(!empty($employeeAttendance) && $employeeAttendance->clock_out == '00:00:00'): ?>
+                                        <?php echo e(Form::model($employeeAttendance, ['route' => ['attendanceemployee.update', $employeeAttendance->id], 'method' => 'PUT'])); ?>
 
-                        </div>
+                                        <button type="submit" value="1" name="out" id="clock_out"
+                                            class="btn btn-danger"><?php echo e(__('CLOCK OUT')); ?></button>
+                                    <?php else: ?>
+                                        <button type="submit" value="1" name="out" id="clock_out"
+                                            class="btn btn-danger disabled" disabled><?php echo e(__('CLOCK OUT')); ?></button>
+                                    <?php endif; ?>
+                                    <?php echo e(Form::close()); ?>
+
+                                </div>
+                            </div>
+                        </center>
+
                     </div>
                 </div>
             </div>
@@ -171,7 +164,7 @@
                                     </div>
                                     <div class="ms-2">
                                         <p class="text-muted text-sm mb-0">Total Training</p>
-                                        <h4 class="mb-0 text-success"><?php echo e($onGoingTraining +   $doneTraining); ?></h4>
+                                        <h4 class="mb-0 text-success"><?php echo e($onGoingTraining + $doneTraining); ?></h4>
 
                                     </div>
                                 </div>
@@ -220,7 +213,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

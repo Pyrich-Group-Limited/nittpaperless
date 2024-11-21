@@ -3,29 +3,59 @@
 namespace App\Http\Livewire\Projects;
 
 use Livewire\Component;
-use App\Models\ClientDeal;
-use App\Models\ClientPermission;
 use App\Models\Contract;
-use App\Models\CustomField;
-use App\Models\Estimation;
-use App\Models\Invoice;
 use App\Models\User;
 use App\Models\Utility;
-use http\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Spatie\Permission\Models\Role;
 
 class ProjectContractorsComponent extends Component
 {
+    protected $listeners = ['delete-confirmed'=>'deleteContractor'];
+
+    public $contractor_name;
+    public $cemail;
+    public $cpassword;
+
+
+    public function createContractor(){
+        $this->validate([
+            'contractor_name' => ['required'],
+            'cemail' => ['required'],
+            'cpassword' => ['required'],
+        ]);
+
+        User::create([
+            'name' => $this->contractor_name,
+            'email' => $this->cemail,
+            'password' => Hash::make($this->cpassword),
+            'type' => 'contractor',
+            'created_by' => Auth::user()->id,
+        ]);
+
+        $this->reset();
+        $this->dispatchBrowserEvent('success',["success" =>"Contractor Successfully Created"]);
+    }
+
+    public function setActionId($actionId){
+        $this->actionId = $actionId;
+    }
+
+    public function deleteContractor(){
+        $contractor = User::find($this->actionId);
+
+        if ($contractor->projects()->exists()) {
+            $this->dispatchBrowserEvent('error', ['error' => "This contractor cannot be deleted because He/She has associated project."]);
+            return;
+        }
+        $contractor->delete();
+        $this->dispatchBrowserEvent('success', ['success' => "Contractor Successfully Deleted"]);
+    }
+
     public function render()
     {
-        
-            $user    = \Auth::user();
-            $clients = User::where('created_by', '=', $user->creatorId())->where('type','contractor')->get();
-        return view('livewire.projects.project-contractors-component',compact('clients'));
+        $contractors = User::where('type','contractor')->orderBy('created_at','desc')->get();
+        return view('livewire.projects.project-contractors-component',compact('contractors'));
     }
 }

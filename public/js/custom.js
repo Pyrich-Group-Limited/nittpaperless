@@ -398,6 +398,35 @@ $(document).on("click", '.confirm-delete', function () {
     })
 });
 
+$(document).on("click", '.confirm-approve', function () {
+    var form = $(this).closest("form");
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You want to preceed with the approval?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            Livewire.emit('approve-confirmed');
+
+        } else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+        }
+    })
+});
+
 $(document).on("click", '.confirm-close', function () {
     var form = $(this).closest("form");
     const swalWithBootstrapButtons = Swal.mixin({

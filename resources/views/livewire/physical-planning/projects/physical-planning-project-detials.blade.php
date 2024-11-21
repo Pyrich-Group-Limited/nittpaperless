@@ -26,7 +26,48 @@
     <li class="breadcrumb-item">{{ucwords($project->project_name)}}</li>
 @endsection
 @section('action-btn')
+
     <div class="float-end">
+        @can('edit project')
+            @if ($project->project_boq != null && $project->advert_approval_status == false)
+                <div class="alert alert-danger">You cannot advertise this project before DG's approval</div>
+            @elseif($project->project_boq == null)
+                <div class="alert alert-danger">Kindly upload project's BoQ for DG's approval</div>
+            @else
+
+                @if ($project->withAdvert == false)
+                    <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#createNewContract" id="toggleOldProject"
+                        data-bs-toggle="tooltip" title="{{ __('Create Contract') }}" class="btn btn-sm btn-primary">
+                        <i class="ti ti-plus">Create Contract</i>
+                    </a>
+                @else
+                    <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject"
+                        data-bs-toggle="tooltip" title="{{ __('Advertise Project') }}" class="btn btn-sm btn-primary">
+                        <i class="ti ti-share"></i>
+                    </a>
+                @endif
+
+                @if($project->project_boq==null)
+                    @can('edit project')
+                    <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="{{__('Upload Bill of Quantity')}}"  class="btn btn-sm btn-primary">
+                        <i class="ti ti-upload"></i>
+                    </a>
+                    @endcan
+                @else
+                    @can('edit project')
+                    <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#editProject" id="toggleOldProject"
+                        data-bs-toggle="tooltip" title="{{ __('Modify Project') }}" class="btn btn-sm btn-primary">
+                        <i class="ti ti-pencil text-white"></i>
+                    </a>
+                    @endcan
+                @endif
+
+
+            @endif
+        @endcan
+    </div>
+
+    {{-- <div class="float-end">
         @if($project->project_boq==null)
             @can('edit project')
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="{{__('Upload Bill of Quantity')}}"  class="btn btn-sm btn-primary">
@@ -40,7 +81,7 @@
         </a>
         @endcan
         @endif
-    </div>
+    </div> --}}
 @endsection
 
 <div class="row">
@@ -67,7 +108,7 @@
             </div>
         </div>
     </div>
-    @if(Auth::user()->type !='client')
+    @if(Auth::user()->type !='contractor')
         <div class="col-lg-6 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -151,6 +192,12 @@
                         <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#viewBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="{{__('Create')}}"  class="btn btn-sm btn-primary">
                             <i class="ti ti-eye"></i>
                         </a>
+
+                        @if($project->project_boq!=null && $project->isApproved==false)
+                            <a href="#" wire:click="setActionId('{{$project->id}}')" class="btn btn-sm btn-primary confirm-approve" data-bs-toggle="tooltip" title="{{__('Approve')}}" >
+                            <i class="ti ti-check text-white"></i></a>
+                        @endif
+
                     </div>
                 </div>
 
@@ -187,31 +234,38 @@
                                     <td> </td>
                                     <td></td>
                                     <td><b>SUB TOTAL</b></td>
-                                    <td> <b>{{ number_format($totalSum) }}</b> </td>
-                                </tr>
-                                <tr>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td></td>
-                                    <td><b>VAT(7.5%)</b></td>
-                                    <td> <b>{{ number_format(7.5/100 * ($totalSum)) }}</b> </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td><b>Profit Margin(10%)</b></td>
-                                    @php
-                                        $PM = 10/100 * ($totalSum);
-                                    @endphp
-                                    <td> <b>{{number_format($PM) }}</b> </td>
+                                    <td> <b>{{ number_format($totalSum,2) }}</b> </td>
                                 </tr>
 
                                 <tr>
                                     <td> </td>
                                     <td> </td>
                                     <td></td>
-                                    <td><b>SUM TOTAL</b></td>
-                                    <td> <b>{{ number_format((7.5/100 * ($totalSum)) + $totalSum) }}</b> </td>
+                                    <td><b>VAT</b></td>
+                                    <td> <b>{{ number_format($project->vat,2) }}</b> </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>Profit Margin </b></td>
+                                    <td> <b>{{number_format($project->profit_margin,2) }}</b> </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><b>Consultation fee </b></td>
+                                    <td> <b>{{number_format($project->consultation_fee,2) }}</b> </td>
+                                </tr>
+
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td></td>
+                                    <td class="text-primary"><b>SUM TOTAL</b></td>
+                                    <td class="text-primary"> <b>{{ number_format($project->budget,2) }}</b> </td>
                                 </tr>
 
 
@@ -320,3 +374,27 @@
 @livewire('physical-planning.projects.uploadboq', ['project' => $project], key($project->id))
 @include('livewire.physical-planning.projects.modals.view-boq')
 @include('livewire.projects.modals.new-project-user')
+
+@include('livewire.projects.modals.create-contract-modal')
+    @include('livewire.projects.modals.edit-project')
+    @include('livewire.physical-planning.projects.modals.new-advert')
+    @include('livewire.physical-planning.projects.modals.view-boq')
+    {{-- @livewire('physical-planning.projects.uploadboq', ['project' => $project], key($project->id)) --}}
+    @push('script')
+        <script src="https://cdn.tiny.cloud/1/cvjfkxqlo8ylwqn3xgo15h2bd4xl6n7m6k5d0avjcq93c1i7/tinymce/6/tinymce.min.js"
+            referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+                selector: '#message',
+                setup: function(editor) {
+                    editor.on('init change', function() {
+                        editor.save();
+                    });
+                    editor.on('change', function(e) {
+                        @this.set('description', editor.getContent());
+                        @this.set('ad_description', editor.getContent());
+                    });
+                }
+            });
+        </script>
+    @endpush

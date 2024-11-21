@@ -90,6 +90,30 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
 
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="" class="form-label">Relieving Staff</label>
+                                <select name="relieving_staff" id="" class="form-control">
+                                    <option value="" selected>--Select Staff--</option>
+                                    <?php $__currentLoopData = $staffs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($staff->id); ?>" <?php echo e(old('relieving_staff') == $staff->id ? 'selected' : ''); ?>><?php echo e($staff->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                                <?php $__errorArgs = ['relieving_staff'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <small class="invalid-relieving_staff" role="alert">
+                                    <strong class="text-danger"><?php echo e($message); ?></strong>
+                                </small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>

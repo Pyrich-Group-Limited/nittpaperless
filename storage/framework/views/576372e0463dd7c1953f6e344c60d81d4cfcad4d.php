@@ -23,9 +23,10 @@
             </a>
 
         </div>
-        <div class="" align="center">
-             <h6>(<?php echo e(Ucfirst(Auth::user()->designation)); ?>)</h6>
-            <h6><?php echo e(Ucfirst(Auth::user()->location)); ?></h6>
+        <div  align="center">
+             <h6 class="text-primary">(<?php echo e(Ucfirst(Auth::user()->department->name)); ?>)</h6>
+             <h6 class="text-primary">(<?php echo e(Ucfirst(Auth::user()->designation)); ?>)</h6>
+            <h6 class="text-primary"><?php echo e(Ucfirst(Auth::user()->location)); ?></h6>
         </div>
 
         <div class="navbar-content">

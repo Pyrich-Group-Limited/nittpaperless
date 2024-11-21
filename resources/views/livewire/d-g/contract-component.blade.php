@@ -21,7 +21,7 @@
             @endif
         </div>
     @endsection
-    
+
     {{-- @section('content') --}}
         <div class="row">
             <div class="col-xl-12">
@@ -33,23 +33,24 @@
                                 <tr>
                                     <th scope="col">{{__('#')}}</th>
                                     <th scope="col">{{__('Subject')}}</th>
-                                    @if(\Auth::user()->type!='client')
-                                        <th scope="col">{{__('Client')}}</th>
+                                    @if(\Auth::user()->type!='contractor')
+                                        <th scope="col">{{__('Contractor')}}</th>
                                     @endif
                                     <th scope="col">{{__('Project')}}</th>
-    
+
                                     <th scope="col">{{__('Contract Type')}}</th>
                                     <th scope="col">{{__('Contract Value')}}</th>
                                     <th scope="col">{{__('Start Date')}}</th>
                                     <th scope="col">{{__('End Date')}}</th>
                                     <th scope="col">{{__('')}}</th>
                                     <th scope="col" >{{__('Action')}}</th>
-    
+
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    {{-- {{ dd($contracts) }} --}}
                                 @foreach ($contracts as $contract)
-    
+
                                     <tr class="font-style">
                                         <td>
                                             <a href="{{route('contract.details',$contract->id)}}" class="btn btn-outline-primary">{{\Auth::user()->contractNumberFormat($contract->id)}}</a>
@@ -59,7 +60,7 @@
                                             <td>{{ !empty($contract->clients)?$contract->clients->name:'-' }}</td>
                                         @endif
                                         <td>{{ !empty($contract->projects)?$contract->projects->project_name:'-' }}</td>
-    
+
                                         <td>{{ $contract->projects->category->category_name }}</td>
                                         <td>{{ \Auth::user()->priceFormat($contract->value) }}</td>
                                         <td>{{  \Auth::user()->dateFormat($contract->start_date )}}</td>
@@ -67,7 +68,7 @@
                                         <td>
                                             <a href="#" class="action-item" data-url="{{ route('contract.description',$contract->id) }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Description')}}" data-title="{{__('Desciption')}}"><i class="fa fa-comment"></i></a>
                                         </td>
-    
+
                                         <td class="action ">
                                             @if(\Auth::user()->type=='super admin')
                                                 @if($contract->status=='accept')
@@ -96,7 +97,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
-    
+
                                 </tbody>
                             </table>
                         </div>
@@ -105,6 +106,5 @@
             </div>
         </div>
     {{-- @endsection --}}
-    
+
     </div>
-    

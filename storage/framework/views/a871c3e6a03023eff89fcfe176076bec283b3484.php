@@ -32,6 +32,7 @@
                                     <th scope="row">Start Date</th>
                                     <td><?php echo e($leave->start_date); ?></td>
                                 </tr>
+                                
                                 <tr>
                                     <th scope="row">End Date</th>
                                     <td><?php echo e($leave->end_date); ?></td>
@@ -39,6 +40,21 @@
                                 <tr>
                                     <th scope="row">Leave Duration</th>
                                     <td><?php echo e($leave->total_leave_days. " Days"); ?></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Relieving Staff</th>
+                                    <td><?php echo e($leave->relieveStaff->name); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Leave Status</th>
+                                    <td>
+                                        <span class="badge <?php if($leave->status=='Pending'): ?> bg-warning
+                                            <?php elseif($leave->status=='Approved'): ?> bg-primary
+                                            <?php elseif($leave->status=='reject'): ?> bg-danger
+                                            <?php endif; ?> p-2 px-3 rounded"><?php echo e($leave->status); ?>
+
+                                        </span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -55,5 +71,8 @@
 
         <?php echo e(Form::close()); ?>
 
+
+        
+        
     </div>
 <?php /**PATH C:\xampp\htdocs\nittpaperless-1\resources\views/hrm/modals/view-leave-application.blade.php ENDPATH**/ ?>

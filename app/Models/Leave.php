@@ -20,7 +20,12 @@ class Leave extends Model
         'status',
         'current_approver',
         'created_by',
+        'relieving_staff_id'
     ];
+
+    public function relieveStaff(){
+        return $this->belongsTo(User::class,'relieving_staff_id');
+    }
 
     public function leaveType()
     {

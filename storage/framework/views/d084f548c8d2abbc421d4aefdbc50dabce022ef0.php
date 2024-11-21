@@ -47,6 +47,25 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="form-control-wrap">
+                                        <?php echo e(Form::label('advertOption', __('With Advert'), ['class' => 'form-label'])); ?>: <span class="text-danger">*</span>
+                                        <input type="radio" wire:model="advertOption" id="Information" value="<?php echo e(true); ?>" class="mr-3"><label class="form-label" style="margin-right: 20px" for="Information">&nbsp;Yes</label>
+                                        <input type="radio" wire:model="advertOption" id="Sign-Posting" value="<?php echo e(false); ?>" class="mr-3"><label class="form-label" style="margin-right: 20px" for="Sign-Posting">&nbsp;No</label>
+                                    </div>
+                                    <?php $__errorArgs = ['advertOption'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><label style="color: red"><?php echo e($message); ?></label><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <?php echo e(Form::label('description', __('Project Description'), ['class' => 'form-label'])); ?>

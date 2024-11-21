@@ -25,7 +25,9 @@ class ProjectCreation extends Model
         'created_by',
         'profit_margin',
         'consultation_fee',
-        'vat'
+        'vat',
+        'withAdvert',
+        'isApproved'
     ];
 
     public function boqs(){

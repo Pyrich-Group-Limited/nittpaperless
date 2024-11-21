@@ -169,8 +169,11 @@ use App\Http\Livewire\Projects\SharedProjectDetailsComponent;
 
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
-use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials;
+use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials; 
 use App\Http\Livewire\PhysicalPlanning\ErgpComponent;
+
+//Leaves routes
+use App\Http\Livewire\Leave\LeavesComponent;
 
 //contractor routes
 use App\Http\Livewire\Contractor\ContractorDashboard;
@@ -480,9 +483,10 @@ Route::get('hrm-memo', [HrmDashControl::class, 'hrmMemo'])->name('hrm.memo');
 Route::get('hrm-apply-query', [HrmDashControl::class, 'applyQuery'])->name('hrm.applyQuery');
 Route::get('hrm-apply-dta', [HrmDashControl::class, 'applyDta'])->name('hrm.applyDta');
 
-Route::get('hrm-apply-leave', [HrmDashControl::class, 'applyLeave'])->name('hrm.applyLeave');
-Route::get('hrm-leave', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
-Route::post('apply-leave', [HrmDashControl::class, 'applyLeavePost'])->name('leave.apply');
+// Route::get('hrm-apply-leave', [HrmDashControl::class, 'applyLeave'])->name('hrm.applyLeave');
+// Route::get('hrm-leave', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
+// Route::post('apply-leave', [HrmDashControl::class, 'applyLeavePost'])->name('leave.apply');
+
 
 Route::get('/approvals', [LeaveApprovalContoller::class, 'index'])->name('approvals.index');
 Route::post('/approvals/{id}', [LeaveApprovalContoller::class, 'update'])->name('approvals.update');
@@ -1273,6 +1277,15 @@ Route::middleware(['XSS', 'revalidate'])->prefix('budgets')->group(function () {
     Route::get('sumitted-budgets', DepartmentBudgetRequest::class)->name('department.budget');
     Route::get('pending-budgets', AccountantApproveBudget::class)->name('budget.pending');
     Route::get('ergps',ErgpComponent::class)->name('pp.ergp');
+});
+
+//Leave
+Route::middleware(['XSS', 'revalidate'])->prefix('leaves')->group(function () {
+    // Route::get('hrm-apply-leave', [HrmDashControl::class, 'applyLeave'])->name('hrm.applyLeave');
+    // Route::get('hrm-leave', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
+    // Route::post('apply-leave', [HrmDashControl::class, 'applyLeavePost'])->name('leave.apply');
+
+    Route::get('/all-leave-requests', LeavesComponent::class)->name('hrm.leave');
 });
 
 // Contracts

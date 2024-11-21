@@ -8,15 +8,24 @@ use App\Models\Utility;
 use App\Models\ProjectTask;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Models\ProjectCategory;
 
 use Illuminate\Support\Facades\Auth;
 
 class PhysicalPlanningProjectDetials extends Component
 {
+    protected $listeners = ['delete-confirmed'=>'deleteProject', 'approve-confirmed'=>'approveProject'];
 
     public $project_id;
     public $totalSum;
-    
+
+    public $contractorId;
+
+    public $selectedStaff = [];
+
+    public $setActionId;
+    public $actionId;
+
     public function mount($id){
         $this->project_id = $id;
     }
@@ -150,11 +159,23 @@ class PhysicalPlanningProjectDetials extends Component
             }
     }
 
+    public function setActionId($actionId){
+        $this->actionId = $actionId;
+    }
+
+    public function approveProject(){
+        $project = ProjectCreation::find($this->actionId);
+        $project->update(['isApproved'=>true]);
+        $this->dispatchBrowserEvent('success', ['success' => "Project Approved and forwarded to DG for approval"]);
+    }
+
     public function render()
     {
         $project = ProjectCreation::find($this->project_id);
+        $categories = ProjectCategory::all();
         $project_data =  $this->getProjectDetails($project);
-        $users = User::all();
-        return view('livewire.physical-planning.projects.physical-planning-project-detials',compact('project','project_data','users'));
+        $users = User::where('type','!=','contractor')->get();
+        $contractors = User::where('type','contractor')->get();
+        return view('livewire.physical-planning.projects.physical-planning-project-detials',compact('project','project_data','users','categories','contractors'));
     }
 }

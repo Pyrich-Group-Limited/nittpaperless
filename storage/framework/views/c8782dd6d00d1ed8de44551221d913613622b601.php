@@ -142,6 +142,14 @@
                                                     </div>
                                                 <?php endif; ?>
                                             <?php endif; ?>
+
+                                            <?php if($project->project_boq!=null && $project->isApproved==false): ?>
+                                                <div class="action-btn bg-success ms-2">
+                                                    <a href="#" wire:click="setActionId('<?php echo e($project->id); ?>')" class="mx-3 btn btn-sm align-items-center confirm-approve" data-bs-toggle="tooltip" title="<?php echo e(__('Approve')); ?>" data-original-title="<?php echo e(__('Approve')); ?>">
+                                                    <i class="ti ti-check text-white"></i></a>
+                                                </div>
+                                            <?php endif; ?>
+
                                             <?php if($project->project_boq==null): ?>
                                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete project')): ?>
                                                     <div class="action-btn bg-danger ms-2">

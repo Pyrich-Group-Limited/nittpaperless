@@ -130,6 +130,13 @@
                                             @endcan
                                         @endif
 
+                                        @if($project->project_boq!=null && $project->isApproved==false)
+                                            <div class="action-btn bg-success ms-2">
+                                                <a href="#" wire:click="setActionId('{{$project->id}}')" class="mx-3 btn btn-sm align-items-center confirm-approve" data-bs-toggle="tooltip" title="{{__('Approve')}}" data-original-title="{{__('Approve')}}">
+                                                <i class="ti ti-check text-white"></i></a>
+                                            </div>
+                                        @endif
+
                                         @if($project->project_boq==null)
                                             @can('delete project')
                                                 <div class="action-btn bg-danger ms-2">
@@ -141,7 +148,7 @@
 
                                         @can('edit project')
                                             <div class="action-btn bg-warning ms-2">
-                                                <a href="{{ route('pp.projects.show',$project) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-ajax-popup="true" data-size="lg" data-bs-toggle="tooltip" title="{{__('View Project')}}" data-title="{{__('View Project')}}">
+                                                <a href="{{ route('pp.projects.show',$project) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="tooltip" title="{{__('View Project')}}" >
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>

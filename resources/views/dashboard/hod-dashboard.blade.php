@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-lg-4 col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row align-items-center justify-content-between">
@@ -48,7 +48,7 @@
                                                     </div>
                                                     <div class="ms-3">
                                                         {{-- <small class="text-muted">{{__('Total')}}</small> --}}
-                                                        <h6 class="m-0">{{__('Purchase Requisition')}}</h6>
+                                                        <h6 class="m-0">{{__('Payment Requisition')}}</h6>
                                                     </div>
                                                 </div>
                                             </a>
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-lg-4 col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row align-items-center justify-content-between">
@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-lg-4 col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row align-items-center justify-content-between">
@@ -88,27 +88,7 @@
                                                         <i class="ti ti-cast"></i>
                                                     </div>
                                                     <div class="ms-3">
-                                                        <h6 class="m-0">{{__('Goods Recieved')}}</h6>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row align-items-center justify-content-between">
-                                        <div class="col-auto mb-3 mb-sm-0">
-                                            <a href="#">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="theme-avtar bg-primary">
-                                                        <i class="ti ti-cast"></i>
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h6 class="m-0">{{__('Inventory/Assets')}}</h6>
+                                                        <h6 class="m-0">{{__('Query/Complaints')}}</h6>
                                                     </div>
                                                 </div>
                                             </a>
@@ -124,51 +104,101 @@
 
     </div>
 
-
     <div class="row">
-        <div class="col-sm-6">
-            {{-- <div class="row"> --}}
-                <div class="col-xxl-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>{{ __('Mark Attandance') }}</h4>
-                        </div>
-                        <div class="card-body dash-card-body">
-                            <p class="text-muted pb-0-5">
-                                {{ __('My Office Time: ' . $officeTime['startTime'] . ' to ' . $officeTime['endTime']) }}</p>
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        {{ Form::open(['url' => 'attendanceemployee/attendance', 'method' => 'post']) }}
-                                        @if (empty($employeeAttendance) || $employeeAttendance->clock_out != '00:00:00')
-                                            <button type="submit" value="0" name="in" id="clock_in"
-                                                class="btn btn-success ">{{ __('CLOCK IN') }}</button>
-                                        @else
-                                            <button type="submit" value="0" name="in" id="clock_in"
-                                                class="btn btn-success disabled" disabled>{{ __('CLOCK IN') }}</button>
-                                        @endif
-                                        {{ Form::close() }}
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        @if (!empty($employeeAttendance) && $employeeAttendance->clock_out == '00:00:00')
-                                            {{ Form::model($employeeAttendance, ['route' => ['attendanceemployee.update', $employeeAttendance->id], 'method' => 'PUT']) }}
-                                            <button type="submit" value="1" name="out" id="clock_out"
-                                                class="btn btn-danger">{{ __('CLOCK OUT') }}</button>
-                                        @else
-                                            <button type="submit" value="1" name="out" id="clock_out"
-                                                class="btn btn-danger disabled" disabled>{{ __('CLOCK OUT') }}</button>
-                                        @endif
-                                        {{ Form::close() }}
+        <div class="col-xxl-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-auto mb-3 mb-sm-0">
+                                            <a href="#">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="theme-avtar bg-primary">
+                                                        <i class="ti ti-cast"></i>
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        {{-- <small class="text-muted">{{__('Total')}}</small> --}}
+                                                        <h6 class="m-0">{{__('Leave Requests')}}</h6>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </center>
-
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-auto mb-3 mb-sm-0">
+                                            <a href="#">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="theme-avtar bg-primary">
+                                                        <i class="ti ti-cast"></i>
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <h6 class="m-0">{{__('Memos')}}</h6>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            {{-- </div> --}}
+            </div>
         </div>
-        <div class="col-sm-6">
+    </div>
+
+
+    {{-- <div class="row"> --}}
+        {{-- <div class="col-sm-6">
+            <div class="col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ __('Mark Attandance') }}</h4>
+                    </div>
+                    <div class="card-body dash-card-body">
+                        <p class="text-muted pb-0-5">
+                            {{ __('My Office Time: ' . $officeTime['startTime'] . ' to ' . $officeTime['endTime']) }}</p>
+                        <center>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ Form::open(['url' => 'attendanceemployee/attendance', 'method' => 'post']) }}
+                                    @if (empty($employeeAttendance) || $employeeAttendance->clock_out != '00:00:00')
+                                        <button type="submit" value="0" name="in" id="clock_in"
+                                            class="btn btn-success ">{{ __('CLOCK IN') }}</button>
+                                    @else
+                                        <button type="submit" value="0" name="in" id="clock_in"
+                                            class="btn btn-success disabled" disabled>{{ __('CLOCK IN') }}</button>
+                                    @endif
+                                    {{ Form::close() }}
+                                </div>
+                                <div class="col-md-6 ">
+                                    @if (!empty($employeeAttendance) && $employeeAttendance->clock_out == '00:00:00')
+                                        {{ Form::model($employeeAttendance, ['route' => ['attendanceemployee.update', $employeeAttendance->id], 'method' => 'PUT']) }}
+                                        <button type="submit" value="1" name="out" id="clock_out"
+                                            class="btn btn-danger">{{ __('CLOCK OUT') }}</button>
+                                    @else
+                                        <button type="submit" value="1" name="out" id="clock_out"
+                                            class="btn btn-danger disabled" disabled>{{ __('CLOCK OUT') }}</button>
+                                    @endif
+                                    {{ Form::close() }}
+                                </div>
+                            </div>
+                        </center>
+
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        {{-- <div class="col-sm-6"> --}}
             <div class="col-xxl-12">
                 <div class="card">
                     <div class="card-body">
@@ -230,9 +260,8 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
+        {{-- </div> --}}
+    {{-- </div> --}}
 
     <div class="row">
         <div class="col-lg-6">

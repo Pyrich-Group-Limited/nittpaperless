@@ -15,23 +15,17 @@ class PaymentRecommendationComponent extends Component
     public $recommendedPercentage;
     public $remarks;
 
-    public $includeVAT = false;   // Checkbox for VAT inclusion
-    public $vatRate = 7.5;        // Default VAT rate
+    public $vatRate = 0;        // Default VAT rate
     public $vatAmount = 0;
-    // public $totalAmount = 0;
 
     public $cumulativeTotal = 0;
+    public $totalWithVAT = 0;
 
     // public $contract;
     public $inputs = []; // Store each row's data with percentage, recommended_amount, and remaining_balance
 
     public function mount($contractId)
     {
-        // $this->contract = Contract::with('paymentRequests')->find($contractId);
-        // if (!$this->contract) {
-        //     $this->dispatchBrowserEvent('error',["error" =>"Contract not found."]);
-        // }
-
         $this->contract = Contract::with(['paymentRequests' => function ($query) {
             $query->orderBy('created_at', 'desc'); // Sorts by 'created_at' in descending order
         }])->find($contractId);
@@ -59,11 +53,13 @@ class PaymentRecommendationComponent extends Component
         }
 
         $this->calculateCumulativeTotal();
+        $this->calculateVAT();
 
     }
 
     public function updatePayment($key)
     {
+
         $percentage = $this->inputs[$key]['percentage'];
 
         // Ensure the percentage is within a valid range
@@ -90,11 +86,19 @@ class PaymentRecommendationComponent extends Component
 
          // Recalculate the cumulative total
         $this->calculateCumulativeTotal();
+        $this->calculateVAT();
     }
 
     public function calculateCumulativeTotal()
     {
         $this->cumulativeTotal = array_sum(array_column($this->inputs, 'recommended_amount'));
+        $this->calculateVAT();
+    }
+
+    public function calculateVAT()
+    {
+        $this->vatAmount = ($this->cumulativeTotal * (double)$this->vatRate) / 100;
+        $this->totalWithVAT = $this->cumulativeTotal + $this->vatAmount;
     }
 
     public function saveRecommendations()
@@ -117,7 +121,7 @@ class PaymentRecommendationComponent extends Component
 
         $payment = PaymentRequest::create([
             'contract_id' => $this->contract->id,
-            'recommended_amount' => $this->cumulativeTotal,
+            'recommended_amount' => $this->totalWithVAT,
             'recommended_percentage' => '',
             'recommended_by' => auth()->id(),
             'status' => 'recommended',
@@ -125,56 +129,6 @@ class PaymentRecommendationComponent extends Component
         ]);
         $this->dispatchBrowserEvent('success',["success" =>"Payment recommendation submitted."]);
     }
-
-    // public function calculateAmountFromPercentage()
-    // {
-    //     $this->recommendedAmount = ($this->contract->value * $this->recommendedPercentage) / 100;
-    //     $this->calculateTotalAmount();
-    //     if ($this->recommendedAmount > $this->contract->value) {
-    //         $this->dispatchBrowserEvent('error',["error" =>"Amount exceeds remaining balance."]);
-    //         return;
-    //     }
-    // }
-
-    // public function updatedRecommendedAmount()
-    // {
-    //     $this->calculateTotalAmount();
-    // }
-
-    // public function updatedIncludeVAT()
-    // {
-    //     $this->calculateTotalAmount();
-    // }
-
-    // public function updatedVatRate()
-    // {
-    //     $this->calculateTotalAmount();
-    // }
-
-    // protected function calculateTotalAmount()
-    // {
-    //     if ($this->includeVAT) {
-    //         $this->vatAmount = ($this->recommendedAmount * $this->vatRate) / 100;
-    //     } else {
-    //         $this->vatAmount = 0;
-    //     }
-
-    //     $this->totalAmount = $this->recommendedAmount + $this->vatAmount;
-    // }
-
-    // public function recommendPayment()
-    // {
-    //     PaymentRequest::create([
-    //         'contract_id' => $this->contract->id,
-    //         'recommended_amount' => $this->totalAmount,
-    //         'recommended_percentage' => $this->recommendedPercentage,
-    //         'recommended_by' => auth()->id(),
-    //         'status' => 'recommended',
-    //         'remarks' => $this->remarks,
-    //     ]);
-    //     $this->reset(['recommendedAmount', 'recommendedPercentage', 'remarks','includeVAT']);
-    //     $this->dispatchBrowserEvent('success',["success" =>"Payment recommendation submitted."]);
-    // }
 
     public function render()
     {

@@ -208,8 +208,39 @@
                                             <td> </td>
                                             <td> </td>
                                             <td></td>
-                                            <td><b>TOTAL</b></td>
-                                            <td> <b>{{ number_format($totalSum) }}</b> </td>
+                                            <td><b>SUB TOTAL</b></td>
+                                            <td> <b>{{ number_format($totalSum,2) }}</b> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td></td>
+                                            <td><b>VAT</b></td>
+                                            <td> <b>{{ number_format($project->vat,2) }}</b> </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><b>Profit Margin </b></td>
+                                            <td> <b>{{number_format($project->profit_margin,2) }}</b> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><b>Consultation fee </b></td>
+                                            <td> <b>{{number_format($project->consultation_fee,2) }}</b> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td></td>
+                                            <td class="text-primary"><b>SUM TOTAL</b></td>
+                                            <td class="text-primary"> <b>{{ number_format($project->budget,2) }}</b> </td>
                                         </tr>
 
                                     </tbody>

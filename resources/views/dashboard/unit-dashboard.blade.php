@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="row">
-                <div class="col-xxl-7">
+                <div class="col-xxl-12">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -29,7 +29,7 @@
                                                             </div>
                                                             <div class="ms-3">
                                                                 {{-- <small class="text-muted">{{__('Total')}}</small> --}}
-                                                                <h6 class="m-0">{{__('Store Requisition')}}</h6>
+                                                                <h6 class="m-0">{{__('Payment Requisition')}}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -49,7 +49,7 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0">{{__('DTA')}}</h6>
+                                                                <h6 class="m-0">{{__('Store Requisition Note')}}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -69,7 +69,7 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0">{{__('Leave')}}</h6>
+                                                                <h6 class="m-0">{{__('Leave Requests')}}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -89,7 +89,7 @@
                                                                 <i class="ti ti-cast"></i>
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h6 class="m-0">{{__('Query')}}</h6>
+                                                                <h6 class="m-0">{{__('Memo')}}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -109,43 +109,41 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div class="row">
-                <div class="col-xxl-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>{{ __('Mark Attandance') }}</h4>
-                        </div>
-                        <div class="card-body dash-card-body">
-                            <p class="text-muted pb-0-5">
-                                {{ __('My Office Time: ' . $officeTime['startTime'] . ' to ' . $officeTime['endTime']) }}</p>
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        {{ Form::open(['url' => 'attendanceemployee/attendance', 'method' => 'post']) }}
-                                        @if (empty($employeeAttendance) || $employeeAttendance->clock_out != '00:00:00')
-                                            <button type="submit" value="0" name="in" id="clock_in"
-                                                class="btn btn-success ">{{ __('CLOCK IN') }}</button>
-                                        @else
-                                            <button type="submit" value="0" name="in" id="clock_in"
-                                                class="btn btn-success disabled" disabled>{{ __('CLOCK IN') }}</button>
-                                        @endif
-                                        {{ Form::close() }}
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        @if (!empty($employeeAttendance) && $employeeAttendance->clock_out == '00:00:00')
-                                            {{ Form::model($employeeAttendance, ['route' => ['attendanceemployee.update', $employeeAttendance->id], 'method' => 'PUT']) }}
-                                            <button type="submit" value="1" name="out" id="clock_out"
-                                                class="btn btn-danger">{{ __('CLOCK OUT') }}</button>
-                                        @else
-                                            <button type="submit" value="1" name="out" id="clock_out"
-                                                class="btn btn-danger disabled" disabled>{{ __('CLOCK OUT') }}</button>
-                                        @endif
-                                        {{ Form::close() }}
-                                    </div>
+            <div class="col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ __('Mark Attandance') }}</h4>
+                    </div>
+                    <div class="card-body dash-card-body">
+                        <p class="text-muted pb-0-5">
+                            {{ __('My Office Time: ' . $officeTime['startTime'] . ' to ' . $officeTime['endTime']) }}</p>
+                        <center>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ Form::open(['url' => 'attendanceemployee/attendance', 'method' => 'post']) }}
+                                    @if (empty($employeeAttendance) || $employeeAttendance->clock_out != '00:00:00')
+                                        <button type="submit" value="0" name="in" id="clock_in"
+                                            class="btn btn-success ">{{ __('CLOCK IN') }}</button>
+                                    @else
+                                        <button type="submit" value="0" name="in" id="clock_in"
+                                            class="btn btn-success disabled" disabled>{{ __('CLOCK IN') }}</button>
+                                    @endif
+                                    {{ Form::close() }}
                                 </div>
-                            </center>
+                                <div class="col-md-6 ">
+                                    @if (!empty($employeeAttendance) && $employeeAttendance->clock_out == '00:00:00')
+                                        {{ Form::model($employeeAttendance, ['route' => ['attendanceemployee.update', $employeeAttendance->id], 'method' => 'PUT']) }}
+                                        <button type="submit" value="1" name="out" id="clock_out"
+                                            class="btn btn-danger">{{ __('CLOCK OUT') }}</button>
+                                    @else
+                                        <button type="submit" value="1" name="out" id="clock_out"
+                                            class="btn btn-danger disabled" disabled>{{ __('CLOCK OUT') }}</button>
+                                    @endif
+                                    {{ Form::close() }}
+                                </div>
+                            </div>
+                        </center>
 
-                        </div>
                     </div>
                 </div>
             </div>
@@ -163,7 +161,7 @@
                                     </div>
                                     <div class="ms-2">
                                         <p class="text-muted text-sm mb-0">Total Training</p>
-                                        <h4 class="mb-0 text-success">{{ $onGoingTraining +   $doneTraining}}</h4>
+                                        <h4 class="mb-0 text-success">{{ $onGoingTraining + $doneTraining }}</h4>
 
                                     </div>
                                 </div>
@@ -175,7 +173,7 @@
                                     </div>
                                     <div class="ms-2">
                                         <p class="text-muted text-sm mb-0">Active Training</p>
-                                        <h4 class="mb-0 text-danger">{{$onGoingTraining}}</h4>
+                                        <h4 class="mb-0 text-danger">{{ $onGoingTraining }}</h4>
 
                                     </div>
                                 </div>
@@ -189,20 +187,20 @@
                                     </div>
                                     <div class="ms-2">
                                         <p class="text-muted text-sm mb-0">Total Jobs</p>
-                                        <h4 class="mb-0 text-primary">{{$activeJob + $inActiveJOb}}</h4>
+                                        <h4 class="mb-0 text-primary">{{ $activeJob + $inActiveJOb }}</h4>
 
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <a href="{{route('job.index')}}">
+                                <a href="{{ route('job.index') }}">
                                     <div class="d-flex align-items-start mb-3">
                                         <div class="theme-avtar bg-success">
                                             <i class="ti ti-award"></i>
                                         </div>
                                         <div class="ms-2">
                                             <p class="text-muted text-sm mb-0">Active Jobs</p>
-                                            <h4 class="mb-0 text-danger">{{$activeJob}}</h4>
+                                            <h4 class="mb-0 text-danger">{{ $activeJob }}</h4>
                                         </div>
                                     </div>
                                 </a>
@@ -212,7 +210,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
