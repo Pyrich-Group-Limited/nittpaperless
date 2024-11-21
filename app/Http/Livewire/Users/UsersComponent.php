@@ -309,7 +309,7 @@ class UsersComponent extends Component
         if(\Auth::user()->can('manage user'))
         {
             $roles = [];
-            $users = User::where('type','!=','Contractor')->paginate(12);
+            $users = User::where('type','!=','Contractor')->orderBy('created_at','desc')->paginate(20);
             $roles = [];
             $departments = Department::where('category','department')->get();
             $designations = Designation::all();

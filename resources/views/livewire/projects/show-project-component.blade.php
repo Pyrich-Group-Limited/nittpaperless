@@ -23,7 +23,7 @@
     @endpush
     @section('breadcrumb')
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">{{ __('Project') }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">{{ __('Projects') }}</a></li>
         <li class="breadcrumb-item">{{ ucwords($project->project_name) }}</li>
     @endsection
     @section('action-btn')
@@ -35,10 +35,18 @@
             @elseif($project->project_boq == null)
                 <div class="alert alert-danger">Kindly upload project's BoQ for DG's approval</div>
             @else
-                <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject"
-                data-bs-toggle="tooltip" title="{{ __('Advertise Project') }}" class="btn btn-sm btn-primary">
-                    <i class="ti ti-share"></i>
-                </a>
+
+                @if ($project->withAdvert == false)
+                    <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#createNewContract" id="toggleOldProject"
+                        data-bs-toggle="tooltip" title="{{ __('Create Contract') }}" class="btn btn-sm btn-primary">
+                        <i class="ti ti-plus">Create Contract</i>
+                    </a>
+                @else
+                    <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#publishAdvertModal" id="toggleOldProject"
+                        data-bs-toggle="tooltip" title="{{ __('Advertise Project') }}" class="btn btn-sm btn-primary">
+                        <i class="ti ti-share"></i>
+                    </a>
+                @endif
 
                 <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#editProject" id="toggleOldProject"
                     data-bs-toggle="tooltip" title="{{ __('Modify Project') }}" class="btn btn-sm btn-primary">
@@ -47,8 +55,6 @@
             @endif
 
             @endcan
-
-
         </div>
     @endsection
 
@@ -167,10 +173,18 @@
                         <h5>{{ __('Bill of Quantity') }}</h5>
                         <div class="float-end">
                             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#viewBOQModal"
-                                id="toggleUploadBOQ" data-bs-toggle="tooltip" title="{{ __('Create') }}"
+                                id="toggleUploadBOQ" data-bs-toggle="tooltip" title="{{ __('View') }}"
                                 class="btn btn-sm btn-primary">
                                 <i class="ti ti-eye"></i>
                             </a>
+
+                            @if($project->project_boq!=null && $project->isApproved==false)
+                                <div class="action-btn bg-success ms-2">
+                                    <a href="#" wire:click="setActionId('{{$project->id}}')" class="btn btn-sm btn-primary confirm-approve" data-bs-toggle="tooltip" title="{{__('Approve')}}" >
+                                    <i class="ti ti-check text-white"></i></a>
+                                </div>
+                            @endif
+
                         </div>
                     </div>
 
@@ -242,7 +256,7 @@
                                             <td><b>Consultation fee </b></td>
                                             <td> <b>{{number_format($project->consultation_fee,2) }}</b> </td>
                                         </tr>
-        
+
                                         <tr>
                                             <td> </td>
                                             <td> </td>
@@ -250,7 +264,7 @@
                                             <td class="text-primary"><b>SUM TOTAL</b></td>
                                             <td class="text-primary"> <b>{{ number_format($project->budget,2) }}</b> </td>
                                         </tr>
-        
+
                                         {{-- <tr>
                                             <td> </td>
                                             <td> </td>
@@ -367,6 +381,7 @@
             </div>
         </div>
     </div>
+    @include('livewire.projects.modals.create-contract-modal')
     @include('livewire.projects.modals.new-project-user')
     @include('livewire.projects.modals.edit-project')
     @include('livewire.physical-planning.projects.modals.new-advert')

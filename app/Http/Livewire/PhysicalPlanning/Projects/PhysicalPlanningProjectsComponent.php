@@ -15,7 +15,7 @@ use Livewire\WithFileUploads;
 
 class PhysicalPlanningProjectsComponent extends Component
 {
-    protected $listeners = ['delete-confirmed'=>'deleteProject'];
+    protected $listeners = ['delete-confirmed'=>'deleteProject', 'approve-confirmed'=>'approveProject'];
 
     use WithFileUploads;
     public $project_name;
@@ -44,9 +44,11 @@ class PhysicalPlanningProjectsComponent extends Component
     public $description;
     public $type_of_project;
 
+    public $advertOption = true;
+
     public function mount()
     {
-        $this->users = User::all();
+        $this->users = User::where('type', '!=', 'contractor')->get();
     }
 
     public function createProject(){
@@ -66,7 +68,8 @@ class PhysicalPlanningProjectsComponent extends Component
             'start_date' => null,
             'end_date' => null,
             'project_category_id' => $this->project_category_id,
-            'created_by' => Auth::user()->id
+            'created_by' => Auth::user()->id,
+            'withAdvert' => $this->advertOption
         ]);
 
         $project->users()->attach($this->selectedStaff);
@@ -125,6 +128,12 @@ class PhysicalPlanningProjectsComponent extends Component
         $this->actionId = $actionId;
     }
 
+    public function approveProject(){
+        $project = ProjectCreation::find($this->actionId);
+        $project->update(['isApproved'=>true]);
+        $this->dispatchBrowserEvent('success', ['success' => "Project Approved and forwarded to DG for approval"]);
+    }
+
     public function deleteProject(){
         $project = ProjectCreation::find($this->actionId);
 
@@ -144,9 +153,9 @@ class PhysicalPlanningProjectsComponent extends Component
         $view = 'grid';
         $categories = ProjectCategory::all();
         $projects = ProjectCreation::orderBy('created_at','desc')->get();
-        $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'client')->get()->pluck('name', 'id');
-        $clients->prepend('Select Client', '');
-        $users   = User::where('type', '!=', 'client')->get();
+        $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'contractor')->get()->pluck('name', 'id');
+        $clients->prepend('Select Contractor', '');
+        $users   = User::where('type', '!=', 'contractor')->get();
         return view('livewire.physical-planning.projects.physical-planning-projects-component',compact('view','projects','clients','users','categories','projAccounts'));
     }
 }

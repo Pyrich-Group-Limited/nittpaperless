@@ -94,7 +94,7 @@
         </div>
         <div class="ms-auto">
             <ul class="list-unstyled">
-                <?php if( \Auth::user()->type !='client' && \Auth::user()->type !='super admin' ): ?>
+                <?php if( \Auth::user()->type !='contractor' && \Auth::user()->type !='super admin' ): ?>
                         <li class="dropdown dash-h-item drp-notification">
                             <a class="dash-head-link arrow-none me-0" href="<?php echo e(url('chats')); ?>" aria-haspopup="false"
                                aria-expanded="false">
@@ -106,37 +106,7 @@
                         </li>
                     <?php endif; ?>
 
-                    <li class="dropdown dash-h-item drp-language">
-                    <a
-                        class="dash-head-link dropdown-toggle arrow-none me-0"
-                        data-bs-toggle="dropdown"
-                        href="#"
-                        role="button"
-                        aria-haspopup="false"
-                        aria-expanded="false"
-                    >
-                        <i class="ti ti-world nocolor"></i>
-                        <span class="drp-text hide-mob"><?php echo e(ucfirst($LangName->full_name)); ?></span>
-                        <i class="ti ti-chevron-down drp-arrow nocolor"></i>
-                    </a>
-                    <div class="dropdown-menu dash-h-dropdown dropdown-menu-end">
-
-                        <?php $__currentLoopData = App\Models\Utility::languages(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $code => $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <a href="<?php echo e(route('change.language', $code)); ?>"
-                               class="dropdown-item <?php echo e($lang == $code ? 'text-primary' : ''); ?>">
-                                <span><?php echo e(ucFirst($language)); ?></span>
-                            </a>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <h></h>
-                            <?php if(\Auth::user()->type=='super admin'): ?>
-                            <a  data-url="<?php echo e(route('create.language')); ?>" class="dropdown-item text-primary"  data-ajax-popup="true" data-title="<?php echo e(__('Create New Language')); ?>">
-                                <?php echo e(__('Create Language')); ?>
-
-                            </a>
-                            <a class="dropdown-item text-primary" href="<?php echo e(route('manage.language',[isset($lang)?$lang:'english'])); ?>"><?php echo e(__('Manage Language')); ?></a>
-                            <?php endif; ?>
-                    </div>
-                </li>
+                    
             </ul>
         </div>
     </div>

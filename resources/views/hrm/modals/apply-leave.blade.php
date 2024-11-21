@@ -61,6 +61,23 @@
                             </div>
                         </div>
 
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="" class="form-label">Relieving Staff</label>
+                                <select name="relieving_staff" id="" class="form-control">
+                                    <option value="" selected>--Select Staff--</option>
+                                    @foreach($staffs as $staff )
+                                        <option value="{{ $staff->id}}" {{ old('relieving_staff') == $staff->id ? 'selected' : '' }}>{{ $staff->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('relieving_staff')
+                                <small class="invalid-relieving_staff" role="alert">
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                </small>
+                                @enderror
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>

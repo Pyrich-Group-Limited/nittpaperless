@@ -23,7 +23,7 @@ class ContractorLoginComponent extends Component
 
             if (Auth::attempt($credentials)) {
                 //check type of user and redirected to dashboard
-                if(Auth::user()->type=="Contractor"){
+                if(Auth::user()->type=="contractor"){
                     session()->flash('feedback', 'Login Successful');
                     return redirect()->route('contractor.dashboard');
                 }

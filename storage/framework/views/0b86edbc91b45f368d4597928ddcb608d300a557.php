@@ -9,7 +9,13 @@
     <li class="breadcrumb-item"><?php echo e(__('Leave')); ?></li>
 <?php $__env->stopSection(); ?>
 
-
+<?php $__env->startSection('action-btn'); ?>
+    <div class="float-end">
+        <a href="#" class="btn btn-primary" id="applyLeaveButton" data-bs-toggle="modal" data-bs-target="#applyLeave"   data-size="lg " data-bs-toggle="tooltip">
+            <i class="ti ti-plus text-white"></i>Apply for Leave
+        </a>
+    </div>
+<?php $__env->stopSection(); ?>
 
 
 <?php $__env->startSection('content'); ?>
@@ -19,9 +25,7 @@
             <div class="card">
                 <div class="card-body table-border-style" >
                     <div class="table-responsive">
-                        <div class="table-head col-xl-12 mt-2" style="text-align: right;">
-                            <a href="#" class="btn btn-primary" id="applyLeaveButton" data-bs-toggle="modal" data-bs-target="#applyLeave"   data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>Apply for Leave</a>
-                        </div>
+                        
                         <table class="table datatable">
                             <thead>
                             <tr>

@@ -15,9 +15,12 @@ use App\Models\ProjectAdvert;
 use App\Models\ProjectCategory;
 use App\Models\ProjectUser;
 use Livewire\WithFileUploads;
+use App\Models\Contract;
 
 class ShowProjectComponent extends Component
 {
+    protected $listeners = ['delete-confirmed'=>'deleteProject', 'approve-confirmed'=>'approveProject'];
+
     use WithFileUploads;
 
     // public $project_id;
@@ -41,6 +44,10 @@ class ShowProjectComponent extends Component
     public $ad_description;
     public $type_of_project;
     public $type_of_advert;
+
+    public $contractorId;
+
+    public $actionId;
 
     public function mount($id){
         $this->project_id = $id;
@@ -184,13 +191,12 @@ class ShowProjectComponent extends Component
     }
 
 
-    public function setActionId($id){
-        $this->setActionId = $id;
-    }
+    // public function setActionId($id){
+    //     $this->setActionId = $id;
+    // }
 
     public function selProject($id){
         $this->selProject = ProjectCreation::find($id);
-        // $this->selectedStaff = $this->selProject->users()->pluck('id')->toArray();
 
     }
 
@@ -269,7 +275,6 @@ class ShowProjectComponent extends Component
         $this->emit('project', $project);
     }
 
-
     public function inviteProjectUserMember(Request $request, $user_id)
     {
         $authuser = Auth::user();
@@ -302,12 +307,42 @@ class ShowProjectComponent extends Component
         }
     }
 
+
+
+    public function createContract(){
+        // dd($this);
+        Contract::create([
+            'client_name' => $this->contractorId,
+            'subject' => $this->selProject->project_name,
+            'value' => $this->selProject->budget,
+            'type' => $this->selProject->category->id,
+            'start_date' => Carbon::now(),
+            'end_date' => '',
+            'description' =>  $this->selProject->description,
+            'project_id' => $this->selProject->id,
+            'status' => 'pending',
+            'created_by' => Auth::user()->id,
+        ]);
+        $this->dispatchBrowserEvent('success',["success" =>"Contractor successfully selected and approved for contract"]);
+    }
+
+    public function setActionId($actionId){
+        $this->actionId = $actionId;
+    }
+
+    public function approveProject(){
+        $project = ProjectCreation::find($this->actionId);
+        $project->update(['isApproved'=>true]);
+        $this->dispatchBrowserEvent('success', ['success' => "Project Approved and forwarded to DG for approval"]);
+    }
+
     public function render()
     {
         $project = ProjectCreation::find($this->project_id);
         $project_data =  $this->getProjectDetails($project);
         $categories = ProjectCategory::all();
-        $users = User::all();
-        return view('livewire.projects.show-project-component',compact('project','project_data','categories','users'));
+        $users = User::where('type','!=','contractor')->get();
+        $contractors = User::where('type','contractor')->get();
+        return view('livewire.projects.show-project-component',compact('project','project_data','categories','users','contractors'));
     }
 }

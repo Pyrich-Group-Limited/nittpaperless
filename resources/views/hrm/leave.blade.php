@@ -9,15 +9,13 @@
     <li class="breadcrumb-item">{{__('Leave')}}</li>
 @endsection
 
-{{-- @section('action-btn')
+@section('action-btn')
     <div class="float-end">
-        <a href="#" data-size="lg" data-url="{{ route('warehouse-transfer.create') }}" data-ajax-popup="true"
-            data-bs-toggle="tooltip" title="{{ __('Create') }}" data-title="{{ __('Create Warehouse Transfer') }}"
-            class="btn btn-sm btn-primary">Apply Here
-            <i class="ti ti-plus"></i>
+        <a href="#" class="btn btn-primary" id="applyLeaveButton" data-bs-toggle="modal" data-bs-target="#applyLeave"   data-size="lg " data-bs-toggle="tooltip">
+            <i class="ti ti-plus text-white"></i>Apply for Leave
         </a>
     </div>
-@endsection --}}
+@endsection
 
 
 @section('content')
@@ -27,9 +25,9 @@
             <div class="card">
                 <div class="card-body table-border-style" >
                     <div class="table-responsive">
-                        <div class="table-head col-xl-12 mt-2" style="text-align: right;">
+                        {{-- <div class="table-head col-xl-12 mt-2" style="text-align: right;">
                             <a href="#" class="btn btn-primary" id="applyLeaveButton" data-bs-toggle="modal" data-bs-target="#applyLeave"   data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>Apply for Leave</a>
-                        </div>
+                        </div> --}}
                         <table class="table datatable">
                             <thead>
                             <tr>

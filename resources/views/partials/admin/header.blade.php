@@ -93,7 +93,7 @@
         </div>
         <div class="ms-auto">
             <ul class="list-unstyled">
-                @if( \Auth::user()->type !='client' && \Auth::user()->type !='super admin' )
+                @if( \Auth::user()->type !='contractor' && \Auth::user()->type !='super admin' )
                         <li class="dropdown dash-h-item drp-notification">
                             <a class="dash-head-link arrow-none me-0" href="{{ url('chats') }}" aria-haspopup="false"
                                aria-expanded="false">
@@ -105,7 +105,7 @@
                         </li>
                     @endif
 
-                    <li class="dropdown dash-h-item drp-language">
+                    {{-- <li class="dropdown dash-h-item drp-language">
                     <a
                         class="dash-head-link dropdown-toggle arrow-none me-0"
                         data-bs-toggle="dropdown"
@@ -134,7 +134,7 @@
                             <a class="dropdown-item text-primary" href="{{route('manage.language',[isset($lang)?$lang:'english'])}}">{{ __('Manage Language') }}</a>
                             @endif
                     </div>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

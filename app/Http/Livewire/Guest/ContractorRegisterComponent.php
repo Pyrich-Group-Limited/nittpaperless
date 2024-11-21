@@ -32,7 +32,7 @@ class ContractorRegisterComponent extends Component
             'email' => $this->email,
             'phoneno' => $this->phoneno,
             'password' =>Hash::make($this->password),
-            'type' => "Contractor"
+            'type' => "contractor"
         ]);
 
         $this->dispatchBrowserEvent('success',['success' => 'Regsitraiton Successful']);

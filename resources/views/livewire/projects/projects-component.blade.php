@@ -135,6 +135,14 @@
                                                     </div>
                                                 @endcan
                                             @endif
+
+                                            @if($project->project_boq!=null && $project->isApproved==false)
+                                                <div class="action-btn bg-success ms-2">
+                                                    <a href="#" wire:click="setActionId('{{$project->id}}')" class="mx-3 btn btn-sm align-items-center confirm-approve" data-bs-toggle="tooltip" title="{{__('Approve')}}" data-original-title="{{__('Approve')}}">
+                                                    <i class="ti ti-check text-white"></i></a>
+                                                </div>
+                                            @endif
+
                                             @if($project->project_boq==null)
                                                 @can('delete project')
                                                     <div class="action-btn bg-danger ms-2">

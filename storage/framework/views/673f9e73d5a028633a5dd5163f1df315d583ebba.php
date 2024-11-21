@@ -22,7 +22,7 @@
             <?php endif; ?>
         </div>
     <?php $__env->stopSection(); ?>
-    
+
     
         <div class="row">
             <div class="col-xl-12">
@@ -34,23 +34,24 @@
                                 <tr>
                                     <th scope="col"><?php echo e(__('#')); ?></th>
                                     <th scope="col"><?php echo e(__('Subject')); ?></th>
-                                    <?php if(\Auth::user()->type!='client'): ?>
-                                        <th scope="col"><?php echo e(__('Client')); ?></th>
+                                    <?php if(\Auth::user()->type!='contractor'): ?>
+                                        <th scope="col"><?php echo e(__('Contractor')); ?></th>
                                     <?php endif; ?>
                                     <th scope="col"><?php echo e(__('Project')); ?></th>
-    
+
                                     <th scope="col"><?php echo e(__('Contract Type')); ?></th>
                                     <th scope="col"><?php echo e(__('Contract Value')); ?></th>
                                     <th scope="col"><?php echo e(__('Start Date')); ?></th>
                                     <th scope="col"><?php echo e(__('End Date')); ?></th>
                                     <th scope="col"><?php echo e(__('')); ?></th>
                                     <th scope="col" ><?php echo e(__('Action')); ?></th>
-    
+
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    
                                 <?php $__currentLoopData = $contracts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $contract): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    
+
                                     <tr class="font-style">
                                         <td>
                                             <a href="<?php echo e(route('contract.details',$contract->id)); ?>" class="btn btn-outline-primary"><?php echo e(\Auth::user()->contractNumberFormat($contract->id)); ?></a>
@@ -60,7 +61,7 @@
                                             <td><?php echo e(!empty($contract->clients)?$contract->clients->name:'-'); ?></td>
                                         <?php endif; ?>
                                         <td><?php echo e(!empty($contract->projects)?$contract->projects->project_name:'-'); ?></td>
-    
+
                                         <td><?php echo e($contract->projects->category->category_name); ?></td>
                                         <td><?php echo e(\Auth::user()->priceFormat($contract->value)); ?></td>
                                         <td><?php echo e(\Auth::user()->dateFormat($contract->start_date )); ?></td>
@@ -68,7 +69,7 @@
                                         <td>
                                             <a href="#" class="action-item" data-url="<?php echo e(route('contract.description',$contract->id)); ?>" data-ajax-popup="true" data-bs-toggle="tooltip" title="<?php echo e(__('Description')); ?>" data-title="<?php echo e(__('Desciption')); ?>"><i class="fa fa-comment"></i></a>
                                         </td>
-    
+
                                         <td class="action ">
                                             <?php if(\Auth::user()->type=='super admin'): ?>
                                                 <?php if($contract->status=='accept'): ?>
@@ -97,7 +98,7 @@
                                         </td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    
+
                                 </tbody>
                             </table>
                         </div>
@@ -106,6 +107,6 @@
             </div>
         </div>
     
-    
+
     </div>
-    <?php /**PATH C:\xampp\htdocs\nittpaperless-1\resources\views/livewire/d-g/contract-component.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\nittpaperless-1\resources\views/livewire/d-g/contract-component.blade.php ENDPATH**/ ?>

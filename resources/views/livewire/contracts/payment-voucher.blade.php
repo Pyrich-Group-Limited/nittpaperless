@@ -11,7 +11,7 @@
         .solid{
             border-top: 2px solid black !important;
         }
-    
+
         .text-with-line::after {
             content: "";
             display: inline-block;
@@ -114,7 +114,7 @@
             margin: 10mm; /* Adjust margin if needed */
         } */
 
-    
+
 
         /* Ensure body content fits the page */
         /* body {
@@ -166,7 +166,7 @@
         #tb2tr1{
             border: none !important;
         }
-    
+
     </style>
 </head>
 <body>
@@ -184,7 +184,7 @@
                           <td width="10%"><img src="{{  asset('assets/images/coa.png') }}" width="100%" alt=""></td>
                        </tr>
                 </table>
-        
+
             <div class="card-body">
                 <table class="table table-bordered tb1" id="tb1">
                     <tr id="tb1tr1">
@@ -196,7 +196,7 @@
                         <td>Expenditure Control No.</td>
                     </tr>
                 </table>
-    
+
                 <table class="table table-bordered">
                     <tr>
                         <th>FINANCIAL YEAR</th>
@@ -209,7 +209,7 @@
                         <td>{{ date('M') }}</td>
                         <td></td>
                     </tr>
-                    
+
                 </table>
                 <br>
                 <table class="table table-bordered">
@@ -228,7 +228,7 @@
                         <td>₦ {{ number_format($paymentRequest->recommended_amount, 2) }}</td>
                         <td style="white-space: normal;">
                             Payment Schedule No. <br>
-                            Bank: 
+                            Bank:
                         </td>
                     </tr>
                     <tr style="height: 50px;">
@@ -238,10 +238,21 @@
                         <td style="border: 0px "></td>
                     </tr>
                 </table>
-                
+
+                {{-- <table class="table table-bordered">
+                    @foreach ($paymentRequest->approvalRecords as $approval)
+                        <tr>
+                            <td><b>Approved by:</b> {{ $approval->staff->name }}</td>
+                            <td style="white-space: normal;"><strong>Signature:</strong>  <strike>{{ $approval->staff->name }}</strike>
+                            </td>
+                            <td style=""><b>Date:</b> {{ $approval->created_at->format('d-M-Y') }}</td>
+                        </tr>
+                    @endforeach
+                </table> --}}
+
                 <table class="table table-bordered">
                     <tr>
-                        
+
                         <td style="white-space: normal;"><p class=""><strong>Voucher Prepared by:</strong> <strike>{{ $paymentRequest->recommendedBy->name }}</strike> </p></td>
                         <td style="white-space: normal;"><p class=""><b>Voucher Checked, Committed & Passed by:</b> <strike>{{ $paymentRequest->approvedBy->name }}</strike></p></td>
                     </tr>
@@ -254,86 +265,61 @@
                         <td style=""><p class=""><b>Date:</b> {{ $paymentRequest->created_at->format('d-M-Y') }}</p></td>
                     </tr>
                 </table>
-                
-                {{-- <table class="table table-bordered">
-                    <tr>
-                        <th>Officer Controlling Expenditure</th>
-                        <th>Officer Authorizing Expenditure</th>
-                        <th>Audit Post-payment Stamp</th>
-                    </tr>
-                    <tr>
-                        <td><p class="text-with-line-5">Name: </p></td>
-                        <td><p class="text-with-line-5">Name: </p></td>
-                        <td><p class="text-with-line-5">Name: </p></td>
-                    </tr>
-                    <tr>
-                        <td><p class="text-with-line-6">Designation: </p></td>
-                        <td><p class="text-with-line-6">Designation: </p></td>
-                        <td><p class="text-with-line-6">Designation: </p></td>
-                    </tr>
-                    <tr>
-                        <td><p class="text-with-line-7">Signature: </p></td>
-                        <td><p class="text-with-line-7">Signature: </p></td>
-                        <td><p class="text-with-line-7">Signature: </p></td>
-                    </tr>
-                    <tr>
-                        <td><p class="text-with-line-5">Date: </p></td>
-                        <td><p class="text-with-line-5">Date: </p></td>
-                        <td><p class="text-with-line-5">Date: </p></td>
-                    </tr>
-                </table> --}}
-    
+
                 <table class="table table-bordered">
                     <tr>
-                        <td style="border: 0px !important"><h4>RECEIPT</h4></td>
+                        <td><h4>RECEIPT :
+                            @if($paymentRequest->status=='paid')
+                                <span class="text-success">Paid</span>
+                            @else
+                                <span class="text-warning">Pending</span>
+                            @endif
+
+                            @if($paymentRequest->status=='audited' || $paymentRequest->status=='paid')
+                                <span align="right">
+                                    {!! QrCode::size(80)->generate( sprintf('%04d', $paymentRequest->id).' - '.$paymentRequest->contract->clients->name.' - '.number_format($paymentRequest->recommended_amount,2).
+                                    " ".$paymentRequest->contract->subject." - ".$paymentRequest->contract->description."  ".
+                                    $paymentRequest->status.' - '.$paymentRequest->created_at->format('d-M-Y') ) !!}
+                                </span>
+                            @endif
+                        </h4></td>
                     </tr>
                     <tr>
-                        
                         <td>
                             I certify the receipt of the sum of:<hr class="solid">
                             Amount in words:
                         </td>
                     </tr>
                 </table>
-    
+
                 <table class="table table-bordered" style="max-width: 100% !important;">
                     <tr>
                         <td colspan="2" style="width: 20%;"><h4>From NITT</h4></td>
                         <td style="width: 80%;">
-                            <p class=""> Name: <span class=""></span> 
-                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                <span class=""> ₦ </span> 
-                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                &nbsp; &nbsp; 
-
-                                <span class=""> K </span> 
-                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            <p class=""> Name: <span class=""></span>
+                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class=""> ₦ </span>
+                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp; &nbsp;
-                                
+
+                                <span class=""> K </span>
+                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp; &nbsp;
+
                                 Only</p>
                             <p class=""> Signture: <span class=""></span>  </p>
                             <p class=""> Date:<span class=""></span>  </p>
                         </td>
                     </tr>
                 </table>
-                {{-- <p><strong>Contract ID:</strong> {{ $paymentRequest->contract->id }}</p> --}}
-                {{-- <p><strong>Project Name:</strong> {{ $paymentRequest->contract->subject }}</p> --}}
-                {{-- <p><strong>Contractor:</strong> {{ $paymentRequest->contract->clients->name }}</p> --}}
-                {{-- <p><strong>Voucher ID:</strong> {{ $paymentRequest->id }}</p> --}}
-                {{-- <p><strong>Amount:</strong> ₦{{ number_format($paymentRequest->recommended_amount, 2) }}</p> --}}
-                {{-- <p><strong>Recommended By:</strong> {{ $paymentRequest->recommendedBy->name }}</p> --}}
-                {{-- <p><strong>Approved By DG:</strong> {{ $paymentRequest->approvedBy->name }}</p>
-                <p><strong>Signed By Bursar:</strong> {{ $paymentRequest->signedBy->name }}</p>
-                <p><strong>Payment Date:</strong> {{ $paymentRequest->created_at->format('Y-m-d') }}</p> --}}
-            
                 <div class="text-center print-button">
                     <button onclick="window.print()" class="btn btn-primary"><i class="fa fa-print"></i> Print Voucher</button>
                 </div>
             </div>
         </div>
-    
+
     <style>
         .print-button {
             margin-top: 20px;

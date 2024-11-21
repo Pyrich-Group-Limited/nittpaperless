@@ -15,7 +15,10 @@
     @endsection
     @section('action-btn')
         <div class="float-end">
-            <a href="#" data-size="md" data-url="{{ route('clients.create') }}" data-ajax-popup="true"  data-bs-toggle="tooltip" title="{{__('Create')}}"  class="btn btn-sm btn-primary">
+            {{-- <a href="#" data-size="md" data-url="{{ route('clients.create') }}" data-ajax-popup="true"  data-bs-toggle="tooltip" title="{{__('Create')}}"  class="btn btn-sm btn-primary">
+                <i class="ti ti-plus"></i>
+            </a> --}}
+            <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newContractor" id="toggleOldProject"  data-bs-toggle="tooltip" title="{{__('Create New Contractor')}}"  class="btn btn-sm btn-primary">
                 <i class="ti ti-plus"></i>
             </a>
         </div>
@@ -24,7 +27,7 @@
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">
-                @foreach($clients as $client)
+                @foreach($contractors as $contractor)
                     <div class="col-md-3">
                         <div class="card text-center">
                             <div class="card-header border-0 pb-0">
@@ -38,29 +41,26 @@
                                         </button>
 
                                         <div class="dropdown-menu dropdown-menu-end">
-{{--                                            <a href="{{ route('clients.show',$client->id) }}"  class="dropdown-item" data-bs-original-title="{{__('View')}}">--}}
+{{--                                            <a href="{{ route('clients.show',$contractor->id) }}"  class="dropdown-item" data-bs-original-title="{{__('View')}}">--}}
 {{--                                                <i class="ti ti-eye"></i>--}}
 {{--                                                <span>{{__('Show')}}</span>--}}
 {{--                                            </a>--}}
 
-                                            @can('edit client')
-                                                <a href="#!" data-size="md" data-url="{{ route('clients.edit',$client->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
+                                            {{-- @can('edit contractor') --}}
+                                                <a href="#!" data-size="md" data-url="{{ route('clients.edit',$contractor->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit User')}}">
                                                     <i class="ti ti-pencil"></i>
                                                     <span>{{__('Edit')}}</span>
                                                 </a>
-                                            @endcan
+                                            {{-- @endcan --}}
 
-                                            @can('delete client')
-                                                {!! Form::open(['method' => 'DELETE', 'route' => ['clients.destroy', $client['id']],'id'=>'delete-form-'.$client['id']]) !!}
-                                                <a href="#!"  class="dropdown-item bs-pass-para">
+                                            {{-- @can('delete contractor') --}}
+                                                <a href="#" wire:click="setActionId('{{$contractor->id}}')"  class="dropdown-item confirm-delete">
                                                     <i class="ti ti-archive"></i>
-                                                    <span> @if($client->delete_status!=0){{__('Delete')}} @else {{__('Restore')}}@endif</span>
+                                                    <span> {{__('Delete')}} </span>
                                                 </a>
+                                            {{-- @endcan --}}
 
-                                                {!! Form::close() !!}
-                                            @endcan
-
-                                            <a href="#!" data-url="{{route('clients.reset',\Crypt::encrypt($client->id))}}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Reset Password')}}">
+                                            <a href="#!" data-url="{{route('clients.reset',\Crypt::encrypt($contractor->id))}}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Reset Password')}}">
                                                 <i class="ti ti-adjustments"></i>
                                                 <span>  {{__('Reset Password')}}</span>
                                             </a>
@@ -70,32 +70,32 @@
                             </div>
                             <div class="card-body full-card">
                                 <div class="img-fluid rounded-circle card-avatar">
-                                    <img src="{{(!empty($client->avatar))? asset(Storage::url("uploads/avatar/".$client->avatar)): asset("uploads/user.png") }}" alt="kal" class="img-user wid-80 rounded-circle">
+                                    <img src="{{(!empty($contractor->avatar))? asset(Storage::url("uploads/avatar/".$contractor->avatar)): asset("uploads/user.png") }}" alt="kal" class="img-user wid-80 rounded-circle">
                                 </div>
-                                <h4 class=" mt-2">{{ $client->name }}</h4>
+                                <h4 class=" mt-2">{{ $contractor->name }}</h4>
                                 <p></p>
                                 <div class="row">
                                     <div class="col-12 col-sm-12">
                                         <div class="d-grid">
-                                            {{ $client->email }}
+                                            {{ $contractor->email }}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="align-items-center h6 mt-2" data-bs-toggle="tooltip" title="{{__('Last Login')}}">
-                                    {{ (!empty($client->last_login_at)) ? $client->last_login_at : '' }}
+                                    {{ (!empty($contractor->last_login_at)) ? $contractor->last_login_at : '' }}
                                 </div>
                             </div>
                             <div class="card-footer p-3">
                                 <div class="row">
                                     <div class="col-6">
-                                        <h6 class="mb-0"> @if($client->clientDeals)
-                                                {{$client->clientDeals->count()}}
+                                        <h6 class="mb-0"> @if($contractor->clientDeals)
+                                                {{$contractor->clientDeals->count()}}
                                             @endif</h6>
                                         <p class="text-muted text-sm mb-0">{{__('Deals')}}</p>
                                     </div>
                                     <div class="col-6">
-                                        <h6 class="mb-0">@if($client->clientProjects)
-                                                {{ $client->clientProjects->count() }}
+                                        <h6 class="mb-0">@if($contractor->clientProjects)
+                                                {{ $contractor->clientProjects->count() }}
                                             @endif</h6>
                                         <p class="text-muted text-sm mb-0">{{__('Projects')}}</p>
                                     </div>
@@ -108,5 +108,5 @@
         </div>
     </div>
 {{-- @endsection --}}
-
+@include('livewire.projects.modals.create-contractor-modal')
 </div>

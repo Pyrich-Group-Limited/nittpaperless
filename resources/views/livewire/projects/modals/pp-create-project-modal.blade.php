@@ -22,6 +22,18 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="form-control-wrap">
+                                        {{ Form::label('advertOption', __('With Advert'), ['class' => 'form-label']) }}: <span class="text-danger">*</span>
+                                        <input type="radio" wire:model="advertOption" id="Information" value="{{ true }}" class="mr-3"><label class="form-label" style="margin-right: 20px" for="Information">&nbsp;Yes</label>
+                                        <input type="radio" wire:model="advertOption" id="Sign-Posting" value="{{ false }}" class="mr-3"><label class="form-label" style="margin-right: 20px" for="Sign-Posting">&nbsp;No</label>
+                                    </div>
+                                    @error('advertOption')<label style="color: red">{{ $message }}</label>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     {{ Form::label('description', __('Project Description'), ['class' => 'form-label']) }}

@@ -50,9 +50,11 @@
                                     <td><?php echo e($approval->status); ?> / <?php echo e($approval->approval_stage); ?></td>
                                     <td class="Action">
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve leave')): ?>
-
-                                            
-                                            
+                                        <div class="action-btn bg-info ms-2">
+                                            <a href="#" class="mx-3 btn btn-sm  align-items-center" data-url="<?php echo e(route('view-leave-application',$approval->leave->id)); ?>" data-ajax-popup="true"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('View')); ?>"  data-title="<?php echo e(__('Leave Applicaiton Details')); ?>">
+                                                <i class="ti ti-eye text-white"></i>
+                                            </a>
+                                        </div>
                                             <form method="POST" action="<?php echo e(route('approvals.update', $approval->id)); ?>">
                                                 <?php echo csrf_field(); ?>
                                                 <select name="status" class="">
