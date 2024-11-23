@@ -172,8 +172,9 @@ use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponen
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials; 
 use App\Http\Livewire\PhysicalPlanning\ErgpComponent;
 
-//Leaves routes
+//Leaves routes 
 use App\Http\Livewire\Leave\LeavesComponent;
+use App\Http\Livewire\Leave\PendingLeavesComponent;
 
 //contractor routes
 use App\Http\Livewire\Contractor\ContractorDashboard;
@@ -488,8 +489,8 @@ Route::get('hrm-apply-dta', [HrmDashControl::class, 'applyDta'])->name('hrm.appl
 // Route::post('apply-leave', [HrmDashControl::class, 'applyLeavePost'])->name('leave.apply');
 
 
-Route::get('/approvals', [LeaveApprovalContoller::class, 'index'])->name('approvals.index');
-Route::post('/approvals/{id}', [LeaveApprovalContoller::class, 'update'])->name('approvals.update');
+// Route::get('/approvals', [LeaveApprovalContoller::class, 'index'])->name('approvals.index');
+// Route::post('/approvals/{id}', [LeaveApprovalContoller::class, 'update'])->name('approvals.update');
 
 // file management
 Route::get('/files',[FilesController::class, 'index'])->name('file.index');
@@ -1285,7 +1286,11 @@ Route::middleware(['XSS', 'revalidate'])->prefix('leaves')->group(function () {
     // Route::get('hrm-leave', [HrmDashControl::class, 'hrmLeave'])->name('hrm.leave');
     // Route::post('apply-leave', [HrmDashControl::class, 'applyLeavePost'])->name('leave.apply');
 
+    // Route::get('/approvals', [LeaveApprovalContoller::class, 'index'])->name('approvals.index');
+    // Route::post('/approvals/{id}', [LeaveApprovalContoller::class, 'update'])->name('approvals.update');
+
     Route::get('/all-leave-requests', LeavesComponent::class)->name('hrm.leave');
+    Route::get('/leave-approvals', PendingLeavesComponent::class)->name('approvals.index');
 });
 
 // Contracts

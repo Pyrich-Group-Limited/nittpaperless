@@ -27,13 +27,13 @@ class LeaveApprovalContoller extends Controller
         $approval->save();
 
         // If the current stage is HOD and the status is approved, update the leave status to approved
-    if ($approval->approval_stage == 'hod' && $request->status == 'approved') {
-        // Find the corresponding leave
-        $leave = Leave::find($approval->leave_id);
-        // Update leave status to approved
-        $leave->status = 'Approved';
-        $leave->save();
-    }
+        if ($approval->approval_stage == 'hod' && $request->status == 'approved') {
+            // Find the corresponding leave
+            $leave = Leave::find($approval->leave_id);
+            // Update leave status to approved
+            $leave->status = 'Approved';
+            $leave->save();
+        }
 
         // If approved and current stage is supervisor, create next approval for Unit Head
         if ($request->status == 'approved') {

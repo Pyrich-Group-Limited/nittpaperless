@@ -13,6 +13,7 @@ class LeaveApproval extends Model
         'leave_id',
         'approver_id',
         'approval_stage',
+        'type',
         'status',
     ];
 
