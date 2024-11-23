@@ -29,7 +29,8 @@ class Leave extends Model
 
     public function leaveType()
     {
-        return $this->hasOne('App\Models\LeaveType', 'id', 'leave_type_id');
+        return $this->belongsTo(LeaveType::class, 'leave_type_id');
+        // return $this->hasOne('App\Models\LeaveType', 'id', 'leave_type_id');
     }
 
     public function employees()

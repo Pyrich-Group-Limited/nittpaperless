@@ -61,10 +61,7 @@ class ProjectRecommendedApplicantsComponent extends Component
                     'project_id' => $this->project_id,
                     'hod_id' => $hodId,
                 ]);
-                // ProjectComment::create([
-                //     'project_creation_id' => $this->project_id,
-                //     'user_id' => $hodId,
-                // ]);
+                
                  // Send notification to HOD
                 // $hod = User::find($hodId);
                 // $hod->notify(new ProjectSharedNotification($project, auth()->user())); // Notify HOD
