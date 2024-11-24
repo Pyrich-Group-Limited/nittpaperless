@@ -253,12 +253,12 @@
                 <table class="table table-bordered">
                     <tr>
 
-                        <td style="white-space: normal;"><p class=""><strong>Voucher Prepared by:</strong> <strike>{{ $paymentRequest->recommendedBy->name }}</strike> </p></td>
-                        <td style="white-space: normal;"><p class=""><b>Voucher Checked, Committed & Passed by:</b> <strike>{{ $paymentRequest->approvedBy->name }}</strike></p></td>
+                        <td style="white-space: normal;"><p class=""><strong>Voucher Prepared by:</strong> <strike>{{ $paymentRequest->recommendedBy->name ?? '' }}</strike> </p></td>
+                        <td style="white-space: normal;"><p class=""><b>Voucher Checked, Committed & Passed by:</b> <strike>{{ $paymentRequest->approvedBy->name ?? '' }}</strike></p></td>
                     </tr>
                     <tr>
-                        <td style=""><p class=""><b>Name:</b> {{ $paymentRequest->recommendedBy->name }}</p></td>
-                        <td style=""><p class=""><b>Name:</b> {{ $paymentRequest->approvedBy->name }}</p></td>
+                        <td style=""><p class=""><b>Name:</b> {{ $paymentRequest->recommendedBy->name ?? '' }}</p></td>
+                        <td style=""><p class=""><b>Name:</b> {{ $paymentRequest->approvedBy->name ?? ''}}</p></td>
                     </tr>
                     <tr>
                         <td style=""><p class=""><b>Date:</b> {{ $paymentRequest->created_at->format('d-M-Y') }}</p></td>

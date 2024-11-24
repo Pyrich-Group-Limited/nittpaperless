@@ -31,10 +31,10 @@
 
             @if ($project->project_boq != null && $project->advert_approval_status == false)
                     <div class="col-md-12">
-                        <div class="alert alert-danger">Project pending DG's approval for advert</div>
+                        <div class="alert alert-danger">Project pending DG's approval for procurement process</div>
                     </div>
             @elseif($project->project_boq != null && $project->advert_approval_status == true)
-                <div class="alert alert-success">Approved for advert</div>
+                <div class="alert alert-success">Approved for procurement process</div>
             @endif
         </div>
     @endsection

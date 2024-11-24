@@ -28,7 +28,7 @@
                         <div wire:loading wire:target="createContract"><x-g-loader /></div>
                         <input type="button" id="closeNewContract" value="{{ __('Cancel') }}" class="btn  btn-light"
                             data-bs-dismiss="modal">
-                        <input type="button"  wire:click="createContract" value="{{ __('Create Contract') }}" class="btn  btn-primary">
+                        <input type="button" wire:click="createContract" value="{{ __('Create Contract') }}" class="btn  btn-primary">
                     </div>
                 </div>
             </div>
