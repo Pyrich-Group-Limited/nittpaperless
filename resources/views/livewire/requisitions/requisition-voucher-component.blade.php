@@ -192,7 +192,7 @@
                         <td><h4>No. {{ sprintf('%04d', $requisition->id) }}</h4></td>
                     </tr>
                     <tr id="tb1tr2">
-                        <td><b>Account to be charged:</b> {{ $requisition->account->name }}</td>
+                        <td><b>Account to be charged:</b> {{ $requisition->account->name ?? '' }}</td>
                         <td>Expenditure Control No.</td>
                     </tr>
                 </table>
@@ -225,7 +225,7 @@
                             {{ $requisition->requisition_type }} <br>
                             {{ $requisition->description }}
                         </td>
-                        <td>{{ $requisition->account->code }}</td>
+                        <td>{{ $requisition->account->code ?? '' }}</td>
                         <td>₦ {{ number_format($requisition->amount, 2) }}</td>
                         <td style="white-space: normal;">
                             Payment Schedule No. <br>
@@ -243,9 +243,37 @@
                 <table class="table table-bordered">
                     @foreach ($requisition->approvalRecords as $approval)
                         <tr>
-                            <td><b>Approved by:</b> {{ $approval->staff->name }}</td>
-                            <td style="white-space: normal;"><strong>Signature:</strong>  <strike>{{ $approval->staff->name }}</strike> 
+                            @switch($loop->index)
+                                @case(0)
+                                    <td><b>Prepared by:</b> {{ $approval->staff->name }}</td>
+                                    @break
+                                @case(1)
+                                    <td><b>Checked by:</b> {{ $approval->staff->name }}</td>
+                                    @break
+                                @case(2)
+                                    <td><b>Verified by:</b> {{ $approval->staff->name }}</td>
+                                    @break
+                                @case(3)
+                                    <td><b>Approved by:</b> {{ $approval->staff->name }}</td>
+                                    @break
+                                @case(4)
+                                    <td><b>Authorized by:</b> {{ $approval->staff->name }}</td>
+                                    @break
+                                @case(5)
+                                    <td><b>Paid by:</b> {{ $approval->staff->name }}</td>
+                                    @break
+                                @default
+                                    <td><b>Reviewed by:</b> {{ $approval->staff->name }}</td> <!-- for any additional cases beyond 6 -->
+                            @endswitch
+
+                            <td style="white-space: normal;">
+                                @if ($approval->staff->signature)
+                                <strong>Signature:</strong> <img src="{{ asset('storage/' . $approval->staff->signature->signature_path) }}" alt="Signature" width="80">
+                                @else
+                                    <strong>Signature:</strong>  <strike>{{ $approval->staff->name }}</strike>
+                                @endif
                             </td>
+
                             <td style=""><b>Date:</b> {{ $approval->created_at->format('d-M-Y') }}</td>
                         </tr>
                     @endforeach
@@ -262,14 +290,17 @@
                     <tr>
                         <td><h4>RECEIPT : 
                             @if($requisition->status=='cash_office_approved')
-                            <span class="text-success">Paid</span>
-                            <span align="right">
-                                {!! QrCode::size(80)->generate( sprintf('%04d', $requisition->id).' - '.$requisition->staff->name.' - '.number_format($requisition->amount,2).
-                                " ".$requisition->requisition_type." - ".$requisition->purpose." - ".$requisition->description.", ".
-                                $requisition->status.' - '.$requisition->created_at->format('d-M-Y') ) !!}
-                            </span>
+                                <span class="text-success">Paid</span>
                             @else
-                            <span class="text-warning">Pending</span>
+                                <span class="text-warning">Pending</span>
+                            @endif
+
+                            @if($requisition->status=='audit_approved' || $requisition->status=='cash_office_approved')
+                                <span align="right">
+                                    {!! QrCode::size(80)->generate( sprintf('%04d', $requisition->id).' - '.$requisition->staff->name.' - '.number_format($requisition->amount,2).
+                                    " ".$requisition->requisition_type." - ".$requisition->purpose." - ".$requisition->description.", ".
+                                    $requisition->status.' - '.$requisition->created_at->format('d-M-Y') ) !!}
+                                </span>
                             @endif
                         </h4></td>
                     </tr>

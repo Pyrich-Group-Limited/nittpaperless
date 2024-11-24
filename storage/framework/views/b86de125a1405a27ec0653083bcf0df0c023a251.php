@@ -6,7 +6,7 @@
 
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
-    <li class="breadcrumb-item"><b>Welcome </b><?php echo e(Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")"); ?></li>
+    <li class="breadcrumb-item"><b>Welcome </b><?php echo e(Ucfirst(Auth::user()->name). " (" .Auth::user()->department->name. ")"); ?></li>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
         <?php if($projectsWithoutComments->isEmpty()): ?>
@@ -40,7 +40,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center justify-content-between">
                                         <div class="col-auto mb-3 mb-sm-0">
-                                            <a href="#">
+                                            <a href="<?php echo e(route('requisition.raise')); ?>">
                                                 <div class="d-flex align-items-center">
                                                     <div class="theme-avtar bg-primary">
                                                         <i class="ti ti-cast"></i>
@@ -61,7 +61,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center justify-content-between">
                                         <div class="col-auto mb-3 mb-sm-0">
-                                            <a href="#">
+                                            <a href="<?php echo e(route('storeReq.list')); ?>">
                                                 <div class="d-flex align-items-center">
                                                     <div class="theme-avtar bg-primary">
                                                         <i class="ti ti-cast"></i>
@@ -81,7 +81,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center justify-content-between">
                                         <div class="col-auto mb-3 mb-sm-0">
-                                            <a href="#">
+                                            <a href="<?php echo e(route('hrm.query')); ?>">
                                                 <div class="d-flex align-items-center">
                                                     <div class="theme-avtar bg-primary">
                                                         <i class="ti ti-cast"></i>
@@ -113,7 +113,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center justify-content-between">
                                         <div class="col-auto mb-3 mb-sm-0">
-                                            <a href="#">
+                                            <a href="<?php echo e(route('approvals.index')); ?>">
                                                 <div class="d-flex align-items-center">
                                                     <div class="theme-avtar bg-primary">
                                                         <i class="ti ti-cast"></i>
@@ -134,7 +134,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center justify-content-between">
                                         <div class="col-auto mb-3 mb-sm-0">
-                                            <a href="#">
+                                            <a href="<?php echo e(route('memos.index')); ?>">
                                                 <div class="d-flex align-items-center">
                                                     <div class="theme-avtar bg-primary">
                                                         <i class="ti ti-cast"></i>

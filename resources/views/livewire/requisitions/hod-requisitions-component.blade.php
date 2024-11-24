@@ -50,7 +50,7 @@
                                     <th>{{__('Pupose')}}</th>
                                     <th>{{__('Amount')}}</th>
                                     <th>{{__('Status')}}</th>
-                                    <th>{{__('Description')}}</th>
+                                    {{-- <th>{{__('Description')}}</th> --}}
                                     <th>{{__('Request Date')}}</th>
                                     <th width="200px">{{__('Action')}}</th>
                                 </tr>
@@ -62,20 +62,22 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $requisition->staff->name }}</td>
                                             <td>{{ $requisition->requisition_type }}</td>
-                                            <td>{{ $requisition->purpose }}</td>
+                                            <td>{{ Str::limit($requisition->purpose,20) }}</td>
                                             <td> ₦ {{ number_format($requisition->amount,2) }}</td>
                                             <td>
                                                 @if ($requisition->status == 'pending')
-                                                    <span class="text-warning">Pending</span>
+                                                <span class="badge bg-warning p-2 px-3 rounded">Pending</span>
                                                 @elseif ($requisition->status == 'approved')
-                                                    <span style="color: green;">Approved</span>
+                                                <span class="badge bg-success p-2 px-3 rounded">Approved</span>
                                                 @elseif ($requisition->status == 'rejected')
-                                                    <span style="color: red;">Rejected</span>
+                                                <span class="badge bg-danger p-2 px-3 rounded">Rejected</span>
                                                 @else
+                                                <span class="badge bg-secondary p-2 px-3 rounded">
                                                     {{ $requisition->status }}
+                                                </span>
                                                 @endif
                                             </td>
-                                            <td style="word-wrap: normal">{{ Str::limit($requisition->description,20) }}</td>
+                                            {{-- <td style="word-wrap: normal">{{ Str::limit($requisition->description,20) }}</td> --}}
                                             <td>{{ $requisition->created_at->format('d-M-Y') }}</td>
                                                 <td>
                                                     <div class="action-btn bg-primary ms-2">

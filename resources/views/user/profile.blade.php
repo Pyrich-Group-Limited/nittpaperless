@@ -104,7 +104,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 
                             <div class="col-lg-6 col-sm-6 form-group">
                                 <label for="password" class="col-form-label text-dark">{{ __('Password') }}</label>
-                                <input class="form-control @error('password') is-invalid @enderror" name="password" type="New password" required autocomplete="new-password" id="password" placeholder="{{ __('Enter Your Password') }}">
+                                <input class="form-control @error('password') is-invalid @enderror" name="password" type="password" required autocomplete="new-password" id="password" placeholder="{{ __('Enter Your Password') }}">
                                 @error('password')
                                 <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
                                 @enderror

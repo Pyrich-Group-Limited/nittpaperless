@@ -30,11 +30,24 @@
                                             </tr>
                                             <tr>
                                                 <th>{{__('Approval Status')}}</th>
-                                                <td>{{ $selRequisition->status }}</td>
+                                                <td>
+                                                    @if ($selRequisition->status == 'pending')
+                                                    <span class="badge bg-warning p-2 px-3 rounded">Pending</span>
+                                                    @elseif ($selRequisition->status == 'approved')
+                                                    <span class="badge bg-success p-2 px-3 rounded">Approved</span>
+                                                    @elseif ($selRequisition->status == 'rejected')
+                                                    <span class="badge bg-danger p-2 px-3 rounded">Rejected</span>
+                                                    @else
+                                                    <span class="badge bg-info p-2 px-3 rounded">
+                                                        {{ $selRequisition->status }}
+                                                    </span>
+                                                    @endif
+
+                                                </td>
                                             </tr>
                                             <tr >
-                                                <th style="word-break: break-word !important;">{{__('Description')}}</th>
-                                                <td style="word-break: break-word !important;">
+                                                <th>{{__('Description')}}</th>
+                                                <td style="overflow-wrap: break-word; word-break: break-word; white-space: normal;">
                                                     {{ $selRequisition->description }}
                                                 </td>
                                             </tr>
@@ -68,35 +81,39 @@
                                     </div>
                                 @endif
                                 @if ($selRequisition->status=='bursar_approved')
-                                    <div class="form-group">
-                                        <label class="form-label text-warning" >{{__('Account to be charged')}}</label>
-                                        <select class="form-control" wire:model="chartAccount">
-                                            <option value="">Select Account</option>
-                                            @foreach ($accounts as $account)
-                                                <option value="{{ $account->id }}">{{ $account->name }} - ({{ $account->code }})</option>
-                                            @endforeach
-                                        </select>
-                                        @error('chartAccount')
-                                            <small class="invalid-type_of_leave" role="alert">
-                                                <strong class="text-danger">{{ $message }}</strong>
-                                            </small>
-                                        @enderror
-                                    </div>
+                                    @can('approve as pv')
+                                        <div class="form-group">
+                                            <label class="form-label text-warning" >{{__('Account to be charged')}}</label>
+                                            <select class="form-control" wire:model="chartAccount">
+                                                <option value="">Select Account</option>
+                                                @foreach ($accounts as $account)
+                                                    <option value="{{ $account->id }}">{{ $account->name }} - ({{ $account->code }})</option>
+                                                @endforeach
+                                            </select>
+                                            @error('chartAccount')
+                                                <small class="invalid-type_of_leave" role="alert">
+                                                    <strong class="text-danger">{{ $message }}</strong>
+                                                </small>
+                                            @enderror
+                                        </div>
+                                    @endcan
                                 @endif
 
                                 @if ($selRequisition->status=='audit_approved')
-                                    <div class="form-group">
-                                        {{ Form::label('paymentEvidence', __('Upload Payment Evidence'), ['class' => 'form-label']) }}
-                                        <input type="file" id="paymentEvidence" wire:model.defer="paymentEvidence"
-                                            class="form-control" placeholder="Supporting Document" />
-                                        <strong class="text-danger" wire:loading
-                                            wire:target="paymentEvidence">Loading...</strong>
-                                        @error('paymentEvidence')
-                                            <small class="invalid-name" role="alert">
-                                                <strong class="text-danger">{{ $message }}</strong>
-                                            </small>
-                                        @enderror
-                                    </div>
+                                    @can('approve as cash office')
+                                        <div class="form-group">
+                                            {{ Form::label('paymentEvidence', __('Upload Payment Evidence'), ['class' => 'form-label']) }}
+                                            <input type="file" id="paymentEvidence" wire:model.defer="paymentEvidence"
+                                                class="form-control" placeholder="Supporting Document" />
+                                            <strong class="text-danger" wire:loading
+                                                wire:target="paymentEvidence">Loading...</strong>
+                                            @error('paymentEvidence')
+                                                <small class="invalid-name" role="alert">
+                                                    <strong class="text-danger">{{ $message }}</strong>
+                                                </small>
+                                            @enderror
+                                        </div>
+                                    @endcan
                                 @endif
                             <div class="modal-footer">
                                 <div wire:loading wire:target="hodApproveRequisition"><x-g-loader /></div>
@@ -108,28 +125,38 @@
 
                                 <input type="button" id="closeRequisitionDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
-                                {{-- @if(auth()->user()->type=="hod") --}}
                                     @can('approve as hod')
-                                        <input type="button" wire:click="hodApproveRequisition({{ $selRequisition->id }})" value="{{ __('Approve as HoD') }}" class="btn  btn-primary btn-sm">
+                                        @if ($selRequisition->status=='pending')
+                                            <input type="button" wire:click="hodApproveRequisition({{ $selRequisition->id }})" value="{{ __('Approve as HoD') }}" class="btn  btn-primary btn-sm">
+                                        @endif
                                     @endcan
-                                {{-- @endif --}}
-                                    {{-- @if(auth()->user()->type!="hod") --}}
-                                        @can('approve as dg')
+
+                                    @can('approve as dg')
+                                        @if ($selRequisition->status=='hod_approved')
                                             <input type="button"  wire:click="dgApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as DG') }}" class="btn  btn-primary btn-sm ">
-                                        @endcan 
-                                        @can('approve as bursar')
+                                        @endif
+                                    @endcan 
+
+                                    @can('approve as bursar')
+                                        @if ($selRequisition->status=='dg_approved')
                                             <input type="button"  wire:click="bursarApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Bursar') }}" class="btn  btn-primary btn-sm ">
-                                        @endcan 
-                                        @can('approve as pv')
-                                            <input type="button"  wire:click="pvApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as PV') }}" class="btn  btn-primary btn-sm ">
-                                        @endcan 
-                                        @can('approve as audit')
-                                            <input type="button"  wire:click="auditApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Audit') }}" class="btn  btn-primary btn-sm ">
-                                        @endcan 
-                                        @can('approve as cash office')
-                                            <input type="button"  wire:click="cashOfficeApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Pay') }}" class="btn  btn-primary btn-md ">
-                                        @endcan      
-                                    {{-- @endif --}}
+                                        @endif
+                                    @endcan 
+                                    @can('approve as pv')
+                                        @if ($selRequisition->status=='bursar_approved')
+                                            <input type="button" wire:click="pvApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as PV') }}" class="btn  btn-primary btn-sm ">
+                                        @endif
+                                    @endcan 
+                                    @can('approve as audit')
+                                        @if ($selRequisition->status=='pv_approved')
+                                            <input type="button" wire:click="auditApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Audit') }}" class="btn  btn-primary btn-sm ">
+                                        @endif
+                                    @endcan 
+                                    @can('approve as cash office')
+                                        @if ($selRequisition->status=='audit_approved')
+                                            <input type="button" wire:click="cashOfficeApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Pay') }}" class="btn  btn-primary btn-md ">
+                                        @endif
+                                    @endcan      
                             </div>
                         @else
                             <label align="center" class="mb-4" style="color: red">Loading...</label>

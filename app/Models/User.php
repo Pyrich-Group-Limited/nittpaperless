@@ -90,7 +90,7 @@ class User extends Authenticatable
 
     public function signature()
     {
-        return $this->hasOne(Signature::class);
+        return $this->hasOne(Signature::class, 'user_id');
     }
 
     public function signedMemos()

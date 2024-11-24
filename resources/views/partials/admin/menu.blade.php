@@ -73,8 +73,30 @@
                             ></a>
                     </li>
 
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="#!" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                            ><span class="dash-mtext">{{__('Payment Requisition')}}</span
+                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                            ></a>
+                        <ul class="dash-submenu">
+                            
+                            @can('final account view')
+                                <li class="dash-item {{ request()->is('manage.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('manage.requisitions') }}">{{__('Manage Requisitions')}}</a>
+                                </li>
+                            @endcan
+                            @can('approve as dg')
+                                <li class="dash-item {{ request()->is('dg.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('dg.requisitions') }}">{{__('DG Approval')}}</a>
+                                </li>
+                            @endcan
+                            
+                        </ul>
+                    </li>
+
                 </ul>
-            @endif
+            @else
 
             {{-- @if(\Auth::user()->type == 'client') --}}
                 <ul class="dash-navbar">
@@ -371,13 +393,11 @@
                                     <a class="dash-link" href="{{ route('manage.requisitions') }}">{{__('Manage Requisitions')}}</a>
                                 </li>
                             @endcan
-                            @if(auth()->user()->type=='hod')
                             @can('approve as hod')
                                 <li class="dash-item {{ request()->is('hod.requisitions') ? 'active' : '' }}">
                                     <a class="dash-link" href="{{ route('hod.requisitions') }}">{{__('HoD Approval')}}</a>
                                 </li>
                             @endcan
-                            @endif
                             @can('approve as dg')
                                 <li class="dash-item {{ request()->is('dg.requisitions') ? 'active' : '' }}">
                                     <a class="dash-link" href="{{ route('dg.requisitions') }}">{{__('DG Approval')}}</a>
@@ -1010,7 +1030,6 @@
                                                     <a class="dash-link" href="{{route('approvals.index')}}">{{__('Pending Leaves')}}</a>
                                                 </li>
                                             @endcan
-
                                             <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
                                                 <a class="dash-link" href="{{ route('hrm.leave') }}">{{__('Leave')}}</a>
                                             </li>
@@ -1185,6 +1204,7 @@
                 </ul>
             {{-- @endif --}}
             {{-- @endif --}}
+            @endif
         </div>
     </div>
 </nav>

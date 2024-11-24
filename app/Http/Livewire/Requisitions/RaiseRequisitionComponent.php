@@ -8,6 +8,7 @@ use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
+use App\Models\ChartOfAccount;
 
 
 class RaiseRequisitionComponent extends Component
@@ -48,7 +49,7 @@ class RaiseRequisitionComponent extends Component
 
         $this->dispatchBrowserEvent('success',["success" =>"Requisition raised successfully."]);
         $this->reset();
-        $this->requisitions = StaffRequisition::where('staff_id',Auth::user()->id)->orderBy('created_at','desc')->get();
+        $this->mount();
     }
 
     public function downloadFile($supporting_document)
@@ -90,8 +91,8 @@ class RaiseRequisitionComponent extends Component
             'amount' => $this->amount,
             'status' => 'pending',
         ]);
-        $this->requisitions = StaffRequisition::where('staff_id',Auth::user()->id)->orderBy('created_at','desc')->get();
         $this->dispatchBrowserEvent('success',["success" =>"Requisition updated successfully."]);
+        $this->mount();
     }
 
 
@@ -109,8 +110,7 @@ class RaiseRequisitionComponent extends Component
         }
         $requisition->delete();
         $this->dispatchBrowserEvent('success', ['success' => "Requisition Successfully Deleted"]);
-        // $this->reset();
-        $this->requisitions = StaffRequisition::where('staff_id',Auth::user()->id)->orderBy('created_at','desc')->get();
+        $this->mount();
     }
 
     public function render()

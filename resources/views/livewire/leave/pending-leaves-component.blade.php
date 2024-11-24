@@ -61,15 +61,15 @@
                                                         </a>
                                                     </div>
                                                     <div class="action-btn bg-success ms-2">
-                                                        <a href="#" wire:click="approveLeave({{ $approval->id }})"
-                                                            class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                        <a href="#" wire:click="setActionId('{{$approval->id}}')"
+                                                            class="mx-3 btn btn-sm d-inline-flex align-items-center confirm-approve"
                                                             data-bs-toggle="tooltip" title="{{ __('Approve Leave Request') }}">
                                                             <i class="ti ti-check text-white"></i>
                                                         </a>
                                                     </div>
                                                     <div class="action-btn bg-danger ms-2">
-                                                        <a href="#" wire:click="rejectLeave({{ $approval->id }})"
-                                                            class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                        <a href="#" wire:click="setActionId({{ $approval->id }})"
+                                                            class="mx-3 btn btn-sm d-inline-flex align-items-center confirm-delete"
                                                             data-bs-toggle="tooltip" title="{{ __('Reject Leave Request') }}">
                                                             <i class="text-white">X</i>
                                                         </a>

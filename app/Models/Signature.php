@@ -11,14 +11,13 @@ class Signature extends Model
 
     protected $fillable = ['user_id', 'signature_path'];
 
-    // The employee's signature
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
+    // public function users()
+    // {
+    //     return $this->hasMany(User::class);
+    // }
 }

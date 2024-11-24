@@ -4874,7 +4874,6 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage timesheet'],
             ['name' => 'create timesheet'],
             ['name' => 'edit timesheet'],
-            // ['name' => 'delete timesheet'],
             ['name' => 'manage bug report'],
             ['name' => 'create bug report'],
             ['name' => 'edit bug report'],
@@ -4947,13 +4946,11 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'SuperAdmin/Paperless',
                 'email' => 'spadmin@nitt.com',
-
                 'designation' => Designation::first()->name,
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 08",
                 'email' => 'spadmin@nitt.com',
-
                 'password' => Hash::make('1234'),
                 'type' => 'super admin',
                 'default_pipeline' => 1,
@@ -4961,6 +4958,7 @@ class UsersTableSeeder extends Seeder
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => 1,
+                'password_changed' => true,
             ]
         );
         Employee::create(['user_id' => $company->id]);
@@ -4977,12 +4975,12 @@ class UsersTableSeeder extends Seeder
         );
 
         $dgPermissions = [
+            ['name' => 'approve as dg'],
             ['name' => 'manage requisition'],
             ['name' => 'manage project'],
             ['name' => 'approve budget'],
             ['name' => 'reject budget'],
             ['name' => 'view budget'],
-
             ['name' => 'view contract'],
             ['name' => 'approve payment'],
             ['name' => 'view payment history'],
@@ -5011,9 +5009,12 @@ class UsersTableSeeder extends Seeder
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => 1,
+                'password_changed' => true,
             ]
         );
         $dg->assignRole($dgRole);
+        $dg->givePermissionTo($dgPermissions);
+
 
 
         // user
@@ -5028,8 +5029,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
         ];
-        // $userRole->givePermissionTo($userPermission);
-        $dg->givePermissionTo($userPermission);
+        $userRole->givePermissionTo($userPermission);
 
         $user = User::create(
             [
@@ -5045,6 +5045,7 @@ class UsersTableSeeder extends Seeder
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'password_changed' => true,
             ]
         );
         Employee::create(['user_id' => $user->id]);
@@ -5059,6 +5060,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $supervisorPermission = [
+            ['name' => 'approve as bursar'],
             ['name' => 'approve leave'],
             ['name' => 'approve dta'],
             ['name' => 'reject dta'],
@@ -5094,7 +5096,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage contract'],
             ['name' => 'show contract'],
         ];
-        // $supervisorRole->givePermissionTo($supervisorPermission);
+        $supervisorRole->givePermissionTo($supervisorPermission);
 
         $supervisor = User::create(
             [
@@ -5110,6 +5112,7 @@ class UsersTableSeeder extends Seeder
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 08",
+                'password_changed' => true,
             ]
         );
         Employee::create(['user_id' => $supervisor->id]);
@@ -5150,6 +5153,7 @@ class UsersTableSeeder extends Seeder
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 08",
+                'password_changed' => true,
             ]
         );
         Employee::create(['user_id' => $liason->id]);
@@ -5157,7 +5161,7 @@ class UsersTableSeeder extends Seeder
         $liason->givePermissionTo($liasonPermission);
 
 
-         // Liason office head
+         // Head of Department
          $hodRole = Role::create(
             [
                 'name' => 'hod',
@@ -5165,6 +5169,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $hodPermission = [
+            ['name' => 'approve as hod'],
             ['name' => 'manage requisition'],
             ['name' => 'set budget'],
             ['name' => 'view budget'],
@@ -5179,7 +5184,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage client dashboard'],
 
         ];
-        $hodRole->givePermissionTo($hodPermission);
+        // $hodRole->givePermissionTo($hodPermission);
 
         $hod = User::create(
             [
@@ -5195,6 +5200,7 @@ class UsersTableSeeder extends Seeder
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 09",
+                'password_changed' => true,
             ]
         );
         Employee::create(['user_id' => $hod->id]);
@@ -5254,8 +5260,14 @@ class UsersTableSeeder extends Seeder
         //     ['name' => 'Library Unit Head', 'created_by' => $company->id]
         // );
 
+         // Loop through each unit head role and assign permissions
+        //     $role->givePermissionTo($unitHeadPermissions);
+        // foreach ($unitHeadRoles as $role) {
+        // }
+
         // Define the permissions for the unit head role
         $unitHeadPermissions = [
+            ['name' => 'approve as pv'],
             ['name' => 'approve leave'],
             ['name' => 'manage leave'],
             ['name' => 'approve dta'],
@@ -5264,10 +5276,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show unithead dashboard'],
         ];
 
-        // Loop through each unit head role and assign permissions
-        //     $role->givePermissionTo($unitHeadPermissions);
-        // foreach ($unitHeadRoles as $role) {
-        // }
+       
 
         $unitHeadRole = Role::create(
             [
@@ -5292,10 +5301,12 @@ class UsersTableSeeder extends Seeder
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 08",
+                'password_changed' => true,
             ]
         );
         Employee::create(['user_id' => $unitHead->id]);
         $unitHead->assignRole($unitHeadRole);
+
 
          // store/assets
          $storeKeeperRole       = Role::create(
@@ -5305,17 +5316,16 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $storePermission = [
+            ['name' => 'approve as audit'],
             ['name' => 'manage product & service'],
             ['name' => 'manage warehouse'],
             ['name' => 'manage purchase'],
             ['name' => 'manage pos'],
             ['name' => 'manage warehouse'],
-            ['name' => 'create barcode'],
-            ['name' => 'manage pos'],
             ['name' => 'show unithead dashboard'],
         ];
 
-        $storeKeeperRole->givePermissionTo($storePermission);
+        // $storeKeeperRole->givePermissionTo($storePermission);
 
         $storeKeeper = User::create(
             [
@@ -5331,6 +5341,7 @@ class UsersTableSeeder extends Seeder
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 08",
+                'password_changed' => true,
             ]
         );
         Employee::create(['user_id' => $storeKeeper->id]);
@@ -5346,6 +5357,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
+            ['name' => 'approve as cash office'],
             ['name' => 'set budget'],
             ['name' => 'manage budget'],
             ['name' => 'approve budget'],
@@ -5359,8 +5371,6 @@ class UsersTableSeeder extends Seeder
             ['name' => 'approve dta'],
             ['name' => 'reject dta'],
             ['name' => 'manage purchase'],
-            ['name' => 'manage pos'],
-            ['name' => 'manage warehouse'],
             ['name' => 'create barcode'],
             ['name' => 'manage pos'],
             ['name' => 'manage expense'],
@@ -5487,7 +5497,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'create barcode'],
 
         ];
-        $accountantRole->givePermissionTo($accountantPermission);
+        // $accountantRole->givePermissionTo($accountantPermission);
 
         $accountant = User::create(
             [
@@ -5503,6 +5513,7 @@ class UsersTableSeeder extends Seeder
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 08",
+                'password_changed' => true,
             ]
         );
         Employee::create(['user_id' => $accountant->id]);
@@ -5581,6 +5592,7 @@ class UsersTableSeeder extends Seeder
                 'department_id' => Department::first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 08",
+                'password_changed' => true,
             ]
         );
         Employee::create(['user_id' => $client->id]);
@@ -5613,6 +5625,7 @@ class UsersTableSeeder extends Seeder
                 'lang' => 'en',
                 'avatar' => '',
                 'created_by' => $company->id,
+                'password_changed' => true,
             ]
         );
         $user->assignRole($contractorRole);

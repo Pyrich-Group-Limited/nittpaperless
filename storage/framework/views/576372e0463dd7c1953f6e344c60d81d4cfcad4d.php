@@ -73,8 +73,30 @@
                             ></a>
                     </li>
 
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="#!" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
+                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                            ><span class="dash-mtext"><?php echo e(__('Payment Requisition')); ?></span
+                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                            ></a>
+                        <ul class="dash-submenu">
+                            
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('final account view')): ?>
+                                <li class="dash-item <?php echo e(request()->is('manage.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('manage.requisitions')); ?>"><?php echo e(__('Manage Requisitions')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as dg')): ?>
+                                <li class="dash-item <?php echo e(request()->is('dg.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('dg.requisitions')); ?>"><?php echo e(__('DG Approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            
+                        </ul>
+                    </li>
+
                 </ul>
-            <?php endif; ?>
+            <?php else: ?>
 
             
                 <ul class="dash-navbar">
@@ -339,12 +361,10 @@
                                     <a class="dash-link" href="<?php echo e(route('manage.requisitions')); ?>"><?php echo e(__('Manage Requisitions')); ?></a>
                                 </li>
                             <?php endif; ?>
-                            <?php if(auth()->user()->type=='hod'): ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as hod')): ?>
                                 <li class="dash-item <?php echo e(request()->is('hod.requisitions') ? 'active' : ''); ?>">
                                     <a class="dash-link" href="<?php echo e(route('hod.requisitions')); ?>"><?php echo e(__('HoD Approval')); ?></a>
                                 </li>
-                            <?php endif; ?>
                             <?php endif; ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as dg')): ?>
                                 <li class="dash-item <?php echo e(request()->is('dg.requisitions') ? 'active' : ''); ?>">
@@ -901,7 +921,6 @@
                                                     <a class="dash-link" href="<?php echo e(route('approvals.index')); ?>"><?php echo e(__('Pending Leaves')); ?></a>
                                                 </li>
                                             <?php endif; ?>
-
                                             <li class="dash-item <?php echo e((Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : ''); ?>">
                                                 <a class="dash-link" href="<?php echo e(route('hrm.leave')); ?>"><?php echo e(__('Leave')); ?></a>
                                             </li>
@@ -1072,6 +1091,7 @@
                 </ul>
             
             
+            <?php endif; ?>
         </div>
     </div>
 </nav>

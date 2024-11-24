@@ -112,7 +112,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-auto mb-3 mb-sm-0">
-                                        <a href="#">
+                                        <a href="{{ route('requisition.raise') }}">
                                             <div class="d-flex align-items-center">
                                                 <div class="theme-avtar bg-primary">
                                                     <i class="ti ti-cast"></i>
@@ -133,7 +133,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-auto mb-3 mb-sm-0">
-                                        <a href="#">
+                                        <a href="{{ route('storeReq.list') }}">
                                             <div class="d-flex align-items-center">
                                                 <div class="theme-avtar bg-primary">
                                                     <i class="ti ti-cast"></i>
@@ -153,7 +153,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-auto mb-3 mb-sm-0">
-                                        <a href="#">
+                                        <a href="{{ route('hrm.query') }}">
                                             <div class="d-flex align-items-center">
                                                 <div class="theme-avtar bg-primary">
                                                     <i class="ti ti-cast"></i>
@@ -185,7 +185,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-auto mb-3 mb-sm-0">
-                                        <a href="#">
+                                        <a href="{{ route('leave.index') }}">
                                             <div class="d-flex align-items-center">
                                                 <div class="theme-avtar bg-primary">
                                                     <i class="ti ti-cast"></i>
@@ -206,7 +206,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-auto mb-3 mb-sm-0">
-                                        <a href="#">
+                                        <a href="{{ route('memos.index') }}">
                                             <div class="d-flex align-items-center">
                                                 <div class="theme-avtar bg-primary">
                                                     <i class="ti ti-cast"></i>

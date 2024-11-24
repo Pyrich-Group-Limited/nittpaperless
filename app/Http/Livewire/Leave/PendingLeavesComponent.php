@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class PendingLeavesComponent extends Component
 {
-    // public $pendingApprovals;
-    // public $approvals;
+    protected $listeners = ['approve-confirmed'=>'approveLeave', 'delete-confirmed'=>'rejectLeave'];
 
     public $pendingApprovals;
     public $approvedLeaves;
 
     public $selLeave;
+
+    public $actionId;
 
     public function mount()
     {
@@ -49,19 +50,30 @@ class PendingLeavesComponent extends Component
                 });
             }
         })
-        ->get();
+        ->orderBy('created_at','desc')->get();
 
         // Fetch leaves the user has already approved
         $this->approvedLeaves = Leave::whereHas('approvals', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('status', 'Approved');
-        })->get();
+        })->orderBy('created_at','desc')->get();
             
     }
 
-    public function approveLeave($leaveId)
+    public function setActionId($actionId){
+        $this->actionId = $actionId;
+    }
+
+    public function approveLeave()
     {
         $user = auth()->user();
+        $leaveId = $this->actionId;
+
+        if (!$leaveId) {
+            $this->dispatchBrowserEvent('error', ['error' => 'No leave ID provided.']);
+            return;
+        }
+        
         // Get the leave approval for the current user
         $leaveApproval = LeaveApproval::where('leave_id', $leaveId)
             ->where('approver_id', $user->id)->first();
@@ -93,15 +105,22 @@ class PendingLeavesComponent extends Component
         }
     }
 
-    public function rejectLeave($leaveId)
+    public function rejectLeave()
     {
         $user = auth()->user();
+        $leaveId = $this->actionId;
+
+        $leave = Leave::find($leaveId);
         // Update leave approval status for the user
         $leaveApproval = LeaveApproval::where('leave_id', $leaveId)
             ->where('approver_id', $user->id)
             ->first();
         $leaveApproval->status = 'Rejected';
         $leaveApproval->save();
+
+        $leave->status = 'Rejected'; // or "Fully Approved"
+        $leave->save();
+
         $this->dispatchBrowserEvent('success', ['success' => 'Leave request rejected successfully.']);
         $this->mount();
     }
