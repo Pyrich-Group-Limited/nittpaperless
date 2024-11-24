@@ -34,11 +34,8 @@ class PaymentRecommendationComponent extends Component
             $this->dispatchBrowserEvent('error', ["error" => "Contract not found."]);
         }
 
-
         foreach ($this->contract->projects->boqs as $key => $boq) {
-
             $initialBalance  = $boq->unit_price * $boq->quantity;
-
             $this->inputs[$key] = [
                 'id' => $boq->id,
                 'item' => $boq->item,
@@ -59,7 +56,6 @@ class PaymentRecommendationComponent extends Component
 
     public function updatePayment($key)
     {
-
         $percentage = $this->inputs[$key]['percentage'];
 
         // Ensure the percentage is within a valid range
@@ -68,23 +64,34 @@ class PaymentRecommendationComponent extends Component
             return;
         }
 
-        $initial_balance = $this->inputs[$key]['initial_balance']; // Use the initial balance for calculations
-
+        // Calculate recommended amount based on initial balance and percentage
+        $initial_balance = $this->inputs[$key]['initial_balance'];
         $recommended_amount = ((double)$percentage / 100) * $initial_balance;
 
         // Ensure recommended amount does not exceed the remaining balance
         $remaining_balance = $this->inputs[$key]['remaining_balance'];
 
         if ($recommended_amount > $remaining_balance) {
+            // Calculate the maximum percentage the user could enter
+            $max_percentage = ($remaining_balance / $initial_balance) * 100;
+    
+            $this->dispatchBrowserEvent('error', [
+                "error" => "The recommended amount exceeds the remaining balance. 
+                You can only enter up to $remaining_balance or $max_percentage%."
+            ]);
+    
+            // Set recommended amount to the maximum allowable
             $recommended_amount = $remaining_balance;
         }
+        // if ($recommended_amount > $remaining_balance) {
+        //     $recommended_amount = $remaining_balance;
+        // }
 
-        // Update the recommended amount and adjust the remaining balance
+        // Update recommended amount without affecting the initial balance
         $this->inputs[$key]['recommended_amount'] = $recommended_amount;
-        $this->inputs[$key]['remaining_balance'] -= $recommended_amount;
-        // $this->inputs[$key]['remaining_balance'] = $initial_balance - $recommended_amount;
+        $this->inputs[$key]['remaining_balance'] = $initial_balance - $recommended_amount;
 
-         // Recalculate the cumulative total
+         // Recalculate the cumulative total and VAT
         $this->calculateCumulativeTotal();
         $this->calculateVAT();
     }
@@ -104,7 +111,6 @@ class PaymentRecommendationComponent extends Component
     public function saveRecommendations()
     {
         foreach ($this->inputs as $input) {
-            // Check that we have the ID and remaining_balance before attempting to save
             if (isset($input['id']) && isset($input['remaining_balance'])) {
                 $boq = PpProjectBoq::find($input['id']);
                 if ($boq) {
@@ -115,7 +121,6 @@ class PaymentRecommendationComponent extends Component
                 }
             } else {
                 $this->dispatchBrowserEvent('error',["error" =>"ID or remaining_balance missing for input", $input]);
-
             }
         }
 
