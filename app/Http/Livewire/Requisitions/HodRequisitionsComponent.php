@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ChartOfAccount;
 
 class HodRequisitionsComponent extends Component
 {
@@ -16,30 +17,53 @@ class HodRequisitionsComponent extends Component
     public $selRequisition;
     public $actionId;
 
+    public $chartAccount;
+
     public function mount()
     {
-        $this->requisitions = StaffRequisition::where('department_id',Auth::user()->department_id)
-        ->where('status','pending')->orWhere('status','dg_approved')
-        ->orderBy('created_at','desc')->get();
+        $this->requisitions = StaffRequisition::where('department_id',Auth::user()->department_id)->orderBy('created_at','desc')->get();
+
+        // $this->requisitions = StaffRequisition::where('department_id',Auth::user()->department_id)
+        // ->where('status','pending')->orWhere('status','dg_approved')
+        // ->orderBy('created_at','desc')->get();
+
+        $this->accounts = ChartOfAccount::all();
     }
 
     public function setRequisition(StaffRequisition $requisition){
         $this->selRequisition = $requisition;
     }
 
+    public function downloadFile($supporting_document)
+    {
+        // Check if the file exists in the public folder
+        $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
+        
+        if (file_exists($filePath)) {
+            return response()->download($filePath, $this->selRequisition->supporting_document);
+        } else {
+            $this->dispatchBrowserEvent('error',["error" =>"Document not found!."]);
+        }
+    }
 
     public function hodApproveRequisition()
     {
-        if ($this->selRequisition->amount > 1000000) {
-            $this->selRequisition->update(['status' => 'waiting_dg_approval']);
-        } elseif ($this->selRequisition->amount > 1000000 && $this->selRequisition->status=='dg_approved') {
-            $this->selRequisition->update(['status' => 'hod_approved']);
+        // if ($this->selRequisition->amount > 1000000) {
+        //     $this->selRequisition->update(['status' => 'waiting_dg_approval']);
+        // } elseif ($this->selRequisition->amount > 1000000 && $this->selRequisition->status=='dg_approved') {
+        //     $this->selRequisition->update(['status' => 'hod_approved']);
+        // } else {
+        //     $this->selRequisition->update(['status' => 'hod_approved']);
+        // }
+
+        if ($this->selRequisition->status != 'pending') {
+            $this->dispatchBrowserEvent('error',["error" =>"Requisition required an approval."]);
         } else {
             $this->selRequisition->update(['status' => 'hod_approved']);
         }
 
-        // if($this->selRequisition->amount > 1000000 && $this->selRequisition->status=='dg-approved'){
-        //     $this->selRequisition->update(['status' => 'hod_approved']);
+        // if($this->selRequisition->status == 'pending'){
+        //     $this->selRequisition->update(['status' => 'awaiting_dg_approval']);
         // }
 
         RequisitionApprovalRecord::create([
@@ -50,9 +74,7 @@ class HodRequisitionsComponent extends Component
             'comments' => $this->comments,
         ]);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
-        $this->requisitions = StaffRequisition::where('department_id',Auth::user()->department_id)
-        ->where('status','pending')->orWhere('status','dg_approved')
-        ->orderBy('created_at','desc')->get();
+        $this->mount();
     }
 
     public function rejectRequisition()
@@ -66,6 +88,7 @@ class HodRequisitionsComponent extends Component
         ]);
         $this->requisition->update(['status' => 'rejected']);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition rejected."]);
+        $this->mount();
     }
 
     public function render()

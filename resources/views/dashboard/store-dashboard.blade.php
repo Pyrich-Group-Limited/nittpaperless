@@ -10,7 +10,6 @@
     <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")" }}</li>
 @endsection
 @section('content')
-
 <div class="row">
     <div class="col-sm-12">
         <div class="row">
@@ -23,7 +22,7 @@
                                     <div class="card-body">
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="#">
+                                                <a href="{{ route('requisition.raise') }}">
                                                     <div class="d-flex align-items-center">
                                                         <div class="theme-avtar bg-primary">
                                                             <i class="ti ti-cast"></i>
@@ -44,7 +43,7 @@
                                     <div class="card-body">
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="{{ route('dta.index') }}">
+                                                <a href="{{ route('storeReq.list') }}">
                                                     <div class="d-flex align-items-center">
                                                         <div class="theme-avtar bg-primary">
                                                             <i class="ti ti-cast"></i>
@@ -64,7 +63,7 @@
                                     <div class="card-body">
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="#">
+                                                <a href="{{ route('approvals.index') }}">
                                                     <div class="d-flex align-items-center">
                                                         <div class="theme-avtar bg-primary">
                                                             <i class="ti ti-cast"></i>
@@ -84,7 +83,7 @@
                                     <div class="card-body">
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="#">
+                                                <a href="{{ route('memos.index') }}">
                                                     <div class="d-flex align-items-center">
                                                         <div class="theme-avtar bg-primary">
                                                             <i class="ti ti-cast"></i>

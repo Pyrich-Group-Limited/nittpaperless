@@ -54,7 +54,7 @@
                                                     <td>
                                                         <span class="badge @if($selLeave->status=='Pending') bg-warning
                                                             @elseif ($selLeave->status=='Approved') bg-primary
-                                                            @elseif ($selLeave->status=='reject') bg-danger
+                                                            @elseif ($selLeave->status=='Rejected') bg-danger
                                                             @endif p-2 px-3 rounded">{{ $selLeave->status }}
                                                         </span>
                                                     </td>

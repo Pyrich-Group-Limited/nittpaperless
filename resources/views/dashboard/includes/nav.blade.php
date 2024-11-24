@@ -5,14 +5,15 @@
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
-                            <a href="{{ route('setbudget.index') }}">
+                            {{-- department.budget --}}
+                            <a href="{{ route('budget.category') }}">
                                 <div class="d-flex align-items-center">
                                     <div class="theme-avtar bg-primary">
                                         <i class="ti ti-cast"></i>
                                     </div>
                                     <div class="ms-3">
                                         {{-- <small class="text-muted">{{__('Total')}}</small> --}}
-                                        <h6 class="m-0">{{__('Budget')}}</h6>
+                                        <h6 class="m-0">{{__('Budgets')}}</h6>
                                     </div>
                                 </div>
                             </a>
@@ -29,13 +30,13 @@
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
-                            <a href="{{ route('purchase.requisition') }}">
+                            <a href="{{ route('manage.requisitions') }}">
                                 <div class="d-flex align-items-center">
                                     <div class="theme-avtar bg-primary">
                                         <i class="ti ti-cast"></i>
                                     </div>
                                     <div class="ms-3">
-                                        <h6 class="m-0">{{__('Requisition')}}</h6>
+                                        <h6 class="m-0">{{__('Requisitions')}}</h6>
                                     </div>
                                 </div>
                             </a>
@@ -52,7 +53,7 @@
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
-                            <a href="{{ route('store.requisition') }}">
+                            <a href="{{ route('storeReq.list') }}">
                                 <div class="d-flex align-items-center">
                                     <div class="theme-avtar bg-primary">
                                         <i class="ti ti-cast"></i>
@@ -75,7 +76,7 @@
                 <div class="card-body">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
-                            <a href="{{ route('leave') }}">
+                            <a href="{{ route('hrm.leave') }}">
                                 <div class="d-flex align-items-center">
                                     <div class="theme-avtar bg-primary">
                                         <i class="ti ti-cast"></i>

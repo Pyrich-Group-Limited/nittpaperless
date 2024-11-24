@@ -76,7 +76,7 @@
                                             <span
                                                 class="badge @if ($leave->status == 'Pending') bg-warning
                                                     @elseif ($leave->status == 'Approved') bg-primary
-                                                    @elseif ($leave->status == 'reject') bg-danger @endif p-2 px-3 rounded">{{ $leave->status }}
+                                                    @elseif ($leave->status == 'Rejected') bg-danger @endif p-2 px-3 rounded">{{ $leave->status }}
                                             </span>
                                         </td>
                                         <td class="Action">

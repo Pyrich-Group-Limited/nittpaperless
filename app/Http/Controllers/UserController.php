@@ -428,7 +428,8 @@ class  UserController extends Controller
             {
                 $user_id            = Auth::User()->id;
                 $obj_user           = User::find($user_id);
-                $obj_user->password = Hash::make($request_data['password']);;
+                $obj_user->password = Hash::make($request_data['password']);
+                $obj_user->password_changed = true;
                 $obj_user->save();
 
                 return redirect()->route('profile', $objUser->id)->with('success', __('Password successfully updated.'));

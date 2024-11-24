@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ChartOfAccount;
 
 class AuditRequisitionApprovalComponent extends Component
 {
@@ -13,15 +14,42 @@ class AuditRequisitionApprovalComponent extends Component
     public $comments;
     public $selRequisition;
     public $actionId;
+
+    public $chartAccount;
     
     public function mount()
     {
-        $this->requisitions = StaffRequisition::where('status','pv_approved')
-        ->orderBy('created_at','desc')->get();
+        $user = auth()->user();
+
+        // $this->requisitions = StaffRequisition::where('status','pv_approved')
+        // ->orderBy('created_at','desc')->get();
+        $this->requisitions = StaffRequisition::where(function($query) use ($user) {
+            $query->where('status', 'pv_approved')
+                  ->orWhereHas('approvalRecords', function($subQuery) use ($user) {
+                      $subQuery->where('approver_id', $user->id)
+                        ->where('role', $user->type); 
+                  });
+        })
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        $this->accounts = ChartOfAccount::all();
     }
 
     public function setRequisition(StaffRequisition $requisition){
         $this->selRequisition = $requisition;
+    }
+
+    public function downloadFile($supporting_document)
+    {
+        // Check if the file exists in the public folder
+        $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
+        
+        if (file_exists($filePath)) {
+            return response()->download($filePath, $this->selRequisition->supporting_document);
+        } else {
+            $this->dispatchBrowserEvent('error',["error" =>"Document not found!."]);
+        }
     }
 
 
@@ -42,8 +70,7 @@ class AuditRequisitionApprovalComponent extends Component
         ]);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
 
-        $this->requisitions = StaffRequisition::where('status','pv_approved')
-        ->orderBy('created_at','desc')->get();
+        $this->mount();
     }
 
     public function rejectRequisition()
@@ -58,8 +85,7 @@ class AuditRequisitionApprovalComponent extends Component
         $this->requisition->update(['status' => 'rejected']);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition rejected."]);
         
-        $this->requisitions = StaffRequisition::where('status','pv_approved')
-        ->orderBy('created_at','desc')->get();
+        $this->mount();
     }
 
     public function render()

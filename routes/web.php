@@ -175,6 +175,7 @@ use App\Http\Livewire\PhysicalPlanning\ErgpComponent;
 //Leaves routes 
 use App\Http\Livewire\Leave\LeavesComponent;
 use App\Http\Livewire\Leave\PendingLeavesComponent;
+use App\Http\Livewire\Leave\AllLeaveRequestsComponent;
 
 //contractor routes
 use App\Http\Livewire\Contractor\ContractorDashboard;
@@ -323,29 +324,34 @@ Route::get('/login/{lang?}', [AuthenticatedSessionController::class, 'showLoginF
 // Route::get('/password/resets/{lang?}', 'Auth\AuthenticatedSessionController@showLinkRequestForm')->name('change.langPass');
 // Route::get('/password/resets/{lang?}', 'Auth\LoginController@showLinkRequestForm')->name('change.langPass');
 
-Route::get('/account-dashboard', [DashboardController::class, 'account_dashboard_index'])->name('account-dashboard')->middleware(['XSS', 'revalidate',]);
+Route::middleware(['auth', 'password.changed'])->group(function () {
 
-Route::get('/', [DashboardController::class, 'dashboard_index'])->name('dashboard')->middleware(['XSS', 'revalidate',]);
+    Route::get('/account-dashboard', [DashboardController::class, 'account_dashboard_index'])->name('account-dashboard')->middleware(['XSS', 'revalidate',]);
 
-Route::get('/business-dashboard', [DashboardController::class, 'business_dashboard_index'])->name('business-dashboard')->middleware(['auth','XSS', 'revalidate']);
+    Route::get('/', [DashboardController::class, 'dashboard_index'])->name('dashboard')->middleware(['XSS', 'revalidate',]);
 
-Route::get('/project-dashboard', [DashboardController::class, 'project_dashboard_index'])->name('project.dashboard')->middleware(['auth','XSS', 'revalidate']);
+    Route::get('/business-dashboard', [DashboardController::class, 'business_dashboard_index'])->name('business-dashboard')->middleware(['auth','XSS', 'revalidate']);
 
-Route::get('/hrm-dashboard', [DashboardController::class, 'hrm_dashboard_index'])->name('hrm.dashboard')->middleware(['auth','XSS', 'revalidate']);
+    Route::get('/project-dashboard', [DashboardController::class, 'project_dashboard_index'])->name('project.dashboard')->middleware(['auth','XSS', 'revalidate']);
 
-Route::get('/crm-dashboard', [DashboardController::class, 'crm_dashboard_index'])->name('crm.dashboard')->middleware(['auth','XSS', 'revalidate']);
+    Route::get('/hrm-dashboard', [DashboardController::class, 'hrm_dashboard_index'])->name('hrm.dashboard')->middleware(['auth','XSS', 'revalidate']);
 
-Route::get('/pos-dashboard', [DashboardController::class, 'pos_dashboard_index'])->name('pos.dashboard')->middleware(['auth','XSS', 'revalidate']);
-Route::get('/unit-head-dashboard', [DashboardController::class, 'unit_dashboard'])->name('unit.dashboard')->middleware(['auth']);
-Route::get('/liason-head-dashboard', [DashboardController::class, 'liason_dashboard'])->name('liason.dashboard')->middleware(['auth']);
-Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard')->middleware(['auth']);
-Route::get('/hod-dashboard', [DashboardController::class, 'hod_dashboard'])->name('hod.dashboard')->middleware(['auth']);
-Route::get('/dg-dashboard', [DashboardController::class, 'dg_dashboard'])->name('dg.dashboard')->middleware(['auth']);
+    Route::get('/crm-dashboard', [DashboardController::class, 'crm_dashboard_index'])->name('crm.dashboard')->middleware(['auth','XSS', 'revalidate']);
 
-Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard')->middleware(['auth']);
-Route::get('/store-keeper-dashboard', [DashboardController::class, 'store_dashboard'])->name('store.dashboard')->middleware(['auth']);
+    Route::get('/pos-dashboard', [DashboardController::class, 'pos_dashboard_index'])->name('pos.dashboard')->middleware(['auth','XSS', 'revalidate']);
+    Route::get('/unit-head-dashboard', [DashboardController::class, 'unit_dashboard'])->name('unit.dashboard')->middleware(['auth']);
+    Route::get('/liason-head-dashboard', [DashboardController::class, 'liason_dashboard'])->name('liason.dashboard')->middleware(['auth']);
+    Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard')->middleware(['auth']);
+    Route::get('/hod-dashboard', [DashboardController::class, 'hod_dashboard'])->name('hod.dashboard')->middleware(['auth']);
+    Route::get('/dg-dashboard', [DashboardController::class, 'dg_dashboard'])->name('dg.dashboard')->middleware(['auth']);
 
-Route::get('/supervisor-dashboard', [DashboardController::class, 'supervisor_dashboard'])->name('supervisor.dashboard')->middleware(['auth']);
+    Route::get('/user-dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard')->middleware(['auth']);
+    Route::get('/store-keeper-dashboard', [DashboardController::class, 'store_dashboard'])->name('store.dashboard')->middleware(['auth']);
+
+    Route::get('/supervisor-dashboard', [DashboardController::class, 'supervisor_dashboard'])->name('supervisor.dashboard')->middleware(['auth']);
+});
+
+
 
 Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware(['auth','XSS', 'revalidate']);
 
@@ -1288,9 +1294,10 @@ Route::middleware(['XSS', 'revalidate'])->prefix('leaves')->group(function () {
 
     // Route::get('/approvals', [LeaveApprovalContoller::class, 'index'])->name('approvals.index');
     // Route::post('/approvals/{id}', [LeaveApprovalContoller::class, 'update'])->name('approvals.update');
-
-    Route::get('/all-leave-requests', LeavesComponent::class)->name('hrm.leave');
+    
+    Route::get('/leave-requests', LeavesComponent::class)->name('hrm.leave');
     Route::get('/leave-approvals', PendingLeavesComponent::class)->name('approvals.index');
+    Route::get('/general-leave-requests', AllLeaveRequestsComponent::class)->name('leave.index');
 });
 
 // Contracts

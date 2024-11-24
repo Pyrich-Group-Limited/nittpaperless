@@ -21,7 +21,7 @@
                                     <div class="card-body">
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="#">
+                                                <a href="<?php echo e(route('requisition.raise')); ?>">
                                                     <div class="d-flex align-items-center">
                                                         <div class="theme-avtar bg-primary">
                                                             <i class="ti ti-cast"></i>
@@ -42,7 +42,7 @@
                                     <div class="card-body">
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="<?php echo e(route('dta.index')); ?>">
+                                                <a href="<?php echo e(route('storeReq.list')); ?>">
                                                     <div class="d-flex align-items-center">
                                                         <div class="theme-avtar bg-primary">
                                                             <i class="ti ti-cast"></i>
@@ -62,7 +62,7 @@
                                     <div class="card-body">
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="#">
+                                                <a href="<?php echo e(route('approvals.index')); ?>">
                                                     <div class="d-flex align-items-center">
                                                         <div class="theme-avtar bg-primary">
                                                             <i class="ti ti-cast"></i>
@@ -82,7 +82,7 @@
                                     <div class="card-body">
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="#">
+                                                <a href="<?php echo e(route('memos.index')); ?>">
                                                     <div class="d-flex align-items-center">
                                                         <div class="theme-avtar bg-primary">
                                                             <i class="ti ti-cast"></i>

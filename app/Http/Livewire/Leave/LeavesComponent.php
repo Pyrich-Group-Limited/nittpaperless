@@ -24,14 +24,10 @@ class LeavesComponent extends Component
     public $selLeave;
     public $actionId;
 
-   
-    
-
-
     public function applyForLeave(){
         $this->validate([
-            // 'type_of_leave' => ['required', 'integer', 'exists:leave_types,id'],
-            'type_of_leave' => ['required'],
+            'type_of_leave' => ['required', 'integer', 'exists:leave_types,id'],
+            // 'type_of_leave' => ['required'],
             'start_date' => ['required','string'],
             'end_date' => ['required','string'], 
             'reason' => ['required','string'],
@@ -112,12 +108,6 @@ class LeavesComponent extends Component
         ]);
     }
 
-
-    // public function setLeave($leaveId){
-    //     // $this->selLeave = $leaveRequest;
-    //     $this->selLeave = Leave::findOrFail($leaveId);
-    // }
-
     public function setLeave($leaveId)
     {
         $this->selLeave = Leave::find($leaveId);
@@ -131,7 +121,7 @@ class LeavesComponent extends Component
 
     public function render()
     {
-        $leaves = Leave::where('employee_id',Auth::user()->id)->get();
+        $leaves = Leave::where('employee_id',Auth::user()->id)->orderBy('created_at','desc')->get();
         $leaveTypes = LeaveType::all();
         $staffs = user::where('type','!=','contractor')->where('department_id',Auth::user()->department->id)->get();
         return view('livewire.leave.leaves-component',compact('leaves','leaveTypes','staffs'));

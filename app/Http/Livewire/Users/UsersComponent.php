@@ -99,6 +99,7 @@ class UsersComponent extends Component
             'ippis' => $this->ippis,
             'level' => $this->level,
             'password' => Hash::make('12345678'),
+            'password_changed' => false,
         ]);
 
         Employee::create([

@@ -18,21 +18,45 @@ class CashOfficeRequisitionApprovalComponent extends Component
     public $selRequisition;
     public $actionId;
 
+    public $chartAccount;
+
     // public $account;
     public $paymentEvidence;
     
     public function mount()
     {
-        $this->requisitions = StaffRequisition::where('status','audit_approved')
-        ->orderBy('created_at','desc')->get();
+        $user = auth()->user();
+        // $this->requisitions = StaffRequisition::where('status','audit_approved')
+        // ->orderBy('created_at','desc')->get();
 
-        // $this->accounts = ChartOfAccount::all();
+        $this->requisitions = StaffRequisition::where(function($query) use ($user) {
+            $query->where('status', 'audit_approved')
+                  ->orWhereHas('approvalRecords', function($subQuery) use ($user) {
+                      $subQuery->where('approver_id', $user->id)
+                        ->where('role', $user->type); 
+                  });
+        })
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        $this->accounts = ChartOfAccount::all();
     }
 
     public function setRequisition(StaffRequisition $requisition){
         $this->selRequisition = $requisition;
     }
 
+    public function downloadFile($supporting_document)
+    {
+        // Check if the file exists in the public folder
+        $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
+        
+        if (file_exists($filePath)) {
+            return response()->download($filePath, $this->selRequisition->supporting_document);
+        } else {
+            $this->dispatchBrowserEvent('error',["error" =>"Document not found!."]);
+        }
+    }
 
     public function cashOfficeApproveRequisition()
     {
@@ -61,8 +85,7 @@ class CashOfficeRequisitionApprovalComponent extends Component
         ]);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
 
-        $this->requisitions = StaffRequisition::where('status','audit_approved')
-        ->orderBy('created_at','desc')->get();
+        $this->mount();
     }
 
     public function rejectRequisition()
@@ -77,8 +100,7 @@ class CashOfficeRequisitionApprovalComponent extends Component
         $this->requisition->update(['status' => 'rejected']);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition rejected."]);
         
-        $this->requisitions = StaffRequisition::where('status','audit_approved')
-        ->orderBy('created_at','desc')->get();
+        $this->mount();
     }
 
     public function render()

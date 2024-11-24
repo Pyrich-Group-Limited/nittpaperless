@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'XSS' => \App\Http\Middleware\XSS::class,
         'contractor' => \App\Http\Middleware\ContractorMiddleware::class,
         'revalidate' => \App\Http\Middleware\RevalidateBackHistory::class,
+        'password.changed' => \App\Http\Middleware\CheckPasswordChanged::class,
     ];
 }
