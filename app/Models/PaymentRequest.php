@@ -12,11 +12,18 @@ class PaymentRequest extends Model
     protected $fillable = [
         'contract_id', 'recommended_amount', 'recommended_percentage', 'recommended_by',
         'approved_by', 'signed_by', 'voucher_raised_by', 'audited_by', 'status', 'remarks', 'isCompleted',
+        'account_id',
+        'payment_evidence'
     ];
 
     public function paymentHistories()
     {
         return $this->hasMany(ContractorPaymentHistory::class);
+    }
+
+    public function account()
+    {
+        return $this->belongsTo(ChartOfAccount::class,'account_id');
     }
 
     // public function contractorPaymentHistory()

@@ -11,7 +11,7 @@
         <div class="col-xl-7">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="modal-title" id="applyLeave">Payment for Contract #{{ $paymentRequest->contract->id }} </h5>
+                    <h5 class="modal-title" id="applyLeave">Payment for Contract {{\Auth::user()->contractNumberFormat($paymentRequest->contract->id)}} </h5>
                 </div>
                 <div class="card-body pt-0">
                     {{-- <form wire:submit.prevent="makePayment"> --}}
@@ -20,13 +20,26 @@
                             <input type="number" class="form-control" value="{{ $paymentRequest->recommended_percentage }}" wire:model="percentage" wire:change="calculateAmountFromPercentage" min="0" max="100" step="0.01" required>
                         </div> --}}
 
-                        <div>
+                        <div class="form-group">
                             <label for="amount"><b>Amount</b></label>
                             <input type="number" wire:model="amount" min="0" max="{{ $paymentRequest->contract->total_contract_sum - $paymentRequest->contract->amount_paid_to_date }}" step="0.01" class="form-control" required>
                         </div>
 
-                        <div>
-                            <label for="remarks"><b>Remarks</b></label>
+                        <div class="form-group">
+                            {{ Form::label('paymentEvidence', __('Upload Payment Evidence'), ['class' => 'form-label']) }}
+                            <input type="file" id="paymentEvidence" wire:model.defer="paymentEvidence"
+                                class="form-control" placeholder="Supporting Document" />
+                            <strong class="text-danger" wire:loading
+                                wire:target="paymentEvidence">Loading...</strong>
+                            @error('paymentEvidence')
+                                <small class="invalid-name" role="alert">
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                </small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="remarks"><b>Remark (Optional)</b></label>
                             <textarea wire:model="remarks" class="form-control"></textarea>
                         </div>
 

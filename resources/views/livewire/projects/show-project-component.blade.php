@@ -386,6 +386,7 @@
     @include('livewire.projects.modals.edit-project')
     @include('livewire.physical-planning.projects.modals.new-advert')
     @include('livewire.physical-planning.projects.modals.view-boq')
+    <x-toast-notification />
     {{-- @livewire('physical-planning.projects.uploadboq', ['project' => $project], key($project->id)) --}}
     @push('script')
         <script src="https://cdn.tiny.cloud/1/cvjfkxqlo8ylwqn3xgo15h2bd4xl6n7m6k5d0avjcq93c1i7/tinymce/6/tinymce.min.js"

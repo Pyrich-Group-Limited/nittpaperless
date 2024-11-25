@@ -192,7 +192,7 @@
                         <td><h4>No. {{ sprintf('%04d', $paymentRequest->id) }}</h4></td>
                     </tr>
                     <tr id="tb1tr2">
-                        <td><b>Account to be charged:</b></td>
+                        <td><b>Account to be charged:</b> {{ $paymentRequest->account->name ?? '' }} </td>
                         <td>Expenditure Control No.</td>
                     </tr>
                 </table>
@@ -224,7 +224,7 @@
                             <strong>{{ $paymentRequest->contract->subject }}</strong>. <br>
                             {{ $paymentRequest->contract->description }}
                         </td>
-                        <td></td>
+                        <td>{{ $paymentRequest->account->code ?? '' }}</td>
                         <td>₦ {{ number_format($paymentRequest->recommended_amount, 2) }}</td>
                         <td style="white-space: normal;">
                             Payment Schedule No. <br>

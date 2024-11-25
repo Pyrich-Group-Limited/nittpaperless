@@ -17,7 +17,7 @@ class AuditApprocalComponent extends Component
         $this->paymentRequest = PaymentRequest::find($paymentRequestId);
     }
 
-    public function sign()
+    public function auditStamp()
     {
         $this->paymentRequest->update([
             'audited_by' => auth()->id(),

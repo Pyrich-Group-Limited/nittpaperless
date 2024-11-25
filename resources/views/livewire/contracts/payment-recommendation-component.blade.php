@@ -15,16 +15,16 @@
     @endpush
     @section('breadcrumb')
         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-        <li class="breadcrumb-item"><a href="{{route('projects.index')}}">{{__('Contractor')}}</a></li>
+        <li class="breadcrumb-item"><a href="{{route('project.contracts')}}">{{__('Contracts')}}</a></li>
         <li class="breadcrumb-item">Dashboard</li>
     @endsection
 
-    @can('recommend payment')
+    {{-- @can('recommend payment') --}}
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="modal-title" id="applyLeave">Payment for Recommendation Contract #{{ $contract->id }} </h5>
+                        <h5 class="modal-title" id="applyLeave">Payment for Recommendation Contract {{\Auth::user()->contractNumberFormat($contract->id)}}</h5>
                         <p><strong>Remaining Balance:</strong> ₦ {{ number_format($contract->value - $contract->amount_paid_to_date,2) }}</p>
                     </div>
                     @if (($contract->value - $contract->amount_paid_to_date )!=0)
@@ -41,12 +41,9 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            {{-- {{ dd($contract->projects->boqs) }} --}}
-
                             @foreach ($contract->projects->boqs as $key => $input)
                                 <div class="row mb-2">
-                                    <div class="col-md-3">
+                                    <div class="@can('recommend payment') col-md-3 @else col-md-6 @endcan">
                                         @if($loop->first)
                                             <label for="" class="text-primary"><b>Item</b></label>
                                         @endif
@@ -57,15 +54,6 @@
                                             wire:model.defer="inputs.{{ $key }}.item"
                                             class="form-control" readonly />
                                     </div>
-                                    {{-- <div class="col-md-4">
-                                        <input type="text" value="{{ $input->description }}" class="form-control" readonly>
-                                        <input type="text"
-                                            @error('inputs.' . $key . '.description') style="border-color: red" @enderror
-                                            id="input_{{ $key }}_description"
-                                            id="input_{{ $key }}_description"
-                                            wire:model.defer="inputs.{{ $key }}.description"
-                                            class="form-control" />
-                                    </div> --}}
                                     <div class="col-md-2">
                                         @if($loop->first)
                                             <label for="" class="text-primary"><b>Unit Price</b></label>
@@ -93,109 +81,108 @@
                                         @if($loop->first)
                                             <label for="" class="text-primary"><b>Remaining Balance</b></label>
                                         @endif
-                                        <!-- Remaining balance (updated after each payment) -->
                                         <input type="text" wire:model="inputs.{{ $key }}.remaining_balance" class="form-control" readonly>
                                     </div>
 
-                                    <div class="col-md-2">
-                                        @if($loop->first)
-                                            <label for="" class="text-primary"><b>Amount</b></label>
-                                        @endif
-                                        <!-- Recommended payment amount (calculated) -->
-                                        <input type="text" value="{{ number_format($inputs[$key]['recommended_amount'],2 ?? '') }}" class="form-control" readonly>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        @if($loop->first)
-                                            <label for="" class="text-primary"><b>Percentage to pay</b></label>
-                                        @endif
-                                        <input type="number" wire:model.defer="inputs.{{ $key }}.percentage"
-                                        wire:change="updatePayment({{ $key }})" class="form-control" min="0" max="100">
-                                    </div>
+                                    @can('recommend payment')
+                                        <div class="col-md-2">
+                                            @if($loop->first)
+                                                <label for="" class="text-primary"><b>Amount</b></label>
+                                            @endif
+                                            <input type="text" value="{{ number_format($inputs[$key]['recommended_amount'],2 ?? '') }}" class="form-control" readonly>
+                                        </div>
+                                        <div class="col-md-2">
+                                            @if($loop->first)
+                                                <label for="" class="text-primary"><b>Percentage to pay</b></label>
+                                            @endif
+                                            <input type="number" wire:model.defer="inputs.{{ $key }}.percentage"
+                                            wire:change="updatePayment({{ $key }})" class="form-control" min="0" max="100">
+                                        </div>
+                                    @endcan
                                 </div>
                             @endforeach
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="mt-2">
-                                        <label for="vatRate"><b>VAT Rate (%)</b></label>
-                                        <input type="number" wire:model="vatRate" wire:change="calculateVAT" min="0" max="100" step="0.01" class="form-control">
+                            @can('recommend payment')
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="mt-2">
+                                            <label for="vatRate"><b>VAT Rate (%)</b></label>
+                                            <input type="number" wire:model="vatRate" wire:change="calculateVAT" min="0" max="100" step="0.01" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="mt-2">
+                                            <label><b>VAT Amount (₦)</b></label>
+                                            <input type="number" disabled wire:model="vatAmount" class="form-control" readonly>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="mt-2">
-                                        <label><b>VAT Amount (₦)</b></label>
-                                        <input type="number" disabled wire:model="vatAmount" class="form-control" readonly>
-                                    </div>
-                                </div>
-                            </div>
+                            @endcan
                         </div>
 
-                        <div class="row m-2">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row align-items-center justify-content-between">
-                                            <div class="col-auto mb-3 mb-sm-0">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="theme-avtar bg-primary">
-                                                        <i class="ti ti-report-money"></i>
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <small class="text-muted">{{ __('Sub Total') }}</small>
-                                                        <h6 class="m-0">{{ __('SUB TOTAL') }}</h6>
+                        @can('recommend payment')
+                            <div class="row m-2">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center justify-content-between">
+                                                <div class="col-auto mb-3 mb-sm-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="theme-avtar bg-primary">
+                                                            <i class="ti ti-report-money"></i>
+                                                        </div>
+                                                        <div class="ms-3">
+                                                            <small class="text-muted">{{ __('Sub Total') }}</small>
+                                                            <h6 class="m-0">{{ __('SUB TOTAL') }}</h6>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-auto text-end">
+                                                    <h4 class="m-0">₦ {{ number_format($cumulativeTotal,2)  }}</h4>
+                                                </div>
                                             </div>
-                                            <div class="col-auto text-end">
-                                                <h4 class="m-0">₦ {{ number_format($cumulativeTotal,2)  }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center justify-content-between">
+                                                <div class="col-auto mb-3 mb-sm-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="theme-avtar bg-success">
+                                                            <i class="ti ti-report-money"></i>
+                                                        </div>
+                                                        <div class="ms-3">
+                                                            <small class="text-muted">{{ __('GRAND TOTAL') }}</small>
+                                                            <h6 class="m-0">{{ __('GRAND TOTAL') }}</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto text-end">
+                                                    <h4 class="m-0">{{ number_format($totalWithVAT,2) }}</h4>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row align-items-center justify-content-between">
-                                            <div class="col-auto mb-3 mb-sm-0">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="theme-avtar bg-success">
-                                                        <i class="ti ti-report-money"></i>
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <small class="text-muted">{{ __('GRAND TOTAL') }}</small>
-                                                        <h6 class="m-0">{{ __('GRAND TOTAL') }}</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto text-end">
-                                                <h4 class="m-0">{{ number_format($totalWithVAT,2) }}</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="modal-footer m-3">
+                                <div wire:loading wire:target="saveRecommendations"><x-g-loader /></div>
+                                <input type="button" wire:click="saveRecommendations" value="{{ __('Recommend Payment') }}" class="btn  btn-primary">
                             </div>
-                        </div>
-
-                        <div class="modal-footer m-3">
-                            <div wire:loading wire:target="saveRecommendations"><x-g-loader /></div>
-                            <input type="button" wire:click="saveRecommendations" value="{{ __('Recommend Payment') }}" class="btn  btn-primary">
-                        </div>
+                        @endcan
                     @else
                         <h4 class="text-success" align="center">Contract fully paid.</h4>
                     @endif
                 </div>
-
-
-
             </div>
         </div>
-    @endcan
+    {{-- @endcan --}}
+
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
-                <div class="card-header"><h4>Payment Request History</h4></div>
+                <div class="card-header"><h4>Payment Recommendation History</h4></div>
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
                         <table class="table">
@@ -218,17 +205,23 @@
                                             <td>{{ ($recommendation->contract->projects->project_name) }}</td>
                                             <td>₦{{ number_format($recommendation->recommended_amount,2) }}</td>
                                             <td>{{ ($recommendation->remarks) }}</td>
-                                            <td>{{ ($recommendation->status) }}</td>
+                                            <td>
+                                                <span class="badge @if($recommendation->status=='Pending') bg-warning
+                                                    @elseif ($recommendation->status=='paid') bg-success
+                                                    @elseif ($recommendation->status=='Rejected') bg-danger
+                                                    @else bg-warning
+                                                    @endif p-2 px-3 rounded">
+                                                    {{ ($recommendation->status) }}
+                                                </span>
+                                            </td>
                                             <td>{{ ($recommendation->created_at) }}</td>
                                             <td>
-                                                {{-- @if($recommendation->status == 'voucher_raised' || $recommendation->status == 'audited' || $recommendation->status == 'paid') --}}
-                                                    {{-- @can('print voucher') --}}
-                                                        <button class="btn btn-success btn-sm" type="submit" target="popup"
-                                                        onclick="window.open('{{ route('contracts.voucher', $recommendation->id) }}','popup', 'width=994, height=1123')">
-                                                        <i class="fa fa-print"> Print Voucher</i> 
-                                                        </button>
-                                                    {{-- @endcan --}}
-                                                {{-- @endif --}}
+                                                @if($recommendation->status == 'voucher_raised' || $recommendation->status == 'audited' || $recommendation->status == 'paid')
+                                                    <button class="btn btn-success btn-sm" type="submit" target="popup"
+                                                    onclick="window.open('{{ route('contracts.voucher', $recommendation->id) }}','popup', 'width=994, height=1123')">
+                                                    <i class="fa fa-print"> Print Voucher</i> 
+                                                    </button>
+                                                @endif
 
                                                 @if (Auth::user()->type=='DG' && $recommendation->status == 'recommended')
                                                     @can('approve payment')

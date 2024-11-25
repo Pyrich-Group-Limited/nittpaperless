@@ -126,7 +126,7 @@
 
         <div class="col-lg-4 col-md-6">
             <div class="card">
-                <a href="#">
+                <a href="<?php echo e(route('budget.pending')); ?>">
                     <div class="card-body p-3">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center mb-3 mt-3">
@@ -137,7 +137,7 @@
                                     <h6 class="ml-4"><?php echo e(__('Budget')); ?></h6>
                                 </div>
                             </div>
-                            <h3 class="ms-4">6</h3>
+                            
                         </div>
                     </div>
                 </a>

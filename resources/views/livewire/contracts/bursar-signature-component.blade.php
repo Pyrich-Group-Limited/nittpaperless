@@ -11,7 +11,7 @@
         <div class="col-xl-7">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="modal-title" id="applyLeave">Sign Payment Recommendation for Contract #{{ $paymentRequest->contract->id }} </h5>
+                    <h5 class="modal-title" id="applyLeave">Sign Payment Recommendation for Contract {{\Auth::user()->contractNumberFormat($paymentRequest->contract->id)}} </h5>
                 </div>
                 <div class="card-body pt-0">
                     {{-- <div>
@@ -20,7 +20,7 @@
                     </div> --}}
                     <div class="modal-footer mt-3">
                         <div wire:loading wire:target="sign"><x-g-loader /></div>
-                        <input type="button"  wire:click="sign" value="{{ __('Sign Recommendation') }}" class="btn  btn-primary">
+                        <input type="button"  wire:click="sign" value="{{ __('Sign Payment Recommendation') }}" class="btn  btn-primary">
                     </div>
                 </div>
             </div>
