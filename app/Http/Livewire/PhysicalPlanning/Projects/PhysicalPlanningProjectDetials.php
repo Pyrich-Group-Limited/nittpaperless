@@ -3,31 +3,64 @@
 namespace App\Http\Livewire\PhysicalPlanning\Projects;
 
 use Livewire\Component;
+use Illuminate\Http\Request;
+use Auth;
+use App\Models\ActivityLog;
+use App\Models\ProjectAdvert;
+use App\Models\ProjectUser;
 use App\Models\ProjectCreation;
 use App\Models\Utility;
 use App\Models\ProjectTask;
 use App\Models\User;
 use Carbon\Carbon;
 use App\Models\ProjectCategory;
+use App\Models\Contract;
+use Livewire\WithFileUploads;
 
-use Illuminate\Support\Facades\Auth;
+
 
 class PhysicalPlanningProjectDetials extends Component
 {
     protected $listeners = ['delete-confirmed'=>'deleteProject', 'approve-confirmed'=>'approveProject'];
 
-    public $project_id;
+    use WithFileUploads;
+
+    // public $project_id;
+    public $project_name;
+    public $project_number;
+    public $description;
+    public $start_date;
+    public $end_date;
+    public $project_category_id;
+    public $supervising_staff_id;
+    public $selectedStaff = [];
+    public $status;
     public $totalSum;
+    public $project_id;
+    public $selProject;
+    public $setActionId;
+
+    public $selProject2;
+    public $ad_start_date;
+    public $ad_end_date;
+    public $ad_description;
+    public $type_of_project;
+    public $type_of_advert;
 
     public $contractorId;
 
-    public $selectedStaff = [];
-
-    public $setActionId;
     public $actionId;
 
     public function mount($id){
         $this->project_id = $id;
+        $this->selProject = ProjectCreation::find($id);
+        $this->project_name = $this->selProject->project_name;
+        $this->project_number = $this->selProject->projectId;
+        $this->description = $this->selProject->description;
+        $this->start_date = $this->selProject->start_date;
+        $this->end_date = $this->selProject->end_date;
+        $this->project_category_id = $this->selProject->project_category_id;
+        $this->selectedStaff = $this->selProject->users->pluck('id')->toArray();
     }
 
     public function getProjectDetails($project){
@@ -157,6 +190,131 @@ class PhysicalPlanningProjectDetials extends Component
                 return $project_data;
                 // end chart
             }
+    }
+
+    public function selProject($id){
+        $this->selProject = ProjectCreation::find($id);
+
+    }
+
+    public function updateProject(){
+        $this->validate([
+            'project_name' => ['required'],
+            'project_number' => ['required'],
+            'description' => ['required'],
+            'start_date' => ['required'],
+            'end_date' => ['required'],
+            'project_category_id' => ['required'],
+            'selectedStaff' => 'required|array|min:1',
+            'selectedStaff.*' => 'exists:users,id',
+        ]);
+
+        // $project = ProjectCreation::find($this->project_id);
+        $this->selProject->update([
+            'project_name' => $this->project_name,
+            'projectId' => $this->project_number,
+            'projectId' => $this->project_number,
+            'description' => $this->description,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'project_category_id' => $this->project_category_id,
+            'created_by' => Auth::user()->id
+        ]);
+
+        ProjectUser::where('project_id',$this->selProject->id)->delete();
+
+        $this->selProject->users()->attach($this->selectedStaff);
+
+        $this->dispatchBrowserEvent('success',["success" =>"Project Successfully Updated"]);
+    }
+
+
+    public function selProject2(ProjectCreation $project){
+        $this->selProject = $project;
+    }
+
+    Public function advertiseProject(){
+        $this->validate([
+            'ad_start_date' => ['required','string'],
+            'ad_end_date' => ['required','string'],
+            'ad_description' => ['required','string'],
+            'type_of_advert' => ['required','string'],
+        ]);
+
+        $project = ProjectAdvert::find($this->selProject->project_id);
+
+        $projectDuration = round(strtotime($this->ad_end_date) - strtotime($this->ad_start_date))/ 86400;
+
+        if($project!=null){
+            $this->dispatchBrowserEvent('error',['error' => 'Sorry this project has already been approved for procurement process']);
+        }elseif(strtotime($this->ad_end_date)<strtotime(date('Y-m-d'))){
+            $this->dispatchBrowserEvent('error',['error' => 'Sorry your start date can not be later than today']);
+        }elseif($projectDuration<=0){
+            $this->dispatchBrowserEvent('error',['error' => 'Sorry your start date can not be later than start']);
+        }else{
+            ProjectAdvert::create([
+                'project_id' => $this->selProject->id,
+                'start_date' => $this->ad_start_date,
+                'end_date' => $this->ad_end_date,
+                'description' => $this->ad_description,
+                'advert_type' => $this->type_of_advert,
+            ]);
+            $this->dispatchBrowserEvent('success',['success' => 'Project successfully Published']);
+        }
+    }
+    public function setProject(ProjectCreation $project){
+        $this->selProject2 = $project;
+        $this->emit('project', $project);
+    }
+
+    public function inviteProjectUserMember(Request $request, $user_id)
+    {
+        $authuser = Auth::user();
+
+        $userCheck = ProjectUser::find($user_id);
+
+        if($userCheck!=null){
+            $this->dispatchBrowserEvent('error',['error' => 'this user has already been added to this project']);
+        }else{
+            ProjectUser::create(
+                [
+                    'project_id' => $this->selProject->id,
+                    'user_id' => $user_id,
+                    'invited_by' => $authuser->id,
+                ]
+            );
+
+
+        // Make entry in activity_log tbl
+        ActivityLog::create(
+            [
+                'user_id' => $authuser->id,
+                'project_id' => $this->selProject->id,
+                'log_type' => 'Invite User',
+                'remark' => json_encode(['title' => $authuser->name]),
+            ]
+        );
+
+        $this->dispatchBrowserEvent('success',["success" =>"User invited successfully."]);
+        }
+    }
+
+
+
+    public function createContract(){
+        Contract::create([
+            'client_name' => $this->contractorId,
+            'subject' => $this->selProject->project_name,
+            'value' => $this->selProject->budget,
+            'type' => $this->selProject->category->id,
+            'start_date' => Carbon::now(),
+            'end_date' => '',
+            'description' =>  $this->selProject->description,
+            'project_id' => $this->selProject->id,
+            'status' => 'pending',
+            'created_by' => Auth::user()->id,
+        ]);
+        $this->dispatchBrowserEvent('success',["success" =>"Contractor successfully selected and approved for contract"]);
     }
 
     public function setActionId($actionId){

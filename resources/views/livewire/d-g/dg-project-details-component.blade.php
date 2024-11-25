@@ -154,7 +154,7 @@
                         <h5>{{ __('Bill of Quantity') }}</h5>
                         <div class="float-end">
                             @if ($project->project_boq != null && $project->advert_approval_status == false)
-                                <button wire:click="approve('{{ $project->id }}')" class="btn btn-primary btn-sm">
+                                <button wire:click="setActionId('{{ $project->id }}')" class="btn btn-primary btn-sm confirm-approve">
                                     <i class="ti ti-check"></i>Approve
                                 </button>
                             @endif

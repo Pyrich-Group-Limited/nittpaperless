@@ -190,18 +190,10 @@ class ShowProjectComponent extends Component
             }
     }
 
-
-    // public function setActionId($id){
-    //     $this->setActionId = $id;
-    // }
-
     public function selProject($id){
         $this->selProject = ProjectCreation::find($id);
 
     }
-
-
-
 
     public function updateProject(){
         $this->validate([
@@ -265,8 +257,6 @@ class ShowProjectComponent extends Component
                 'description' => $this->ad_description,
                 'advert_type' => $this->type_of_advert,
             ]);
-
-            // $this->reset();
             $this->dispatchBrowserEvent('success',['success' => 'Project successfully Published']);
         }
     }
@@ -310,7 +300,6 @@ class ShowProjectComponent extends Component
 
 
     public function createContract(){
-        // dd($this);
         Contract::create([
             'client_name' => $this->contractorId,
             'subject' => $this->selProject->project_name,

@@ -27,7 +27,7 @@ class PaymentRecommendationComponent extends Component
     public function mount($contractId)
     {
         $this->contract = Contract::with(['paymentRequests' => function ($query) {
-            $query->orderBy('created_at', 'desc'); // Sorts by 'created_at' in descending order
+            $query->orderBy('created_at', 'desc');
         }])->find($contractId);
 
         if (!$this->contract) {
@@ -48,10 +48,8 @@ class PaymentRecommendationComponent extends Component
                 'remaining_balance' => $boq->remaining_balance ?? $initialBalance, // Initialize remaining balance
             ];
         }
-
         $this->calculateCumulativeTotal();
         $this->calculateVAT();
-
     }
 
     public function updatePayment($key)
@@ -60,7 +58,7 @@ class PaymentRecommendationComponent extends Component
 
         // Ensure the percentage is within a valid range
         if ($percentage === null || $percentage < 0 || $percentage > 100) {
-            $this->dispatchBrowserEvent('error',["error" =>"You have entered an invalid perccentage value"]);
+            $this->dispatchBrowserEvent('error', ["error" => "You have entered an invalid percentage value"]);
             return;
         }
 
@@ -74,27 +72,27 @@ class PaymentRecommendationComponent extends Component
         if ($recommended_amount > $remaining_balance) {
             // Calculate the maximum percentage the user could enter
             $max_percentage = ($remaining_balance / $initial_balance) * 100;
-    
+
+            // Display error message with remaining amount and maximum allowable percentage
             $this->dispatchBrowserEvent('error', [
                 "error" => "The recommended amount exceeds the remaining balance. 
-                You can only enter up to $remaining_balance or $max_percentage%."
+                            You can only enter up to $remaining_balance or $max_percentage%."
             ]);
-    
-            // Set recommended amount to the maximum allowable
-            $recommended_amount = $remaining_balance;
+
+            // Do not update recommended amount or remaining balance, exit early
+            return;
         }
-        // if ($recommended_amount > $remaining_balance) {
-        //     $recommended_amount = $remaining_balance;
-        // }
 
-        // Update recommended amount without affecting the initial balance
+        // Update recommended amount and remaining balance only when valid
         $this->inputs[$key]['recommended_amount'] = $recommended_amount;
-        $this->inputs[$key]['remaining_balance'] = $initial_balance - $recommended_amount;
+        $this->inputs[$key]['remaining_balance'] = $remaining_balance - $recommended_amount;
 
-         // Recalculate the cumulative total and VAT
+        // Recalculate the cumulative total and VAT
         $this->calculateCumulativeTotal();
         $this->calculateVAT();
     }
+
+
 
     public function calculateCumulativeTotal()
     {

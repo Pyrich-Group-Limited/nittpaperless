@@ -23,9 +23,12 @@ return new class extends Migration
             $table->foreignId('signed_by')->nullable()->constrained('users')->onDelete('cascade'); // Bursar
             $table->foreignId('voucher_raised_by')->nullable()->constrained('users')->onDelete('cascade'); // Voucher Unit Head
             $table->foreignId('audited_by')->nullable()->constrained('users')->onDelete('cascade'); // Auditor
-            $table->foreignId('paid_by')->nullable()->constrained('users')->onDelete('cascade'); // Auditor
+            $table->foreignId('paid_by')->nullable()->constrained('users')->onDelete('cascade'); // payer
             $table->enum('status', ['pending', 'recommended', 'approved', 'signed', 'voucher_raised','audited', 'paid'])->default('pending');
             $table->text('remarks')->nullable();
+            $table->unsignedBigInteger('account_id')->nullable();
+            $table->foreign('account_id')->references('id')->on('chart_of_accounts')->onDelete('cascade');
+            $table->string('payment_evidence')->nullable();
             $table->boolean('isCompleted')->nullable();
             $table->timestamps();
         });

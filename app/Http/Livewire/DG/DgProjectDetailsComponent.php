@@ -18,6 +18,9 @@ use Livewire\WithFileUploads;
 
 class DgProjectDetailsComponent extends Component
 {
+    protected $listeners = ['delete-confirmed'=>'deleteProject', 'approve-confirmed'=>'approve'];
+
+
     use WithFileUploads;
 
     // public $project_id;
@@ -33,6 +36,7 @@ class DgProjectDetailsComponent extends Component
     public $totalSum;
     public $project_id;
     public $selProject;
+
     public $setActionId;
 
     public $selProject2;
@@ -64,8 +68,13 @@ class DgProjectDetailsComponent extends Component
         $this->selApplicant = $project;
     }
 
-    public function approve($project_id){
-        $project = ProjectCreation::find($project_id);
+    public function setActionId($actionId){
+        $this->actionId = $actionId;
+    }
+
+    public function approve(){
+        $project_id = $this->actionId;
+        $project = ProjectCreation::find($this->actionId);
         if($project->advert_approval_status=='on_review'){
             $this->dispatchBrowserEvent('error',['error' => 'This project has already been approved for advert']);
         }else{
@@ -75,18 +84,6 @@ class DgProjectDetailsComponent extends Component
            $this->dispatchBrowserEvent('success',["success" =>"Project approved for advert successfully."]);
         }
     }
-
-
-    // public function approve($project_id)
-    // {
-    //     $project = ProjectCreation::find($project_id);
-    //     $project->update([
-    //           'advert_approval_status' => true,
-    //      ]);
-    //     $this->dispatchBrowserEvent('success',["success" =>"Project approved for advert successfully."]);
-
-        
-    // }
 
     public function getProjectDetails($project){
         $usr           = Auth::user();

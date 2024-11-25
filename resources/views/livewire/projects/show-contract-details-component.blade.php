@@ -231,7 +231,7 @@
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('contract.index') }}">{{ __('contract') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('project.contracts') }}">{{ __('contract') }}</a></li>
     <li class="breadcrumb-item active" aria-current="page">{{\Auth::user()->contractNumberFormat($contract->id)}}</li>
 @endsection
 

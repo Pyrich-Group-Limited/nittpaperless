@@ -7,15 +7,20 @@ use App\Models\Contract;
 use App\Models\ContractorPaymentHistory;
 use App\Models\PaymentRequest;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithFileUploads;
+use Carbon\Carbon;
 
 class AuditorPaymentComponent extends Component
 {
+    use WithFileUploads;
     public $paymentRequestId;
     public $amount;
     public $percentage;
     public $remarks;
     public $contract;
     public $paymentRequest;
+
+    public $paymentEvidence;
 
     public function mount($paymentRequestId)
     {
@@ -32,6 +37,10 @@ class AuditorPaymentComponent extends Component
 
     public function finalizePayment()
     {
+        $this->validate([
+            'paymentEvidence' => 'required',
+        ]);
+
         $remainingBalance = $this->paymentRequest->contract->value - $this->paymentRequest->contract->amount_paid_to_date;
 
         if ($this->amount > $remainingBalance) {
@@ -58,10 +67,14 @@ class AuditorPaymentComponent extends Component
                 'amount_paid_to_date' => $this->paymentRequest->contract->amount_paid_to_date + $this->amount
             ]);
 
+            $payEvidence = Carbon::now()->timestamp. '.' . $this->paymentEvidence->getClientOriginalName();
+            $this->paymentEvidence->storeAs('documents',$payEvidence);
+
             $this->paymentRequest->update([
                 'paid_by' => auth()->id(),
                 'status' => 'paid',
                 'isCompleted' => true,
+                'payment_evidence' => $payEvidence
             ]);
 
             if ($this->paymentRequest->contract->amount_paid_to_date == $this->paymentRequest->contract->value) {

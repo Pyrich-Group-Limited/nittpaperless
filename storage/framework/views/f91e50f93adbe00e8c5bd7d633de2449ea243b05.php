@@ -232,7 +232,7 @@
 
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
-    <li class="breadcrumb-item"><a href="<?php echo e(route('contract.index')); ?>"><?php echo e(__('contract')); ?></a></li>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('project.contracts')); ?>"><?php echo e(__('contract')); ?></a></li>
     <li class="breadcrumb-item active" aria-current="page"><?php echo e(\Auth::user()->contractNumberFormat($contract->id)); ?></li>
 <?php $__env->stopSection(); ?>
 
