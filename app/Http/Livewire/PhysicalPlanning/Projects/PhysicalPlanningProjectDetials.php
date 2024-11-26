@@ -51,6 +51,9 @@ class PhysicalPlanningProjectDetials extends Component
 
     public $actionId;
 
+    public $contractors; // List of contractors
+    public $selected_contractor;
+
     public function mount($id){
         $this->project_id = $id;
         $this->selProject = ProjectCreation::find($id);
@@ -61,6 +64,8 @@ class PhysicalPlanningProjectDetials extends Component
         $this->end_date = $this->selProject->end_date;
         $this->project_category_id = $this->selProject->project_category_id;
         $this->selectedStaff = $this->selProject->users->pluck('id')->toArray();
+
+        $this->contractors = User::where('type','contractor')->get();
     }
 
     public function getProjectDetails($project){
@@ -303,7 +308,7 @@ class PhysicalPlanningProjectDetials extends Component
 
     public function createContract(){
         Contract::create([
-            'client_name' => $this->contractorId,
+            'client_name' => $this->selected_contractor,
             'subject' => $this->selProject->project_name,
             'value' => $this->selProject->budget,
             'type' => $this->selProject->category->id,

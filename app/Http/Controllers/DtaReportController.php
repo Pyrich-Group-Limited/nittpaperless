@@ -19,12 +19,9 @@ class DtaReportController extends Controller
 
         if(\Auth::user()->can('manage report'))
         {
-
-            // $branch = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
             $branch = Branch::all()->pluck('name', 'id');
             $branch->prepend('Select Branch', '');
 
-            // $department = Department::where('id', \Auth::user()->department_id)->get()->pluck('name', 'id');
             $department = Department::all()->pluck('name', 'id');
             $department->prepend('Select Department', '');
 
@@ -32,8 +29,7 @@ class DtaReportController extends Controller
             $filterYear['department']    = __('All');
             $filterYear['type']          = __('Monthly');
             $filterYear['dateYearRange'] = date('M-Y');
-            $employees                   = User::all();
-            // $employees                   = User::where('created_by', \Auth::user()->creatorId());
+            $employees                   = User::where('type','!=','contractor')->get();
             if(!empty($request->branch))
             {
                 $employees->where('branch_id', $request->branch);
@@ -44,7 +40,6 @@ class DtaReportController extends Controller
                 $employees->where('department_id', $request->department);
                 $filterYear['department'] = !empty(Department::find($request->department)) ? Department::find($request->department)->name : '';
             }
-
 
             // $employees = $employees->get();
 
@@ -71,7 +66,7 @@ class DtaReportController extends Controller
                     $pending->whereMonth('created_at', $month)->whereYear('created_at', $year);
 
                     $filterYear['dateYearRange'] = date('M-Y', strtotime($request->month));
-                    $filterYear['type']          = __('Monthly');
+                    $filterYear['type'] = __('Monthly');
 
                 }
                 elseif(!isset($request->type))
@@ -140,9 +135,7 @@ class DtaReportController extends Controller
     {
         if(\Auth::user()->can('manage report'))
         {
-            // $leaveTypes = LeaveType::where('created_by', \Auth::user()->creatorId())->get();
             $leaveTypes = Dta::where('user_id', $employee_id)->get();
-            // $leaveTypes = Dta::all();
             $dtas     = [];
             foreach($leaveTypes as $leaveType)
             {
@@ -178,11 +171,7 @@ class DtaReportController extends Controller
 
                 $dtaData->whereMonth('created_at', $m)->whereYear('created_at', $y);
             }
-
-
             $dtaData = $dtaData->get();
-
-
             return view('dta.dtaShow', compact('dtas', 'dtaData'));
         }
         else

@@ -46,8 +46,11 @@ class ShowProjectComponent extends Component
     public $type_of_advert;
 
     public $contractorId;
-
     public $actionId;
+
+    public $contractors; // List of contractors
+    public $selected_contractor; // Selected contractor ID
+
 
     public function mount($id){
         $this->project_id = $id;
@@ -59,6 +62,8 @@ class ShowProjectComponent extends Component
         $this->end_date = $this->selProject->end_date;
         $this->project_category_id = $this->selProject->project_category_id;
         $this->selectedStaff = $this->selProject->users->pluck('id')->toArray();
+
+        $this->contractors = User::where('type','contractor')->get();
     }
 
     public function getProjectDetails($project){
@@ -260,6 +265,7 @@ class ShowProjectComponent extends Component
             $this->dispatchBrowserEvent('success',['success' => 'Project successfully Published']);
         }
     }
+
     public function setProject(ProjectCreation $project){
         $this->selProject2 = $project;
         $this->emit('project', $project);
@@ -300,8 +306,9 @@ class ShowProjectComponent extends Component
 
 
     public function createContract(){
+        // dd($this);
         Contract::create([
-            'client_name' => $this->contractorId,
+            'client_name' => $this->selected_contractor,
             'subject' => $this->selProject->project_name,
             'value' => $this->selProject->budget,
             'type' => $this->selProject->category->id,

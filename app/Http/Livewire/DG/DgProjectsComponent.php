@@ -20,7 +20,7 @@ class DgProjectsComponent extends Component
         $projAccounts = Ergp::all();
         $view = 'grid';
         $categories = ProjectCategory::all();
-        $projects = ProjectCreation::where('project_boq','!=','')->where('isApproved',true)->get();
+        $projects = ProjectCreation::where('project_boq','!=','')->where('isApproved',true)->orderBy('created_at','desc')->get();;
         $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'contractor')->get()->pluck('name', 'id');
         $clients->prepend('Select Client', '');
         $users   = User::where('type', '!=', 'contractor')->get();
