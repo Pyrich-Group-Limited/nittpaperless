@@ -9,7 +9,7 @@ class ContractComponent extends Component
 {
     public function render()
     {
-        $contracts   = Contract::all();
+        $contracts   = Contract::orderBy('created_at','desc')->get();
         return view('livewire.d-g.contract-component',compact('contracts'));
     }
 }

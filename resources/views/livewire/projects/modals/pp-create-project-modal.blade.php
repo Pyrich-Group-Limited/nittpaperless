@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" hidden>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <div class="form-control-wrap">

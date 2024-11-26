@@ -21,7 +21,7 @@ class ProjectContractsComponent extends Component
 {
     public function render()
     {
-        $contracts   = Contract::all();
+        $contracts   = Contract::orderBy('created_at','desc')->get();
         return view('livewire.projects.project-contracts-component',compact('contracts'));
     }
 }

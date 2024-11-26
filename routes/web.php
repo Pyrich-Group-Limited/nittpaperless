@@ -154,6 +154,8 @@ use App\Http\Livewire\Guest\Service\ServiceDetailsComponent;
 use App\Http\Livewire\Guest\ContractorLoginComponent;
 use App\Http\Livewire\Guest\ContractorRegisterComponent;
 
+use App\Http\Livewire\Dta\DtaComponent;
+
 //livewire component for user
 use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Users\UserPermission;
@@ -526,23 +528,25 @@ Route::get('/folder/{folder}/details', [FolderController::class, 'show'])->name(
 Route::get('file-upload',[FilesController::class, 'filesUpload'])->name('file.upload');
 
 
-Route::get('/dta-requests', [DtaController::class, 'index'])->name('dta.index');
+// Route::get('/dta-requests', [DtaController::class, 'index'])->name('dta.index');
 Route::get('/dta-requests/create', [DtaController::class, 'create'])->name('dta.create');
 Route::post('/dta-requests', [DtaController::class, 'store'])->name('dta.store');
 Route::get('/dta-request/{dta}/details', [DtaController::class, 'show'])->name('dta.show');
-
 // Route::post('/dta-requests/{id}/approve-supervisor', [DtaController::class, 'approveBySupervisor'])->name('approve.supervisor');
 Route::post('/dta-requests/{id}/unithead-approve', [DtaController::class, 'approveByUnitHead'])->name('approve.unithead');
 Route::post('/dta-requests/{id}/hod-approve', [DtaController::class, 'approveByHod'])->name('approve.hod');
 Route::post('/dta-requests/{id}/accountant-approve', [DtaController::class, 'approveByAccountant'])->name('approve.accountant');
-
 Route::get('/rejected-dta/{id}', [DtaController::class, 'showRejected'])->name('rejected.show');
 Route::get('/dta-requests/{id}', [DtaController::class, 'reject'])->name('reject.show');
 Route::post('/dta-requests/{id}/reject', [DtaController::class, 'rejectRequest'])->name('reject.dta');
 
 Route::get('dta-reports', [DtaReportController::class, 'dta'])->name('reports.dta');
 Route::get('employee/{id}/dta/{status}/{type}/{month}/{year}', [DtaReportController::class, 'employeeDta'])->name('report.employee.dta');
-// Route::post('/travel-requests/{id}/approve-supervisor', [ApprovalController::class, 'approveBySupervisor'])->name('approve.supervisor');
+
+// DTA routes
+Route::middleware(['XSS', 'revalidate'])->prefix('dtas')->group(function () {
+    Route::get('/my-dta-requests',DtaComponent::class)->name('dta.index');
+});
 
 
 
