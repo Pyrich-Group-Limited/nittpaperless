@@ -71,12 +71,16 @@
                                     <td>₦ {{ number_format($dtaRequest->estimated_expense,2)  }}</td>
                                     <td>{{ $dtaRequest->created_at->format('d-M-Y') }}</td>
                                     <td>
-                                        @if($dtaRequest->status=="pending")
-                                            <p class="text-warning mb-0">{{ $dtaRequest->status }} {{ $dtaRequest->current_approver.' '.'approval' }}</p>
-                                        @elseif($dtaRequest->status=="rejected")
-                                            <p class="text-danger mb-0">{{ $dtaRequest->status }}</p>
-                                        @else
-                                            <p class="text-success mb-0">{{ $dtaRequest->status }}</p>
+                                        @if ($dtaRequest->status == 'pending')
+                                            <span class="badge bg-warning p-2 px-3 rounded">Pending</span>
+                                            @elseif ($dtaRequest->status == 'approved')
+                                            <span class="badge bg-success p-2 px-3 rounded">Approved</span>
+                                            @elseif ($dtaRequest->status == 'rejected')
+                                            <span class="badge bg-danger p-2 px-3 rounded">Rejected</span>
+                                            @else
+                                            <span class="badge bg-warning p-2 px-3 rounded">
+                                                {{ $dtaRequest->status }}
+                                            </span>
                                         @endif
                                     </td>
                                     <td class="Action">

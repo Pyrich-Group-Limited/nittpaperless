@@ -32,17 +32,19 @@
                                                 <th>{{__('Approval Status')}}</th>
                                                 <td>
                                                     @if ($selRequisition->status == 'pending')
-                                                    <span class="badge bg-warning p-2 px-3 rounded">Pending</span>
-                                                    @elseif ($selRequisition->status == 'approved')
-                                                    <span class="badge bg-success p-2 px-3 rounded">Approved</span>
+                                                        <span
+                                                            class="badge bg-warning p-2 px-3 rounded">Pending</span>
+                                                    @elseif ($selRequisition->status == 'cash_office_approved')
+                                                        <span
+                                                            class="badge bg-success p-2 px-3 rounded">Approved</span>
                                                     @elseif ($selRequisition->status == 'rejected')
-                                                    <span class="badge bg-danger p-2 px-3 rounded">Rejected</span>
+                                                        <span
+                                                            class="badge bg-danger p-2 px-3 rounded">Rejected</span>
                                                     @else
-                                                    <span class="badge bg-info p-2 px-3 rounded">
-                                                        {{ $selRequisition->status }}
-                                                    </span>
+                                                        <span class="badge bg-warning p-2 px-3 rounded">
+                                                            {{ $selRequisition->status }}
+                                                        </span>
                                                     @endif
-
                                                 </td>
                                             </tr>
                                             <tr >

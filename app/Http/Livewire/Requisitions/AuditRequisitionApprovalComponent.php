@@ -21,17 +21,18 @@ class AuditRequisitionApprovalComponent extends Component
     {
         $user = auth()->user();
 
-        // $this->requisitions = StaffRequisition::where('status','pv_approved')
-        // ->orderBy('created_at','desc')->get();
-        $this->requisitions = StaffRequisition::where(function($query) use ($user) {
-            $query->where('status', 'pv_approved')
-                  ->orWhereHas('approvalRecords', function($subQuery) use ($user) {
-                      $subQuery->where('approver_id', $user->id)
-                        ->where('role', $user->type); 
-                  });
-        })
-        ->orderBy('created_at', 'desc')
-        ->get();
+        $this->requisitions = StaffRequisition::where('status', 'pv_approved')
+        ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
+            $query->where('approver_id', $user->id)
+                ->where('role', $user->type);
+        })->orderBy('created_at', 'desc')->get();
+        
+        $this->approvedRequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
+            $query->where('approver_id', $user->id)
+                ->where('role', $user->type)
+                ->where('status', 'approved');
+        })->orderBy('created_at', 'desc')->get();
+
 
         $this->accounts = ChartOfAccount::all();
     }
