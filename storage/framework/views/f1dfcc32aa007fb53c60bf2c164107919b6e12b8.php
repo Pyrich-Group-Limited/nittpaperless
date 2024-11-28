@@ -1,6 +1,7 @@
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(Ucfirst(Auth::user()->type.' '.'Dashboard' )); ?>
+        <?php echo e('Dashboard'); ?>
 
+        
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('script-page'); ?>
     <script>
@@ -93,12 +94,138 @@
 <?php $__env->stopPush(); ?>
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
-    <li class="breadcrumb-item"><b>Welcome </b><?php echo e(Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")"); ?></li>
+    <li class="breadcrumb-item"><b>Welcome </b><?php echo e(Ucfirst(Auth::user()->name). " (" .Auth::user()->department->name. ")"); ?></li>
 <?php $__env->stopSection(); ?>
 <?php
     $setting = \App\Models\Utility::settings();
 ?>
 <?php $__env->startSection('content'); ?>
+
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <a href="<?php echo e(route('requisition.raise')); ?>">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-cast"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    
+                                                    <h6 class="m-0"><?php echo e(__('Payment Requisition')); ?></h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <a href="<?php echo e(route('storeReq.list')); ?>">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-cast"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h6 class="m-0"><?php echo e(__('Store Requisition Note')); ?></h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <a href="<?php echo e(route('hrm.query')); ?>">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-cast"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h6 class="m-0"><?php echo e(__('Query/Complaints')); ?></h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <a href="<?php echo e(route('leave.index')); ?>">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-cast"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    
+                                                    <h6 class="m-0"><?php echo e(__('Leave Requests')); ?></h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-auto mb-3 mb-sm-0">
+                                        <a href="<?php echo e(route('memos.index')); ?>">
+                                            <div class="d-flex align-items-center">
+                                                <div class="theme-avtar bg-primary">
+                                                    <i class="ti ti-cast"></i>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h6 class="m-0"><?php echo e(__('Memos')); ?></h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <?php if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'DG'): ?>
         <div class="row">
             <div class="col-sm-12">
@@ -239,56 +366,12 @@
         </div>
     <?php else: ?>
         <div class="row">
-            <div class="col-xxl-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5><?php echo e(__("Today's Not Clock In")); ?></h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row g-3 flex-nowrap team-lists horizontal-scroll-cards">
-                                    <?php $__currentLoopData = $notClockIns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notClockIn): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="col-auto">
-                                            <img src="<?php echo e((!empty($notClockIn->user))? $notClockIn->user->profile : 'assets/images/user/avatar.png'); ?>" alt="">
-                                            <p class="mt-2"><?php echo e($notClockIn->name); ?></p>
-                                        </div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12">
+            
+
+            <div class="col-sm-12 col-lg-12 col-xxl-12">
                 <div class="row">
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <h5><?php echo e(__('Event')); ?></h5>
-                                    </div>
-                                    <div class="col-lg-6">
-
-                                        <?php if(isset($setting['google_calendar_enable']) && $setting['google_calendar_enable'] == 'on'): ?>
-                                            <select class="form-control" name="calender_type" id="calender_type" style="float: right;width: 150px;" onchange="get_data()">
-                                                <option value="goggle_calender"><?php echo e(__('Google Calender')); ?></option>
-                                                <option value="local_calender" selected="true"><?php echo e(__('Local Calender')); ?></option>
-                                            </select>
-                                        <?php endif; ?>
-                                        <input type="hidden" id="event_dashboard" value="<?php echo e(url('/')); ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div id='calendar' class='calendar'></div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-3">
+                    
+                    <div class="col-md-4">
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-body">
@@ -322,7 +405,7 @@
                                                     <i class="ti ti-user"></i>
                                                 </div>
                                                 <div class="ms-2">
-                                                    <p class="text-muted text-sm mb-0"><?php echo e(__('Total Client')); ?></p>
+                                                    <p class="text-muted text-sm mb-0"><?php echo e(__('Total Contractors')); ?></p>
                                                     <h4 class="mb-0 text-danger"><?php echo e($countClient); ?></h4>
 
                                                 </div>
@@ -332,6 +415,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-md-4">
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-body">
@@ -378,6 +464,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-md-4">
                         <div class="col-xxl-12">
                             <div class="card">
                                 <div class="card-body">
@@ -436,6 +525,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header">

@@ -17,6 +17,7 @@ use App\Exports\FailedUsersExport;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Livewire\WithFileUploads;
+use Spatie\Permission\Models\Permission;
 use Hash;
 
 class UsersComponent extends Component
@@ -24,10 +25,13 @@ class UsersComponent extends Component
     use WithFileUploads;
     public $uploadFile;
     public $failed_upload = [];
+    protected $listeners = ['reset-confimred'=>'resetPassword']; // listen to comfirmatio delete and call delete branch function
 
     public $actionId;
     public $selUser;
     public $departments = [];
+    public $permissions=[];
+    public $sel_permissions = [];
     public $units = [];
     public $subunits = [];
     public $surname;
@@ -46,6 +50,23 @@ class UsersComponent extends Component
 
     public function updatedDepartment($id){
         $this->units = Unit::where('department_id',$id)->get();
+    }
+
+
+    public function resetPassword(){
+        User::find($this->actionId)->update([
+            'password' => Hash::make('12345678'),
+        ]);
+
+        $this->dispatchBrowserEvent('success',['success'=>'Password Successfuly Reset']);
+    }
+
+    public function getPermission(User $user){
+        // $modulePermissions = Permission::all()->pluck('name')->toArray();
+        $this->selUser = $user;
+        $this->permissions = $user->getDirectPermissions()->pluck('name')->toArray();
+        $this->sel_permissions = $user->getDirectPermissions()->pluck('name')->toArray();
+
     }
 
     public function updatedLocationType($id){
@@ -162,7 +183,7 @@ class UsersComponent extends Component
     }
 
     public function setActionId($id){
-        $this->setActionId = $id;
+        $this->actionId = $id;
     }
 
     public function selUser($id){

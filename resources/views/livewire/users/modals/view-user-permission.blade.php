@@ -1,16 +1,12 @@
-<div id="managePermissions">
-    <div class="modal" id="managePermission" tabindex="-1" role="dialog" wire:ignore.self>
+<div id="viewPermissionss">
+    <div class="modal" id="viewPermissions" tabindex="-1" role="dialog" wire:ignore.self>
         <div class="modal-dialog modal-lg" role="document" wire:ignore.self>
             <div class="modal-content">
                 <div class="modal-body">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="applyLeave">{{ $selStaff->name }} {{ $selModule  }} Permissions
+                        <h5 class="modal-title" id="applyLeave">@if($selUser) {{$selUser->name}} @endif Permissions
                         </h5>
-                        <label class="form-check-label mt-1">
-                            <input type="checkbox" wire:model="selectAll"  class="form-check-input" />
-                            Select All
-                        </label>
 
                     </div>
                     <div class="modal-body">
@@ -21,7 +17,7 @@
                                     <div class=" col-md-4" wire:ignore.self>
                                         <div class="form-check form-check-inline mt-2" wire:ignore.self>
                                             <label class="form-check-label" wire:ignore.self>
-                                                <input type="checkbox" key="{{ $permission}}" id="{{ $permission}}" class="form-check-input"
+                                                <input disabled type="checkbox" key="{{ $permission}}" id="{{ $permission}}" class="form-check-input"
                                                     @if ($permission) checked @endif
                                                     wire:model.defer="sel_permissions"
                                                     value="{{ $permission }}">{{ $permission }}
