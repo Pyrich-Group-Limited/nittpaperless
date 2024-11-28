@@ -86,6 +86,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                     <i class="ti ti-pencil"></i>
                                                                     <span>{{__('Edit Permission')}}</span>
                                                                 </a>
+                                                                <a href="#" wire:click="getPermission({{ $user }})" data-bs-toggle="modal" data-bs-target="#viewPermissions" class="dropdown-item" data-bs-original-title="{{__('Edit Permission')}}">
+                                                                    <i class="ti ti-pencil"></i>
+                                                                    <span>{{__('View Permission')}}</span>
+                                                                </a>
                                                             @endcan
 
                                                             @can('delete user')
@@ -97,7 +101,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 
                                                                 {!! Form::close() !!}
                                                             @endcan
-                                                            <a href="#!" data-url="{{route('users.reset',\Crypt::encrypt($user->id))}}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Reset Password')}}">
+                                                            <a href="#" wire:click="setActionId('{{ $user->id}}')" class="dropdown-item confirm-reset" >
                                                                 <i class="ti ti-adjustments"></i>
                                                                 <span>  {{__('Reset Password')}}</span>
                                                             </a>
@@ -129,5 +133,6 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     @include('user.upload-users')
     @include('livewire.users.modals.edit-user-modal')
     @include('livewire.users.modals.new-user-modal')
+    @include('livewire.users.modals.view-user-permission')
     {{-- @livewire('users.new-user-component') --}}
 </div>

@@ -56,6 +56,7 @@ class UserPermission extends Component
     {
         $roles = Role::all();
         $modules = Permission::groupBy('module')->orderBy('module','ASC')->get();
-        return view('livewire.users.user-permission',compact('modules','roles'));
+        $categories = Permission::groupBy('category')->orderBy('category','ASC')->get();
+        return view('livewire.users.user-permission',compact('modules','roles','categories'));
     }
 }

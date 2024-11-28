@@ -61,7 +61,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             <td><?php echo e($user->location_type); ?></td>
                                             <td><?php if($user->department): ?><?php echo e($user->department->name ? : '-'); ?> <?php else: ?> - <?php endif; ?></td>
                                             <td><?php if($user->unit): ?><?php echo e($user->unit->name ? : '-'); ?> <?php else: ?> - <?php endif; ?></td>
-                                            <td><?php echo e($user->type); ?></td>
+                                            <td>
+                                                <?php if($user->type=='client'): ?>
+                                                    HR
+                                                <?php else: ?>
+                                                <?php echo e($user->type); ?>
+
+                                                <?php endif; ?>
+                                            </td>
                                             <td>
                                                 <div class="card-header-right">
                                                     <div class="btn-group card-option">
@@ -81,6 +88,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                     <i class="ti ti-pencil"></i>
                                                                     <span><?php echo e(__('Edit Permission')); ?></span>
                                                                 </a>
+                                                                <a href="#" wire:click="getPermission(<?php echo e($user); ?>)" data-bs-toggle="modal" data-bs-target="#viewPermissions" class="dropdown-item" data-bs-original-title="<?php echo e(__('Edit Permission')); ?>">
+                                                                    <i class="ti ti-pencil"></i>
+                                                                    <span><?php echo e(__('View Permission')); ?></span>
+                                                                </a>
                                                             <?php endif; ?>
 
                                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete user')): ?>
@@ -94,7 +105,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                 <?php echo Form::close(); ?>
 
                                                             <?php endif; ?>
-                                                            <a href="#!" data-url="<?php echo e(route('users.reset',\Crypt::encrypt($user->id))); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Reset Password')); ?>">
+                                                            <a href="#" wire:click="setActionId('<?php echo e($user->id); ?>')" class="dropdown-item confirm-reset" >
                                                                 <i class="ti ti-adjustments"></i>
                                                                 <span>  <?php echo e(__('Reset Password')); ?></span>
                                                             </a>
@@ -126,6 +137,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <?php echo $__env->make('user.upload-users', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('livewire.users.modals.edit-user-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('livewire.users.modals.new-user-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('livewire.users.modals.view-user-permission', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     
 </div>
 <?php /**PATH C:\xampp-server\htdocs\nittpaperless\resources\views/livewire/users/users-component.blade.php ENDPATH**/ ?>
