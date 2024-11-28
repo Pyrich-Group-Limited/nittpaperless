@@ -8,6 +8,7 @@ use App\Models\Dta;
 use App\Models\DtaApproval;
 use App\Models\User;
 use App\Models\DtaRejectionComment;
+use Illuminate\Support\Facades\Auth;
 
 class DtaComponent extends Component
 {
@@ -19,7 +20,7 @@ class DtaComponent extends Component
 
     public function mount(){
 
-        $this->dtaRequests = Dta::where('user_id', auth()->id())->orderBy('created_at','DESC')->with('approval', 'rejectionComment')->get();
+        $this->dtaRequests = Dta::where('user_id', auth()->id())->orderBy('created_at','DESC')->get();
     }
 
     public function applyForDta(){
@@ -33,6 +34,8 @@ class DtaComponent extends Component
 
         $dtaRequest = Dta::create([
             'user_id' => auth()->id(),
+            'department_id' => Auth::user()->department_id,
+            'unit_id' => Auth::user()->unit_id,
             'purpose' => $this->purpose,
             'destination' => $this->destination,
             'travel_date' => $this->travel_date,
@@ -41,7 +44,7 @@ class DtaComponent extends Component
             'current_approver' => 'Unit Head',
         ]);
 
-        DtaApproval::create(['dta_id' => $dtaRequest->id]);
+        // DtaApproval::create(['dta_id' => $dtaRequest->id]);
 
         $this->reset(['destination','purpose','travel_date','arrival_date','expense']);
         $this->dispatchBrowserEvent('success',["success" =>"DTA request submitted successfully."]);

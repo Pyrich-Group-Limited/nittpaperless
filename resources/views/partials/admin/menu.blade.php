@@ -38,12 +38,7 @@
                             ><span class="dash-mtext">{{__('Dashboard')}}</span
                             ></a>
                     </li>
-                    <li class="dash-item dash-hasmenu ">
-                        <a href="{{ route('dg.ergps') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
-                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
-                            ><span class="dash-mtext">{{__('ERGP')}}</span
-                            ></a>
-                    </li>
+                    
                     <li class="dash-item dash-hasmenu ">
                         <a href="{{ route('budget.pending') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
                         ><span class="dash-micon"><i class="ti ti-cash"></i></span
@@ -65,12 +60,26 @@
                                 ></a>
                         </li>
                     {{-- @endcan --}}
-
-                    <li class="dash-item dash-hasmenu ">
-                        <a href="{{ route('memos.index') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
-                        ><span class="dash-micon"><i class="ti ti-files"></i></span
-                            ><span class="dash-mtext">{{__('Memo')}}</span
+                    
+                    <li class="dash-item dash-hasmenu  ">
+                        <a href="#!" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                            ><span class="dash-mtext">{{__('DTA Management')}}</span
+                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                             ></a>
+                        <ul class="dash-submenu">
+                            <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }} ">
+                                <a class="dash-link" href="{{ route('dta.index') }}">{{__('DTA')}}</a>
+                            </li>
+                            <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('reports.dta') }}">{{__('DTA Report')}}</a>
+                            </li>
+                            @can('dg approve')
+                                <li class="dash-item {{ request()->is('dtaApproval.dg') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('dtaApproval.dg') }}">{{__('DG Approval')}}</a>
+                                </li>
+                            @endcan
+                        </ul>
                     </li>
 
                     <li class="dash-item dash-hasmenu ">
@@ -80,7 +89,6 @@
                             ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                             ></a>
                         <ul class="dash-submenu">
-                            
                             @can('final account view')
                                 <li class="dash-item {{ request()->is('manage.requisitions') ? 'active' : '' }}">
                                     <a class="dash-link" href="{{ route('manage.requisitions') }}">{{__('Manage Requisitions')}}</a>
@@ -94,6 +102,21 @@
                             
                         </ul>
                     </li>
+
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="{{ route('memos.index') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-files"></i></span
+                            ><span class="dash-mtext">{{__('Memo')}}</span
+                            ></a>
+                    </li>
+                    <li class="dash-item dash-hasmenu ">
+                        <a href="{{ route('dg.ergps') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
+                            ><span class="dash-mtext">{{__('ERGP')}}</span
+                            ></a>
+                    </li>
+
+                    
 
                 </ul>
             @else
@@ -1074,11 +1097,48 @@
                                         <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
                                             <a class="dash-link" href="{{ route('reports.dta') }}">{{__('DTA Report')}}</a>
                                         </li>
-                                        {{-- @can('manage travel')
-                                            <li class="dash-item {{ (request()->is('travel*') ? 'active' : '')}}">
-                                                <a class="dash-link" href="{{route('travel.index')}}">{{__('Trip')}}</a>
-                                            </li>
+                                        {{-- @can('final account view')
+                                            <li class="dash-item {{ request()->is('manage.requisitions') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('manage.requisitions') }}">{{__('Manage Requisitions')}}</a>
+                                            </li> 
                                         @endcan --}}
+                                        @can('unit head approve')
+                                            <li class="dash-item {{ request()->is('dtaApproval.unit-head') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('dtaApproval.unit-head') }}">{{__('Unit Head Approval')}}</a>
+                                            </li>
+                                        @endcan
+
+                                        @can('hod approve')
+                                            <li class="dash-item {{ request()->is('dtaApproval.hod') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('dtaApproval.hod') }}">{{__('HOD Approval')}}</a>
+                                            </li>
+                                        @endcan
+
+                                        @can('dg approve')
+                                            <li class="dash-item {{ request()->is('dtaApproval.dg') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('dtaApproval.dg') }}">{{__('DG Approval')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('bursar approve')
+                                            <li class="dash-item {{ request()->is('dtaApproval.bursar') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('dtaApproval.bursar') }}">{{__('Bursar Approval')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('pv approve')
+                                            <li class="dash-item {{ request()->is('dtaApproval.pv') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('dtaApproval.pv') }}">{{__('PV Approval')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('audit approve')
+                                            <li class="dash-item {{ request()->is('dtaApproval.audit') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('dtaApproval.audit') }}">{{__('Audit Approval')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('final account approve')
+                                            <li class="dash-item {{ request()->is('dtaApproval.cash') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('dtaApproval.cash') }}">{{__('Cash Office Approval')}}</a>
+                                            </li>
+                                        @endcan
                                     </ul>
                                 </li>
                                 <li class="dash-item dash-hasmenu  ">

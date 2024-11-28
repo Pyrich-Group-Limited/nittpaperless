@@ -193,7 +193,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <a href="{{ route('job.index') }}">
+                                <a href="{{ route('jobsAvailable.index') }}">
                                     <div class="d-flex align-items-start mb-3">
                                         <div class="theme-avtar bg-success">
                                             <i class="ti ti-award"></i>

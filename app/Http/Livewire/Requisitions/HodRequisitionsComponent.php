@@ -21,11 +21,22 @@ class HodRequisitionsComponent extends Component
 
     public function mount()
     {
-        $this->requisitions = StaffRequisition::where('department_id',Auth::user()->department_id)->orderBy('created_at','desc')->get();
+        $user = auth()->user();
+        // $this->requisitions = StaffRequisition::where('department_id',Auth::user()->department_id)->orderBy('created_at','desc')->get();
 
-        // $this->requisitions = StaffRequisition::where('department_id',Auth::user()->department_id)
-        // ->where('status','pending')->orWhere('status','dg_approved')
-        // ->orderBy('created_at','desc')->get();
+        $this->requisitions = StaffRequisition::where('status', 'pending')
+        ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
+            $query->where('approver_id', $user->id)
+                ->where('role', $user->type);
+        })->where('department_id',Auth::user()->department_id)
+        ->orderBy('created_at', 'desc')->get();
+        
+        $this->approvedRequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
+            $query->where('approver_id', $user->id)
+                ->where('role', $user->type)
+                ->where('status', 'approved');
+        })->where('department_id',Auth::user()->department_id)
+        ->orderBy('created_at', 'desc')->get();
 
         $this->accounts = ChartOfAccount::all();
     }

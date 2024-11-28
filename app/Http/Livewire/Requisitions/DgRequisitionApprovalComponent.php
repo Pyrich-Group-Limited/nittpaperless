@@ -21,24 +21,21 @@ class DgRequisitionApprovalComponent extends Component
     {
         $user = auth()->user();
 
-        // $this->requisitions = StaffRequisition::where('status','waiting_dg_approval')
-        // ->orderBy('created_at','desc')->get();
+        // Pending DG Approval: Status is 'hod_approved' and not yet approved by the DG
+            $this->requisitions = StaffRequisition::where('status', 'hod_approved')
+            ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
+                $query->where('approver_id', $user->id)
+                    ->where('role', $user->type);
+            })->orderBy('created_at', 'desc')->get();
+            
+        // Approved by DG: Check if DG has already approved
+        $this->dgApprovedrequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
+            $query->where('approver_id', $user->id)
+                ->where('role', $user->type)
+                ->where('status', 'approved');
+        })->orderBy('created_at', 'desc')->get();
 
-        // $this->requisitions = StaffRequisition::whereIn('status', ['waiting_dg_approval', 'dg_approved'])
-        //     ->orderBy('created_at', 'desc')
-        //     ->get();
-
-            $this->requisitions = StaffRequisition::where(function($query) use ($user) {
-                $query->where('status', 'hod_approved')
-                      ->orWhereHas('approvalRecords', function($subQuery) use ($user) {
-                          $subQuery->where('approver_id', $user->id)
-                                   ->where('role', 'DG'); // Assuming 'dg' is the role for DG
-                      });
-            })
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-            $this->accounts = ChartOfAccount::all();
+        $this->accounts = ChartOfAccount::all();
     }
 
     public function setRequisition(StaffRequisition $requisition){

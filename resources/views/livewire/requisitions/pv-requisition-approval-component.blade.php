@@ -34,104 +34,198 @@
             </div>
         </div>
     @endsection
-    
-        <div class="row">
-            <div class="col-md-12 mt-3">
+        
+    <div class="row mt-3">
+        <div id="printableArea">
+            <div class="col-12" id="invoice-container">
                 <div class="card">
-                <div class="card-body table-border-style">
-                        <div class="table-responsive">
-                        <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>{{__('#')}}</th>
-                                    <th>{{__('Staff Name')}}</th>
-                                    <th>{{__('Department')}}</th>
-                                    <th>{{__('RequisitionType')}}</th>
-                                    <th>{{__('Pupose')}}</th>
-                                    <th>{{__('Amount')}}</th>
-                                    <th>{{__('Status')}}</th>
-                                    {{-- <th>{{__('Description')}}</th> --}}
-                                    <th>{{__('Request Date')}}</th>
-                                    <th width="200px">{{__('Action')}}</th>
-                                </tr>
-                                </thead>
-                                <tbody class="font-style">
-                                @if (isset($requisitions) && !empty($requisitions) && count($requisitions) > 0)
-                                    @foreach ($requisitions as $requisition)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $requisition->staff->name }}</td>
-                                            <td>{{ $requisition->department->name }}</td>
-                                            <td>{{ $requisition->requisition_type }}</td>
-                                            <td>{{ Str::limit($requisition->purpose,20) }}</td>
-                                            <td> ₦ {{ number_format($requisition->amount,2) }}</td>
-                                            <td>
-                                                @if ($requisition->status == 'pending')
-                                                <span class="badge bg-warning p-2 px-3 rounded">Pending</span>
-                                                @elseif ($requisition->status == 'approved')
-                                                <span class="badge bg-success p-2 px-3 rounded">Approved</span>
-                                                @elseif ($requisition->status == 'rejected')
-                                                <span class="badge bg-danger p-2 px-3 rounded">Rejected</span>
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between w-100">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="profile-tab2" data-bs-toggle="pill"
+                                        href="#pendingRequisitions" role="tab" aria-controls="pills-summary"
+                                        aria-selected="true"><i class="ti ti-load"> </i>
+                                        {{ __('Pending Requisitions') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab3" data-bs-toggle="pill"
+                                        href="#approvedRequisitions" role="tab" aria-controls="pills-summary"
+                                        aria-selected="false"><i class="ti ti-check"> </i>
+                                        {{ __('Approved Requisitions') }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="tab-content" id="myTabContent3" wire:ignore.self>
+                                    <div class="tab-pane fade fade table-responsive" id="pendingRequisitions"
+                                        role="tabpanel" aria-labelledby="profile-tab2" wire:ignore.self>
+                                        <table class="table table-flush" id="report-dataTable" wire:ignore.self>
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ __('#') }}</th>
+                                                    <th>{{ __('Staff Name') }}</th>
+                                                    <th>{{ __('Department') }}</th>
+                                                    <th>{{ __('RequisitionType') }}</th>
+                                                    <th>{{ __('Pupose') }}</th>
+                                                    <th>{{ __('Amount') }}</th>
+                                                    <th>{{ __('Status') }}</th>
+                                                    <th>{{ __('Request Date') }}</th>
+                                                    <th width="200px">{{ __('Action') }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="font-style">
+                                                @if ($requisitions->isEmpty())
+                                                    <tr>
+                                                        <td scope="col" colspan="9">
+                                                            <h6 class="text-center">
+                                                                {{ __('No requisition requests to approve.') }}</h6>
+                                                        </td>
+                                                    </tr>
                                                 @else
-                                                <span class="badge bg-secondary p-2 px-3 rounded">
-                                                    {{ $requisition->status }}
-                                                </span>
+                                                    @foreach ($requisitions as $requisition)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $requisition->staff->name }}</td>
+                                                            <td>{{ $requisition->department->name }}</td>
+                                                            <td>{{ $requisition->requisition_type }}</td>
+                                                            <td>{{ Str::limit($requisition->purpose, 20) }}</td>
+                                                            <td> ₦ {{ number_format($requisition->amount, 2) }}</td>
+                                                            <td>
+                                                                @if ($requisition->status == 'pending')
+                                                                    <span
+                                                                        class="badge bg-warning p-2 px-3 rounded">Pending</span>
+                                                                @elseif ($requisition->status == 'cash_office_approved')
+                                                                    <span
+                                                                        class="badge bg-success p-2 px-3 rounded">Approved</span>
+                                                                @elseif ($requisition->status == 'rejected')
+                                                                    <span
+                                                                        class="badge bg-danger p-2 px-3 rounded">Rejected</span>
+                                                                @else
+                                                                    <span class="badge bg-warning p-2 px-3 rounded">
+                                                                        {{ $requisition->status }}
+                                                                    </span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $requisition->created_at->format('d-M-Y') }}</td>
+                                                            <td>
+                                                                <div class="action-btn bg-primary ms-2">
+                                                                    <a href="#"
+                                                                        wire:click="setRequisition('{{ $requisition->id }}')"
+                                                                        class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#viewRequisitionDetailsModal"
+                                                                        data-size="lg" data-bs-toggle="tooltip"
+                                                                        title="{{ __('View Details') }}">
+                                                                        <i class="ti ti-eye text-white"></i>
+                                                                    </a>
+                                                                </div>
+                                                                @if($requisition->status != 'pending')
+                                                                    @can('approve as pv')    
+                                                                        <button class="btn btn-success btn-sm" type="submit" target="popup" 
+                                                                        onclick="window.open('{{ route('requisition.voucher', $requisition->id) }}','popup', 'width=994, height=1123')">
+                                                                        <i class="fa fa-print"></i> View Voucher
+                                                                        </button>
+                                                                    @endcan
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                 @endif
-                                            </td>
-                                            {{-- <td style="word-wrap: normal">{{ Str::limit($requisition->description,20) }}</td> --}}
-                                            <td>{{ $requisition->created_at->format('d-M-Y') }}</td>
-                                                <td>
-                                                    <div class="action-btn bg-primary ms-2">
-                                                        <a href="#" wire:click="setRequisition('{{ $requisition->id }}')"
-                                                            class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#viewRequisitionDetailsModal" data-size="lg"
-                                                            data-bs-toggle="tooltip" title="{{ __('View Details') }}">
-                                                            <i class="ti ti-eye text-white"></i>
-                                                        </a>
-                                                    </div>
-                                                    @if($requisition->status != 'pending')
-                                                        @can('approve as pv')    
-                                                            <button class="btn btn-success btn-sm" type="submit" target="popup" 
-                                                            onclick="window.open('{{ route('requisition.voucher', $requisition->id) }}','popup', 'width=994, height=1123')">
-                                                            <i class="fa fa-print"></i> View Voucher
-                                                            </button>
-                                                        @endcan
-                                                    @endif
-                                                    {{-- <div class="action-btn bg-warning ms-2">
-                                                        <a href="#" wire:click="setRequisition('{{ $requisition->id }}')"
-                                                            class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#modifyRequisition" data-size="lg"
-                                                            data-bs-toggle="tooltip" title="{{ __('Update') }}">
-                                                            <i class="ti ti-pencil text-white"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="action-btn bg-danger ms-2">
-                                                        <a href="#" wire:click="setActionId('{{$requisition->id}}')" class="mx-3 btn btn-sm align-items-center confirm-delete" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}">
-                                                        <i class="ti ti-trash text-white"></i></a>
-                                                    </div> --}}
-                                                </td>
-                                            {{-- @endif --}}
-                                        </tr>
-                                    @endforeach
-                                @else
-                                    <tr>
-                                        <th scope="col" colspan="9">
-                                            <h6 class="text-center">{{ __('No Record Found.') }}</h6>
-                                        </th>
-                                    </tr>
-                                @endif
-                                </tbody>
-                            </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            
+                                    <div class="tab-pane fade fade table-responsive" id="approvedRequisitions"
+                                        role="tabpanel" aria-labelledby="profile-tab3" wire:ignore.self>
+                                        <table class="table table-flush" id="report-dataTable" wire:ignore.self>
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ __('#') }}</th>
+                                                    <th>{{ __('Staff Name') }}</th>
+                                                    <th>{{ __('Department') }}</th>
+                                                    <th>{{ __('RequisitionType') }}</th>
+                                                    <th>{{ __('Pupose') }}</th>
+                                                    <th>{{ __('Amount') }}</th>
+                                                    <th>{{ __('Status') }}</th>
+                                                    <th>{{ __('Request Date') }}</th>
+                                                    <th width="200px">{{ __('Action') }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="font-style">
+                                                @if (isset($approvedRequisitions) && !empty($approvedRequisitions) && count($approvedRequisitions) > 0)
+                                                    @foreach ($approvedRequisitions as $approvedRequisition)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $approvedRequisition->staff->name }}</td>
+                                                            <td>{{ $approvedRequisition->department->name }}</td>
+                                                            <td>{{ $approvedRequisition->requisition_type }}</td>
+                                                            <td>{{ Str::limit($approvedRequisition->purpose, 20) }}</td>
+                                                            <td> ₦ {{ number_format($approvedRequisition->amount, 2) }}
+                                                            </td>
+                                                            <td>
+                                                                @if ($approvedRequisition->status == 'pending')
+                                                                    <span
+                                                                        class="badge bg-warning p-2 px-3 rounded">Pending</span>
+                                                                @elseif ($approvedRequisition->status == 'cash_office_approved')
+                                                                    <span
+                                                                        class="badge bg-success p-2 px-3 rounded">Approved</span>
+                                                                @elseif ($approvedRequisition->status == 'rejected')
+                                                                    <span
+                                                                        class="badge bg-danger p-2 px-3 rounded">Rejected</span>
+                                                                @else
+                                                                    <span class="badge bg-warning p-2 px-3 rounded">
+                                                                        {{ $approvedRequisition->status }}
+                                                                    </span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $approvedRequisition->created_at->format('d-M-Y') }}
+                                                            </td>
+                                                            <td>
+                                                                <div class="action-btn bg-primary ms-2">
+                                                                    <a href="#"
+                                                                        wire:click="setRequisition('{{ $approvedRequisition->id }}')"
+                                                                        class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#viewRequisitionDetailsModal"
+                                                                        data-size="lg" data-bs-toggle="tooltip"
+                                                                        title="{{ __('View Details') }}">
+                                                                        <i class="ti ti-eye text-white"></i>
+                                                                    </a>
+                                                                </div>
+
+                                                                @if($approvedRequisition->status != 'pending')
+                                                                    @can('approve as pv')    
+                                                                        <button class="btn btn-success btn-sm" type="submit" target="popup" 
+                                                                        onclick="window.open('{{ route('requisition.voucher', $approvedRequisition->id) }}','popup', 'width=994, height=1123')">
+                                                                        <i class="fa fa-print"></i> View Voucher
+                                                                        </button>
+                                                                    @endcan
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr>
+                                                        <th scope="col" colspan="9">
+                                                            <h6 class="text-center">{{ __('No Record Found.') }}</h6>
+                                                        </th>
+                                                    </tr>
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-    
             </div>
         </div>
-        {{-- @include('livewire.requisitions.modals.raise-requisition-modal')
-        @include('livewire.requisitions.modals.edit-requisition') --}}
+    </div>
         @include('livewire.requisitions.modals.requisition-details')
         <x-toast-notification />
     </div>

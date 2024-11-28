@@ -32,12 +32,10 @@
                     <i class="ti ti-sort-ascending-letters"></i>{{__('From A-Z')}}
                 </a>
             </div>
-        {{-- @can('manage budget') --}}
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newRequisition" id="toggleOldProject"
             data-bs-toggle="tooltip" title="{{ __('Create new budget Category') }}" class="btn btn-sm btn-primary">
             <i class="ti ti-plus text-white"> </i>Raise a Requisition
             </a>
-            {{-- @endcan --}}
         </div>
     @endsection
     
@@ -55,7 +53,6 @@
                                     <th>{{__('Pupose')}}</th>
                                     <th>{{__('Amount')}}</th>
                                     <th>{{__('Status')}}</th>
-                                    {{-- <th>{{__('Description')}}</th> --}}
                                     <th>{{__('Request Date')}}</th>
                                     <th width="200px">{{__('Action')}}</th>
                                 </tr>
@@ -71,18 +68,20 @@
                                             <td> ₦ {{ number_format($requisition->amount,2) }}</td>
                                             <td>
                                                 @if ($requisition->status == 'pending')
-                                                <span class="badge bg-warning p-2 px-3 rounded">Pending</span>
-                                                @elseif ($requisition->status == 'approved')
-                                                <span class="badge bg-success p-2 px-3 rounded">Approved</span>
+                                                    <span
+                                                        class="badge bg-warning p-2 px-3 rounded">Pending</span>
+                                                @elseif ($requisition->status == 'cash_office_approved')
+                                                    <span
+                                                        class="badge bg-success p-2 px-3 rounded">Approved</span>
                                                 @elseif ($requisition->status == 'rejected')
-                                                <span class="badge bg-danger p-2 px-3 rounded">Rejected</span>
+                                                    <span
+                                                        class="badge bg-danger p-2 px-3 rounded">Rejected</span>
                                                 @else
-                                                <span class="badge bg-secondary p-2 px-3 rounded">
-                                                    {{ $requisition->status }}
-                                                </span>
+                                                    <span class="badge bg-warning p-2 px-3 rounded">
+                                                        {{ $requisition->status }}
+                                                    </span>
                                                 @endif
                                             </td>
-                                            {{-- <td style="word-wrap: normal">{{ Str::limit($requisition->description,20) }}</td> --}}
                                             <td>{{ $requisition->created_at->format('d-M-Y') }}</td>
                                                 <td>
                                                     <div class="action-btn bg-primary ms-2">
