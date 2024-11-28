@@ -67,15 +67,18 @@
                                             <td> ₦ {{ number_format($requisition->amount,2) }}</td>
                                             <td>
                                                 @if ($requisition->status == 'pending')
-                                                <span class="badge bg-warning p-2 px-3 rounded">Pending</span>
-                                                @elseif ($requisition->status == 'approved')
-                                                <span class="badge bg-success p-2 px-3 rounded">Approved</span>
+                                                    <span
+                                                        class="badge bg-warning p-2 px-3 rounded">Pending</span>
+                                                @elseif ($requisition->status == 'cash_office_approved')
+                                                    <span
+                                                        class="badge bg-success p-2 px-3 rounded">Approved</span>
                                                 @elseif ($requisition->status == 'rejected')
-                                                <span class="badge bg-danger p-2 px-3 rounded">Rejected</span>
+                                                    <span
+                                                        class="badge bg-danger p-2 px-3 rounded">Rejected</span>
                                                 @else
-                                                <span class="badge bg-secondary p-2 px-3 rounded">
-                                                    {{ $requisition->status }}
-                                                </span>
+                                                    <span class="badge bg-warning p-2 px-3 rounded">
+                                                        {{ $requisition->status }}
+                                                    </span>
                                                 @endif
                                             </td>
                                             {{-- <td style="word-wrap: normal">{{ Str::limit($requisition->description,20) }}</td> --}}

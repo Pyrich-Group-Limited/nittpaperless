@@ -1,0 +1,74 @@
+<?php
+
+namespace App\Http\Livewire\Dta;
+
+use Livewire\Component;
+use App\Models\Dta;
+use App\Models\DtaApproval;
+use App\Models\User;
+use App\Models\DtaRejectionComment;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ChartOfAccount;
+
+class PaymentVoucherDtaComponent extends Component
+{
+    public $dta;
+    public $comments;
+    public $selDta;
+    public $actionId;
+
+    public $chartAccount;
+
+    public function mount(){
+        $user = auth()->user();
+
+        $this->dtaRequests = Dta::where('status', 'bursar_approved')
+        ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
+            $query->where('approver_id', $user->id)
+                ->where('role', $user->type);
+        })->orderBy('created_at', 'desc')->get();
+        
+        $this->approvedDtaRequests = Dta::whereHas('approvalRecords', function ($query) use ($user) {
+            $query->where('approver_id', $user->id)
+                ->where('role', $user->type)
+                ->where('status', 'approved');
+        })->orderBy('created_at', 'desc')->get();
+
+        $this->accounts = ChartOfAccount::all();
+    }
+
+    public function setDta(Dta $dta){
+        $this->selDta = $dta;
+    }
+
+    public function pvApproveDta()
+    {
+        $this->validate([
+            'chartAccount' => 'required',
+        ]);
+
+        if ($this->selDta->status != 'bursar_approved') {
+            $this->dispatchBrowserEvent('error',["error" =>"DTA required an approval."]);
+        } else {
+            $this->selDta->update([
+                'status' => 'pv_approved',
+                'account_id' => $this->chartAccount
+            ]);
+        }
+
+        DtaApproval::create([
+            'dta_id' => $this->selDta->id,
+            'approver_id' => auth()->id(),
+            'role' => auth()->user()->type,
+            'status' => 'approved',
+            'comments' => $this->comments,
+        ]);
+        $this->dispatchBrowserEvent('success',["success" =>"DTA approved successfully."]);
+        $this->mount();
+    }
+
+    public function render()
+    {
+        return view('livewire.dta.payment-voucher-dta-component');
+    }
+}

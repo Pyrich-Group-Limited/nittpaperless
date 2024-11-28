@@ -34,7 +34,6 @@ class PendingLeavesComponent extends Component
             // For Unit Head: allow approval if there is no Supervisor approval required
             if ($user->type == 'unit head') {
                 $query->where(function ($subQuery) {
-                    // Check if there's an 'Approved' Supervisor approval OR if no Supervisor approval exists
                     $subQuery->whereHas('approvals', function ($approvalQuery) {
                         $approvalQuery->where('type', 'supervisor')->where('status', 'Approved');
                     })->orWhereDoesntHave('approvals', function ($approvalQuery) {
@@ -118,7 +117,7 @@ class PendingLeavesComponent extends Component
         $leaveApproval->status = 'Rejected';
         $leaveApproval->save();
 
-        $leave->status = 'Rejected'; // or "Fully Approved"
+        $leave->status = 'Rejected';
         $leave->save();
 
         $this->dispatchBrowserEvent('success', ['success' => 'Leave request rejected successfully.']);
@@ -128,12 +127,6 @@ class PendingLeavesComponent extends Component
     public function setLeave($leaveId)
     {
         $this->selLeave = Leave::find($leaveId);
-
-        if ($this->selLeave) {
-            $this->dispatchBrowserEvent('success', ['success' => 'Leave data loaded successfully']);
-        } else {
-            $this->dispatchBrowserEvent('success', ['success' => 'Leave data not found']);
-        }
     }
 
 

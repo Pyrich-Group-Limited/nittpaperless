@@ -31,9 +31,4 @@ class RequisitionApprovalRecord extends Model
     {
         return $this->hasMany(StaffRequisition::class);
     }
-
-    // public function signature()
-    // {
-    //     return $this->hasMany(Signature::class);
-    // }
 }

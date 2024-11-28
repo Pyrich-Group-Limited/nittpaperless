@@ -160,7 +160,7 @@ class DtaController extends Controller
             'comment' => $request->comment,
         ]);
 
-        return redirect()->route('dta.index')->with('success', 'Request rejected with comment.');
+        return back()->with('success', 'DTA Request successfully rejected with a comment.');
     }
 
     public function showRejected($id){

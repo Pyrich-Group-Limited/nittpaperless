@@ -155,8 +155,16 @@ use App\Http\Livewire\Guest\ContractorLoginComponent;
 use App\Http\Livewire\Guest\ContractorRegisterComponent;
 
 use App\Http\Livewire\Dta\DtaComponent;
+use App\Http\Livewire\Dta\UnitHeadDtaComponent;
+use App\Http\Livewire\Dta\HodDtaComponent;
+use App\Http\Livewire\Dta\DgDtaComponent;
+use App\Http\Livewire\Dta\BursarDtaComponent;
+use App\Http\Livewire\Dta\PaymentVoucherDtaComponent;
+use App\Http\Livewire\Dta\AuditDtaComponent;
+use App\Http\Livewire\Dta\DtaVoucherComponent;
+use App\Http\Livewire\Dta\CashOfficeDtaComponent;
 
-//livewire component for user
+//livewire component for user 
 use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Users\UserPermission;
 
@@ -221,7 +229,9 @@ use App\Http\Livewire\Requisitions\AuditRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\CashOfficeRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\RequisitionVoucherComponent;
 
-//advert components
+use App\Http\Controllers\JobsAvailableController;
+
+//advert components 
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 use Illuminate\Support\Facades\Storage;
 
@@ -546,6 +556,15 @@ Route::get('employee/{id}/dta/{status}/{type}/{month}/{year}', [DtaReportControl
 // DTA routes
 Route::middleware(['XSS', 'revalidate'])->prefix('dtas')->group(function () {
     Route::get('/my-dta-requests',DtaComponent::class)->name('dta.index');
+    Route::get('/unit-head-approvals',UnitHeadDtaComponent::class)->name('dtaApproval.unit-head');
+    Route::get('/hod-approvals',HodDtaComponent::class)->name('dtaApproval.hod');
+    Route::get('/dg-approvals',DgDtaComponent::class)->name('dtaApproval.dg');
+    Route::get('/bursar-approvals',BursarDtaComponent::class)->name('dtaApproval.bursar');
+    Route::get('/payment-voucher-approvals',PaymentVoucherDtaComponent::class)->name('dtaApproval.pv');
+    Route::get('/audit-approvals',AuditDtaComponent::class)->name('dtaApproval.audit');
+    Route::get('/dta/{id}/voucher', DtaVoucherComponent::class)->name('dta.voucher');
+    Route::get('/cash-office-approvals',CashOfficeDtaComponent::class)->name('dtaApproval.cash');
+
 });
 
 
@@ -1138,6 +1157,8 @@ Route::resource('job-category', JobCategoryController::class)->middleware(['auth
 
 Route::resource('job-stage', JobStageController::class)->middleware(['auth', 'XSS']);
 Route::post('job-stage/order', [JobStageController::class, 'order'])->name('job.stage.order');
+
+Route::resource('jobsAvailable', JobsAvailableController::class)->middleware(['auth', 'XSS']);
 
 Route::resource('job', JobController::class)->middleware(['auth', 'XSS']);
 
