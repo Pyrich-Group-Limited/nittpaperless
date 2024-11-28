@@ -48,6 +48,10 @@
                     </div>
                 @endforeach
             </div>
+            <div align="center" wire:loading wire:target="updatePermission"><x-g-loader /></div>
+
+        <input type="button" wire:click="updatePermission" value="{{ __('Update Permissins') }}"
+        class="btn  btn-warning mt-3">
         </div>
 
     </div>
