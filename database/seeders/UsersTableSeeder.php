@@ -32,6 +32,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'share file',
                 'module' => 'File',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -39,6 +40,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit file',
                 'module' => 'File',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -46,6 +48,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view file',
                 'module' => 'File',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -53,6 +56,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create file',
                 'module' => 'File',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -61,6 +65,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage project',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -68,6 +73,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create project',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -75,6 +81,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit project',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -82,6 +89,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view project',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -90,6 +98,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage stock',
                 'module' => 'Stock',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -97,6 +106,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create stock',
                 'module' => 'Stock',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -104,6 +114,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit stock',
                 'module' => 'Stock',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -111,6 +122,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view stock',
                 'module' => 'Stock',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -118,6 +130,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'add stock',
                 'module' => 'Stock',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -126,6 +139,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view bi',
                 'module' => 'Stock',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -134,6 +148,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'approve servicom',
                 'module' => 'Servicom',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -141,6 +156,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage servicom',
                 'module' => 'Servicom',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -148,6 +164,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create servicom',
                 'module' => 'Servicom',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -155,6 +172,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit servicom',
                 'module' => 'Servicom',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -162,6 +180,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view servicom',
                 'module' => 'Servicom',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -169,6 +188,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'add servicom',
                 'module' => 'Servicom',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -177,6 +197,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'approve meeting',
                 'module' => 'Meeting',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -184,6 +205,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage meeting',
                 'module' => 'Meeting',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -191,6 +213,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create meeting',
                 'module' => 'Meeting',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -198,6 +221,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit meeting',
                 'module' => 'Meeting',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -205,6 +229,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view meeting',
                 'module' => 'Meeting',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -212,6 +237,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'add meeting',
                 'module' => 'Meeting',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -226,6 +252,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage mrm_system',
                 'module' => 'MRM System',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -233,6 +260,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create mrm',
                 'module' => 'MRM System',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -240,6 +268,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit mrm',
                 'module' => 'MRM System',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -247,6 +276,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view mrm',
                 'module' => 'MRM System',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -255,6 +285,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view mrm_report',
                 'module' => 'MRM System',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -262,6 +293,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'send mrm_report',
                 'module' => 'MRM System',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -269,6 +301,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view mrm_overview',
                 'module' => 'MRM System',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -277,6 +310,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show pos dashboard',
                 'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -284,6 +318,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show crm dashboard',
                 'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -291,6 +326,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show unithead dashboard',
                 'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -298,6 +334,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show hrm dashboard',
                 'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -305,6 +342,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'copy invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -312,6 +350,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show project dashboard',
                 'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -325,6 +364,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage user',
                 'module' => 'Staff',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -332,6 +372,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create user',
                 'module' => 'Staff',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -339,6 +380,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit user',
                 'module' => 'Staff',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -346,6 +388,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete user',
                 'module' => 'Staff',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -353,6 +396,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create language',
                 'module' => 'Settings',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -360,6 +404,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage role',
                 'module' => 'Role',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -367,6 +412,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create role',
                 'module' => 'Role',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -374,6 +420,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit role',
                 'module' => 'Role',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -381,6 +428,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete role',
                 'module' => 'Role',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -388,6 +436,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage permission',
                 'module' => 'Permission',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -395,6 +444,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create permission',
                 'module' => 'Permission',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -402,6 +452,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit permission',
                 'module' => 'Permission',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -409,6 +460,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete permission',
                 'module' => 'Permission',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -416,6 +468,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage company settings',
                 'module' => 'Settings',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -423,6 +476,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage print settings',
                 'module' => 'Settings',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -430,6 +484,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage business settings',
                 'module' => 'Settings',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -437,34 +492,39 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage stripe settings',
                 'module' => 'Settings',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'manage expense',
-                'module' => 'Expence',
+                'module' => 'Expense',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'create expense',
-                'module' => 'Expence',
+                'module' => 'Expense',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'edit expense',
-                'module' => 'Expence',
+                'module' => 'Expense',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'delete expense',
-                'module' => 'Expence',
+                'module' => 'Expense',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -472,6 +532,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -479,6 +540,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -486,6 +548,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -493,6 +556,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -500,6 +564,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -507,6 +572,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create payment invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -514,6 +580,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete payment invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -521,6 +588,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'send invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -528,6 +596,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete invoice product',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -535,6 +604,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'convert invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -542,6 +612,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage constant unit',
                 'module' => 'Constant Unit',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -549,6 +620,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create constant unit',
                 'module' => 'Constant Unit',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -556,6 +628,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit constant unit',
                 'module' => 'Constant Unit',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -563,6 +636,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete constant unit',
                 'module' => 'Constant Unit',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -570,6 +644,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage constant tax',
                 'module' => 'Constant Tax',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -577,12 +652,14 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create constant tax',
                 'module' => 'Constant Tax',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'module' => 'Constant Tax',
+                'category' => "Registry's/Finance system",
                 'name' => 'edit constant tax',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -591,6 +668,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete constant tax',
                 'module' => 'Constant Tax',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -598,6 +676,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage constant category',
                 'module' => 'Constant Category',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -605,6 +684,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create constant category',
                 'module' => 'Constant Category',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -612,6 +692,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit constant category',
                 'module' => 'Constant Category',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -619,6 +700,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete constant category',
                 'module' => 'Constant Category',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -626,6 +708,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage product & service',
                 'module' => 'Product & Services',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -633,6 +716,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create product & service',
                 'module' => 'Product & Services',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -640,6 +724,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit product & service',
                 'module' => 'Product & Services',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -647,6 +732,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete product & service',
                 'module' => 'Product & Services',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -654,6 +740,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage customer',
                 'module' => 'Customer',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -661,6 +748,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create customer',
                 'module' => 'Customer',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -668,6 +756,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit customer',
                 'module' => 'Customer',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -675,6 +764,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete customer',
                 'module' => 'Customer',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -682,6 +772,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show customer',
                 'module' => 'Customer',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -689,6 +780,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage vender',
                 'module' => 'Vendor',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -696,6 +788,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create vender',
                 'module' => 'Vendor',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -703,6 +796,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit vender',
                 'module' => 'Vendor',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -710,6 +804,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete vender',
                 'module' => 'Vendor',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -717,6 +812,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show vender',
                 'module' => 'Vendor',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -724,6 +820,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage bank account',
                 'module' => 'Bank Account',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -731,6 +828,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create bank account',
                 'module' => 'Bank Account',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -738,6 +836,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit bank account',
                 'module' => 'Bank Account',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -745,6 +844,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete bank account',
                 'module' => 'Bank Account',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -752,6 +852,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage bank transfer',
                 'module' => 'Bank Account',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -759,6 +860,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create bank transfer',
                 'module' => 'Bank Account',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -766,6 +868,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit bank transfer',
                 'module' => 'Bank Account',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -773,6 +876,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete bank transfer',
                 'module' => 'Bank Account',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -780,6 +884,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage transaction',
                 'module' => 'Bank Account',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -787,6 +892,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage revenue',
                 'module' => 'Revenue',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -794,6 +900,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create revenue',
                 'module' => 'Revenue',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -801,6 +908,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit revenue',
                 'module' => 'Revenue',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -808,6 +916,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete revenue',
                 'module' => 'Revenue',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -815,6 +924,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage bill',
                 'module' => 'Bill',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -822,6 +932,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create bill',
                 'module' => 'Bill',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -829,6 +940,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit bill',
                 'module' => 'Bill',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -836,6 +948,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete bill',
                 'module' => 'Bill',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -843,6 +956,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show bill',
                 'module' => 'Bill',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -850,6 +964,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage payment',
                 'module' => 'Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -857,6 +972,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create payment',
                 'module' => 'Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -864,6 +980,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit payment',
                 'module' => 'Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -871,6 +988,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete payment',
                 'module' => 'Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -878,6 +996,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete bill product',
                 'module' => 'Bil',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -885,6 +1004,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'send bill',
                 'module' => 'Bil',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -892,6 +1012,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create payment bill',
                 'module' => 'Bil',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -899,6 +1020,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete payment bill',
                 'module' => 'Bil',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -906,6 +1028,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage order',
                 'module' => 'Bil',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -913,6 +1036,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'income report',
                 'module' => 'Report',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -920,6 +1044,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'expense report',
                 'module' => 'Report',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -927,6 +1052,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'income vs expense report',
                 'module' => 'Report',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -934,6 +1060,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'invoice report',
                 'module' => 'Report',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -941,6 +1068,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'bill report',
                 'module' => 'Report',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -948,6 +1076,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'stock report',
                 'module' => 'Report',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -955,6 +1084,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'tax report',
                 'module' => 'Report',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -962,6 +1092,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'loss & profit report',
                 'module' => 'Report',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -969,6 +1100,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage customer payment',
                 'module' => 'Customer',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -976,6 +1108,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage customer transaction',
                 'module' => 'Customer',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -983,6 +1116,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage customer invoice',
                 'module' => 'Customer',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -990,6 +1124,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'vender manage bill',
                 'module' => 'Vendor',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -997,6 +1132,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage vender bill',
                 'module' => 'Vendor',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1004,6 +1140,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage vender payment',
                 'module' => 'Vendor',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1011,6 +1148,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage vender transaction',
                 'module' => 'Vendor',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1018,6 +1156,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage credit note',
                 'module' => 'Credit Note',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1025,6 +1164,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create credit note',
                 'module' => 'Note',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1032,6 +1172,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit credit note',
                 'module' => 'Note',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1039,6 +1180,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete credit note',
                 'module' => 'Note',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1046,6 +1188,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage debit note',
                 'module' => 'Note',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1053,6 +1196,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create debit note',
                 'module' => 'Note',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1060,6 +1204,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit debit note',
                 'module' => 'Note',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1067,6 +1212,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete debit note',
                 'module' => 'Note',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1074,6 +1220,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'duplicate invoice',
                 'module' => 'Invoice',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1081,6 +1228,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'duplicate bill',
                 'module' => 'Bill',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1088,6 +1236,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage proposal',
                 'module' => 'Proposal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1095,6 +1244,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create proposal',
                 'module' => 'Proposal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1102,6 +1252,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit proposal',
                 'module' => 'Proposal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1109,6 +1260,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete proposal',
                 'module' => 'Proposal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1116,6 +1268,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'duplicate proposal',
                 'module' => 'Proposal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1123,6 +1276,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show proposal',
                 'module' => 'Proposal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1130,6 +1284,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'send proposal',
                 'module' => 'Proposal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1137,6 +1292,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete proposal product',
                 'module' => 'Proposal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1144,6 +1300,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage customer proposal',
                 'module' => 'Proposal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1151,6 +1308,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage goal',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1158,6 +1316,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create goal',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1165,6 +1324,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit goal',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1172,6 +1332,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete goal',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1179,6 +1340,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage assets',
                 'module' => 'Assets',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1186,6 +1348,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create assets',
                 'module' => 'Assets',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1193,6 +1356,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit assets',
                 'module' => 'Assets',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1200,6 +1364,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete assets',
                 'module' => 'Assets',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1207,6 +1372,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'statement report',
                 'module' => 'Report',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1214,6 +1380,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage constant custom field',
                 'module' => 'Custom Field',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1221,6 +1388,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create constant custom field',
                 'module' => 'Custom Field',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1228,6 +1396,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit constant custom field',
                 'module' => 'Custom Field',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1235,6 +1404,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete constant custom field',
                 'module' => 'Custom Field',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1242,6 +1412,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage chart of account',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1249,6 +1420,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create chart of account',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1256,6 +1428,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit chart of account',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1263,6 +1436,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete chart of account',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1271,6 +1445,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show chart of account',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1279,6 +1454,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show journal',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1287,6 +1463,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show ledger',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1295,6 +1472,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show balance sheet',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1303,6 +1481,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show profit and loss',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1311,6 +1490,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show trial balance',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1319,6 +1499,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage journal entry',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1326,6 +1507,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create journal entry',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1333,6 +1515,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit journal entry',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1340,6 +1523,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete journal entry',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1347,6 +1531,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show journal entry',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1354,6 +1539,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'balance sheet report',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1361,6 +1547,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'ledger report',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1368,6 +1555,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'trial balance report',
                 'module' => 'Double Entry',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1375,6 +1563,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage client',
                 'module' => 'Client',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1382,6 +1571,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create client',
                 'module' => 'Client',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1389,6 +1579,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit client',
                 'module' => 'Client',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1396,6 +1587,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete client',
                 'module' => 'Client',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1403,6 +1595,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage lead',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1410,6 +1603,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create lead',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1417,6 +1611,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view lead',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1424,6 +1619,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit lead',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1431,6 +1627,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete lead',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1438,6 +1635,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'move lead',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1445,6 +1643,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create lead call',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1452,6 +1651,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit lead call',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1459,6 +1659,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete lead call',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1466,6 +1667,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create lead email',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1473,6 +1675,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage pipeline',
                 'module' => 'Pipeline',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1480,6 +1683,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create pipeline',
                 'module' => 'Pipeline',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1487,6 +1691,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit pipeline',
                 'module' => 'Pipeline',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1494,6 +1699,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete pipeline',
                 'module' => 'Pipeline',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1501,6 +1707,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage lead stage',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1508,6 +1715,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create lead stage',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1515,6 +1723,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit lead stage',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1522,6 +1731,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete lead stage',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1529,6 +1739,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'convert lead to deal',
                 'module' => 'Lead',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1536,6 +1747,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage source',
                 'module' => 'Source',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1543,6 +1755,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create source',
                 'module' => 'Source',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1550,6 +1763,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit source',
                 'module' => 'Source',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1557,6 +1771,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete source',
                 'module' => 'Source',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1564,6 +1779,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage label',
                 'module' => 'Label',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1571,6 +1787,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create label',
                 'module' => 'Label',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1578,6 +1795,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit label',
                 'module' => 'Label',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1585,6 +1803,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete label',
                 'module' => 'Label',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1592,6 +1811,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage deal',
                 'module' => 'Deal',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1599,6 +1819,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create deal',
                 'module' => 'Deal',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1606,6 +1827,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view task',
                 'module' => 'Task',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1613,6 +1835,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create task',
                 'module' => 'Task',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1620,6 +1843,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit task',
                 'module' => 'Task',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1627,6 +1851,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete task',
                 'module' => 'Task',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1634,6 +1859,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit deal',
                 'module' => 'Deal',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1641,6 +1867,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view deal',
                 'module' => 'Deal',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1648,6 +1875,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete deal',
                 'module' => 'Deal',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1655,6 +1883,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'move deal',
                 'module' => 'Deal',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1662,6 +1891,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create deal call',
                 'module' => 'Deal',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1669,6 +1899,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit deal call',
                 'module' => 'Deal',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1676,6 +1907,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete deal call',
                 'module' => 'Deal',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1683,6 +1915,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create deal email',
                 'module' => 'Deal',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1690,6 +1923,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage stage',
                 'module' => 'Stage',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1697,6 +1931,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create stage',
                 'module' => 'Stage',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1704,6 +1939,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit stage',
                 'module' => 'Stage',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1711,6 +1947,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete stage',
                 'module' => 'Stage',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1718,6 +1955,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage employee',
                 'module' => 'Employee',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1725,6 +1963,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create employee',
                 'module' => 'Employee',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1732,6 +1971,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view employee',
                 'module' => 'Employee',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1739,6 +1979,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit employee',
                 'module' => 'Employee',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1746,6 +1987,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete employee',
                 'module' => 'Employee',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1753,6 +1995,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage employee profile',
                 'module' => 'Employee',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1760,6 +2003,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show employee profile',
                 'module' => 'Employee',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1767,6 +2011,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage department',
                 'module' => 'Department',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1774,6 +2019,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create department',
                 'module' => 'Department',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1781,6 +2027,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view department',
                 'module' => 'Department',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1788,6 +2035,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit department',
                 'module' => 'Department',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1795,6 +2043,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete department',
                 'module' => 'Department',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1802,6 +2051,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage designation',
                 'module' => 'Designation',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1809,6 +2059,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create designation',
                 'module' => 'Designation',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1816,6 +2067,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view designation',
                 'module' => 'Designation',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1823,6 +2075,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit designation',
                 'module' => 'Designation',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1830,6 +2083,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete designation',
                 'module' => 'Designation',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1837,6 +2091,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage branch',
                 'module' => 'Branch',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1844,6 +2099,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create branch',
                 'module' => 'Branch',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1851,6 +2107,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit branch',
                 'module' => 'Branch',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1858,6 +2115,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete branch',
                 'module' => 'Branch',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1865,6 +2123,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage document type',
                 'module' => 'Document',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1872,6 +2131,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create document type',
                 'module' => 'Document',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1879,6 +2139,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit document type',
                 'module' => 'Document',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1886,6 +2147,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete document type',
                 'module' => 'Document',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1893,6 +2155,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage document',
                 'module' => 'Document',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1900,6 +2163,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create document',
                 'module' => 'Document',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1907,6 +2171,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit document',
                 'module' => 'Document',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1914,6 +2179,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete document',
                 'module' => 'Document',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1921,6 +2187,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage payslip type',
                 'module' => 'Payslip',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1928,6 +2195,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create payslip type',
                 'module' => 'Payslip',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1935,6 +2203,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit payslip type',
                 'module' => 'Payslip',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1942,6 +2211,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete payslip type',
                 'module' => 'Payslip',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1949,6 +2219,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create allowance',
                 'module' => 'Payslip',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1956,6 +2227,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit allowance',
                 'module' => 'Allowance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1963,6 +2235,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete allowance',
                 'module' => 'Allowance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1970,6 +2243,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create commission',
                 'module' => 'Allowance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1977,6 +2251,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit commission',
                 'module' => 'Allowance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1984,6 +2259,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete commission',
                 'module' => 'Allowance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1991,6 +2267,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage allowance option',
                 'module' => 'Allowance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -1998,6 +2275,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create allowance option',
                 'module' => 'Allowance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2005,6 +2283,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit allowance option',
                 'module' => 'Allowance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2012,6 +2291,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete allowance option',
                 'module' => 'Allowance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2019,6 +2299,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage loan option',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2026,6 +2307,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create loan option',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2033,6 +2315,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit loan option',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2040,6 +2323,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete loan option',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2047,6 +2331,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage deduction option',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2054,6 +2339,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create deduction option',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2061,6 +2347,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit deduction option',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2068,6 +2355,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete deduction option',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2075,6 +2363,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create loan',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2082,6 +2371,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit loan',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2089,6 +2379,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete loan',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2096,6 +2387,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create saturation deduction',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2103,6 +2395,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit saturation deduction',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2110,6 +2403,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete saturation deduction',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2117,6 +2411,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create other payment',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2124,6 +2419,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit other payment',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2131,6 +2427,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete other payment',
                 'module' => 'Loan',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2138,6 +2435,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create overtime',
                 'module' => 'Overtime',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2145,6 +2443,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit overtime',
                 'module' => 'Overtime',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2152,6 +2451,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete overtime',
                 'module' => 'Overtime',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2159,6 +2459,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage set salary',
                 'module' => 'Salary',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2166,6 +2467,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit set salary',
                 'module' => 'Salary',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2173,6 +2475,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage pay slip',
                 'module' => 'Salary',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2180,6 +2483,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create set salary',
                 'module' => 'Salary',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2187,6 +2491,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create pay slip',
                 'module' => 'Salary',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2194,6 +2499,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage company policy',
                 'module' => 'Policy',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2201,6 +2507,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create company policy',
                 'module' => 'Policy',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2208,6 +2515,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit company policy',
                 'module' => 'Policy',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2215,6 +2523,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage appraisal',
                 'module' => 'Appraisal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2222,6 +2531,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create appraisal',
                 'module' => 'Appraisal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2229,6 +2539,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit appraisal',
                 'module' => 'Appraisal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2236,6 +2547,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show appraisal',
                 'module' => 'Appraisal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2243,6 +2555,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete appraisal',
                 'module' => 'Appraisal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2250,6 +2563,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage goal tracking',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2257,6 +2571,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create goal tracking',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2264,6 +2579,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit goal tracking',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2271,6 +2587,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete goal tracking',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2278,6 +2595,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage goal type',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2285,6 +2603,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create goal type',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2292,6 +2611,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit goal type',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2299,6 +2619,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete goal type',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2306,6 +2627,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage indicator',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2313,6 +2635,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create indicator',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2320,6 +2643,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit indicator',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2327,6 +2651,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show indicator',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2334,6 +2659,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete indicator',
                 'module' => 'Goal',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2341,6 +2667,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage training',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2348,6 +2675,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create training',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2355,6 +2683,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit training',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2362,6 +2691,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete training',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2369,6 +2699,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show training',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2376,6 +2707,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage trainer',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2383,6 +2715,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create trainer',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2390,6 +2723,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit trainer',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2397,6 +2731,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete trainer',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2404,6 +2739,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage training type',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2411,6 +2747,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create training type',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2418,6 +2755,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit training type',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2425,6 +2763,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete training type',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2432,6 +2771,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage award',
                 'module' => 'Training',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2439,6 +2779,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create award',
                 'module' => 'Award',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2446,6 +2787,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit award',
                 'module' => 'Award',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2453,6 +2795,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete award',
                 'module' => 'Award',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2460,6 +2803,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage award type',
                 'module' => 'Award',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2467,6 +2811,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create award type',
                 'module' => 'Award',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2474,6 +2819,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit award type',
                 'module' => 'Award',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2481,6 +2827,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete award type',
                 'module' => 'Award',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2488,6 +2835,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage resignation',
                 'module' => 'Resignation',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2495,6 +2843,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create resignation',
                 'module' => 'Resignation',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2502,6 +2851,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit resignation',
                 'module' => 'Resignation',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2509,34 +2859,39 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete resignation',
                 'module' => 'Resignation',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'manage travel',
-                'module' => 'Travael',
+                'module' => 'Travel',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'create travel',
-                'module' => 'Travael',
+                'module' => 'Travel',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'edit travel',
-                'module' => 'Travael',
+                'module' => 'Travel',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'delete travel',
-                'module' => 'Travael',
+                'module' => 'Travel',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2544,6 +2899,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage promotion',
                 'module' => 'Promosion',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2551,6 +2907,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create promotion',
                 'module' => 'Promosion',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2558,6 +2915,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit promotion',
                 'module' => 'Promosion',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2565,6 +2923,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete promotion',
                 'module' => 'Promosion',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2572,6 +2931,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage complaint',
                 'module' => 'Complaint',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2579,6 +2939,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create complaint',
                 'module' => 'Complaint',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2586,6 +2947,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit complaint',
                 'module' => 'Complaint',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2593,6 +2955,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete complaint',
                 'module' => 'Complaint',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2600,6 +2963,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage warning',
                 'module' => 'Warning',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2607,6 +2971,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create warning',
                 'module' => 'Warning',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2614,6 +2979,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit warning',
                 'module' => 'Warning',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2621,6 +2987,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete warning',
                 'module' => 'Warning',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2628,6 +2995,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage termination',
                 'module' => 'Termination',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2635,6 +3003,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create termination',
                 'module' => 'Termination',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2642,6 +3011,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit termination',
                 'module' => 'Termination',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2649,6 +3019,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete termination',
                 'module' => 'Termination',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2656,6 +3027,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage termination type',
                 'module' => 'Termination',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2663,6 +3035,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create termination type',
                 'module' => 'Termination',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2670,6 +3043,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit termination type',
                 'module' => 'Termination',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2677,6 +3051,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete termination type',
                 'module' => 'Termination',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2684,6 +3059,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage job application',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2691,6 +3067,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create job application',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2698,6 +3075,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show job application',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2705,6 +3083,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete job application',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2712,6 +3091,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'move job application',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2719,6 +3099,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'add job application skill',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2726,6 +3107,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'add job application note',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2733,6 +3115,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete job application note',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2740,6 +3123,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage job onBoard',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2747,6 +3131,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage job category',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2754,6 +3139,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create job category',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2761,6 +3147,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit job category',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2768,6 +3155,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete job category',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2775,6 +3163,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage job',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2782,6 +3171,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create job',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2789,6 +3179,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit job',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2796,6 +3187,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show job',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2803,6 +3195,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete job',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2810,6 +3203,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage job stage',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2817,6 +3211,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create job stage',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2824,6 +3219,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit job stage',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2831,6 +3227,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete job stage',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2840,6 +3237,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage jobber application',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2847,6 +3245,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create jobber application',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2854,6 +3253,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show jobber application',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2861,6 +3261,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete jobber application',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2868,6 +3269,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'move jobber application',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2875,6 +3277,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'add jobber application skill',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2882,6 +3285,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'add jobber application note',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2889,6 +3293,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete jobber application note',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2896,6 +3301,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage jobber onBoard',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2903,6 +3309,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage jobber category',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2910,6 +3317,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create jobber category',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2917,6 +3325,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit jobber category',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2924,6 +3333,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete jobber category',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2931,6 +3341,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage jobber',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2938,6 +3349,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create jobber',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2945,6 +3357,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit jobber',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2952,6 +3365,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show jobber',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2959,6 +3373,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete jobber',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2966,6 +3381,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage jobber stage',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2973,6 +3389,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create jobber stage',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2980,6 +3397,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit jobber stage',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2987,6 +3405,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete jobber stage',
                 'module' => 'Job',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -2996,6 +3415,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Manage Competencies',
                 'module' => 'Competencies',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3003,6 +3423,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Create Competencies',
                 'module' => 'Competencies',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3010,6 +3431,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Edit Competencies',
                 'module' => 'Competencies',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3017,6 +3439,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Delete Competencies',
                 'module' => 'Competencies',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3024,6 +3447,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage custom question',
                 'module' => 'Competencies',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3031,6 +3455,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create custom question',
                 'module' => 'Competencies',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3038,6 +3463,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit custom question',
                 'module' => 'Competencies',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3045,6 +3471,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete custom question',
                 'module' => 'Competencies',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3052,6 +3479,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create interview schedule',
                 'module' => 'Interview',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3059,6 +3487,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit interview schedule',
                 'module' => 'Interview',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3066,6 +3495,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete interview schedule',
                 'module' => 'Interview',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3073,6 +3503,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show interview schedule',
                 'module' => 'Interview',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3080,6 +3511,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create estimation',
                 'module' => 'Estimation',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3087,6 +3519,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view estimation',
                 'module' => 'Estimation',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3094,6 +3527,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit estimation',
                 'module' => 'Estimation',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3101,6 +3535,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete estimation',
                 'module' => 'Estimation',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3108,6 +3543,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit holiday',
                 'module' => 'Holiday',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3115,6 +3551,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create holiday',
                 'module' => 'Holiday',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3122,6 +3559,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete holiday',
                 'module' => 'Holiday',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3129,6 +3567,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage holiday',
                 'module' => 'Holiday',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3136,6 +3575,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show career',
                 'module' => 'Career',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3143,6 +3583,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage meeting',
                 'module' => 'Meeting',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3150,6 +3591,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create meeting',
                 'module' => 'Meeting',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3157,6 +3599,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit meeting',
                 'module' => 'Meeting',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3164,6 +3607,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete meeting',
                 'module' => 'Meeting',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3171,6 +3615,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage event',
                 'module' => 'Event',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3178,6 +3623,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create event',
                 'module' => 'Event',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3185,6 +3631,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit event',
                 'module' => 'Event',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3192,6 +3639,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete event',
                 'module' => 'Event',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3199,6 +3647,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage transfer',
                 'module' => 'Transfer',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3206,6 +3655,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create transfer',
                 'module' => 'Transfer',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3213,6 +3663,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit transfer',
                 'module' => 'Transfer',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3220,6 +3671,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete transfer',
                 'module' => 'Transfer',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3227,6 +3679,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage announcement',
                 'module' => 'Announcement',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3234,6 +3687,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create announcement',
                 'module' => 'Announcement',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3241,6 +3695,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit announcement',
                 'module' => 'Announcement',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3248,6 +3703,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete announcement',
                 'module' => 'Announcement',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3255,6 +3711,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage leave',
                 'module' => 'Leave',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3262,6 +3719,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'approve leave',
                 'module' => 'Leave',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3269,6 +3727,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create leave',
                 'module' => 'Leave',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3276,6 +3735,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit leave',
                 'module' => 'Leave',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3283,6 +3743,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete leave',
                 'module' => 'Leave',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3290,6 +3751,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage leave type',
                 'module' => 'Leave',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3297,6 +3759,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create leave type',
                 'module' => 'Leave',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3304,6 +3767,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit leave type',
                 'module' => 'Leave',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3311,6 +3775,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete leave type',
                 'module' => 'Leave',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3318,6 +3783,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage attendance',
                 'module' => 'Attendance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3325,6 +3791,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create attendance',
                 'module' => 'Attendance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3332,6 +3799,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit attendance',
                 'module' => 'Attendance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3339,6 +3807,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete attendance',
                 'module' => 'Attendance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3346,6 +3815,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage report',
                 'module' => 'Report',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3353,6 +3823,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage project',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3360,6 +3831,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create project',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3367,6 +3839,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view project',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3374,6 +3847,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit project',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3382,6 +3856,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete project',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3389,6 +3864,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'share project',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3396,6 +3872,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create milestone',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3403,6 +3880,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit milestone',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3410,6 +3888,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete milestone',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3417,6 +3896,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view milestone',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3424,6 +3904,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view grant chart',
                 'module' => 'Chart',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3431,6 +3912,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage project stage',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3438,6 +3920,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create project stage',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3445,6 +3928,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit project stage',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3452,6 +3936,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete project stage',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3459,6 +3944,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view timesheet',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3466,6 +3952,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view expense',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3473,6 +3960,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage project task',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3480,6 +3968,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create project task',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3487,6 +3976,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit project task',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3494,6 +3984,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view project task',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3501,6 +3992,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete project task',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3508,6 +4000,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view activity',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3515,6 +4008,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view CRM activity',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3522,6 +4016,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage project task stage',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3529,6 +4024,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit project task stage',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3536,6 +4032,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create project task stage',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3543,6 +4040,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete project task stage',
                 'module' => 'Project',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3550,6 +4048,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage timesheet',
                 'module' => 'Timesheet',
+                'category' => "Registry/HRM system",
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3557,6 +4057,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create timesheet',
                 'module' => 'Timesheet',
+                'category' => "Registry/HRM system",
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3564,13 +4066,17 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit timesheet',
                 'module' => 'Timesheet',
+                'category' => "Registry/HRM system",
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'delete timesheet',
-                'module' => 'Timeshee',
+                'module' => 'Timesheet',
+                'category' => "Registry/HRM system",
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3578,6 +4084,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage bug report',
                 'module' => 'Bug',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3585,6 +4092,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create bug report',
                 'module' => 'Bug',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3592,6 +4100,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit bug report',
                 'module' => 'Bug',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3599,6 +4108,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete bug report',
                 'module' => 'Bug',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3606,6 +4116,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'move bug report',
                 'module' => 'Bug',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3613,6 +4124,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage bug status',
                 'module' => 'Bug',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3620,6 +4132,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create bug status',
                 'module' => 'Bug',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3627,6 +4140,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit bug status',
                 'module' => 'Bug',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3634,6 +4148,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete bug status',
                 'module' => 'Bug',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3641,13 +4156,15 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage client dashboard',
                 'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'manage super admin dashboard',
+                'name' => 'manage Super Admin dashboard',
                 'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3655,6 +4172,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show account dashboard',
                 'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3662,6 +4180,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage system settings',
                 'module' => 'Settings',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3669,6 +4188,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage plan',
                 'module' => 'Plan',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3676,6 +4196,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create plan',
                 'module' => 'Plan',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3683,6 +4204,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit plan',
                 'module' => 'Plan',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3690,6 +4212,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage coupon',
                 'module' => 'Coupon',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3697,6 +4220,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create coupon',
                 'module' => 'Coupon',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3704,6 +4228,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit coupon',
                 'module' => 'Coupon',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3711,6 +4236,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete coupon',
                 'module' => 'Coupon',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3718,6 +4244,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage company plan',
                 'module' => 'Plan',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3725,6 +4252,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'buy plan',
                 'module' => 'Plan',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3732,6 +4260,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage form builder',
                 'module' => 'Form',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3739,6 +4268,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create form builder',
                 'module' => 'Form',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3746,6 +4276,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit form builder',
                 'module' => 'Form',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3753,6 +4284,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete form builder',
                 'module' => 'Form',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3760,6 +4292,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage performance type',
                 'module' => 'Performance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3767,6 +4300,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create performance type',
                 'module' => 'Performance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3774,6 +4308,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit performance type',
                 'module' => 'Performance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3781,6 +4316,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete performance type',
                 'module' => 'Performance',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3789,6 +4325,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage form field',
                 'module' => 'Form',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3796,6 +4333,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create form field',
                 'module' => 'Form',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3803,6 +4341,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit form field',
                 'module' => 'Form',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3810,6 +4349,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete form field',
                 'module' => 'Form',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3817,6 +4357,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view form response',
                 'module' => 'Form',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3824,6 +4365,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create budget plan',
                 'module' => 'Plan',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3831,6 +4373,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit budget plan',
                 'module' => 'Plan',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3838,6 +4381,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage budget plan',
                 'module' => 'Plan',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3845,6 +4389,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete budget plan',
                 'module' => 'Plan',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3852,6 +4397,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'view budget plan',
                 'module' => 'Plan',
+                'category' => "CRM/MRM SYSTEM",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3859,6 +4405,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage warehouse',
                 'module' => 'Warehouse',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3866,6 +4413,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create warehouse',
                 'module' => 'Warehouse',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3873,6 +4421,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit warehouse',
                 'module' => 'Warehouse',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3880,6 +4429,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show warehouse',
                 'module' => 'Warehouse',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3887,6 +4437,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete warehouse',
                 'module' => 'Warehouse',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3894,6 +4445,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage purchase',
                 'module' => 'Purchase',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3901,6 +4453,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create purchase',
                 'module' => 'Purchase',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3908,6 +4461,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit purchase',
                 'module' => 'Purchase',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3915,6 +4469,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show purchase',
                 'module' => 'Purchase',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3922,6 +4477,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete purchase',
                 'module' => 'Purchase',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3929,6 +4485,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'send purchase',
                 'module' => 'Purchase',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3936,6 +4493,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create payment purchase',
                 'module' => 'Purchase',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3943,6 +4501,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete payment purchase',
                 'module' => 'Purchase',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3950,6 +4509,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage pos',
                 'module' => 'POS',
+                'category' => "Store and Assets",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3957,6 +4517,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage contract type',
                 'module' => 'Contract',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3964,6 +4525,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create contract type',
                 'module' => 'Contract',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3971,6 +4533,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit contract type',
                 'module' => 'Contract',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3978,6 +4541,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete contract type',
                 'module' => 'Contract',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3985,6 +4549,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'manage contract',
                 'module' => 'Contract',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3992,6 +4557,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create contract',
                 'module' => 'Contract',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -3999,6 +4565,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit contract',
                 'module' => 'Contract',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4006,6 +4573,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete contract',
                 'module' => 'Contract',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4013,6 +4581,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show contract',
                 'module' => 'Contract',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4020,6 +4589,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create barcode',
                 'module' => 'Settings',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4027,6 +4597,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'create webhook',
                 'module' => 'Webhook',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4034,6 +4605,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'edit webhook',
                 'module' => 'Webhook',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4041,6 +4613,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'delete webhook',
                 'module' => 'Webhook',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4048,36 +4621,42 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'show profile',
                 'module' => 'Webhook',
+                'category' => "Registry/HRM system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'manage user',
                 'module' => 'Staff',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'manage role',
                 'module' => 'Role',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'manage client',
                 'module' => 'Client',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'view leave report',
                 'module' => 'Leave',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'view dta',
                 'module' => 'DTA',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4085,18 +4664,21 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'reject dta',
                 'module' => 'DTA',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'approve dta',
                 'module' => 'DTA',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'unit head approve',
                 'module' => 'DTA',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4104,18 +4686,21 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'hod approve',
                 'module' => 'DTA',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'dg approve',
                 'module' => 'DTA',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'bursar approve',
                 'module' => 'DTA',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4123,18 +4708,21 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'pv approve',
                 'module' => 'DTA',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'audit approve',
                 'module' => 'DTA',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'final account approve',
                 'module' => 'DTA',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4155,30 +4743,35 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'set budget',
                 'module' => 'Budget',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'manage budget',
                 'module' => 'Budget',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'approve budget',
                 'module' => 'Budget',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'reject budget',
                 'module' => 'Budget',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'view budget',
                 'module' => 'Budget',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4186,6 +4779,7 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'edit budget',
                 'module' => 'Budget',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4193,6 +4787,7 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'delete budget',
                 'module' => 'Budget',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4200,18 +4795,21 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'set ergp',
                 'module' => 'Budget',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'manage ergp',
                 'module' => 'Budget',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'view ergp',
                 'module' => 'Budget',
+                'category' => "Registry's/Finance system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4220,72 +4818,84 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'manage contract',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'view contract',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'recommend payment',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'view contract value',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'comment on contract',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'view payment history',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'print voucher',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'approve payment',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'bursar approval',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'raise contract voucher',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'audit approval',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'make payment',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4293,6 +4903,7 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'view recommended payment',
                 'module' => 'Contract Payment',
+                'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4301,12 +4912,14 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'manage requisition',
                 'module' => 'Requsition',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'approve as hod',
                 'module' => 'Requsition',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4319,36 +4932,42 @@ class UsersTableSeeder extends Seeder
             ],
             [   'name' => 'approve as bursar',
                 'module' => 'Requsition',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'approve as dg',
                 'module' => 'Requsition',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'approve as pv',
                 'module' => 'Requsition',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'approve as audit',
                 'module' => 'Requsition',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'approve as cash office',
                 'module' => 'Requsition',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'final account view',
                 'module' => 'Requsition',
+                'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4356,30 +4975,35 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'show bursary menu',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'show reports',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'show banking',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'show voucher',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'show purchases',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4387,36 +5011,42 @@ class UsersTableSeeder extends Seeder
 
             [   'name' => 'show double entry',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'show budget planner',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'show financial goal',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'show accounting setup',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'show print setup',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'show account overview',
                 'module' => 'Navigations',
+                'category' => "Super Admin/ICT permissions",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -4430,7 +5060,7 @@ class UsersTableSeeder extends Seeder
         // Super Admin
         $companyRole = Role::create(
             [
-                'name' => 'super admin',
+                'name' => 'Super Admin',
                 'created_by' => 0,
             ]
         );
