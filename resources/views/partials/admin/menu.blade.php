@@ -1181,6 +1181,11 @@
                             <li class="dash-item {{ (Request::route()->getName() == 'store.dashboard' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('store.dashboard') }}">{{__('Supply')}}</a>
                             </li>
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.index' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.index') }}">{{__('My Item Requisition')}}</a>
+                            </li>
+
                             @can('manage purchase')
                                 <li class="dash-item {{ (Request::route()->getName() == 'req.list' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('req.list') }}">{{__('Purchase requisition')}}</a>

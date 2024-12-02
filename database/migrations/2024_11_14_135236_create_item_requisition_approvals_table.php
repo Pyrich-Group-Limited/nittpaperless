@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('item_requisition_approvals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('item_requisition_request_id');
+            $table->unsignedBigInteger('approved_by');
+            $table->string('role');
+            $table->text('comments')->nullable();
+            $table->enum('status', ['approved', 'rejected']);
             $table->timestamps();
         });
     }

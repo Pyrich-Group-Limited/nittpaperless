@@ -13,6 +13,8 @@ class UserPermissions extends Model
 
     protected $fillable = [
         'name',
+        'module',
+        'category',
         'guard_name',
         'updated_at',
         'created_at',
