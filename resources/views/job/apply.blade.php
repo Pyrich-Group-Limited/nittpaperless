@@ -40,7 +40,7 @@
     <meta property="twitter:image" content="{{$meta_image.$meta_logo}}">
 
 
-    <link rel="icon" href="{{$logo.'/'.(isset($favicon) && !empty($favicon)?$favicon:'favicon.png')}}" type="image/x-icon" />
+    <link rel="icon" href="{{  asset('assets/images/logo-dark.png') }}" type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/site.css') }}" id="stylesheet">
     @if (isset($setting['cust_darklayout']) && $setting['cust_darklayout'] == 'on')
@@ -61,21 +61,21 @@
         <nav class="navbar">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="{{ $logo . '/' . (isset($company_logos) && !empty($company_logos) ? $company_logos : 'logo-light.png') }}" alt="logo" style="width: 90px">
+                    <img src="{{  asset('assets/images/logo-dark.png') }}" alt="logo" style="width: 90px">
 
                 </a>
             </div>
         </nav>
         <section class="job-banner">
             <div class="job-banner-bg">
-                <img src="{{asset('/storage/uploads/job/banner.png')}}" alt="">
+                <img src="{{  asset('assets/images/slider/img-slide-4.jpg') }}" alt="">
             </div>
             <div class="container">
                 <div class="job-banner-content text-center text-white">
                     <h1 class="text-white mb-3">
-                        {{__(' We help')}} <br> {{__('businesses grow')}}
+                        {{__(' We help')}} <br> {{__('grow careers')}}
                     </h1>
-                    <p>{{ __('Work there. Find the dream job you’ve always wanted..') }}</p>
+                    <p>{{ __('Join Us. Find the dream job you’ve always wanted..') }}</p>
                     </p>
                 </div>
             </div>

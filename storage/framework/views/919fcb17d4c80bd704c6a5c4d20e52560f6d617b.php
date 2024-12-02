@@ -3,7 +3,7 @@
 $profile=\App\Models\Utility::get_file('uploads/avatar');
 ?>
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Files')); ?>
+    <?php echo e(__('Documents')); ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('script-page'); ?>
@@ -11,7 +11,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 <?php $__env->stopPush(); ?>
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
-    <li class="breadcrumb-item"><?php echo e(__('Files')); ?></li>
+    <li class="breadcrumb-item"><?php echo e(__('Documents')); ?></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('action-btn'); ?>
@@ -153,7 +153,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
                             no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
                             alt="No results found" >
-                            <p class="mt-2 text-danger">No files in this folder!</p>
+                            <p class="mt-2 text-danger">No Documents in this folder!</p>
                         </div>
                     <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

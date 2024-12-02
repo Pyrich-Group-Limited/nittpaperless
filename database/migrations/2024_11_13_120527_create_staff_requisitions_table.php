@@ -22,6 +22,11 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
 
+            $table->unsignedBigInteger('unit_id')->nullable();
+            $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
+
+            $table->string('location')->nullable();
+
             $table->unsignedBigInteger('account_id')->nullable();
             $table->foreign('account_id')->references('id')->on('chart_of_accounts')->onDelete('cascade');
 
@@ -31,7 +36,8 @@ return new class extends Migration
             $table->string('supporting_document')->nullable();
             $table->string('payment_evidence')->nullable();
             $table->enum('status', ['hod_approved', 'bursar_approved','waiting_dg_approval','dg_approved',
-            'pv_approved','audit_approved','cash_office_approved','pending'])->default('pending');
+            'pv_approved','audit_approved','cash_office_approved','pending','liaison_head_approval',
+            'liaison_head_approved'])->default('pending');
             $table->timestamps();
         });
     }

@@ -53,7 +53,7 @@
 
                                                 </td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <th>{{__('Date of Request')}}</th>
                                                 <td>{{ $selDta->created_at->format('d-M-Y') }}</td>
@@ -128,11 +128,13 @@
                             <div class="modal-footer">
                                 <div wire:loading wire:target="unitHeadApproveDta"><x-g-loader /></div>
                                 <div wire:loading wire:target="hodApproveDta"><x-g-loader /></div>
+                                <div wire:loading wire:target="liasonHeadApproveDta"><x-g-loader /></div>
                                 <div wire:loading wire:target="dgApproveDta"><x-g-loader /></div>
                                 <div wire:loading wire:target="bursarApproveDta"><x-g-loader /></div>
                                 <div wire:loading wire:target="pvApproveDta"><x-g-loader /></div>
                                 <div wire:loading wire:target="auditApproveDta"><x-g-loader /></div>
                                 <div wire:loading wire:target="cashOfficeApproveDta"><x-g-loader /></div>
+
 
                                 <input type="button" id="closeRequisitionDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
@@ -148,32 +150,38 @@
                                         @endif
                                     @endcan
 
+                                    @can('liaison approve')
+                                        @if ($selDta->status=='liaison_head_approval')
+                                            <input type="button" wire:click="liasonHeadApproveDta({{ $selDta->id }})" value="{{ __('Approve as Liason Head') }}" class="btn  btn-primary btn-sm">
+                                        @endif
+                                    @endcan
+
                                     @can('dg approve')
-                                        @if ($selDta->status=='hod_approved')
+                                        @if ($selDta->status=='hod_approved' || $selDta->status=='liaison_head_approved')
                                             <input type="button"  wire:click="dgApproveDta('{{ $selDta->id }}')" value="{{ __('Approve as DG') }}" class="btn  btn-primary btn-sm ">
                                         @endif
-                                    @endcan 
+                                    @endcan
 
                                     @can('bursar approve')
                                         @if ($selDta->status=='dg_approved')
                                             <input type="button" wire:click="bursarApproveDta('{{ $selDta->id }}')" value="{{ __('Approve as Bursar') }}" class="btn  btn-primary btn-sm ">
                                         @endif
-                                    @endcan 
+                                    @endcan
                                     @can('pv approve')
                                         @if ($selDta->status=='bursar_approved')
                                             <input type="button" wire:click="pvApproveDta('{{ $selDta->id }}')" value="{{ __('Approve as PV') }}" class="btn  btn-primary btn-sm ">
                                         @endif
-                                    @endcan 
+                                    @endcan
                                     @can('audit approve')
                                         @if ($selDta->status=='pv_approved')
                                             <input type="button" wire:click="auditApproveDta('{{ $selDta->id }}')" value="{{ __('Approve as Audit') }}" class="btn  btn-primary btn-sm ">
                                         @endif
-                                    @endcan 
+                                    @endcan
                                     @can('final account approve')
                                         @if ($selDta->status=='audit_approved')
                                             <input type="button" wire:click="cashOfficeApproveDta('{{ $selDta->id }}')" value="{{ __('Pay') }}" class="btn  btn-primary btn-md ">
                                         @endif
-                                    @endcan      
+                                    @endcan
                             </div>
                         @else
                             <label align="center" class="mb-4" style="color: red">Loading...</label>

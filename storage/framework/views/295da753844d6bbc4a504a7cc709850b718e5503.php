@@ -65,7 +65,7 @@
 
                         <a href="<?php echo e(route('file.index')); ?>" class="dropdown-item">
                             <i class="ti ti-files"></i>
-                            <span><?php echo e(__('My files')); ?></span>
+                            <span><?php echo e(__('My Documents')); ?></span>
                         </a>
 
                         <a href="<?php echo e(route('dta.index')); ?>" class="dropdown-item">

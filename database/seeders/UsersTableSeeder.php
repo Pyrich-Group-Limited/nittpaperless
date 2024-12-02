@@ -4082,7 +4082,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-            
+
             [   'name' => 'reject dta',
                 'module' => 'DTA',
                 'guard_name' => 'web',
@@ -4101,7 +4101,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-            
+
             [   'name' => 'hod approve',
                 'module' => 'DTA',
                 'guard_name' => 'web',
@@ -4120,7 +4120,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-            
+
             [   'name' => 'pv approve',
                 'module' => 'DTA',
                 'guard_name' => 'web',
@@ -4134,6 +4134,19 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'final account approve',
+                'module' => 'DTA',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [   'name' => 'report view',
+                'module' => 'DTA',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            ['name' => 'liaison approve',
                 'module' => 'DTA',
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -4298,6 +4311,12 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [   'name' => 'approve as liaison head',
+                'module' => 'Requsition',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
             [   'name' => 'approve as bursar',
                 'module' => 'Requsition',
                 'guard_name' => 'web',
@@ -4418,6 +4437,9 @@ class UsersTableSeeder extends Seeder
 
         $companyPermissions = [
             // DTA permissions
+
+            ['name' => 'report view'],
+            ['name' => 'liaison approve'],
             ['name' => 'unit head approve'],
             ['name' => 'hod approve'],
             ['name' => 'dg approve'],
@@ -4445,6 +4467,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show profit and loss'],
             ['name' => 'show trial balance'],
 
+            ['name' => 'approve as liaison head'],
             ['name' => 'manage requisition'],
             ['name' => 'manage contract'],
             ['name' => 'view contract'],
@@ -5087,8 +5110,10 @@ class UsersTableSeeder extends Seeder
 
         $user = User::create(
             [
-                'name' => 'User',
+                'name' => 'Test User',
                 'email' => 'user@nitt.com',
+                'location_type' => 'Department',
+                'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
                 'designation' => Designation::first()->name,
                 'department_id' => Department::first()->id,
@@ -5156,6 +5181,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Supervisor',
                 'email' => 'supervisor@nitt.com',
+                'location_type' => 'Department',
+                'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
                 'type' => 'supervisor',
                 'default_pipeline' => 1,
@@ -5244,6 +5271,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Emmanuel Thompson',
                 'email' => 'hod@nitt.com',
+                'location_type' => 'Department',
+                'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
                 'type' => 'hod',
                 'default_pipeline' => 1,
@@ -5330,7 +5359,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show unithead dashboard'],
         ];
 
-       
+
 
         $unitHeadRole = Role::create(
             [
@@ -5345,6 +5374,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Unit Head',
                 'email' => 'unit@nitt.com',
+                'location_type' => 'Department',
+                'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
                 'type' => 'unit head',
                 'default_pipeline' => 1,
@@ -5385,6 +5416,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Store / Assets',
                 'email' => 'store@nitt.com',
+                'location_type' => 'Department',
+                'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
                 'type' => 'store keeper',
                 'default_pipeline' => 1,
@@ -5557,6 +5590,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Accountant/ Bursar',
                 'email' => 'accountant@nitt.com',
+                'location_type' => 'Department',
+                'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
                 'type' => 'accountant',
                 'default_pipeline' => 1,
@@ -5636,6 +5671,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'HRM/Registra',
                 'email' => 'hrm@nitt.com',
+                'location_type' => 'Department',
+                'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
                 'type' => 'client',
                 'default_pipeline' => 1,

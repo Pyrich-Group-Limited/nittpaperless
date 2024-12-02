@@ -38,7 +38,7 @@
                             ><span class="dash-mtext"><?php echo e(__('Dashboard')); ?></span
                             ></a>
                     </li>
-                    
+
                     <li class="dash-item dash-hasmenu ">
                         <a href="<?php echo e(route('budget.pending')); ?>" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
                         ><span class="dash-micon"><i class="ti ti-cash"></i></span
@@ -60,7 +60,7 @@
                                 ></a>
                         </li>
                     
-                    
+
                     <li class="dash-item dash-hasmenu  ">
                         <a href="#!" class="dash-link <?php echo e((Request::segment(1) == 'business')?'active':''); ?>"
                         ><span class="dash-micon"><i class="ti ti-cash"></i></span
@@ -99,7 +99,7 @@
                                     <a class="dash-link" href="<?php echo e(route('dg.requisitions')); ?>"><?php echo e(__('DG Approval')); ?></a>
                                 </li>
                             <?php endif; ?>
-                            
+
                         </ul>
                     </li>
 
@@ -116,7 +116,7 @@
                             ></a>
                     </li>
 
-                    
+
 
                 </ul>
             <?php else: ?>
@@ -387,6 +387,11 @@
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as hod')): ?>
                                 <li class="dash-item <?php echo e(request()->is('hod.requisitions') ? 'active' : ''); ?>">
                                     <a class="dash-link" href="<?php echo e(route('hod.requisitions')); ?>"><?php echo e(__('HoD Approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as liaison head')): ?>
+                                <li class="dash-item <?php echo e(request()->is('liaison.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('liaison.requisitions')); ?>"><?php echo e(__('LiaisonHead Approval')); ?></a>
                                 </li>
                             <?php endif; ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as dg')): ?>
@@ -818,19 +823,19 @@
                                     <a class="dash-link" href="<?php echo e(route('memos.index')); ?>"><?php echo e(__('Memo/Letters')); ?></a>
                                 </li>
                                 <li class="dash-item dash-hasmenu  <?php echo e((Request::segment(1) == 'leave' || Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' :''); ?>">
-                                    <a class="dash-link" href="#"><?php echo e(__('Files')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                    <a class="dash-link" href="#"><?php echo e(__('Files/Documents')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                     <ul class="dash-submenu">
                                         <li class="dash-item">
-                                            <a class="dash-link" href="<?php echo e(route('folders.index')); ?>"><?php echo e(__('File Folders')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('folders.index')); ?>"><?php echo e(__('Document Folders')); ?></a>
                                         </li>
                                         <li class="dash-item">
-                                            <a class="dash-link" href="<?php echo e(route('file.index')); ?>"><?php echo e(__('Files')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('file.index')); ?>"><?php echo e(__('Documents')); ?></a>
                                         </li>
                                         <li class="dash-item ">
                                             <a class="dash-link" href=<?php echo e(route('sharedfiles.index')); ?>><?php echo e(__('Shared')); ?></a>
                                         </li>
                                         <li class="dash-item">
-                                            <a class="dash-link" href="<?php echo e(route('files.newFile')); ?>"><?php echo e(__('New Files')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('files.newFile')); ?>"><?php echo e(__('New Documents')); ?></a>
                                         </li>
                                         <li class="dash-item ">
                                             <a class="dash-link" href="<?php echo e(route('files.thisMonth')); ?>"><?php echo e(__('This Month')); ?></a>
@@ -985,19 +990,25 @@
                                         <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?> ">
                                             <a class="dash-link" href="<?php echo e(route('dta.index')); ?>"><?php echo e(__('DTA')); ?></a>
                                         </li>
-                                        <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?>">
-                                            <a class="dash-link" href="<?php echo e(route('reports.dta')); ?>"><?php echo e(__('DTA Report')); ?></a>
-                                        </li>
-                                        
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('report view')): ?>
+                                            <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?>">
+                                                <a class="dash-link" href="<?php echo e(route('reports.dta')); ?>"><?php echo e(__('DTA Report')); ?></a>
+                                            </li>
+                                        <?php endif; ?>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('unit head approve')): ?>
                                             <li class="dash-item <?php echo e(request()->is('dtaApproval.unit-head') ? 'active' : ''); ?>">
                                                 <a class="dash-link" href="<?php echo e(route('dtaApproval.unit-head')); ?>"><?php echo e(__('Unit Head Approval')); ?></a>
                                             </li>
                                         <?php endif; ?>
-
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('hod approve')): ?>
                                             <li class="dash-item <?php echo e(request()->is('dtaApproval.hod') ? 'active' : ''); ?>">
                                                 <a class="dash-link" href="<?php echo e(route('dtaApproval.hod')); ?>"><?php echo e(__('HOD Approval')); ?></a>
+                                            </li>
+                                        <?php endif; ?>
+
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('liaison approve')): ?>
+                                            <li class="dash-item <?php echo e(request()->is('dtaApproval.liason') ? 'active' : ''); ?>">
+                                                <a class="dash-link" href="<?php echo e(route('dtaApproval.liason')); ?>"><?php echo e(__('Liason Head Approval')); ?></a>
                                             </li>
                                         <?php endif; ?>
 

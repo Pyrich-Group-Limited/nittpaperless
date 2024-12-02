@@ -65,7 +65,7 @@
 
                         <a href="{{route('file.index')}}" class="dropdown-item">
                             <i class="ti ti-files"></i>
-                            <span>{{__('My files')}}</span>
+                            <span>{{__('My Documents')}}</span>
                         </a>
 
                         <a href="{{route('dta.index')}}" class="dropdown-item">

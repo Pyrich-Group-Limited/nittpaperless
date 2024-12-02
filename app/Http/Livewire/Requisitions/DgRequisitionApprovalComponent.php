@@ -21,14 +21,12 @@ class DgRequisitionApprovalComponent extends Component
     {
         $user = auth()->user();
 
-        // Pending DG Approval: Status is 'hod_approved' and not yet approved by the DG
-            $this->requisitions = StaffRequisition::where('status', 'hod_approved')
+            $this->requisitions = StaffRequisition::where('status', 'hod_approved')->orWhere('status','liaison_head_approved')
             ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
                 $query->where('approver_id', $user->id)
                     ->where('role', $user->type);
             })->orderBy('created_at', 'desc')->get();
             
-        // Approved by DG: Check if DG has already approved
         $this->dgApprovedrequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)

@@ -4,14 +4,14 @@
 $profile=\App\Models\Utility::get_file('uploads/avatar');
 @endphp
 @section('page-title')
-    {{__('Archived Files')}}
+    {{__('Archived Documents')}}
 @endsection
 @push('script-page')
 
 @endpush
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Archived Files')}}</li>
+    <li class="breadcrumb-item">{{__('Archived Documents')}}</li>
 @endsection
 
 @section('content')
@@ -122,7 +122,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
                     no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
                     alt="No results found" >
-                    <p class="mt-2 text-danger">No archived files found!</p>
+                    <p class="mt-2 text-danger">No archived Documents found!</p>
                 </div>
                 @endif
             </div>
