@@ -1072,6 +1072,11 @@
                             <li class="dash-item <?php echo e((Request::route()->getName() == 'store.dashboard' || Request::route()->getName() == 'warehouse.show') ? ' active' : ''); ?>">
                                 <a class="dash-link" href="<?php echo e(route('store.dashboard')); ?>"><?php echo e(__('Supply')); ?></a>
                             </li>
+
+                            <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.index' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
+                                <a class="dash-link" href="<?php echo e(route('itemRequisition.index')); ?>"><?php echo e(__('My Item Requisition')); ?></a>
+                            </li>
+
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage purchase')): ?>
                                 <li class="dash-item <?php echo e((Request::route()->getName() == 'req.list' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
                                     <a class="dash-link" href="<?php echo e(route('req.list')); ?>"><?php echo e(__('Purchase requisition')); ?></a>

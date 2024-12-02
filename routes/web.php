@@ -231,9 +231,15 @@ use App\Http\Livewire\Requisitions\AuditRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\CashOfficeRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\RequisitionVoucherComponent;
 
+use App\Http\Livewire\ItemRequisitions\CreateItemRequisition;
+use App\Http\Livewire\ItemRequisitions\ItemRequisitionHodApproval;
+use App\Http\Livewire\ItemRequisitions\ItemRequisitionBursarApproval;
+use App\Http\Livewire\ItemRequisitions\ItemRequisitionStoreUnitApproval;
+use App\Http\Livewire\ItemRequisitions\ItemRequisitionStaffAcknowledgment;
+
 use App\Http\Controllers\JobsAvailableController;
 
-//advert components
+//advert components 
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 use Illuminate\Support\Facades\Storage;
 
@@ -1357,6 +1363,14 @@ Route::middleware(['XSS', 'revalidate'])->prefix('requisitions')->group(function
      Route::get('/cash-office-approvals', CashOfficeRequisitionApprovalComponent::class)->name('cash-office.requisitions');
     Route::get('/requisition/{id}/voucher', RequisitionVoucherComponent::class)->name('requisition.voucher');
 
+});
+
+Route::middleware(['XSS', 'revalidate'])->prefix('item-requisitions')->group(function () {
+    Route::get('/my-requests', CreateItemRequisition::class)->name('itemRequisition.index');
+    Route::get('/hod-approval', ItemRequisitionHodApproval::class)->name('itemRequisition.hodApproval');
+    Route::get('/bursar-approval', ItemRequisitionBursarApproval::class)->name('itemRequisition.bursarApproval');
+    Route::get('/store-approval', ItemRequisitionStoreUnitApproval::class)->name('itemRequisition.storeApproval');
+    Route::get('/acknowledgment', ItemRequisitionStaffAcknowledgment::class)->name('itemRequisition.acknowledgment');
 });
 
 

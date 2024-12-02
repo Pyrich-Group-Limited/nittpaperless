@@ -9,6 +9,11 @@ class ItemRequisitionList extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'item_requisition_request_id', 'item_name', 'description','quantity_requested','quantity_available',
+        'status','acknowledged',
+    ];
+
     public function itemRequest()
     {
         return $this->belongsTo(ItemRequisitionRequest::class);
