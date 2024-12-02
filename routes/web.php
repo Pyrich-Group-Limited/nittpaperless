@@ -157,6 +157,7 @@ use App\Http\Livewire\Guest\ContractorRegisterComponent;
 use App\Http\Livewire\Dta\DtaComponent;
 use App\Http\Livewire\Dta\UnitHeadDtaComponent;
 use App\Http\Livewire\Dta\HodDtaComponent;
+use App\Http\Livewire\Dta\LiasonOfficeHeadDtaComponent;
 use App\Http\Livewire\Dta\DgDtaComponent;
 use App\Http\Livewire\Dta\BursarDtaComponent;
 use App\Http\Livewire\Dta\PaymentVoucherDtaComponent;
@@ -164,7 +165,7 @@ use App\Http\Livewire\Dta\AuditDtaComponent;
 use App\Http\Livewire\Dta\DtaVoucherComponent;
 use App\Http\Livewire\Dta\CashOfficeDtaComponent;
 
-//livewire component for user 
+//livewire component for user
 use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Users\UserPermission;
 
@@ -179,10 +180,10 @@ use App\Http\Livewire\Projects\SharedProjectDetailsComponent;
 
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
-use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials; 
+use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectDetials;
 use App\Http\Livewire\PhysicalPlanning\ErgpComponent;
 
-//Leaves routes 
+//Leaves routes
 use App\Http\Livewire\Leave\LeavesComponent;
 use App\Http\Livewire\Leave\PendingLeavesComponent;
 use App\Http\Livewire\Leave\AllLeaveRequestsComponent;
@@ -222,6 +223,7 @@ use App\Http\Livewire\Contracts\PaymentVoucher;
 use App\Http\Livewire\Requisitions\RaiseRequisitionComponent;
 use App\Http\Livewire\Requisitions\AllRaisedRequisitionsComponent;
 use App\Http\Livewire\Requisitions\HodRequisitionsComponent;
+use App\Http\Livewire\Requisitions\LiaisonHeadApprovalComponent;
 use App\Http\Livewire\Requisitions\DgRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\BursarRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\PvRequisitionApprovalComponent;
@@ -231,7 +233,7 @@ use App\Http\Livewire\Requisitions\RequisitionVoucherComponent;
 
 use App\Http\Controllers\JobsAvailableController;
 
-//advert components 
+//advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 use Illuminate\Support\Facades\Storage;
 
@@ -558,6 +560,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('dtas')->group(function () {
     Route::get('/my-dta-requests',DtaComponent::class)->name('dta.index');
     Route::get('/unit-head-approvals',UnitHeadDtaComponent::class)->name('dtaApproval.unit-head');
     Route::get('/hod-approvals',HodDtaComponent::class)->name('dtaApproval.hod');
+    Route::get('/liason-head-approvals',LiasonOfficeHeadDtaComponent::class)->name('dtaApproval.liason');
     Route::get('/dg-approvals',DgDtaComponent::class)->name('dtaApproval.dg');
     Route::get('/bursar-approvals',BursarDtaComponent::class)->name('dtaApproval.bursar');
     Route::get('/payment-voucher-approvals',PaymentVoucherDtaComponent::class)->name('dtaApproval.pv');
@@ -1319,7 +1322,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('leaves')->group(function () {
 
     // Route::get('/approvals', [LeaveApprovalContoller::class, 'index'])->name('approvals.index');
     // Route::post('/approvals/{id}', [LeaveApprovalContoller::class, 'update'])->name('approvals.update');
-    
+
     Route::get('/leave-requests', LeavesComponent::class)->name('hrm.leave');
     Route::get('/leave-approvals', PendingLeavesComponent::class)->name('approvals.index');
     Route::get('/general-leave-requests', AllLeaveRequestsComponent::class)->name('leave.index');
@@ -1346,6 +1349,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('requisitions')->group(function
      Route::get('/raise-requisition', RaiseRequisitionComponent::class)->name('requisition.raise');
      Route::get('/manage-requisition', AllRaisedRequisitionsComponent::class)->name('manage.requisitions');
      Route::get('/hod-approvals', HodRequisitionsComponent::class)->name('hod.requisitions');
+     Route::get('/liaison-head-approvals', LiaisonHeadApprovalComponent::class)->name('liaison.requisitions');
      Route::get('/dg-approvals', DgRequisitionApprovalComponent::class)->name('dg.requisitions');
      Route::get('/bursar-approvals', BursarRequisitionApprovalComponent::class)->name('bursar.requisitions');
      Route::get('/pv-approvals', PvRequisitionApprovalComponent::class)->name('pv.requisitions');

@@ -125,6 +125,11 @@ class User extends Authenticatable
         return $this->hasMany(ProjectComment::class, 'user_id');
     }
 
+    public function getIsInLiaisonOfficeAttribute()
+    {
+        return $this->unit_id === null;
+    }
+
 
     protected $hidden = [
         'password',
