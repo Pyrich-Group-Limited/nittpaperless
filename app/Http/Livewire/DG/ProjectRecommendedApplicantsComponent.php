@@ -113,9 +113,24 @@ class ProjectRecommendedApplicantsComponent extends Component
         }
     }
 
+    public function downloadFile($document)
+    {
+        foreach ($this->selApplicant->documents  as $applicationDocument){
+
+        }
+            $filePath = public_path('assets/documents/documents/' . $applicationDocument->document);
+            
+            if (file_exists($filePath)) {
+                return response()->download($filePath, $applicationDocument->document);
+            } else {
+                $this->dispatchBrowserEvent('error',["error" =>"Document not found!."]);
+            }
+        
+    }
+
     public function render()
     {
-        $users = User::where('type','!=','contractor')->get();
+        $users = User::where('type','hod')->get();
         $projectApplicants = ProjectApplication::where('project_id',$this->project_id)
         ->where('application_status','on_review')->get();
         return view('livewire.d-g.project-recommended-applicants-component',compact('projectApplicants','users'));

@@ -41,6 +41,22 @@ class DocumentsComponent extends Component
 
         $this->dispatchBrowserEvent('success',['success' => 'Document Successfully Uploaded']);
     }
+
+    public function downloadFile($document)
+    {
+        // foreach ($this->selApplicant->documents  as $applicationDocument){
+
+        // }
+            $filePath = public_path('assets/documents/documents/' . $document);
+            
+            if (file_exists($filePath)) {
+                return response()->download($filePath, $document);
+            } else {
+                $this->dispatchBrowserEvent('error',["error" =>"Document not found!."]);
+            }
+        
+    }
+
     public function render()
     {
         $applications = ProjectApplication::where('user_id',Auth::user()->id)->get();

@@ -1077,6 +1077,22 @@
                                 <a class="dash-link" href="<?php echo e(route('itemRequisition.index')); ?>"><?php echo e(__('My Item Requisition')); ?></a>
                             </li>
 
+                            <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
+                                <a class="dash-link" href="<?php echo e(route('itemRequisition.hodApproval')); ?>"><?php echo e(__('HoD Item Requisition')); ?></a>
+                            </li>
+
+                            <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.bursarApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
+                                <a class="dash-link" href="<?php echo e(route('itemRequisition.bursarApproval')); ?>"><?php echo e(__('Bursar Item Requisition')); ?></a>
+                            </li>
+
+                            <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.storeApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
+                                <a class="dash-link" href="<?php echo e(route('itemRequisition.storeApproval')); ?>"><?php echo e(__('Store Approval')); ?></a>
+                            </li>
+
+                            <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.acknowledgment' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
+                                <a class="dash-link" href="<?php echo e(route('itemRequisition.acknowledgment')); ?>"><?php echo e(__('Store Issue Voucher')); ?></a>
+                            </li>
+
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage purchase')): ?>
                                 <li class="dash-item <?php echo e((Request::route()->getName() == 'req.list' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
                                     <a class="dash-link" href="<?php echo e(route('req.list')); ?>"><?php echo e(__('Purchase requisition')); ?></a>
@@ -1087,9 +1103,7 @@
                                 <a class="dash-link" href="<?php echo e(route('goodsReceived.list')); ?>"><?php echo e(__('Goods Recieved Notes')); ?></a>
                             </li>
 
-                            <li class="dash-item <?php echo e((Request::route()->getName() == 'storeVoucher.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : ''); ?>">
-                                <a class="dash-link" href="<?php echo e(route('storeVoucher.list')); ?>"><?php echo e(__('Store Issue Voucher')); ?></a>
-                            </li>
+                            
                         </ul>
                     </li>
                     <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'procurement')?'active':''); ?>">

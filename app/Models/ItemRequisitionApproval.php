@@ -15,6 +15,11 @@ class ItemRequisitionApproval extends Model
 
     public function itemRequest()
     {
-        return $this->belongsTo(ItemRequisitionRequest::class);
+        return $this->belongsTo(ItemRequisitionRequest::class,'item_requisition_request_id');
+    }
+
+    public function approver()
+    {
+        return $this->belongsTo(User::class, 'approved_by');
     }
 }

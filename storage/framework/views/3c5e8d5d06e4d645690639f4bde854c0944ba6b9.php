@@ -25,11 +25,7 @@
             
 
 
-        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create project')): ?>
-            <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newProject" id="toggleOldProject"  data-bs-toggle="tooltip" title="<?php echo e(__('Create New Project')); ?>"  class="btn btn-sm btn-primary">
-                <i class="ti ti-plus"></i>
-            </a>
-        <?php endif; ?>
+        
     </div>
 <?php $__env->stopSection(); ?>
 

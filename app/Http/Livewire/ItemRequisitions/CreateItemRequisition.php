@@ -11,12 +11,14 @@ use Illuminate\Support\Facades\Auth;
 class CreateItemRequisition extends Component
 {
     public $items = [];
-    public $comments; // Additional comments for the requisition
+    public $comments;
 
-    // Temporary fields for item input
     public $item_name;
     public $item_description;
     public $item_quantity;
+
+    public $selRequisitionItem;
+    public $actionId;
 
     // protected $rules = [
     //     'items.*.name' => 'required|string',
@@ -29,14 +31,13 @@ class CreateItemRequisition extends Component
         $this->items = [
             ['item_name'=> '','item_description' => '', 'item_quantity' => null ]
         ];
-        $this->itemRequisitions = ItemRequisitionRequest::where('user_id',Auth::user()->id)->get();
+        $this->itemRequisitions = ItemRequisitionRequest::where('user_id',Auth::user()->id)
+        ->orderBy('created_at','desc')->get();
     }
 
-    // public function addItems()
-    // {
-    //     $this->items[] = ['item_name'=> '','item_description' => '', 'item_quantity' => null ];
-    // }
-
+    public function setRequisitionItem(ItemRequisitionRequest $requisition){
+        $this->selRequisitionItem = $requisition;
+    }
 
     public function addItem()
     {
@@ -82,6 +83,8 @@ class CreateItemRequisition extends Component
 
         $this->reset(['items']);
         $this->dispatchBrowserEvent('success', ['success' => 'Requisition created successfully.']);
+
+        $this->mount();
     }
 
     public function render()

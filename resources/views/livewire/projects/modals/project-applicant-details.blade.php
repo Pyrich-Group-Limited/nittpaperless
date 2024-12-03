@@ -86,7 +86,8 @@
                                                             <td>{{ $applicationDocument->document_name }}</td>
                                                             <td class="text-end">
                                                                 <a href="{{ asset('assets/documents/documents') }}/{{$applicationDocument->document}}" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
-                                                                <a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download" download></i></a>
+                                                                <a href="#" wire:click="downloadFile('{{ $applicationDocument->document }}')" class="btn btn-primary btn-sm"><i class="ti ti-download"></i></a>
+                                                                {{-- <a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download" download></i></a> --}}
                                                             </td>
                                                         </tr>
                                                     @endforeach

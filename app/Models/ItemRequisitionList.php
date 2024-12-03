@@ -16,7 +16,7 @@ class ItemRequisitionList extends Model
 
     public function itemRequest()
     {
-        return $this->belongsTo(ItemRequisitionRequest::class);
+        return $this->belongsTo(ItemRequisitionRequest::class,'item_requisition_request_id');
     }
 
 }

@@ -24,11 +24,11 @@
             {{------------ End Status Filter ----------------}}
 
 
-        @can('create project')
+        {{-- @can('create project')
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newProject" id="toggleOldProject"  data-bs-toggle="tooltip" title="{{__('Create New Project')}}"  class="btn btn-sm btn-primary">
                 <i class="ti ti-plus"></i>
             </a>
-        @endcan
+        @endcan --}}
     </div>
 @endsection
 

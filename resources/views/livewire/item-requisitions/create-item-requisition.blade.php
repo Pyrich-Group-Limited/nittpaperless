@@ -64,7 +64,7 @@
                                 @foreach ($itemRequisitions as $itemRequisition)
                                     <tr class="font-style">
                                         <td>{{ $itemRequisition->staff->name }}</td>
-                                        <td>{{ $itemRequisition->departments->name }}</td>
+                                        <td>{{ $itemRequisition->department->name }}</td>
                                         <td>{{ $itemRequisition->created_at }}</td>
                                         <td>
                                             <span
@@ -78,8 +78,8 @@
                                         </td>
                                         <td class="Action">
                                             <div class="action-btn bg-primary ms-2">
-                                                <a href="#" wire:click="setLeave('{{ $itemRequisition->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" 
-                                                    data-bs-target="#leaveDetailsModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Leave Applicaiton Details')}}">
+                                                <a href="#" wire:click="setRequisitionItem('{{ $itemRequisition->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" 
+                                                    data-bs-target="#viewItemRequisitionDetails" data-size="lg" data-bs-toggle="tooltip" title="{{__('Item Requisition Details')}}">
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>
@@ -95,6 +95,7 @@
         </div>
     </div>
     @include('livewire.item-requisitions.modals.create-item-requisition-modal')
+    @include('livewire.item-requisitions.modals.item-requisition-details')
     <x-toast-notification />
 </div>
 

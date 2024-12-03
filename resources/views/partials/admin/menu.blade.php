@@ -1186,6 +1186,22 @@
                                 <a class="dash-link" href="{{ route('itemRequisition.index') }}">{{__('My Item Requisition')}}</a>
                             </li>
 
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.hodApproval') }}">{{__('HoD Item Requisition')}}</a>
+                            </li>
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.bursarApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.bursarApproval') }}">{{__('Bursar Item Requisition')}}</a>
+                            </li>
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.storeApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.storeApproval') }}">{{__('Store Approval')}}</a>
+                            </li>
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.acknowledgment' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.acknowledgment') }}">{{__('Store Issue Voucher')}}</a>
+                            </li>
+
                             @can('manage purchase')
                                 <li class="dash-item {{ (Request::route()->getName() == 'req.list' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('req.list') }}">{{__('Purchase requisition')}}</a>
@@ -1196,9 +1212,9 @@
                                 <a class="dash-link" href="{{ route('goodsReceived.list') }}">{{__('Goods Recieved Notes')}}</a>
                             </li>
 
-                            <li class="dash-item {{ (Request::route()->getName() == 'storeVoucher.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
+                            {{-- <li class="dash-item {{ (Request::route()->getName() == 'storeVoucher.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('storeVoucher.list') }}">{{__('Store Issue Voucher')}}</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'procurement')?'active':''}}">
