@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('budget_items', function (Blueprint $table) {
-            $table->id();
+            $table->id(); 
             // $table->foreignId('department_budget_id')->constrained();
             $table->unsignedBigInteger('department_budget_id')->nullable();
             $table->foreign('department_budget_id')->references('id')->on('department_budgets')->onDelete('cascade');
             $table->string('description');
+            $table->string('quantity');
             $table->decimal('amount', 15, 2);
             $table->timestamps();
         });

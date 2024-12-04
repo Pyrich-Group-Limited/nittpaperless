@@ -22,6 +22,7 @@
                                             <tr>
                                                 <th>{{__('SN')}}</th>
                                                 <th>{{__('Item Description')}}</th>
+                                                <th>{{__('Quantity')}}</th>
                                                 <th>{{__('Price')}}</th>
                                             </tr>
                                             </thead>
@@ -30,10 +31,12 @@
                                                     <tr>
                                                         <td> <p>{{ $loop->iteration }}</p> </td>
                                                         <td> <p>{{ $item->description }}</p> </td>
+                                                        <td> <p>{{ $item->quantity }}</p> </td>
                                                         <td> <p>{{ number_format($item->amount,2) }}</p> </td>
                                                     </tr>
                                                 @endforeach
                                                 <tr>
+                                                    <td></td>
                                                     <td></td>
                                                     <td><h4>TOTAL</h4></td>
                                                     <td> <h4>₦ {{ number_format($selBudget->total_requested,2) }}</h4> </td>

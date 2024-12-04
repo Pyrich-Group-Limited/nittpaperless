@@ -50,6 +50,7 @@ class MemoController extends Controller
      */
     public function store(Request $request)
     {
+        dd($this);
         $data = $request->validate([
             'title' => ['required', 'string'],
             'description' => ['required','string'],
@@ -73,7 +74,6 @@ class MemoController extends Controller
             'file_path' => $filePath,
         ]);
 
-        // return redirect()->route('memos.index')->with('success', 'Memo created successfully.');
         return redirect()->back()->with('success', 'Memo created successfully.');
     }
 

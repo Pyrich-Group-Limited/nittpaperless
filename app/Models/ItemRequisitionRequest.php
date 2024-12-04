@@ -18,19 +18,19 @@ class ItemRequisitionRequest extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function departments()
+    public function department()
     {
-        return $this->belongsTo(Department::class,'department_id');
+        return $this->belongsTo(Department::class);
     }
 
     public function items()
     {
-        return $this->hasMany(ItemRequisitionList::class);
+        return $this->hasMany(ItemRequisitionList::class,'item_requisition_request_id');
     }
 
-    public function approval()
+    public function approvals()
     {
-        return $this->hasOne(ItemRequisitionApproval::class);
+        return $this->hasMany(ItemRequisitionApproval::class, 'item_requisition_request_id');
     }
 
 }

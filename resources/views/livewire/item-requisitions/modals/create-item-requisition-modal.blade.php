@@ -5,14 +5,18 @@
                 <div class="modal-body">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Item Requisition Module
-                        </h5>
+                        <h2 class="modal-title">STORE REQUISITION NOTE</h2>
+                        {{-- <h5 class="modal-title">Item Requisition Module
+                        </h5> --}}
                     </div>
                     <div class="modal-body">
                         <div class="row">
                                 @foreach ($items as $index => $item)
                                     <div class="row mb-2">
                                         <div class="col-md-3">
+                                            @if($loop->first)
+                                                <label for="" class="text-primary"><b>Item Name</b></label>
+                                            @endif
                                             <input type="text" wire:model="items.{{ $index }}.name"  class="form-control" placeholder="Item Name" required>
                                             @error("items.{$index}.name")
                                             <small class="invalid-name" role="alert">
@@ -21,6 +25,9 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-6">
+                                            @if($loop->first)
+                                                <label for="" class="text-primary"><b>Item Description</b></label>
+                                            @endif
                                             <input type="text" wire:model="items.{{ $index }}.description"  class="form-control" placeholder="Item Description (optional)">
                                             @error("items.{$index}.description")
                                             <small class="invalid-name" role="alert">
@@ -29,6 +36,9 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-2">
+                                            @if($loop->first)
+                                                <label for="" class="text-primary"><b>Item Quantity</b></label>
+                                            @endif
                                             <input type="number" wire:model="items.{{ $index }}.quantity" min="1" class="form-control" placeholder="Qty" required>
                                             @error("items.{$index}.quantity")
                                             <small class="invalid-name" role="alert">
@@ -55,8 +65,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <div wire:loading wire:target="createItemRequisition"><x-g-loader /></div>
                         <input type="button" id="closeItemRequisitionModal" value="{{ __('Cancel') }}"
                             class="btn  btn-light" data-bs-dismiss="modal">
+                            
                         <input type="button" wire:click="createItemRequisition" value="{{ __('Submit Request') }}"
                             class="btn  btn-primary">
                     </div>

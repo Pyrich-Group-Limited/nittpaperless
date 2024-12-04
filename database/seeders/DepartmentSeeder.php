@@ -18,7 +18,7 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         $department = Department::create([
-            'name' => "Bursry Department",
+            'name' => "Bursary Department",
             'category' => "department",
         ]);
 
@@ -49,7 +49,7 @@ class DepartmentSeeder extends Seeder
 
             Unit::create([
                 'department_id' => $department->id,
-                'name' => "Loan and Adances"
+                'name' => "Loan and Advances"
             ]);
 
             Unit::create([
@@ -65,12 +65,12 @@ class DepartmentSeeder extends Seeder
 
             Unit::create([
                 'department_id' => $department->id,
-                'name' => "Peronel Unit"
+                'name' => "Personel Unit"
             ]);
 
             Unit::create([
                 'department_id' => $department->id,
-                'name' => "Accademic Unit"
+                'name' => "Academic Unit"
             ]);
 
             Unit::create([
@@ -90,7 +90,7 @@ class DepartmentSeeder extends Seeder
 
             Unit::create([
                 'department_id' => $department->id,
-                'name' => "Prepayment Aunit Unit"
+                'name' => "Prepayment Audit Unit"
             ]);
             Unit::create([
                 'department_id' => $department->id,
@@ -99,7 +99,7 @@ class DepartmentSeeder extends Seeder
 
             Unit::create([
                 'department_id' => $department->id,
-                'name' => "Store and Inpection Unit"
+                'name' => "Store and Inspection Unit"
             ]);
 
             Unit::create([
@@ -119,7 +119,7 @@ class DepartmentSeeder extends Seeder
 
             Unit::create([
                 'department_id' => $department->id,
-                'name' => "Internet and Intranet Infastructure Unit"
+                'name' => "Internet and Intranet Infrastructure Unit"
             ]);
 
             Unit::create([
@@ -143,7 +143,7 @@ class DepartmentSeeder extends Seeder
             ]);
 
         $department = Department::create([
-            'name' => "Transport, Research and Inteligence",
+            'name' => "Transport, Research and Intelligence",
             'category' => "department",
         ]);
 
@@ -209,7 +209,7 @@ class DepartmentSeeder extends Seeder
 
                 Subunit::create([
                     'unit_id' => $unit->id,
-                    'name' => "Postgraduate Diploma in Transport &Logistics PGDTL"
+                    'name' => "Postgraduate Diploma in Transport & Logistics PGDTL"
                 ]);
 
             Unit::create([
