@@ -10,7 +10,7 @@ class BudgetItem extends Model
     use HasFactory;
 
     protected $fillable = [
-        'department_budget_id', 'description', 'amount'
+        'department_budget_id','quantity', 'description', 'amount'
     ];
 
     // Belongs to a specific DepartmentBudget

@@ -1183,19 +1183,19 @@
                             </li>
 
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.index' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('itemRequisition.index') }}">{{__('My Item Requisition')}}</a>
+                                <a class="dash-link" href="{{ route('itemRequisition.index') }}">{{__('Store Requisition Note')}}</a>
                             </li>
 
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('itemRequisition.hodApproval') }}">{{__('HoD Item Requisition')}}</a>
+                                <a class="dash-link" href="{{ route('itemRequisition.hodApproval') }}">{{__('HoD SRN approval')}}</a>
                             </li>
 
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.bursarApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('itemRequisition.bursarApproval') }}">{{__('Bursar Item Requisition')}}</a>
+                                <a class="dash-link" href="{{ route('itemRequisition.bursarApproval') }}">{{__('Bursar SRN approval')}}</a>
                             </li>
 
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.storeApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('itemRequisition.storeApproval') }}">{{__('Store Approval')}}</a>
+                                <a class="dash-link" href="{{ route('itemRequisition.storeApproval') }}">{{__('Store SRN Approval')}}</a>
                             </li>
 
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.acknowledgment' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">

@@ -1074,19 +1074,19 @@
                             </li>
 
                             <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.index' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
-                                <a class="dash-link" href="<?php echo e(route('itemRequisition.index')); ?>"><?php echo e(__('My Item Requisition')); ?></a>
+                                <a class="dash-link" href="<?php echo e(route('itemRequisition.index')); ?>"><?php echo e(__('Store Requisition Note')); ?></a>
                             </li>
 
                             <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
-                                <a class="dash-link" href="<?php echo e(route('itemRequisition.hodApproval')); ?>"><?php echo e(__('HoD Item Requisition')); ?></a>
+                                <a class="dash-link" href="<?php echo e(route('itemRequisition.hodApproval')); ?>"><?php echo e(__('HoD SRN approval')); ?></a>
                             </li>
 
                             <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.bursarApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
-                                <a class="dash-link" href="<?php echo e(route('itemRequisition.bursarApproval')); ?>"><?php echo e(__('Bursar Item Requisition')); ?></a>
+                                <a class="dash-link" href="<?php echo e(route('itemRequisition.bursarApproval')); ?>"><?php echo e(__('Bursar SRN approval')); ?></a>
                             </li>
 
                             <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.storeApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
-                                <a class="dash-link" href="<?php echo e(route('itemRequisition.storeApproval')); ?>"><?php echo e(__('Store Approval')); ?></a>
+                                <a class="dash-link" href="<?php echo e(route('itemRequisition.storeApproval')); ?>"><?php echo e(__('Store SRN Approval')); ?></a>
                             </li>
 
                             <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.acknowledgment' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">

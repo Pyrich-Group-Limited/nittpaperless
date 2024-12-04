@@ -1,10 +1,10 @@
 <div>
     @section('page-title')
-        {{ __('Item Requsitions') }}
+        {{ __('Store Requsition Notes') }}
     @endsection
     @section('breadcrumb')
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
-        <li class="breadcrumb-item">{{ __('Item Requsitions') }}</li>
+        <li class="breadcrumb-item">{{ __('Store Requsition Notes') }}</li>
     @endsection
 
     {{-- @section('action-btn') --}}
@@ -36,7 +36,7 @@
         <div class="float-end">
             <a href="#" class="btn btn-primary" id="applyLeaveButton" data-bs-toggle="modal" data-bs-target="#newItemRequisition"
                 data-size="lg " data-bs-toggle="tooltip">
-                <i class="ti ti-plus text-white"></i>New Requisition
+                <i class="ti ti-plus text-white"></i>New SRN
             </a>
         </div>
     @endsection
