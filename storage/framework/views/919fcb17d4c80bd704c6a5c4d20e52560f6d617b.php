@@ -83,7 +83,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 <?php $__currentLoopData = $documents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $folderName => $docs): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <h4>
                         <i class="ti ti-folder"></i>
-                        <?php echo e($folderName ? : 'Files without folder'); ?>
+                        <?php echo e($folderName ? : 'Documents without folder'); ?>
 
                     </h4>
 

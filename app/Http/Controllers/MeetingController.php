@@ -73,14 +73,14 @@ class MeetingController extends Controller
 
         $validator = \Validator::make(
             $request->all(), [
-                               'branch_id' => 'required',
-                               'department_id' => 'required',
-                               'employee_id' => 'required',
-                               'department_id' => 'required',
-                               'title' => 'required',
-                               'date' => 'required',
-                               'time' => 'required',
-                           ]
+                'branch_id' => 'required',
+                'department_id' => 'required',
+                'employee_id' => 'required',
+                'department_id' => 'required',
+                'title' => 'required',
+                'date' => 'required',
+                'time' => 'required',
+            ]
         );
         if($validator->fails())
         {
@@ -124,24 +124,24 @@ class MeetingController extends Controller
 
 
             //For Notification
-            $setting  = Utility::settings(\Auth::user()->creatorId());
-            $branch = Branch::find($request->branch_id);
-            $meetingNotificationArr = [
-                'meeting_title' =>  $request->title,
-                'branch_name' =>  $branch->name,
-                'meeting_date' =>  $request->date,
-                'meeting_time' =>  $request->time,
-            ];
-            //Slack Notification
-            if(isset($setting['support_notification']) && $setting['support_notification'] ==1)
-            {
-                Utility::send_slack_msg('new_meeting', $meetingNotificationArr);
-            }
-            //Telegram Notification
-            if(isset($setting['telegram_meeting_notification']) && $setting['telegram_meeting_notification'] ==1)
-            {
-                Utility::send_telegram_msg('new_meeting', $meetingNotificationArr);
-            }
+            // $setting  = Utility::settings(\Auth::user()->creatorId());
+            // $branch = Branch::find($request->branch_id);
+            // $meetingNotificationArr = [
+            //     'meeting_title' =>  $request->title,
+            //     'branch_name' =>  $branch->name ?? '',
+            //     'meeting_date' =>  $request->date,
+            //     'meeting_time' =>  $request->time,
+            // ];
+            // //Slack Notification
+            // if(isset($setting['support_notification']) && $setting['support_notification'] ==1)
+            // {
+            //     Utility::send_slack_msg('new_meeting', $meetingNotificationArr);
+            // }
+            // //Telegram Notification
+            // if(isset($setting['telegram_meeting_notification']) && $setting['telegram_meeting_notification'] ==1)
+            // {
+            //     Utility::send_telegram_msg('new_meeting', $meetingNotificationArr);
+            // }
 
             //For Google Calendar
             if($request->get('synchronize_type')  == 'google_calender')

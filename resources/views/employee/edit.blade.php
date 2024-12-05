@@ -87,7 +87,7 @@
                             <div class="form-group col-md-6">
                                 {{ Form::label('department_id', __('Department'),['class'=>'form-label']) }}
                                 <select class=" select form-control " id="department_id" name="department_id"  disabled>
-                                    <option value="{{ $employee->department->name }}">{{ $employee->department->name }}</option>
+                                    <option value="{{ $employee->department->name ?? '' }}">{{ $employee->department->name ?? '' }}</option>
                                 </select>
 
                             </div>

@@ -5,7 +5,7 @@
                 <div class="modal-body">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="applyLeave"><?php echo e($selModule); ?> Permissions
+                        <h5 class="modal-title" id="applyLeave"><?php echo e($selStaff->name); ?> <?php echo e($selModule); ?> Permissions
                         </h5>
                         <label class="form-check-label mt-1">
                             <input type="checkbox" wire:model="selectAll"  class="form-check-input" />

@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="">File Name</label>
+                    <label for="">Folder Name</label>
                     <input type="text" value="{{ $folder->folder_name }}" name="name" class="form-control" required>
                 </div>
             </div>

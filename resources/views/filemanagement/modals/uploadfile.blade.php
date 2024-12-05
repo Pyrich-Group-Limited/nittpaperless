@@ -1,7 +1,7 @@
 <div class="modal-body">
     <div class="row">
         <div class="form-group">
-            <label for="">Files</label>
+            <label for="">Documents</label>
             <input type="file" aria-multiselectable="" class="form-control">
         </div>
         <div class="nk-upload-list">
@@ -22,7 +22,7 @@
 
 <div class="modal-footer">
     <input type="button" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
-    <input type="submit" value="{{__('Add Files')}}" class="btn  btn-primary">
+    <input type="submit" value="{{__('Add Documents')}}" class="btn  btn-primary">
 </div>
 
 

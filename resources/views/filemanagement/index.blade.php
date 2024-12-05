@@ -116,7 +116,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 @foreach ($documents as $folderName => $docs)
                     <h4>
                         <i class="ti ti-folder"></i>
-                        {{ $folderName ? : 'Files without folder'  }}
+                        {{ $folderName ? : 'Documents without folder'  }}
                     </h4>
 
                     {{-- @if($folder->files->count() > 0) --}}

@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newfile">Create New File</h5>
+                <h5 class="modal-title" id="newfile">Create New Document</h5>
             </div>
             <div class="modal-body">
                 <form action="<?php echo e(route('files.store')); ?>" method="POST" enctype="multipart/form-data">
@@ -19,7 +19,7 @@
                         <?php endif; ?>
                         <div class="row">
                             <div class="form-group">
-                                <label for="">File Name</label>
+                                <label for="">Document Name</label>
                                 <input type="text" name="filename" value="<?php echo e(old('filename')); ?>" class="form-control" >
                                 <?php $__errorArgs = ['filename'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -33,7 +33,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="form-group">
-                                <label for="">File Content</label>
+                                <label for="">Document Content</label>
                                 <input type="file" name="file" aria-multiselectable="" value="<?php echo e(old('file')); ?>" class="form-control" >
                                 <?php $__errorArgs = ['file'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -47,7 +47,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="form-group">
-                                <label for="">File Folder</label>
+                                <label for="">Document Folder</label>
                                 <select name="folder_id" id="" class="form-control" >
                                     <option value="">Select folder (optional)</option>
                                     <?php $__currentLoopData = $folders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $folder): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -71,7 +71,7 @@ unset($__errorArgs, $__bag); ?>
 
                     <div class="modal-footer">
                         <input type="button" value="<?php echo e(__('Cancel')); ?>" class="btn  btn-light" data-bs-dismiss="modal">
-                        <input type="submit" value="<?php echo e(__('Upload File')); ?>" class="btn  btn-primary">
+                        <input type="submit" value="<?php echo e(__('Upload Document')); ?>" class="btn  btn-primary">
                     </div>
                 </form>
             </div>

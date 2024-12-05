@@ -35,7 +35,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Attach File</label>
-                                <input type="file" name="memofile" value="{{ old('memofile')}}" aria-multiselectable="" class="form-control" accept="memofile/*">
+                                <input type="file" name="memofile" value="{{ old('memofile')}}" aria-multiselectable="" class="form-control" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
                                 @error('memofile')
                                 <small class="invalid-password" role="alert">
                                     <strong class="text-danger">{{ $message }}</strong>
@@ -56,5 +56,4 @@
         </div>
     </div>
 </div>
-
 

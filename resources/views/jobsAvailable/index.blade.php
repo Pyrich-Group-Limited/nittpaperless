@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{__('Manage Job')}}
+    {{__('Available Jobs')}}
 @endsection
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Job')}}</li>
+    <li class="breadcrumb-item">{{__('Jobs')}}</li>
 @endsection
 @push('script-page')
 
@@ -115,6 +115,7 @@
                         <table class="table datatable">
                             <thead>
                             <tr>
+                                <th>{{__('#')}}</th>
                                 <th>{{__('Branch')}}</th>
                                 <th>{{__('Title')}}</th>
                                 <th>{{__('Start Date')}}</th>
@@ -127,6 +128,7 @@
                             <tbody class="font-style">
                             @foreach ($jobs as $job)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ !empty($job->branches)?$job->branches->name:__('All') }}</td>
                                     <td>{{$job->title}}</td>
                                     <td>{{\Auth::user()->dateFormat($job->start_date)}}</td>
