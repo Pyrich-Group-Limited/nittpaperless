@@ -20,6 +20,9 @@ class MemoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     
+
     public function index()
     {
         $memos = Memo::where('created_by', Auth::id())->orWhereHas('shares', function ($query) {
@@ -30,6 +33,12 @@ class MemoController extends Controller
         $outgoingMemos = MemoShare::where('shared_by', Auth::id())->orderBy('created_at','DESC')->get();
 
         return view('memos.index', compact('memos','outgoingMemos','incomingMemos'));
+    }
+
+    public function fetchMemos()
+    {
+        $memos = Memo::with('creator.department')->latest()->get();
+        return response()->json(['memos' => $memos]);
     }
 
     /**
@@ -50,18 +59,11 @@ class MemoController extends Controller
      */
     public function store(Request $request)
     {
-        dd($this);
         $data = $request->validate([
             'title' => ['required', 'string'],
             'description' => ['required','string'],
-            'memofile' => 'required|mimes:pdf,doc,docx|max:2048',
+            'memofile' => 'required|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
         ]);
-
-
-        // if ($request->hasFile('memofile')) {
-        //     // Handle file upload
-        //     $filePath = $request->file('memofile')->store('memos');
-        // }
 
         // Handle file upload
         $filePath = $request->file('memofile')->store('memos');

@@ -5,18 +5,18 @@
 $profile=\App\Models\Utility::get_file('uploads/avatar');
 @endphp
 @section('page-title')
-    {{__('Manage User')}}
+    {{__('Registered Users')}}
 @endsection
 @push('script-page')
 
 @endpush
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Client')}}</li>
+    <li class="breadcrumb-item">{{__('Registered Users')}}</li>
 @endsection
 @section('action-btn')
     <div class="float-end">
-        @if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'HR')
+        @if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'HR' || \Auth::user()->type == 'client')
             <a href="{{ route('user.userlog') }}" class="btn btn-primary btn-sm {{ Request::segment(1) == 'user' }}"
                data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('User Logs History') }}"><i class="ti ti-user-check"></i>
             </a>

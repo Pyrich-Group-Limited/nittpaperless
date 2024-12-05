@@ -11,7 +11,6 @@
 
 <?php $__env->startSection('action-btn'); ?>
     <div class="float-end">
-        
         <a href="#" class="btn btn-sm btn-primary" id="raiseMemoButton" data-bs-toggle="modal" data-bs-target="#raisememo"   data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>Raise a Memo</a>
     </div>
 <?php $__env->stopSection(); ?>
@@ -42,7 +41,7 @@
                                 <div class="col-sm-12">
                                     <div class="tab-content" id="myTabContent2">
                                         <div class="tab-pane fade fade table-responsive" id="memos" role="tabpanel" aria-labelledby="profile-tab2">
-                                            <table class="table table-flush table datatable" id="report-dataTable">
+                                            <table class="table table-flush table datatable">
                                                 <thead>
                                                     <tr>
                                                         <th><?php echo e(__('Creator Name')); ?></th>
@@ -98,7 +97,6 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-
                                                         <?php $__currentLoopData = $incomingMemos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $incomingMemo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <tr class="font-style">
                                                                 <td><?php echo e($incomingMemo->sharedBy->name); ?></td>
@@ -125,7 +123,6 @@
                                                                 </td>
                                                             </tr>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        
                                                     </tbody>
                                             </table>
                                             <?php if($incomingMemos->isEmpty()): ?>
@@ -162,7 +159,7 @@
                                                                             <i class="ti ti-eye text-white"></i>
                                                                         </a>
                                                                     </div>
-                                                                    
+                                                                   
                                                                     <div class="action-btn bg-primary ms-2">
                                                                         <a href="<?php echo e(route('memos.download',$outgoingMemo->memo->id)); ?>" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="<?php echo e(__('Download Memo')); ?>"  data-title="<?php echo e(__('Download Memo')); ?>">
                                                                             <i class="ti ti-download text-white"></i>
@@ -199,6 +196,7 @@
         });
     </script>
     <?php endif; ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\nittpaperless-1\resources\views/memos/index.blade.php ENDPATH**/ ?>
