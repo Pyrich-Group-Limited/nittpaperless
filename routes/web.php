@@ -157,6 +157,7 @@ use App\Http\Livewire\Guest\ContractorRegisterComponent;
 use App\Http\Livewire\Dta\DtaComponent;
 use App\Http\Livewire\Dta\UnitHeadDtaComponent;
 use App\Http\Livewire\Dta\HodDtaComponent;
+use App\Http\Livewire\Dta\LiasonOfficeHeadDtaComponent;
 use App\Http\Livewire\Dta\DgDtaComponent;
 use App\Http\Livewire\Dta\BursarDtaComponent;
 use App\Http\Livewire\Dta\PaymentVoucherDtaComponent;
@@ -231,12 +232,19 @@ use App\Http\Livewire\Contracts\PaymentVoucher;
 use App\Http\Livewire\Requisitions\RaiseRequisitionComponent;
 use App\Http\Livewire\Requisitions\AllRaisedRequisitionsComponent;
 use App\Http\Livewire\Requisitions\HodRequisitionsComponent;
+use App\Http\Livewire\Requisitions\LiaisonHeadApprovalComponent;
 use App\Http\Livewire\Requisitions\DgRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\BursarRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\PvRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\AuditRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\CashOfficeRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\RequisitionVoucherComponent;
+
+use App\Http\Livewire\ItemRequisitions\CreateItemRequisition;
+use App\Http\Livewire\ItemRequisitions\ItemRequisitionHodApproval;
+use App\Http\Livewire\ItemRequisitions\ItemRequisitionBursarApproval;
+use App\Http\Livewire\ItemRequisitions\ItemRequisitionStoreUnitApproval;
+use App\Http\Livewire\ItemRequisitions\ItemRequisitionStaffAcknowledgment;
 
 use App\Http\Controllers\JobsAvailableController;
 
@@ -566,6 +574,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('dtas')->group(function () {
     Route::get('/my-dta-requests',DtaComponent::class)->name('dta.index');
     Route::get('/unit-head-approvals',UnitHeadDtaComponent::class)->name('dtaApproval.unit-head');
     Route::get('/hod-approvals',HodDtaComponent::class)->name('dtaApproval.hod');
+    Route::get('/liason-head-approvals',LiasonOfficeHeadDtaComponent::class)->name('dtaApproval.liason');
     Route::get('/dg-approvals',DgDtaComponent::class)->name('dtaApproval.dg');
     Route::get('/bursar-approvals',BursarDtaComponent::class)->name('dtaApproval.bursar');
     Route::get('/payment-voucher-approvals',PaymentVoucherDtaComponent::class)->name('dtaApproval.pv');
@@ -1364,6 +1373,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('requisitions')->group(function
      Route::get('/raise-requisition', RaiseRequisitionComponent::class)->name('requisition.raise');
      Route::get('/manage-requisition', AllRaisedRequisitionsComponent::class)->name('manage.requisitions');
      Route::get('/hod-approvals', HodRequisitionsComponent::class)->name('hod.requisitions');
+     Route::get('/liaison-head-approvals', LiaisonHeadApprovalComponent::class)->name('liaison.requisitions');
      Route::get('/dg-approvals', DgRequisitionApprovalComponent::class)->name('dg.requisitions');
      Route::get('/bursar-approvals', BursarRequisitionApprovalComponent::class)->name('bursar.requisitions');
      Route::get('/pv-approvals', PvRequisitionApprovalComponent::class)->name('pv.requisitions');
@@ -1371,6 +1381,14 @@ Route::middleware(['XSS', 'revalidate'])->prefix('requisitions')->group(function
      Route::get('/cash-office-approvals', CashOfficeRequisitionApprovalComponent::class)->name('cash-office.requisitions');
     Route::get('/requisition/{id}/voucher', RequisitionVoucherComponent::class)->name('requisition.voucher');
 
+});
+
+Route::middleware(['XSS', 'revalidate'])->prefix('item-requisitions')->group(function () {
+    Route::get('/my-requests', CreateItemRequisition::class)->name('itemRequisition.index');
+    Route::get('/hod-approval', ItemRequisitionHodApproval::class)->name('itemRequisition.hodApproval');
+    Route::get('/bursar-approval', ItemRequisitionBursarApproval::class)->name('itemRequisition.bursarApproval');
+    Route::get('/store-approval', ItemRequisitionStoreUnitApproval::class)->name('itemRequisition.storeApproval');
+    Route::get('/acknowledgment', ItemRequisitionStaffAcknowledgment::class)->name('itemRequisition.acknowledgment');
 });
 
 

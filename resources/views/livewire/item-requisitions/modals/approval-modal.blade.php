@@ -1,0 +1,70 @@
+<div id="viewBudget">
+    <div class="modal" id="viewItemRequisitionDetails" tabindex="-1" role="dialog" wire:ignore.self>
+        <div class="modal-dialog modal-lg" role="document" wire:ignore.self>
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">ITEM REQUISITION DETAILS </h5>
+                    </div>
+                    <div class="modal-body">
+                        @if ($selectedRequisition)
+                            <div class="row">
+                                @if(count($selectedRequisition->items)>0)
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>{{__('SN')}}</th>
+                                                <th>{{__('Item Name')}}</th>
+                                                <th>{{__('Item Description')}}</th>
+                                                <th>{{__('Quantity')}}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($selectedRequisition->items as $index => $item)
+                                                    <tr>
+                                                        <td> <p>{{ $index + 1 }}</p> </td>
+                                                        <td> <p>{{ $item->item_name }}</p> </td>
+                                                        <td> <p>{{ $item->description }}</p> </td>
+                                                        <td> <p>{{ $item->quantity_requested }}</p> </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @else
+                                    <div class="py-5">
+                                        <h6 class="h6 text-center">{{__('No record found!')}}</h6>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="exampleFormControlTextarea1">{{__('Comment')}}</label>
+                                <textarea class="form-control" wire:model.defer="comments" id="exampleFormControlTextarea1"></textarea>
+                                @error('comments') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" id="closeItemRequisitionApproval" value="{{ __('Close') }}"
+                                    class="btn  btn-light btn-sm" data-bs-dismiss="modal">
+                                @if(auth()->user()->type=="hod" && $selectedRequisition->status == 'pending_hod_approval')
+                                    <input type="button" wire:click="approveRequisition({{ $selectedRequisition->id }})" value="{{ __('Approve') }}" class="btn  btn-primary btn-sm">
+                                    <input type="button" wire:click="rejectRequisition({{ $selectedRequisition->id }})" value="{{ __('Reject') }}" class="btn  btn-danger btn-sm">
+                                @endif
+                            </div>
+                        @else
+                            <label align="center" class="mb-4" style="color: red">Loading...</label>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @push('script')
+    <script>
+        window.addEventListener('success', event => {
+            document.getElementById("closeItemRequisitionApproval").click();
+        })
+    </script>
+    @endpush
+    <x-toast-notification />

@@ -115,11 +115,6 @@ class DepartmentBudgetRequest extends Component
         $this->dispatchBrowserEvent('success', ['success' => "Successfully Deleted"]);
     }
 
-    // public function setStatusFilter(DepartmentBudget $status)
-    // {
-    //     $this->statusFilter = $status;
-    // }
-
     public function setFilter($status)
     {
         $this->filterStatus = $status;
@@ -127,15 +122,6 @@ class DepartmentBudgetRequest extends Component
 
     public function render()
     {
-        // $departmentBudgets = DepartmentBudget::where('department_id', auth()->user()->department_id)
-        //     ->where('user_id', Auth::user()->id)
-        //     ->when($this->statusFilter, function ($query) {
-        //         $query->where('status', $this->statusFilter);
-        //     })
-        //     ->with('budgetCategory', 'items')
-        //     ->orderBy('created_at', 'desc')
-        //     ->get();
-
         $query = DepartmentBudget::where('department_id', auth()->user()->department_id)
             ->where('user_id', Auth::user()->id)
             ->with('budgetCategory', 'items')

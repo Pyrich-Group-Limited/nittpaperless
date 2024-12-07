@@ -36,11 +36,16 @@ class RaiseRequisitionComponent extends Component
         $supportDocument = Carbon::now()->timestamp. '.' . $this->document->getClientOriginalName();
         $this->document->storeAs('documents',$supportDocument);
 
+        // Determine if the user belongs to a liaison office
+        $unitId = Auth::user()->is_in_liaison_office ? null : Auth::user()->unit_id;
+
         StaffRequisition::create([
             'staff_id' => auth()->id(),
             'requisition_type' => $this->type,
             'purpose' => $this->purpose,
             'department_id' => Auth::user()->department_id,
+            'unit_id' => $unitId,
+            'location' => Auth::user()->location_type ? : null,
             'description' => $this->description,
             'amount' => $this->amount,
             'status' => 'pending',

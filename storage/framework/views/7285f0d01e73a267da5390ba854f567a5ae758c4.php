@@ -87,7 +87,8 @@
                                                             <td><?php echo e($applicationDocument->document_name); ?></td>
                                                             <td class="text-end">
                                                                 <a href="<?php echo e(asset('assets/documents/documents')); ?>/<?php echo e($applicationDocument->document); ?>" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
-                                                                <a href="#" class="btn btn-primary btn-sm"><i class="ti ti-download" download></i></a>
+                                                                <a href="#" wire:click="downloadFile('<?php echo e($applicationDocument->document); ?>')" class="btn btn-primary btn-sm"><i class="ti ti-download"></i></a>
+                                                                
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

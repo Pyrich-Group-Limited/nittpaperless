@@ -49,7 +49,7 @@ unset($__errorArgs, $__bag); ?>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Attach File</label>
-                                <input type="file" name="memofile" value="<?php echo e(old('memofile')); ?>" aria-multiselectable="" class="form-control" accept="memofile/*">
+                                <input type="file" name="memofile" value="<?php echo e(old('memofile')); ?>" aria-multiselectable="" class="form-control" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
                                 <?php $__errorArgs = ['memofile'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -77,10 +77,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-
-
-
-
-
 
 <?php /**PATH C:\xampp\htdocs\nittpaperless-1\resources\views/memos/create.blade.php ENDPATH**/ ?>

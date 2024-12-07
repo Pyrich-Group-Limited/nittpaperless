@@ -19,18 +19,15 @@ class StaffRequisition extends Model
         'department_id',
         'supporting_document',
         'account_id',
-        'payment_evidence'
+        'payment_evidence',
+        'unit_id',
+        'location',
     ];
 
     public function staff()
     {
         return $this->belongsTo(User::class,'staff_id');
     }
-
-    // public function signature()
-    // {
-    //     return $this->hasOne(Signature::class,'user_id');
-    // }
 
     public function account()
     {
@@ -46,4 +43,14 @@ class StaffRequisition extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
+    // public function liaisonOffice()
+    // {
+    //     return $this->belongsTo(LiasonOffice::class);
+    // }
 }

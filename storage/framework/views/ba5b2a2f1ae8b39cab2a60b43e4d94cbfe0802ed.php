@@ -64,9 +64,8 @@
                                                 </a>
                                             </div>
                                             <div class="action-btn bg-warning ms-2">
-                                                <a href="<?php echo e(route('download.file', $document->document)); ?>" class="mx-3 btn btn-sm d-inline-flex align-items-center"  data-bs-toggle="tooltip" title="<?php echo e(__('Download Document')); ?>" data-title="<?php echo e(__('Download Document')); ?>">
-                                                    <i class="ti ti-download text-white"></i>
-                                                </a>
+                                                
+                                                <a href="#" wire:click="downloadFile('<?php echo e($document->document); ?>')" class="btn btn-primary btn-sm"><i class="ti ti-download"></i></a>
                                             </div>
 
                                     </span>

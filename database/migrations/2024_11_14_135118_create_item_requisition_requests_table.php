@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('item_requisition_requests', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('department_id');
+            $table->enum('status', ['pending_hod_approval', 'pending_bursar_approval', 
+            'pending_store_approval','hod_approved','store_approved', 'in_store_issue_voucher', '', 'bursar_approved', 'rejected']);
             $table->timestamps();
         });
     }

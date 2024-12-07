@@ -32,10 +32,14 @@ class DtaComponent extends Component
             'expense' => ['required','numeric','min:0'],
         ]);
 
+        // Determine if the user belongs to a liaison office
+        $unitId = Auth::user()->is_in_liaison_office ? null : Auth::user()->unit_id;
+
         $dtaRequest = Dta::create([
             'user_id' => auth()->id(),
             'department_id' => Auth::user()->department_id,
-            'unit_id' => Auth::user()->unit_id,
+            'unit_id' => $unitId,
+            'location' => Auth::user()->location_type ? : null,
             'purpose' => $this->purpose,
             'destination' => $this->destination,
             'travel_date' => $this->travel_date,
@@ -43,9 +47,6 @@ class DtaComponent extends Component
             'estimated_expense' => $this->expense,
             'current_approver' => 'Unit Head',
         ]);
-
-        // DtaApproval::create(['dta_id' => $dtaRequest->id]);
-
         $this->reset(['destination','purpose','travel_date','arrival_date','expense']);
         $this->dispatchBrowserEvent('success',["success" =>"DTA request submitted successfully."]);
         $this->mount();

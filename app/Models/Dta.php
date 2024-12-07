@@ -22,6 +22,7 @@ class Dta extends Model
         'status',
         'account_id',
         'payment_evidence',
+        'location',
     ];
 
     public function user()
@@ -53,6 +54,11 @@ class Dta extends Model
     {
         return $this->belongsTo(Unit::class);
     }
+
+    // public function liaisonOffice()
+    // {
+    //     return $this->belongsTo(LiasonOffice::class);
+    // }
 
     public function account()
     {

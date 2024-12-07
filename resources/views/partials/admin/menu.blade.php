@@ -421,6 +421,11 @@
                                     <a class="dash-link" href="{{ route('hod.requisitions') }}">{{__('HoD Approval')}}</a>
                                 </li>
                             @endcan
+                            @can('approve as liaison head')
+                                <li class="dash-item {{ request()->is('liaison.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('liaison.requisitions') }}">{{__('LiaisonHead Approval')}}</a>
+                                </li>
+                            @endcan
                             @can('approve as dg')
                                 <li class="dash-item {{ request()->is('dg.requisitions') ? 'active' : '' }}">
                                     <a class="dash-link" href="{{ route('dg.requisitions') }}">{{__('DG Approval')}}</a>
@@ -939,19 +944,19 @@
                                     <a class="dash-link" href="{{ route('memos.index') }}">{{__('Memo/Letters')}}</a>
                                 </li>
                                 <li class="dash-item dash-hasmenu  {{ (Request::segment(1) == 'leave' || Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' :''}}">
-                                    <a class="dash-link" href="#">{{__('Files')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                    <a class="dash-link" href="#">{{__('Files/Documents')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                     <ul class="dash-submenu">
                                         <li class="dash-item">
-                                            <a class="dash-link" href="{{ route('folders.index') }}">{{__('File Folders')}}</a>
+                                            <a class="dash-link" href="{{ route('folders.index') }}">{{__('Document Folders')}}</a>
                                         </li>
                                         <li class="dash-item">
-                                            <a class="dash-link" href="{{ route('file.index') }}">{{__('Files')}}</a>
+                                            <a class="dash-link" href="{{ route('file.index') }}">{{__('Documents')}}</a>
                                         </li>
                                         <li class="dash-item ">
                                             <a class="dash-link" href={{ route('sharedfiles.index') }}>{{__('Shared')}}</a>
                                         </li>
                                         <li class="dash-item">
-                                            <a class="dash-link" href="{{ route('files.newFile') }}">{{__('New Files')}}</a>
+                                            <a class="dash-link" href="{{ route('files.newFile') }}">{{__('New Documents')}}</a>
                                         </li>
                                         <li class="dash-item ">
                                             <a class="dash-link" href="{{ route('files.thisMonth') }}">{{__('This Month')}}</a>
@@ -1110,23 +1115,25 @@
                                         <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }} ">
                                             <a class="dash-link" href="{{ route('dta.index') }}">{{__('DTA')}}</a>
                                         </li>
-                                        <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
-                                            <a class="dash-link" href="{{ route('reports.dta') }}">{{__('DTA Report')}}</a>
-                                        </li>
-                                        {{-- @can('final account view')
-                                            <li class="dash-item {{ request()->is('manage.requisitions') ? 'active' : '' }}">
-                                                <a class="dash-link" href="{{ route('manage.requisitions') }}">{{__('Manage Requisitions')}}</a>
+                                        @can('report view')
+                                            <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
+                                                <a class="dash-link" href="{{ route('reports.dta') }}">{{__('DTA Report')}}</a>
                                             </li>
-                                        @endcan --}}
+                                        @endcan
                                         @can('unit head approve')
                                             <li class="dash-item {{ request()->is('dtaApproval.unit-head') ? 'active' : '' }}">
                                                 <a class="dash-link" href="{{ route('dtaApproval.unit-head') }}">{{__('Unit Head Approval')}}</a>
                                             </li>
                                         @endcan
-
                                         @can('hod approve')
                                             <li class="dash-item {{ request()->is('dtaApproval.hod') ? 'active' : '' }}">
                                                 <a class="dash-link" href="{{ route('dtaApproval.hod') }}">{{__('HOD Approval')}}</a>
+                                            </li>
+                                        @endcan
+
+                                        @can('liaison approve')
+                                            <li class="dash-item {{ request()->is('dtaApproval.liason') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('dtaApproval.liason') }}">{{__('Liason Head Approval')}}</a>
                                             </li>
                                         @endcan
 
@@ -1190,6 +1197,27 @@
                             <li class="dash-item {{ (Request::route()->getName() == 'store.dashboard' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('supplies.projects')}}">{{__('Supply')}}</a>
                             </li>
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.index' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.index') }}">{{__('Store Requisition Note')}}</a>
+                            </li>
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.hodApproval') }}">{{__('HoD SRN approval')}}</a>
+                            </li>
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.bursarApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.bursarApproval') }}">{{__('Bursar SRN approval')}}</a>
+                            </li>
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.storeApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.storeApproval') }}">{{__('Store SRN Approval')}}</a>
+                            </li>
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.acknowledgment' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.acknowledgment') }}">{{__('Store Issue Voucher')}}</a>
+                            </li>
+
                             @can('manage purchase')
                                 <li class="dash-item {{ (Request::route()->getName() == 'req.list' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('req.list') }}">{{__('Purchase requisition')}}</a>
@@ -1200,9 +1228,9 @@
                                 <a class="dash-link" href="{{ route('goodsReceived.list') }}">{{__('Goods Recieved Notes')}}</a>
                             </li>
 
-                            <li class="dash-item {{ (Request::route()->getName() == 'storeVoucher.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
+                            {{-- <li class="dash-item {{ (Request::route()->getName() == 'storeVoucher.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('storeVoucher.list') }}">{{__('Store Issue Voucher')}}</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'procurement')?'active':''}}">

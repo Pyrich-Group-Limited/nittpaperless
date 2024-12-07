@@ -132,7 +132,7 @@
                                             
                                             
                                             <div class="action-btn bg-info ms-2">
-                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#shareProjectDetails" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Recommend to DG')); ?>" data-title="<?php echo e(__('Recommend contractor for DG Approval')); ?>">
+                                                    <a href="#" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#shareProjectDetails" data-size="lg" data-bs-toggle="tooltip" title="<?php echo e(__('Share project details with HOD')); ?>" data-title="<?php echo e(__('Share project details with HOD')); ?>">
                                                         <i class="ti ti-share text-white"></i>
                                                     </a>
                                                 </div>

@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="">File Name</label>
+                    <label for="">Document Name</label>
                     <input type="text" value="{{ $file->file_name }}" name="filename" class="form-control" required>
                 </div>
                 {{-- <div class="form-group">
@@ -41,7 +41,7 @@
 
         <div class="modal-footer">
             <input type="button" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
-            <input type="submit" value="{{__('Rename File')}}" class="btn  btn-primary">
+            <input type="submit" value="{{__('Rename Document')}}" class="btn  btn-primary">
         </div>
     </form>
 </div>

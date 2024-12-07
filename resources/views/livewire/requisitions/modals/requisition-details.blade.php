@@ -119,6 +119,7 @@
                                 @endif
                             <div class="modal-footer">
                                 <div wire:loading wire:target="hodApproveRequisition"><x-g-loader /></div>
+                                <div wire:loading wire:target="liaisonHeadApproveRequisition"><x-g-loader /></div>
                                 <div wire:loading wire:target="approveRequisition"><x-g-loader /></div>
                                 <div wire:loading wire:target="dgApproveRequisition"><x-g-loader /></div>
                                 <div wire:loading wire:target="bursarApproveRequisition"><x-g-loader /></div>
@@ -131,10 +132,16 @@
                                         @if ($selRequisition->status=='pending')
                                             <input type="button" wire:click="hodApproveRequisition({{ $selRequisition->id }})" value="{{ __('Approve as HoD') }}" class="btn  btn-primary btn-sm">
                                         @endif
-                                    @endcan
+                                    @endcan 
+
+                                    @can('approve as liaison head')
+                                        @if ($selRequisition->status=='liaison_head_approval')
+                                            <input type="button" wire:click="liaisonHeadApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Liaison Head') }}" class="btn  btn-primary btn-sm ">
+                                        @endif
+                                    @endcan 
 
                                     @can('approve as dg')
-                                        @if ($selRequisition->status=='hod_approved')
+                                        @if ($selRequisition->status=='hod_approved' || $selRequisition->status=='liaison_head_approved')
                                             <input type="button"  wire:click="dgApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as DG') }}" class="btn  btn-primary btn-sm ">
                                         @endif
                                     @endcan 

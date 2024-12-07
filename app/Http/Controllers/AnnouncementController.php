@@ -111,24 +111,24 @@ class AnnouncementController extends Controller
 
 
             //For Notification
-            $setting  = Utility::settings(\Auth::user()->creatorId());
-            $branch = Branch::find($request->branch_id);
-            $announceNotificationArr = [
-                'announcement_title' =>  $request->title,
-                'branch_name' =>  $branch->name,
-                'start_date' =>  $request->start_date,
-                'end_date' =>  $request->end_date,
-            ];
-            //Slack Notification
-            if(isset($setting['announcement_notification']) && $setting['announcement_notification'] ==1)
-            {
-                Utility::send_slack_msg('new_announcement', $announceNotificationArr);
-            }
-            //Telegram Notification
-            if(isset($setting['telegram_announcement_notification']) && $setting['telegram_announcement_notification'] ==1)
-            {
-                Utility::send_telegram_msg('new_announcement', $announceNotificationArr);
-            }
+            // $setting  = Utility::settings(\Auth::user()->creatorId());
+            // $branch = Branch::find($request->branch_id);
+            // $announceNotificationArr = [
+            //     'announcement_title' =>  $request->title,
+            //     'branch_name' =>  $branch->name ?? '',
+            //     'start_date' =>  $request->start_date,
+            //     'end_date' =>  $request->end_date,
+            // ];
+            // //Slack Notification
+            // if(isset($setting['announcement_notification']) && $setting['announcement_notification'] ==1)
+            // {
+            //     Utility::send_slack_msg('new_announcement', $announceNotificationArr);
+            // }
+            // //Telegram Notification
+            // if(isset($setting['telegram_announcement_notification']) && $setting['telegram_announcement_notification'] ==1)
+            // {
+            //     Utility::send_telegram_msg('new_announcement', $announceNotificationArr);
+            // }
 
             //webhook
             $module ='New Announcement';

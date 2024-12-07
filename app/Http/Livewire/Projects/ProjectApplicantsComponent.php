@@ -43,6 +43,21 @@ class ProjectApplicantsComponent extends Component
         }
     }
 
+    public function downloadFile($document)
+    {
+        foreach ($this->selApplicant->documents  as $applicationDocument){
+
+        }
+            $filePath = public_path('assets/documents/documents/' . $applicationDocument->document);
+            
+            if (file_exists($filePath)) {
+                return response()->download($filePath, $applicationDocument->document);
+            } else {
+                $this->dispatchBrowserEvent('error',["error" =>"Document not found!."]);
+            }
+        
+    }
+
 
     public function render()
     {

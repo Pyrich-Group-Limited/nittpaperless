@@ -9,8 +9,17 @@ class ItemRequisitionApproval extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'item_requisition_request_id', 'approved_by', 'role', 'comments', 'status',
+    ];
+
     public function itemRequest()
     {
-        return $this->belongsTo(ItemRequisitionRequest::class);
+        return $this->belongsTo(ItemRequisitionRequest::class,'item_requisition_request_id');
+    }
+
+    public function approver()
+    {
+        return $this->belongsTo(User::class, 'approved_by');
     }
 }

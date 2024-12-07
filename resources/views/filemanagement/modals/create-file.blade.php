@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newfile">Create New File</h5>
+                <h5 class="modal-title" id="newfile">Create New Document</h5>
             </div>
             <div class="modal-body">
                 <form action="{{ route('files.store') }}" method="POST" enctype="multipart/form-data">
@@ -19,21 +19,21 @@
                         @endif
                         <div class="row">
                             <div class="form-group">
-                                <label for="">File Name</label>
+                                <label for="">Document Name</label>
                                 <input type="text" name="filename" value="{{ old('filename')}}" class="form-control" >
                                 @error('filename')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">File Content</label>
+                                <label for="">Document Content</label>
                                 <input type="file" name="file" aria-multiselectable="" value="{{ old('file')}}" class="form-control" >
                                 @error('file')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">File Folder</label>
+                                <label for="">Document Folder</label>
                                 <select name="folder_id" id="" class="form-control" >
                                     <option value="">Select folder (optional)</option>
                                     @foreach ($folders as $folder)
@@ -50,7 +50,7 @@
 
                     <div class="modal-footer">
                         <input type="button" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
-                        <input type="submit" value="{{__('Upload File')}}" class="btn  btn-primary">
+                        <input type="submit" value="{{__('Upload Document')}}" class="btn  btn-primary">
                     </div>
                 </form>
             </div>

@@ -22,13 +22,13 @@ class HodRequisitionsComponent extends Component
     public function mount()
     {
         $user = auth()->user();
-        // $this->requisitions = StaffRequisition::where('department_id',Auth::user()->department_id)->orderBy('created_at','desc')->get();
 
         $this->requisitions = StaffRequisition::where('status', 'pending')
         ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->where('department_id',Auth::user()->department_id)
+        ->where('location',Auth::user()->location_type)
         ->orderBy('created_at', 'desc')->get();
         
         $this->approvedRequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
@@ -36,6 +36,7 @@ class HodRequisitionsComponent extends Component
                 ->where('role', $user->type)
                 ->where('status', 'approved');
         })->where('department_id',Auth::user()->department_id)
+        ->where('location',Auth::user()->location_type)
         ->orderBy('created_at', 'desc')->get();
 
         $this->accounts = ChartOfAccount::all();
@@ -47,7 +48,6 @@ class HodRequisitionsComponent extends Component
 
     public function downloadFile($supporting_document)
     {
-        // Check if the file exists in the public folder
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
         
         if (file_exists($filePath)) {
@@ -69,13 +69,17 @@ class HodRequisitionsComponent extends Component
 
         if ($this->selRequisition->status != 'pending') {
             $this->dispatchBrowserEvent('error',["error" =>"Requisition required an approval."]);
+            return;
+        }
+
+        $hod = auth()->user();
+        $isInLiaisonOffice = $hod->is_in_liaison_office;
+
+        if ($isInLiaisonOffice) {
+            $this->selRequisition->update(['status' => 'liaison_head_approval']);
         } else {
             $this->selRequisition->update(['status' => 'hod_approved']);
         }
-
-        // if($this->selRequisition->status == 'pending'){
-        //     $this->selRequisition->update(['status' => 'awaiting_dg_approval']);
-        // }
 
         RequisitionApprovalRecord::create([
             'requisition_id' => $this->selRequisition->id,

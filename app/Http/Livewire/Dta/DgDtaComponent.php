@@ -19,18 +19,17 @@ class DgDtaComponent extends Component
     public function mount(){
         $user = auth()->user();
 
-        $this->dtaRequests = Dta::where('status', 'hod_approved')
+        $this->dtaRequests = Dta::where('status', 'hod_approved')->orWhere('status','liaison_head_approved')
         ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
-        
+
         $this->approvedDtaRequests = Dta::whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
                 ->where('status', 'approved');
         })->orderBy('created_at', 'desc')->get();
-        
 
     }
 
@@ -40,11 +39,14 @@ class DgDtaComponent extends Component
 
     public function dgApproveDta()
     {
-        if ($this->selDta->status != 'hod_approved') {
-            $this->dispatchBrowserEvent('error',["error" =>"DTA required an approval."]);
-        } else {
-            $this->selDta->update(['status' => 'dg_approved']);
-        }
+        // dd($this);
+        // if ($this->selDta->status != 'hod_approved' || $this->selDta->status != 'liaison_head_approved') {
+        //     $this->dispatchBrowserEvent('error',["error" =>"DTA required an approval."]);
+        // } else {
+        //     $this->selDta->update(['status' => 'dg_approved']);
+        // }
+
+        $this->selDta->update(['status' => 'dg_approved']);
 
         DtaApproval::create([
             'dta_id' => $this->selDta->id,
