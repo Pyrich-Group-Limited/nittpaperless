@@ -46,6 +46,7 @@ class UsersComponent extends Component
     public $unit;
     public $subunit;
     public $user_role;
+    public $searchTerm;
 
 
     public function updatedDepartment($id){
@@ -67,6 +68,10 @@ class UsersComponent extends Component
         $this->permissions = $user->getDirectPermissions()->pluck('name')->toArray();
         $this->sel_permissions = $user->getDirectPermissions()->pluck('name')->toArray();
 
+    }
+
+    public function clearSearch(){
+        $this->searchTerm = "";
     }
 
     public function updatedLocationType($id){
@@ -325,13 +330,36 @@ class UsersComponent extends Component
 
     }
 
+    public function getUsers(){
+        $users = User::query()
+        ->where(function($query) {
+            if($this->searchTerm) {
+                $query->where('name', 'like', '%'.$this->searchTerm.'%');
+            }
+        })
+        ->orwhere(function($query) {
+            if($this->searchTerm) {
+                $department = Department::where('name', 'like', '%'.$this->searchTerm.'%')->get()->pluck('id');
+                $query->whereIn('department_id', $department);
+            }
+         })
+         ->orwhere(function($query) {
+            if($this->searchTerm) {
+                $unit = Unit::where('name', 'like', '%'.$this->searchTerm.'%')->get()->pluck('id');
+                $query->whereIn('unit_id', $unit);
+            }
+         })
+         ->latest()->paginate(20);
+         return $users;
+    }
+
     public function render()
     {
         $user = \Auth::user();
         if(\Auth::user()->can('manage user'))
         {
             $roles = [];
-            $users = User::where('type','!=','Contractor')->orderBy('created_at','desc')->paginate(20);
+            $users = $this->getUsers();
             $roles = [];
             $departments = Department::where('category','department')->get();
             $designations = Designation::all();
