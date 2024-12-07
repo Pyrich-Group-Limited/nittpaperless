@@ -370,6 +370,36 @@ $(document).on("click", '.confirm-application', function () {
 });
 
 
+$(document).on("click", '.confirm-delete', function () {
+    var form = $(this).closest("form");
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "you want to delete this record?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            Livewire.emit('delete-confirmed');
+
+        } else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+        }
+    })
+});
+
+
 $(document).on("click", '.confirm-reset', function () {
     var form = $(this).closest("form");
     const swalWithBootstrapButtons = Swal.mixin({
@@ -410,7 +440,7 @@ $(document).on("click", '.confirm-delete', function () {
     })
     swalWithBootstrapButtons.fire({
         title: 'Are you sure?',
-        text: "This action can not be undone. Do you want to continue?",
+        text: "you want to delete this record?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes',

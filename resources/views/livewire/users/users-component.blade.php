@@ -34,6 +34,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 <div>
     <div class="row">
         <div class="col-xl-12">
+            <x-search-bar wire:model.live="searchTerm" placeholder="Search by staff name, department or units" />
 
             <div class="card mt-4">
                 <div class="card-body table-border-style">

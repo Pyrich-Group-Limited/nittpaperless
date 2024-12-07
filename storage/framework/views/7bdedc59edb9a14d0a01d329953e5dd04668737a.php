@@ -1,6 +1,6 @@
 <div id="uploadBOQ">
     <div class="modal" id="uploadBOQModal" tabindex="-1" role="dialog" wire:ignore.self>
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-body">
 
@@ -32,63 +32,71 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                                 <?php if($this->ergp): ?>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row align-items-center justify-content-between">
-                                                    <div class="col-auto mb-3 mb-sm-0">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-danger">
-                                                                <i class="ti ti-report-money"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <small class="text-muted"><?php echo e(__('PROJECT')); ?></small>
-                                                                <h6 class="m-0"><?php echo e(__('SUM')); ?></h6>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center justify-content-between">
+                                                        <div class="col-auto mb-3 mb-sm-0">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="theme-avtar bg-danger">
+                                                                    <i class="ti ti-report-money"></i>
+                                                                </div>
+                                                                <div class="ms-3">
+                                                                    <small
+                                                                        class="text-muted"><?php echo e(__('PROJECT')); ?></small>
+                                                                    <h6 class="m-0"><?php echo e(__('SUM')); ?></h6>
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-auto text-end">
+                                                            <h4 class="m-0"><?php echo e(number_format($ergp->project_sum)); ?>
+
+                                                            </h4>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-auto text-end">
-                                                        <h4 class="m-0"><?php echo e(number_format($ergp->project_sum)); ?></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center justify-content-between">
+                                                        <div class="col-auto mb-3 mb-sm-0">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="theme-avtar bg-danger">
+                                                                    <i class="ti ti-report-money"></i>
+                                                                </div>
+                                                                <div class="ms-3">
+                                                                    <small
+                                                                        class="text-muted"><?php echo e(__('PROJECT')); ?></small>
+                                                                    <h6 class="m-0"><?php echo e(__('BALLANCE')); ?></h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto text-end">
+                                                            <h4 class="m-0"><?php echo e(number_format($ergp->ballance)); ?>
+
+                                                            </h4>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row align-items-center justify-content-between">
-                                                    <div class="col-auto mb-3 mb-sm-0">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="theme-avtar bg-danger">
-                                                                <i class="ti ti-report-money"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <small class="text-muted"><?php echo e(__('PROJECT')); ?></small>
-                                                                <h6 class="m-0"><?php echo e(__('BALLANCE')); ?></h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto text-end">
-                                                        <h4 class="m-0"><?php echo e(number_format( $ergp->ballance)); ?></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <?php endif; ?>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?php echo e(Form::label('bduget', __('ERGP'), ['class' => 'form-label'])); ?>
 
                                         
-                                        <select name="" id="" wire:model="budget"
-                                            class="form-control">
+                                        <select name="" id="" wire:model="budget" class="form-control">
                                             <option value="" selected>-- Select ERGP -- </option>
                                             <?php $__currentLoopData = $projAccounts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $projAccount): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($projAccount->code); ?>"><?php echo e($projAccount->code); ?> &nbsp; (<?php echo e($projAccount->projectCategory->category_name); ?>) </option>
+                                                <option value="<?php echo e($projAccount->code); ?>"><?php echo e($projAccount->code); ?>
+
+                                                    &nbsp; (<?php echo e($projAccount->projectCategory->category_name); ?>)
+                                                </option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <?php $__errorArgs = ['bduget'];
@@ -108,10 +116,10 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <?php echo e(Form::label('boq_file', __('File Upload'), ['class' => 'form-label'])); ?>
+                                        <?php echo e(Form::label('boq_file', __('Supporting Document'), ['class' => 'form-label'])); ?>
 
                                         <input type="file" id="boq_file" wire:model.defer="boq_file"
-                                            class="form-control" placeholder="File" />
+                                            class="form-control" placeholder="Supporting Document" />
                                         <strong class="text-danger" wire:loading
                                             wire:target="boq_file">Loading...</strong>
                                         <?php $__errorArgs = ['boq_file'];
@@ -172,7 +180,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                                 id="input_<?php echo e($key); ?>_unit_price"
-                                                id="input_<?php echo e($key); ?>_unit_price" placeholder="Unit Price"
+                                                id="input_<?php echo e($key); ?>_unit_price" placeholder="Amount"
                                                 wire:model="inputs.<?php echo e($key); ?>.unit_price"
                                                 class="form-control" />
                                         </div>
@@ -212,6 +220,73 @@ unset($__errorArgs, $__bag); ?>
                             <?php endif; ?>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <?php echo e(Form::label('profit_margin', __('Profit Margin'), ['class' => 'form-label'])); ?>
+
+                                (%)
+                                <input type="number" wire:model="profitPercentage" class="form-control"
+                                    placeholder="Enter value in percentage">
+                                <?php $__errorArgs = ['profitPercentage'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger"><?php echo e($message); ?></strong>
+                                    </small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <?php echo e(Form::label('consultation_fee', __('Consultation Fee'), ['class' => 'form-label'])); ?>
+
+                                (₦)<span class="text-danger">*</span>
+                                <input type="number" wire:model="consultation_fee" class="form-control"
+                                    placeholder="Enter amount">
+                                <?php $__errorArgs = ['consultation_fee'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger"><?php echo e($message); ?></strong>
+                                    </small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <?php echo e(Form::label('profit_margin', __('VAT'), ['class' => 'form-label'])); ?>
+
+                                (%)<span class="text-danger">*</span>
+                                <input type="number" wire:model="vatPercentage" class="form-control"
+                                    placeholder="Enter value in percentage">
+                                <?php $__errorArgs = ['vatPercentage'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="invalid-type_of_leave" role="alert">
+                                        <strong class="text-danger"><?php echo e($message); ?></strong>
+                                    </small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="card">
@@ -229,35 +304,39 @@ unset($__errorArgs, $__bag); ?>
                                             </div>
                                         </div>
                                         <div class="col-auto text-end">
-                                            <h4 class="m-0"><?php echo e(number_format($sumTotal)); ?></h4>
+                                            <h4 class="m-0"><?php echo e(number_format($subTotal)); ?></h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+
                         <div class="col-lg-6 col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row align-items-center justify-content-between">
                                         <div class="col-auto mb-3 mb-sm-0">
                                             <div class="d-flex align-items-center">
-                                                <div class="theme-avtar bg-danger">
+                                                <div class="theme-avtar bg-success">
                                                     <i class="ti ti-report-money"></i>
                                                 </div>
                                                 <div class="ms-3">
-                                                    <small class="text-muted"><?php echo e(__('7.5%')); ?></small>
-                                                    <h6 class="m-0"><?php echo e(__('VAT')); ?></h6>
+                                                    <small class="text-muted"><?php echo e(__('GRAND TOTAL')); ?></small>
+                                                    <h6 class="m-0"><?php echo e(__('GRAND TOTAL')); ?></h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-auto text-end">
-                                            <h4 class="m-0"><?php echo e(number_format( 7.5/100 * ($sumTotal))); ?></h4>
+                                            <h4 class="m-0"><?php echo e(number_format($sumTotal)); ?></h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     <div class="modal-footer">
                         <input type="button" id="closeUplaodBOQ" value="<?php echo e(__('Cancel')); ?>"
                             class="btn  btn-light" data-bs-dismiss="modal">

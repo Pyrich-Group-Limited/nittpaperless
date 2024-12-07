@@ -9,7 +9,7 @@ class Unit extends Model
 {
     use HasFactory;
 
-    protected $fillalbe = [
+    protected $fillable = [
         'name',
         'department_id'
     ];

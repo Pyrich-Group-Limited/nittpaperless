@@ -568,7 +568,23 @@
                                         <a class="dash-link" href="{{ route('get-all-users') }}">{{__('User')}}</a>
                                     </li>
                                 @endcan
-                                @can('manage role')
+                                @can('create department')
+                                    <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
+                                        <a class="dash-link" href="{{ route('get-all-departments') }}">{{__('Departments')}}</a>
+                                    </li>
+                                @endcan
+                                @can('manage department')
+                                    <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
+                                        <a class="dash-link" href="{{ route('get-all-units') }}">{{__('Units')}}</a>
+                                    </li>
+                                @endcan
+                                @can('manage department')
+                                    <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
+                                        <a class="dash-link" href="{{ route('get-all-designations') }}">{{__('Designations')}}</a>
+                                    </li>
+                                @endcan
+
+                                {{-- @can('manage role')
                                     <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }} ">
                                         <a class="dash-link" href="{{route('roles.index')}}">{{__('Role')}}</a>
                                     </li>
@@ -577,7 +593,7 @@
                                     <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::segment(1) == 'users' || Request::route()->getName() == 'users.edit') ? ' active' : '' }}">
                                         <a class="dash-link" href="{{ route('user.userlog') }}">{{__('Audit Logs')}}</a>
                                     </li>
-                                @endcan
+                                @endcan --}}
                             </ul>
                         </li>
                     @endif
@@ -1179,7 +1195,7 @@
                         </a>
                         <ul class="dash-submenu">
                             <li class="dash-item {{ (Request::route()->getName() == 'store.dashboard' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('store.dashboard') }}">{{__('Supply')}}</a>
+                                <a class="dash-link" href="{{ route('supplies.projects')}}">{{__('Supply')}}</a>
                             </li>
 
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.index' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">

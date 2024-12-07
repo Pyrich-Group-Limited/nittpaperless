@@ -437,14 +437,15 @@
                                         </div>
                                         <div class="col-md-6 col-sm-6 my-3 my-sm-0">
                                             <div class="d-flex align-items-start mb-3">
-                                                <div class="theme-avtar bg-info">
-                                                    <i class="ti ti-check"></i>
-                                                </div>
-                                                <div class="ms-2">
-                                                    <p class="text-muted text-sm mb-0"><?php echo e(__('Active Jobs')); ?></p>
-                                                    <h4 class="mb-0 text-primary"><?php echo e($activeJob); ?></h4>
-
-                                                </div>
+                                                <a href="<?php echo e(route('jobsAvailable.index')); ?>">
+                                                    <div class="theme-avtar bg-info">
+                                                        <i class="ti ti-check"></i>
+                                                    </div>
+                                                    <div class="ms-2">
+                                                        <p class="text-muted text-sm mb-0"><?php echo e(__('Active Jobs')); ?></p>
+                                                        <h4 class="mb-0 text-primary"><?php echo e($activeJob); ?></h4>
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
