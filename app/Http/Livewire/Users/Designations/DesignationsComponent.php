@@ -26,13 +26,13 @@ class DesignationsComponent extends Component
         $this->actionId = $id;
     }
 
-    public function createDesignation(){
+    public function addDesignation(){
         $this->validate([
-            'designation' => ['required','string','unique:departments'],
+            'designation' => ['required','string','unique:designations,name'],
         ]);
 
         Designation::create([
-            'name' => $this->department
+            'name' => $this->designation
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('success',['success'=>'Designation Successfully Created']);
@@ -49,7 +49,7 @@ class DesignationsComponent extends Component
     //get branch records
     public function getDesignation(){
         $designation = Designation::query()
-        ->where($this->searchBy, 'like', '%'.$this->searchTerm.'%')
+        ->where('name', 'like', '%'.$this->searchTerm.'%')
         ->latest()->paginate($this->paginate);
         return $designation;
     }

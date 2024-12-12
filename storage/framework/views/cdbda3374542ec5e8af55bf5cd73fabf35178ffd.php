@@ -73,7 +73,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         <tr>
                                             <td><?php echo e($loop->iteration); ?></td>
                                             <td><?php echo e($user->name); ?></td>
-                                            <td><?php echo e($user->location_type); ?></td>
+                                            <td><?php echo e($user->location=="Headquarters" ? $user->location : $user->location_type." ".$user->location_type); ?></td>
                                             <td><?php if($user->department): ?><?php echo e($user->department->name ? : '-'); ?> <?php else: ?> - <?php endif; ?></td>
                                             <td><?php if($user->unit): ?><?php echo e($user->unit->name ? : '-'); ?> <?php else: ?> - <?php endif; ?></td>
                                             <td>
