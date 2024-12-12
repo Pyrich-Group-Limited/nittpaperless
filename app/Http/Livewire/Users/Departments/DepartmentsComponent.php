@@ -47,14 +47,13 @@ class DepartmentsComponent extends Component
     public $searchBy = null;
 
     public function mount(){
-    $this->searchBy = 'name'; //set default search criterial
     $this->paginate = 10; //set default search criterial
     }
 
     //get branch records
     public function getDepartments(){
         $departments = Department::query()
-        ->where($this->searchBy, 'like', '%'.$this->searchTerm.'%')
+        ->where('name', 'like', '%'.$this->searchTerm.'%')
         ->latest()->paginate($this->paginate);
         return $departments;
     }

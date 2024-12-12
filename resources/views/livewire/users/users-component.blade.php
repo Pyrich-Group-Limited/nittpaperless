@@ -58,7 +58,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $user->name }}</td>
-                                            <td>{{ $user->location_type }}</td>
+                                            <td>{{ $user->location=="Headquarters" ? $user->location : $user->location_type." ".$user->location_type }}</td>
                                             <td>@if($user->department){{ $user->department->name ? : '-' }} @else - @endif</td>
                                             <td>@if($user->unit){{ $user->unit->name ? : '-' }} @else - @endif</td>
                                             <td>
