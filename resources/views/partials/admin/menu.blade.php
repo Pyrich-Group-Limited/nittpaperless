@@ -178,6 +178,11 @@
                                         <a class="dash-link" href="{{ route('report.payroll') }}">{{__('Payroll')}}</a>
                                     </li>
                                     @endcan
+                                    @can('manage payment')
+                                    <li class="dash-item {{ request()->is('employees-files') ? 'active' : '' }}">
+                                        <a class="dash-link" href="{{ route('employees.files') }}">{{__('Employee Files')}}</a>
+                                    </li>
+                                    @endcan
                                     @can('manage report')
                                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'active dash-trigger' : ''}}" href="#hr-report" data-toggle="collapse" role="button" aria-expanded="{{(Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'true' : 'false'}}">
                                             <a class="dash-link" href="#">{{__('Reports/Analytics')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>

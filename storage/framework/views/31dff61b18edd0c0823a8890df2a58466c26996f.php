@@ -38,6 +38,7 @@
     <meta property="twitter:title" content="<?php echo e($metatitle); ?>">
     <meta property="twitter:description" content="<?php echo e($metsdesc); ?>">
     <meta property="twitter:image" content="<?php echo e($meta_image.$meta_logo); ?>">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
     <script src="<?php echo e(asset('js/html5shiv.js')); ?>"></script>
