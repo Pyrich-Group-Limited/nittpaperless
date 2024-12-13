@@ -229,6 +229,11 @@ use App\Http\Livewire\Contracts\AuditorPaymentComponent;
 use App\Http\Livewire\Contracts\AuditApprocalComponent;
 use App\Http\Livewire\Contracts\PaymentVoucher;
 
+use App\Http\Livewire\Employees\EmployeeFilesComponent;
+use App\Http\Livewire\Employees\EmployeeSubFilesComponent;
+use App\Http\Livewire\Employees\EmployeeFoldersComponent;
+use App\Http\Livewire\Employees\EmployeeSelectedFolderComponent;
+
 use App\Http\Livewire\Requisitions\RaiseRequisitionComponent;
 use App\Http\Livewire\Requisitions\AllRaisedRequisitionsComponent;
 use App\Http\Livewire\Requisitions\HodRequisitionsComponent;
@@ -299,6 +304,12 @@ Route::middleware(['auth','contractor'])->prefix('contractor')->group(function (
 });
 
 Route::get('/contractor/profile',ContractorProfile::class)->name('contractor.profile')->middleware('auth');
+
+//employee files
+Route::get('/employees-files',EmployeeFilesComponent::class)->name('employees.files')->middleware('auth');
+Route::get('/employees-sub-files/{id}',EmployeeSubFilesComponent::class)->name('employees.subfile')->middleware('auth');
+Route::get('/employees-folders/{id}/{type}',EmployeeFoldersComponent::class)->name('employees.folders')->middleware('auth');
+Route::get('/employees-selected-folders/{id}',EmployeeSelectedFolderComponent::class)->name('employees.selected')->middleware('auth');
 
 
 Route::middleware(['auth','revalidate'])->prefix('director-general')->group(function () {

@@ -178,6 +178,11 @@
                                         <a class="dash-link" href="<?php echo e(route('report.payroll')); ?>"><?php echo e(__('Payroll')); ?></a>
                                     </li>
                                     <?php endif; ?>
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage payment')): ?>
+                                    <li class="dash-item <?php echo e(request()->is('employees-files') ? 'active' : ''); ?>">
+                                        <a class="dash-link" href="<?php echo e(route('employees.files')); ?>"><?php echo e(__('Employee Files')); ?></a>
+                                    </li>
+                                    <?php endif; ?>
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage report')): ?>
                                         <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'active dash-trigger' : ''); ?>" href="#hr-report" data-toggle="collapse" role="button" aria-expanded="<?php echo e((Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'true' : 'false'); ?>">
                                             <a class="dash-link" href="#"><?php echo e(__('Reports/Analytics')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
