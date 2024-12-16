@@ -72,10 +72,6 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                 <i class="ti ti-eye"></i>
                                                 <span> {{__('View')}}</span>
                                             </a>
-                                            <a href="#!" data-size="md" data-url="{{ route('folder.renameModal',$folder->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Rename Folder')}}">
-                                                <i class="ti ti-pencil"></i>
-                                                <span>{{__('Rename')}}</span>
-                                            </a>
                                         </div>
                                     </div>
                                 </div>

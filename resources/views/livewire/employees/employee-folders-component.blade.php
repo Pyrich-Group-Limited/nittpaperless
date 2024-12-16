@@ -78,7 +78,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                 <i class="ti ti-eye"></i>
                                                 <span> {{__('View')}}</span>
                                             </a>
-                                            <a href="#!" data-size="md" data-url="{{ route('folder.renameModal',$folder->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Rename Folder')}}">
+                                            <a href="#!" data-bs-target="#renameFolder" data-bs-toggle="modal" wire:click="renameFolderModal({{$folder}})" class="dropdown-item" data-bs-original-title="{{__('Rename File')}}">
                                                 <i class="ti ti-pencil"></i>
                                                 <span>{{__('Rename')}}</span>
                                             </a>
@@ -102,7 +102,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             </g>
                                         </svg>
                                     </span>
-                                    <h6 class=" mt-4 text-primary">{{ $folder->folder_name }} File</h6>
+                                    <h6 class=" mt-4 text-primary">{{ $folder->folder_name }}</h6>
                                     </a>
                                 </div>
                             </div>
@@ -121,5 +121,6 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
         </div>
     </div>
 @include('livewire.employees.modals.new-file-folder-modal')
+@include('livewire.employees.modals.rename-folder')
 
 </div>

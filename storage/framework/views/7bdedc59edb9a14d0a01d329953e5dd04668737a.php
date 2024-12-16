@@ -120,8 +120,7 @@ unset($__errorArgs, $__bag); ?>
 
                                         <input type="file" id="boq_file" wire:model.defer="boq_file"
                                             class="form-control" placeholder="Supporting Document" />
-                                        <strong class="text-danger" wire:loading
-                                            wire:target="boq_file">Loading...</strong>
+                                        <strong class="text-danger" wire:loading wire:target="boq_file">Loading...</strong>
                                         <?php $__errorArgs = ['boq_file'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
