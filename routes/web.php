@@ -169,6 +169,10 @@ use App\Http\Livewire\Dta\CashOfficeDtaComponent;
 use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Users\UserPermission;
 
+use App\Http\Livewire\Users\Departments\DepartmentsComponent;
+use App\Http\Livewire\Users\Designations\DesignationsComponent;
+use App\Http\Livewire\Users\Units\UnitsComponent;
+
 use App\Http\Livewire\Projects\ProjectsComponent;
 use App\Http\Livewire\Projects\EditProjectComponent;
 use App\Http\Livewire\Projects\ShowProjectComponent;
@@ -177,6 +181,11 @@ use App\Http\Livewire\Projects\ProjectContractsComponent;
 use App\Http\Livewire\Projects\ProjectContractorsComponent;
 use App\Http\Livewire\Projects\ShowContractDetailsComponent;
 use App\Http\Livewire\Projects\SharedProjectDetailsComponent;
+
+//supply
+use App\Http\Livewire\Supply\SupplyProjectsComponent;
+use App\Http\Livewire\Supply\SupplyDetailsComponent;
+
 
 //procurement component import
 use App\Http\Livewire\PhysicalPlanning\Projects\PhysicalPlanningProjectsComponent;
@@ -220,6 +229,11 @@ use App\Http\Livewire\Contracts\AuditorPaymentComponent;
 use App\Http\Livewire\Contracts\AuditApprocalComponent;
 use App\Http\Livewire\Contracts\PaymentVoucher;
 
+use App\Http\Livewire\Employees\EmployeeFilesComponent;
+use App\Http\Livewire\Employees\EmployeeSubFilesComponent;
+use App\Http\Livewire\Employees\EmployeeFoldersComponent;
+use App\Http\Livewire\Employees\EmployeeSelectedFolderComponent;
+
 use App\Http\Livewire\Requisitions\RaiseRequisitionComponent;
 use App\Http\Livewire\Requisitions\AllRaisedRequisitionsComponent;
 use App\Http\Livewire\Requisitions\HodRequisitionsComponent;
@@ -239,7 +253,7 @@ use App\Http\Livewire\ItemRequisitions\ItemRequisitionStaffAcknowledgment;
 
 use App\Http\Controllers\JobsAvailableController;
 
-//advert components 
+//advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 use Illuminate\Support\Facades\Storage;
 
@@ -290,6 +304,12 @@ Route::middleware(['auth','contractor'])->prefix('contractor')->group(function (
 });
 
 Route::get('/contractor/profile',ContractorProfile::class)->name('contractor.profile')->middleware('auth');
+
+//employee files
+Route::get('/employees-files',EmployeeFilesComponent::class)->name('employees.files')->middleware('auth');
+Route::get('/employees-sub-files/{id}',EmployeeSubFilesComponent::class)->name('employees.subfile')->middleware('auth');
+Route::get('/employees-folders/{id}/{type}',EmployeeFoldersComponent::class)->name('employees.folders')->middleware('auth');
+Route::get('/employees-selected-folders/{id}',EmployeeSelectedFolderComponent::class)->name('employees.selected')->middleware('auth');
 
 
 Route::middleware(['auth','revalidate'])->prefix('director-general')->group(function () {
@@ -480,8 +500,7 @@ Route::get('store-issued-vouchers/create', [AccountantDashControl::class, 'newSt
 Route::get('store-issued-voucher/details', [AccountantDashControl::class, 'storeIssuedVoucherDetails'])->name('storeVoucher.details');
 
 Route::get('goods-received-notes', [AccountantDashControl::class, 'goodsReceivedNotes'])->name('goodsReceived.list');
-Route::get('goods-received-note/create', [AccountantDashControl::class, 'newGoodsReceived'])->name('goodsReceived.add');
-Route::get('goods-received-note/details', [AccountantDashControl::class, 'goodsReceivedNoteDetails'])->name('goodsReceived.details');
+Route::get('goods-received-note/details/{id}', [AccountantDashControl::class, 'goodsReceivedNoteDetails'])->name('goodsReceived.details');
 
 Route::get('approved-supply-notes', [AccountantDashControl::class, 'approvedSupplyNotes'])->name('approvedSupply.list');
 Route::get('approved-supply-note/create', [AccountantDashControl::class, 'newApprovedSupply'])->name('approvedSupply.add');
@@ -1041,6 +1060,12 @@ Route::post('branch/employee/json', [EmployeeController::class, 'employeeJson'])
 Route::get('employee-profile', [EmployeeController::class, 'profile'])->name('employee.profile')->middleware(['auth','XSS']);
 Route::get('show-employee-profile/{id}', [EmployeeController::class, 'profileShow'])->name('show.employee.profile')->middleware(['auth','XSS']);
 
+
+//DEPARTMENT
+Route::get('departments', DepartmentsComponent::class)->name('get-all-departments')->middleware(['auth', 'XSS']);
+Route::get('designations', DesignationsComponent::class)->name('get-all-designations')->middleware(['auth', 'XSS']);
+Route::get('units', UnitsComponent::class)->name('get-all-units')->middleware(['auth', 'XSS']);
+
 Route::get('lastlogin', [EmployeeController::class, 'lastLogin'])->name('lastlogin')->middleware(['auth','XSS']);
 
 Route::resource('employee', EmployeeController::class)->middleware(['auth', 'XSS']);
@@ -1312,6 +1337,10 @@ Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function 
     Route::get('/shared-project/{id}',SharedProjectDetailsComponent::class)->name('project.shared');
 });
 
+Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function () {
+    Route::get('supply-projects', SupplyProjectsComponent::class)->name('supplies.projects');
+    Route::get('supply-detail/{id}', SupplyDetailsComponent::class)->name('supplies.details');
+});
 // Project Module
 Route::middleware(['XSS', 'revalidate'])->prefix('budgets')->group(function () {
     Route::get('budget-category', ManageBudgetsComponent::class)->name('budget.category');

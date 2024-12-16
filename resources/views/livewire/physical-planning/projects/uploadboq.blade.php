@@ -101,8 +101,7 @@
                                         {{ Form::label('boq_file', __('Supporting Document'), ['class' => 'form-label']) }}
                                         <input type="file" id="boq_file" wire:model.defer="boq_file"
                                             class="form-control" placeholder="Supporting Document" />
-                                        <strong class="text-danger" wire:loading
-                                            wire:target="boq_file">Loading...</strong>
+                                        <strong class="text-danger" wire:loading wire:target="boq_file">Loading...</strong>
                                         @error('boq_file')
                                             <small class="invalid-name" role="alert">
                                                 <strong class="text-danger">{{ $message }}</strong>

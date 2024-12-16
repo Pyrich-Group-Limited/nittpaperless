@@ -34,6 +34,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 <div>
     <div class="row">
         <div class="col-xl-12">
+            <x-search-bar wire:model.live="searchTerm" placeholder="Search by staff name, department or units" />
 
             <div class="card mt-4">
                 <div class="card-body table-border-style">
@@ -57,7 +58,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $user->name }}</td>
-                                            <td>{{ $user->location_type }}</td>
+                                            <td>{{ $user->location=="Headquarters" ? $user->location : $user->location_type." ".$user->location_type }}</td>
                                             <td>@if($user->department){{ $user->department->name ? : '-' }} @else - @endif</td>
                                             <td>@if($user->unit){{ $user->unit->name ? : '-' }} @else - @endif</td>
                                             <td>

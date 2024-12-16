@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DashControls;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductService;
+use App\Models\GoodsReceiveNote;
 use App\Models\ProductServiceCategory;
 
 class AccountantDashControl extends Controller
@@ -43,7 +44,8 @@ class AccountantDashControl extends Controller
     }
 
     public function goodsReceivedNotes(Request $request){
-        return view('accountant.goods-received-notes');
+        $goods = GoodsReceiveNote::all();
+        return view('accountant.goods-received-notes',compact('goods'));
     }
 
     public function newPurchaseReq(Request $request){
@@ -66,8 +68,9 @@ class AccountantDashControl extends Controller
         return view('accountant.modals.comment');
     }
 
-    public function goodsReceivedNoteDetails(Request $request){
-        return view('accountant.goods-received-note-details');
+    public function goodsReceivedNoteDetails($id){
+        $good = GoodsReceiveNote::find($id);
+        return view('accountant.goods-received-note-details',compact('good'));
     }
 
 
@@ -80,7 +83,7 @@ class AccountantDashControl extends Controller
         return view('accountant.approved-supply-notes');
     }
 
-    
+
     public function deliveredSupplyNoteDetails(Request $request){
         return view('accountant.delivered-supply-note-details');
     }

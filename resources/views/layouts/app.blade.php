@@ -38,6 +38,7 @@
     <meta property="twitter:title" content="{{$metatitle}}">
     <meta property="twitter:description" content="{{$metsdesc}}">
     <meta property="twitter:image" content="{{$meta_image.$meta_logo}}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
     <script src="{{ asset('js/html5shiv.js') }}"></script>

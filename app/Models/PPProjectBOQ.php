@@ -24,6 +24,11 @@ class PPProjectBOQ extends Model
         return $this->belongsTo(ProjectCreation::class,'project_id');
     }
 
+
+    public function supplied(){
+        return $this->hasMany(ProjectSupplyHistory::class,'item_id');
+    }
+
     // public function getBalanceAttribute()
     // {
     //     return $this->unit_price * $this->quantity;
