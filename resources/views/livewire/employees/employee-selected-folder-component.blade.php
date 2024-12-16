@@ -62,7 +62,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     {{-- @if($folder->files->count() > 0) --}}
                     @if($documents->count() > 0)
                         {{-- @foreach($folder->files as $file ) --}}
-                        @foreach ($docs as $file)
+                        @foreach ($documents as $file)
                             <div class="col-md-2 mb-4">
                                 <div class="card text-center card-2">
                                     <div class="card-header border-0 pb-0">
@@ -74,30 +74,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                     <i class="ti ti-dots-vertical"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Share File')}}">
-                                                        <i class="ti ti-share"></i>
-                                                        <span>{{__('Share')}}</span>
-                                                    </a>
-                                                    <a href="#!" data-url="{{ route('file.renameModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Rename File')}}">
+                                                    <a href="#!" data-bs-target="#renameFolder" data-bs-toggle="modal" wire:click="renameFolderModal({{$file}})" class="dropdown-item" data-bs-original-title="{{__('Rename File')}}">
                                                         <i class="ti ti-pencil"></i>
                                                         <span>{{__('Rename')}}</span>
                                                     </a>
-                                                    <a href="{{ route('files.download',$file->id) }}"  class="dropdown-item">
+                                                    <a href="{{ asset('assets/documents/uploads/'.$file->path)}}" download class="dropdown-item">
                                                         <i class="ti ti-download"></i>
                                                         <span> {{__('Download')}} </span>
                                                     </a>
-                                                    <form action="{{ route('files.archive', $file->id) }}" method="POST" style="display:inline;">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-white dropdown-item"><i class="ti ti-archive"></i>Archive</button>
-                                                    </form>
-                                                    {{-- <a href="{{ route('files.archive', $file->id) }}"  class="dropdown-item">
-                                                        <i class="ti ti-archive"></i>
-                                                        <span> {{__('Archive')}} </span>
-                                                    </a> --}}
-                                                    {{-- <a href="#!"  class="dropdown-item bs-pass-para">
-                                                        <i class="ti ti-adjustments"></i>
-                                                        <span>{{__('Restore')}} </span>
-                                                    </a> --}}
                                                     {!! Form::close() !!}
                                                 </div>
                                             </div>
@@ -136,4 +120,5 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
         </div>
     </div>
     @include('livewire.employees.modals.new-document-blade')
+    @include('livewire.employees.modals.rename-file')
 </div>

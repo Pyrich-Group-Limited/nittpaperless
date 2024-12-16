@@ -18,6 +18,7 @@ class EmployeeFoldersComponent extends Component
     public $user_id;
     public $folder_type;
     public $folder_name;
+    public $selFolder;
 
     public function mount($id,$type){
         $this->user_id =  $id;
@@ -47,6 +48,41 @@ class EmployeeFoldersComponent extends Component
         ]);
 
         $this->dispatchBrowserEvent('success',["success" =>"File successfully created"]);
+
+    }
+
+
+    public function renameFolderModal(HrmFolder $folder){
+        $this->selFolder = $folder;
+        $this->folder_name = $folder->folder_name;
+    }
+
+
+    public function renameFile(){
+
+        $this->validate([
+            'file_name' => ['required','string'],
+        ]);
+
+        $this->selFile->update([
+            'file_name' => $this->file_name,
+        ]);
+
+        $this->dispatchBrowserEvent('success',['success'=>'File Successfully Renamed']);
+
+    }
+
+    public function renameFolder(){
+
+        $this->validate([
+            'folder_name' => ['required','string'],
+        ]);
+
+        $this->selFolder->update([
+            'folder_name' => $this->folder_name,
+        ]);
+
+        $this->dispatchBrowserEvent('success',['success'=>'Folder Successfully Renamed']);
 
     }
 
