@@ -1082,14 +1082,14 @@
                                             <li class="dash-item {{ (Request::route()->getName() == 'attendanceemployee.index' ? 'active' : '')}}">
                                                 <a class="dash-link" href="{{route('attendanceemployee.index')}}">{{__('Mark Attendance')}}</a>
                                             </li>
-                                            @can('create attendance')
-                                                <li class="dash-item {{ (Request::route()->getName() == 'attendanceemployee.bulkattendance' ? 'active' : '')}}">
+                                                {{-- <li class="dash-item {{ (Request::route()->getName() == 'attendanceemployee.bulkattendance' ? 'active' : '')}}">
                                                     <a class="dash-link" href="{{ route('attendanceemployee.bulkattendance') }}">{{__('Bulk Attendance')}}</a>
+                                                </li> --}}
+                                            @can('create attendance')
+                                                <li class="dash-item {{ request()->is('reports-monthly-attendance') ? 'active' : '' }}">
+                                                    <a class="dash-link" href="{{ route('report.monthly.attendance') }}">{{ __('Monthly Attendance') }}</a>
                                                 </li>
                                             @endcan
-                                            <li class="dash-item {{ request()->is('reports-monthly-attendance') ? 'active' : '' }}">
-                                                <a class="dash-link" href="{{ route('report.monthly.attendance') }}">{{ __('Monthly Attendance') }}</a>
-                                            </li>
                                         </ul>
                                     </li>
                                 @endcan
