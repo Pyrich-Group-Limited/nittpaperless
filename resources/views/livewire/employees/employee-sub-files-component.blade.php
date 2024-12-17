@@ -59,6 +59,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     @foreach($folders as $folder)
                     <div class="col-md-2 mb-4">
                         <div class="card text-center card-2">
+                            @can('Manage Employee FIle')
                             <div class="card-header border-0 pb-0">
                                 <div class="card-header-right">
                                     <div class="btn-group card-option">
@@ -76,6 +77,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                     </div>
                                 </div>
                             </div>
+                            @endcan
                             <div class="card-body s">
                                 <div class="img-fluid rounded-circle card-avatar">
                                     <a href="{{ route('employees.folders',[$folder->owner->id,$folder->folder_type]) }}">

@@ -13,11 +13,13 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <li class="breadcrumb-item">{{__('Folders')}}</li>
 @endsection
 @section('action-btn')
+@can('Create Employee FIle')
     <div class="float-end">
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newFolder" data-bs-toggle="tooltip" title="{{__('Create new folder')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-plus">Create File </i>
             </a>
     </div>
+    @endcan
 @endsection
 
 <div>

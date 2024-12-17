@@ -244,6 +244,7 @@ use App\Http\Livewire\Requisitions\PvRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\AuditRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\CashOfficeRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\RequisitionVoucherComponent;
+use App\Http\Livewire\Requisitions\PurchaseRequisitions;
 
 use App\Http\Livewire\ItemRequisitions\CreateItemRequisition;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionHodApproval;
@@ -1391,6 +1392,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('requisitions')->group(function
      Route::get('/audit-approvals', AuditRequisitionApprovalComponent::class)->name('audit.requisitions');
      Route::get('/cash-office-approvals', CashOfficeRequisitionApprovalComponent::class)->name('cash-office.requisitions');
     Route::get('/requisition/{id}/voucher', RequisitionVoucherComponent::class)->name('requisition.voucher');
+    Route::get('/purchase-requisitions', PurchaseRequisitions::class)->name('purchase.requisition');
 
 });
 

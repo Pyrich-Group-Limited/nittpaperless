@@ -1223,9 +1223,9 @@
                                 <a class="dash-link" href="{{ route('itemRequisition.acknowledgment') }}">{{__('Store Issue Voucher')}}</a>
                             </li>
 
-                            @can('manage purchase')
+                            @can('request purchase requisition')
                                 <li class="dash-item {{ (Request::route()->getName() == 'req.list' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                    <a class="dash-link" href="{{ route('req.list') }}">{{__('Purchase requisition')}}</a>
+                                    <a class="dash-link" href="{{ route('purchase.requisition')}}">{{__('Purchase requisition')}}</a>
                                 </li>
                             @endcan
 
