@@ -21,13 +21,15 @@ class DgRequisitionApprovalComponent extends Component
     {
         $user = auth()->user();
 
-            $this->requisitions = StaffRequisition::where('status', 'hod_approved')->orWhere('status','liaison_head_approved')
+            $this->requisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->where('status', 'hod_approved')->orWhere('status','special_duty_head_approved')
             ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
                 $query->where('approver_id', $user->id)
                     ->where('role', $user->type);
             })->orderBy('created_at', 'desc')->get();
-            
-        $this->dgApprovedrequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
+
+        $this->dgApprovedrequisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
                 ->where('status', 'approved');
@@ -44,7 +46,7 @@ class DgRequisitionApprovalComponent extends Component
     {
         // Check if the file exists in the public folder
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {

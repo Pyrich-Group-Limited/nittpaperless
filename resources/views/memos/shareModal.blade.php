@@ -21,6 +21,10 @@
                     <label for="comment">Comment:</label>
                     <textarea name="comment" id="comment" class="form-control"></textarea>
                 </div>
+                <div class="form-group">
+                    <label for="secret_code">Secret Code</label>
+                    <input type="password" name="secret_code" placeholder="Enter your secret code" id="secret_code" class="form-control" required>
+                </div>
             </div>
         </div>
 

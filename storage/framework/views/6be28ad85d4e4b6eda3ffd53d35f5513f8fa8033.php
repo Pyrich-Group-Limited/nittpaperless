@@ -47,6 +47,7 @@
                                                         <th><?php echo e(__('Creator Name')); ?></th>
                                                         <th><?php echo e(__('Department')); ?></th>
                                                         <th><?php echo e(__('Memo Title')); ?></th>
+                                                        <th><?php echo e(__('Priority')); ?></th>
                                                         <th><?php echo e(__('Description')); ?></th>
                                                         <th><?php echo e(__('Date')); ?></th>
                                                         <th><?php echo e(__('Action')); ?></th>
@@ -58,6 +59,21 @@
                                                                 <td><?php echo e($memo->creator->name); ?></td>
                                                                 <td><?php echo e($memo->creator->department->name); ?></td>
                                                                 <td><?php echo e($memo->title); ?></td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div class="media-body">
+                                                                            <?php if($memo->priority == 0): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
+                                                                            <?php elseif($memo->priority == 1): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
+                                                                            <?php elseif($memo->priority == 2): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
+                                                                            <?php elseif($memo->priority == 3): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
                                                                 <td><?php echo e(Str::limit($memo->description, 20, '...')); ?></td>
                                                                 <td><?php echo e($memo->created_at->format('d-M-Y')); ?></td>
                                                                 <td class="Action">
@@ -89,20 +105,58 @@
                                             <table class="table table-flush table datatable" id="report-dataTable">
                                                 <thead>
                                                     <tr>
-                                                        <th><?php echo e(__('Shared By')); ?></th>
+                                                        <th scope="col"><?php echo e(__('Sender')); ?></th>
+                                                        <th><?php echo e(__('Location')); ?></th>
                                                         <th><?php echo e(__('Department')); ?></th>
                                                         <th><?php echo e(__('Memo Title')); ?></th>
+                                                        <th><?php echo e(__('Priority')); ?></th>
                                                         <th><?php echo e(__('Date Shared')); ?></th>
+                                                        <th><?php echo e(__('Signature')); ?></th>
                                                         <th><?php echo e(__('Action')); ?></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $__currentLoopData = $incomingMemos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $incomingMemo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <tr class="font-style">
-                                                                <td><?php echo e($incomingMemo->sharedBy->name); ?></td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div>
+                                                                            <div class="avatar-parent-child">
+                                                                                <img alt="" class="avatar rounded-circle avatar-sm" <?php if(!empty($incomingMemo->createdBy) && !empty($incomingMemo->createdBy->avatar)): ?> src="<?php echo e(asset(Storage::url('uploads/avatar')).'/'.$incomingMemo->createdBy->avatar); ?>" <?php else: ?>  src="<?php echo e(asset(Storage::url('uploads/avatar')).'/avatar.png'); ?>" <?php endif; ?>>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="media-body">
+                                                                            <?php echo e(!empty($incomingMemo->sharedBy->name)?$incomingMemo->sharedBy->name:''); ?>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td><?php echo e($incomingMemo->sharedBy->location); ?></td>
                                                                 <td><?php echo e($incomingMemo->sharedBy->department->name); ?></td>
                                                                 <td><?php echo e($incomingMemo->memo->title); ?></td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div class="media-body">
+                                                                            <?php if($incomingMemo->memo->priority == 0): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
+                                                                            <?php elseif($incomingMemo->memo->priority == 1): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
+                                                                            <?php elseif($incomingMemo->memo->priority == 2): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
+                                                                            <?php elseif($incomingMemo->memo->priority == 3): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
                                                                 <td><?php echo e($incomingMemo->created_at->format('d-M-Y')); ?></td>
+                                                                <td>
+                                                                    <?php if($incomingMemo->sharedBy && $incomingMemo->sharedBy->signature): ?>
+                                                                        <img src="<?php echo e(asset('storage/' . $incomingMemo->sharedBy->signature->signature_path)); ?>" alt="Signature" height="50">
+                                                                    <?php else: ?>
+                                                                        <strike><?php echo e($incomingMemo->sharedBy->name); ?></strike>
+                                                                    <?php endif; ?>
+                                                                </td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">
                                                                         <a href="#" class="mx-3 btn btn-sm align-items-center" data-url="<?php echo e(route('memos.show', $incomingMemo->memo_id)); ?>"
@@ -139,8 +193,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th><?php echo e(__('Shared With')); ?></th>
+                                                        <th><?php echo e(__('Location')); ?></th>
                                                         <th><?php echo e(__('Department')); ?></th>
                                                         <th><?php echo e(__('Memo Title')); ?></th>
+                                                        <th><?php echo e(__('Priority')); ?></th>
                                                         <th><?php echo e(__('Date Shared')); ?></th>
                                                         <th><?php echo e(__('Action')); ?></th>
                                                     </tr>
@@ -148,9 +204,37 @@
                                                     <tbody>
                                                         <?php $__currentLoopData = $outgoingMemos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $outgoingMemo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <tr class="font-style">
-                                                                <td><?php echo e($outgoingMemo->sharedWith->name); ?></td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div>
+                                                                            <div class="avatar-parent-child">
+                                                                                <img alt="" class="avatar rounded-circle avatar-sm" <?php if(!empty($outgoingMemo->createdBy) && !empty($outgoingMemo->createdBy->avatar)): ?> src="<?php echo e(asset(Storage::url('uploads/avatar')).'/'.$outgoingMemo->createdBy->avatar); ?>" <?php else: ?>  src="<?php echo e(asset(Storage::url('uploads/avatar')).'/avatar.png'); ?>" <?php endif; ?>>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="media-body">
+                                                                            <?php echo e(!empty($outgoingMemo->sharedWith->name)?$outgoingMemo->sharedWith->name:''); ?>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td><?php echo e($outgoingMemo->sharedWith->location); ?></td>
                                                                 <td><?php echo e($outgoingMemo->sharedWith->department->name); ?></td>
                                                                 <td><?php echo e($outgoingMemo->memo->title); ?></td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div class="media-body">
+                                                                            <?php if($outgoingMemo->memo->priority == 0): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
+                                                                            <?php elseif($outgoingMemo->memo->priority == 1): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
+                                                                            <?php elseif($outgoingMemo->memo->priority == 2): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
+                                                                            <?php elseif($outgoingMemo->memo->priority == 3): ?>
+                                                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
                                                                 <td><?php echo e($outgoingMemo->created_at->format('d-M-Y')); ?></td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">

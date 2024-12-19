@@ -24,10 +24,15 @@
 
         </div>
         <div  align="center">
-             <h6 class="text-primary">({{ Ucfirst(Auth::user()->department->name) }})</h6>
-             <h6 class="text-primary">({{ Ucfirst(Auth::user()->designation) }})</h6>
-            <h6 class="text-primary">{{ Ucfirst(Auth::user()->location)}}</h6>
+            <h6 class="text-primary">({{ Ucfirst(Auth::user()->designation ?? '') }})</h6>
+            <h6 class="text-primary">({{ Ucfirst(Auth::user()->department->name ?? '') }})</h6>
+             @if(Auth::user()->location==='Headquarters')
+                <h6 class="text-primary">{{ Ucfirst(Auth::user()->location ?? '')}}</h6>
+            @elseif (Auth::user()->location==='Liaison Office')
+                <h6 class="text-primary">{{ Ucfirst(Auth::user()->location_type ?? '') }} Liaison Office</h6>
+            @endif
         </div>
+            
 
         <div class="navbar-content">
             @if(\Auth::user()->type =='DG')
@@ -429,6 +434,11 @@
                             @can('approve as liaison head')
                                 <li class="dash-item {{ request()->is('liaison.requisitions') ? 'active' : '' }}">
                                     <a class="dash-link" href="{{ route('liaison.requisitions') }}">{{__('LiaisonHead Approval')}}</a>
+                                </li>
+                            @endcan
+                            @can('approve as special duty')
+                                <li class="dash-item {{ request()->is('sd.requisitions') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('sd.requisitions') }}">{{__('SD Head Approval')}}</a>
                                 </li>
                             @endcan
                             @can('approve as dg')
@@ -1103,14 +1113,14 @@
                                             <li class="dash-item {{ (Request::route()->getName() == 'attendanceemployee.index' ? 'active' : '')}}">
                                                 <a class="dash-link" href="{{route('attendanceemployee.index')}}">{{__('Mark Attendance')}}</a>
                                             </li>
-                                            @can('create attendance')
-                                                <li class="dash-item {{ (Request::route()->getName() == 'attendanceemployee.bulkattendance' ? 'active' : '')}}">
+                                                {{-- <li class="dash-item {{ (Request::route()->getName() == 'attendanceemployee.bulkattendance' ? 'active' : '')}}">
                                                     <a class="dash-link" href="{{ route('attendanceemployee.bulkattendance') }}">{{__('Bulk Attendance')}}</a>
+                                                </li> --}}
+                                            @can('create attendance')
+                                                <li class="dash-item {{ request()->is('reports-monthly-attendance') ? 'active' : '' }}">
+                                                    <a class="dash-link" href="{{ route('report.monthly.attendance') }}">{{ __('Monthly Attendance') }}</a>
                                                 </li>
                                             @endcan
-                                            <li class="dash-item {{ request()->is('reports-monthly-attendance') ? 'active' : '' }}">
-                                                <a class="dash-link" href="{{ route('report.monthly.attendance') }}">{{ __('Monthly Attendance') }}</a>
-                                            </li>
                                         </ul>
                                     </li>
                                 @endcan
@@ -1209,6 +1219,10 @@
 
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('itemRequisition.hodApproval') }}">{{__('HoD SRN approval')}}</a>
+                            </li>
+
+                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.liaisonApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                <a class="dash-link" href="{{ route('itemRequisition.liaisonApproval') }}">{{__('Liaison SRN approval')}}</a>
                             </li>
 
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.bursarApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">

@@ -49,8 +49,9 @@ class StaffRequisition extends Model
         return $this->belongsTo(Unit::class);
     }
 
-    // public function liaisonOffice()
-    // {
-    //     return $this->belongsTo(LiasonOffice::class);
-    // }
+    public function signedUsers()
+    {
+        return $this->belongsToMany(User::class, 'signatures')
+                    ->withTimestamps();
+    }
 }

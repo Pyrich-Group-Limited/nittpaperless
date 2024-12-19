@@ -50,7 +50,7 @@
                                     <th>{{__('#')}}</th>
                                     <th>{{__('Staff Name')}}</th>
                                     <th>{{__('RequisitionType')}}</th>
-                                    <th>{{__('Pupose')}}</th>
+                                    <th>{{__('Purpose')}}</th>
                                     <th>{{__('Amount')}}</th>
                                     <th>{{__('Status')}}</th>
                                     <th>{{__('Request Date')}}</th>

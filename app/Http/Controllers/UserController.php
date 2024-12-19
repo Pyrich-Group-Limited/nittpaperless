@@ -11,7 +11,6 @@ use App\Models\UserCompany;
 use App\Models\Designation;
 use App\Models\Unit;
 use App\Models\Subunit;
-use Auth;
 use File;
 use App\Models\Utility;
 use App\Models\UserToDo;
@@ -28,6 +27,7 @@ use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Signature;
 use Storage;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -475,6 +475,33 @@ class  UserController extends Controller
         }
 
         return redirect()->back()->with('error', 'Failed to upload the signature.');
+    }
+
+    public function updateSecretCode(Request $request)
+    {
+        $user = Auth::user();
+
+        $rules = [
+            'secret_code' => 'required|string|min:4|confirmed',
+        ];
+
+        // If the user already has a secret code, validate the old secret code
+        if ($user->secret_code) {
+            $rules['old_secret_code'] = 'required|string';
+        }
+        $request->validate($rules);
+
+        // If the user has an existing secret code, verify the old secret code
+        if ($user->secret_code) {
+            if (!Hash::check($request->old_secret_code, $user->secret_code)) {
+                return redirect()->back()->with(['error' => 'The old secret code is incorrect.']);
+            }
+        }
+
+        // Update or set the secret code
+        $user->secret_code = Hash::make($request->secret_code);
+        $user->save();
+        return redirect()->back()->with(['success'=>'Secret code updated successfully.']);
     }
 
 

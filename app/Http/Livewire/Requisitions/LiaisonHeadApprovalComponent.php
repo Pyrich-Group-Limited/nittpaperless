@@ -21,13 +21,15 @@ class LiaisonHeadApprovalComponent extends Component
     {
         $user = auth()->user();
 
-        $this->requisitions = StaffRequisition::where('status', 'liaison_head_approval')
-        ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
+        $this->requisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->where('status', 'liaison_head_approval')
+            ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->where('location',Auth::user()->location_type)->orderBy('created_at', 'desc')->get();
             
-        $this->dgApprovedrequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
+        $this->dgApprovedrequisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
                 ->where('status', 'approved');

@@ -12,6 +12,8 @@ use App\Models\MemoSignature;
 use App\Models\User;
 use Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MemoController extends Controller
 {
@@ -57,21 +59,38 @@ class MemoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $data = $request->validate([
             'title' => ['required', 'string'],
-            'description' => ['required','string'],
-            'memofile' => 'required|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
+            'priority' => ['required'],
+            'description' => ['required', 'string'],
+            'content_type' => ['required', 'in:typed,uploaded'],
+            'file_content' => 'required_if:content_type,typed',
+            'memofile' => 'required_if:content_type,uploaded|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
         ]);
 
-        // Handle file upload
-        $filePath = $request->file('memofile')->store('memos');
+        $filePath = null;
 
-        // Create memo
+        if ($data['content_type'] === 'typed') {
+            // Generate PDF from the typed content
+            $pdf = Pdf::loadView('memos.template', ['content' => $data['file_content']]);
+            $fileName = 'memos/' . uniqid() . '.pdf';
+            Storage::put($fileName, $pdf->output());
+            $filePath = $fileName;
+        } else  {
+            if ($request->hasFile('memofile')) {
+                $filePath = $request->file('memofile')->store('memos');
+            } else {
+                return redirect()->back()->with('error', 'File upload failed. Please try again.');
+            }
+        }
+        
         Memo::create([
             'created_by' => Auth::id(),
             'title' => $data['title'],
+            'priority' => $data['priority'],
             'description' => $data['description'],
             'file_path' => $filePath,
         ]);
@@ -151,7 +170,7 @@ class MemoController extends Controller
         }elseif($authUser->type=='DG' || $authUser->type=='super admin'){
             $users = User::all();
         }else {
-            return redirect()->back()->with('error', 'You are not authorized to view this page.');
+            return redirect()->back()->with(['error' => 'You are not authorized to view this page.']);
         }
 
         return view('memos.shareModal', compact('memo', 'signatures','users'));
@@ -163,7 +182,15 @@ class MemoController extends Controller
         $request->validate([
             'shared_with' => 'required|exists:users,id',
             'comment' => 'nullable',
+            'secret_code' => 'required|string',
         ]);
+
+        // Check if the provided secret code matches the user's stored secret code
+        $user = Auth::user();
+
+        if (!Hash::check($request->secret_code, $user->secret_code)) {
+            return redirect()->back()->with(['error' => 'The secret code is incorrect.']);
+        }
 
         $memoShare = MemoShare::create([
             'memo_id' => $id,
@@ -177,9 +204,6 @@ class MemoController extends Controller
             'user_id' => Auth::id(),
             'comment' => $request->comment,
         ]);
-
-        // $memoShare->sharedWithUsers()->attach($request->shared_with);
-
 
         return redirect()->route('memos.index')->with('success', 'Memo shared successfully.');
     }

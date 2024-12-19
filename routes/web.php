@@ -239,6 +239,7 @@ use App\Http\Livewire\Requisitions\AllRaisedRequisitionsComponent;
 use App\Http\Livewire\Requisitions\HodRequisitionsComponent;
 use App\Http\Livewire\Requisitions\LiaisonHeadApprovalComponent;
 use App\Http\Livewire\Requisitions\DgRequisitionApprovalComponent;
+use App\Http\Livewire\Requisitions\SpecialDutyHeadApprovalComponent;
 use App\Http\Livewire\Requisitions\BursarRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\PvRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\AuditRequisitionApprovalComponent;
@@ -247,13 +248,14 @@ use App\Http\Livewire\Requisitions\RequisitionVoucherComponent;
 
 use App\Http\Livewire\ItemRequisitions\CreateItemRequisition;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionHodApproval;
+use App\Http\Livewire\ItemRequisitions\ItemRequestLiaisonHeadApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionBursarApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionStoreUnitApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionStaffAcknowledgment;
 
 use App\Http\Controllers\JobsAvailableController;
 
-//advert components
+//advert components 
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 use Illuminate\Support\Facades\Storage;
 
@@ -556,10 +558,12 @@ Route::post('/files/{file}/archive', [FilesController::class, 'archive'])->name(
 Route::get('/files/archived', [FilesController::class, 'archived'])->name('files.archived'); // List archived files
 
 Route::get('create-folder',[FilesController::class, 'createFolder'])->name('folder.create');
+Route::get('folder-creation',[FolderController::class, 'createFolderModal'])->name('folder.new');
 Route::get('/folders', [FolderController::class, 'index'])->name('folders.index');
 Route::post('/folders', [FolderController::class, 'store'])->name('folders.store');
 Route::get('/rename-folder/{id}', [FolderController::class, 'renameFolderModal'])->name('folder.renameModal');
 Route::patch('/folders/{folder}/rename', [FolderController::class, 'rename'])->name('folders.rename');
+Route::post('/folders/move', [FolderController::class, 'move'])->name('folders.move');
 
 Route::get('/folder/{folder}/details', [FolderController::class, 'show'])->name('folder.details');
 Route::get('file-upload',[FilesController::class, 'filesUpload'])->name('file.upload');
@@ -1294,6 +1298,7 @@ Route::get('get-department-units/{id}', [UserController::class, 'getDepartments'
 Route::get('get-department/{id}', [UserController::class, 'departments']);
 Route::get('get-unit-subunits/{id}', [UserController::class, 'getSubUnits']);
 Route::put('/signature/update', [UserController::class, 'updateSignature'])->name('signatures.update');
+Route::post('/user/update-secret-code', [UserController::class, 'updateSecretCode'])->name('user.update.secret_code');
 
 
 // End User Module
@@ -1385,6 +1390,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('requisitions')->group(function
      Route::get('/manage-requisition', AllRaisedRequisitionsComponent::class)->name('manage.requisitions');
      Route::get('/hod-approvals', HodRequisitionsComponent::class)->name('hod.requisitions');
      Route::get('/liaison-head-approvals', LiaisonHeadApprovalComponent::class)->name('liaison.requisitions');
+     Route::get('/special-duty-approvals', SpecialDutyHeadApprovalComponent::class)->name('sd.requisitions');
      Route::get('/dg-approvals', DgRequisitionApprovalComponent::class)->name('dg.requisitions');
      Route::get('/bursar-approvals', BursarRequisitionApprovalComponent::class)->name('bursar.requisitions');
      Route::get('/pv-approvals', PvRequisitionApprovalComponent::class)->name('pv.requisitions');
@@ -1397,6 +1403,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('requisitions')->group(function
 Route::middleware(['XSS', 'revalidate'])->prefix('item-requisitions')->group(function () {
     Route::get('/my-requests', CreateItemRequisition::class)->name('itemRequisition.index');
     Route::get('/hod-approval', ItemRequisitionHodApproval::class)->name('itemRequisition.hodApproval');
+    Route::get('/liason-head-approval', ItemRequestLiaisonHeadApproval::class)->name('itemRequisition.liaisonApproval');
     Route::get('/bursar-approval', ItemRequisitionBursarApproval::class)->name('itemRequisition.bursarApproval');
     Route::get('/store-approval', ItemRequisitionStoreUnitApproval::class)->name('itemRequisition.storeApproval');
     Route::get('/acknowledgment', ItemRequisitionStaffAcknowledgment::class)->name('itemRequisition.acknowledgment');

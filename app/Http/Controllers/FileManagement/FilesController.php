@@ -74,11 +74,7 @@ class FilesController extends Controller
             ]);
         }
 
-
-
         return redirect()->back()->with('success', 'File uploaded successfully.');
-
-
     }
 
 
