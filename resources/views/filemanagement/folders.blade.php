@@ -1,144 +1,346 @@
 @extends('layouts.admin')
 @php
- //   $profile=asset(Storage::url('uploads/avatar/'));
-$profile=\App\Models\Utility::get_file('uploads/avatar');
+    //   $profile=asset(Storage::url('uploads/avatar/'));
+    $profile = \App\Models\Utility::get_file('uploads/avatar');
 @endphp
 @section('page-title')
-    {{__('Folders')}}
+    {{ __('Folders') }}
 @endsection
 @push('script-page')
-
 @endpush
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Folders')}}</li>
+    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
+    <li class="breadcrumb-item">{{ __('Folders') }}</li>
 @endsection
 @section('action-btn')
     <div class="float-end">
-        {{------------ Start Filter ----------------}}
-                <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="ti ti-filter"></i>
-                </a>
-                <div class="dropdown-menu  dropdown-steady" id="project_sort">
-                    <a class="dropdown-item {{ $sortOrder == 'newest' ? 'active' : '' }}"
-                    href="{{ route('folders.index', ['sort' => 'newest']) }}" data-val="created_at-desc">
-                        <i class="ti ti-sort-descending"></i>{{__('Newest')}}
-                    </a>
-                    <a class="dropdown-item" {{ $sortOrder == 'oldest' ? 'active' : '' }}
-                    href="{{ route('folders.index', ['sort' => 'oldest']) }}" data-val="created_at-asc">
-                        <i class="ti ti-sort-ascending"></i>{{__('Oldest')}}
-                    </a>
-                </div>
-
-            {{------------ End Filter ----------------}}
-            <a href="#" data-size="lg" data-url="{{ route('folder.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create new folder')}}" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus">New </i>
+        {{-- ---------- Start Filter -------------- --}}
+        <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="ti ti-filter"></i>
+        </a>
+        <div class="dropdown-menu  dropdown-steady" id="project_sort">
+            <a class="dropdown-item {{ $sortOrder == 'newest' ? 'active' : '' }}"
+                href="{{ route('folders.index', ['sort' => 'newest']) }}" data-val="created_at-desc">
+                <i class="ti ti-sort-descending"></i>{{ __('Newest') }}
             </a>
+            <a class="dropdown-item" {{ $sortOrder == 'oldest' ? 'active' : '' }}
+                href="{{ route('folders.index', ['sort' => 'oldest']) }}" data-val="created_at-asc">
+                <i class="ti ti-sort-ascending"></i>{{ __('Oldest') }}
+            </a>
+        </div>
+
+        {{-- ---------- End Filter -------------- --}}
+        <a href="#" data-size="lg" data-url="{{ route('folder.new') }}" data-ajax-popup="true"
+            data-bs-toggle="tooltip" title="{{ __('Create new folder') }}" class="btn btn-sm btn-primary">
+            <i class="ti ti-plus">New </i>
+        </a>
     </div>
 @endsection
 
+<style>
+    .desktop {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 folders per row */
+        gap: 20px; /* Adjust spacing between folders */
+        background: #f5f5f5;
+        padding: 10px;
+    }
+
+    @media (max-width: 1024px) {
+        .desktop {
+            grid-template-columns: repeat(2, 1fr); /* 2 folders per row for smaller screens */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .desktop {
+            grid-template-columns: 1fr; /* 1 folder per row for mobile devices */
+        }
+    }
+
+    .folder {
+        position: relative;
+        padding: 10px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 150px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .folder:hover {
+        transform: scale(1.1); /* Slightly enlarges the folder on hover */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
+    }
+
+    .folder-icon img {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 10px;
+    }
+
+    .folder-name {
+        margin-top: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        word-break: break-word;
+    }
+
+    .nested-folders {
+        margin-left: 20px;
+        border-left: 2px dashed #ddd;
+        padding-left: 10px;
+    }
+    .nested-folders .folder {
+        margin-bottom: 10px;
+    }
+
+    .empty-desktop {
+        text-align: center;
+        color: #999;
+        font-size: 16px;
+    }
+
+    .dragging {
+        opacity: 0.5;
+        border: 2px dashed #0078d7;
+    }
+
+    .drag-over {
+        background-color: rgba(0, 120, 215, 0.3);
+        border: 2px solid #0078d7;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination .page-link {
+        color: #007bff;
+        margin: 0 5px;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+
+    /* @media (max-width: 768px) {
+        .desktop {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .folder {
+            width: 80px;
+        }
+
+        .folder-icon img {
+            width: 60px;
+            height: 60px;
+        }
+    } */
+</style>
+
 @section('content')
-<div class="row">
-    <div class="col-sm-12">
-        <div class="mt-2 " id="multiCollapseExample1">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-12">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="btn-box">
-                                        <form action="{{ route('folders.index') }}" method="GET">
-                                            <div class="row">
-                                                <div class="col-md-9">
-                                                    <input type="text" name="search" class="form-control" placeholder="Search folders by name" value="{{ request('search') }}">
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <button type="submit" class="btn btn-primary form-control">Search</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-                {{ Form::close() }}
-            </div>
-        </div>
-    </div>
-</div>
     <div class="row">
-        <div class="col-xxl-12">
-            <div class="row">
-                {{-- <h2>My Folders</h2> --}}
-                @if($folders->count() > 0)
-                    @foreach($folders as $folder)
-                    <div class="col-md-2 mb-4">
-                        <div class="card text-center card-2">
-                            <div class="card-header border-0 pb-0">
-                                <div class="card-header-right">
-                                    <div class="btn-group card-option">
-                                        <button type="button" class="btn dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                            <i class="ti ti-dots-vertical"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <a href="#!" data-size="md" data-url="{{ route('folder.renameModal',$folder->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Rename Folder')}}">
-                                                <i class="ti ti-pencil"></i>
-                                                <span>{{__('Rename')}}</span>
-                                            </a>
-                                            <a href="{{ route('folder.details',$folder->id) }}"  class="dropdown-item">
-                                                <i class="ti ti-eye"></i>
-                                                <span> {{__('View Details')}}</span>
-                                            </a>
-                                            <a href="#!"  class="dropdown-item bs-pass-para">
-                                                <i class="ti ti-share"></i>
-                                                <span> {{__('Share')}}</span>
-                                            </a>
-                                            <a href="#!"  class="dropdown-item bs-pass-para">
-                                                <i class="ti ti-archive"></i>
-                                                <span> {{__('Archive')}}</span>
-                                            </a>
-                                            {!! Form::close() !!}
-                                            <a href="#!" data-url="" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Reset Password')}}">
-                                                <i class="ti ti-adjustments"></i>
-                                                <span>  {{__('Restore')}}</span>
-                                            </a>
+        <div class="col-sm-12">
+            <div class="mt-2 " id="multiCollapseExample1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-xl-12">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="btn-box">
+                                            <form action="{{ route('folders.index') }}" method="GET">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="search" class="form-control"
+                                                            placeholder="Search folders by name"
+                                                            value="{{ request('search') }}">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <button type="submit"
+                                                            class="btn btn-primary form-control">Search</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body full-card">
-                                <div class="img-fluid rounded-circle card-avatar">
 
-                                    <span class="nk-file-icon-type">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-                                            <g>
-                                                <rect x="32" y="16" width="28" height="15" rx="2.5" ry="2.5" style="fill:#f29611" />
-                                                <path d="M59.7778,61H12.2222A6.4215,6.4215,0,0,1,6,54.3962V17.6038A6.4215,6.4215,0,0,1,12.2222,11H30.6977a4.6714,4.6714,0,0,1,4.1128,2.5644L38,24H59.7778A5.91,5.91,0,0,1,66,30V54.3962A6.4215,6.4215,0,0,1,59.7778,61Z" style="fill:#ffb32c" />
-                                                <path d="M8.015,59c2.169,2.3827,4.6976,2.0161,6.195,2H58.7806a6.2768,6.2768,0,0,0,5.2061-2Z" style="fill:#f2a222" />
-                                            </g>
-                                        </svg>
-                                    </span>
-                                    <h6 class=" mt-4 text-primary">{{ $folder->folder_name }}</h6>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    @endforeach
-                @else
-                    <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
-                        no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
-                        alt="No results found" >
-                        <p class="mt-2 text-danger">No folders created!</p>
-                    </div>
-                @endif
-                {{ $folders->links() }}
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xxl-12">
+            <div class="desktop">
+                @if ($folders->count() > 0)
+                    @foreach ($folders as $folder)
+                        <div class="folder" style="margin-left: 20px;" data-id="{{ $folder->id }}" draggable="true">
+                            <!-- Folder Icon and Name -->
+                            <div class="folder-icon">
+                                <img src="{{ asset('assets/images/folder.png') }}" alt="Folder Icon" style="width: 50px; height: 50px;">
+                            </div>
+                            <div class="folder-name">
+                                <span>{{ $folder->folder_name }}</span>
+                            </div>
+            
+                            <!-- Action Dropdown -->
+                            <div class="btn-group card-option">
+                                <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="ti ti-dots-vertical"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a href="#!" data-size="md" data-url="{{ route('folder.renameModal', $folder->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{ __('Rename Folder') }}">
+                                        <i class="ti ti-pencil"></i>
+                                        <span>{{ __('Rename') }}</span>
+                                    </a>
+                                    <a href="{{ route('folder.details', $folder->id) }}" class="dropdown-item">
+                                        <i class="ti ti-eye"></i>
+                                        <span> {{ __('View Details') }}</span>
+                                    </a>
+                                    <a href="#" class="dropdown-item" data-bs-toggle="modal" 
+                                        data-bs-target="#createSubFolderModal" 
+                                        data-folder-id="{{ $folder->id }}">
+                                        Create Subfolder
+                                    </a>
+                                </div>
+                            </div>
+            
+                            <!-- Recursive Rendering of Subfolders -->
+                            @if ($folder->children->count() > 0)
+                                <div class="nested-folders" style="margin-left: 20px; border-left: 2px dashed #ddd; padding-left: 10px;">
+                                    @include('filemanagement.subfolders', ['folders' => $folder->children])
+                                </div>
+                            @endif
+                        </div>
+                    @endforeach
+                @else
+                    <div class="empty-desktop">
+                        <p>No folders created!</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="modal fade" id="createSubFolderModal" tabindex="-1" role="dialog"
+            aria-labelledby="createSubFolderModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="{{ route('folders.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createSubFolderModalLabel">Create Subfolder</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name">Folder Name</label>
+                                <input type="text" name="name" id="name" class="form-control" required>
+                            </div>
+                            <input type="hidden" name="parent_id">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('createSubFolderModal');
+            modal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const folderId = button.getAttribute('data-folder-id');
+                modal.querySelector('input[name="parent_id"]').value = folderId;
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const folders = document.querySelectorAll('.folder');
+            let draggedFolderId = null;
+
+            folders.forEach(folder => {
+                // Start dragging
+                folder.addEventListener('dragstart', (e) => {
+                    draggedFolderId = folder.dataset.id; // Store the ID of the folder being dragged
+                    e.dataTransfer.setData('text/plain', draggedFolderId);
+                    folder.classList.add('dragging');
+                });
+
+                // End dragging
+                folder.addEventListener('dragend', (e) => {
+                    folder.classList.remove('dragging');
+                });
+
+                // Allow folder to be a drop target
+                folder.addEventListener('dragover', (e) => {
+                    e.preventDefault(); // Allow dropping
+                    folder.classList.add('drag-over');
+                });
+
+                // Remove the 'drag-over' class when the drag leaves
+                folder.addEventListener('dragleave', (e) => {
+                    folder.classList.remove('drag-over');
+                });
+
+                // Handle drop event
+                folder.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    folder.classList.remove('drag-over');
+
+                    const droppedOnFolderId = folder.dataset
+                    .id; // ID of the folder being dropped on
+
+                    if (draggedFolderId !== droppedOnFolderId) {
+                        // Make an AJAX request to move the folder
+                        fetch(`/folders/move`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector(
+                                        'meta[name="csrf-token"]').content,
+                                },
+                                body: JSON.stringify({
+                                    dragged_folder_id: draggedFolderId,
+                                    target_folder_id: droppedOnFolderId,
+                                }),
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    alert('Folder moved successfully!');
+                                    // Optionally, update the UI to reflect the change
+                                } else {
+                                    alert('Failed to move folder: ' + data.message);
+                                }
+                            })
+                            .catch(error => console.error('Error:', error));
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection

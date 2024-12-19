@@ -45,10 +45,20 @@
                                 @error('comments') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="modal-footer">
+
+                                <div wire:loading wire:target="liaisonHeadApproveRequisition"><x-g-loader /></div>
+                                <div wire:loading wire:target="approveRequisition"><x-g-loader /></div>
+
                                 <input type="button" id="closeItemRequisitionApproval" value="{{ __('Close') }}"
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
-                                @if(auth()->user()->type=="hod" && $selectedRequisition->status == 'pending_hod_approval')
-                                    <input type="button" wire:click="approveRequisition({{ $selectedRequisition->id }})" value="{{ __('Approve') }}" class="btn  btn-primary btn-sm">
+
+                                @if($selectedRequisition->status == 'pending_hod_approval' || $selectedRequisition->status == 'liaison_head_approved')
+                                    <input type="button" wire:click="approveRequisition({{ $selectedRequisition->id }})" value="{{ __('HOD Approve') }}" class="btn  btn-primary btn-sm">
+                                    <input type="button" wire:click="rejectRequisition({{ $selectedRequisition->id }})" value="{{ __('Reject') }}" class="btn  btn-danger btn-sm">
+                                @endif
+
+                                @if($selectedRequisition->status == 'liaison_head_approval')
+                                    <input type="button" wire:click="liaisonHeadApproveRequisition({{ $selectedRequisition->id }})" value="{{ __('Approve') }}" class="btn  btn-primary btn-sm">
                                     <input type="button" wire:click="rejectRequisition({{ $selectedRequisition->id }})" value="{{ __('Reject') }}" class="btn  btn-danger btn-sm">
                                 @endif
                             </div>
@@ -60,11 +70,9 @@
             </div>
         </div>
     </div>
-    @push('script')
     <script>
         window.addEventListener('success', event => {
             document.getElementById("closeItemRequisitionApproval").click();
         })
     </script>
-    @endpush
     <x-toast-notification />

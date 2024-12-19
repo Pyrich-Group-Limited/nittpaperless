@@ -19,37 +19,59 @@ class HodRequisitionsComponent extends Component
 
     public $chartAccount;
 
+    public $approvals;     // Approvals for the selected requisition
+    public $selectedRequisitionId; // ID of the currently selected requisition
+
     public function mount()
     {
         $user = auth()->user();
 
-        $this->requisitions = StaffRequisition::where('status', 'pending')
-        ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
-            $query->where('approver_id', $user->id)
-                ->where('role', $user->type);
-        })->where('department_id',Auth::user()->department_id)
-        ->where('location',Auth::user()->location_type)
-        ->orderBy('created_at', 'desc')->get();
-        
-        $this->approvedRequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
-            $query->where('approver_id', $user->id)
-                ->where('role', $user->type)
-                ->where('status', 'approved');
-        })->where('department_id',Auth::user()->department_id)
-        ->where('location',Auth::user()->location_type)
-        ->orderBy('created_at', 'desc')->get();
+        $this->requisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->where('status', 'pending')
+            ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
+                $query->where('approver_id', $user->id)
+                    ->where('role', $user->type);
+            })->where('department_id', $user->department_id)
+            ->where('location', $user->location_type)
+            ->orderBy('created_at', 'desc')->get();
+
+        $this->approvedRequisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->whereHas('approvalRecords', function ($query) use ($user) {
+                $query->where('approver_id', $user->id)
+                    ->where('role', $user->type)
+                    ->where('status', 'approved');
+            })->where('department_id', $user->department_id)
+            ->where('location', $user->location_type)
+            ->orderBy('created_at', 'desc')->get();
 
         $this->accounts = ChartOfAccount::all();
+
+        // Set the first requisition as default
+        if ($this->requisitions->isNotEmpty()) {
+            $this->setRequisition($this->requisitions->first());
+        } elseif ($this->approvedRequisitions->isNotEmpty()) {
+            $this->setRequisition($this->approvedRequisitions->first());
+        }
     }
 
+    public function loadApprovals()
+    {
+        $this->approvals = RequisitionApprovalRecord::with(['approver.signature'])
+            ->where('requisition_id', $this->selectedRequisitionId)
+            ->orderBy('created_at', 'asc') // Sort approvals chronologically
+            ->get();
+    }
+
+    
     public function setRequisition(StaffRequisition $requisition){
         $this->selRequisition = $requisition;
+        $this->loadApprovals();
     }
 
     public function downloadFile($supporting_document)
     {
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {
@@ -59,15 +81,8 @@ class HodRequisitionsComponent extends Component
 
     public function hodApproveRequisition()
     {
-        // if ($this->selRequisition->amount > 1000000) {
-        //     $this->selRequisition->update(['status' => 'waiting_dg_approval']);
-        // } elseif ($this->selRequisition->amount > 1000000 && $this->selRequisition->status=='dg_approved') {
-        //     $this->selRequisition->update(['status' => 'hod_approved']);
-        // } else {
-        //     $this->selRequisition->update(['status' => 'hod_approved']);
-        // }
 
-        if ($this->selRequisition->status != 'pending') {
+        if (!$this->selRequisition || $this->selRequisition->status != 'pending') {
             $this->dispatchBrowserEvent('error',["error" =>"Requisition required an approval."]);
             return;
         }

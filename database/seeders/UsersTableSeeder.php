@@ -4948,6 +4948,13 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [   'name' => 'approve as special duty',
+                'module' => 'Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
             [   'name' => 'approve as pv',
                 'module' => 'Requsition',
                 'category' => "Paperless system",
@@ -5923,6 +5930,30 @@ class UsersTableSeeder extends Seeder
         Employee::create(['user_id' => $hod->id]);
         $hod->assignRole($hodRole);
         $hod->givePermissionTo($hodPermission);
+
+
+        $hodSd = User::create(
+            [
+                'name' => 'Kabiru Sani',
+                'email' => 'kb@nitt.com',
+                'location_type' => 'Department',
+                'location' => 'Headquarters',
+                'password' => Hash::make('1234'),
+                'type' => 'hod',
+                'default_pipeline' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::where('name','Special Duty Department')->first()->id,
+                'unit_id' => '',
+                'level' => "Level 10",
+                'password_changed' => true,
+            ]
+        );
+        Employee::create(['user_id' => $hodSd->id]);
+        $hodSd->assignRole($hodRole);
+        $hodSd->givePermissionTo($hodPermission);
 
         // Create an array to store all unit head roles
         // $unitHeadRoles = [];

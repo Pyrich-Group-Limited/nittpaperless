@@ -20,13 +20,6 @@ class CreateItemRequisition extends Component
     public $selRequisitionItem;
     public $actionId;
 
-    // protected $rules = [
-    //     'items.*.name' => 'required|string',
-    //     'items.*.description' => 'nullable|string',
-    //     'items.*.quantity' => 'required|integer|min:1',
-    // ];
-
-
     public function mount(){
         $this->items = [
             ['item_name'=> '','item_description' => '', 'item_quantity' => null ]
@@ -66,10 +59,16 @@ class CreateItemRequisition extends Component
             'items.*.quantity' => 'required|integer|min:1',
         ]);
 
+        // Determine if the user belongs to a liaison office
+        $unitId = Auth::user()->is_in_liaison_office ? null : Auth::user()->unit_id;
+
+        // Set the requisition status based on liaison office condition
+        $status = Auth::user()->is_in_liaison_office ? 'liaison_head_approval' : 'pending_hod_approval';
+
         $requisition = ItemRequisitionRequest::create([
             'user_id' => auth()->id(),
             'department_id' => auth()->user()->department_id,
-            'status' => 'pending_hod_approval',
+            'status' => $status,
         ]);
 
         foreach ($this->items as $item) {

@@ -18,9 +18,31 @@ class RaiseRequisitionComponent extends Component
 
     public $type, $purpose, $amount, $description, $document, $requisitions, $actionId, $selRequisition;
 
+    public $approvals;     // Approvals for the selected requisition
+    public $selectedRequisitionId; // ID of the currently selected requisition
+
     public function mount()
     {
         $this->requisitions = StaffRequisition::where('staff_id',Auth::user()->id)->orderBy('created_at','desc')->get();
+
+        // Set default selected requisition to the first one (if any)
+        if ($this->requisitions->isNotEmpty()) {
+            $this->selectedRequisitionId = $this->requisitions->first()->id;
+            $this->loadApprovals();
+        }
+    }
+
+    public function loadApprovals()
+    {
+        $this->approvals = RequisitionApprovalRecord::with(['approver.signature'])
+            ->where('requisition_id', $this->selectedRequisitionId)
+            ->get();
+    }
+
+    public function selectRequisition($requisitionId)
+    {
+        $this->selectedRequisitionId = $requisitionId;
+        $this->loadApprovals();
     }
 
     public function createRequisition()
@@ -39,6 +61,9 @@ class RaiseRequisitionComponent extends Component
         // Determine if the user belongs to a liaison office
         $unitId = Auth::user()->is_in_liaison_office ? null : Auth::user()->unit_id;
 
+        // Set the requisition status based on liaison office condition
+        $status = Auth::user()->is_in_liaison_office ? 'liaison_head_approval' : 'pending';
+
         StaffRequisition::create([
             'staff_id' => auth()->id(),
             'requisition_type' => $this->type,
@@ -48,7 +73,7 @@ class RaiseRequisitionComponent extends Component
             'location' => Auth::user()->location_type ? : null,
             'description' => $this->description,
             'amount' => $this->amount,
-            'status' => 'pending',
+            'status' => $status,
             'supporting_document' => $supportDocument,
         ]);
 
@@ -61,7 +86,7 @@ class RaiseRequisitionComponent extends Component
     {
         // Check if the file exists in the public folder
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {

@@ -28,7 +28,9 @@ class ItemRequisitionBursarApproval extends Component
 
     public function loadDepartments()
     {
-        $this->departments = ItemRequisitionRequest::whereHas('department')
+        // Group only requisitions with statuses 'hod_approved' and 'special_duty_head_approved'
+        $this->departments = ItemRequisitionRequest::whereIn('status', ['hod_approved', 'special_duty_head_approved','bursar_approved'])
+            ->whereHas('department')
             ->with('department')
             ->get()
             ->groupBy('department.name')
@@ -41,10 +43,13 @@ class ItemRequisitionBursarApproval extends Component
     {
         $this->selectedDepartment = $departmentName;
 
-        $this->requisitions = ItemRequisitionRequest::whereHas('department', function ($query) use ($departmentName) {
+        // Fetch requisitions for the selected department with specified statuses
+        $this->requisitions = ItemRequisitionRequest::whereIn('status', ['hod_approved', 'special_duty_head_approved','bursar_approved'])
+            ->whereHas('department', function ($query) use ($departmentName) {
                 $query->where('name', $departmentName);
             })
             ->where(function ($query) {
+                //fetch those approved or yet to be approved by the current user
                 $query->whereDoesntHave('approvals', function ($subQuery) {
                     $subQuery->where('approved_by', auth()->id())
                             ->where('role', auth()->user()->type);
@@ -55,8 +60,33 @@ class ItemRequisitionBursarApproval extends Component
                 });
             })
             ->with(['items', 'approvals'])
-            ->orderBy('created_at','desc')->get();
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
+
+    // public function selectDepartment($departmentName)
+    // {
+    //     $this->selectedDepartment = $departmentName;
+
+    //     // Fetch requisitions with statuses hod_approved, special_duty_head_approved, or bursar_approved and beyond
+    //     $this->requisitions = ItemRequisitionRequest::whereHas('department', function ($query) use ($departmentName) {
+    //             $query->where('name', $departmentName);
+    //         })
+    //         ->whereIn('status', ['hod_approved', 'special_duty_head_approved', 'bursar_approved']) // Include bursar_approved
+    //         ->orWhere(function ($query) {
+    //             // Fetch requisitions approved by the current user with any further approval statuses
+    //             $query->whereHas('approvals', function ($subQuery) {
+    //                 $subQuery->where('approved_by', auth()->id());
+    //             });
+    //         })
+    //         ->with(['items', 'approvals'])
+    //         ->orderBy('created_at', 'desc')
+    //         ->get();
+    // }
+
+   
+
+
 
     public function selectRequisition($id)
     {
@@ -78,9 +108,9 @@ class ItemRequisitionBursarApproval extends Component
         $this->selectedRequisition->update(['status' => 'bursar_approved']);
 
         $this->dispatchBrowserEvent('success', ['success' => 'Requisition approved successfully.']);
-        $this->loadDepartments();
-        $this->requisitions = [];
-        $this->selectedRequisition = null;
+        $this->mount();
+        // $this->requisitions = [];
+        // $this->selectedRequisition = null;
     }
 
     public function rejectRequisition()

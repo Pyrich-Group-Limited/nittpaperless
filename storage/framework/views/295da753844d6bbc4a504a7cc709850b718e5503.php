@@ -78,6 +78,11 @@
                             <span><?php echo e(__('Memo')); ?></span>
                         </a>
 
+                        <a href="#" type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#secretCodeModal">
+                            <i class="ti ti-lock"></i>
+                            <span><?php echo e(__('My Secret Code')); ?></span>
+                        </a>
+
                         <a href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="dropdown-item">
                             <i class="ti ti-power"></i>
                             <span><?php echo e(__('Logout')); ?></span>

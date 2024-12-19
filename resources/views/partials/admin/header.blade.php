@@ -78,6 +78,11 @@
                             <span>{{__('Memo')}}</span>
                         </a>
 
+                        <a href="#" type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#secretCodeModal">
+                            <i class="ti ti-lock"></i>
+                            <span>{{__('My Secret Code')}}</span>
+                        </a>
+
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="dropdown-item">
                             <i class="ti ti-power"></i>
                             <span>{{__('Logout')}}</span>

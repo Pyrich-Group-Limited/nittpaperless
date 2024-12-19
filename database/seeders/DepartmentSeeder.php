@@ -357,5 +357,10 @@ class DepartmentSeeder extends Seeder
             'name' => "Physical Plannings",
             'category' => "directorate",
         ]);
+
+        $department = Department::create([
+            'name' => "Special Duty Department",
+            'category' => "department",
+        ]);
     }
 }

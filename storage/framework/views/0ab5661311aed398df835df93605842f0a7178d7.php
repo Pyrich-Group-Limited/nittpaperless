@@ -19,6 +19,24 @@
                                 <td style="white-space: pre-wrap"><?php echo e($memo->description); ?></td>
                             </tr>
                             <tr>
+                                <th scope="row">Priority</th>
+                                <td scope="row">
+                                    <div class="media align-items-center">
+                                        <div class="media-body">
+                                            <?php if($memo->priority == 0): ?>
+                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
+                                            <?php elseif($memo->priority == 1): ?>
+                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
+                                            <?php elseif($memo->priority == 2): ?>
+                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
+                                            <?php elseif($memo->priority == 3): ?>
+                                                <span data-toggle="tooltip" data-title="<?php echo e(__('Priority')); ?>" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th scope="row">Created  By:</th>
                                 <td><?php echo e($memo->creator->name); ?></td>
                             </tr>
@@ -58,7 +76,7 @@
                             <tr>
                                 <th scope="row">All Signatures</th>
                                 <?php if($memo->signedUsers->isEmpty()): ?>
-                                    <p>No signatures yet.</p>
+                                    <td><p>No signatures yet.</p></td>
                                 <?php else: ?>
                                     <td>
                                         <?php $__currentLoopData = $memo->signedUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -76,13 +94,8 @@
                     </table>
                 </div>
             </div>
-
-
-
         </div>
-
         </div>
-
         <div class="modal-footer">
             <a href="<?php echo e(route('memos.download',$memo->id)); ?>" class="btn btn-primary btn-sm" download><i class="ti ti-download text-white"></i> Download Memo</a>
             <input type="button" value="<?php echo e(('Close')); ?>" class="btn  btn-light btn-sm" data-bs-dismiss="modal">
