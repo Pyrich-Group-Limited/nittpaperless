@@ -15,54 +15,219 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 @endsection
 
 @section('content')
-{{-- <div class="row">
-    <div class="col-sm-12">
-        <div class="mt-2 " id="multiCollapseExample1">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-8">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="btn-box">
-                                        <input type="text" class="form-control" placeholder="Search files, folder">
-                                    </div>
-                                </div>
-                            </div>
+<div class="row">
+    <div id="printableArea">
+        <div class="col-12" id="invoice-container">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between w-100">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="profile-tab3" data-bs-toggle="pill" href="#incomingFiles" role="tab" aria-controls="pills-summary" aria-selected="true"><i class="ti ti-files"> </i> {{__('Documents Shared With Me')}}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab4" data-bs-toggle="pill" href="#outgoingFiles" role="tab" aria-controls="pills-invoice" aria-selected="false"><i class="ti ti-files"> </i> {{__('Documents I Shared')}}</a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="col-auto mt-2">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
-                                    <div class="dropdown-menu dropdown-menu-end">
+                    </div>
 
-                                        <a href="#!" data-size="lg" data-url="{{ route('file.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create File')}}">
-                                            <i class="ti ti-file-plus"></i>
-                                            <span>{{__('Create File')}}</span>
-                                        </a>
-                                        <a href="#!" data-url="{{ route('folder.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create Folder')}}">
-                                            <i class="ti ti-folder-plus"></i>
-                                            <span>  {{__('Create Folder')}}</span>
-                                        </a>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="tab-content" id="myTabContent2">
+                                    <div class="tab-pane fade fade table-responsive" id="incomingFiles" role="tabpanel" aria-labelledby="profile-tab3">
+                                        <table class="table table-flush table datatable" id="report-dataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">{{__('Sender')}}</th>
+                                                    <th>{{__('Location')}}</th>
+                                                    <th>{{__('Department')}}</th>
+                                                    <th>{{__('Document Name')}}</th>
+                                                    <th>{{__('Priority')}}</th>
+                                                    <th>{{__('Date Shared')}}</th>
+                                                    <th>{{__('Signature')}}</th>
+                                                    <th>{{__('Action')}}</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($filesSharedWithUser as $file)
+                                                        @foreach($file->sharedWith as $incoming)
+                                                            <tr class="font-style">
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div>
+                                                                            <div class="avatar-parent-child">
+                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($incoming->createdBy) && !empty($incoming->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$incoming->createdBy->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar')).'/avatar.png'}}" @endif>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="media-body">
+                                                                            {{!empty($incoming->name)?$incoming->name:''}}
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $incoming->location ?? ''}}</td>
+                                                                <td>{{ $incoming->department->name ?? '' }}</td>
+                                                                <td>{{ $file->file_name }}</td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div class="media-body">
+                                                                            @if($incoming->priority == 0)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
+                                                                            @elseif($incoming->priority == 1)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
+                                                                            @elseif($incoming->priority == 2)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
+                                                                            @elseif($incoming->priority == 3)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $incoming->created_at->format('d-M-Y') }}</td>
+                                                                <td>
+                                                                    @if ($incoming && $incoming->signature)
+                                                                        <img src="{{ asset('storage/' . $incoming->signature->signature_path) }}" alt="Signature" height="50">
+                                                                    @else
+                                                                        <strike>{{ $incoming->name }}</strike>
+                                                                    @endif
+                                                                </td>
+                                                                <td class="Action">
+                                                                    <div class="action-btn bg-primary ms-2">
+                                                                        <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$incoming->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Share Document')}}" data-bs-original-title="{{__('Share Document')}}">
+                                                                            <i class="ti ti-share text-white"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="action-btn bg-info ms-2">
+                                                                        <a href="#!" data-url="{{ route('file.renameModal',$incoming->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Rename Document')}}" data-bs-original-title="{{__('Rename Document')}}">
+                                                                            <i class="ti ti-pencil text-white"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="action-btn bg-primary ms-2">
+                                                                        <a href="{{ route('files.download',$incoming->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Document')}}"  data-title="{{__('Download Document')}}">
+                                                                            <i class="ti ti-download text-white"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="action-btn bg-danger ms-2">
+                                                                        <form action="{{ route('files.archive', $incoming->id) }}" method="POST" style="display:inline;">
+                                                                            @csrf
+                                                                            <button type="submit" class="mx-3 btn btn-sm  align-items-center" title="{{__('Archive Document')}}"><i class="ti ti-archive text-white"></i></button>
+                                                                        </form>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endforeach
+                                                </tbody>
+                                        </table>
+                                        @if ($filesSharedWithUser->isEmpty())
+                                        <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                                            no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                                            alt="No results found" >
+                                            <p class="mt-2 text-danger">No record found!</p>
+                                        </div>
+                                        @endif
                                     </div>
 
-                                    <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('file.upload') }}" data-ajax-popup="true"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Upload Files') }}"><i class="ti ti-cloud-upload"></i> Upload
-                                    </a>
+                                    <div class="tab-pane fade fade table-responsive" id="outgoingFiles" role="tabpanel" aria-labelledby="profile-tab4">
+                                        <table class="table table-flush table datatable" id="report-dataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{__('Shared With')}}</th>
+                                                    <th>{{__('Location')}}</th>
+                                                    <th>{{__('Department')}}</th>
+                                                    <th>{{__('Document Name')}}</th>
+                                                    <th>{{__('Priority')}}</th>
+                                                    <th>{{__('Date Shared')}}</th>
+                                                    <th>{{__('Action')}}</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($filesSharedByUser as $file)
+                                                        @foreach($file->sharedWith as $outgoing)
+                                                            <tr class="font-style">
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div>
+                                                                            <div class="avatar-parent-child">
+                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($outgoing->createdBy) && !empty($outgoing->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$outgoing->createdBy->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar')).'/avatar.png'}}" @endif>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="media-body">
+                                                                            {{!empty($outgoing->name)?$outgoing->name:''}}
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $outgoing->location ?? '' }}</td>
+                                                                <td>{{ $outgoing->department->name ?? ''}}</td>
+                                                                <td>{{ $file->file_name }}</td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div class="media-body">
+                                                                            @if($outgoing->priority == 0)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
+                                                                            @elseif($outgoing->priority == 1)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
+                                                                            @elseif($outgoing->priority == 2)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
+                                                                            @elseif($outgoing->priority == 3)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $outgoing->created_at->format('d-M-Y') }}</td>
+                                                                <td class="Action">
+                                                                    <div class="action-btn bg-primary ms-2">
+                                                                        <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$outgoing->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Share Document')}}" data-bs-original-title="{{__('Share Document')}}">
+                                                                            <i class="ti ti-share text-white"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="action-btn bg-info ms-2">
+                                                                        <a href="#!" data-url="{{ route('file.renameModal',$outgoing->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Rename Document')}}" data-bs-original-title="{{__('Rename Document')}}">
+                                                                            <i class="ti ti-pencil text-white"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="action-btn bg-primary ms-2">
+                                                                        <a href="{{ route('files.download',$outgoing->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Document')}}"  data-title="{{__('Download Document')}}">
+                                                                            <i class="ti ti-download text-white"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="action-btn bg-danger ms-2">
+                                                                        <form action="{{ route('files.archive', $outgoing->id) }}" method="POST" style="display:inline;">
+                                                                            @csrf
+                                                                            <button type="submit" class="mx-3 btn btn-sm  align-items-center" title="{{__('Archive Document')}}"><i class="ti ti-archive text-white"></i></button>
+                                                                        </form>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endforeach
+                                                </tbody>
+                                        </table>
+                                        @if ($filesSharedByUser->isEmpty())
+                                        <div align="center" id="norecord"><img style="margin-left:;"  width="100" src="https://img.freepik.com/free-vector/
+                                            no-data-concept-illustration_114360-626.jpg?size=626&ext=jpg&uid=R51823309&ga=GA1.2.224938283.1666624918&semt=sph"
+                                            alt="No results found" >
+                                            <p class="mt-2 text-danger">No record found!</p>
+                                        </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{ Form::close() }}
             </div>
         </div>
     </div>
-</div> --}}
+</div>
+
     <div class="row">
         <div class="col-xxl-12">
-            <div class="row">
-                {{-- <h4>My Shared Files</h4> --}}
+          
+            {{-- <div class="row">
+
                 @if($sharedFiles->isNotEmpty())
                     @foreach($sharedFiles as $file)
                         <div class="col-md-2 mb-4">
@@ -92,7 +257,6 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                     @csrf
                                                     <button type="submit" class="btn btn-white dropdown-item"><i class="ti ti-archive"></i>Archive</button>
                                                 </form>
-                                                {!! Form::close() !!}
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +289,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     <p class="mt-2 text-danger">No shared Documents!</p>
                 </div>
                 @endif
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection
