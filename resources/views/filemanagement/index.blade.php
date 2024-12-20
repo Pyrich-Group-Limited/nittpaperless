@@ -80,28 +80,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="col-auto">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-
-                                        <a href="#!" data-size="lg" data-url="{{ route('file.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create File')}}">
-                                            <i class="ti ti-file-plus"></i>
-                                            <span>{{__('Create File')}}</span>
-                                        </a>
-                                        <a href="#!" data-url="{{ route('folder.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create Folder')}}">
-                                            <i class="ti ti-folder-plus"></i>
-                                            <span>  {{__('Create Folder')}}</span>
-                                        </a>
-                                    </div>
-
-                                    <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('file.upload') }}" data-ajax-popup="true"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Upload Files') }}"><i class="ti ti-cloud-upload"></i> Upload
-                                    </a>
-                                </div>
-                            </div>
-                        </div> --}}
+                        
                     </div>
                 </div>
                 {{ Form::close() }}

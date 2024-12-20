@@ -23,8 +23,15 @@ class File extends Model
 
     public function sharedWith()
     {
-        return $this->belongsToMany(User::class, 'file_user')->withTimestamps();
+        return $this->belongsToMany(User::class, 'file_user')
+        ->withPivot('sharer_id', 'priority', 'created_at')->withTimestamps();
     }
+
+    // The employee who shared the memo
+    // public function sharedBy()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
 
 }

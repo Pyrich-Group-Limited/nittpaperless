@@ -18,6 +18,24 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label for="priority">Priority:</label>
+                    <select name="priority" id="priority" class="form-control" required>
+                        <option value="0">Low</option>
+                        <option value="1">Medium</option>
+                        <option value="2">High</option>
+                        <option value="3">Critical</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Enter Secret Code</label>
+                    <input type="password" name="secret_code" id="secret_code" class="form-control" required>
+                    @error('secret_code')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
             </div>
         </div>
 
