@@ -252,6 +252,7 @@ use App\Http\Livewire\ItemRequisitions\ItemRequestLiaisonHeadApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionBursarApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionStoreUnitApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionStaffAcknowledgment;
+use App\Http\Livewire\ItemRequisitions\StoreIssueVoucherComponent;
 
 use App\Http\Controllers\JobsAvailableController;
 
@@ -1407,6 +1408,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('item-requisitions')->group(fun
     Route::get('/bursar-approval', ItemRequisitionBursarApproval::class)->name('itemRequisition.bursarApproval');
     Route::get('/store-approval', ItemRequisitionStoreUnitApproval::class)->name('itemRequisition.storeApproval');
     Route::get('/acknowledgment', ItemRequisitionStaffAcknowledgment::class)->name('itemRequisition.acknowledgment');
+    Route::get('/store-issue-voucher/{id}', StoreIssueVoucherComponent::class)->name('itemRequisition.voucher');
 });
 
 

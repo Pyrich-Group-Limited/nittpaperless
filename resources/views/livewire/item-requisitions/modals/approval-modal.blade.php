@@ -52,15 +52,19 @@
                                 <input type="button" id="closeItemRequisitionApproval" value="{{ __('Close') }}"
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
 
-                                @if($selectedRequisition->status == 'pending_hod_approval' || $selectedRequisition->status == 'liaison_head_approved')
-                                    <input type="button" wire:click="approveRequisition({{ $selectedRequisition->id }})" value="{{ __('HOD Approve') }}" class="btn  btn-primary btn-sm">
-                                    <input type="button" wire:click="rejectRequisition({{ $selectedRequisition->id }})" value="{{ __('Reject') }}" class="btn  btn-danger btn-sm">
-                                @endif
+                                @can('hod approve SRN')
+                                    @if($selectedRequisition->status == 'pending_hod_approval' || $selectedRequisition->status == 'liaison_head_approved')
+                                        <input type="button" wire:click="approveRequisition({{ $selectedRequisition->id }})" value="{{ __('HOD Approve') }}" class="btn  btn-primary btn-sm">
+                                        <input type="button" wire:click="rejectRequisition({{ $selectedRequisition->id }})" value="{{ __('Reject') }}" class="btn  btn-danger btn-sm">
+                                    @endif
+                                @endcan
 
-                                @if($selectedRequisition->status == 'liaison_head_approval')
-                                    <input type="button" wire:click="liaisonHeadApproveRequisition({{ $selectedRequisition->id }})" value="{{ __('Approve') }}" class="btn  btn-primary btn-sm">
-                                    <input type="button" wire:click="rejectRequisition({{ $selectedRequisition->id }})" value="{{ __('Reject') }}" class="btn  btn-danger btn-sm">
-                                @endif
+                                @can('liaison approve SRN')
+                                    @if($selectedRequisition->status == 'liaison_head_approval')
+                                        <input type="button" wire:click="liaisonHeadApproveRequisition({{ $selectedRequisition->id }})" value="{{ __('Approve') }}" class="btn  btn-primary btn-sm">
+                                        <input type="button" wire:click="rejectRequisition({{ $selectedRequisition->id }})" value="{{ __('Reject') }}" class="btn  btn-danger btn-sm">
+                                    @endif
+                                @endcan
                             </div>
                         @else
                             <label align="center" class="mb-4" style="color: red">Loading...</label>

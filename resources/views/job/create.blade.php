@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            {!! Form::label('position', __('Positions'),['class'=>'form-label']) !!}
+                            {!! Form::label('position', __('Level'),['class'=>'form-label']) !!}
                             {!! Form::text('position', old('positions'), ['class' => 'form-control','required' => 'required']) !!}
                         </div>
                         <div class="form-group col-md-6">
