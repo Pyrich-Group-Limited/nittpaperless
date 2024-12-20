@@ -68,7 +68,9 @@
                                 <div wire:loading wire:target="finalizeApproval"><x-g-loader /></div>
                                 <input type="button" id="closeItemRequisitionApproval" value="{{ __('Close') }}"
                                     class="btn  btn-light" data-bs-dismiss="modal">
-                                <input type="button" wire:click="finalizeApproval" value="{{ __('Finalize Approval') }}" class="btn  btn-primary">
+                                @can('store approve SRN')
+                                    <input type="button" wire:click="finalizeApproval" value="{{ __('Finalize Approval') }}" class="btn  btn-primary">
+                                @endcan
                             </div>
                         @else
                             <label align="center" class="mb-4" style="color: red">Loading...</label>

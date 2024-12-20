@@ -1209,29 +1209,36 @@
                                     <i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="dash-submenu">
-                            <li class="dash-item {{ (Request::route()->getName() == 'store.dashboard' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('supplies.projects')}}">{{__('Supply')}}</a>
-                            </li>
+                            @can('view item supply')
+                                <li class="dash-item {{ (Request::route()->getName() == 'store.dashboard' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
+                                    <a class="dash-link" href="{{ route('supplies.projects')}}">{{__('Supply')}}</a>
+                                </li>
+                            @endcan
 
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.index' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('itemRequisition.index') }}">{{__('Store Requisition Note')}}</a>
                             </li>
 
-                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('itemRequisition.hodApproval') }}">{{__('HoD SRN approval')}}</a>
-                            </li>
-
-                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.liaisonApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('itemRequisition.liaisonApproval') }}">{{__('Liaison SRN approval')}}</a>
-                            </li>
-
-                            <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.bursarApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('itemRequisition.bursarApproval') }}">{{__('Bursar SRN approval')}}</a>
-                            </li>
-
+                            @can('hod approve SRN')
+                                <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                    <a class="dash-link" href="{{ route('itemRequisition.hodApproval') }}">{{__('HoD SRN approval')}}</a>
+                                </li>
+                            @endcan
+                            @can('liaison approve SRN')
+                                <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.liaisonApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                    <a class="dash-link" href="{{ route('itemRequisition.liaisonApproval') }}">{{__('Liaison SRN approval')}}</a>
+                                </li>
+                            @endcan
+                            @can('bursar approve SRN')
+                                <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.bursarApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
+                                    <a class="dash-link" href="{{ route('itemRequisition.bursarApproval') }}">{{__('Bursar SRN approval')}}</a>
+                                </li>
+                            @endcan
+                            @can('store approve SRN')
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.storeApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('itemRequisition.storeApproval') }}">{{__('Store SRN Approval')}}</a>
                             </li>
+                            @endcan
 
                             <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.acknowledgment' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('itemRequisition.acknowledgment') }}">{{__('Store Issue Voucher')}}</a>
