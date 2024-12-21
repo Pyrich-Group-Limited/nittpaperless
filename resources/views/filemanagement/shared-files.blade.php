@@ -62,7 +62,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                             </div>
                                                                         </div>
                                                                         <div class="media-body">
-                                                                            {{!empty($incoming->name)?$incoming->name:''}}
+                                                                            @php
+                                                                                $sharer = App\Models\User::find($incoming->pivot->sharer_id); // Retrieve the sharer
+                                                                            @endphp
+                                                                            {{$sharer ? $sharer->name : 'Unknown Sharer'}}
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -72,13 +75,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                 <td scope="row">
                                                                     <div class="media align-items-center">
                                                                         <div class="media-body">
-                                                                            @if($incoming->priority == 0)
+                                                                            {{-- {{ dd($incoming->pivot->priority) }} --}}
+                                                                            @if($incoming->pivot->priority == 0)
                                                                                 <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
-                                                                            @elseif($incoming->priority == 1)
+                                                                            @elseif($incoming->pivot->priority == 1)
                                                                                 <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
-                                                                            @elseif($incoming->priority == 2)
+                                                                            @elseif($incoming->pivot->priority == 2)
                                                                                 <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
-                                                                            @elseif($incoming->priority == 3)
+                                                                            @elseif($incoming->pivot->priority == 3)
                                                                                 <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
                                                                             @endif
                                                                         </div>
@@ -86,30 +90,30 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                 </td>
                                                                 <td>{{ $incoming->created_at->format('d-M-Y') }}</td>
                                                                 <td>
-                                                                    @if ($incoming && $incoming->signature)
-                                                                        <img src="{{ asset('storage/' . $incoming->signature->signature_path) }}" alt="Signature" height="50">
+                                                                    @if ($file->user && $file->user->signature)
+                                                                        <img src="{{ asset('storage/' . $file->user->signature->signature_path) }}" alt="Signature" height="50">
                                                                     @else
-                                                                        <strike>{{ $incoming->name }}</strike>
+                                                                        <strike>{{ $file->user->name }}</strike>
                                                                     @endif
                                                                 </td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$incoming->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Share Document')}}" data-bs-original-title="{{__('Share Document')}}">
+                                                                        <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$file->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Share Document')}}" data-bs-original-title="{{__('Share Document')}}">
                                                                             <i class="ti ti-share text-white"></i>
                                                                         </a>
                                                                     </div>
                                                                     <div class="action-btn bg-info ms-2">
-                                                                        <a href="#!" data-url="{{ route('file.renameModal',$incoming->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Rename Document')}}" data-bs-original-title="{{__('Rename Document')}}">
+                                                                        <a href="#!" data-url="{{ route('file.renameModal',$file->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Rename Document')}}" data-bs-original-title="{{__('Rename Document')}}">
                                                                             <i class="ti ti-pencil text-white"></i>
                                                                         </a>
                                                                     </div>
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="{{ route('files.download',$incoming->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Document')}}"  data-title="{{__('Download Document')}}">
+                                                                        <a href="{{ route('files.download',$file->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Document')}}"  data-title="{{__('Download Document')}}">
                                                                             <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>
                                                                     <div class="action-btn bg-danger ms-2">
-                                                                        <form action="{{ route('files.archive', $incoming->id) }}" method="POST" style="display:inline;">
+                                                                        <form action="{{ route('files.archive', $file->id) }}" method="POST" style="display:inline;">
                                                                             @csrf
                                                                             <button type="submit" class="mx-3 btn btn-sm  align-items-center" title="{{__('Archive Document')}}"><i class="ti ti-archive text-white"></i></button>
                                                                         </form>
@@ -164,13 +168,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                 <td scope="row">
                                                                     <div class="media align-items-center">
                                                                         <div class="media-body">
-                                                                            @if($outgoing->priority == 0)
+                                                                            {{-- {{ dd($outgoing->priority) }} --}}
+                                                                            @if($outgoing->pivot->priority == 0)
                                                                                 <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
-                                                                            @elseif($outgoing->priority == 1)
+                                                                            @elseif($outgoing->pivot->priority == 1)
                                                                                 <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
-                                                                            @elseif($outgoing->priority == 2)
+                                                                            @elseif($outgoing->pivot->priority == 2)
                                                                                 <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
-                                                                            @elseif($outgoing->priority == 3)
+                                                                            @elseif($outgoing->pivot->priority == 3)
                                                                                 <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
                                                                             @endif
                                                                         </div>
@@ -179,22 +184,22 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                 <td>{{ $outgoing->created_at->format('d-M-Y') }}</td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$outgoing->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Share Document')}}" data-bs-original-title="{{__('Share Document')}}">
+                                                                        <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$file->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Share Document')}}" data-bs-original-title="{{__('Share Document')}}">
                                                                             <i class="ti ti-share text-white"></i>
                                                                         </a>
                                                                     </div>
                                                                     <div class="action-btn bg-info ms-2">
-                                                                        <a href="#!" data-url="{{ route('file.renameModal',$outgoing->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Rename Document')}}" data-bs-original-title="{{__('Rename Document')}}">
+                                                                        <a href="#!" data-url="{{ route('file.renameModal',$file->id) }}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" title="{{__('Rename Document')}}" data-bs-original-title="{{__('Rename Document')}}">
                                                                             <i class="ti ti-pencil text-white"></i>
                                                                         </a>
                                                                     </div>
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="{{ route('files.download',$outgoing->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Document')}}"  data-title="{{__('Download Document')}}">
+                                                                        <a href="{{ route('files.download',$file->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Document')}}"  data-title="{{__('Download Document')}}">
                                                                             <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>
                                                                     <div class="action-btn bg-danger ms-2">
-                                                                        <form action="{{ route('files.archive', $outgoing->id) }}" method="POST" style="display:inline;">
+                                                                        <form action="{{ route('files.archive', $file->id) }}" method="POST" style="display:inline;">
                                                                             @csrf
                                                                             <button type="submit" class="mx-3 btn btn-sm  align-items-center" title="{{__('Archive Document')}}"><i class="ti ti-archive text-white"></i></button>
                                                                         </form>

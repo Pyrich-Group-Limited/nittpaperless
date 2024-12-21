@@ -13,27 +13,32 @@ class FolderController extends Controller
     public function index(Request $request)
     {
         $search = $request->query('search');
-        // Check if search query is present
+        $sortOrder = $request->get('sort', 'newest');
+
         if ($search) {
-            // If a search query exists, filter folders by the search term
+            // Search folders based on the query
             $folders = Folder::where('folder_name', 'LIKE', "%{$search}%")
-            ->where('user_id',Auth::user()->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10); // You can adjust the pagination limit
+                ->where('user_id', Auth::user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(12);
         } else {
-            $sortOrder = $request->get('sort', 'newest');
+            // Sort folders based on the selected sort order
             if ($sortOrder === 'newest') {
-                $folders = Folder::where('user_id',Auth::user()->id)->where('parent_id',null)
-                ->orderBy('created_at', 'desc')->paginate(10);
+                $folders = Folder::where('user_id', Auth::user()->id)
+                    ->where('parent_id', null)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(12);
             } else {
-                $folders = Folder::where('user_id',Auth::user()->id)->where('parent_id',null)
-                ->orderBy('created_at', 'asc')->paginate(10);
+                $folders = Folder::where('user_id', Auth::user()->id)
+                    ->where('parent_id', null)
+                    ->orderBy('created_at', 'asc')
+                    ->paginate(12);
             }
         }
 
-        return view('filemanagement.folders', compact('folders','sortOrder'));
-
+        return view('filemanagement.folders', compact('folders', 'sortOrder'));
     }
+
 
     public function createFolderModal(){
         // $folders = Folder::where('user_id',Auth::user()->id)->orderBy('created_at', 'asc')->get();
@@ -107,5 +112,13 @@ class FolderController extends Controller
         // $files = $folder->files;  // Get all files in the folder
         $files = $folder->files()->simplePaginate(12);
         return view('filemanagement.show-folder',compact('folder', 'files'));
+    }
+
+    public function display(Folder $folder)
+    {
+        // Get direct children of the selected folder
+        $subfolders = $folder->children;
+
+        return view('filemanagement.folder-display', compact('folder', 'subfolders'));
     }
 }
