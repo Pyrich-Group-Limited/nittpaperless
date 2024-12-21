@@ -102,11 +102,11 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                     <i class="ti ti-dots-vertical"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a href="#!" data-size="lg" data-url="<?php echo e(route('file.shareModal',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Share File')); ?>">
+                                                    <a href="#!" data-size="lg" data-url="<?php echo e(route('file.shareModal',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Share Document')); ?>">
                                                         <i class="ti ti-share"></i>
                                                         <span><?php echo e(__('Share')); ?></span>
                                                     </a>
-                                                    <a href="#!" data-url="<?php echo e(route('file.renameModal',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Rename File')); ?>">
+                                                    <a href="#!" data-url="<?php echo e(route('file.renameModal',$file->id)); ?>" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="<?php echo e(__('Rename Document')); ?>">
                                                         <i class="ti ti-pencil"></i>
                                                         <span><?php echo e(__('Rename')); ?></span>
                                                     </a>
@@ -157,9 +157,6 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         </div>
                     <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                
-
             </div>
         </div>
     </div>

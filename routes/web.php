@@ -568,6 +568,7 @@ Route::post('/folders/move', [FolderController::class, 'move'])->name('folders.m
 
 Route::get('/folder/{folder}/details', [FolderController::class, 'show'])->name('folder.details');
 Route::get('file-upload',[FilesController::class, 'filesUpload'])->name('file.upload');
+Route::get('/folders-display/{folder}', [FolderController::class, 'display'])->name('folders.display');
 
 
 // Route::get('/dta-requests', [DtaController::class, 'index'])->name('dta.index');

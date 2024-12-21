@@ -94,6 +94,11 @@ class User extends Authenticatable
                     ->withPivot('priority', 'created_at');
     }
 
+    public function pivotSharer()
+    {
+        return $this->belongsTo(User::class, 'sharer_id');
+    }
+
     public function dtaRequests()
     {
         return $this->hasMany(Dta::class);

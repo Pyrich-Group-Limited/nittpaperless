@@ -144,7 +144,6 @@ class FilesController extends Controller
             // Return the file for download with the correct name and extension
             return Storage::download($filePath, $fileName);
         } else {
-            // Return a 404 response if the file doesn't exist
             abort(404, 'File not found.');
         }
     }
@@ -219,30 +218,54 @@ class FilesController extends Controller
         }else {
             return redirect()->back()->with('error', 'You are not authorized to view this page.');
         }
-        // $users = User::where('department_id',$authUser->department_id)->get();
 
         return view('filemanagement.modals.share-modal',compact('users','file'));
     }
 
-    //function for file sharing
     // public function share(File $file, Request $request)
     // {
-    //     $this->authorize('update', $file);
+    //     // Authorize the user
+    //     // $this->authorize('update', $file);
+    //     if (!($file->user_id === Auth::id() || $file->sharedWith()->where('user_id', Auth::id())->exists())) {
+    //         abort(403, 'This action is unauthorized.');
+    //     }
+
+    //     // Validate input
     //     $request->validate([
     //         'user_id' => 'required|array',
-    //         'user_id' => 'required|exists:users,id'
+    //         'user_id.*' => 'exists:users,id',
+    //         'secret_code' => 'required|string',
+    //         'priority' => 'required|integer',
     //     ]);
 
-    //     // $file->sharedWith()->syncWithoutDetaching($user);
-    //     $user = User::find($request->user_id);
-    //     $file->sharedWith()->attach($user);
+    //     // Check the secret code
+    //     if (!Hash::check($request->secret_code, Auth::user()->secret_code)) {
+    //         return redirect()->back()->with(['error' => 'Invalid secret code.']);
+    //     }
+
+    //     // Find the users to share the file with
+    //     $users = User::whereIn('id', $request->user_id)->get();
+
+    //     foreach ($users as $user) {
+    //         // Add a new shared entry without detaching existing ones
+    //         $file->sharedWith()->syncWithoutDetaching([
+    //             $user->id => [
+    //                 'sharer_id' => Auth::id(), // Current sharer
+    //                 'priority' => $request->input('priority'),
+    //             ],
+    //         ]);
+    //     }
+
     //     return redirect()->back()->with('success', 'File shared successfully.');
     // }
 
     public function share(File $file, Request $request)
     {
         // Authorize the user
-        $this->authorize('update', $file);
+        // $this->authorize('update', $file);
+        if (!($file->user_id === Auth::id() || $file->sharedWith()->where('user_id', Auth::id())->exists())) {
+            abort(403, 'This action is unauthorized.');
+        }
 
         // Validate input
         $request->validate([
@@ -259,33 +282,78 @@ class FilesController extends Controller
 
         // Find the users to share the file with
         $users = User::whereIn('id', $request->user_id)->get();
-        
+
         foreach ($users as $user) {
-            $file->sharedWith()->syncWithoutDetaching([
+            // Add a new shared entry (always creates a new record)
+            $file->sharedWith()->attach([
                 $user->id => [
-                    'sharer_id' => Auth::id(),
-                    'priority' => $request->input('priority', 'low'), 
+                    'sharer_id' => Auth::id(), // Current sharer
+                    'priority' => $request->input('priority'),
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ],
             ]);
         }
 
-        return redirect()->back()->with('success', 'File shared successfully with priority.');
+        return redirect()->back()->with('success', 'File shared successfully.');
     }
+
 
     public function sharedFiles(Request $request)
     {
-        // Get files the user shared
         $filesSharedByUser = File::whereHas('sharedWith', function ($query) {
-            $query->where('sharer_id', Auth::id());
-        })->get();
+            $query->where('sharer_id', Auth::id()); // Filter files where sharer_id matches the authenticated user
+        })
+        ->with(['sharedWith' => function ($query) {
+            $query->where('sharer_id', Auth::id()); // Ensure only the authenticated user's shared records are loaded
+        }])
+        ->orderBy('created_at', 'desc')
+        ->get();
 
-        // Get files shared with the user
+        
+        // $filesSharedWithUser = File::whereHas('sharedWith', function ($query) {
+        //     $query->where('user_id', Auth::id()); // Only fetch rows with the authenticated user's ID
+        // })
+        // ->with(['sharedWith' => function ($query) {
+        //     $query->where('user_id', Auth::id()); // Ensure only the authenticated user's pivot data is loaded
+        // }])
+        // ->orderBy('created_at', 'desc')
+        // ->get();
+
         $filesSharedWithUser = File::whereHas('sharedWith', function ($query) {
-            $query->where('user_id', Auth::id());
-        })->get();
+            $query->where('user_id', Auth::id()); // Fetch rows for the authenticated user
+        })
+        ->with(['sharedWith' => function ($query) {
+            $query->where('user_id', Auth::id()); // Load only the authenticated user's pivot data
+        }, 'sharedWith.pivotSharer']) // Load the sharer relationship
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        // $filesSharedWithUser = File::whereHas('sharedWith', function ($query) {
+        //     $query->where('user_id', Auth::id()); // Fetch rows for the authenticated user
+        // })
+        // ->with([
+        //     'sharedWith' => function ($query) {
+        //         $query->where('user_id', Auth::id()); // Load only the authenticated user's pivot data
+        //     },
+        //     'sharedWith.pivotSharer' => function ($query) {
+        //         $query->select('id', 'name'); // Preload only sharer details (id and name)
+        //     }
+        // ])
+        // ->orderBy('created_at', 'desc')
+        // ->get();
+
 
         return view('filemanagement.shared-files', compact('filesSharedByUser', 'filesSharedWithUser'));
     }
+
+    // public function shareHistory(File $file)
+    // {
+    //     $shareHistory = $file->sharedWith()->withPivot(['sharer_id', 'priority'])->get();
+
+    //     return view('filemanagement.share-history', compact('file', 'shareHistory'));
+    // }
+
 
 
 

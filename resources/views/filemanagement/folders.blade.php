@@ -41,10 +41,10 @@
 <style>
     .desktop {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3 folders per row */
-        gap: 20px; /* Adjust spacing between folders */
+        grid-template-columns: repeat(6, 1fr);
+        gap: 2px;
         background: #f5f5f5;
-        padding: 10px;
+        padding: 5px;
     }
 
     @media (max-width: 1024px) {
@@ -131,22 +131,6 @@
         border-color: #007bff;
         color: white;
     }
-
-    /* @media (max-width: 768px) {
-        .desktop {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .folder {
-            width: 80px;
-        }
-
-        .folder-icon img {
-            width: 60px;
-            height: 60px;
-        }
-    } */
 </style>
 
 @section('content')
@@ -190,15 +174,16 @@
                 @if ($folders->count() > 0)
                     @foreach ($folders as $folder)
                         <div class="folder" style="margin-left: 20px;" data-id="{{ $folder->id }}" draggable="true">
-                            <!-- Folder Icon and Name -->
                             <div class="folder-icon">
-                                <img src="{{ asset('assets/images/folder.png') }}" alt="Folder Icon" style="width: 50px; height: 50px;">
+                                <a href="{{ route('folders.display', $folder->id) }}">
+                                    <img src="{{ asset('assets/images/folder.png') }}" alt="Folder Icon" style="width: 50px; height: 50px;">
+                                </a>
                             </div>
                             <div class="folder-name">
-                                <span>{{ $folder->folder_name }}</span>
+                                <a href="{{ route('folders.display', $folder->id) }}">
+                                    <span>{{ $folder->folder_name }}</span>
+                                </a>
                             </div>
-            
-                            <!-- Action Dropdown -->
                             <div class="btn-group card-option">
                                 <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="ti ti-dots-vertical"></i>
@@ -210,7 +195,7 @@
                                     </a>
                                     <a href="{{ route('folder.details', $folder->id) }}" class="dropdown-item">
                                         <i class="ti ti-eye"></i>
-                                        <span> {{ __('View Details') }}</span>
+                                        <span> {{ __('View Documents') }}</span>
                                     </a>
                                     <a href="#" class="dropdown-item" data-bs-toggle="modal" 
                                         data-bs-target="#createSubFolderModal" 
@@ -219,13 +204,11 @@
                                     </a>
                                 </div>
                             </div>
-            
-                            <!-- Recursive Rendering of Subfolders -->
-                            @if ($folder->children->count() > 0)
+                            {{-- @if ($folder->children->count() > 0)
                                 <div class="nested-folders" style="margin-left: 20px; border-left: 2px dashed #ddd; padding-left: 10px;">
                                     @include('filemanagement.subfolders', ['folders' => $folder->children])
                                 </div>
-                            @endif
+                            @endif --}}
                         </div>
                     @endforeach
                 @else
@@ -235,7 +218,17 @@
                 @endif
             </div>
         </div>
-
+         <div class="pagination-links mt-4">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        @foreach ($folders->links()->elements[0] as $page => $url)
+                            <li class="page-item{{ $page == $folders->currentPage() ? ' active' : '' }}">
+                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </nav>
+            </div>
         <div class="modal fade" id="createSubFolderModal" tabindex="-1" role="dialog"
             aria-labelledby="createSubFolderModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
