@@ -7,6 +7,7 @@ use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ItemRequisitionBursarApproval extends Component
 {
@@ -15,6 +16,8 @@ class ItemRequisitionBursarApproval extends Component
     public $requisitions = [];
     public $selectedRequisition = null;
     public $comments;
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     protected $rules = [
         'selectedRequisition' => 'nullable|exists:item_requisition_requests,id',
@@ -64,29 +67,6 @@ class ItemRequisitionBursarApproval extends Component
             ->get();
     }
 
-    // public function selectDepartment($departmentName)
-    // {
-    //     $this->selectedDepartment = $departmentName;
-
-    //     // Fetch requisitions with statuses hod_approved, special_duty_head_approved, or bursar_approved and beyond
-    //     $this->requisitions = ItemRequisitionRequest::whereHas('department', function ($query) use ($departmentName) {
-    //             $query->where('name', $departmentName);
-    //         })
-    //         ->whereIn('status', ['hod_approved', 'special_duty_head_approved', 'bursar_approved']) // Include bursar_approved
-    //         ->orWhere(function ($query) {
-    //             // Fetch requisitions approved by the current user with any further approval statuses
-    //             $query->whereHas('approvals', function ($subQuery) {
-    //                 $subQuery->where('approved_by', auth()->id());
-    //             });
-    //         })
-    //         ->with(['items', 'approvals'])
-    //         ->orderBy('created_at', 'desc')
-    //         ->get();
-    // }
-
-   
-
-
 
     public function selectRequisition($id)
     {
@@ -96,21 +76,32 @@ class ItemRequisitionBursarApproval extends Component
 
     public function approveRequisition()
     {
-        $this->validate([
-            'comments' => 'nullable|string',
-        ]);
-
         if (!$this->selectedRequisition) {
             $this->dispatchBrowserEvent('error', ['error' => 'No requisition selected.']);
+            return;
+        }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'comments' => 'nullable|string',
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
             return;
         }
 
         $this->selectedRequisition->update(['status' => 'bursar_approved']);
 
-        $this->dispatchBrowserEvent('success', ['success' => 'Requisition approved successfully.']);
+        $this->reset();
+        // $this->reset(['secretCode', 'comments', 'selectedRequisition']);
         $this->mount();
-        // $this->requisitions = [];
-        // $this->selectedRequisition = null;
+        $this->dispatchBrowserEvent('success', ['success' => 'Requisition approved successfully.']);
     }
 
     public function rejectRequisition()
@@ -122,9 +113,10 @@ class ItemRequisitionBursarApproval extends Component
         $this->selectedRequisition->update(['status' => 'rejected']);
 
         $this->dispatchBrowserEvent('success', ['message' => 'Requisition rejected successfully.']);
-        $this->loadDepartments();
-        $this->requisitions = [];
-        $this->selectedRequisition = null;
+        $this->mount();
+        // $this->loadDepartments();
+        // $this->requisitions = [];
+        // $this->selectedRequisition = null;
     }
 
     public function render()

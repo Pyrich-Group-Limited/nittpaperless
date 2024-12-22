@@ -78,7 +78,7 @@
                             <span>{{__('Memo')}}</span>
                         </a>
 
-                        <a href="#" type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#secretCodeModal">
+                        <a href="#" type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#setSecretCodeModal">
                             <i class="ti ti-lock"></i>
                             <span>{{__('My Secret Code')}}</span>
                         </a>

@@ -43,6 +43,7 @@
                                     <th>{{ __('Department') }}</th>
                                     <th>{{ __('Requester') }}</th>
                                     <th>{{ __('Items') }}</th>
+                                    <th>{{ __('Status') }}</th>
                                     <th>{{ __('Action') }}</th>
                                 </tr>
                             </thead>
@@ -52,6 +53,14 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $requisition->department->name }}</td>
                                         <td>{{ $requisition->staff->name }}</td>
+                                        <td>
+                                            @if ($requisition->status == 'store_approved')
+                                                <span class="badge bg-success p-2 px-3 rounded">{{ $requisition->status }}</span>
+                                            @else
+                                                <span class="badge bg-warning p-2 px-3 rounded">{{ $requisition->status }}</span>
+                                            @endif
+                                        </td>
+
                                         <td>{{ $requisition->items->count() }}</td>
                                         
                                         <td class="Action">

@@ -151,6 +151,7 @@
             @endif
         </div>
     </div>
+    @include('livewire.item-requisitions.modals.bursar-approval-modal')
     <x-toast-notification />
 </div>
 

@@ -1,9 +1,9 @@
 <!-- Secret Code Modal -->
-<div class="modal fade" id="secretCodeModal" tabindex="-1" aria-labelledby="secretCodeModalLabel" aria-hidden="true">
+<div class="modal fade" id="setSecretCodeModal" tabindex="-1" aria-labelledby="setSecretCodeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="secretCodeModalLabel">
+                <h5 class="modal-title" id="setSecretCodeModalLabel">
                     @if (Auth::user()->secret_code)
                         Update Secret Code
                     @else

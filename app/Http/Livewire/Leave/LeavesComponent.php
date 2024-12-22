@@ -46,7 +46,7 @@ class LeavesComponent extends Component
         }elseif($leaveDuration<=0){
             $this->dispatchBrowserEvent('error',["error" =>"Sorry your start date can not be later than start"]);
         }elseif($leaveDuration>$leaeType->days){
-            $this->dispatchBrowserEvent('error',["error" =>'Sorry you can not apply for more than '.$leaveType->days. ' for '.$leaveType->name]);
+            $this->dispatchBrowserEvent('error',["error" =>'Sorry you can not apply for more than '.$leaeType->days. ' for '.$leaeType->name]);
 
         }else{
             $leave = Leave::create([

@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
 
 class DgRequisitionApprovalComponent extends Component
@@ -16,6 +17,9 @@ class DgRequisitionApprovalComponent extends Component
     public $actionId;
 
     public $chartAccount;
+
+    public $secretCode; // To store the secret code input
+    public $showSecretCodeModal = false;
 
     public function mount()
     {
@@ -56,11 +60,28 @@ class DgRequisitionApprovalComponent extends Component
 
     public function dgApproveRequisition()
     {
+        // Ensure the requisition is valid for DG approval
         if ($this->selRequisition->status == 'pending') {
-            $this->dispatchBrowserEvent('error',["error" =>"Requisition required HoD approval."]);
-        } else {
-            $this->selRequisition->update(['status' => 'dg_approved']);
+            $this->dispatchBrowserEvent('error', ["error" => "Requisition requires HoD approval first."]);
+            return;
         }
+
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
+            return;
+        }
+
+        $this->selRequisition->update(['status' => 'dg_approved']);
 
         RequisitionApprovalRecord::create([
             'requisition_id' => $this->selRequisition->id,
@@ -69,10 +90,12 @@ class DgRequisitionApprovalComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
-        $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
 
+        $this->reset(['secretCode', 'comments', 'selRequisition']);
+        $this->dispatchBrowserEvent('success', ["success" => "Requisition approved successfully."]);
         $this->mount();
     }
+
 
     public function rejectRequisition()
     {

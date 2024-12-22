@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
 
 class LiaisonHeadApprovalComponent extends Component
@@ -16,6 +17,8 @@ class LiaisonHeadApprovalComponent extends Component
     public $actionId;
 
     public $chartAccount;
+    public $secretCode; // To store the secret code input
+    public $showSecretCodeModal = false;
 
     public function mount()
     {
@@ -52,14 +55,29 @@ class LiaisonHeadApprovalComponent extends Component
             $this->dispatchBrowserEvent('error',["error" =>"Document not found!."]);
         }
     }
-    
+
     public function liaisonHeadApproveRequisition()
     {
         if ($this->selRequisition->status != 'liaison_head_approval') {
-            $this->dispatchBrowserEvent('error',["error" =>"Requisition require an approval."]);
-        } else {
-            $this->selRequisition->update(['status' => 'liaison_head_approved']);
+            $this->dispatchBrowserEvent('error', ["error" => "Requisition requires an approval."]);
+            return;
         }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+    
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
+            return;
+        }
+
+        $this->selRequisition->update(['status' => 'liaison_head_approved']);
 
         RequisitionApprovalRecord::create([
             'requisition_id' => $this->selRequisition->id,

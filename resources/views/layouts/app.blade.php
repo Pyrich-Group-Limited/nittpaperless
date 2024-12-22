@@ -266,6 +266,7 @@
 
 
 @include('partials.admin.footer')
+@include('partials.admin.secret-code-modal')
 @include('Chatify::layouts.footerLinks')
 @livewireScripts
 

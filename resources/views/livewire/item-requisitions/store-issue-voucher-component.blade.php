@@ -101,7 +101,7 @@
                         <th>Rates Per Unit</th>
                         <th>₦ Value k</th>
                     </tr>
-                    @foreach ($requisition->items as $item)
+                    @foreach ($requisition->items->where('acknowledged', true) as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->item_name }}</td>
