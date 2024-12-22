@@ -5002,6 +5002,13 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [   'name' => 'approve as special duty',
+                'module' => 'Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
             [   'name' => 'approve as pv',
                 'module' => 'Requsition',
                 'category' => "Paperless system",
@@ -5025,6 +5032,65 @@ class UsersTableSeeder extends Seeder
             ],
             [   'name' => 'final account view',
                 'module' => 'Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+           
+            [   'name' => 'hod approve SRN',
+                'module' => 'Item Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'liaison approve SRN',
+                'module' => 'Item Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+             
+            [   'name' => 'bursar approve SRN',
+                'module' => 'Item Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'store approve SRN',
+                'module' => 'Item Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'request SRN',
+                'module' => 'Item Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            
+            [   'name' => 'view SRN',
+                'module' => 'Item Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'print SIV',
+                'module' => 'Item Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'view item supply',
+                'module' => 'Item Requsition',
                 'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -5124,6 +5190,16 @@ class UsersTableSeeder extends Seeder
         );
 
         $companyPermissions = [
+             // Item Requisition permissions
+             [   'name' => 'view item supply'],
+             [   'name' => 'hod approve SRN'],
+             [   'name' => 'liaison approve SRN'],
+             [   'name' => 'bursar approve SRN'],
+             [   'name' => 'store approve SRN'],
+             [   'name' => 'request SRN'],
+             [   'name' => 'view SRN'],
+             [   'name' => 'print SIV'],
+
             // DTA permissions
 
             ['name' => 'report view'],
@@ -5797,6 +5873,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show invoice'],
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
+            ['name' => 'request SRN'],
         ];
         $userRole->givePermissionTo($userPermission);
 
@@ -5901,6 +5978,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liasonPermission = [
+            ['name' => 'liaison approve SRN'],
             ['name' => 'approve leave'],
             ['name' => 'view leave report'],
             ['name' => 'create budget plan'],
@@ -5942,6 +6020,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $hodPermission = [
+            ['name' => 'hod approve SRN'],
             ['name' => 'approve as hod'],
             ['name' => 'manage requisition'],
             ['name' => 'set budget'],
@@ -5981,6 +6060,30 @@ class UsersTableSeeder extends Seeder
         Employee::create(['user_id' => $hod->id]);
         // $hod->assignRole($hodRole);
         $hod->givePermissionTo($hodPermission);
+
+
+        $hodSd = User::create(
+            [
+                'name' => 'Kabiru Sani',
+                'email' => 'kb@nitt.com',
+                'location_type' => 'Department',
+                'location' => 'Headquarters',
+                'password' => Hash::make('1234'),
+                'type' => 'hod',
+                'default_pipeline' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::where('name','Special Duty Department')->first()->id,
+                'unit_id' => '',
+                'level' => "Level 10",
+                'password_changed' => true,
+            ]
+        );
+        Employee::create(['user_id' => $hodSd->id]);
+        $hodSd->assignRole($hodRole);
+        $hodSd->givePermissionTo($hodPermission);
 
         // Create an array to store all unit head roles
         // $unitHeadRoles = [];
@@ -6051,8 +6154,6 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show unithead dashboard'],
         ];
 
-
-
         $unitHeadRole = Role::create(
             [
                 'name' => 'unit head',
@@ -6093,6 +6194,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $storePermission = [
+            ['name' => 'store approve SRN'],
             ['name' => 'approve as audit'],
             ['name' => 'manage product & service'],
             ['name' => 'manage warehouse'],
@@ -6136,6 +6238,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
+            ['name' => 'bursar approve SRN'],
             ['name' => 'approve as cash office'],
             ['name' => 'set budget'],
             ['name' => 'manage budget'],

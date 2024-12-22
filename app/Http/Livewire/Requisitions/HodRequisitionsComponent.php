@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
 
 class HodRequisitionsComponent extends Component
@@ -19,37 +20,62 @@ class HodRequisitionsComponent extends Component
 
     public $chartAccount;
 
+    public $approvals; 
+    public $selectedRequisitionId;
+
+    public $secretCode; // To store the secret code input
+    public $showSecretCodeModal = false;
+
     public function mount()
     {
         $user = auth()->user();
 
-        $this->requisitions = StaffRequisition::where('status', 'pending')
-        ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
-            $query->where('approver_id', $user->id)
-                ->where('role', $user->type);
-        })->where('department_id',Auth::user()->department_id)
-        ->where('location',Auth::user()->location_type)
-        ->orderBy('created_at', 'desc')->get();
-        
-        $this->approvedRequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
-            $query->where('approver_id', $user->id)
-                ->where('role', $user->type)
-                ->where('status', 'approved');
-        })->where('department_id',Auth::user()->department_id)
-        ->where('location',Auth::user()->location_type)
-        ->orderBy('created_at', 'desc')->get();
+        $this->requisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->where('status', 'pending')
+            ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
+                $query->where('approver_id', $user->id)
+                    ->where('role', $user->type);
+            })->where('department_id', $user->department_id)
+            ->where('location', $user->location_type)
+            ->orderBy('created_at', 'desc')->get();
+
+        $this->approvedRequisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->whereHas('approvalRecords', function ($query) use ($user) {
+                $query->where('approver_id', $user->id)
+                    ->where('role', $user->type)
+                    ->where('status', 'approved');
+            })->where('department_id', $user->department_id)
+            ->where('location', $user->location_type)
+            ->orderBy('created_at', 'desc')->get();
 
         $this->accounts = ChartOfAccount::all();
+
+        // Set the first requisition as default
+        if ($this->requisitions->isNotEmpty()) {
+            $this->setRequisition($this->requisitions->first());
+        } elseif ($this->approvedRequisitions->isNotEmpty()) {
+            $this->setRequisition($this->approvedRequisitions->first());
+        }
     }
 
+    public function loadApprovals()
+    {
+        $this->approvals = RequisitionApprovalRecord::with(['approver.signature'])
+            ->where('requisition_id', $this->selectedRequisitionId)
+            ->orderBy('created_at', 'asc') // Sort approvals chronologically
+            ->get();
+    }
+
+    
     public function setRequisition(StaffRequisition $requisition){
         $this->selRequisition = $requisition;
+        $this->loadApprovals();
     }
 
     public function downloadFile($supporting_document)
     {
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {
@@ -57,30 +83,44 @@ class HodRequisitionsComponent extends Component
         }
     }
 
+
     public function hodApproveRequisition()
     {
-        // if ($this->selRequisition->amount > 1000000) {
-        //     $this->selRequisition->update(['status' => 'waiting_dg_approval']);
-        // } elseif ($this->selRequisition->amount > 1000000 && $this->selRequisition->status=='dg_approved') {
-        //     $this->selRequisition->update(['status' => 'hod_approved']);
-        // } else {
-        //     $this->selRequisition->update(['status' => 'hod_approved']);
-        // }
+        // Ensure the requisition is valid for approval
+        if (!$this->selRequisition || $this->selRequisition->status != 'pending') {
+            $this->dispatchBrowserEvent('error', ["error" => "Requisition requires approval."]);
+            return;
+        }
 
-        if ($this->selRequisition->status != 'pending') {
-            $this->dispatchBrowserEvent('error',["error" =>"Requisition required an approval."]);
+        // Show the secret code modal
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        // Validate the secret code input
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        // Check if the secret code matches
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
             return;
         }
 
         $hod = auth()->user();
         $isInLiaisonOffice = $hod->is_in_liaison_office;
 
+        // Update requisition status
         if ($isInLiaisonOffice) {
             $this->selRequisition->update(['status' => 'liaison_head_approval']);
         } else {
             $this->selRequisition->update(['status' => 'hod_approved']);
         }
 
+        // Log the approval record
         RequisitionApprovalRecord::create([
             'requisition_id' => $this->selRequisition->id,
             'approver_id' => auth()->id(),
@@ -88,7 +128,10 @@ class HodRequisitionsComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
-        $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
+
+        // Reset and show success message
+        $this->reset(['secretCode', 'comments', 'selRequisition']);
+        $this->dispatchBrowserEvent('success', ["success" => "Requisition approved successfully."]);
         $this->mount();
     }
 

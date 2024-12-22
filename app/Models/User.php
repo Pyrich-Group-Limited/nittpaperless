@@ -80,7 +80,23 @@ class User extends Authenticatable
 
     public function sharedFiles()
     {
-        return $this->belongsToMany(File::class, 'file_user');
+        return $this->belongsToMany(File::class, 'file_user')->withPivot('priority', 'created_at');
+    }
+
+    // public function filesShared()
+    // {
+    //     return $this->hasMany(File::class, 'user_id');
+    // }
+
+    public function filesShared()
+    {
+        return $this->belongsToMany(File::class, 'file_user', 'sharer_id', 'file_id')
+                    ->withPivot('priority', 'created_at');
+    }
+
+    public function pivotSharer()
+    {
+        return $this->belongsTo(User::class, 'sharer_id');
     }
 
     public function dtaRequests()

@@ -139,11 +139,11 @@
                         <div wire:loading wire:target="approveRequisition"><x-g-loader /></div>
                         <div wire:loading wire:target="rejectRequisition"><x-g-loader /></div>
 
-                        @if ($selectedRequisition->status !='hod_approved')
-                                <span class="badge bg-success">You have approved this requisition</span>
-                        @else
+                        @if ($selectedRequisition->status ==='hod_approved' || $selectedRequisition->status ==='special_duty_head_approved')
                             <button wire:click="approveRequisition" class="btn btn-success btn-sm">Approve</button>
                             <button wire:click="rejectRequisition" class="btn btn-danger btn-sm">Reject</button>
+                        @else
+                            <span class="badge bg-success">You have approved this requisition</span>
                         @endif
                         
                     </div>
@@ -151,6 +151,7 @@
             @endif
         </div>
     </div>
+    @include('livewire.item-requisitions.modals.bursar-approval-modal')
     <x-toast-notification />
 </div>
 

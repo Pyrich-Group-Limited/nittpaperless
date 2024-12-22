@@ -31,4 +31,14 @@ class RequisitionApprovalRecord extends Model
     {
         return $this->hasMany(StaffRequisition::class);
     }
+
+    public function approver()
+    {
+        return $this->belongsTo(User::class, 'approver_id', 'id');
+    }
+
+    public function signature()
+    {
+        return $this->hasOneThrough(Signature::class, User::class, 'id', 'user_id', 'approver_id', 'id');
+    }
 }

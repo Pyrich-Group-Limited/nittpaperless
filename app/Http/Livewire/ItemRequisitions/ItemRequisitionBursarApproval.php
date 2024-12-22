@@ -7,6 +7,7 @@ use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ItemRequisitionBursarApproval extends Component
 {
@@ -15,6 +16,8 @@ class ItemRequisitionBursarApproval extends Component
     public $requisitions = [];
     public $selectedRequisition = null;
     public $comments;
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     protected $rules = [
         'selectedRequisition' => 'nullable|exists:item_requisition_requests,id',
@@ -28,7 +31,9 @@ class ItemRequisitionBursarApproval extends Component
 
     public function loadDepartments()
     {
-        $this->departments = ItemRequisitionRequest::whereHas('department')
+        // Group only requisitions with statuses 'hod_approved' and 'special_duty_head_approved'
+        $this->departments = ItemRequisitionRequest::whereIn('status', ['hod_approved', 'special_duty_head_approved','bursar_approved'])
+            ->whereHas('department')
             ->with('department')
             ->get()
             ->groupBy('department.name')
@@ -41,10 +46,13 @@ class ItemRequisitionBursarApproval extends Component
     {
         $this->selectedDepartment = $departmentName;
 
-        $this->requisitions = ItemRequisitionRequest::whereHas('department', function ($query) use ($departmentName) {
+        // Fetch requisitions for the selected department with specified statuses
+        $this->requisitions = ItemRequisitionRequest::whereIn('status', ['hod_approved', 'special_duty_head_approved','bursar_approved'])
+            ->whereHas('department', function ($query) use ($departmentName) {
                 $query->where('name', $departmentName);
             })
             ->where(function ($query) {
+                //fetch those approved or yet to be approved by the current user
                 $query->whereDoesntHave('approvals', function ($subQuery) {
                     $subQuery->where('approved_by', auth()->id())
                             ->where('role', auth()->user()->type);
@@ -55,8 +63,10 @@ class ItemRequisitionBursarApproval extends Component
                 });
             })
             ->with(['items', 'approvals'])
-            ->orderBy('created_at','desc')->get();
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
+
 
     public function selectRequisition($id)
     {
@@ -66,21 +76,32 @@ class ItemRequisitionBursarApproval extends Component
 
     public function approveRequisition()
     {
-        $this->validate([
-            'comments' => 'nullable|string',
-        ]);
-
         if (!$this->selectedRequisition) {
             $this->dispatchBrowserEvent('error', ['error' => 'No requisition selected.']);
+            return;
+        }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'comments' => 'nullable|string',
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
             return;
         }
 
         $this->selectedRequisition->update(['status' => 'bursar_approved']);
 
+        $this->reset();
+        // $this->reset(['secretCode', 'comments', 'selectedRequisition']);
+        $this->mount();
         $this->dispatchBrowserEvent('success', ['success' => 'Requisition approved successfully.']);
-        $this->loadDepartments();
-        $this->requisitions = [];
-        $this->selectedRequisition = null;
     }
 
     public function rejectRequisition()
@@ -92,9 +113,10 @@ class ItemRequisitionBursarApproval extends Component
         $this->selectedRequisition->update(['status' => 'rejected']);
 
         $this->dispatchBrowserEvent('success', ['message' => 'Requisition rejected successfully.']);
-        $this->loadDepartments();
-        $this->requisitions = [];
-        $this->selectedRequisition = null;
+        $this->mount();
+        // $this->loadDepartments();
+        // $this->requisitions = [];
+        // $this->selectedRequisition = null;
     }
 
     public function render()

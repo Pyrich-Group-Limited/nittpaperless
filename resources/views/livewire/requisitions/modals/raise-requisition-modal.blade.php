@@ -7,7 +7,6 @@
                         <h5 class="modal-title" id="applyLeave">Raise Requisition Module</h5>
                     </div>
                     <div class="modal-body">
-
                         <div class="col-sm-12 col-md-12">
                             <div class="form-group">
                                 {{ Form::label('value', __('Type of Requisition'), ['class' => 'form-label']) }}<span
@@ -73,34 +72,63 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <div wire:loading wire:target="createRequisition"><x-g-loader /></div>
+                        <div wire:loading wire:target="submitForm"><x-g-loader /></div>
                         <input type="button" id="closeNewRequisitionModal" value="{{ __('Cancel') }}" class="btn  btn-light"
                             data-bs-dismiss="modal">
-                        <input type="button" wire:click="createRequisition" value="{{ __('Submit') }}"
+                        <input type="button" wire:click="submitForm" value="{{ __('Submit') }}"
                             class="btn  btn-primary">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal" id="secretCodeModal" tabindex="-1" role="dialog" wire:ignore.self>
+        <div class="modal-dialog modal-lg" role="document" wire:ignore.self>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="applyLeave">Secret Code Verification</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="secretCode">{{ __('Secret Code') }}</label>
+                                <input wire:model="secretCode" type="text" class="form-control @error('secretCode') is-invalid @enderror">
+                                @error('secretCode') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div wire:loading wire:target="verifyAndSubmit"><x-g-loader /></div>
+                        <input type="button" id="closeVerifyModal" value="{{ __('Cancel') }}" class="btn  btn-light"
+                            data-bs-dismiss="modal">
+                        <input type="button" wire:click="verifyAndSubmit" value="{{ __('Submit') }}"
+                            class="btn  btn-primary">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-{{-- @push('script')
-    <script>
-        const select = document.getElementById("year");
-        const currentYear = new Date().getFullYear();
-        const startYear = 1900;
-        const endYear = 2100;
-    
-        for (let year = startYear; year <= endYear; year++) {
-        let option = document.createElement("option");
-        option.value = year;
-        option.textContent = year;
-        select.appendChild(option);
-        }
-    </script>
-@endpush --}}
+
+<script>
+    document.addEventListener('livewire:load', function () {
+        window.addEventListener('showSecretCodeModal', function () {
+            $('#newRequisition').modal('hide'); // Close the first modal
+            $('#secretCodeModal').modal('show'); // Show the second modal
+        });
+    });
+</script>
+
 <script>
     window.addEventListener('success', event => {
         document.getElementById("closeNewRequisitionModal").click();
+    })
+</script>
+<script>
+    window.addEventListener('success', event => {
+        document.getElementById("closeVerifyModal").click();
     })
 </script>

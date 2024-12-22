@@ -7,12 +7,16 @@ use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ItemRequisitionHodApproval extends Component
 {
     public $itemRequisitions;
     public $selectedRequisition;
     public $comments;
+
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     public $filter = 'all';
 
@@ -33,19 +37,39 @@ class ItemRequisitionHodApproval extends Component
 
     public function loadRequisitions()
     {
-        $query = ItemRequisitionRequest::where('department_id', Auth::user()->department_id)
-        ->with('items');
+        $user = Auth::user(); // Get the authenticated user
 
-        if ($this->filter === 'pending') {
-            $query->where('status', 'pending_hod_approval');
-        } elseif ($this->filter === 'approved') {
-            $query->where('status', 'hod_approved');
-        } elseif ($this->filter === 'rejected') {
-            $query->where('status', 'rejected');
+        $query = ItemRequisitionRequest::with('items'); // Base query
+
+        // Check if the HOD belongs to the Special Duty department
+        if ($user->department->name === 'Special Duty Department') {
+            
+            if ($this->filter === 'all') {
+                $query->whereIn('status', ['liaison_head_approved', 'special_duty_head_approved']);
+            } elseif ($this->filter === 'pending') {
+                $query->where('status', 'liaison_head_approved'); // Not yet approved by Special Duty HoD
+            } elseif ($this->filter === 'approved') {
+                $query->where('status', 'special_duty_head_approved'); // Already approved by Special Duty HoD
+            } elseif ($this->filter === 'rejected') {
+                $query->where('status', 'rejected');
+            }
+        } else {
+            $query->where('department_id', $user->department_id);
+
+                if ($this->filter === 'all') {
+                    $query->whereIn('status', ['pending_hod_approval', 'hod_approved', 'rejected']);
+                } elseif ($this->filter === 'pending') {
+                    $query->where('status', 'pending_hod_approval');
+                } elseif ($this->filter === 'approved') {
+                    $query->where('status', 'hod_approved');
+                } elseif ($this->filter === 'rejected') {
+                    $query->where('status', 'rejected');
+                }
         }
 
-        $this->itemRequisitions = $query->orderBy('created_at','desc')->get();
+        $this->itemRequisitions = $query->orderBy('created_at', 'desc')->get();
     }
+
 
     public function selectRequisition($id)
     {
@@ -56,24 +80,47 @@ class ItemRequisitionHodApproval extends Component
     public function approveRequisition()
     {
         if (!$this->selectedRequisition) {
-            $this->dispatchBrowserEvent('error', ['message' => 'No requisition selected.']);
+            $this->dispatchBrowserEvent('error', ['error' => 'No requisition selected.']);
+            return;
+        }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        // Check if the secret code matches
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
             return;
         }
 
-        $this->selectedRequisition->update(['status' => 'hod_approved']);
+        $user = Auth::user();
+
+        // Determine the new status based on the user's department
+        $newStatus = ($user->department->name === 'Special Duty Department') 
+                        ? 'special_duty_head_approved' 
+                        : 'hod_approved';
+
+        $this->selectedRequisition->update(['status' => $newStatus]);
 
         ItemRequisitionApproval::create([
             'item_requisition_request_id' => $this->selectedRequisition->id,
-            'approved_by' => Auth::id(),
-            'role' => Auth::user()->type,
+            'approved_by' => $user->id,
+            'role' => $user->type,
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
 
-        $this->dispatchBrowserEvent('success', ['success' => 'Requisition approved successfully.']);
         $this->loadRequisitions();
-        $this->selectedRequisition = null;
+        $this->reset(['secretCode', 'comments', 'selectedRequisition']);
+        $this->dispatchBrowserEvent('success', ['success' => 'Requisition approved successfully.']);
     }
+
 
     public function rejectRequisition()
     {

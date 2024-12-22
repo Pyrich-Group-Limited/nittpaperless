@@ -9,7 +9,7 @@ class Memo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['created_by', 'title', 'description', 'file_path'];
+    protected $fillable = ['created_by', 'title', 'description', 'file_path','priority'];
 
     // The employee who created the memo
     public function creator()

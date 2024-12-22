@@ -59,21 +59,51 @@
                                             </tr>
 
                                             @if($selRequisition->supporting_document==null)
-                                                    <tr>
-                                                        <th>Supporting Document</th>
-                                                        <td class="text-warning">No supporting document uploaded for this requisition.</td>
-                                                    </tr>
-                                                @else
-                                                    <tr>
-                                                        <th>Supporting Document</th>
-                                                        <td class="text-end">
-                                                            <a href="{{ asset('assets/documents/documents') }}/{{$selRequisition->supporting_document}}" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
-                                                            <a href="#" wire:click="downloadFile('{{ $selRequisition->supporting_document }}')" class="btn btn-primary btn-sm"><i class="ti ti-download"></i></a>
-                                                        </td>
-                                                    </tr>
+                                                <tr>
+                                                    <th>Supporting Document</th>
+                                                    <td class="text-warning">No supporting document uploaded for this requisition.</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <th>Supporting Document</th>
+                                                    <td class="text-end">
+                                                        <a href="{{ asset('assets/documents/documents') }}/{{$selRequisition->supporting_document}}" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
+                                                        <a href="#" wire:click="downloadFile('{{ $selRequisition->supporting_document }}')" class="btn btn-primary btn-sm"><i class="ti ti-download"></i></a>
+                                                    </td>
+                                                </tr>
                                             @endif
-
                                         </table>
+                                        
+                                        {{-- @if ($approvals) --}}
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Approved By</th>
+                                                        <th>Role</th>
+                                                        <th>Signature</th>
+                                                        <th>Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($selRequisition->approvalRecords as $approval)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $approval->approver->name ?? 'N/A' }}</td>
+                                                            <td>{{ $approval->role }}</td>
+                                                            <td>
+                                                                @if ($approval->approver && $approval->approver->signature)
+                                                                    <img src="{{ asset('storage/' . $approval->approver->signature->signature_path) }}" alt="Signature" height="50">
+                                                                @else
+                                                                    <strike>{{ $approval->approver->name }}</strike>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $approval->created_at->format('d-M-Y') }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        {{-- @endif --}}
                                     </div>
                             </div>
                                 @if ($selRequisition->status=='rejected')
@@ -117,7 +147,8 @@
                                         </div>
                                     @endcan
                                 @endif
-                            <div class="modal-footer">
+                            <div class="modal-footer"> 
+                                <div wire:loading wire:target="specialDutyApproveRequisition"><x-g-loader /></div>
                                 <div wire:loading wire:target="hodApproveRequisition"><x-g-loader /></div>
                                 <div wire:loading wire:target="liaisonHeadApproveRequisition"><x-g-loader /></div>
                                 <div wire:loading wire:target="approveRequisition"><x-g-loader /></div>
@@ -140,8 +171,14 @@
                                         @endif
                                     @endcan 
 
+                                    @can('approve as special duty')
+                                        @if ($selRequisition->status=='liaison_head_approved')
+                                            <input type="button"  wire:click="specialDutyApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as SD Head') }}" class="btn  btn-primary btn-sm ">
+                                        @endif
+                                    @endcan 
+
                                     @can('approve as dg')
-                                        @if ($selRequisition->status=='hod_approved' || $selRequisition->status=='liaison_head_approved')
+                                        @if ($selRequisition->status=='hod_approved' || $selRequisition->status=='special_duty_head_approved')
                                             <input type="button"  wire:click="dgApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as DG') }}" class="btn  btn-primary btn-sm ">
                                         @endif
                                     @endcan 
@@ -175,9 +212,50 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="secretCodeModal" tabindex="-1" role="dialog" wire:ignore.self>
+        <div class="modal-dialog modal-lg" role="document" wire:ignore.self>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-header">
+                        <h5 class="modal-title"> Verify Secret Code to Append Signature </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="secretCode">{{ __('Enter Secret Code') }}</label>
+                                <input wire:model="secretCode" type="password" class="form-control @error('secretCode') is-invalid @enderror">
+                                @error('secretCode') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div wire:loading wire:target="verifyAndApprove"><x-g-loader /></div>
+                        <input type="button" id="closeVerifyModal" value="{{ __('Cancel') }}" class="btn  btn-light"
+                            data-bs-dismiss="modal">
+                        <input type="button" wire:click="verifyAndApprove" value="{{ __('Approve') }}"
+                            class="btn  btn-primary">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('livewire:load', function () {
+            window.addEventListener('showSecretCodeModal', function () {
+                $('#viewRequisitionDetailsModal').modal('hide'); // Close the first modal
+                $('#secretCodeModal').modal('show'); // Show the second modal
+            });
+        });
+    </script>
     <script>
         window.addEventListener('success', event => {
             document.getElementById("closeRequisitionDetails").click();
+        })
+    </script>
+    <script>
+        window.addEventListener('success', event => {
+            document.getElementById("closeVerifyModal").click();
         })
     </script>
     <x-toast-notification />

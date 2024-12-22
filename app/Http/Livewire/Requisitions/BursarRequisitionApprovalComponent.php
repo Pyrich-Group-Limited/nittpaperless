@@ -7,6 +7,7 @@ use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use App\Models\ChartOfAccount;
 use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Hash;
 
 class BursarRequisitionApprovalComponent extends Component
 {
@@ -16,17 +17,21 @@ class BursarRequisitionApprovalComponent extends Component
     public $actionId;
 
     public $chartAccount;
+    public $secretCode; // To store the secret code input
+    public $showSecretCodeModal = false;
     
     public function mount()
     {
         $user = auth()->user();
-        $this->requisitions = StaffRequisition::where('status', 'dg_approved')
+        $this->requisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->where('status', 'dg_approved')
         ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
         
-        $this->approvedRequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
+        $this->approvedRequisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
                 ->where('status', 'approved');
@@ -53,11 +58,27 @@ class BursarRequisitionApprovalComponent extends Component
 
     public function bursarApproveRequisition()
     {
+        // Ensure the requisition is valid for Bursar approval
         if ($this->selRequisition->status == 'awaiting_dg_approval') {
-            $this->dispatchBrowserEvent('error',["error" =>"Requisition required DG approval."]);
-        } else {
-            $this->selRequisition->update(['status' => 'bursar_approved']);
+            $this->dispatchBrowserEvent('error', ["error" => "Requisition requires DG approval first."]);
+            return;
         }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
+            return;
+        }
+
+        $this->selRequisition->update(['status' => 'bursar_approved']);
 
         RequisitionApprovalRecord::create([
             'requisition_id' => $this->selRequisition->id,

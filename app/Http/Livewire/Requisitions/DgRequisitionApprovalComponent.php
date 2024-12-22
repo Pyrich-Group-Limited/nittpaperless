@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
 
 class DgRequisitionApprovalComponent extends Component
@@ -17,17 +18,22 @@ class DgRequisitionApprovalComponent extends Component
 
     public $chartAccount;
 
+    public $secretCode; // To store the secret code input
+    public $showSecretCodeModal = false;
+
     public function mount()
     {
         $user = auth()->user();
 
-            $this->requisitions = StaffRequisition::where('status', 'hod_approved')->orWhere('status','liaison_head_approved')
+            $this->requisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->where('status', 'hod_approved')->orWhere('status','special_duty_head_approved')
             ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
                 $query->where('approver_id', $user->id)
                     ->where('role', $user->type);
             })->orderBy('created_at', 'desc')->get();
-            
-        $this->dgApprovedrequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
+
+        $this->dgApprovedrequisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
                 ->where('status', 'approved');
@@ -44,7 +50,7 @@ class DgRequisitionApprovalComponent extends Component
     {
         // Check if the file exists in the public folder
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {
@@ -54,11 +60,28 @@ class DgRequisitionApprovalComponent extends Component
 
     public function dgApproveRequisition()
     {
+        // Ensure the requisition is valid for DG approval
         if ($this->selRequisition->status == 'pending') {
-            $this->dispatchBrowserEvent('error',["error" =>"Requisition required HoD approval."]);
-        } else {
-            $this->selRequisition->update(['status' => 'dg_approved']);
+            $this->dispatchBrowserEvent('error', ["error" => "Requisition requires HoD approval first."]);
+            return;
         }
+
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
+            return;
+        }
+
+        $this->selRequisition->update(['status' => 'dg_approved']);
 
         RequisitionApprovalRecord::create([
             'requisition_id' => $this->selRequisition->id,
@@ -67,10 +90,12 @@ class DgRequisitionApprovalComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
-        $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
 
+        $this->reset(['secretCode', 'comments', 'selRequisition']);
+        $this->dispatchBrowserEvent('success', ["success" => "Requisition approved successfully."]);
         $this->mount();
     }
+
 
     public function rejectRequisition()
     {

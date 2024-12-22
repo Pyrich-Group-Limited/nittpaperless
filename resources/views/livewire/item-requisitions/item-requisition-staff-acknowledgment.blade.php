@@ -36,6 +36,12 @@
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>
+                                            {{-- @can('print SIV')     --}}
+                                                <button class="btn btn-success btn-sm" type="submit" target="popup" 
+                                                onclick="window.open('{{ route('itemRequisition.voucher', $requisition->id) }}','popup', 'width=994, height=1123')">
+                                                <i class="fa fa-print"></i> Print Voucher
+                                                </button>
+                                            {{-- @endcan --}}
                                         </td>
                                     </tr>
                                 @endforeach

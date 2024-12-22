@@ -47,6 +47,7 @@
                                                         <th>{{__('Creator Name')}}</th>
                                                         <th>{{__('Department')}}</th>
                                                         <th>{{__('Memo Title')}}</th>
+                                                        <th>{{__('Priority')}}</th>
                                                         <th>{{__('Description')}}</th>
                                                         <th>{{__('Date')}}</th>
                                                         <th>{{__('Action')}}</th>
@@ -58,6 +59,21 @@
                                                                 <td>{{ $memo->creator->name }}</td>
                                                                 <td>{{ $memo->creator->department->name }}</td>
                                                                 <td>{{ $memo->title }}</td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div class="media-body">
+                                                                            @if($memo->priority == 0)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
+                                                                            @elseif($memo->priority == 1)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
+                                                                            @elseif($memo->priority == 2)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
+                                                                            @elseif($memo->priority == 3)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
                                                                 <td>{{ Str::limit($memo->description, 20, '...') }}</td>
                                                                 <td>{{ $memo->created_at->format('d-M-Y') }}</td>
                                                                 <td class="Action">
@@ -89,20 +105,57 @@
                                             <table class="table table-flush table datatable" id="report-dataTable">
                                                 <thead>
                                                     <tr>
-                                                        <th>{{__('Shared By')}}</th>
+                                                        <th scope="col">{{__('Sender')}}</th>
+                                                        <th>{{__('Location')}}</th>
                                                         <th>{{__('Department')}}</th>
                                                         <th>{{__('Memo Title')}}</th>
+                                                        <th>{{__('Priority')}}</th>
                                                         <th>{{__('Date Shared')}}</th>
+                                                        <th>{{__('Signature')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                         @foreach($incomingMemos as $incomingMemo)
                                                             <tr class="font-style">
-                                                                <td>{{ $incomingMemo->sharedBy->name }}</td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div>
+                                                                            <div class="avatar-parent-child">
+                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($incomingMemo->createdBy) && !empty($incomingMemo->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$incomingMemo->createdBy->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar')).'/avatar.png'}}" @endif>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="media-body">
+                                                                            {{!empty($incomingMemo->sharedBy->name)?$incomingMemo->sharedBy->name:''}}
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $incomingMemo->sharedBy->location }}</td>
                                                                 <td>{{ $incomingMemo->sharedBy->department->name }}</td>
                                                                 <td>{{ $incomingMemo->memo->title }}</td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div class="media-body">
+                                                                            @if($incomingMemo->memo->priority == 0)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
+                                                                            @elseif($incomingMemo->memo->priority == 1)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
+                                                                            @elseif($incomingMemo->memo->priority == 2)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
+                                                                            @elseif($incomingMemo->memo->priority == 3)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
                                                                 <td>{{ $incomingMemo->created_at->format('d-M-Y') }}</td>
+                                                                <td>
+                                                                    @if ($incomingMemo->sharedBy && $incomingMemo->sharedBy->signature)
+                                                                        <img src="{{ asset('storage/' . $incomingMemo->sharedBy->signature->signature_path) }}" alt="Signature" height="50">
+                                                                    @else
+                                                                        <strike>{{ $incomingMemo->sharedBy->name }}</strike>
+                                                                    @endif
+                                                                </td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">
                                                                         <a href="#" class="mx-3 btn btn-sm align-items-center" data-url="{{ route('memos.show', $incomingMemo->memo_id) }}"
@@ -139,8 +192,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th>{{__('Shared With')}}</th>
+                                                        <th>{{__('Location')}}</th>
                                                         <th>{{__('Department')}}</th>
                                                         <th>{{__('Memo Title')}}</th>
+                                                        <th>{{__('Priority')}}</th>
                                                         <th>{{__('Date Shared')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
@@ -148,9 +203,36 @@
                                                     <tbody>
                                                         @foreach($outgoingMemos as $outgoingMemo)
                                                             <tr class="font-style">
-                                                                <td>{{ $outgoingMemo->sharedWith->name }}</td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div>
+                                                                            <div class="avatar-parent-child">
+                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($outgoingMemo->createdBy) && !empty($outgoingMemo->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$outgoingMemo->createdBy->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar')).'/avatar.png'}}" @endif>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="media-body">
+                                                                            {{!empty($outgoingMemo->sharedWith->name)?$outgoingMemo->sharedWith->name:''}}
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $outgoingMemo->sharedWith->location }}</td>
                                                                 <td>{{ $outgoingMemo->sharedWith->department->name }}</td>
                                                                 <td>{{ $outgoingMemo->memo->title }}</td>
+                                                                <td scope="row">
+                                                                    <div class="media align-items-center">
+                                                                        <div class="media-body">
+                                                                            @if($outgoingMemo->memo->priority == 0)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-primary p-2 px-3 rounded">   Low</span>
+                                                                            @elseif($outgoingMemo->memo->priority == 1)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-info p-2 px-3 rounded">  Medium </span>
+                                                                            @elseif($outgoingMemo->memo->priority == 2)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-warning p-2 px-3 rounded">   High </span>
+                                                                            @elseif($outgoingMemo->memo->priority == 3)
+                                                                                <span data-toggle="tooltip" data-title="{{__('Priority')}}" class="text-capitalize badge bg-danger p-2 px-3 rounded">   Critical</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
                                                                 <td>{{ $outgoingMemo->created_at->format('d-M-Y') }}</td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">

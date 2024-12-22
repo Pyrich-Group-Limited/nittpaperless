@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
@@ -19,6 +20,8 @@ class CashOfficeRequisitionApprovalComponent extends Component
     public $actionId;
 
     public $chartAccount;
+    public $secretCode; // To store the secret code input
+    public $showSecretCodeModal = false;
 
     // public $account;
     public $paymentEvidence;
@@ -27,13 +30,15 @@ class CashOfficeRequisitionApprovalComponent extends Component
     {
         $user = auth()->user();
 
-        $this->requisitions = StaffRequisition::where('status', 'audit_approved')
+        $this->requisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->where('status', 'audit_approved')
         ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
         
-        $this->approvedRequisitions = StaffRequisition::whereHas('approvalRecords', function ($query) use ($user) {
+        $this->approvedRequisitions = StaffRequisition::with('approvalRecords.approver.signature')
+            ->whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
                 ->where('status', 'approved');
@@ -60,21 +65,33 @@ class CashOfficeRequisitionApprovalComponent extends Component
 
     public function cashOfficeApproveRequisition()
     {
+        if ($this->selRequisition->status != 'audit_approved') {
+            $this->dispatchBrowserEvent('error', ["error" => "Requisition requires Audit approval first."]);
+            return;
+        }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
         $this->validate([
             'paymentEvidence' => 'required',
+            'secretCode' => 'required',
         ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
+            return;
+        }
 
         $payEvidence = Carbon::now()->timestamp. '.' . $this->paymentEvidence->getClientOriginalName();
         $this->paymentEvidence->storeAs('documents',$payEvidence);
 
-        if ($this->selRequisition->status != 'audit_approved') {
-            $this->dispatchBrowserEvent('error',["error" =>"Requisition required audit approval."]);
-        } else { 
-            $this->selRequisition->update([
-                'status' => 'cash_office_approved',
-                'payment_evidence' => $payEvidence
-            ]);
-        }
+        $this->selRequisition->update([
+            'status' => 'cash_office_approved',
+            'payment_evidence' => $payEvidence
+        ]);
 
         RequisitionApprovalRecord::create([
             'requisition_id' => $this->selRequisition->id,

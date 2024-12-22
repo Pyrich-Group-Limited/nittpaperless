@@ -7,10 +7,13 @@ use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\File;
 use App\Models\Folder;
 use App\Models\User;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
+use PhpOffice\PhpWord\PhpWord;
 
 class FilesController extends Controller
 {
@@ -51,48 +54,96 @@ class FilesController extends Controller
     ));
     }
 
-    //function for storing files
     public function store(Request $request)
     {
         $request->validate([
             'filename' => 'required|string|max:255',
-            'file' => 'required|file|mimes:jpg,png,pdf,docx,pdf,xlxs,txt|max:2048',
+            'file' => 'nullable|file|mimes:jpg,png,pdf,docx,xlsx,txt|max:2048',
+            'content' => 'nullable|string',
             'folder_id' => 'nullable|exists:folders,id',
         ]);
 
-         // Handle file upload
-         if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $filePath = $file->store('files'); // Store file in 'files' folder
+        // Ensure either a file or content is provided
+        if (!$request->hasFile('file') && !$request->filled('content')) {
+            return redirect()->back()->with(['error' => 'Please provide either a file or document content.']);
+        }
 
-            // Create a new document entry in the database
+        $filePath = null; // Path to store the file
+        $fileName = $request->filename;
+
+        // Handle uploaded file
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filePath = $file->store('files');
+        } 
+        // Handle text content
+        elseif ($request->filled('content')) {
+            $content = $request->input('content');
+            $format = $request->input('format', 'pdf'); // Default format is PDF
+
+            if ($format === 'pdf') {
+                // Generate PDF
+                $dompdf = new Dompdf();
+                $dompdf->loadHtml($content);
+                $dompdf->setPaper('A4', 'portrait');
+                $dompdf->render();
+                $output = $dompdf->output();
+
+                // Save PDF to storage
+                $filePath = 'files/' . $fileName . '.pdf';
+                Storage::put($filePath, $output);
+            } elseif ($format === 'docx') {
+                // Generate DOCX
+                $phpWord = new PhpWord();
+                $section = $phpWord->addSection();
+                $section->addText($content);
+
+                $tempFilePath = tempnam(sys_get_temp_dir(), 'docx');
+                $phpWord->save($tempFilePath, 'Word2007');
+                
+                // $tempFilePath = storage_path('files/' . $fileName . '.docx');
+                // $phpWord->save($tempFilePath, 'Word2007');
+
+                // Save DOCX to storage
+                $filePath = 'files/' . $fileName . '.docx';
+                Storage::put($filePath, file_get_contents($tempFilePath));
+
+                // Clean up temp file
+                unlink($tempFilePath);
+            }
+        }
+
+        // Save file metadata in the database
+        if ($filePath) {
             File::create([
-                'file_name' => $request->filename,
+                'file_name' => $fileName,
                 'path' => $filePath,
                 'user_id' => Auth::id(),
                 'folder_id' => $request->folder_id,
             ]);
         }
-
-
-
-        return redirect()->back()->with('success', 'File uploaded successfully.');
-
-
+        return redirect()->back()->with('success', 'File saved successfully.');
     }
 
-
-    // Method to download the file
     public function download(File $file)
     {
-        // Get the file's path from the database
+        // Get the file's path and file name from the database
         $filePath = $file->path;
+        $fileName = $file->file_name;
+
+        // Ensure the file has the correct extension
+        $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
+
+        // Append the extension to the file name if not already included
+        if (!str_ends_with($fileName, '.' . $fileExtension)) {
+            $fileName .= '.' . $fileExtension;
+        }
+
         // Check if the file exists in storage
         if (Storage::exists($filePath)) {
-            // Return the file for download
-            return Storage::download($filePath, $file->file_name);
+            // Return the file for download with the correct name and extension
+            return Storage::download($filePath, $fileName);
         } else {
-            // Return a 404 response if the file doesn't exist
             abort(404, 'File not found.');
         }
     }
@@ -167,31 +218,120 @@ class FilesController extends Controller
         }else {
             return redirect()->back()->with('error', 'You are not authorized to view this page.');
         }
-        // $users = User::where('department_id',$authUser->department_id)->get();
 
         return view('filemanagement.modals.share-modal',compact('users','file'));
     }
 
-    //function for file sharing
+    // public function share(File $file, Request $request)
+    // {
+    //     // Authorize the user
+    //     // $this->authorize('update', $file);
+    //     if (!($file->user_id === Auth::id() || $file->sharedWith()->where('user_id', Auth::id())->exists())) {
+    //         abort(403, 'This action is unauthorized.');
+    //     }
+
+    //     // Validate input
+    //     $request->validate([
+    //         'user_id' => 'required|array',
+    //         'user_id.*' => 'exists:users,id',
+    //         'secret_code' => 'required|string',
+    //         'priority' => 'required|integer',
+    //     ]);
+
+    //     // Check the secret code
+    //     if (!Hash::check($request->secret_code, Auth::user()->secret_code)) {
+    //         return redirect()->back()->with(['error' => 'Invalid secret code.']);
+    //     }
+
+    //     // Find the users to share the file with
+    //     $users = User::whereIn('id', $request->user_id)->get();
+
+    //     foreach ($users as $user) {
+    //         // Add a new shared entry without detaching existing ones
+    //         $file->sharedWith()->syncWithoutDetaching([
+    //             $user->id => [
+    //                 'sharer_id' => Auth::id(), // Current sharer
+    //                 'priority' => $request->input('priority'),
+    //             ],
+    //         ]);
+    //     }
+
+    //     return redirect()->back()->with('success', 'File shared successfully.');
+    // }
+
     public function share(File $file, Request $request)
     {
-        $this->authorize('update', $file);
+        // Authorize the user
+        // $this->authorize('update', $file);
+        if (!($file->user_id === Auth::id() || $file->sharedWith()->where('user_id', Auth::id())->exists())) {
+            abort(403, 'This action is unauthorized.');
+        }
+
+        // Validate input
         $request->validate([
             'user_id' => 'required|array',
-            'user_id' => 'required|exists:users,id'
+            'user_id.*' => 'exists:users,id',
+            'secret_code' => 'required|string',
+            'priority' => 'required|integer',
         ]);
 
-        // $file->sharedWith()->syncWithoutDetaching($user);
-        $user = User::find($request->user_id);
-        $file->sharedWith()->attach($user);
+        // Check the secret code
+        if (!Hash::check($request->secret_code, Auth::user()->secret_code)) {
+            return redirect()->back()->with(['error' => 'Invalid secret code.']);
+        }
+
+        // Find the users to share the file with
+        $users = User::whereIn('id', $request->user_id)->get();
+
+        foreach ($users as $user) {
+            // Add a new shared entry (always creates a new record)
+            $file->sharedWith()->attach([
+                $user->id => [
+                    'sharer_id' => Auth::id(), // Current sharer
+                    'priority' => $request->input('priority'),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+            ]);
+        }
+
         return redirect()->back()->with('success', 'File shared successfully.');
     }
 
-    // display all the files shared by a user
-    public function sharedFiles(Request $request){
-        $sharedFiles = Auth::user()->sharedFiles;
-        return view('filemanagement.shared-files',compact('sharedFiles'));
+
+    public function sharedFiles(Request $request)
+    {
+        $filesSharedByUser = File::whereHas('sharedWith', function ($query) {
+            $query->where('sharer_id', Auth::id()); // Filter files where sharer_id matches the authenticated user
+        })
+        ->with(['sharedWith' => function ($query) {
+            $query->where('sharer_id', Auth::id()); // Ensure only the authenticated user's shared records are loaded
+        }])
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+
+        $filesSharedWithUser = File::whereHas('sharedWith', function ($query) {
+            $query->where('user_id', Auth::id()); // Fetch rows for the authenticated user
+        })
+        ->with(['sharedWith' => function ($query) {
+            $query->where('user_id', Auth::id()); // Load only the authenticated user's pivot data
+        }, 'sharedWith.pivotSharer']) // Load the sharer relationship
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        return view('filemanagement.shared-files', compact('filesSharedByUser', 'filesSharedWithUser'));
     }
+
+    // public function shareHistory(File $file)
+    // {
+    //     $shareHistory = $file->sharedWith()->withPivot(['sharer_id', 'priority'])->get();
+
+    //     return view('filemanagement.share-history', compact('file', 'shareHistory'));
+    // }
+
+
+
 
     // Function to display all the files created in this current month
     public function thisMonthFiles(Request $request){

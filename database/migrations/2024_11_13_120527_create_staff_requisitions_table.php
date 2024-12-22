@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('payment_evidence')->nullable();
             $table->enum('status', ['hod_approved', 'bursar_approved','waiting_dg_approval','dg_approved',
             'pv_approved','audit_approved','cash_office_approved','pending','liaison_head_approval',
-            'liaison_head_approved'])->default('pending');
+            'liaison_head_approved','special_duty_head_approved'])->default('pending');
             $table->timestamps();
         });
     }

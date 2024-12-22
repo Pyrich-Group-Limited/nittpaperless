@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
 use App\Models\ChartOfAccount;
@@ -18,13 +19,52 @@ class RaiseRequisitionComponent extends Component
 
     public $type, $purpose, $amount, $description, $document, $requisitions, $actionId, $selRequisition;
 
+    public $approvals;    
+    public $selectedRequisitionId;
+
+    public $secretCode;
+    public $showSecretCodeModal = false;
+
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName, [
+            'type' => 'required|string',
+            'purpose' => 'required|string',
+            'amount' => 'required|numeric|min:1',
+            'document' => 'required',
+            'secretCode' => 'required|string',
+        ]);
+    }
+
+
     public function mount()
     {
         $this->requisitions = StaffRequisition::where('staff_id',Auth::user()->id)->orderBy('created_at','desc')->get();
+
+        // Set default selected requisition to the first one (if any)
+        if ($this->requisitions->isNotEmpty()) {
+            $this->selectedRequisitionId = $this->requisitions->first()->id;
+            $this->loadApprovals();
+        }
     }
 
-    public function createRequisition()
+    public function loadApprovals()
     {
+        $this->approvals = RequisitionApprovalRecord::with(['approver.signature'])
+            ->where('requisition_id', $this->selectedRequisitionId)
+            ->get();
+    }
+
+    public function selectRequisition($requisitionId)
+    {
+        $this->selectedRequisitionId = $requisitionId;
+        $this->loadApprovals();
+    }
+
+    public function submitForm()
+    {
+        // Validate the first step of the form
         $this->validate([
             'type' => 'required|string',
             'purpose' => 'required|string',
@@ -32,12 +72,30 @@ class RaiseRequisitionComponent extends Component
             'document' => 'required',
         ]);
 
+        // Show the secret code modal
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
 
-        $supportDocument = Carbon::now()->timestamp. '.' . $this->document->getClientOriginalName();
-        $this->document->storeAs('documents',$supportDocument);
+    public function verifyAndSubmit()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
+            return;
+        }
+
+        $supportDocument = Carbon::now()->timestamp . '.' . $this->document->getClientOriginalName();
+        $this->document->storeAs('documents', $supportDocument);
 
         // Determine if the user belongs to a liaison office
         $unitId = Auth::user()->is_in_liaison_office ? null : Auth::user()->unit_id;
+
+        // Set the requisition status based on liaison office condition
+        $status = Auth::user()->is_in_liaison_office ? 'liaison_head_approval' : 'pending';
 
         StaffRequisition::create([
             'staff_id' => auth()->id(),
@@ -45,23 +103,23 @@ class RaiseRequisitionComponent extends Component
             'purpose' => $this->purpose,
             'department_id' => Auth::user()->department_id,
             'unit_id' => $unitId,
-            'location' => Auth::user()->location_type ? : null,
+            'location' => Auth::user()->location_type ?: null,
             'description' => $this->description,
             'amount' => $this->amount,
-            'status' => 'pending',
+            'status' => $status,
             'supporting_document' => $supportDocument,
         ]);
 
-        $this->dispatchBrowserEvent('success',["success" =>"Requisition raised successfully."]);
         $this->reset();
         $this->mount();
+        $this->dispatchBrowserEvent('success', ["success" => "Requisition raised successfully."]);
     }
 
     public function downloadFile($supporting_document)
     {
         // Check if the file exists in the public folder
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {
