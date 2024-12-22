@@ -1585,6 +1585,22 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+                'name' => 'Manage Goods Recieve Note',
+                'module' => 'Client',
+                'category' => "Procurement/Physical Planing and Project related",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Upload Good Reicieved',
+                'module' => 'Client',
+                'category' => "Procurement/Physical Planing and Project related",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
                 'name' => 'delete client',
                 'module' => 'Client',
                 'category' => "Procurement/Physical Planing and Project related",
@@ -2002,6 +2018,30 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'show employee profile',
+                'module' => 'Employee',
+                'category' => "Registry/HRM system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Manage Employee FIle',
+                'module' => 'Employee',
+                'category' => "Registry/HRM system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Create Employee FIle',
+                'module' => 'Employee',
+                'category' => "Registry/HRM system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Upload Employee Document',
                 'module' => 'Employee',
                 'category' => "Registry/HRM system",
                 'guard_name' => 'web',
@@ -4920,6 +4960,20 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [   'name' => 'manage purchase requisition',
+                'module' => 'Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'request purchase requisition',
+                'module' => 'Requsition',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
             [   'name' => 'approve as hod',
                 'module' => 'Requsition',
                 'category' => "Paperless system",
@@ -5179,6 +5233,7 @@ class UsersTableSeeder extends Seeder
 
             ['name' => 'approve as liaison head'],
             ['name' => 'manage requisition'],
+            ['name' => 'request purchase requisition'],
             ['name' => 'manage contract'],
             ['name' => 'view contract'],
             ['name' => 'recommend payment'],
@@ -5394,6 +5449,9 @@ class UsersTableSeeder extends Seeder
             ['name' => 'delete stage'],
             ['name' => 'manage employee'],
             ['name' => 'create employee'],
+            ['name' => 'Upload Employee Document'],
+            ['name' => 'Manage Employee FIle'],
+            ['name' => 'Create Employee FIle'],
             ['name' => 'view employee'],
             ['name' => 'edit employee'],
             ['name' => 'delete employee'],
@@ -5749,7 +5807,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         Employee::create(['user_id' => $company->id]);
-        $company->assignRole($companyRole);
+        // $company->assignRole($companyRole);
         $company->givePermissionTo($companyPermissions);
 
 
@@ -5908,7 +5966,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         Employee::create(['user_id' => $supervisor->id]);
-        $supervisor->assignRole($supervisorRole);
+        // $supervisor->assignRole($supervisorRole);
         $supervisor->givePermissionTo($supervisorPermission);
 
 
@@ -6000,7 +6058,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         Employee::create(['user_id' => $hod->id]);
-        $hod->assignRole($hodRole);
+        // $hod->assignRole($hodRole);
         $hod->givePermissionTo($hodPermission);
 
 
@@ -6168,7 +6226,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         Employee::create(['user_id' => $storeKeeper->id]);
-        $storeKeeper->assignRole($storeKeeperRole);
+        // $storeKeeper->assignRole($storeKeeperRole);
         $storeKeeper->givePermissionTo($storePermission);
 
 
@@ -6456,7 +6514,7 @@ class UsersTableSeeder extends Seeder
                 'password_changed' => true,
             ]
         );
-        $user->assignRole($contractorRole);
+        // $user->assignRole($contractorRole);
         $user->givePermissionTo($contractorPermission);
 
         Utility::employeeDetails($accountant->id, $company->id);

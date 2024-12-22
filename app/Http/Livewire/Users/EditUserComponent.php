@@ -34,6 +34,8 @@ class EditUserComponent extends Component
     public $user_role;
 
 
+
+
     public function updatedDepartment($id){
         $this->units = Unit::where('department_id',$id)->get();
     }

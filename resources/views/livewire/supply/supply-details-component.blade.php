@@ -27,12 +27,13 @@
         <li class="breadcrumb-item">{{ ucwords("Supply") }}</li>
     @endsection
     @section('action-btn')
+    @can('Upload Good Reicieved')
     <div class="float-end">
-        <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="{{__('Upload Bill of Quantity')}}"  class="btn btn-sm btn-primary">
+        <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#uploadBOQModal" id="toggleUploadBOQ"  data-bs-toggle="tooltip" title="{{__('Upload Goods Recived')}}"  class="btn btn-sm btn-primary">
             <i class="ti ti-plus"></i>
         </a>
-
     </div>
+    @endcan
 @endsection
 
     <div class="row">
@@ -83,7 +84,7 @@
                             </div>
                         @else
                             <div class="py-5">
-                                <h6 class="h6 text-center">{{ __('No Bill of Quantity Uploaded yet!') }}</h6>
+                                <h6 class="h6 text-center">{{ __('Items are yet to be uploaded!') }}</h6>
                             </div>
                         @endif
                     </ul>

@@ -1003,9 +1003,9 @@
                                         <i data-feather="chevron-right"></i></span>
                             </a>
                             <ul class="dash-submenu">
-                                @if(Gate::check('manage product & service'))
+                                @if(Gate::check('manage stock') || Gate::check('view stock') || Gate::check('manage stock'))
                                     <li class="dash-item {{ (Request::segment(1) == 'productservice')?'active':''}}">
-                                        <a href="{{ route('productservice.index') }}" class="dash-link">{{__('Assets/Store')}}
+                                        <a href="{{ route('store-records') }}" class="dash-link">{{__('Assets/Store')}}
                                         </a>
                                     </li>
                                 @endif
@@ -1244,9 +1244,9 @@
                                 <a class="dash-link" href="{{ route('itemRequisition.acknowledgment') }}">{{__('Store Issue Voucher')}}</a>
                             </li>
 
-                            @can('manage purchase')
+                            @can('request purchase requisition')
                                 <li class="dash-item {{ (Request::route()->getName() == 'req.list' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                    <a class="dash-link" href="{{ route('req.list') }}">{{__('Purchase requisition')}}</a>
+                                    <a class="dash-link" href="{{ route('purchase.requisition')}}">{{__('Purchase requisition')}}</a>
                                 </li>
                             @endcan
 
