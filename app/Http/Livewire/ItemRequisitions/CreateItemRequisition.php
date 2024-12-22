@@ -7,6 +7,7 @@ use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class CreateItemRequisition extends Component
 {
@@ -19,6 +20,9 @@ class CreateItemRequisition extends Component
 
     public $selRequisitionItem;
     public $actionId;
+
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     public function mount(){
         $this->items = [
@@ -52,12 +56,29 @@ class CreateItemRequisition extends Component
         $this->items = array_values($this->items);
     }
 
-    public function createItemRequisition(){
+    public function createItemRequisition()
+    {
         $this->validate([
             'items.*.name' => 'required|string',
             'items.*.description' => 'nullable|string',
             'items.*.quantity' => 'required|integer|min:1',
         ]);
+
+        // Show the secret code modal
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifySecretCode()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
+            return;
+        }
 
         // Determine if the user belongs to a liaison office
         $unitId = Auth::user()->is_in_liaison_office ? null : Auth::user()->unit_id;
@@ -80,9 +101,9 @@ class CreateItemRequisition extends Component
             ]);
         }
 
-        $this->reset(['items']);
-        $this->dispatchBrowserEvent('success', ['success' => 'Requisition created successfully.']);
-
+        $this->reset(['items', 'secretCode', 'showSecretCodeModal']);
+        $this->dispatchBrowserEvent('success', ['success' => 'Item Requisition Successful.']);
+        $this->dispatchBrowserEvent('hide-secret-code-modal');
         $this->mount();
     }
 

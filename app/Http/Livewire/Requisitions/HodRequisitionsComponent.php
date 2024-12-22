@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
 
 class HodRequisitionsComponent extends Component
@@ -19,8 +20,11 @@ class HodRequisitionsComponent extends Component
 
     public $chartAccount;
 
-    public $approvals;     // Approvals for the selected requisition
-    public $selectedRequisitionId; // ID of the currently selected requisition
+    public $approvals; 
+    public $selectedRequisitionId;
+
+    public $secretCode; // To store the secret code input
+    public $showSecretCodeModal = false;
 
     public function mount()
     {
@@ -79,23 +83,44 @@ class HodRequisitionsComponent extends Component
         }
     }
 
+
     public function hodApproveRequisition()
     {
-
+        // Ensure the requisition is valid for approval
         if (!$this->selRequisition || $this->selRequisition->status != 'pending') {
-            $this->dispatchBrowserEvent('error',["error" =>"Requisition required an approval."]);
+            $this->dispatchBrowserEvent('error', ["error" => "Requisition requires approval."]);
+            return;
+        }
+
+        // Show the secret code modal
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        // Validate the secret code input
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        // Check if the secret code matches
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
             return;
         }
 
         $hod = auth()->user();
         $isInLiaisonOffice = $hod->is_in_liaison_office;
 
+        // Update requisition status
         if ($isInLiaisonOffice) {
             $this->selRequisition->update(['status' => 'liaison_head_approval']);
         } else {
             $this->selRequisition->update(['status' => 'hod_approved']);
         }
 
+        // Log the approval record
         RequisitionApprovalRecord::create([
             'requisition_id' => $this->selRequisition->id,
             'approver_id' => auth()->id(),
@@ -103,7 +128,10 @@ class HodRequisitionsComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
-        $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
+
+        // Reset and show success message
+        $this->reset(['secretCode', 'comments', 'selRequisition']);
+        $this->dispatchBrowserEvent('success', ["success" => "Requisition approved successfully."]);
         $this->mount();
     }
 

@@ -7,12 +7,16 @@ use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ItemRequisitionHodApproval extends Component
 {
     public $itemRequisitions;
     public $selectedRequisition;
     public $comments;
+
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     public $filter = 'all';
 
@@ -79,6 +83,21 @@ class ItemRequisitionHodApproval extends Component
             $this->dispatchBrowserEvent('error', ['error' => 'No requisition selected.']);
             return;
         }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        // Check if the secret code matches
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
+            return;
+        }
 
         $user = Auth::user();
 
@@ -97,9 +116,9 @@ class ItemRequisitionHodApproval extends Component
             'comments' => $this->comments,
         ]);
 
-        $this->dispatchBrowserEvent('success', ['success' => 'Requisition approved successfully.']);
         $this->loadRequisitions();
-        $this->selectedRequisition = null;
+        $this->reset(['secretCode', 'comments', 'selectedRequisition']);
+        $this->dispatchBrowserEvent('success', ['success' => 'Requisition approved successfully.']);
     }
 
 

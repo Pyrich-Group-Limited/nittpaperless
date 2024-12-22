@@ -7,6 +7,7 @@ use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use App\Models\ChartOfAccount;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PvRequisitionApprovalComponent extends Component
 {
@@ -16,6 +17,8 @@ class PvRequisitionApprovalComponent extends Component
     public $actionId;
 
     public $chartAccount;
+    public $secretCode; // To store the secret code input
+    public $showSecretCodeModal = false;
     
     public function mount()
     {
@@ -56,18 +59,31 @@ class PvRequisitionApprovalComponent extends Component
 
     public function pvApproveRequisition()
     {
+        // Ensure the requisition is valid for Bursar approval
+        if ($this->selRequisition->status != 'bursar_approved') {
+            $this->dispatchBrowserEvent('error', ["error" => "Requisition requires Bursar approval first."]);
+            return;
+        }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
         $this->validate([
             'chartAccount' => 'required',
+            'secretCode' => 'required',
         ]);
 
-        if ($this->selRequisition->status != 'bursar_approved') {
-            $this->dispatchBrowserEvent('error',["error" =>"Requisition required bursar approval."]);
-        } else {
-            $this->selRequisition->update([
-                'status' => 'pv_approved',
-                'account_id' => $this->chartAccount
-            ]);
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
+            return;
         }
+
+        $this->selRequisition->update([
+            'status' => 'pv_approved',
+            'account_id' => $this->chartAccount
+        ]);
 
         RequisitionApprovalRecord::create([
             'requisition_id' => $this->selRequisition->id,

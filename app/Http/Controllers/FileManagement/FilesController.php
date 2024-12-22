@@ -310,15 +310,6 @@ class FilesController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
 
-        
-        // $filesSharedWithUser = File::whereHas('sharedWith', function ($query) {
-        //     $query->where('user_id', Auth::id()); // Only fetch rows with the authenticated user's ID
-        // })
-        // ->with(['sharedWith' => function ($query) {
-        //     $query->where('user_id', Auth::id()); // Ensure only the authenticated user's pivot data is loaded
-        // }])
-        // ->orderBy('created_at', 'desc')
-        // ->get();
 
         $filesSharedWithUser = File::whereHas('sharedWith', function ($query) {
             $query->where('user_id', Auth::id()); // Fetch rows for the authenticated user
@@ -328,21 +319,6 @@ class FilesController extends Controller
         }, 'sharedWith.pivotSharer']) // Load the sharer relationship
         ->orderBy('created_at', 'desc')
         ->get();
-
-        // $filesSharedWithUser = File::whereHas('sharedWith', function ($query) {
-        //     $query->where('user_id', Auth::id()); // Fetch rows for the authenticated user
-        // })
-        // ->with([
-        //     'sharedWith' => function ($query) {
-        //         $query->where('user_id', Auth::id()); // Load only the authenticated user's pivot data
-        //     },
-        //     'sharedWith.pivotSharer' => function ($query) {
-        //         $query->select('id', 'name'); // Preload only sharer details (id and name)
-        //     }
-        // ])
-        // ->orderBy('created_at', 'desc')
-        // ->get();
-
 
         return view('filemanagement.shared-files', compact('filesSharedByUser', 'filesSharedWithUser'));
     }

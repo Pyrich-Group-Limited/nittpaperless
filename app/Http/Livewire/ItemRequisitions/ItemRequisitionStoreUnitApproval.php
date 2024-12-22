@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ItemRequisitionStoreUnitApproval extends Component
 {
@@ -13,7 +15,10 @@ class ItemRequisitionStoreUnitApproval extends Component
     public $selectedRequisition = null;
     public $comments = [];
 
-    public $filter = 'all'; // Default filter
+    public $secretCode;
+    public $showSecretCodeModal = false;
+
+    public $filter = 'all';
 
     public function mount()
     {
@@ -22,17 +27,12 @@ class ItemRequisitionStoreUnitApproval extends Component
 
     public function loadRequisitions()
     {
-        // $this->requisitions = ItemRequisitionRequest::where('status', 'bursar_approved')
-        //     ->with('items')
-        //     ->get();
-
         $query = ItemRequisitionRequest::with('items')
         ->where(function ($query) {
             $query->where('status', 'bursar_approved')
                   ->orWhere('status', 'store_approved');
         });
 
-            // Apply filter
         if ($this->filter === 'pending') {
             $query->where('status', 'bursar_approved');
         } elseif ($this->filter === 'approved') {
@@ -66,6 +66,20 @@ class ItemRequisitionStoreUnitApproval extends Component
             $this->dispatchBrowserEvent('error', ['error' => 'No requisition selected.']);
             return;
         }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
+            return;
+        }
 
         $unmarkedItems = $this->selectedRequisition->items->whereNull('status');
         if ($unmarkedItems->count() > 0) {
@@ -77,7 +91,8 @@ class ItemRequisitionStoreUnitApproval extends Component
 
         $this->dispatchBrowserEvent('success', ['success' => 'Requisition finalized successfully.']);
         $this->loadRequisitions();
-        $this->selectedRequisition = null;
+        // $this->selectedRequisition = null;
+        $this->reset(['secretCode', 'comments', 'selectedRequisition']);
     }
 
     public function render()

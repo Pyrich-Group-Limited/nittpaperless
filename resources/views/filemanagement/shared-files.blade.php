@@ -36,7 +36,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="tab-content" id="myTabContent2">
-                                    <div class="tab-pane fade fade table-responsive" id="incomingFiles" role="tabpanel" aria-labelledby="profile-tab3">
+                                    <div class="tab-pane fade fade show active table-responsive" id="incomingFiles" role="tabpanel" aria-labelledby="profile-tab3">
                                         <table class="table table-flush table datatable" id="report-dataTable">
                                             <thead>
                                                 <tr>
@@ -132,7 +132,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         </div>
                                         @endif
                                     </div>
-
+                                
                                     <div class="tab-pane fade fade table-responsive" id="outgoingFiles" role="tabpanel" aria-labelledby="profile-tab4">
                                         <table class="table table-flush table datatable" id="report-dataTable">
                                             <thead>

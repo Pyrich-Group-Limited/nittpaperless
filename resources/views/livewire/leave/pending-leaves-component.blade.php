@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="tab-content" id="myTabContent2" wire:ignore.self>
-                                    <div class="tab-pane fade fade table-responsive" id="pendingLeave" role="tabpanel"
+                                    <div class="tab-pane fade fade show active table-responsive" id="pendingLeave" role="tabpanel"
                                         aria-labelledby="profile-tab2" wire:ignore.self>
                                         <table class="table table-flush" id="report-dataTable" wire:ignore.self>
                                             <thead>
