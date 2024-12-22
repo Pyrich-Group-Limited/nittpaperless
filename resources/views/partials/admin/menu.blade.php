@@ -993,9 +993,9 @@
                                         <i data-feather="chevron-right"></i></span>
                             </a>
                             <ul class="dash-submenu">
-                                @if(Gate::check('manage product & service'))
+                                @if(Gate::check('manage stock') || Gate::check('view stock') || Gate::check('manage stock'))
                                     <li class="dash-item {{ (Request::segment(1) == 'productservice')?'active':''}}">
-                                        <a href="{{ route('productservice.index') }}" class="dash-link">{{__('Assets/Store')}}
+                                        <a href="{{ route('store-records') }}" class="dash-link">{{__('Assets/Store')}}
                                         </a>
                                     </li>
                                 @endif

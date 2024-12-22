@@ -874,9 +874,9 @@
                                         <i data-feather="chevron-right"></i></span>
                             </a>
                             <ul class="dash-submenu">
-                                <?php if(Gate::check('manage product & service')): ?>
+                                <?php if(Gate::check('manage stock') || Gate::check('view stock') || Gate::check('manage stock')): ?>
                                     <li class="dash-item <?php echo e((Request::segment(1) == 'productservice')?'active':''); ?>">
-                                        <a href="<?php echo e(route('productservice.index')); ?>" class="dash-link"><?php echo e(__('Assets/Store')); ?>
+                                        <a href="<?php echo e(route('store-records')); ?>" class="dash-link"><?php echo e(__('Assets/Store')); ?>
 
                                         </a>
                                     </li>

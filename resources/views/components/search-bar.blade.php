@@ -38,7 +38,7 @@
         }
         #closeSearch{
             position: absolute;
-            right: 100px;
+            /* right: 100px; */
         }
 </style>
 

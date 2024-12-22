@@ -21,5 +21,7 @@ class Store extends Model
         'date_of_purchase',
         'initial_cost',
         'measure_improvement',
+        'depreciation',
+        'appreciation',
     ];
 }
