@@ -24,10 +24,15 @@
 
         </div>
         <div  align="center">
-             <h6 class="text-primary">(<?php echo e(Ucfirst(Auth::user()->department->name)); ?>)</h6>
-             <h6 class="text-primary">(<?php echo e(Ucfirst(Auth::user()->designation)); ?>)</h6>
-            <h6 class="text-primary"><?php echo e(Ucfirst(Auth::user()->location)); ?></h6>
+            <h6 class="text-primary">(<?php echo e(Ucfirst(Auth::user()->designation ?? '')); ?>)</h6>
+            <h6 class="text-primary">(<?php echo e(Ucfirst(Auth::user()->department->name ?? '')); ?>)</h6>
+             <?php if(Auth::user()->location==='Headquarters'): ?>
+                <h6 class="text-primary"><?php echo e(Ucfirst(Auth::user()->location ?? '')); ?></h6>
+            <?php elseif(Auth::user()->location==='Liaison Office'): ?>
+                <h6 class="text-primary"><?php echo e(Ucfirst(Auth::user()->location_type ?? '')); ?> Liaison Office</h6>
+            <?php endif; ?>
         </div>
+            
 
         <div class="navbar-content">
             <?php if(\Auth::user()->type =='DG'): ?>
@@ -397,6 +402,11 @@
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as liaison head')): ?>
                                 <li class="dash-item <?php echo e(request()->is('liaison.requisitions') ? 'active' : ''); ?>">
                                     <a class="dash-link" href="<?php echo e(route('liaison.requisitions')); ?>"><?php echo e(__('LiaisonHead Approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as special duty')): ?>
+                                <li class="dash-item <?php echo e(request()->is('sd.requisitions') ? 'active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('sd.requisitions')); ?>"><?php echo e(__('SD Head Approval')); ?></a>
                                 </li>
                             <?php endif; ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('approve as dg')): ?>
@@ -985,14 +995,12 @@
                                             <li class="dash-item <?php echo e((Request::route()->getName() == 'attendanceemployee.index' ? 'active' : '')); ?>">
                                                 <a class="dash-link" href="<?php echo e(route('attendanceemployee.index')); ?>"><?php echo e(__('Mark Attendance')); ?></a>
                                             </li>
+                                                
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create attendance')): ?>
-                                                <li class="dash-item <?php echo e((Request::route()->getName() == 'attendanceemployee.bulkattendance' ? 'active' : '')); ?>">
-                                                    <a class="dash-link" href="<?php echo e(route('attendanceemployee.bulkattendance')); ?>"><?php echo e(__('Bulk Attendance')); ?></a>
+                                                <li class="dash-item <?php echo e(request()->is('reports-monthly-attendance') ? 'active' : ''); ?>">
+                                                    <a class="dash-link" href="<?php echo e(route('report.monthly.attendance')); ?>"><?php echo e(__('Monthly Attendance')); ?></a>
                                                 </li>
                                             <?php endif; ?>
-                                            <li class="dash-item <?php echo e(request()->is('reports-monthly-attendance') ? 'active' : ''); ?>">
-                                                <a class="dash-link" href="<?php echo e(route('report.monthly.attendance')); ?>"><?php echo e(__('Monthly Attendance')); ?></a>
-                                            </li>
                                         </ul>
                                     </li>
                                 <?php endif; ?>
@@ -1081,25 +1089,36 @@
                                     <i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="dash-submenu">
-                            <li class="dash-item <?php echo e((Request::route()->getName() == 'store.dashboard' || Request::route()->getName() == 'warehouse.show') ? ' active' : ''); ?>">
-                                <a class="dash-link" href="<?php echo e(route('supplies.projects')); ?>"><?php echo e(__('Supply')); ?></a>
-                            </li>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view item supply')): ?>
+                                <li class="dash-item <?php echo e((Request::route()->getName() == 'store.dashboard' || Request::route()->getName() == 'warehouse.show') ? ' active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('supplies.projects')); ?>"><?php echo e(__('Supply')); ?></a>
+                                </li>
+                            <?php endif; ?>
 
                             <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.index' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
                                 <a class="dash-link" href="<?php echo e(route('itemRequisition.index')); ?>"><?php echo e(__('Store Requisition Note')); ?></a>
                             </li>
 
-                            <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
-                                <a class="dash-link" href="<?php echo e(route('itemRequisition.hodApproval')); ?>"><?php echo e(__('HoD SRN approval')); ?></a>
-                            </li>
-
-                            <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.bursarApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
-                                <a class="dash-link" href="<?php echo e(route('itemRequisition.bursarApproval')); ?>"><?php echo e(__('Bursar SRN approval')); ?></a>
-                            </li>
-
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('hod approve SRN')): ?>
+                                <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('itemRequisition.hodApproval')); ?>"><?php echo e(__('HoD SRN approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('liaison approve SRN')): ?>
+                                <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.liaisonApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('itemRequisition.liaisonApproval')); ?>"><?php echo e(__('Liaison SRN approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('bursar approve SRN')): ?>
+                                <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.bursarApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
+                                    <a class="dash-link" href="<?php echo e(route('itemRequisition.bursarApproval')); ?>"><?php echo e(__('Bursar SRN approval')); ?></a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('store approve SRN')): ?>
                             <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.storeApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
                                 <a class="dash-link" href="<?php echo e(route('itemRequisition.storeApproval')); ?>"><?php echo e(__('Store SRN Approval')); ?></a>
                             </li>
+                            <?php endif; ?>
 
                             <li class="dash-item <?php echo e((Request::route()->getName() == 'itemRequisition.acknowledgment' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
                                 <a class="dash-link" href="<?php echo e(route('itemRequisition.acknowledgment')); ?>"><?php echo e(__('Store Issue Voucher')); ?></a>
