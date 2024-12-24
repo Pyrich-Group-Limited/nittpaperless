@@ -84,6 +84,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobStageController;
 use App\Http\Controllers\JobApplicationController;
+use App\Http\Controllers\MyJobApplication;
 use App\Http\Controllers\CustomQuestionController;
 use App\Http\Controllers\JobberController;
 use App\Http\Controllers\JobberCategoryController;
@@ -256,7 +257,7 @@ use App\Http\Livewire\ItemRequisitions\StoreIssueVoucherComponent;
 
 use App\Http\Controllers\JobsAvailableController;
 
-//advert components 
+//advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 use Illuminate\Support\Facades\Storage;
 
@@ -1226,6 +1227,9 @@ Route::delete('job-onboard/delete/{id}', [JobApplicationController::class, 'jobB
 Route::get('job-onboard/convert/{id}', [JobApplicationController::class, 'jobBoardConvert'])->name('job.on.board.convert')->middleware(['auth', 'XSS']);
 Route::post('job-onboard/convert/{id}', [JobApplicationController::class, 'jobBoardConvertData'])->name('job.on.board.convert')->middleware(['auth', 'XSS']);
 Route::post('job-application/stage/change', [JobApplicationController::class, 'stageChange'])->name('job.application.stage.change')->middleware(['auth', 'XSS']);
+
+Route::get('my-job-applications', [MyJobApplication::class, 'index'])->name('myJobApplications.index')->middleware(['XSS']);
+Route::get('my-application-stage/{jobApplicationId}', [MyJobApplication::class, 'applicationStages'])->name('myJobApplication.stage')->middleware(['XSS']);
 
 Route::resource('custom-question', CustomQuestionController::class)->middleware(['auth', 'XSS']);
 Route::resource('interview-schedule', InterviewScheduleController::class)->middleware(['auth', 'XSS']);
