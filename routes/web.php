@@ -221,6 +221,10 @@ use App\Http\Livewire\Budgets\ManageBudgetsComponent;
 use App\Http\Livewire\Budgets\DepartmentBudgetRequest;
 use App\Http\Livewire\Budgets\AccountantApproveBudget;
 
+//store routes
+use App\Http\Livewire\Assets\AssetsComponent;
+
+
 use App\Http\Livewire\Contracts\ContractorPaymentComponent;
 use App\Http\Livewire\Contracts\PaymentHistoryComponent;
 
@@ -248,6 +252,7 @@ use App\Http\Livewire\Requisitions\PvRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\AuditRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\CashOfficeRequisitionApprovalComponent;
 use App\Http\Livewire\Requisitions\RequisitionVoucherComponent;
+use App\Http\Livewire\Requisitions\PurchaseRequisitions;
 
 use App\Http\Livewire\ItemRequisitions\CreateItemRequisition;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionHodApproval;
@@ -1353,11 +1358,13 @@ Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function 
     Route::get('/project/{id}/applicants',ProjectApplicantsComponent::class)->name('project.applicants');
     Route::get('/contract/{id}/details',ShowContractDetailsComponent::class)->name('contract.details');
     Route::get('/shared-project/{id}',SharedProjectDetailsComponent::class)->name('project.shared');
-});
-
-Route::middleware(['XSS', 'revalidate'])->prefix('procurement')->group(function () {
     Route::get('supply-projects', SupplyProjectsComponent::class)->name('supplies.projects');
     Route::get('supply-detail/{id}', SupplyDetailsComponent::class)->name('supplies.details');
+});
+
+Route::middleware(['XSS', 'revalidate','auth'])->prefix('store')->group(function () {
+    Route::get('aseets', AssetsComponent::class)->name('store-records');
+
 });
 // Project Module
 Route::middleware(['XSS', 'revalidate'])->prefix('budgets')->group(function () {
@@ -1410,6 +1417,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('requisitions')->group(function
      Route::get('/audit-approvals', AuditRequisitionApprovalComponent::class)->name('audit.requisitions');
      Route::get('/cash-office-approvals', CashOfficeRequisitionApprovalComponent::class)->name('cash-office.requisitions');
     Route::get('/requisition/{id}/voucher', RequisitionVoucherComponent::class)->name('requisition.voucher');
+    Route::get('/purchase-requisitions', PurchaseRequisitions::class)->name('purchase.requisition');
 
 });
 

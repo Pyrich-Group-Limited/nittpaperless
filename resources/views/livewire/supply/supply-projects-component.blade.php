@@ -60,7 +60,7 @@
 
                                     <td class="text-end">
                                         <span>
-                                            @can('edit project')
+                                            @can('Manage Goods Recieve Note')
                                                 <div class="action-btn bg-warning ms-2">
                                                     <a href="{{ route('supplies.details', $project->id) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-url="" data-ajax-popup="false" data-size="lg" data-bs-toggle="tooltip" title="{{__('Show Details')}}" data-title="{{__('Show Details')}}">
                                                         <i class="ti ti-eye text-white"></i>

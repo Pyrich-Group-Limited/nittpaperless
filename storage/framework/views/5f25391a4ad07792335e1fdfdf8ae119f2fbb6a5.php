@@ -874,9 +874,9 @@
                                         <i data-feather="chevron-right"></i></span>
                             </a>
                             <ul class="dash-submenu">
-                                <?php if(Gate::check('manage product & service')): ?>
+                                <?php if(Gate::check('manage stock') || Gate::check('view stock') || Gate::check('manage stock')): ?>
                                     <li class="dash-item <?php echo e((Request::segment(1) == 'productservice')?'active':''); ?>">
-                                        <a href="<?php echo e(route('productservice.index')); ?>" class="dash-link"><?php echo e(__('Assets/Store')); ?>
+                                        <a href="<?php echo e(route('store-records')); ?>" class="dash-link"><?php echo e(__('Assets/Store')); ?>
 
                                         </a>
                                     </li>
@@ -1105,9 +1105,9 @@
                                 <a class="dash-link" href="<?php echo e(route('itemRequisition.acknowledgment')); ?>"><?php echo e(__('Store Issue Voucher')); ?></a>
                             </li>
 
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage purchase')): ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('request purchase requisition')): ?>
                                 <li class="dash-item <?php echo e((Request::route()->getName() == 'req.list' || Request::route()->getName() == 'purchase.create' || Request::route()->getName() == 'purchase.edit' || Request::route()->getName() == 'purchase.show') ? ' active' : ''); ?>">
-                                    <a class="dash-link" href="<?php echo e(route('req.list')); ?>"><?php echo e(__('Purchase requisition')); ?></a>
+                                    <a class="dash-link" href="<?php echo e(route('purchase.requisition')); ?>"><?php echo e(__('Purchase requisition')); ?></a>
                                 </li>
                             <?php endif; ?>
 

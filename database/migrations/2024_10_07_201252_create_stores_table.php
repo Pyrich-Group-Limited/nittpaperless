@@ -25,6 +25,8 @@ return new class extends Migration
         $table->string('serial_number')->nullable();
         $table->date('date_of_purchase');
         $table->decimal('initial_cost', 15, 2);
+        $table->decimal('depreciation', 15, 2)->default(0.0);
+        $table->decimal('appreciation', 15, 2)->default(0.0);
         $table->string('measure_improvement')->nullable();
         $table->timestamps();
     });

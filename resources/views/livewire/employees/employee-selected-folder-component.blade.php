@@ -15,6 +15,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <li class="breadcrumb-item"> {{ $folder->folder_name }}</li>
 @endsection
 @section('action-btn')
+@can('Upload Employee FIle')
     <div class="float-end">
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newfile" data-bs-toggle="tooltip" title="{{__('Create new folder')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-plus">Upload document </i>
@@ -65,6 +66,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         @foreach ($documents as $file)
                             <div class="col-md-2 mb-4">
                                 <div class="card text-center card-2">
+                                    @can('Manage Employee FIle')
                                     <div class="card-header border-0 pb-0">
                                         <div class="card-header-right">
                                             <div class="btn-group card-option">
@@ -87,6 +89,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                             </div>
                                         </div>
                                     </div>
+                                    @endcan
                                     <div class="card-body full-card">
                                         <div class="img-fluid rounded-circle card-avatar">
                                             <span class="nk-file-icon-type">
