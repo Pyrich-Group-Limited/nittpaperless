@@ -78,6 +78,11 @@
                             <span>{{__('Memo')}}</span>
                         </a>
 
+                        <a href="{{ route('myJobApplications.index') }}" class="dropdown-item">
+                            <i class="ti ti-list"></i>
+                            <span>{{__('My Job Applications')}}</span>
+                        </a>
+
                         <a href="#" type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#setSecretCodeModal">
                             <i class="ti ti-lock"></i>
                             <span>{{__('My Secret Code')}}</span>

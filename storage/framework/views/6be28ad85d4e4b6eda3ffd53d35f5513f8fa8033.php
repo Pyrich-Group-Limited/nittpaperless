@@ -40,7 +40,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="tab-content" id="myTabContent2">
-                                        <div class="tab-pane fade fade table-responsive" id="memos" role="tabpanel" aria-labelledby="profile-tab2">
+                                        <div class="tab-pane fade fade show active table-responsive" id="memos" role="tabpanel" aria-labelledby="profile-tab2">
                                             <table class="table table-flush table datatable">
                                                 <thead>
                                                     <tr>

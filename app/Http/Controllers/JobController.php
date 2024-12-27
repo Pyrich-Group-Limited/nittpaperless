@@ -359,6 +359,7 @@ class JobController extends Controller
         $jobApplication->custom_question = json_encode($request->question);
         $jobApplication->created_by      = $job->created_by;
         $jobApplication->stage           = $stage->id;
+        $jobApplication->applicant_id    = auth()->user()->id;
         $jobApplication->save();
 
         return redirect()->back()->with('success', __('Job application successfully send.'));

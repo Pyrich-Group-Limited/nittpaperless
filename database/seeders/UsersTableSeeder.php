@@ -2224,6 +2224,24 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+
+            [
+                'name' => 'raise query',
+                'module' => 'Query',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'assign query',
+                'module' => 'Query',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
             [
                 'name' => 'manage payslip type',
                 'module' => 'Payslip',
@@ -3765,6 +3783,14 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+                'name' => 'raise sick leave',
+                'module' => 'Leave',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
                 'name' => 'create leave',
                 'module' => 'Leave',
                 'category' => "Paperless system",
@@ -3822,6 +3848,14 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'manage attendance',
+                'module' => 'Attendance',
+                'category' => "Registry/HRM system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'manage attendance report',
                 'module' => 'Attendance',
                 'category' => "Registry/HRM system",
                 'guard_name' => 'web',
@@ -5037,7 +5071,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-           
+
             [   'name' => 'hod approve SRN',
                 'module' => 'Item Requsition',
                 'category' => "Paperless system",
@@ -5052,7 +5086,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-             
+
             [   'name' => 'bursar approve SRN',
                 'module' => 'Item Requsition',
                 'category' => "Paperless system",
@@ -5074,7 +5108,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-            
+
             [   'name' => 'view SRN',
                 'module' => 'Item Requsition',
                 'category' => "Paperless system",
@@ -5190,6 +5224,10 @@ class UsersTableSeeder extends Seeder
         );
 
         $companyPermissions = [
+
+            ['name' => 'raise query'],
+            ['name' => 'assign query'],
+
              // Item Requisition permissions
              [   'name' => 'view item supply'],
              [   'name' => 'hod approve SRN'],
@@ -5212,6 +5250,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'audit approve'],
             ['name' => 'final account approve'],
 
+            ['name' => 'manage attendance report'],
             ['name' => 'show bursary menu'],
             ['name' => 'show account overview'],
             ['name' => 'show reports'],
@@ -5258,6 +5297,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'set ergp'],
             ['name' => 'manage ergp'],
             ['name' => 'view ergp'],
+            ['name' => 'raise sick leave'],
             ['name' => 'approve leave'],
             ['name' => 'approve dta'],
             ['name' => 'reject dta'],
@@ -5820,6 +5860,7 @@ class UsersTableSeeder extends Seeder
         );
 
         $dgPermissions = [
+            ['name' => 'raise query'],
             ['name' => 'approve as dg'],
             ['name' => 'manage requisition'],
             ['name' => 'manage project'],
@@ -5908,6 +5949,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $supervisorPermission = [
+            ['name' => 'raise query'],
             ['name' => 'approve as bursar'],
             ['name' => 'approve leave'],
             ['name' => 'approve dta'],
@@ -5978,6 +6020,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liasonPermission = [
+            ['name' => 'raise query'],
             ['name' => 'liaison approve SRN'],
             ['name' => 'approve leave'],
             ['name' => 'view leave report'],
@@ -6020,9 +6063,15 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $hodPermission = [
+            ['name' => 'raise query'],
+            ['name' => 'report view'],
+            ['name' => 'hod approve'],
             ['name' => 'hod approve SRN'],
             ['name' => 'approve as hod'],
             ['name' => 'manage requisition'],
+            ['name' => 'manage attendance report'],
+            ['name' => 'manage attendance'],
+            ['name' => 'create attendance'],
             ['name' => 'set budget'],
             ['name' => 'view budget'],
             ['name' => 'edit budget'],
@@ -6145,6 +6194,7 @@ class UsersTableSeeder extends Seeder
 
         // Define the permissions for the unit head role
         $unitHeadPermissions = [
+            ['name' => 'raise query'],
             ['name' => 'approve as pv'],
             ['name' => 'approve leave'],
             ['name' => 'manage leave'],
@@ -6238,6 +6288,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
+            ['name' => 'report view'],
+            ['name' => 'hod approve'],
             ['name' => 'bursar approve SRN'],
             ['name' => 'approve as cash office'],
             ['name' => 'set budget'],
@@ -6424,6 +6476,10 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $clientPermission = [
+            ['name' => 'assign query'],
+            ['name' => 'manage attendance'],
+            ['name' => 'manage attendance report'],
+            ['name' => 'create attendance'],
             ['name' => 'view leave report'],
             ['name' => 'show hrm dashboard'],
             ['name' => 'manage employee'],

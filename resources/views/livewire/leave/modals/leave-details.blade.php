@@ -36,7 +36,7 @@
                                                     <th scope="row">Start Date</th>
                                                     <td>{{ $selLeave->start_date }}</td>
                                                 </tr>
-                                                
+
                                                 <tr>
                                                     <th scope="row">End Date</th>
                                                     <td>{{ $selLeave->end_date }}</td>
@@ -59,6 +59,21 @@
                                                         </span>
                                                     </td>
                                                 </tr>
+
+                                                @if($selLeave->supporting_document==null)
+                                                    <tr>
+                                                        <th>Supporting Document</th>
+                                                        <td class="text-warning">No supporting document uploaded for this Leave.</td>
+                                                    </tr>
+                                                @else
+                                                    <tr>
+                                                        <th>Supporting Document</th>
+                                                        <td class="text-end">
+                                                            <a href="{{ asset('assets/documents/documents') }}/{{$selLeave->supporting_document}}" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
+                                                            <a href="#" wire:click="downloadFile('{{ $selLeave->supporting_document }}')" class="btn btn-primary btn-sm"><i class="ti ti-download"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>

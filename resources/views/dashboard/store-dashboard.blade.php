@@ -43,7 +43,7 @@
                                     <div class="card-body">
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-auto mb-3 mb-sm-0">
-                                                <a href="{{ route('storeReq.list') }}">
+                                                <a href="{{ route('itemRequisition.index') }}">
                                                     <div class="d-flex align-items-center">
                                                         <div class="theme-avtar bg-primary">
                                                             <i class="ti ti-cast"></i>
@@ -236,7 +236,7 @@
                                                         </div>
                                                     </a>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -257,12 +257,12 @@
                                                         </div>
                                                     </a>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                         
+
                             </div>
                         </div>
 
