@@ -46,6 +46,11 @@
                             <span class="dash-micon"><i class="ti ti-edit"></i></span><span class="dash-mtext">{{__('My Applications')}}</span>
                         </a>
                     </li>
+                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'contractor/applications')?'active':''}}">
+                        <a href="{{route('contractor.contracts')}}" class="dash-link">
+                            <span class="dash-micon"><i class="ti ti-list"></i></span><span class="dash-mtext">{{__('My Contracts')}}</span>
+                        </a>
+                    </li>
                 </ul>
         </div>
     </div>

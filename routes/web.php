@@ -205,6 +205,8 @@ use App\Http\Livewire\Contractor\AdvertComponent;
 use App\Http\Livewire\Contractor\AdvertDetailsComponent;
 use App\Http\Livewire\Contractor\DocumentsComponent;
 use App\Http\Livewire\Contractor\ApplicationsComponent;
+use App\Http\Livewire\Contractor\ContractorContractsComponent;
+use App\Http\Livewire\Contractor\ContractorContractDetailsComponent;
 
 use App\Http\Livewire\DG\DgProjectsComponent;
 use App\Http\Livewire\DG\DgProjectDetailsComponent;
@@ -254,6 +256,10 @@ use App\Http\Livewire\ItemRequisitions\ItemRequisitionBursarApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionStoreUnitApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionStaffAcknowledgment;
 use App\Http\Livewire\ItemRequisitions\StoreIssueVoucherComponent;
+
+use App\Http\Livewire\Query\RaiseQueryComponent;
+use App\Http\Livewire\Query\StaffViewQueryComponent;
+use App\Http\Livewire\Query\QueriesComponent;
 
 use App\Http\Controllers\JobsAvailableController;
 
@@ -305,8 +311,9 @@ Route::middleware(['auth','contractor'])->prefix('contractor')->group(function (
     Route::get('advert-application',AdvertDetailsComponent::class,'applyContract')->name('contractor.advert.apply');
     Route::get('document',DocumentsComponent::class)->name('contractor.document');
     Route::get('applicatons',ApplicationsComponent::class)->name('contractor.applications');
+    Route::get('my-contracts',ContractorContractsComponent::class)->name('contractor.contracts');
+    Route::get('my-contract/{id}/details',ContractorContractDetailsComponent::class)->name('contractor.contractDetails');
 });
-
 Route::get('/contractor/profile',ContractorProfile::class)->name('contractor.profile')->middleware('auth');
 
 //employee files
@@ -527,7 +534,7 @@ Route::get('delivered-supply-note/details', [AccountantDashControl::class, 'deli
 Route::get('comment', [AccountantDashControl::class, 'commentModal'])->name('comment.modal');
 
 Route::get('hrm-budget', [HrmDashControl::class, 'budget'])->name('hrm.budget');
-Route::get('hrm-query', [HrmDashControl::class, 'hrmQuery'])->name('hrm.query');
+// Route::get('hrm-query', [HrmDashControl::class, 'hrmQuery'])->name('hrm.query');
 Route::get('hrm-dta', [HrmDashControl::class, 'hrmDta'])->name('hrm.dta');
 Route::get('hrm-memo', [HrmDashControl::class, 'hrmMemo'])->name('hrm.memo');
 Route::get('hrm-apply-query', [HrmDashControl::class, 'applyQuery'])->name('hrm.applyQuery');
@@ -1414,6 +1421,13 @@ Route::middleware(['XSS', 'revalidate'])->prefix('item-requisitions')->group(fun
     Route::get('/store-approval', ItemRequisitionStoreUnitApproval::class)->name('itemRequisition.storeApproval');
     Route::get('/acknowledgment', ItemRequisitionStaffAcknowledgment::class)->name('itemRequisition.acknowledgment');
     Route::get('/store-issue-voucher/{id}', StoreIssueVoucherComponent::class)->name('itemRequisition.voucher');
+});
+
+Route::middleware(['XSS', 'revalidate'])->prefix('queries')->group(function () {
+    Route::get('/raise', RaiseQueryComponent::class)->name('hrm.query');
+    Route::get('/queries', QueriesComponent::class)->name('query.index');
+    Route::get('/reply/{id}', StaffViewQueryComponent::class)->name('query.reply');
+
 });
 
 

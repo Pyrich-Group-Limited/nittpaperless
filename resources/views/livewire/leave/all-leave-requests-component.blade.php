@@ -70,7 +70,7 @@
                                         <td class="Action">
                                             <div class="action-btn bg-primary ms-2">
                                                 <a href="#" wire:click="setLeave('{{ $leave->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" 
-                                                    data-bs-target="#leaveDetailsModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Leave Applicaiton Details')}}">
+                                                    data-bs-target="#leaveDetailsModal" data-size="lg" data-bs-toggle="tooltip" title="{{__('Leave Application Details')}}">
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>

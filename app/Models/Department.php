@@ -23,4 +23,9 @@ class Department extends Model
     public function units(){
         return $this->hasMany(Unit::class);
     }
+
+    public function leaveApprovals()
+    {
+        return $this->hasMany(LeaveApproval::class);
+    }
 }
