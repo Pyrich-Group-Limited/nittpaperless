@@ -23,6 +23,7 @@ class Dta extends Model
         'account_id',
         'payment_evidence',
         'location',
+        'supporting_document'
     ];
 
     public function user()

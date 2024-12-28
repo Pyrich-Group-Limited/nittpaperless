@@ -2,8 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">DTA Application Module
-                </h5>
+                <h5 class="modal-title">DTA Application Module</h5>
             </div>
             <div class="modal-body">
                 <div class="modal-body">
@@ -28,6 +27,20 @@
                             </small>
                             @enderror
                         </div>
+                        <div class="col-sm-12 col-md-12" wire:ignore>
+                            <div class="form-group" >
+                                <label for="">Apply for Others (Optional) (<span class="text-xs text-muted">{{ __('You can select one or more users to apply DTA with')}}</span>) </label>
+                                <select wire:model="selected_users" id="choices-multiple1" class="form-control sel_users select2" multiple>
+                                    @if (is_array($allUsers) || is_object($allUsers))
+                                        @foreach ($allUsers as $user)
+                                            <option value="{{ $user->id }}">{{ $user->name }} &nbsp; ({{ $user->type }})</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('selected_users.*') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Travel Date</label>
@@ -61,6 +74,15 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="document">Supporting Document</label>
+                                <input type="file" wire:model.defer="document" class="form-control" />
+                                <span class="text-danger" wire:loading wire:target="document">Loading...</span>
+                                @error('document')<span class="text-danger">{{ $message }}</span>@enderror
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -73,6 +95,21 @@
         </div>
     </div>
 </div>
+    @push('script')
+        <script>
+            $(document).ready(function(){
+                $('.sel_users').select2();
+            }).on('change', function(){
+                var data = $('.sel_users').val();
+                @this.set('selected_users',data);
+            });
+
+            window.addEventListener('print',event => {
+                document.getElementById("print").click();
+            });
+        </script>
+    @endpush
+
 <script>
     window.addEventListener('success', event => {
         document.getElementById("closeNewDtaModal").click();
