@@ -21,7 +21,6 @@
             <a href="#" class="b-brand">
                 <img src="{{  asset('logo-dark.png') }}" alt="NITTs" class="logo logo-lg">
             </a>
-
         </div>
         <div  align="center">
             <h6 class="text-primary">({{ Ucfirst(Auth::user()->designation ?? '') }})</h6>

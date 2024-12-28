@@ -6063,6 +6063,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $hodPermission = [
+            ['name' => 'manage report'],
             ['name' => 'raise query'],
             ['name' => 'report view'],
             ['name' => 'hod approve'],

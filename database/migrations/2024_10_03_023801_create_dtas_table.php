@@ -38,6 +38,9 @@ return new class extends Migration
             $table->decimal('estimated_expense', 10, 2);
             $table->string('status')->default('pending');
             $table->string('current_approver')->nullable(); // supervisor, unit_head, hod, accountant
+
+            $table->string('supporting_document')->nullable();
+
             $table->timestamps();
         });
     }
