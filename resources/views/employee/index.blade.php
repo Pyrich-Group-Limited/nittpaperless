@@ -54,12 +54,19 @@
                                             <a href="#"  class="btn btn-outline-primary">{{ $employee->employee_id }}</a>
                                         @endcan
                                     </td>
-                                    <td class="font-style">{{ $employee->name }}</td>
-                                    <td>{{ $employee->email }}</td>
+                                    <td class="font-style">{{ $employee->name ? : $employee->user->name}}</td>
+                                    <td>{{ $employee->email ? : $employee->user->email }}</td>
                                     @if($employee->branch_id)
                                         <td class="font-style">{{!empty(\Auth::user()->getBranch($employee->branch_id ))?\Auth::user()->getBranch($employee->branch_id )->name:''}}</td>
                                     @else
-                                        <td>{{ $employee->user->location }}</td>
+                                        <td>
+                                            @if ($employee->user->location==='Headquarters')
+                                                {{ $employee->user->location }}
+                                            @elseif ($employee->user->location==='Liaison Office')
+                                            {{ $employee->user->location_type }}
+                                            @endif
+                                            
+                                        </td>
                                     @endif
                                     @if($employee->user->department!=null)
                                         <td class="font-style">{{ $employee->user->department->name }}</td>

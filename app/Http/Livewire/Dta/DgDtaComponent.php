@@ -19,7 +19,7 @@ class DgDtaComponent extends Component
     public function mount(){
         $user = auth()->user();
 
-        $this->dtaRequests = Dta::where('status', 'hod_approved')->orWhere('status','liaison_head_approved')
+        $this->dtaRequests = Dta::where('status', 'hod_approved')->orWhere('status','special_duty_approved')
         ->whereDoesntHave('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);

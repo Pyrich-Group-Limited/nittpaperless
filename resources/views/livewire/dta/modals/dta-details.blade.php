@@ -126,6 +126,7 @@
                                     @endcan
                                 @endif
                             <div class="modal-footer">
+                                <div wire:loading wire:target="specialDutyHeadApproveDta"><x-g-loader /></div>
                                 <div wire:loading wire:target="unitHeadApproveDta"><x-g-loader /></div>
                                 <div wire:loading wire:target="hodApproveDta"><x-g-loader /></div>
                                 <div wire:loading wire:target="liasonHeadApproveDta"><x-g-loader /></div>
@@ -156,8 +157,14 @@
                                         @endif
                                     @endcan
 
+                                    @can('special duty approve')
+                                        @if ($selDta->status=='liaison_head_approved')
+                                            <input type="button" wire:click="specialDutyHeadApproveDta({{ $selDta->id }})" value="{{ __('Approve as Special Duty') }}" class="btn  btn-primary btn-sm">
+                                        @endif
+                                    @endcan
+
                                     @can('dg approve')
-                                        @if ($selDta->status=='hod_approved' || $selDta->status=='liaison_head_approved')
+                                        @if ($selDta->status=='hod_approved' || $selDta->status=='special_duty_approved')
                                             <input type="button"  wire:click="dgApproveDta('{{ $selDta->id }}')" value="{{ __('Approve as DG') }}" class="btn  btn-primary btn-sm ">
                                         @endif
                                     @endcan

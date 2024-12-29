@@ -29,7 +29,9 @@ class DtaComponent extends Component
 
         $this->dtaRequests = Dta::where('user_id', auth()->id())->orderBy('created_at','DESC')->get();
 
-        $this->allUsers = User::where('department_id', Auth::user()->department_id)->get();
+        $this->allUsers = User::where('department_id', Auth::user()->department_id)
+        ->where('location', Auth::user()->location)
+        ->get();
     }
 
     public function applyForDta(){
@@ -46,6 +48,7 @@ class DtaComponent extends Component
         ]);
 
         // Determine if the user belongs to a liaison office
+        $isLiaisonOffice = Auth::user()->is_in_liaison_office;
         $unitId = Auth::user()->is_in_liaison_office ? null : Auth::user()->unit_id;
 
         // Add the authenticated user ID to the list of users
@@ -56,6 +59,7 @@ class DtaComponent extends Component
         foreach ($users as $userId) {
             $user = User::find($userId);
 
+            $supportingDocument = null;
             if($this->document){
                 $supportingDocument = Carbon::now()->timestamp. '.' . $this->document->getClientOriginalName();
                 $this->document->storeAs('documents',$supportingDocument);
@@ -71,24 +75,12 @@ class DtaComponent extends Component
                 'travel_date' => $this->travel_date,
                 'arrival_date' => $this->arrival_date,
                 'estimated_expense' => $this->expense,
-                'current_approver' => 'Unit Head',
+                'current_approver' => $isLiaisonOffice ? 'Liaison Head' : 'Unit Head',
+                'status' => $isLiaisonOffice ? 'liaison_head_approval' : 'pending',
                 'supporting_document' => $supportingDocument,
 
             ]);
         }
-
-        // $dtaRequest = Dta::create([
-        //     'user_id' => auth()->id(),
-        //     'department_id' => Auth::user()->department_id,
-        //     'unit_id' => $unitId,
-        //     'location' => Auth::user()->location_type ? : null,
-        //     'purpose' => $this->purpose,
-        //     'destination' => $this->destination,
-        //     'travel_date' => $this->travel_date,
-        //     'arrival_date' => $this->arrival_date,
-        //     'estimated_expense' => $this->expense,
-        //     'current_approver' => 'Unit Head',
-        // ]);
         $this->reset(['destination','purpose','travel_date','arrival_date','expense','selected_users']);
         $this->dispatchBrowserEvent('success',["success" =>"DTA request submitted successfully."]);
         $this->mount();

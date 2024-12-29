@@ -21,6 +21,7 @@
             <a href="#" class="b-brand">
                 <img src="{{  asset('logo-dark.png') }}" alt="NITTs" class="logo logo-lg">
             </a>
+
         </div>
         <div  align="center">
             <h6 class="text-primary">({{ Ucfirst(Auth::user()->designation ?? '') }})</h6>
@@ -1145,11 +1146,17 @@
                                             <li class="dash-item {{ request()->is('dtaApproval.hod') ? 'active' : '' }}">
                                                 <a class="dash-link" href="{{ route('dtaApproval.hod') }}">{{__('HOD Approval')}}</a>
                                             </li>
-                                        @endcan
+                                        @endcan 
 
                                         @can('liaison approve')
                                             <li class="dash-item {{ request()->is('dtaApproval.liason') ? 'active' : '' }}">
                                                 <a class="dash-link" href="{{ route('dtaApproval.liason') }}">{{__('Liason Head Approval')}}</a>
+                                            </li>
+                                        @endcan
+
+                                        @can('special duty approve')
+                                            <li class="dash-item {{ request()->is('dtaApproval.specialDuty') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('dtaApproval.specialDuty') }}">{{__('Special Duty Approval')}}</a>
                                             </li>
                                         @endcan
 

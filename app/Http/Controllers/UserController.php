@@ -46,7 +46,7 @@ class  UserController extends Controller
         if(\Auth::user()->can('manage user'))
         {
             $roles = [];
-            $users = User::paginate(12);
+            $users = User::where('type','!=','contractor')->paginate(12);
             // $users = User::where('created_by', '=', $user->creatorId())->where('type', '!=', 'client')->get();
             $customFields = CustomField::where('created_by', '=', \Auth::user()->creatorId())->where('module', '=', 'user')->get();
             $user  = \Auth::user();

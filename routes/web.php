@@ -159,6 +159,7 @@ use App\Http\Livewire\Dta\DtaComponent;
 use App\Http\Livewire\Dta\UnitHeadDtaComponent;
 use App\Http\Livewire\Dta\HodDtaComponent;
 use App\Http\Livewire\Dta\LiasonOfficeHeadDtaComponent;
+use App\Http\Livewire\Dta\SpecialDutyDtaComponent;
 use App\Http\Livewire\Dta\DgDtaComponent;
 use App\Http\Livewire\Dta\BursarDtaComponent;
 use App\Http\Livewire\Dta\PaymentVoucherDtaComponent;
@@ -166,7 +167,7 @@ use App\Http\Livewire\Dta\AuditDtaComponent;
 use App\Http\Livewire\Dta\DtaVoucherComponent;
 use App\Http\Livewire\Dta\CashOfficeDtaComponent;
 
-//livewire component for user
+//livewire component for user 
 use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Users\UserPermission;
 
@@ -605,6 +606,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('dtas')->group(function () {
     Route::get('/unit-head-approvals',UnitHeadDtaComponent::class)->name('dtaApproval.unit-head');
     Route::get('/hod-approvals',HodDtaComponent::class)->name('dtaApproval.hod');
     Route::get('/liason-head-approvals',LiasonOfficeHeadDtaComponent::class)->name('dtaApproval.liason');
+    Route::get('/spcial-duty-approvals',SpecialDutyDtaComponent::class)->name('dtaApproval.specialDuty');
     Route::get('/dg-approvals',DgDtaComponent::class)->name('dtaApproval.dg');
     Route::get('/bursar-approvals',BursarDtaComponent::class)->name('dtaApproval.bursar');
     Route::get('/payment-voucher-approvals',PaymentVoucherDtaComponent::class)->name('dtaApproval.pv');
