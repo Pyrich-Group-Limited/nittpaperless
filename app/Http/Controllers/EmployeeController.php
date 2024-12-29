@@ -81,17 +81,17 @@ class EmployeeController extends Controller
         {
             $validator = \Validator::make(
                 $request->all(), [
-                                   'name' => 'required',
-                                   'dob' => 'required',
-                                   // 'gender' => 'required',
-                                   'phone' => 'required',
-                                   'address' => 'required',
-                                   'email' => 'required|unique:users',
-                                   'password' => 'required',
-                                   'department_id' => 'required',
-                                   'designation_id' => 'required',
+                    'name' => 'required',
+                    'dob' => 'required',
+                    // 'gender' => 'required',
+                    'phone' => 'required',
+                    'address' => 'required',
+                    'email' => 'required|unique:users',
+                    'password' => 'required',
+                    'department_id' => 'required',
+                    'designation_id' => 'required',
 //                                   'document.*' => 'mimes:jpeg,png,jpg,gif,svg,pdf,doc,zip|max:20480',
-                               ]
+                ]
             );
             if($validator->fails())
             {
@@ -104,8 +104,8 @@ class EmployeeController extends Controller
             $total_employee = $objUser->countEmployees();
             $plan           = Plan::find($objUser->plan);
 
-            if($total_employee < $plan->max_employees || $plan->max_employees == -1)
-            {
+            // if($total_employee < $plan->max_employees || $plan->max_employees == -1)
+            // {
                 $user = User::create(
                     [
                         'name' => $request['name'],
@@ -119,11 +119,11 @@ class EmployeeController extends Controller
                 );
                 $user->save();
                 $user->assignRole('Employee');
-            }
-            else
-            {
-                return redirect()->back()->with('error', __('Your employee limit is over, Please upgrade plan.'));
-            }
+            // }
+            // else
+            // {
+            //     return redirect()->back()->with('error', __('Your employee limit is over, Please upgrade plan.'));
+            // }
 
 
             if(!empty($request->document) && !is_null($request->document))
@@ -161,6 +161,8 @@ class EmployeeController extends Controller
                     'created_by' => \Auth::user()->creatorId(),
                 ]
             );
+
+            // dd($employee);
 
             if($request->hasFile('document'))
             {
@@ -236,38 +238,79 @@ class EmployeeController extends Controller
      }
 
      // Assign selected users to the employee table
-     public function assignEmployees(Request $request)
-     {
-         $selectedUsers = $request->input('users');
+    //  public function assignEmployees(Request $request)
+    //  {
+    //      $selectedUsers = $request->input('users');
 
-         if ($selectedUsers) {
-             foreach ($selectedUsers as $userId) {
-                 $user = User::find($userId);
+    //      if ($selectedUsers) {
+    //          foreach ($selectedUsers as $userId) {
+    //              $user = User::find($userId);
 
-                 // Check if the user is not already in the employee table
-                 if (!Employee::where('user_id', $user->id)->exists()) {
+    //              // Check if the user is not already in the employee table
+    //              if (!Employee::where('user_id', $user->id)->exists()) {
 
-                    $employeeID = $this->generateEmployeeID();
+    //                 $employeeID = $this->generateEmployeeID();
 
+    //                  Employee::create([
+    //                      'user_id' => $user->id,
+    //                      'name' => $user->name, // Assuming you have a 'name' field in employees
+    //                      'email' => $user->email, // Assuming you have an 'email' field in employees
+    //                      'branch_id' => $user->location,
+    //                      'department_id' => $user->department_id,
+    //                      'designation_id' => $user->designation,
+    //                      'employee_id' => $employeeID,
+    //                      'password' => $user->password,
 
-                     Employee::create([
-                         'user_id' => $user->id,
-                         'name' => $user->name, // Assuming you have a 'name' field in employees
-                         'email' => $user->email, // Assuming you have an 'email' field in employees
-                         'branch_id' => $user->location,
-                         'department_id' => $user->department_id,
-                         'designation_id' => $user->designation,
-                         'employee_id' => $employeeID,
-                         'password' => $user->password,
+    //                  ]);
+    //              }
+    //          }
+    //      }
 
+    //      return redirect()->route('employee.index')->with('success', 'Selected users have been assigned to employees.');
+    //  }
 
-                     ]);
-                 }
-             }
-         }
+    public function assignEmployees(Request $request)
+    {
+        $selectedUsers = $request->input('users');
 
-         return redirect()->route('employee.index')->with('success', 'Selected users have been assigned to employees.');
-     }
+        if ($selectedUsers) {
+            // Collect IDs of users who are already employees
+            $existingUsers = Employee::whereIn('user_id', $selectedUsers)->pluck('user_id')->toArray();
+            $alreadyAssigned = [];
+
+            foreach ($selectedUsers as $userId) {
+                if (in_array($userId, $existingUsers)) {
+                    $alreadyAssigned[] = User::find($userId)->name; // Collect names of already assigned users
+                    continue; // Skip the creation for existing users
+                }
+
+                $user = User::find($userId);
+
+                $employeeID = $this->generateEmployeeID();
+
+                Employee::create([
+                    'user_id' => $user->id,
+                    'name' => $user->name, // Assuming you have a 'name' field in employees
+                    'email' => $user->email, // Assuming you have an 'email' field in employees
+                    'branch_id' => $user->location,
+                    'department_id' => $user->department_id,
+                    'designation_id' => $user->designation,
+                    'employee_id' => $employeeID,
+                    'password' => $user->password,
+                ]);
+            }
+
+            if ($alreadyAssigned) {
+                // Trigger error with the names of users who are already employees
+                return redirect()->back()->with([
+                    'error' => 'The following users are already assigned as employees: ' . implode(', ', $alreadyAssigned),
+                ]);
+            }
+        }
+
+        return redirect()->route('employee.index')->with('success', 'Selected users have been successfully assigned as employees.');
+    }
+
 
 
 

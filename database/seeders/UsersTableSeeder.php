@@ -4763,9 +4763,16 @@ class UsersTableSeeder extends Seeder
                 'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'), 
             ],
             [   'name' => 'dg approve',
+                'module' => 'DTA',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [   'name' => 'special duty approve',
                 'module' => 'DTA',
                 'category' => "Paperless system",
                 'guard_name' => 'web',
@@ -5240,6 +5247,7 @@ class UsersTableSeeder extends Seeder
 
             // DTA permissions
 
+            ['name' => 'special duty approve'],
             ['name' => 'report view'],
             ['name' => 'liaison approve'],
             ['name' => 'unit head approve'],
@@ -5860,6 +5868,8 @@ class UsersTableSeeder extends Seeder
         );
 
         $dgPermissions = [
+           
+            ['name' => 'dg approve'],
             ['name' => 'raise query'],
             ['name' => 'approve as dg'],
             ['name' => 'manage requisition'],
@@ -6020,6 +6030,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liasonPermission = [
+            
+            ['name' => 'liaison approve'],
             ['name' => 'raise query'],
             ['name' => 'liaison approve SRN'],
             ['name' => 'approve leave'],
@@ -6063,6 +6075,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $hodPermission = [
+
             ['name' => 'manage report'],
             ['name' => 'raise query'],
             ['name' => 'report view'],
@@ -6195,6 +6208,8 @@ class UsersTableSeeder extends Seeder
 
         // Define the permissions for the unit head role
         $unitHeadPermissions = [
+            
+            ['name' => 'unit head approve'],
             ['name' => 'raise query'],
             ['name' => 'approve as pv'],
             ['name' => 'approve leave'],
@@ -6245,6 +6260,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $storePermission = [
+
             ['name' => 'store approve SRN'],
             ['name' => 'approve as audit'],
             ['name' => 'manage product & service'],
@@ -6289,6 +6305,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
+            
+            ['name' => 'final account approve'],
             ['name' => 'report view'],
             ['name' => 'hod approve'],
             ['name' => 'bursar approve SRN'],
