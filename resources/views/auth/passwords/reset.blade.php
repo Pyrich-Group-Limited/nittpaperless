@@ -14,7 +14,12 @@
         <h2 class="mb-3 f-w-600">{{__('Reset Password')}}</h2>
     </div>
     {{Form::open(array('route'=>'password.update','method'=>'post','id'=>'loginForm'))}}
+    @csrf
     <div class="">
+        <x-feedback-alert />
+           <input type="text" hidden value="{{ $request['token'] }}" name="token" />
+
+
         <div class="form-group mb-3">
             {{Form::label('email',__('E-Mail Address'),['class'=>'form-label'])}}
             {{Form::text('email',null,array('class'=>'form-control'))}}

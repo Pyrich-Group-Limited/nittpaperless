@@ -204,8 +204,8 @@ class  UserController extends Controller
 
             $resp = Utility::sendEmailTemplate('new_user', [$user->id => $user->email], $userArr);
             return redirect()->route('users.index')
-                ->with('success', __('User successfully created.') . 
-                    ((!empty($resp) && $resp['is_success'] == false && !empty($resp['error'])) ? 
+                ->with('success', __('User successfully created.') .
+                    ((!empty($resp) && $resp['is_success'] == false && !empty($resp['error'])) ?
                     '<br> <span class="text-danger">' . $resp['error'] . '</span>' : ''));
         }
 
@@ -628,6 +628,7 @@ class  UserController extends Controller
 
     public function userPasswordReset(Request $request, $id)
     {
+        dd($id);
         $validator = \Validator::make(
             $request->all(), [
                                'password' => 'required|confirmed|same:password_confirmation',

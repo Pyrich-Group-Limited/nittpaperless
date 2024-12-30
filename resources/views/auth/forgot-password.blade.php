@@ -25,6 +25,8 @@
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
         <div class="">
+            <x-feedback-alert />
+
             <div class="form-group mb-3">
                 <label for="email" class="form-label">{{ __('E-Mail') }}</label>
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
