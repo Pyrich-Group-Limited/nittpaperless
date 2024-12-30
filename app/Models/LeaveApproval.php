@@ -14,6 +14,7 @@ class LeaveApproval extends Model
         'approver_id',
         'approval_stage',
         'type',
+        'department_id',
         'status',
     ];
 
@@ -24,4 +25,9 @@ class LeaveApproval extends Model
     public function approver() {
         return $this->belongsTo(User::class, 'approver_id');
     }
+
+    public function department()
+{
+    return $this->belongsTo(Department::class);
+}
 }

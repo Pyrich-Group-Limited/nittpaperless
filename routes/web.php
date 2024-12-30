@@ -84,6 +84,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobStageController;
 use App\Http\Controllers\JobApplicationController;
+use App\Http\Controllers\MyJobApplication;
 use App\Http\Controllers\CustomQuestionController;
 use App\Http\Controllers\JobberController;
 use App\Http\Controllers\JobberCategoryController;
@@ -158,6 +159,7 @@ use App\Http\Livewire\Dta\DtaComponent;
 use App\Http\Livewire\Dta\UnitHeadDtaComponent;
 use App\Http\Livewire\Dta\HodDtaComponent;
 use App\Http\Livewire\Dta\LiasonOfficeHeadDtaComponent;
+use App\Http\Livewire\Dta\SpecialDutyDtaComponent;
 use App\Http\Livewire\Dta\DgDtaComponent;
 use App\Http\Livewire\Dta\BursarDtaComponent;
 use App\Http\Livewire\Dta\PaymentVoucherDtaComponent;
@@ -165,7 +167,7 @@ use App\Http\Livewire\Dta\AuditDtaComponent;
 use App\Http\Livewire\Dta\DtaVoucherComponent;
 use App\Http\Livewire\Dta\CashOfficeDtaComponent;
 
-//livewire component for user
+//livewire component for user 
 use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Users\UserPermission;
 
@@ -204,6 +206,8 @@ use App\Http\Livewire\Contractor\AdvertComponent;
 use App\Http\Livewire\Contractor\AdvertDetailsComponent;
 use App\Http\Livewire\Contractor\DocumentsComponent;
 use App\Http\Livewire\Contractor\ApplicationsComponent;
+use App\Http\Livewire\Contractor\ContractorContractsComponent;
+use App\Http\Livewire\Contractor\ContractorContractDetailsComponent;
 
 use App\Http\Livewire\DG\DgProjectsComponent;
 use App\Http\Livewire\DG\DgProjectDetailsComponent;
@@ -259,9 +263,13 @@ use App\Http\Livewire\ItemRequisitions\ItemRequisitionStoreUnitApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionStaffAcknowledgment;
 use App\Http\Livewire\ItemRequisitions\StoreIssueVoucherComponent;
 
+use App\Http\Livewire\Query\RaiseQueryComponent;
+use App\Http\Livewire\Query\StaffViewQueryComponent;
+use App\Http\Livewire\Query\QueriesComponent;
+
 use App\Http\Controllers\JobsAvailableController;
 
-//advert components 
+//advert components
 // use App\Http\Livewire\PhysicalPlanning\Advert\ProcurementAdvertsComponent;
 use Illuminate\Support\Facades\Storage;
 
@@ -309,8 +317,9 @@ Route::middleware(['auth','contractor'])->prefix('contractor')->group(function (
     Route::get('advert-application',AdvertDetailsComponent::class,'applyContract')->name('contractor.advert.apply');
     Route::get('document',DocumentsComponent::class)->name('contractor.document');
     Route::get('applicatons',ApplicationsComponent::class)->name('contractor.applications');
+    Route::get('my-contracts',ContractorContractsComponent::class)->name('contractor.contracts');
+    Route::get('my-contract/{id}/details',ContractorContractDetailsComponent::class)->name('contractor.contractDetails');
 });
-
 Route::get('/contractor/profile',ContractorProfile::class)->name('contractor.profile')->middleware('auth');
 
 //employee files
@@ -531,7 +540,7 @@ Route::get('delivered-supply-note/details', [AccountantDashControl::class, 'deli
 Route::get('comment', [AccountantDashControl::class, 'commentModal'])->name('comment.modal');
 
 Route::get('hrm-budget', [HrmDashControl::class, 'budget'])->name('hrm.budget');
-Route::get('hrm-query', [HrmDashControl::class, 'hrmQuery'])->name('hrm.query');
+// Route::get('hrm-query', [HrmDashControl::class, 'hrmQuery'])->name('hrm.query');
 Route::get('hrm-dta', [HrmDashControl::class, 'hrmDta'])->name('hrm.dta');
 Route::get('hrm-memo', [HrmDashControl::class, 'hrmMemo'])->name('hrm.memo');
 Route::get('hrm-apply-query', [HrmDashControl::class, 'applyQuery'])->name('hrm.applyQuery');
@@ -597,6 +606,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('dtas')->group(function () {
     Route::get('/unit-head-approvals',UnitHeadDtaComponent::class)->name('dtaApproval.unit-head');
     Route::get('/hod-approvals',HodDtaComponent::class)->name('dtaApproval.hod');
     Route::get('/liason-head-approvals',LiasonOfficeHeadDtaComponent::class)->name('dtaApproval.liason');
+    Route::get('/spcial-duty-approvals',SpecialDutyDtaComponent::class)->name('dtaApproval.specialDuty');
     Route::get('/dg-approvals',DgDtaComponent::class)->name('dtaApproval.dg');
     Route::get('/bursar-approvals',BursarDtaComponent::class)->name('dtaApproval.bursar');
     Route::get('/payment-voucher-approvals',PaymentVoucherDtaComponent::class)->name('dtaApproval.pv');
@@ -1232,6 +1242,9 @@ Route::get('job-onboard/convert/{id}', [JobApplicationController::class, 'jobBoa
 Route::post('job-onboard/convert/{id}', [JobApplicationController::class, 'jobBoardConvertData'])->name('job.on.board.convert')->middleware(['auth', 'XSS']);
 Route::post('job-application/stage/change', [JobApplicationController::class, 'stageChange'])->name('job.application.stage.change')->middleware(['auth', 'XSS']);
 
+Route::get('my-job-applications', [MyJobApplication::class, 'index'])->name('myJobApplications.index')->middleware(['XSS']);
+Route::get('my-application-stage/{jobApplicationId}', [MyJobApplication::class, 'applicationStages'])->name('myJobApplication.stage')->middleware(['XSS']);
+
 Route::resource('custom-question', CustomQuestionController::class)->middleware(['auth', 'XSS']);
 Route::resource('interview-schedule', InterviewScheduleController::class)->middleware(['auth', 'XSS']);
 Route::get('interview-schedule/create/{id?}', [Dta::class, 'create'])->name('interview-schedule.create')->middleware(['auth', 'XSS']);
@@ -1418,6 +1431,13 @@ Route::middleware(['XSS', 'revalidate'])->prefix('item-requisitions')->group(fun
     Route::get('/store-approval', ItemRequisitionStoreUnitApproval::class)->name('itemRequisition.storeApproval');
     Route::get('/acknowledgment', ItemRequisitionStaffAcknowledgment::class)->name('itemRequisition.acknowledgment');
     Route::get('/store-issue-voucher/{id}', StoreIssueVoucherComponent::class)->name('itemRequisition.voucher');
+});
+
+Route::middleware(['XSS', 'revalidate'])->prefix('queries')->group(function () {
+    Route::get('/raise', RaiseQueryComponent::class)->name('hrm.query');
+    Route::get('/queries', QueriesComponent::class)->name('query.index');
+    Route::get('/reply/{id}', StaffViewQueryComponent::class)->name('query.reply');
+
 });
 
 

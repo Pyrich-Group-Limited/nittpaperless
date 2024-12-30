@@ -442,35 +442,7 @@
                                         <dd class="col-sm-8 text-sm">{{ Auth::user()->dateFormat($contract->end_date) }}</dd>
                                     </dl>
                                     <div class="col-md-12 text-end mb-4">
-                                        {{-- @if($contract->paymentRequests->isCompleted)
-                                            <a href="{{ route('contracts.recommend', $contract->id) }}" class="btn btn-success">
-                                                <i class="ti ti-cash"></i> Recommend Payment
-                                            </a>
-                                        @endif --}}
-
-                                        {{-- @if (Auth::user()->type=='DG' && $contract->paymentRequests->status == 'recommended')
-                                            <a href="{{ route('payment-requests.approve', $contract->paymentRequests->id) }}" class="btn btn-success">
-                                                <i class="ti ti-check"></i> Approve Payment
-                                            </a>
-                                        @endif
-
-                                            @if($contract->paymentRequests->status == 'approved' && $contract->paymentRequests->isCompleted == false && $contract->amount_paid_to_date != $contract->value)
-                                                <a href="{{ route('payment-requests.sign', $contract->paymentRequests->id) }}" class="btn btn-success">
-                                                    <i class="ti ti-check"></i> Sign
-                                                </a>
-                                            @endif
-
-                                            @if($contract->paymentRequests->status == 'signed' && $contract->paymentRequests->isCompleted == false && $contract->amount_paid_to_date != $contract->value)
-                                                <a href="{{ route('payment-requests.voucher', $contract->paymentRequests->id) }}" class="btn btn-success">
-                                                    <i class="ti ti-check"></i> Raise Voucher
-                                                </a>
-                                            @endif
-
-                                            @if($contract->paymentRequests->status == 'voucher_raised' && $contract->paymentRequests->isCompleted == false && $contract->amount_paid_to_date != $contract->value)
-                                                <a href="{{ route('payment-requests.finalize', $contract->paymentRequests->id) }}" class="btn btn-success">
-                                                    <i class="ti ti-check"></i> Make Payment
-                                                </a>
-                                            @endif --}}
+                                        
                                     </div>
                                 </address>
                                 
@@ -588,13 +560,13 @@
                             @foreach($contract->comment as $comment)
                                 @php
                                     $user = \App\Models\User::find($comment->user_id);
-                                    $logo=\App\Models\Utility::get_file('uploads/avatar/');
+                                    $logo=\App\Models\Utility::get_file('uploads/');
                                 @endphp
                                 <div class="list-group-item ">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <a href="{{ !empty($user->avatar) ? $logo . '/' . $user->avatar : $logo . '/avatar.png' }}" target="_blank">
-                                                <img class="rounded-circle"  width="40" height="40" src="{{ !empty($user->avatar) ? $logo . '/' . $user->avatar : $logo . '/avatar.png' }}">
+                                                <img src="{{ !empty($user->avatar) ? $logo . $user->avatar :  asset('uploads/user.png')}}" class="rounded-circle" width="40" height="40">
                                             </a>
                                         </div>
                                         <div class="col-auto">
@@ -684,7 +656,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <a href="{{ !empty($user->avatar) ? $logo . '/' . $user->avatar : $logo . '/avatar.png' }}" target="_blank">
-                                                <img class="rounded-circle"  width="40" height="40" src="{{ !empty($user->avatar) ? $logo . '/' . $user->avatar : $logo . '/avatar.png' }}">
+                                                <img src="{{ !empty($user->avatar) ? $logo . $user->avatar :  asset('uploads/user.png')}}" class="rounded-circle" width="40" height="40">
                                             </a>
                                         </div>
                                         <div class="col-auto">

@@ -42,5 +42,15 @@ class LiasonOfficerSeeder extends Seeder
         LiasonOffice::create([
             'name' =>'Ekiti'
         ]);
+
+        LiasonOffice::create([
+            'name' =>'Lagos'
+        ]);
+        LiasonOffice::create([
+            'name' =>'Kaduna'
+        ]);
+        LiasonOffice::create([
+            'name' =>'Enugu'
+        ]);
     }
 }

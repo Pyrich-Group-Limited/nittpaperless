@@ -45,6 +45,7 @@ use App\Models\BankTransfer;
 use App\Models\Vender;
 use App\Models\warehouse;
 use App\Models\WarehouseProduct;
+use App\Models\LiasonOffice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -1314,9 +1315,9 @@ class ReportController extends Controller
 
             $types         = ChartOfAccountType::where('created_by',\Auth::user()->creatorId())->get();
             $chartAccounts = [];
-                
+
                 $totalAccounts = [];
-                
+
             foreach($types as $type)
             {
                 $total = Utility::trialBalance($type->id,$start,$end);
@@ -1327,9 +1328,9 @@ class ReportController extends Controller
                 } else {
                     $totalAccount[$name] = $total;
                 }
-                
+
             }
-               
+
             foreach ($totalAccount as $category => $entries) {
                 foreach ($entries as $entry) {
                     $name = $entry['name'];
@@ -1361,14 +1362,19 @@ class ReportController extends Controller
     public function leave(Request $request)
     {
 
-        if(\Auth::user()->can('manage report'))
+        if(\Auth::user()->can('manage report') || \Auth::user()->can('view leave report'))
         {
-
-            $branch = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            // $branch = Branch::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            $branch = LiasonOffice::where('status', 'Active')->get()->pluck('name', 'id');
             $branch->prepend('Select Branch', '');
 
-            $department = Department::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
-            $department->prepend('Select Department', '');
+            if(auth()->user()->type=="hod"){
+                $department = Department::where('name', auth()->user()->department->name)->get()->pluck('name', 'id');
+                // $department->prepend('Select Department', '');
+            }else{
+                $department = Department::where('category', 'department')->orWhere('category','directorate')->get()->pluck('name', 'id');
+                $department->prepend('Select Department', '');
+            }
 
             $filterYear['branch']        = __('All');
             $filterYear['department']    = __('All');
@@ -1532,11 +1538,11 @@ class ReportController extends Controller
     }
     public function monthlyAttendance(Request $request)
     {
-        if(\Auth::user()->can('manage report'))
+        if(\Auth::user()->can('manage report') || \Auth::user()->can('manage attendance report'))
         {
-
-            $branch      = Branch::where('created_by', '=', \Auth::user()->creatorId())->get();
-            $department = Department::where('created_by', '=', \Auth::user()->creatorId())->get();
+            // $branch      = Branch::all();
+            $branch      = LiasonOffice::all();
+            $department = Department::all();
 
             $data['branch']     = __('All');
             $data['department'] = __('All');
@@ -3413,9 +3419,9 @@ class ReportController extends Controller
 
             $types         = ChartOfAccountType::where('created_by',\Auth::user()->creatorId())->get();
             $chartAccounts = [];
-                
+
                 $totalAccounts = [];
-                
+
             foreach($types as $type)
             {
                 $total = Utility::trialBalance($type->id,$start,$end);
@@ -3426,9 +3432,9 @@ class ReportController extends Controller
                 } else {
                     $totalAccount[$name] = $total;
                 }
-                
+
             }
-               
+
             foreach ($totalAccount as $category => $entries) {
                 foreach ($entries as $entry) {
                     $name = $entry['name'];
@@ -3486,7 +3492,7 @@ class ReportController extends Controller
                     foreach($accounts as $account)
                     {
                         $totalCredit =0;
-                        $totalBalance = 0; 
+                        $totalBalance = 0;
 
                         $journalItem = JournalItem::select(\DB::raw('sum(credit) as totalCredit'),
                                                  \DB::raw('sum(debit) as totalDebit'),
@@ -3528,7 +3534,7 @@ class ReportController extends Controller
             $data = Excel::download(new BalanceSheetExport($chartAccounts , $start, $end, $companyName), $name . '.xlsx'); ob_end_clean();
 
             return $data;
-        
+
     }
 
     public function balanceSheetPrint(Request $request)
@@ -3649,9 +3655,9 @@ class ReportController extends Controller
 
             $types         = ChartOfAccountType::where('created_by',\Auth::user()->creatorId())->get();
             $chartAccounts = [];
-                
+
                 $totalAccounts = [];
-                
+
             foreach($types as $type)
             {
                 $total = Utility::trialBalance($type->id,$start,$end);
@@ -3662,9 +3668,9 @@ class ReportController extends Controller
                 } else {
                     $totalAccount[$name] = $total;
                 }
-                
+
             }
-               
+
             foreach ($totalAccount as $category => $entries) {
                 foreach ($entries as $entry) {
                     $name = $entry['name'];

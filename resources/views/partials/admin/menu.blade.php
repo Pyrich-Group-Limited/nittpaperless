@@ -32,7 +32,7 @@
                 <h6 class="text-primary">{{ Ucfirst(Auth::user()->location_type ?? '') }} Liaison Office</h6>
             @endif
         </div>
-            
+
 
         <div class="navbar-content">
             @if(\Auth::user()->type =='DG')
@@ -1092,7 +1092,7 @@
                                             <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
                                                 <a class="dash-link" href="{{ route('hrm.leave') }}">{{__('Leave')}}</a>
                                             </li>
-                                            @if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'liason office head' || \Auth::user()->type == 'unit head' || \Auth::user()->type == 'client')
+                                            @if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'liason office head' || \Auth::user()->type == 'hod' || \Auth::user()->type == 'client')
                                                 @can('view leave report')
                                                     <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
                                                         <a class="dash-link" href="{{ route('report.leave') }}">{{__('Leave Report')}}</a>
@@ -1110,9 +1110,11 @@
                                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' : ''}}" href="#navbar-attendance" data-toggle="collapse" role="button" aria-expanded="{{ (Request::segment(1) == 'attendanceemployee') ? 'true' : 'false'}}">
                                         <a class="dash-link" href="#">{{__('Attendance')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu">
-                                            <li class="dash-item {{ (Request::route()->getName() == 'attendanceemployee.index' ? 'active' : '')}}">
-                                                <a class="dash-link" href="{{route('attendanceemployee.index')}}">{{__('Mark Attendance')}}</a>
-                                            </li>
+                                            @if (\Auth::user()->cannot('manage report') && \Auth::user()->cannot('manage attendance report'))
+                                                <li class="dash-item {{ (Request::route()->getName() == 'attendanceemployee.index' ? 'active' : '')}}">
+                                                    <a class="dash-link" href="{{route('attendanceemployee.index')}}">{{__('Mark Attendance')}}</a>
+                                                </li>
+                                            @endif
                                                 {{-- <li class="dash-item {{ (Request::route()->getName() == 'attendanceemployee.bulkattendance' ? 'active' : '')}}">
                                                     <a class="dash-link" href="{{ route('attendanceemployee.bulkattendance') }}">{{__('Bulk Attendance')}}</a>
                                                 </li> --}}
@@ -1144,11 +1146,17 @@
                                             <li class="dash-item {{ request()->is('dtaApproval.hod') ? 'active' : '' }}">
                                                 <a class="dash-link" href="{{ route('dtaApproval.hod') }}">{{__('HOD Approval')}}</a>
                                             </li>
-                                        @endcan
+                                        @endcan 
 
                                         @can('liaison approve')
                                             <li class="dash-item {{ request()->is('dtaApproval.liason') ? 'active' : '' }}">
                                                 <a class="dash-link" href="{{ route('dtaApproval.liason') }}">{{__('Liason Head Approval')}}</a>
+                                            </li>
+                                        @endcan
+
+                                        @can('special duty approve')
+                                            <li class="dash-item {{ request()->is('dtaApproval.specialDuty') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('dtaApproval.specialDuty') }}">{{__('Special Duty Approval')}}</a>
                                             </li>
                                         @endcan
 
@@ -1182,13 +1190,22 @@
                                 <li class="dash-item dash-hasmenu  ">
                                     <a class="dash-link" href="#">{{__('Query Management')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                     <ul class="dash-submenu">
+                                        @can('raise query')
+                                            <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
+                                                <a class="dash-link" href="{{ route('hrm.query') }}">{{__('Raise Query')}}</a>
+                                            </li>
+                                        @endcan
+
                                         <li class="dash-item {{ (Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : '' }}">
-                                            <a class="dash-link" href="{{ route('hrm.query') }}">{{__('Query')}}</a>
+                                            <a class="dash-link" href="{{ route('query.index') }}">{{__('Queries')}}</a>
                                         </li>
-                                        <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
-                                            <a class="dash-link" href="{{ route('report.leave') }}">{{__('Query Report')}}</a>
-                                        </li>
-                                        @can('manage complaint')
+
+                                        @can('raise query')
+                                            <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
+                                                <a class="dash-link" href="{{ route('report.leave') }}">{{__('Query Report')}}</a>
+                                            </li>
+                                        @endcan
+                                        {{-- @can('manage complaint')
                                             <li class="dash-item {{ (request()->is('complaint*') ? 'active' : '')}}">
                                                 <a class="dash-link" href="{{route('complaint.index')}}">{{__('Complaints')}}</a>
                                             </li>
@@ -1197,7 +1214,7 @@
                                             <li class="dash-item {{ (request()->is('warning*') ? 'active' : '')}}">
                                                 <a class="dash-link" href="{{route('warning.index')}}">{{__('Warning')}}</a>
                                             </li>
-                                        @endcan
+                                        @endcan --}}
                                     </ul>
                                 </li>
                             </ul>

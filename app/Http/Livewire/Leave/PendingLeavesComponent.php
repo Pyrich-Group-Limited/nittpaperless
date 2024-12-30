@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\LeaveType;
 use App\Models\Leave;
 use App\Models\User;
+use App\Models\Department;
 use App\Models\LeaveApproval;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,12 +26,13 @@ class PendingLeavesComponent extends Component
     {
         $user = auth()->user();
 
-        // Get pending approvals based on the user type
+        $specialDutyDepartment = Department::where('name', 'Special Duty Department')->first();
+
         $this->pendingApprovals = Leave::whereHas('approvals', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('status', 'Pending');
         })
-        ->where(function ($query) use ($user) {
+        ->where(function ($query) use ($user,$specialDutyDepartment) {
             // For Unit Head: allow approval if there is no Supervisor approval required
             if ($user->type == 'unit head') {
                 $query->where(function ($subQuery) {
@@ -42,22 +44,37 @@ class PendingLeavesComponent extends Component
                 });
             }
 
-            // For HOD: only allow approval if Unit Head approval exists
-            if ($user->type == 'hod') {
+            // For Normal HOD: only allow approval if Unit Head approval exists
+                if ($user->type == 'hod' && $user->department_id != $specialDutyDepartment->id) {
+                    $query->whereHas('approvals', function ($subQuery) {
+                        $subQuery->where('type', 'unit head')->where('status', 'Approved');
+                    });
+                }
+
+            if ($user->department_id == $specialDutyDepartment->id && $user->type == 'hod') {
                 $query->whereHas('approvals', function ($subQuery) {
-                    $subQuery->where('type', 'unit head')->where('status', 'Approved');
+                    $subQuery->where('type', 'liason office head')->where('status', 'Approved');
+                });
+            }
+
+            // For Registrar: only allow approval if HOD approval exists
+            if ($user->type == 'client') {
+                $query->whereHas('approvals', function ($subQuery) {
+                    $subQuery->where('type', 'hod')->where('status', 'Approved');
                 });
             }
         })
-        ->orderBy('created_at','desc')->get();
+        ->orderBy('created_at', 'desc')->get();
 
         // Fetch leaves the user has already approved
         $this->approvedLeaves = Leave::whereHas('approvals', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('status', 'Approved');
-        })->orderBy('created_at','desc')->get();
-            
+        })->orderBy('created_at', 'desc')->get();
+
+        // dd($this->pendingApprovals);
     }
+
 
     public function setActionId($actionId){
         $this->actionId = $actionId;
@@ -72,7 +89,7 @@ class PendingLeavesComponent extends Component
             $this->dispatchBrowserEvent('error', ['error' => 'No leave ID provided.']);
             return;
         }
-        
+
         // Get the leave approval for the current user
         $leaveApproval = LeaveApproval::where('leave_id', $leaveId)
             ->where('approver_id', $user->id)->first();
@@ -84,7 +101,6 @@ class PendingLeavesComponent extends Component
             // Check if all approvals are complete to update the leave status
             $this->checkAllApprovalsComplete($leaveId);
 
-            // Refresh the data
             $this->mount();
         }
         $this->dispatchBrowserEvent('success', ['success' => 'Leave request approved successfully.']);
@@ -129,6 +145,16 @@ class PendingLeavesComponent extends Component
         $this->selLeave = Leave::find($leaveId);
     }
 
+    public function downloadFile($supporting_document)
+    {
+        $filePath = public_path('assets/documents/documents/' . $this->selLeave->supporting_document);
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath, $this->selLeave->supporting_document);
+        } else {
+            $this->dispatchBrowserEvent('error',["error" =>"Document not found!."]);
+        }
+    }
 
     public function render()
     {

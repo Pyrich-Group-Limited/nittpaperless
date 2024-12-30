@@ -135,9 +135,9 @@ class UsersComponent extends Component
             'password_changed' => false,
         ]);
 
-        Employee::create([
-            'user_id' => $user->id
-        ]);
+        // Employee::create([
+        //     'user_id' => $user->id
+        // ]);
 
         $this->sendMail($user);
         $this->reset();
@@ -350,6 +350,7 @@ class UsersComponent extends Component
 
     public function getUsers(){
         $users = User::query()
+        ->where('type', '!=', 'contractor')
         ->where(function($query) {
             if($this->searchTerm) {
                 $query->where('name', 'like', '%'.$this->searchTerm.'%');

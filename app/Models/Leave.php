@@ -16,6 +16,7 @@ class Leave extends Model
         'end_date',
         'total_leave_days',
         'leave_reason',
+        'supporting_document',
         'remark',
         'status',
         'current_approver',
@@ -30,7 +31,6 @@ class Leave extends Model
     public function leaveType()
     {
         return $this->belongsTo(LeaveType::class, 'leave_type_id');
-        // return $this->hasOne('App\Models\LeaveType', 'id', 'leave_type_id');
     }
 
     public function employees()
