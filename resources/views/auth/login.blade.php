@@ -50,6 +50,8 @@
     {{Form::open(array('route'=>'login','method'=>'post','id'=>'loginForm' ))}}
     @csrf
     <div class="">
+        <x-feedback-alert />
+
         <div class="form-group mb-3">
             <label for="email" class="form-label">{{__('Email')}}</label>
             <input class="form-control @error('email') is-invalid @enderror" id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

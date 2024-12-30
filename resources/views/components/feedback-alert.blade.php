@@ -14,4 +14,21 @@
 </div>
 @endif
 
+@if(Session::has('status'))
+<div class="example-alert">
+    <div class="alert alert-success alert-icon">
+        <em class="icon ni ni-check-circle"></em> <strong>Success</strong>!  {{ Session::get('status')}}.
+    </div>
+</div>
+@endif
+
+@if(Session::has('success'))
+<div class="example-alert">
+    <div class="alert alert-success alert-icon">
+        <em class="icon ni ni-check-circle"></em> <strong>Success</strong>!  {{ Session::get('success')}}.
+    </div>
+</div>
+@endif
+
+
 
