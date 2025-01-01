@@ -1146,7 +1146,7 @@
                                             <li class="dash-item {{ request()->is('dtaApproval.hod') ? 'active' : '' }}">
                                                 <a class="dash-link" href="{{ route('dtaApproval.hod') }}">{{__('HOD Approval')}}</a>
                                             </li>
-                                        @endcan 
+                                        @endcan
 
                                         @can('liaison approve')
                                             <li class="dash-item {{ request()->is('dtaApproval.liason') ? 'active' : '' }}">

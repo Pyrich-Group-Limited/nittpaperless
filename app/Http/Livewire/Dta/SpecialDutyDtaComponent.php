@@ -8,6 +8,7 @@ use App\Models\DtaApproval;
 use App\Models\User;
 use App\Models\DtaRejectionComment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class SpecialDutyDtaComponent extends Component
 {
@@ -15,6 +16,9 @@ class SpecialDutyDtaComponent extends Component
     public $comments;
     public $selDta;
     public $actionId;
+
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     public function mount(){
 
@@ -44,10 +48,25 @@ class SpecialDutyDtaComponent extends Component
     public function specialDutyHeadApproveDta()
     {
         if ($this->selDta->status != 'liaison_head_approved') {
-            $this->dispatchBrowserEvent('error',["error" =>"DTA required an approval."]);
-        } else {
-            $this->selDta->update(['status' => 'special_duty_approved']);
+            $this->dispatchBrowserEvent('error', ["error" => "DTA requires Liaison Head approval first."]);
+            return;
         }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required'
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
+            return;
+        }
+
+        $this->selDta->update(['status' => 'special_duty_approved']);
 
         DtaApproval::create([
             'dta_id' => $this->selDta->id,
