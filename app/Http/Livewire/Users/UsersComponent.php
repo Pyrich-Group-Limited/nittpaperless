@@ -18,6 +18,9 @@ use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Livewire\WithFileUploads;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StaffProfileMail;
+use Illuminate\Support\Facades\Password;
 use Hash;
 
 class UsersComponent extends Component
@@ -55,6 +58,10 @@ class UsersComponent extends Component
 
 
     public function resetPassword(){
+        $user = User::find($this->actionId);
+        $status = Password::sendResetLink(
+            $user->only('email')
+        );
         User::find($this->actionId)->update([
             'password' => Hash::make('12345678'),
         ]);
@@ -132,10 +139,18 @@ class UsersComponent extends Component
         //     'user_id' => $user->id
         // ]);
 
+        $this->sendMail($user);
         $this->reset();
         $this->dispatchBrowserEvent('success',["success" =>"User Successfully Registered"]);
     }
 
+    public function sendMail($user){
+        $url = url('login/');
+        try{
+            Mail::to($user)->queue(new StaffProfileMail($user,$url));
+        }catch (\Exception $e) { }
+
+    }
 
     public function updateUser(){
         $this->validate([
@@ -319,6 +334,9 @@ class UsersComponent extends Component
                     'level' => $row[9],
                     'password' => Hash::make('12345678'),
                 ]);
+
+            $this->sendMail($user);
+
             }
         }
 
