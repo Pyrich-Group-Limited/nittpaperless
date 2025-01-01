@@ -8,6 +8,7 @@ use App\Models\DtaApproval;
 use App\Models\User;
 use App\Models\DtaRejectionComment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HodDtaComponent extends Component
 {
@@ -15,6 +16,9 @@ class HodDtaComponent extends Component
     public $comments;
     public $selDta;
     public $actionId;
+
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
 
     public function mount(){
@@ -44,9 +48,29 @@ class HodDtaComponent extends Component
 
     public function hodApproveDta()
     {
-        // Check if the DTA is in the correct status
         if ($this->selDta->status != 'unit_head_approved') {
             $this->dispatchBrowserEvent('error', ["error" => "DTA requires unit head approval first."]);
+            return;
+        }
+
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        // Check if the DTA is in the correct status
+        // if ($this->selDta->status != 'unit_head_approved') {
+        //     $this->dispatchBrowserEvent('error', ["error" => "DTA requires unit head approval first."]);
+        //     return;
+        // }
+
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
             return;
         }
 

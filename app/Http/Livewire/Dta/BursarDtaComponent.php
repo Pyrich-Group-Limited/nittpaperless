@@ -8,6 +8,7 @@ use App\Models\DtaApproval;
 use App\Models\User;
 use App\Models\DtaRejectionComment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class BursarDtaComponent extends Component
 {
@@ -15,6 +16,9 @@ class BursarDtaComponent extends Component
     public $comments;
     public $selDta;
     public $actionId;
+
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     public function mount(){
         $user = auth()->user();
@@ -24,7 +28,7 @@ class BursarDtaComponent extends Component
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
-        
+
         $this->approvedDtaRequests = Dta::whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
@@ -39,10 +43,26 @@ class BursarDtaComponent extends Component
     public function bursarApproveDta()
     {
         if ($this->selDta->status != 'dg_approved') {
-            $this->dispatchBrowserEvent('error',["error" =>"DTA required an approval."]);
-        } else {
-            $this->selDta->update(['status' => 'bursar_approved']);
+            $this->dispatchBrowserEvent('error', ["error" => "DTA requires DG approval first."]);
+            return;
         }
+
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
+            return;
+        }
+
+        $this->selDta->update(['status' => 'bursar_approved']);
 
         DtaApproval::create([
             'dta_id' => $this->selDta->id,

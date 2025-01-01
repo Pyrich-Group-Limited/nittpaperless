@@ -8,6 +8,7 @@ use App\Models\DtaApproval;
 use App\Models\User;
 use App\Models\DtaRejectionComment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
 
 class AuditDtaComponent extends Component
@@ -18,6 +19,9 @@ class AuditDtaComponent extends Component
     public $actionId;
     public $chartAccount;
 
+    public $secretCode;
+    public $showSecretCodeModal = false;
+
     public function mount(){
         $user = auth()->user();
 
@@ -26,7 +30,7 @@ class AuditDtaComponent extends Component
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
-        
+
         $this->approvedDtaRequests = Dta::whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
@@ -43,12 +47,28 @@ class AuditDtaComponent extends Component
     public function auditApproveDta()
     {
         if ($this->selDta->status != 'pv_approved') {
-            $this->dispatchBrowserEvent('error',["error" =>"DTA required an approval."]);
-        } else {
-            $this->selDta->update([
-                'status' => 'audit_approved',
-            ]);
+            $this->dispatchBrowserEvent('error', ["error" => "DTA requires Payment Voucher approval first."]);
+            return;
         }
+
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
+            return;
+        }
+
+        $this->selDta->update([
+            'status' => 'audit_approved',
+        ]);
 
         DtaApproval::create([
             'dta_id' => $this->selDta->id,

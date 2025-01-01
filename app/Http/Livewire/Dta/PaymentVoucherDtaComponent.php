@@ -8,6 +8,7 @@ use App\Models\DtaApproval;
 use App\Models\User;
 use App\Models\DtaRejectionComment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
 
 class PaymentVoucherDtaComponent extends Component
@@ -18,6 +19,8 @@ class PaymentVoucherDtaComponent extends Component
     public $actionId;
 
     public $chartAccount;
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     public function mount(){
         $user = auth()->user();
@@ -27,7 +30,7 @@ class PaymentVoucherDtaComponent extends Component
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
-        
+
         $this->approvedDtaRequests = Dta::whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
@@ -43,18 +46,32 @@ class PaymentVoucherDtaComponent extends Component
 
     public function pvApproveDta()
     {
+        if ($this->selDta->status != 'bursar_approved') {
+            $this->dispatchBrowserEvent('error', ["error" => "DTA requires Bursary approval first."]);
+            return;
+        }
+
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
         $this->validate([
             'chartAccount' => 'required',
+            'secretCode' => 'required',
         ]);
 
-        if ($this->selDta->status != 'bursar_approved') {
-            $this->dispatchBrowserEvent('error',["error" =>"DTA required an approval."]);
-        } else {
-            $this->selDta->update([
-                'status' => 'pv_approved',
-                'account_id' => $this->chartAccount
-            ]);
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
+            return;
         }
+
+        $this->selDta->update([
+            'status' => 'pv_approved',
+            'account_id' => $this->chartAccount
+        ]);
+
 
         DtaApproval::create([
             'dta_id' => $this->selDta->id,
