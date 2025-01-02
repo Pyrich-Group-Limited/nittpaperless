@@ -42,20 +42,26 @@ class DgDtaComponent extends Component
 
     public function dgApproveDta()
     {
-        // if (($this->selDta->status != 'hod_approved') || ($this->selDta->status != 'special_duty_approved')) {
-        //     $this->dispatchBrowserEvent('error', ["error" => "DTA requires HOD approval first."]);
-        //     return;
-        // }
-
         $this->showSecretCodeModal = true;
         $this->dispatchBrowserEvent('showSecretCodeModal');
     }
 
     public function verifyAndApprove()
     {
+
         $this->validate([
             'secretCode' => 'required',
         ]);
+
+        $approverId = User::where('type', '!=', 'super admin')->where('type', '!=', 'DG')
+            ->whereHas('permissions', function ($query) {
+                $query->where('name', 'bursar approve');
+            })->first();
+
+        if (!$approverId) {
+            $this->dispatchBrowserEvent('error',["error" =>"No next approver found with the 'bursar approve' permission"]);
+            return; // Exit the function
+        }
 
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
             $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
@@ -71,8 +77,23 @@ class DgDtaComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+        if ($approverId) {
+            $approver = User::find($approverId);
+            if ($approver) {
+                createNotification(
+                    $approverId->id,
+                    'DTA Approval Request',
+                    'A new DTA approval request requires your attention.',
+                    route('dtaApproval.bursar')
+                );
+            } else {
+                $this->dispatchBrowserEvent('error',["error" =>"Attempted to create a notification for a non-existing user ID: $approverId"]);
+            }
+        }
+
         $this->dispatchBrowserEvent('success',["success" =>"DTA approved successfully."]);
         $this->mount();
+        $this->reset('secretCode');
     }
 
     public function render()

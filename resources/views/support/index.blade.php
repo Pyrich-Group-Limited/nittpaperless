@@ -145,7 +145,7 @@
                                         <div class="media align-items-center">
                                             <div>
                                                 <div class="avatar-parent-child">
-                                                    <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($support->createdBy) && !empty($support->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$support->createdBy->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar')).'/avatar.png'}}" @endif>
+                                                    <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($support->createdBy) && !empty($support->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$support->createdBy->avatar}}" @else  src="{{ asset('uploads/user.png') }}" @endif>
                                                     @if($support->replyUnread()>0)
                                                         <span class="avatar-child avatar-badge bg-success"></span>
                                                     @endif
@@ -202,12 +202,18 @@
                                                 <i class="ti ti-corner-up-left text-white"></i>
                                             </a>
                                         </div>
-                                        @if(\Auth::user()->type=='super admin' || \Auth::user()->id==$support->ticket_created)
+                                        @php
+                                            $dep = App\Models\Department::where('name','Servicom')->first()->id;
+                                        @endphp
+                                        @if(\Auth::user()->department_id==$dep || \Auth::user()->id==$support->ticket_created)
                                             <div class="action-btn bg-primary ms-2">
                                                 <a href="#" data-size="lg" data-url="{{ route('support.edit',$support->id) }}" data-ajax-popup="true" data-title="{{__('Edit Support')}}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-original-title="{{__('Edit')}}">
                                                     <i class="ti ti-pencil text-white"></i>
                                                 </a>
                                             </div>
+                                        @endif
+
+                                        @if(\Auth::user()->id==$support->ticket_created)
                                             <div class="action-btn bg-danger ms-2">
                                                 {!! Form::open(['method' => 'DELETE', 'route' => ['support.destroy', $support->id],'id'=>'delete-form-'.$support->id]) !!}
                                                     <a href="#!" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" data-original-title="{{__('Delete')}}" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" title="{{__('Delete')}}" data-confirm-yes="document.getElementById('delete-form-{{$support->id}}').submit();">
@@ -215,7 +221,6 @@
                                                     </a>
                                                  {!! Form::close() !!}
                                             </div>
-
                                         @endif
                                     </span>
                                     </td>

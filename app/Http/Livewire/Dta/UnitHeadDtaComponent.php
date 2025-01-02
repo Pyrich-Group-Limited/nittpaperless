@@ -58,8 +58,14 @@ class UnitHeadDtaComponent extends Component
         $this->dispatchBrowserEvent('showSecretCodeModal');
     }
 
+
+
     public function verifyAndApprove()
     {
+        $approverId = User::where('type', 'hod')
+        ->where('department_id', Auth::user()->department_id)
+        ->first();
+
         $this->validate([
             'secretCode' => 'required',
         ]);
@@ -78,6 +84,21 @@ class UnitHeadDtaComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+
+        if ($approverId) {
+            $approver = User::find($approverId);
+
+            if ($approver) {
+                createNotification(
+                    $approverId->id,
+                    'DTA Approval Request',
+                    'A new DTA approval request requires your attention.',
+                    route('dtaApproval.hod')
+                );
+            } else {
+                $this->dispatchBrowserEvent('error',["error" =>"Attempted to create a notification for a non-existing user ID: $approverId"]);
+            }
+        }
         $this->dispatchBrowserEvent('success',["success" =>"DTA approved successfully."]);
         $this->mount();
     }

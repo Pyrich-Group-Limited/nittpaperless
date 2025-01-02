@@ -15,6 +15,7 @@ use Spatie\GoogleCalendar\Event as GoogleEvent;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Twilio\Rest\Client;
+use App\Models\InternalNotification;
 
 class Utility extends Model
 {

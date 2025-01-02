@@ -236,10 +236,10 @@
                             <tbody>
                                 @forelse($announcements as $announcement)
                                     <tr>
-                                        <td>{{ $announcement->title }}</td>
-                                        <td>{{ \Auth::user()->dateFormat($announcement->start_date) }}</td>
-                                        <td>{{ \Auth::user()->dateFormat($announcement->end_date) }}</td>
-                                        <td>{{ $announcement->description }}</td>
+                                        <td>{{ $announcement->title ?? '' }}</td>
+                                        <td>{{ \Auth::user()->dateFormat($announcement->start_date) ?? '' }}</td>
+                                        <td>{{ \Auth::user()->dateFormat($announcement->end_date) ?? '' }}</td>
+                                        <td>{{ $announcement->description ?? '' }}</td>
                                     </tr>
                                 @empty
                                     <tr>
