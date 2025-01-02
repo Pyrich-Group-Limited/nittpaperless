@@ -39,7 +39,7 @@
                         <div class="row align-items-center">
                             <div class="col-auto">
                                 <a href="#" class="avatar rounded-circle">
-                                    <img alt="" class="" @if(!empty($support->createdBy) && !empty($support->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$support->createdBy->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar')).'/avatar.png'}}" @endif>
+                                    <img alt="" class="" @if(!empty($support->createdBy) && !empty($support->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$support->createdBy->avatar}}" @else  src="{{ asset('uploads/user.png') }}" @endif>
                                     @if($support->replyUnread()>0)
                                         <span class="avatar-child avatar-badge bg-success"></span>
                                     @endif
@@ -100,12 +100,18 @@
 
                                     </a>
                                 </div>
-                                @if(\Auth::user()->id==$support->ticket_created)
+                                @php
+                                $dep = App\Models\Department::where('name','Servicom')->first()->id;
+                                @endphp
+                                @if(\Auth::user()->department_id==$dep || \Auth::user()->id==$support->ticket_created)
                                     <div class="action-btn bg-primary me-2">
                                         <a href="#" data-size="lg" data-url="{{ route('support.edit',$support->id) }}" data-ajax-popup="true" data-title="{{__('Edit Support')}}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-original-title="{{__('Edit')}}">
                                             <i class="ti ti-edit text-white"></i>
                                         </a>
                                     </div>
+                                @endif
+
+                                @if(\Auth::user()->id==$support->ticket_created)
                                     <div class="action-btn bg-danger me-2">
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['support.destroy', $support->id],'id'=>'delete-form-'.$support->id]) !!}
 

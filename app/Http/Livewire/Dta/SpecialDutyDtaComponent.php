@@ -29,7 +29,6 @@ class SpecialDutyDtaComponent extends Component
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })
-        // ->where('location',Auth::user()->location_type)
         ->orderBy('created_at', 'desc')->get();
 
         $this->approvedDtaRequests = Dta::whereHas('approvalRecords', function ($query) use ($user) {
@@ -37,7 +36,6 @@ class SpecialDutyDtaComponent extends Component
                 ->where('role', $user->type)
                 ->where('status', 'approved');
         })
-        // ->where('location',Auth::user()->location_type)
         ->orderBy('created_at', 'desc')->get();
     }
 
@@ -61,6 +59,9 @@ class SpecialDutyDtaComponent extends Component
             'secretCode' => 'required'
         ]);
 
+        $approverId = User::where('type', 'DG')
+        ->first();
+
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
             $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
             return;
@@ -75,8 +76,22 @@ class SpecialDutyDtaComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+        if ($approverId) {
+            $approver = User::find($approverId);
+            if ($approver) {
+                createNotification(
+                    $approverId->id,
+                    'DTA Approval Request',
+                    'A new DTA approval request requires your attention.',
+                    route('dtaApproval.dg')
+                );
+            } else {
+                $this->dispatchBrowserEvent('error',["error" =>"Attempted to create a notification for a non-existing user ID: $approverId"]);
+            }
+        }
         $this->dispatchBrowserEvent('success',["success" =>"DTA approved successfully."]);
         $this->mount();
+        $this->reset('secretCode');
     }
 
     public function render()

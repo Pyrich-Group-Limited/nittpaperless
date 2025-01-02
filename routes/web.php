@@ -167,7 +167,7 @@ use App\Http\Livewire\Dta\AuditDtaComponent;
 use App\Http\Livewire\Dta\DtaVoucherComponent;
 use App\Http\Livewire\Dta\CashOfficeDtaComponent;
 
-//livewire component for user 
+//livewire component for user
 use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Users\UserPermission;
 
@@ -299,6 +299,19 @@ Route::get('/download/{filename}', function ($filename) {
     // abort(404); // If the file doesn't exist, show a 404 error
 })->name('download.file');
 
+// Mark individual notification as read
+Route::post('/notifications/mark-as-read/{id}', function ($id) {
+    if (markAsRead($id)) {
+        return response()->json(['success' => true]);
+    }
+    return response()->json(['success' => false], 404);
+});
+
+// Mark all notifications as read
+Route::post('/notifications/mark-all-as-read', function () {
+    $count = markAllAsRead();
+    return response()->json(['success' => true, 'count' => $count]);
+});
 
 //procurment routes
 Route::middleware(['auth','XSS', 'revalidate'])->prefix('physical-planning')->group(function () {

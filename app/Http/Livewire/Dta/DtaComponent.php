@@ -11,10 +11,12 @@ use App\Models\DtaRejectionComment;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class DtaComponent extends Component
 {
     use WithFileUploads;
+    use WithPagination;
 
     public $destination;
     public $purpose;
@@ -27,7 +29,7 @@ class DtaComponent extends Component
 
     public function mount(){
 
-        $this->dtaRequests = Dta::where('user_id', auth()->id())->orderBy('created_at','DESC')->get();
+        // $this->dtaRequests = Dta::where('user_id', auth()->id())->orderBy('created_at','DESC')->simplePaginate(10);
 
         $this->allUsers = User::where('department_id', Auth::user()->department_id)
         ->where('location', Auth::user()->location)
@@ -49,12 +51,23 @@ class DtaComponent extends Component
 
         // Determine if the user belongs to a liaison office
         $isLiaisonOffice = Auth::user()->is_in_liaison_office;
+
         $unitId = Auth::user()->is_in_liaison_office ? null : Auth::user()->unit_id;
+
+        // Get the list of approvers
+    $liaisonHead = User::where('type', 'liason office head')
+        ->where('location_type', Auth::user()->location_type)
+        ->first();
+
+    $unitHead = User::where('type', 'unit head')
+        ->where('unit_id', Auth::user()->unit_id)
+        ->first();
+
+    // Determine the approver ID
+    $approverId = $isLiaisonOffice ? ($liaisonHead ? $liaisonHead->id : null) : ($unitHead ? $unitHead->id : null);
 
         // Add the authenticated user ID to the list of users
         $users = array_merge([auth()->id()], $this->selected_users ?? []);
-
-        
 
         foreach ($users as $userId) {
             $user = User::find($userId);
@@ -64,7 +77,7 @@ class DtaComponent extends Component
                 $supportingDocument = Carbon::now()->timestamp. '.' . $this->document->getClientOriginalName();
                 $this->document->storeAs('documents',$supportingDocument);
             }
-    
+
             Dta::create([
                 'user_id' => $userId,
                 'department_id' => $user->department_id,
@@ -81,6 +94,14 @@ class DtaComponent extends Component
 
             ]);
         }
+        if ($approverId) {
+            createNotification(
+                $approverId,
+                'DTA Approval Request',
+                'A new DTA approval request requires your attention.',
+                ''
+            );
+        }
         $this->reset(['destination','purpose','travel_date','arrival_date','expense','selected_users']);
         $this->dispatchBrowserEvent('success',["success" =>"DTA request submitted successfully."]);
         $this->mount();
@@ -88,6 +109,10 @@ class DtaComponent extends Component
 
     public function render()
     {
-        return view('livewire.dta.dta-component');
+        $dtaRequests = Dta::where('user_id', auth()->id())
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+
+        return view('livewire.dta.dta-component', compact('dtaRequests'));
     }
 }

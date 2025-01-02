@@ -46,6 +46,7 @@
                     <table class="table datatable">
                         <thead>
                         <tr>
+                            <th>#</th>
                             <th>{{__('Destination')}}</th>
                             <th>{{__('Full Name')}}</th>
                             <th>{{__('Number of Days')}}</th>
@@ -58,8 +59,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dtaRequests as $dtaRequest)
+                            @foreach ($dtaRequests as $key => $dtaRequest)
                                 <tr class="font-style">
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $dtaRequest->destination }}</td>
                                     <td>{{ $dtaRequest->user->name }}</td>
                                     <td>
@@ -110,6 +112,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="mt-1">
+                        {{ $dtaRequests->links('pagination::bootstrap-5') }}
+                    </div>
+
                 </div>
             </div>
         </div>
