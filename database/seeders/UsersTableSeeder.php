@@ -4763,7 +4763,7 @@ class UsersTableSeeder extends Seeder
                 'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'), 
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'dg approve',
                 'module' => 'DTA',
@@ -5868,7 +5868,7 @@ class UsersTableSeeder extends Seeder
         );
 
         $dgPermissions = [
-           
+
             ['name' => 'dg approve'],
             ['name' => 'raise query'],
             ['name' => 'approve as dg'],
@@ -6030,7 +6030,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liasonPermission = [
-            
+
             ['name' => 'liaison approve'],
             ['name' => 'raise query'],
             ['name' => 'liaison approve SRN'],
@@ -6148,6 +6148,30 @@ class UsersTableSeeder extends Seeder
         $hodSd->assignRole($hodRole);
         $hodSd->givePermissionTo($hodPermission);
 
+
+        $hodServi = User::create(
+            [
+                'name' => 'Hassan Sulaiman',
+                'email' => 'hassan@nitt.com',
+                'location_type' => 'Directorate',
+                'location' => 'Headquarters',
+                'password' => Hash::make('1234'),
+                'type' => 'hod',
+                'default_pipeline' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => $company->id,
+                'designation' => Designation::first()->name,
+                'department_id' => Department::where('name','Servicom')->first()->id,
+                'unit_id' => '',
+                'level' => "Level 10",
+                'password_changed' => true,
+            ]
+        );
+        Employee::create(['user_id' => $hodServi->id]);
+        $hodServi->assignRole($hodRole);
+        $hodServi->givePermissionTo($hodPermission);
+
         // Create an array to store all unit head roles
         // $unitHeadRoles = [];
 
@@ -6208,7 +6232,7 @@ class UsersTableSeeder extends Seeder
 
         // Define the permissions for the unit head role
         $unitHeadPermissions = [
-            
+
             ['name' => 'unit head approve'],
             ['name' => 'raise query'],
             ['name' => 'approve as pv'],
@@ -6305,7 +6329,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
-            
+
             ['name' => 'final account approve'],
             ['name' => 'report view'],
             ['name' => 'hod approve'],

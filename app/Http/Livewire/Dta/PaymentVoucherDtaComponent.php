@@ -8,6 +8,7 @@ use App\Models\DtaApproval;
 use App\Models\User;
 use App\Models\DtaRejectionComment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
 
 class PaymentVoucherDtaComponent extends Component
@@ -18,6 +19,8 @@ class PaymentVoucherDtaComponent extends Component
     public $actionId;
 
     public $chartAccount;
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     public function mount(){
         $user = auth()->user();
@@ -27,7 +30,7 @@ class PaymentVoucherDtaComponent extends Component
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
-        
+
         $this->approvedDtaRequests = Dta::whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
@@ -43,18 +46,42 @@ class PaymentVoucherDtaComponent extends Component
 
     public function pvApproveDta()
     {
+        if ($this->selDta->status != 'bursar_approved') {
+            $this->dispatchBrowserEvent('error', ["error" => "DTA requires Bursary approval first."]);
+            return;
+        }
+
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
         $this->validate([
             'chartAccount' => 'required',
+            'secretCode' => 'required',
         ]);
 
-        if ($this->selDta->status != 'bursar_approved') {
-            $this->dispatchBrowserEvent('error',["error" =>"DTA required an approval."]);
-        } else {
-            $this->selDta->update([
-                'status' => 'pv_approved',
-                'account_id' => $this->chartAccount
-            ]);
+        $approverId = User::where('type', '!=', 'super admin')->where('type', '!=', 'DG')
+            ->whereHas('permissions', function ($query) {
+                $query->where('name', 'audit approve');
+            })->first();
+
+        if (!$approverId) {
+            $this->dispatchBrowserEvent('error',["error" =>"No next approver found with the audit approval permission"]);
+            return; // Exit the function
         }
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
+            return;
+        }
+
+        $this->selDta->update([
+            'status' => 'pv_approved',
+            'account_id' => $this->chartAccount
+        ]);
+
 
         DtaApproval::create([
             'dta_id' => $this->selDta->id,
@@ -63,8 +90,22 @@ class PaymentVoucherDtaComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+        if ($approverId) {
+            $approver = User::find($approverId);
+            if ($approver) {
+                createNotification(
+                    $approverId->id,
+                    'DTA Approval Request',
+                    'A new DTA approval request requires your attention.',
+                    route('dtaApproval.audit')
+                );
+            } else {
+                $this->dispatchBrowserEvent('error',["error" =>"Attempted to create a notification for a non-existing user ID: $approverId"]);
+            }
+        }
         $this->dispatchBrowserEvent('success',["success" =>"DTA approved successfully."]);
         $this->mount();
+        $this->reset(['secretCode','chartAccount']);
     }
 
     public function render()

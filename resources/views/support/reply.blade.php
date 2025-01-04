@@ -15,12 +15,17 @@
     <li class="breadcrumb-item active" aria-current="page">{{__('Support Reply')}}</li>
 @endsection
 @section('action-btn')
-    <div class="float-end">
-        <a href="#" data-size="lg" data-url="{{ route('support.edit',$support->id) }}" data-ajax-popup="true"
-           data-bs-toggle="tooltip" title="{{__('Edit')}}" data-title="{{__('Edit Support')}}" class="btn btn-sm btn-primary">
-            <i class="ti ti-pencil"></i>
-        </a>
-    </div>
+    @php
+    $dep = App\Models\Department::where('name','Servicom')->first()->id;
+    @endphp
+    @if(\Auth::user()->department_id==$dep || \Auth::user()->id==$support->ticket_created)
+        <div class="float-end">
+            <a href="#" data-size="lg" data-url="{{ route('support.edit',$support->id) }}" data-ajax-popup="true"
+            data-bs-toggle="tooltip" title="{{__('Edit')}}" data-title="{{__('Edit Support')}}" class="btn btn-sm btn-primary">
+                <i class="ti ti-pencil"></i>
+            </a>
+        </div>
+    @endif
 @endsection
 
 @section('content')

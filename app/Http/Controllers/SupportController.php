@@ -7,6 +7,7 @@ use App\Models\Support;
 use App\Models\SupportReply;
 use App\Models\Ticket;
 use App\Models\User;
+use App\Models\Department;
 use App\Models\Utility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -16,22 +17,35 @@ class SupportController extends Controller
 {
     public function index()
     {
-        if(\Auth::user()->type == 'super admin')
+        $dep = Department::where('name','Servicom')->first()->id;
+        if(\Auth::user()->department_id == $dep)
         {
-            $supports = Support::where('created_by', \Auth::user()->creatorId())->get();
+            // $supports = Support::where('created_by', \Auth::user()->creatorId())->get();
+            // $countTicket      = Support::where('created_by', '=', \Auth::user()->creatorId())->count();
+            // $countOpenTicket  = Support::where('status', '=', 'open')->where('created_by', '=', \Auth::user()->creatorId())->count();
+            // $countonholdTicket  = Support::where('status', '=', 'on hold')->where('created_by', '=', \Auth::user()->creatorId())->count();
+            // $countCloseTicket = Support::where('status', '=', 'close')->where('created_by', '=', \Auth::user()->creatorId())->count();
+
+            $supports = Support::all();
             $countTicket      = Support::where('created_by', '=', \Auth::user()->creatorId())->count();
-            $countOpenTicket  = Support::where('status', '=', 'open')->where('created_by', '=', \Auth::user()->creatorId())->count();
-            $countonholdTicket  = Support::where('status', '=', 'on hold')->where('created_by', '=', \Auth::user()->creatorId())->count();
-            $countCloseTicket = Support::where('status', '=', 'close')->where('created_by', '=', \Auth::user()->creatorId())->count();
+            $countOpenTicket  = Support::where('status', '=', 'open')->count();
+            $countonholdTicket  = Support::where('status', '=', 'on hold')->count();
+            $countCloseTicket = Support::where('status', '=', 'close')->count();
             return view('support.index', compact('supports','countTicket','countOpenTicket','countonholdTicket','countCloseTicket'));
         }
         else {
 
-            $supports = Support::where('user', \Auth::user()->id)->where('created_by', \Auth::user()->creatorId())->get();
+            // $supports = Support::where('user', \Auth::user()->id)->where('created_by', \Auth::user()->creatorId())->get();
+            // $countTicket      = Support::where('user', \Auth::user()->id)->where('created_by', \Auth::user()->creatorId())->count();
+            // $countOpenTicket  = Support::where('status', '=', 'open')->where('user', \Auth::user()->id)->where('created_by', \Auth::user()->creatorId())->count();
+            // $countonholdTicket  = Support::where('status', '=', 'on hold')->where('user', \Auth::user()->id)->where('created_by', \Auth::user()->creatorId())->count();
+            // $countCloseTicket = Support::where('status', '=', 'close')->where('user', \Auth::user()->id)->where('created_by', \Auth::user()->creatorId())->count();
+
+            $supports = Support::where('created_by', \Auth::user()->id)->get();
             $countTicket      = Support::where('user', \Auth::user()->id)->where('created_by', \Auth::user()->creatorId())->count();
-            $countOpenTicket  = Support::where('status', '=', 'open')->where('user', \Auth::user()->id)->where('created_by', \Auth::user()->creatorId())->count();
-            $countonholdTicket  = Support::where('status', '=', 'on hold')->where('user', \Auth::user()->id)->where('created_by', \Auth::user()->creatorId())->count();
-            $countCloseTicket = Support::where('status', '=', 'close')->where('user', \Auth::user()->id)->where('created_by', \Auth::user()->creatorId())->count();
+            $countOpenTicket  = Support::where('status', '=', 'open')->where('created_by', \Auth::user()->id)->count();
+            $countonholdTicket  = Support::where('status', '=', 'on hold')->where('created_by', \Auth::user()->id)->count();
+            $countCloseTicket = Support::where('status', '=', 'close')->where('created_by', \Auth::user()->id)->count();
             return view('support.index', compact('supports','countTicket','countOpenTicket','countonholdTicket','countCloseTicket'));
         }
 
@@ -45,8 +59,9 @@ class SupportController extends Controller
             __('Critical'),
         ];
 //        $status = Support::$status;
+        $dep = Department::where('name','Servicom')->first()->id;
         $status = Support::status();
-        $users = User::where('created_by', \Auth::user()->creatorId())->where('type', '!=', 'client')->get()->pluck('name', 'id');
+        $users = User::where('department_id', $dep)->where('type', '!=', 'contractor')->get()->pluck('name', 'id');
         return view('support.create', compact('priority', 'users','status'));
     }
 
@@ -56,9 +71,9 @@ class SupportController extends Controller
 
         $validator = \Validator::make(
             $request->all(), [
-                               'subject' => 'required',
-                               'priority' => 'required',
-                           ]
+                'subject' => 'required',
+                'priority' => 'required',
+            ]
         );
 
         if($validator->fails())
@@ -96,16 +111,17 @@ class SupportController extends Controller
 //            $support->save();
         }
         $support->description    = $request->description;
-        $support->created_by     = \Auth::user()->creatorId();
+        $support->created_by     = \Auth::user()->id;
         $support->ticket_created = \Auth::user()->id;
-        if(\Auth::user()->type == 'client')
-        {
-            $support->user = \Auth::user()->id;;
-        }
-        else
-        {
-            $request->user= $request->user;
-        }
+        $support->user = $request->user;
+        // if(\Auth::user()->type == 'contractor')
+        // {
+        //     $support->user = \Auth::user()->id;
+        // }
+        // else
+        // {
+        //     $request->user= $request->user;
+        // }
 
         $support->save();
 
@@ -118,30 +134,30 @@ class SupportController extends Controller
             'support_user_name' =>  $user->name,
         ];
         //Slack Notification
-        if(isset($setting['support_notification']) && $setting['support_notification'] ==1)
-        {
-            Utility::send_slack_msg('new_support_ticket', $supportNotificationArr);
-        }
+        // if(isset($setting['support_notification']) && $setting['support_notification'] ==1)
+        // {
+        //     Utility::send_slack_msg('new_support_ticket', $supportNotificationArr);
+        // }
 
-        //Telegram Notification
-        if(isset($setting['telegram_support_notification']) && $setting['telegram_support_notification'] ==1)
-        {
-            Utility::send_telegram_msg('new_support_ticket', $supportNotificationArr);
-        }
+        // //Telegram Notification
+        // if(isset($setting['telegram_support_notification']) && $setting['telegram_support_notification'] ==1)
+        // {
+        //     Utility::send_telegram_msg('new_support_ticket', $supportNotificationArr);
+        // }
 
         // send mail
-        $id =!empty($request->user )? $request->user: \Auth::user()->id;
-        $employee             = User::find($id);
-        $support_priority = \App\Models\Support::$priority[$support->priority];
-        $supportArr = [
-            'support_name'=> $employee->name,
-            'support_title' => $support->subject,
-            'support_priority' =>  $support_priority,
-            'support_end_date' => $support->end_date,
-            'support_description' => $support->description,
+        // $id =!empty($request->user )? $request->user: \Auth::user()->id;
+        // $employee             = User::find($id);
+        // $support_priority = \App\Models\Support::$priority[$support->priority];
+        // $supportArr = [
+        //     'support_name'=> $employee->name,
+        //     'support_title' => $support->subject,
+        //     'support_priority' =>  $support_priority,
+        //     'support_end_date' => $support->end_date,
+        //     'support_description' => $support->description,
 
-        ];
-        $resp = Utility::sendEmailTemplate('new_support_ticket', [$employee->id => $employee->email], $supportArr);
+        // ];
+        // $resp = Utility::sendEmailTemplate('new_support_ticket', [$employee->id => $employee->email], $supportArr);
 
 
         //webhook
@@ -288,29 +304,29 @@ class SupportController extends Controller
 
     public function grid()
     {
-
-        if(\Auth::user()->type == 'super admin')
+        $dep = Department::where('name','Servicom')->first()->id;
+        if(\Auth::user()->department_id == $dep)
         {
-            $supports = Support::where('created_by', \Auth::user()->creatorId())->get();
-
-            return view('support.grid', compact('supports'));
-        }
-        elseif(\Auth::user()->type == 'client')
-        {
-            $supports = Support::where('user', \Auth::user()->id)->orWhere('ticket_created', \Auth::user()->id)->get();
-
-            return view('support.grid', compact('supports'));
-        }
-        elseif(\Auth::user()->type == 'Employee')
-        {
-
-            $supports = Support::where('user', \Auth::user()->id)->orWhere('ticket_created', \Auth::user()->id)->get();
+            $supports = Support::all();
 
             return view('support.grid', compact('supports'));
         }
         else
         {
-            return redirect()->back()->with('error', __('Permission denied.'));
+            $supports = Support::where('created_by', \Auth::user()->id)->get();
+
+            return view('support.grid', compact('supports'));
         }
+        // elseif(\Auth::user()->type == 'Employee')
+        // {
+
+        //     $supports = Support::where('user', \Auth::user()->id)->orWhere('ticket_created', \Auth::user()->id)->get();
+
+        //     return view('support.grid', compact('supports'));
+        // }
+        // else
+        // {
+        //     return redirect()->back()->with('error', __('Permission denied.'));
+        // }
     }
 }

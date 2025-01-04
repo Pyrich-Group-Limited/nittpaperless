@@ -8,6 +8,7 @@ use App\Models\DtaApproval;
 use App\Models\User;
 use App\Models\DtaRejectionComment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
@@ -22,6 +23,8 @@ class CashOfficeDtaComponent extends Component
     public $actionId;
     public $chartAccount;
     public $paymentEvidence;
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     public function mount(){
         $user = auth()->user();
@@ -31,7 +34,7 @@ class CashOfficeDtaComponent extends Component
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
-        
+
         $this->approvedDtaRequests = Dta::whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type)
@@ -47,22 +50,34 @@ class CashOfficeDtaComponent extends Component
 
     public function cashOfficeApproveDta()
     {
+        if ($this->selDta->status != 'audit_approved') {
+            $this->dispatchBrowserEvent('error', ["error" => "DTA requires Audit approval first."]);
+            return;
+        }
+
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
         $this->validate([
             'paymentEvidence' => 'required',
+            'secretCode' => 'required',
         ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
+            return;
+        }
 
         $payEvidence = Carbon::now()->timestamp. '.' . $this->paymentEvidence->getClientOriginalName();
         $this->paymentEvidence->storeAs('documents',$payEvidence);
 
-        if ($this->selDta->status != 'audit_approved') {
-            $this->dispatchBrowserEvent('error',["error" =>"DTA required an approval."]);
-        } else {
-            $this->selDta->update([
-                // 'status' => 'cash_office_approved',
-                'status' => 'approved',
-                'payment_evidence' => $payEvidence
-            ]);
-        }
+        $this->selDta->update([
+            'status' => 'approved',
+            'payment_evidence' => $payEvidence
+        ]);
 
         DtaApproval::create([
             'dta_id' => $this->selDta->id,

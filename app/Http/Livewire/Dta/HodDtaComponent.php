@@ -8,6 +8,7 @@ use App\Models\DtaApproval;
 use App\Models\User;
 use App\Models\DtaRejectionComment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HodDtaComponent extends Component
 {
@@ -15,6 +16,9 @@ class HodDtaComponent extends Component
     public $comments;
     public $selDta;
     public $actionId;
+
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
 
     public function mount(){
@@ -44,9 +48,26 @@ class HodDtaComponent extends Component
 
     public function hodApproveDta()
     {
-        // Check if the DTA is in the correct status
         if ($this->selDta->status != 'unit_head_approved') {
             $this->dispatchBrowserEvent('error', ["error" => "DTA requires unit head approval first."]);
+            return;
+        }
+
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $approverId = User::where('type', 'DG')
+        ->first();
+
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
             return;
         }
 
@@ -69,28 +90,24 @@ class HodDtaComponent extends Component
             'comments' => $this->comments,
         ]);
 
+        if ($approverId) {
+            $approver = User::find($approverId);
+            if ($approver) {
+                createNotification(
+                    $approverId->id,
+                    'DTA Approval Request',
+                    'A new DTA approval request requires your attention.',
+                    route('dtaApproval.dg')
+                );
+            } else {
+                $this->dispatchBrowserEvent('error',["error" =>"Attempted to create a notification for a non-existing user ID: $approverId"]);
+            }
+        }
+
         $this->dispatchBrowserEvent('success', ["success" => "DTA approved successfully."]);
         $this->mount();
+        $this->reset('secretCode');
     }
-
-    // public function hodApproveDta()
-    // {
-    //     if ($this->selDta->status != 'unit_head_approved') {
-    //         $this->dispatchBrowserEvent('error',["error" =>"DTA required an approval."]);
-    //     } else {
-    //         $this->selDta->update(['status' => 'hod_approved']);
-    //     }
-
-    //     DtaApproval::create([
-    //         'dta_id' => $this->selDta->id,
-    //         'approver_id' => auth()->id(),
-    //         'role' => auth()->user()->type,
-    //         'status' => 'approved',
-    //         'comments' => $this->comments,
-    //     ]);
-    //     $this->dispatchBrowserEvent('success',["success" =>"DTA approved successfully."]);
-    //     $this->mount();
-    // }
 
     public function render()
     {
