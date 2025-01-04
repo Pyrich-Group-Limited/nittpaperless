@@ -78,6 +78,11 @@
                             <span><?php echo e(__('Memo')); ?></span>
                         </a>
 
+                        <a href="<?php echo e(route('myJobApplications.index')); ?>" class="dropdown-item">
+                            <i class="ti ti-list"></i>
+                            <span><?php echo e(__('My Job Applications')); ?></span>
+                        </a>
+
                         <a href="#" type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#setSecretCodeModal">
                             <i class="ti ti-lock"></i>
                             <span><?php echo e(__('My Secret Code')); ?></span>

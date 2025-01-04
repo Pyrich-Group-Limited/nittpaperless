@@ -142,7 +142,7 @@
                                     <a class="dash-link" href="{{route('dashboard')}}">{{__(' Dashboard')}}</a>
                                 </li> -->
                                 <li class="dash-item {{ ( Request::segment(1) == null || Request::segment(1) == 'dashboard') ? ' active' : '' }}">
-                                    <a class="dash-link" href="{{route('business-dashboard')}}">{{__(' Advance Planning')}}</a>
+                                    <a class="dash-link" href="{{route('planning-dashboard')}}">{{__(' Advance Planning')}}</a>
                                 </li>
                                 <li class="dash-item {{ ( Request::segment(1) == null || Request::segment(1) == 'dashboard') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{route('business-dashboard')}}">{{__(' Business Intelligence')}}</a>
@@ -1146,7 +1146,7 @@
                                             <li class="dash-item {{ request()->is('dtaApproval.hod') ? 'active' : '' }}">
                                                 <a class="dash-link" href="{{ route('dtaApproval.hod') }}">{{__('HOD Approval')}}</a>
                                             </li>
-                                        @endcan 
+                                        @endcan
 
                                         @can('liaison approve')
                                             <li class="dash-item {{ request()->is('dtaApproval.liason') ? 'active' : '' }}">
