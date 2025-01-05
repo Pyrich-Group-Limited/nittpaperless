@@ -32,7 +32,7 @@
                 <h6 class="text-primary"><?php echo e(Ucfirst(Auth::user()->location_type ?? '')); ?> Liaison Office</h6>
             <?php endif; ?>
         </div>
-            
+
 
         <div class="navbar-content">
             <?php if(\Auth::user()->type =='DG'): ?>
@@ -142,7 +142,7 @@
                                     <a class="dash-link" href="<?php echo e(route('dashboard')); ?>"><?php echo e(__(' Dashboard')); ?></a>
                                 </li> -->
                                 <li class="dash-item <?php echo e(( Request::segment(1) == null || Request::segment(1) == 'dashboard') ? ' active' : ''); ?>">
-                                    <a class="dash-link" href="<?php echo e(route('business-dashboard')); ?>"><?php echo e(__(' Advance Planning')); ?></a>
+                                    <a class="dash-link" href="<?php echo e(route('planning-dashboard')); ?>"><?php echo e(__(' Advance Planning')); ?></a>
                                 </li>
                                 <li class="dash-item <?php echo e(( Request::segment(1) == null || Request::segment(1) == 'dashboard') ? ' active' : ''); ?>">
                                     <a class="dash-link" href="<?php echo e(route('business-dashboard')); ?>"><?php echo e(__(' Business Intelligence')); ?></a>
@@ -974,7 +974,7 @@
                                             <li class="dash-item <?php echo e((Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : ''); ?>">
                                                 <a class="dash-link" href="<?php echo e(route('hrm.leave')); ?>"><?php echo e(__('Leave')); ?></a>
                                             </li>
-                                            <?php if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'liason office head' || \Auth::user()->type == 'unit head' || \Auth::user()->type == 'client'): ?>
+                                            <?php if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'liason office head' || \Auth::user()->type == 'hod' || \Auth::user()->type == 'client'): ?>
                                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view leave report')): ?>
                                                     <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?>">
                                                         <a class="dash-link" href="<?php echo e(route('report.leave')); ?>"><?php echo e(__('Leave Report')); ?></a>
@@ -992,9 +992,11 @@
                                     <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' : ''); ?>" href="#navbar-attendance" data-toggle="collapse" role="button" aria-expanded="<?php echo e((Request::segment(1) == 'attendanceemployee') ? 'true' : 'false'); ?>">
                                         <a class="dash-link" href="#"><?php echo e(__('Attendance')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu">
-                                            <li class="dash-item <?php echo e((Request::route()->getName() == 'attendanceemployee.index' ? 'active' : '')); ?>">
-                                                <a class="dash-link" href="<?php echo e(route('attendanceemployee.index')); ?>"><?php echo e(__('Mark Attendance')); ?></a>
-                                            </li>
+                                            <?php if(\Auth::user()->cannot('manage report') && \Auth::user()->cannot('manage attendance report')): ?>
+                                                <li class="dash-item <?php echo e((Request::route()->getName() == 'attendanceemployee.index' ? 'active' : '')); ?>">
+                                                    <a class="dash-link" href="<?php echo e(route('attendanceemployee.index')); ?>"><?php echo e(__('Mark Attendance')); ?></a>
+                                                </li>
+                                            <?php endif; ?>
                                                 
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create attendance')): ?>
                                                 <li class="dash-item <?php echo e(request()->is('reports-monthly-attendance') ? 'active' : ''); ?>">
@@ -1032,6 +1034,12 @@
                                             </li>
                                         <?php endif; ?>
 
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('special duty approve')): ?>
+                                            <li class="dash-item <?php echo e(request()->is('dtaApproval.specialDuty') ? 'active' : ''); ?>">
+                                                <a class="dash-link" href="<?php echo e(route('dtaApproval.specialDuty')); ?>"><?php echo e(__('Special Duty Approval')); ?></a>
+                                            </li>
+                                        <?php endif; ?>
+
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('dg approve')): ?>
                                             <li class="dash-item <?php echo e(request()->is('dtaApproval.dg') ? 'active' : ''); ?>">
                                                 <a class="dash-link" href="<?php echo e(route('dtaApproval.dg')); ?>"><?php echo e(__('DG Approval')); ?></a>
@@ -1062,22 +1070,22 @@
                                 <li class="dash-item dash-hasmenu  ">
                                     <a class="dash-link" href="#"><?php echo e(__('Query Management')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                     <ul class="dash-submenu">
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('raise query')): ?>
+                                            <li class="dash-item <?php echo e((Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : ''); ?>">
+                                                <a class="dash-link" href="<?php echo e(route('hrm.query')); ?>"><?php echo e(__('Raise Query')); ?></a>
+                                            </li>
+                                        <?php endif; ?>
+
                                         <li class="dash-item <?php echo e((Request::route()->getName() == 'clients.index' || Request::segment(1) == 'clients' || Request::route()->getName() == 'clients.edit') ? ' active' : ''); ?>">
-                                            <a class="dash-link" href="<?php echo e(route('hrm.query')); ?>"><?php echo e(__('Query')); ?></a>
+                                            <a class="dash-link" href="<?php echo e(route('query.index')); ?>"><?php echo e(__('Queries')); ?></a>
                                         </li>
-                                        <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?>">
-                                            <a class="dash-link" href="<?php echo e(route('report.leave')); ?>"><?php echo e(__('Query Report')); ?></a>
-                                        </li>
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage complaint')): ?>
-                                            <li class="dash-item <?php echo e((request()->is('complaint*') ? 'active' : '')); ?>">
-                                                <a class="dash-link" href="<?php echo e(route('complaint.index')); ?>"><?php echo e(__('Complaints')); ?></a>
+
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('raise query')): ?>
+                                            <li class="dash-item <?php echo e((Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : ''); ?>">
+                                                <a class="dash-link" href="<?php echo e(route('report.leave')); ?>"><?php echo e(__('Query Report')); ?></a>
                                             </li>
                                         <?php endif; ?>
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage warning')): ?>
-                                            <li class="dash-item <?php echo e((request()->is('warning*') ? 'active' : '')); ?>">
-                                                <a class="dash-link" href="<?php echo e(route('warning.index')); ?>"><?php echo e(__('Warning')); ?></a>
-                                            </li>
-                                        <?php endif; ?>
+                                        
                                     </ul>
                                 </li>
                             </ul>
