@@ -21,7 +21,7 @@ use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StaffProfileMail;
 use Illuminate\Support\Facades\Password;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 
 class UsersComponent extends Component
 {
@@ -274,7 +274,7 @@ class UsersComponent extends Component
             'type' => $row[7],
             'designation'  => $row[8],
             'level' => $row[9],
-            'ippis' => $row[10],
+            'ippis' => "",
             'comment' => $comment,
         ];
     }
@@ -285,12 +285,39 @@ class UsersComponent extends Component
         $units = null;
         $departments = Department::where('name',$row['4'])->first();
         $designations = Designation::where('name',$row['8'])->first();
+        if($designations==null){
+            $designations = Designation::Create([
+                'name' => $row['8']
+            ]);
+        }
         if($departments!=null){
-            $units = Unit::where('name',$row[5])->where('department_id',$departments->id)->first();
+            $units = Unit::where('name',$row[5])->first();
+            // $units = Unit::where('name',$row[5])->where('department_id',$departments->id)->first();
+        }else{
+            $departments = Department::create([
+                'name' => $row['4'],
+                'category' => "department",
+            ]);
         }
 
         if($units!=null){
-            $subunit = SubUnit::where('name',$row[6])->where('unit_id',$units->id)->first();
+            $subunit = SubUnit::where('name',$row[6])->first();
+            // $subunit = SubUnit::where('name',$row[6])->where('unit_id',$units->id)->first();
+        }else{
+            $units = Unit::create([
+                'department_id' => $departments->id,
+                'name' => $row[5]
+            ]);
+
+            $subunit = SubUnit::where('name',$row[5])->first();
+
+            if($subunit==null){
+                $subunit = Subunit::create([
+                    'unit_id' => $units->id,
+                    'name' => $row[6]
+                ]);
+            }
+
         }
         $lisasonOffice = null;
         $location = strtolower($row[2]);
@@ -301,7 +328,9 @@ class UsersComponent extends Component
         if(($location == "headquarters" && $location_type=="department") || ($location == "headquarters" && $location_type=="directorate")){
             $lisasonOffice = strtolower($row[3]);
         }else{
-            $lisasonOffice = LiasonOffice::where('id',strtolower($row[3]))->first()->name;
+            $lisasonOffice = strtolower($row[3]);
+            // $lisasonOffice = LiasonOffice::where('id',strtolower($row[3]))->first()->name;
+
         }
 
         if($departments==null){
@@ -317,10 +346,10 @@ class UsersComponent extends Component
         }elseif($role==null){
             $this->setFailedUpload($row,"Invalid User Role");
         }else{
-            $valUser = User::where('email',$row[3])->first();
-            if($row[0]!=null && $valUser==null){
+            $valUser = User::where('email',$row[1])->first();
+            if($valUser==null){
                 $user = User::create([
-                    'ippis'  => $row[10],
+                    'ippis'  =>"",
                     'designation'  => $row[8],
                     'name' => $row[0],
                     'email' => $row[1],
@@ -330,12 +359,11 @@ class UsersComponent extends Component
                     'department_id' => $departments->id,
                     'unit_id' => $units,
                     'sub_unit_id' => $subunit!=null? $subunit->id : null ,
-                    'password' => Hash::make('NITT@2024'),
                     'level' => $row[9],
-                    'password' => Hash::make('12345678'),
+                    'password' =>bcrypt('12345678'),
                 ]);
 
-            $this->sendMail($user);
+            // $this->sendMail($user);
 
             }
         }

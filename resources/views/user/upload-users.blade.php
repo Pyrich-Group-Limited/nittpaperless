@@ -35,6 +35,8 @@
                     </div>
                     {{-- <div wire:loading wire:target="registerUser"><x-g-loader /></div> --}}
                     <div class="modal-footer">
+                        <div wire:loading wire:target="uploadUser"><x-g-loader /></div>
+
                         <input type="button" id="closeUploadUser" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
                         <input type="submit" value="{{__('Onboard Users')}}" class="btn  btn-primary">
                     </div>
