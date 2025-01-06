@@ -8,6 +8,7 @@ use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
+use App\Models\User;
 
 class HodRequisitionsComponent extends Component
 {
@@ -20,7 +21,7 @@ class HodRequisitionsComponent extends Component
 
     public $chartAccount;
 
-    public $approvals; 
+    public $approvals;
     public $selectedRequisitionId;
 
     public $secretCode; // To store the secret code input
@@ -66,7 +67,7 @@ class HodRequisitionsComponent extends Component
             ->get();
     }
 
-    
+
     public function setRequisition(StaffRequisition $requisition){
         $this->selRequisition = $requisition;
         $this->loadApprovals();
@@ -99,6 +100,8 @@ class HodRequisitionsComponent extends Component
 
     public function verifyAndApprove()
     {
+        $approverId = User::where('type','DG')->first();
+
         // Validate the secret code input
         $this->validate([
             'secretCode' => 'required',
@@ -128,6 +131,15 @@ class HodRequisitionsComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Requsition Approval Request',
+                'A new Requsition from '. Auth::user()->name.' requires your approval.',
+                route('dg.requisitions')
+            );
+        }
 
         // Reset and show success message
         $this->reset(['secretCode', 'comments', 'selRequisition']);

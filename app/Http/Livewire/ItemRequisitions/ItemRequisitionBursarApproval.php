@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -91,12 +92,31 @@ class ItemRequisitionBursarApproval extends Component
             'secretCode' => 'required',
         ]);
 
+        $approverId = User::where('type', '!=', 'super admin')->where('type', '!=', 'DG')
+            ->whereHas('permissions', function ($query) {
+                $query->where('name', 'store approve SRN');
+            })->first();
+
+        if (!$approverId) {
+            $this->dispatchBrowserEvent('error',["error" =>"No next approver found with the 'bursar approval' permission"]);
+            return;
+        }
+
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
-            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect !"]);
             return;
         }
 
         $this->selectedRequisition->update(['status' => 'bursar_approved']);
+
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Item Requsition Approval Request',
+                'A new Requsition by '. Auth::user()->name.' requires your approval.',
+                route('itemRequisition.storeApproval'),
+            );
+        }
 
         $this->reset();
         // $this->reset(['secretCode', 'comments', 'selectedRequisition']);

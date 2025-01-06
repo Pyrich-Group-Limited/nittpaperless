@@ -7,6 +7,7 @@ use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ChartOfAccount;
+use App\Models\User;
 
 class AllRaisedRequisitionsComponent extends Component
 {
@@ -35,7 +36,7 @@ class AllRaisedRequisitionsComponent extends Component
     {
         // Check if the file exists in the public folder
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {

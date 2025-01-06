@@ -36,7 +36,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
             {{-- <a href="#" id="newFileButton" data-size="lg" data-url="{{ route('file.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create new file')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-plus"></i>
             </a>--}}
-            <a href="#" class="btn btn-sm btn-primary" id="newFileButton" data-bs-toggle="modal" data-bs-target="#newfile"   data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>New</a>
+            @can('create document')
+                <a href="#" class="btn btn-sm btn-primary" id="newFileButton" data-bs-toggle="modal" data-bs-target="#newfile"
+                data-size="lg " data-bs-toggle="tooltip"><i class="ti ti-plus text-white"></i>New</a>
+            @endcan
     </div>
 @endsection
 
@@ -80,7 +83,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 {{ Form::close() }}
@@ -113,22 +116,29 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                     <i class="ti ti-dots-vertical"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Share Document')}}">
-                                                        <i class="ti ti-share"></i>
-                                                        <span>{{__('Share')}}</span>
-                                                    </a>
-                                                    <a href="#!" data-url="{{ route('file.renameModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Rename Document')}}">
-                                                        <i class="ti ti-pencil"></i>
-                                                        <span>{{__('Rename')}}</span>
-                                                    </a>
+                                                    @can('share document')
+                                                        <a href="#!" data-size="lg" data-url="{{ route('file.shareModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Share Document')}}">
+                                                            <i class="ti ti-share"></i>
+                                                            <span>{{__('Share')}}</span>
+                                                        </a>
+                                                    @endcan
+
+                                                    @can('rename document')
+                                                        <a href="#!" data-url="{{ route('file.renameModal',$file->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Rename Document')}}">
+                                                            <i class="ti ti-pencil"></i>
+                                                            <span>{{__('Rename')}}</span>
+                                                        </a>
+                                                    @endcan
                                                     <a href="{{ route('files.download',$file->id) }}"  class="dropdown-item">
                                                         <i class="ti ti-download"></i>
                                                         <span> {{__('Download')}} </span>
                                                     </a>
-                                                    <form action="{{ route('files.archive', $file->id) }}" method="POST" style="display:inline;">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-white dropdown-item"><i class="ti ti-archive"></i>Archive</button>
-                                                    </form>
+                                                    @can('archive document')
+                                                        <form action="{{ route('files.archive', $file->id) }}" method="POST" style="display:inline;">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-white dropdown-item"><i class="ti ti-archive"></i>Archive</button>
+                                                        </form>
+                                                    @endcan
                                                     {{-- <a href="{{ route('files.archive', $file->id) }}"  class="dropdown-item">
                                                         <i class="ti ti-archive"></i>
                                                         <span> {{__('Archive')}} </span>

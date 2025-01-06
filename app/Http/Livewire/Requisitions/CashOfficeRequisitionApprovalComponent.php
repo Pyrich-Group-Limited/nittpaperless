@@ -8,6 +8,7 @@ use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
+use App\Models\User;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
 
@@ -25,7 +26,7 @@ class CashOfficeRequisitionApprovalComponent extends Component
 
     // public $account;
     public $paymentEvidence;
-    
+
     public function mount()
     {
         $user = auth()->user();
@@ -36,7 +37,7 @@ class CashOfficeRequisitionApprovalComponent extends Component
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
-        
+
         $this->approvedRequisitions = StaffRequisition::with('approvalRecords.approver.signature')
             ->whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
@@ -55,7 +56,7 @@ class CashOfficeRequisitionApprovalComponent extends Component
     {
         // Check if the file exists in the public folder
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {
@@ -75,6 +76,8 @@ class CashOfficeRequisitionApprovalComponent extends Component
 
     public function verifyAndApprove()
     {
+        $approverId = User::where('id',$this->selRequisition->staff_id)->first();
+
         $this->validate([
             'paymentEvidence' => 'required',
             'secretCode' => 'required',
@@ -100,6 +103,18 @@ class CashOfficeRequisitionApprovalComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Requsition Approved',
+                'Your Requsition request has been approved',
+                route('requisition.raise')
+            );
+        }
+
+        $this->reset(['secretCode', 'comments', 'selRequisition']);
+
         $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
 
         $this->mount();
@@ -116,7 +131,7 @@ class CashOfficeRequisitionApprovalComponent extends Component
         ]);
         $this->requisition->update(['status' => 'rejected']);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition rejected."]);
-        
+
         $this->mount();
     }
 

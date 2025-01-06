@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -43,7 +44,7 @@ class ItemRequisitionHodApproval extends Component
 
         // Check if the HOD belongs to the Special Duty department
         if ($user->department->name === 'Special Duty Department') {
-            
+
             if ($this->filter === 'all') {
                 $query->whereIn('status', ['liaison_head_approved', 'special_duty_head_approved']);
             } elseif ($this->filter === 'pending') {
@@ -93,17 +94,27 @@ class ItemRequisitionHodApproval extends Component
             'secretCode' => 'required',
         ]);
 
+        $approverId = User::where('type', '!=', 'super admin')->where('type', '!=', 'DG')
+            ->whereHas('permissions', function ($query) {
+                $query->where('name', 'bursar approve SRN');
+            })->first();
+
+        if (!$approverId) {
+            $this->dispatchBrowserEvent('error',["error" =>"No next approver found with the 'bursar approval' permission"]);
+            return;
+        }
+
         // Check if the secret code matches
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
-            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
             return;
         }
 
         $user = Auth::user();
 
         // Determine the new status based on the user's department
-        $newStatus = ($user->department->name === 'Special Duty Department') 
-                        ? 'special_duty_head_approved' 
+        $newStatus = ($user->department->name === 'Special Duty Department')
+                        ? 'special_duty_head_approved'
                         : 'hod_approved';
 
         $this->selectedRequisition->update(['status' => $newStatus]);
@@ -115,6 +126,15 @@ class ItemRequisitionHodApproval extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Item Requsition Approval Request',
+                'A new Requsition by '. Auth::user()->name.' requires your approval.',
+                route('itemRequisition.bursarApproval'),
+            );
+        }
 
         $this->loadRequisitions();
         $this->reset(['secretCode', 'comments', 'selectedRequisition']);

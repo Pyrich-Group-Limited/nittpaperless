@@ -258,6 +258,7 @@ use App\Http\Livewire\Requisitions\PurchaseRequisitions;
 use App\Http\Livewire\ItemRequisitions\CreateItemRequisition;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionHodApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequestLiaisonHeadApproval;
+use App\Http\Livewire\ItemRequisitions\SpecialDutyItemRequestApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionBursarApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionStoreUnitApproval;
 use App\Http\Livewire\ItemRequisitions\ItemRequisitionStaffAcknowledgment;
@@ -1441,6 +1442,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('item-requisitions')->group(fun
     Route::get('/my-requests', CreateItemRequisition::class)->name('itemRequisition.index');
     Route::get('/hod-approval', ItemRequisitionHodApproval::class)->name('itemRequisition.hodApproval');
     Route::get('/liason-head-approval', ItemRequestLiaisonHeadApproval::class)->name('itemRequisition.liaisonApproval');
+    Route::get('/special-duty-approval', SpecialDutyItemRequestApproval::class)->name('itemRequisition.sdApproval');
     Route::get('/bursar-approval', ItemRequisitionBursarApproval::class)->name('itemRequisition.bursarApproval');
     Route::get('/store-approval', ItemRequisitionStoreUnitApproval::class)->name('itemRequisition.storeApproval');
     Route::get('/acknowledgment', ItemRequisitionStaffAcknowledgment::class)->name('itemRequisition.acknowledgment');

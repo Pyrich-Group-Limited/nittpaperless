@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -86,6 +87,19 @@ class CreateItemRequisition extends Component
         // Set the requisition status based on liaison office condition
         $status = Auth::user()->is_in_liaison_office ? 'liaison_head_approval' : 'pending_hod_approval';
 
+        // Determine if the user belongs to a liaison office
+        $isLiaisonOffice = Auth::user()->is_in_liaison_office;
+
+        $liaisonHead = User::where('type', 'liason office head')
+            ->where('location_type', Auth::user()->location_type)
+            ->first();
+        $departmentHead = User::where('type', 'hod')
+            ->where('department_id', Auth::user()->department_id)
+            ->first();
+
+        // Determine the approver ID
+        $approverId = $isLiaisonOffice ? ($liaisonHead ? $liaisonHead->id : null) : ($departmentHead ? $departmentHead->id : null);
+
         $requisition = ItemRequisitionRequest::create([
             'user_id' => auth()->id(),
             'department_id' => auth()->user()->department_id,
@@ -100,7 +114,20 @@ class CreateItemRequisition extends Component
                 'quantity_requested' => $item['quantity'],
             ]);
         }
+        if ($approverId) {
 
+            // Determine the route based on whether the auth user is under a liaison office
+            $route = Auth::user()->is_in_liaison_office
+            ? route('itemRequisition.liaisonApproval')
+            : route('itemRequisition.hodApproval');
+
+            createNotification(
+                $approverId,
+                'Item Requsition Approval Request',
+                'A new Requsition by '. Auth::user()->name.' requires your approval.',
+                $route,
+            );
+        }
         $this->reset(['items', 'secretCode', 'showSecretCodeModal']);
         $this->dispatchBrowserEvent('success', ['success' => 'Item Requisition Successful.']);
         $this->dispatchBrowserEvent('hide-secret-code-modal');

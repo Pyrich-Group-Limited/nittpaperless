@@ -143,6 +143,13 @@ class LeavesComponent extends Component
                 if ($registrar) {
                     $this->createApproval($leave, $registrar->id, $registrar->type, $registrar->department_id ?? '');
                 }
+
+                createNotification(
+                    $liaisonHead->id,
+                    'Leave Request',
+                    'A new Leave Request by '. Auth::user()->name.' requires your approval.',
+                    route('approvals.index'),
+                );
             } else {
 
                 // Check if the user has the 'raise sick leave' permission
@@ -161,6 +168,13 @@ class LeavesComponent extends Component
                         ->where('unit_id', Auth::user()->unit_id)
                         ->where('department_id', Auth::user()->department_id)
                         ->first();
+
+                        createNotification(
+                            $supervisor->id,
+                            'Leave Request',
+                            'A new Leave Request by '. Auth::user()->name.' requires your approval.',
+                            route('approvals.index'),
+                        );
                 }
 
                 if (Auth::user()->can('raise sick leave') && $this->leave_for_staff) {
@@ -176,6 +190,12 @@ class LeavesComponent extends Component
                     $unitHead = User::where('type', 'unit head')
                         ->where('unit_id', Auth::user()->unit_id)
                         ->first();
+                    createNotification(
+                        $unitHead->id,
+                        'Leave Request',
+                        'A new Leave Request by '. Auth::user()->name.' requires your approval.',
+                        route('approvals.index'),
+                    );
                 }
 
                 if (Auth::user()->can('raise sick leave') && $this->leave_for_staff) {

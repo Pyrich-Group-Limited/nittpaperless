@@ -115,9 +115,18 @@ class PendingLeavesComponent extends Component
 
         // If all approvals are "Approved", update the leave status
         if ($approvalStatuses->every(fn($status) => $status === 'Approved')) {
-            $leave->status = 'Approved'; // or "Fully Approved"
+            $leave->status = 'Approved';
             $leave->save();
+
+            createNotification(
+                $leave->employee_id,
+                'Leave Approved',
+                'Your Leave Request has been approved',
+                route('hrm.leave'),
+            );
         }
+
+
     }
 
     public function rejectLeave()

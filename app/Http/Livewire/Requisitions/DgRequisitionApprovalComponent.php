@@ -8,6 +8,7 @@ use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
+use App\Models\User;
 
 class DgRequisitionApprovalComponent extends Component
 {
@@ -76,6 +77,16 @@ class DgRequisitionApprovalComponent extends Component
             'secretCode' => 'required',
         ]);
 
+        $approverId = User::where('type', '!=', 'super admin')->where('type', '!=', 'DG')
+            ->whereHas('permissions', function ($query) {
+                $query->where('name', 'approve as bursar');
+            })->first();
+
+        if (!$approverId) {
+            $this->dispatchBrowserEvent('error',["error" =>"No next approver found with the 'bursar approval' permission"]);
+            return;
+        }
+
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
             $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
             return;
@@ -90,6 +101,15 @@ class DgRequisitionApprovalComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Requsition Approval Request',
+                'A new Requsition from'. Auth::user()->name.' (DG) requires your approval.',
+                route('bursar.requisitions')
+            );
+        }
 
         $this->reset(['secretCode', 'comments', 'selRequisition']);
         $this->dispatchBrowserEvent('success', ["success" => "Requisition approved successfully."]);

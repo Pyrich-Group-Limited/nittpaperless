@@ -961,32 +961,23 @@
                                 <li class="dash-item dash-hasmenu  {{ (Request::segment(1) == 'leave' || Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' :''}}">
                                     <a class="dash-link" href="#">{{__('Files/Documents')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                     <ul class="dash-submenu">
-                                        <li class="dash-item">
-                                            <a class="dash-link" href="{{ route('folders.index') }}">{{__('Document Folders')}}</a>
-                                        </li>
-                                        <li class="dash-item">
-                                            <a class="dash-link" href="{{ route('file.index') }}">{{__('Documents')}}</a>
-                                        </li>
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href={{ route('sharedfiles.index') }}>{{__('Shared')}}</a>
-                                        </li>
-                                        <li class="dash-item">
-                                            <a class="dash-link" href="{{ route('files.newFile') }}">{{__('New Documents')}}</a>
-                                        </li>
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href="{{ route('files.thisMonth') }}">{{__('This Month')}}</a>
-                                        </li>
+                                        @canany(['view department folders', 'view unit folders'])
+                                            <li class="dash-item">
+                                                <a class="dash-link" href="{{ route('folders.index') }}">{{__('Document Folders')}}</a>
+                                            </li>
+                                        @endcanany
 
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href="{{ route('files.archived') }}">{{__('Archived')}}</a>
-                                        </li>
-
-                                       {{-- <li class="dash-item ">
-                                            <a class="dash-link" href="#">{{__('Older Files')}}</a>
-                                        </li>
-                                         <li class="dash-item ">
-                                            <a class="dash-link" href="#">{{__('Recovery')}}</a>
-                                        </li> --}}
+                                        @canany(['view department documents', 'view unit documents'])
+                                            <li class="dash-item">
+                                                <a class="dash-link" href="{{ route('file.index') }}">{{__('Documents')}}</a>
+                                            </li>
+                                            <li class="dash-item ">
+                                                <a class="dash-link" href={{ route('sharedfiles.index') }}>{{__('Shared')}}</a>
+                                            </li>
+                                            <li class="dash-item ">
+                                                <a class="dash-link" href="{{ route('files.archived') }}">{{__('Archived')}}</a>
+                                            </li>
+                                        @endcanany
                                     </ul>
                                 </li>
                                 @can('manage document')

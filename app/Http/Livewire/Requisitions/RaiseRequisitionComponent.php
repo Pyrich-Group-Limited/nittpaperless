@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
 use App\Models\ChartOfAccount;
+use App\Models\User;
 
 
 class RaiseRequisitionComponent extends Component
@@ -19,7 +20,7 @@ class RaiseRequisitionComponent extends Component
 
     public $type, $purpose, $amount, $description, $document, $requisitions, $actionId, $selRequisition;
 
-    public $approvals;    
+    public $approvals;
     public $selectedRequisitionId;
 
     public $secretCode;
@@ -97,6 +98,20 @@ class RaiseRequisitionComponent extends Component
         // Set the requisition status based on liaison office condition
         $status = Auth::user()->is_in_liaison_office ? 'liaison_head_approval' : 'pending';
 
+        // Determine if the user belongs to a liaison office
+        $isLiaisonOffice = Auth::user()->is_in_liaison_office;
+
+        $liaisonHead = User::where('type', 'liason office head')
+            ->where('location_type', Auth::user()->location_type)
+            ->first();
+
+        $departmentHead = User::where('type', 'hod')
+            ->where('department_id', Auth::user()->department_id)
+            ->first();
+
+        // Determine the approver ID
+        $approverId = $isLiaisonOffice ? ($liaisonHead ? $liaisonHead->id : null) : ($departmentHead ? $departmentHead->id : null);
+
         StaffRequisition::create([
             'staff_id' => auth()->id(),
             'requisition_type' => $this->type,
@@ -109,6 +124,19 @@ class RaiseRequisitionComponent extends Component
             'status' => $status,
             'supporting_document' => $supportDocument,
         ]);
+
+        if ($approverId) {
+            $route = Auth::user()->is_in_liaison_office
+            ? route('liaison.requisitions')
+            : route('hod.requisitions');
+
+            createNotification(
+                $approverId,
+                'Requsition Approval Request',
+                'A new Requsition by '. Auth::user()->name.' requires your approval.',
+                $route,
+            );
+        }
 
         $this->reset();
         $this->mount();

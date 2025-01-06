@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -37,7 +38,7 @@ class ItemRequisitionStoreUnitApproval extends Component
             $query->where('status', 'bursar_approved');
         } elseif ($this->filter === 'approved') {
             $query->where('status', 'store_approved');
-        }    
+        }
         $this->requisitions = $query->orderBy('created_at','desc')->get();
     }
 
@@ -76,6 +77,8 @@ class ItemRequisitionStoreUnitApproval extends Component
             'secretCode' => 'required',
         ]);
 
+        $approverId = User::where('id',$this->selectedRequisition->user_id)->first();
+
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
             $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
             return;
@@ -88,6 +91,15 @@ class ItemRequisitionStoreUnitApproval extends Component
         }
 
         $this->selectedRequisition->update(['status' => 'store_approved']);
+
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Items Requsition Approved',
+                'Your Requsition for items has been approved',
+                route('itemRequisition.index')
+            );
+        }
 
         $this->dispatchBrowserEvent('success', ['success' => 'Requisition finalized successfully.']);
         $this->loadRequisitions();
