@@ -354,7 +354,12 @@ class DepartmentSeeder extends Seeder
         ]);
 
         $department = Department::create([
-            'name' => "Physical Plannings",
+            'name' => "Procurements",
+            'category' => "directorate",
+        ]);
+
+        $department = Department::create([
+            'name' => "DG's Office",
             'category' => "directorate",
         ]);
 
