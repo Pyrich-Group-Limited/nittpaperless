@@ -6,7 +6,8 @@ use Livewire\Component;
 use App\Models\StaffRequisition;
 use App\Models\RequisitionApprovalRecord;
 use App\Models\ChartOfAccount;
-use Illuminate\Support\Facades\Auth; 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class BursarRequisitionApprovalComponent extends Component
@@ -19,7 +20,7 @@ class BursarRequisitionApprovalComponent extends Component
     public $chartAccount;
     public $secretCode; // To store the secret code input
     public $showSecretCodeModal = false;
-    
+
     public function mount()
     {
         $user = auth()->user();
@@ -29,7 +30,7 @@ class BursarRequisitionApprovalComponent extends Component
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
-        
+
         $this->approvedRequisitions = StaffRequisition::with('approvalRecords.approver.signature')
             ->whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
@@ -48,7 +49,7 @@ class BursarRequisitionApprovalComponent extends Component
     {
         // Check if the file exists in the public folder
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {
@@ -73,6 +74,16 @@ class BursarRequisitionApprovalComponent extends Component
             'secretCode' => 'required',
         ]);
 
+        $approverId = User::where('type', '!=', 'super admin')->where('type', '!=', 'DG')
+            ->whereHas('permissions', function ($query) {
+                $query->where('name', 'approve as pv');
+            })->first();
+
+        if (!$approverId) {
+            $this->dispatchBrowserEvent('error',["error" =>"No next approver found with the 'payment voucher approval' permission"]);
+            return;
+        }
+
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
             $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
             return;
@@ -87,8 +98,17 @@ class BursarRequisitionApprovalComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
-        $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
 
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Requsition Approval Request',
+                'A new Requsition from'. Auth::user()->name.' requires your approval.',
+                route('pv.requisitions')
+            );
+        }
+        $this->reset(['secretCode', 'comments', 'selRequisition']);
+        $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
         $this->mount();
     }
 
@@ -103,7 +123,7 @@ class BursarRequisitionApprovalComponent extends Component
         ]);
         $this->requisition->update(['status' => 'rejected']);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition rejected."]);
-        
+
         $this->mount();
     }
 

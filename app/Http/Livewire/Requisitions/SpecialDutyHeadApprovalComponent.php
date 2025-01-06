@@ -8,6 +8,7 @@ use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
+use App\Models\User;
 
 class SpecialDutyHeadApprovalComponent extends Component
 {
@@ -70,6 +71,8 @@ class SpecialDutyHeadApprovalComponent extends Component
             'secretCode' => 'required',
         ]);
 
+        $approverId = User::where('type','DG')->first();
+
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
             $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
             return;
@@ -84,6 +87,16 @@ class SpecialDutyHeadApprovalComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Requsition Approval Request',
+                'A new Requsition from '. Auth::user()->name.' requires your approval.',
+                route('dg.requisitions')
+            );
+        }
+        $this->reset(['secretCode', 'comments', 'selRequisition']);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
 
         $this->mount();

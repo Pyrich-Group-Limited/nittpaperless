@@ -118,23 +118,43 @@ class DashboardController extends Controller
                 {
                     $emp = Employee::where('user_id', '=', $user->id)->first();
 
-                    $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
-                        function ($q){
-                            $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
-                        }
-                    )->get();
+                    $announcements = [];
+                    if (isset($emp->id)) {
+                        $announcements = Announcement::orderBy('announcements.id', 'desc')
+                            ->take(5)
+                            ->leftJoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')
+                            ->where('announcement_employees.employee_id', '=', $emp->id)
+                            ->orWhere(function ($q) {
+                                $q->where('announcements.department_id', '["0"]')
+                                    ->where('announcements.employee_id', '["0"]');
+                            })
+                            ->get();
+                    }
 
                     $employees = Employee::get();
-                    $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
-                        function ($q){
-                            $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
-                        }
-                    )->get();
-                    $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
-                        function ($q){
-                            $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
-                        }
-                    )->get();
+                    $meetings = [];
+                    if (isset($emp->id)) {
+                        $meetings = Meeting::orderBy('meetings.id', 'desc')
+                            ->take(5)
+                            ->leftJoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')
+                            ->where('meeting_employees.employee_id', '=', $emp->id)
+                            ->orWhere(function ($q) {
+                                $q->where('meetings.department_id', '["0"]')
+                                    ->where('meetings.employee_id', '["0"]');
+                            })
+                            ->get();
+                    }
+
+                    $events = [];
+                    if (isset($emp->id)) {
+                        $events = Event::leftJoin('event_employees', 'events.id', '=', 'event_employees.event_id')
+                            ->where('event_employees.employee_id', '=', $emp->id)
+                            ->orWhere(function ($q) {
+                                $q->where('events.department_id', '["0"]')
+                                    ->where('events.employee_id', '["0"]');
+                            })
+                            ->get();
+                    }
 
                     $arrEvents = [];
                     foreach($events as $event)
@@ -174,23 +194,43 @@ class DashboardController extends Controller
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
-            $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
-                }
-            )->get();
+            $announcements = [];
+            if (isset($emp->id)) {
+                $announcements = Announcement::orderBy('announcements.id', 'desc')
+                    ->take(5)
+                    ->leftJoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')
+                    ->where('announcement_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('announcements.department_id', '["0"]')
+                            ->where('announcements.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
 
             $employees = Employee::get();
-            $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
-                }
-            )->get();
-            $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
-                }
-            )->get();
+            $meetings = [];
+            if (isset($emp->id)) {
+                $meetings = Meeting::orderBy('meetings.id', 'desc')
+                    ->take(5)
+                    ->leftJoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')
+                    ->where('meeting_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('meetings.department_id', '["0"]')
+                            ->where('meetings.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
+
+            $events = [];
+            if (isset($emp->id)) {
+                $events = Event::leftJoin('event_employees', 'events.id', '=', 'event_employees.event_id')
+                    ->where('event_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('events.department_id', '["0"]')
+                            ->where('events.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
 
             $arrEvents = [];
             foreach($events as $event)
@@ -228,27 +268,64 @@ class DashboardController extends Controller
         if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
-
-            $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)
-            ->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')
-            ->where('announcement_employees.employee_id', '=', $emp->id)
-            ->orWhere(
-                function ($q){
-                    $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
-                }
-            )->get();
+            $announcements = [];
+            if (isset($emp->id)) {
+                $announcements = Announcement::orderBy('announcements.id', 'desc')
+                    ->take(5)
+                    ->leftJoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')
+                    ->where('announcement_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('announcements.department_id', '["0"]')
+                            ->where('announcements.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
 
             $employees = Employee::get();
-            $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
-                }
-            )->get();
-            $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
-                }
-            )->get();
+            $meetings = [];
+            if (isset($emp->id)) {
+                $meetings = Meeting::orderBy('meetings.id', 'desc')
+                    ->take(5)
+                    ->leftJoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')
+                    ->where('meeting_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('meetings.department_id', '["0"]')
+                            ->where('meetings.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
+
+            $events = [];
+            if (isset($emp->id)) {
+                $events = Event::leftJoin('event_employees', 'events.id', '=', 'event_employees.event_id')
+                    ->where('event_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('events.department_id', '["0"]')
+                            ->where('events.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
+
+             // $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)
+            // ->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')
+            // ->where('announcement_employees.employee_id', '=', $emp->id)
+            // ->orWhere(
+            //     function ($q){
+            //         $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
+            //     }
+            // )->get();
+
+            // $employees = Employee::get();
+            // $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
+            //     function ($q){
+            //         $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
+            //     }
+            // )->get();
+            // $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
+            //     function ($q){
+            //         $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
+            //     }
+            // )->get();
 
             $arrEvents = [];
             foreach($events as $event)

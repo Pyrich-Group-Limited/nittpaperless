@@ -364,51 +364,35 @@ class  UserController extends Controller
 
     public function editprofile(Request $request)
     {
+        $user = Auth::user();
 
-        $userDetail = \Auth::user();
-        $user       = User::findOrFail($userDetail['id']);
-        $this->validate(
-            $request, [
-                        'name' => 'required|max:120',
-                        'email' => 'required|email|unique:users,email,' . $userDetail['id'],
-                    ]
-        );
-        if($request->hasFile('profile'))
-        {
-            $filenameWithExt = $request->file('profile')->getClientOriginalName();
-            $filename        = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension       = $request->file('profile')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            $dir        = storage_path('uploads/avatar/');
-            $image_path = $dir . $userDetail['avatar'];
+        $request->validate([
+            'name' => 'required|max:120',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-            if(File::exists($image_path))
-            {
-                File::delete($image_path);
+        // Handle profile picture upload
+        if ($request->hasFile('profile')) {
+            $profilePath = $request->file('profile')->store('uploads/avatar', 'public');
+
+            // Delete the old profile picture if it exists
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
             }
 
-            if(!file_exists($dir))
-            {
-                mkdir($dir, 0777, true);
-            }
-            $path = $request->file('profile')->storeAs('uploads/avatar/', $fileNameToStore);
-
-
+            // Save the new profile path
+            $user->avatar = $profilePath;
         }
 
-        if(!empty($request->profile))
-        {
-            $user['avatar'] = $fileNameToStore;
-        }
-        $user['name']  = $request['name'];
-        $user['email'] = $request['email'];
+        // Update the user's details
+        $user->name = $request->name;
+        $user->email = $request->email;
         $user->save();
-        CustomField::saveData($user, $request->customField);
 
-        return redirect()->route('dashboard')->with(
-            'success', 'Profile successfully updated.'
-        );
+        return redirect()->back()->with('success', 'Profile updated successfully.');
     }
+
 
     public function updatePassword(Request $request)
     {

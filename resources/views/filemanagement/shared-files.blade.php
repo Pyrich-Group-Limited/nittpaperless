@@ -58,7 +58,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                     <div class="media align-items-center">
                                                                         <div>
                                                                             <div class="avatar-parent-child">
-                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($incoming->createdBy) && !empty($incoming->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$incoming->createdBy->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar')).'/avatar.png'}}" @endif>
+                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($incoming->createdBy) && !empty($incoming->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$incoming->createdBy->avatar}}" @else  src="{{asset('uploads/user.png')}}" @endif>
                                                                             </div>
                                                                         </div>
                                                                         <div class="media-body">
@@ -132,7 +132,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         </div>
                                         @endif
                                     </div>
-                                
+
                                     <div class="tab-pane fade fade table-responsive" id="outgoingFiles" role="tabpanel" aria-labelledby="profile-tab4">
                                         <table class="table table-flush table datatable" id="report-dataTable">
                                             <thead>
@@ -154,7 +154,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                     <div class="media align-items-center">
                                                                         <div>
                                                                             <div class="avatar-parent-child">
-                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($outgoing->createdBy) && !empty($outgoing->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$outgoing->createdBy->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar')).'/avatar.png'}}" @endif>
+                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($outgoing->createdBy) && !empty($outgoing->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$outgoing->createdBy->avatar}}" @else  src="{{asset('uploads/user.png')}}" @endif>
                                                                             </div>
                                                                         </div>
                                                                         <div class="media-body">
@@ -230,7 +230,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 
     <div class="row">
         <div class="col-xxl-12">
-          
+
             {{-- <div class="row">
 
                 @if($sharedFiles->isNotEmpty())

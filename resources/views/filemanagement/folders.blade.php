@@ -31,10 +31,12 @@
         </div>
 
         {{-- ---------- End Filter -------------- --}}
-        <a href="#" data-size="lg" data-url="{{ route('folder.new') }}" data-ajax-popup="true"
-            data-bs-toggle="tooltip" title="{{ __('Create new folder') }}" class="btn btn-sm btn-primary">
-            <i class="ti ti-plus">New </i>
-        </a>
+        @can('create folder')
+            <a href="#" data-size="lg" data-url="{{ route('folder.new') }}" data-ajax-popup="true"
+                data-bs-toggle="tooltip" title="{{ __('Create new folder') }}" class="btn btn-sm btn-primary">
+                <i class="ti ti-plus">New </i>
+            </a>
+        @endcan
     </div>
 @endsection
 
@@ -189,19 +191,25 @@
                                     <i class="ti ti-dots-vertical"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="#!" data-size="md" data-url="{{ route('folder.renameModal', $folder->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{ __('Rename Folder') }}">
-                                        <i class="ti ti-pencil"></i>
-                                        <span>{{ __('Rename') }}</span>
-                                    </a>
-                                    <a href="{{ route('folder.details', $folder->id) }}" class="dropdown-item">
-                                        <i class="ti ti-eye"></i>
-                                        <span> {{ __('View Documents') }}</span>
-                                    </a>
-                                    <a href="#" class="dropdown-item" data-bs-toggle="modal" 
-                                        data-bs-target="#createSubFolderModal" 
-                                        data-folder-id="{{ $folder->id }}">
-                                        Create Subfolder
-                                    </a>
+                                    @can('rename folder')
+                                        <a href="#!" data-size="md" data-url="{{ route('folder.renameModal', $folder->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{ __('Rename Folder') }}">
+                                            <i class="ti ti-pencil"></i>
+                                            <span>{{ __('Rename') }}</span>
+                                        </a>
+                                    @endcan
+                                    @can('view documents')
+                                        <a href="{{ route('folder.details', $folder->id) }}" class="dropdown-item">
+                                            <i class="ti ti-eye"></i>
+                                            <span> {{ __('View Documents') }}</span>
+                                        </a>
+                                    @endcan
+                                    @can('create folder')
+                                        <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#createSubFolderModal"
+                                            data-folder-id="{{ $folder->id }}">
+                                            Create Subfolder
+                                        </a>
+                                    @endcan
                                 </div>
                             </div>
                             {{-- @if ($folder->children->count() > 0)

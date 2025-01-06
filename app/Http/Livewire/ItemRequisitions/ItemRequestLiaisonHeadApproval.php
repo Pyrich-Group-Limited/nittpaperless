@@ -7,12 +7,18 @@ use App\Models\ItemRequisitionRequest;
 use App\Models\ItemRequisitionList;
 use App\Models\ItemRequisitionApproval;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\Department;
 
 class ItemRequestLiaisonHeadApproval extends Component
 {
     public $itemRequisitions;
     public $selectedRequisition;
     public $comments;
+
+    public $secretCode;
+    public $showSecretCodeModal = false;
 
     public $filter = 'all';
 
@@ -72,6 +78,28 @@ class ItemRequestLiaisonHeadApproval extends Component
             $this->dispatchBrowserEvent('error', ['message' => 'No requisition selected.']);
             return;
         }
+        $this->showSecretCodeModal = true;
+        $this->dispatchBrowserEvent('showSecretCodeModal');
+    }
+
+    public function verifyAndApprove()
+    {
+        $this->validate([
+            'secretCode' => 'required',
+        ]);
+
+        $dept = Department::where('name','Special Duty Department')->first();
+        $approverId = User::where('type','hod')->where('department_id', $dept->id)->first();
+
+        if (!$approverId) {
+            $this->dispatchBrowserEvent('error',["error" =>"No next approver found for special duty dapartment"]);
+            return;
+        }
+
+        if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
+            $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
+            return;
+        }
 
         $this->selectedRequisition->update(['status' => 'liaison_head_approved']);
 
@@ -82,6 +110,15 @@ class ItemRequestLiaisonHeadApproval extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Item Requsition Approval Request',
+                'A new Requsition by '. Auth::user()->name.' requires your approval.',
+                route('itemRequisition.hodApproval'),
+            );
+        }
 
         $this->dispatchBrowserEvent('success', ['success' => 'Requisition approved successfully.']);
         $this->loadRequisitions();

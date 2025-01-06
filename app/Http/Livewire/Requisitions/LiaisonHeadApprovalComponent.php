@@ -8,6 +8,7 @@ use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
+use App\Models\User;
 
 class LiaisonHeadApprovalComponent extends Component
 {
@@ -30,7 +31,7 @@ class LiaisonHeadApprovalComponent extends Component
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->where('location',Auth::user()->location_type)->orderBy('created_at', 'desc')->get();
-            
+
         $this->dgApprovedrequisitions = StaffRequisition::with('approvalRecords.approver.signature')
             ->whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
@@ -48,7 +49,7 @@ class LiaisonHeadApprovalComponent extends Component
     public function downloadFile($supporting_document)
     {
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {
@@ -65,12 +66,22 @@ class LiaisonHeadApprovalComponent extends Component
         $this->showSecretCodeModal = true;
         $this->dispatchBrowserEvent('showSecretCodeModal');
     }
-    
+
     public function verifyAndApprove()
     {
         $this->validate([
             'secretCode' => 'required',
         ]);
+
+        $approverId = User::where('type', '!=', 'super admin')->where('type', '!=', 'DG')
+            ->whereHas('permissions', function ($query) {
+                $query->where('name', 'approve as special duty');
+            })->first();
+
+        if (!$approverId) {
+            $this->dispatchBrowserEvent('error',["error" =>"No next approver found with the special duty approval permission"]);
+            return;
+        }
 
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
             $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);
@@ -86,6 +97,16 @@ class LiaisonHeadApprovalComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Requsition Approval Request',
+                'A new Requsition from '. Auth::user()->name.' requires your approval.',
+                route('sd.requisitions')
+            );
+        }
+        $this->reset(['secretCode', 'comments', 'selRequisition']);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
 
         $this->mount();

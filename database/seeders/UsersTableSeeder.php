@@ -30,32 +30,96 @@ class UsersTableSeeder extends Seeder
     {
         $arrPermissions = [
             [
-                'name' => 'share file',
-                'module' => 'File',
+                'name' => 'create folder',
+                'module' => 'Folder/Document',
                 'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'edit file',
-                'module' => 'File',
+                'name' => 'view department folders',
+                'module' => 'Folder/Document',
                 'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'view file',
-                'module' => 'File',
+                'name' => 'view unit folders',
+                'module' => 'Folder/Document',
                 'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'create file',
-                'module' => 'File',
+                'name' => 'rename folder',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'delete folder',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'create document',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'view department documents',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'view unit documents',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'share document',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'rename document',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'archive document',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'delete document',
+                'module' => 'Folder/Document',
                 'category' => "Paperless system",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -355,12 +419,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-            // [
-            //     'name' => '',
-            //     'guard_name' => 'web',
-            //     'created_at' => date('Y-m-d H:i:s'),
-            //     'updated_at' => date('Y-m-d H:i:s'),
-            // ],
+
             [
                 'name' => 'manage user',
                 'module' => 'Staff',
@@ -5258,6 +5317,19 @@ class UsersTableSeeder extends Seeder
             ['name' => 'audit approve'],
             ['name' => 'final account approve'],
 
+            // Folders/Documents permissions
+            [   'name' => 'create folder'],
+            [   'name' => 'view department folders'],
+            [   'name' => 'view unit folders'],
+            [   'name' => 'rename folder'],
+            [   'name' => 'delete folder'],
+            [   'name' => 'create document'],
+            [   'name' => 'view department documents'],
+            [   'name' => 'view unit documents'],
+            [   'name' => 'share document'],
+            [   'name' => 'rename document'],
+            [   'name' => 'delete document'],
+
             ['name' => 'manage attendance report'],
             ['name' => 'show bursary menu'],
             ['name' => 'show account overview'],
@@ -5921,6 +5993,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $userPermission = [
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders'],
             ['name' => 'show invoice'],
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
@@ -6047,7 +6121,7 @@ class UsersTableSeeder extends Seeder
 
         $liason = User::create(
             [
-                'name' => 'Head of Liason Office',
+                'name' => 'Emmanuel John',
                 'email' => 'liason@nitt.com',
                 'password' => Hash::make('1234'),
                 'type' => 'liason office head',
@@ -6075,6 +6149,18 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $hodPermission = [
+
+            [   'name' => 'create folder'],
+            [   'name' => 'view department folders'],
+            [   'name' => 'view unit folders'],
+            [   'name' => 'rename folder'],
+            [   'name' => 'delete folder'],
+            [   'name' => 'create document'],
+            [   'name' => 'view department documents'],
+            [   'name' => 'view unit documents'],
+            [   'name' => 'share document'],
+            [   'name' => 'rename document'],
+            [   'name' => 'archive document'],
 
             ['name' => 'manage report'],
             ['name' => 'raise query'],
@@ -6232,6 +6318,16 @@ class UsersTableSeeder extends Seeder
 
         // Define the permissions for the unit head role
         $unitHeadPermissions = [
+
+            [   'name' => 'create folder'],
+            [   'name' => 'view unit folders'],
+            [   'name' => 'rename folder'],
+            [   'name' => 'delete folder'],
+            [   'name' => 'create document'],
+            [   'name' => 'view unit documents'],
+            [   'name' => 'share document'],
+            [   'name' => 'rename document'],
+            [   'name' => 'archive document'],
 
             ['name' => 'unit head approve'],
             ['name' => 'raise query'],

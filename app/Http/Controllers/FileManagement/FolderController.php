@@ -15,34 +15,48 @@ class FolderController extends Controller
         $search = $request->query('search');
         $sortOrder = $request->get('sort', 'newest');
 
-        if ($search) {
-            // Search folders based on the query
-            $folders = Folder::where('folder_name', 'LIKE', "%{$search}%")
-                ->where('user_id', Auth::user()->id)
-                ->orderBy('created_at', 'desc')
-                ->paginate(12);
+        // Get the authenticated user's details
+        $user = Auth::user();
+        $userDepartmentId = $user->department_id;
+        $userUnitId = $user->unit_id;
+        $userLocationType = $user->location_type;
+
+        // Initialize the query
+        $query = Folder::query();
+
+        // Check permissions and adjust the query
+        if ($user->can('view department folders')) {
+            $query->where('department_id', $userDepartmentId)
+                ->where('location_type', $userLocationType);
+        } elseif ($user->can('view unit folders')) {
+            $query->where('unit_id', $userUnitId)
+                ->where('location_type', $userLocationType);
         } else {
-            // Sort folders based on the selected sort order
-            if ($sortOrder === 'newest') {
-                $folders = Folder::where('user_id', Auth::user()->id)
-                    ->where('parent_id', null)
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(12);
-            } else {
-                $folders = Folder::where('user_id', Auth::user()->id)
-                    ->where('parent_id', null)
-                    ->orderBy('created_at', 'asc')
-                    ->paginate(12);
-            }
+            $folders = collect([]);
+            return view('filemanagement.folders', compact('folders', 'sortOrder'));
         }
+
+        if ($search) {
+            $query->where('folder_name', 'LIKE', "%{$search}%");
+        }
+
+        if ($sortOrder === 'newest') {
+            $query->orderBy('created_at', 'desc');
+        } else {
+            $query->orderBy('created_at', 'asc');
+        }
+
+        $folders = $query->where('parent_id', null)->paginate(12);
 
         return view('filemanagement.folders', compact('folders', 'sortOrder'));
     }
 
 
+
+
     public function createFolderModal(){
-        // $folders = Folder::where('user_id',Auth::user()->id)->orderBy('created_at', 'asc')->get();
-        $folders = Folder::where('user_id',Auth::user()->id)->get();
+        $folders = Folder::where('department_id',Auth::user()->department_id)
+        ->where('location_type',Auth::user()->location_type)->get();
         return view('filemanagement.modals.create-folder',compact('folders'));
     }
 
@@ -63,6 +77,9 @@ class FolderController extends Controller
             'folder_name' => $request->name,
             'user_id' => Auth::id(),
             'parent_id' => $request->parent_id,
+            'department_id' => Auth::user()->department_id,
+            'unit_id' => Auth::user()->unit_id ?? null,
+            'location_type' => Auth::user()->location_type,
         ]);
 
         return redirect()->back()->with('success', 'Folder created successfully.');
