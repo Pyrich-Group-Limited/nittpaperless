@@ -915,6 +915,141 @@ class DashboardController extends Controller
             }
             else
             {
+                // if(\Auth::user()->can('show account dashboard'))
+                // {
+                    $data['latestIncome']  = Revenue::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
+                    $data['latestExpense'] = Payment::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
+
+
+                    $incomeCategory = ProductServiceCategory::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'income')->get();
+                    $inColor        = array();
+                    $inCategory     = array();
+                    $inAmount       = array();
+                    for($i = 0; $i < count($incomeCategory); $i++)
+                    {
+                        $inColor[]    = '#' . $incomeCategory[$i]->color;
+                        $inCategory[] = $incomeCategory[$i]->name;
+                        $inAmount[]   = $incomeCategory[$i]->incomeCategoryRevenueAmount();
+                    }
+
+
+                    $data['incomeCategoryColor'] = $inColor;
+                    $data['incomeCategory']      = $inCategory;
+                    $data['incomeCatAmount']     = $inAmount;
+
+
+                    $expenseCategory = ProductServiceCategory::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'expense')->get();
+                    $exColor         = array();
+                    $exCategory      = array();
+                    $exAmount        = array();
+                    for($i = 0; $i < count($expenseCategory); $i++)
+                    {
+                        $exColor[]    = '#' . $expenseCategory[$i]->color;
+                        $exCategory[] = $expenseCategory[$i]->name;
+                        $exAmount[]   = $expenseCategory[$i]->expenseCategoryAmount();
+                    }
+
+                    $data['expenseCategoryColor'] = $exColor;
+                    $data['expenseCategory']      = $exCategory;
+                    $data['expenseCatAmount']     = $exAmount;
+
+                    $data['incExpBarChartData']  = \Auth::user()->getincExpBarChartData();
+                    $data['incExpLineChartData'] = \Auth::user()->getIncExpLineChartDate();
+
+                    $data['currentYear']  = date('Y');
+                    $data['currentMonth'] = date('M');
+
+                    $constant['taxes']         = Tax::where('created_by', \Auth::user()->creatorId())->count();
+                    $constant['category']      = ProductServiceCategory::where('created_by', \Auth::user()->creatorId())->count();
+                    $constant['units']         = ProductServiceUnit::where('created_by', \Auth::user()->creatorId())->count();
+                    $constant['bankAccount']   = BankAccount::where('created_by', \Auth::user()->creatorId())->count();
+                    $data['constant']          = $constant;
+                    $data['bankAccountDetail'] = BankAccount::where('created_by', '=', \Auth::user()->creatorId())->get();
+                    $data['recentInvoice']     = Invoice::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
+                    $data['weeklyInvoice']     = \Auth::user()->weeklyInvoice();
+                    $data['monthlyInvoice']    = \Auth::user()->monthlyInvoice();
+                    $data['recentBill']        = Bill::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
+                    $data['weeklyBill']        = \Auth::user()->weeklyBill();
+                    $data['monthlyBill']       = \Auth::user()->monthlyBill();
+                    $data['goals']             = Goal::where('created_by', '=', \Auth::user()->creatorId())->where('is_display', 1)->get();
+
+                    return view('dashboard.business-dashboard', $data);
+
+
+                // }
+                // else {
+                //     return $this->hrm_dashboard_index();
+                // }
+
+
+            }
+        }
+        else
+        {
+            if(!file_exists(storage_path() . "/installed"))
+            {
+                header('location:install');
+                die;
+            }
+            else
+            {
+                $settings = Utility::settings();
+
+                if ($settings['display_landing_page'] == 'on' && \Schema::hasTable('landing_page_settings'))
+                {
+                    return redirect('login');
+
+
+                    //return view('landingpage::layouts.landingpage', compact('settings'));
+                }
+                else
+                {
+                    return redirect('login');
+                }
+
+            }
+        }
+    }
+
+    public function planning_dashboard_index()
+    {
+
+        if(Auth::check())
+        {
+           if(Auth::user()->type == 'client')
+            {
+                return redirect()->route('hrm.dashboard');
+            }
+            elseif(Auth::user()->type == 'unit head')
+            {
+                return redirect()->route('unit.dashboard');
+            }
+            elseif(Auth::user()->type == 'liason office head')
+            {
+                return redirect()->route('liason.dashboard');
+            }
+            elseif(Auth::user()->type == 'user')
+            {
+                return redirect()->route('user.dashboard');
+            }
+            elseif(Auth::user()->type == 'store keeper')
+            {
+                return redirect()->route('store.dashboard');
+            }
+            elseif(Auth::user()->type == 'supervisor')
+            {
+                return redirect()->route('supervisor.dashboard');
+            }
+            elseif(Auth::user()->type == 'hod')
+            {
+                return redirect()->route('hod.dashboard');
+            }
+            elseif(Auth::user()->type == 'DG')
+            {
+                return redirect()->route('dg.dashboard');
+            }
+            else
+            {
                 if(\Auth::user()->can('show account dashboard'))
                 {
                     $data['latestIncome']  = Revenue::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();

@@ -402,6 +402,7 @@ Route::middleware(['auth', 'password.changed'])->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard_index'])->name('dashboard')->middleware(['XSS', 'revalidate',]);
 
     Route::get('/business-dashboard', [DashboardController::class, 'business_dashboard_index'])->name('business-dashboard')->middleware(['auth','XSS', 'revalidate']);
+    Route::get('/advance-planning-dashboard', [DashboardController::class, 'planning_dashboard_index'])->name('planning-dashboard')->middleware(['auth','XSS', 'revalidate']);
 
     Route::get('/project-dashboard', [DashboardController::class, 'project_dashboard_index'])->name('project.dashboard')->middleware(['auth','XSS', 'revalidate']);
 

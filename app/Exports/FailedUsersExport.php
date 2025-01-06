@@ -26,6 +26,6 @@ class FailedUsersExport implements FromArray, WithHeadings
 
     public function headings(): array
     {
-        return ["STAFF NAME", "EMAIL", "LOCATION", "HEAD QUARTERS/LIASON", "DEPARTMENT/DIRECTORATE", "UNIT", "SUB UNIT", "UNIT", "ROLE","DESIGNANTION","LEVEL","COMMENT"];
+        return ["STAFF NAME", "EMAIL", "LOCATION", "HEAD QUARTERS/LIASON", "DEPARTMENT/DIRECTORATE", "UNIT", "SUB UNIT", "ROLE","DESIGNANTION","LEVEL","COMMENT"];
     }
 }

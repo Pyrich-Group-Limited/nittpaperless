@@ -129,7 +129,7 @@
                                                                                                                         <h1
                                                                                                                             style="color: #808080; direction: ltr; font-family: 'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 28px; font-weight: normal; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0;">
                                                                                                                             <strong>Hello,
-                                                                                                                                {{ $user->surname }}</strong>
+                                                                                                                                {{ $user->name }}</strong>
                                                                                                                         </h1>
                                                                                                                     </td>
                                                                                                                 </tr>
@@ -202,11 +202,11 @@
                                                                                                                             style="color: #393d47; font-family: 'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif; line-height: 1.5; padding: 8px 40px 8px 40px;">
                                                                                                                             <div
                                                                                                                                 style="line-height: 1.5; font-size: 12px; font-family: 'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif; text-align: center; color: #393d47; mso-line-height-alt: 18px;">
-                                                                                                                                <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;">You have been created a profile on NITT as  a <b>{{ $user->user_type }}</b>.</p>
+                                                                                                                                <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;">You have been created a profile on NITT paperless system.</p>
                                                                                                                                 <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;">Kindly find below your login details.</p>
                                                                                                                                 <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;"><b>Email: </b> {{ $user->email }} </p>
                                                                                                                                 <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;"><b>Password: </b> 12345678 </p>
-                                                                                                                                <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;">Kindly ensure you change your password after a successfully login</p>
+                                                                                                                                <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;">Kindly ensure you change your PASSWORD and upload your SIGNATURE after successful login. Thanks</p>
                                                                                                                             </div>
                                                                                                                         </div>
                                                                                                                     </td>
@@ -228,7 +228,7 @@
                                                                                                                             <v:roundrect
                                                                                                                                 xmlns:v="urn:schemas-microsoft-com:vml"
                                                                                                                                 xmlns:w="urn:schemas-microsoft-com:office:word"
-                                                                                                                                href="{{ $url }}"
+                                                                                                                                href="{{ route('login')}}"
                                                                                                                                 style="height:30.5pt;width:236.25pt;v-text-anchor:middle;"
                                                                                                                                 arcsize="0%"
                                                                                                                                 strokeweight="0.75pt"
@@ -240,7 +240,7 @@
                                                                                                                                         <center
                                                                                                                                             style="color:#ffffff; font-family:Arial, sans-serif; font-size:14px">
                                                                                                                                             <a style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: white; background-color: #808080; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; width: auto; padding-top: 10px; padding-bottom: 10px; font-family: 'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all; border: 1px solid #fff;font-weight: 700;"
-                                                                                                                                                href="{{ $url }}"
+                                                                                                                                                href="{{ route('login')}}"
                                                                                                                                                 target="_blank"><span
                                                                                                                                                     style="padding-left: 40px; padding-right: 40px; font-size: 14px; display: inline-block; letter-spacing: undefined;"><span
                                                                                                                                                         style="font-size: 16px; line-height: 2; word-break: break-word; font-family: 'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif; mso-line-height-alt: 32px;"><span

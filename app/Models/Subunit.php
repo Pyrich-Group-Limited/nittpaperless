@@ -10,7 +10,7 @@ class Subunit extends Model
     use HasFactory;
 
 
-    protected $fillalbe = [
+    protected $fillable = [
         'name',
         'unit_id'
     ];

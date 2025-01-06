@@ -124,7 +124,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                             </tbody>
                         </table>
                     </div>
-                    <div class="paginate">{{ $users->links('pagination::bootstrap-5') }}</div>
+                    <div wire:ignore class="paginate">{{ $users->links('pagination::bootstrap-5') }}</div>
                 </div>
             </div>
         </div>

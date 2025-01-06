@@ -704,8 +704,8 @@ class DesignationSeeder extends Seeder
             'name' => "TTO II"
         ]);
 
-        // Designation::Create([
-        //     'name' => "TTO"
-        // ]);
+        Designation::Create([
+            'name' => "Asst. Chief Training & Devt. Off."
+        ]);
     }
 }
