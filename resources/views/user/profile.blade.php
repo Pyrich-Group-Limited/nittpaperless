@@ -39,51 +39,70 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 <div class="card-header">
                     <h5>{{__('Personal Info')}}</h5>
                 </div>
+
                 <div class="card-body">
-                    {{Form::model($userDetail,array('route' => array('update.account'), 'method' => 'post', 'enctype' => "multipart/form-data"))}}
-                        @csrf
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label text-dark">{{__('Name')}}</label>
-                                    <input class="form-control @error('name') is-invalid @enderror" name="name" type="text" id="name" placeholder="{{ __('Enter Your Name') }}" value="{{ $userDetail->name }}" required autocomplete="name">
-                                    @error('name')
-                                    <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    <label for="email" class="col-form-label text-dark">{{__('Email')}}</label>
-                                    <input class="form-control @error('email') is-invalid @enderror" name="email" type="text" id="email" placeholder="{{ __('Enter Your Email Address') }}" value="{{ $userDetail->email }}" required autocomplete="email">
-                                    @error('email')
-                                    <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-group">
-                                    <div class="choose-files">
-                                        <label for="avatar">
-                                            <div class=" bg-primary profile_update"> <i class="ti ti-upload px-1"></i>{{__('Choose file here')}}</div>
-                                            <input type="file" class="form-control file" name="profile" id="avatar" data-filename="profile_update">
-                                        </label>
-                                    </div>
-                                    <span class="text-xs text-muted">{{ __('Please upload a valid image file. Size of image should not be more than 2MB.')}}</span>
-                                    @error('avatar')
-                                    <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
-                                    @enderror
-
-                                </div>
-
-                            </div>
-                            <div class="col-lg-12 text-end">
-                                <input type="submit" value="{{__('Save Changes')}}" class="btn btn-print-invoice  btn-primary m-r-10">
+                    {{ Form::model($userDetail, ['route' => ['update.account'], 'method' => 'post', 'enctype' => "multipart/form-data"]) }}
+                    @csrf
+                    <div class="row">
+                        <!-- Display User's Profile Photo -->
+                        <div class="col-lg-12 text-center mb-4">
+                            <div class="profile-picture-container">
+                                <img src="{{ $userDetail->avatar ? asset('storage/' . $userDetail->avatar) : asset('default-avatar.png') }}"
+                                     alt="Profile Picture"
+                                     class="rounded-circle profile-picture"
+                                     width="100" height="100">
                             </div>
                         </div>
-                    </form>
 
+                        <!-- Name Input -->
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label text-dark">{{ __('Name') }}</label>
+                                <input class="form-control @error('name') is-invalid @enderror" name="name" type="text" id="name" placeholder="{{ __('Enter Your Name') }}" value="{{ $userDetail->name }}" required autocomplete="name">
+                                @error('name')
+                                <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Email Input -->
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="email" class="col-form-label text-dark">{{ __('Email') }}</label>
+                                <input class="form-control @error('email') is-invalid @enderror" name="email" type="text" id="email" placeholder="{{ __('Enter Your Email Address') }}" value="{{ $userDetail->email }}" required autocomplete="email">
+                                @error('email')
+                                <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Profile Picture Upload -->
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label for="avatar" class="col-form-label text-dark">{{ __('Upload Profile Picture') }}</label>
+                                <div class="choose-files">
+                                    <label for="avatar">
+                                        <div class="bg-primary profile_update">
+                                            <i class="ti ti-upload px-1"></i>{{ __('Choose file here') }}
+                                        </div>
+                                        <input type="file" class="form-control file" name="profile" id="avatar" data-filename="profile_update">
+                                    </label>
+                                </div>
+                                <span class="text-xs text-muted">{{ __('Please upload a valid image file. Size of image should not be more than 2MB.') }}</span>
+                                @error('profile')
+                                <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Save Changes Button -->
+                        <div class="col-lg-12 text-end">
+                            <input type="submit" value="{{ __('Save Changes') }}" class="btn btn-print-invoice btn-primary m-r-10">
+                        </div>
+                    </div>
+                    </form>
                 </div>
+
 
             </div>
             <div id="change_password" class="card">
