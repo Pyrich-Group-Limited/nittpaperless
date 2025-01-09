@@ -15,6 +15,7 @@ class ProjectApplicationDocument extends Model
         'document',
         'user_id',
     ];
+    
     // document upload belongs to one project application
     public function application()
     {

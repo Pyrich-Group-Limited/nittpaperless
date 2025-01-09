@@ -19,8 +19,6 @@ class DocumentsComponent extends Component
 
     public function uploadDocument(){
         $this->validate([
-            // 'doc_name' =>['required','string','unique:project_application_documents,document_name'],
-            // 'doc_file' =>['required','file'],
             'doc_name' =>['required','string'],
             'doc_file' => 'required|file|mimes:pdf,doc,docx,jpg,png|max:10240',
             'project' => 'required',
@@ -48,13 +46,13 @@ class DocumentsComponent extends Component
 
         // }
             $filePath = public_path('assets/documents/documents/' . $document);
-            
+
             if (file_exists($filePath)) {
                 return response()->download($filePath, $document);
             } else {
                 $this->dispatchBrowserEvent('error',["error" =>"Document not found!."]);
             }
-        
+
     }
 
     public function render()

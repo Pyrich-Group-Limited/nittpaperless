@@ -35,7 +35,7 @@ class ContractorRegisterComponent extends Component
             'type' => "contractor"
         ]);
 
-        $this->dispatchBrowserEvent('success',['success' => 'Regsitraiton Successful']);
+        $this->dispatchBrowserEvent('success',['success' => 'Registration Successful']);
         Auth::login($user);
         return redirect()->route('contractor.dashboard');
 

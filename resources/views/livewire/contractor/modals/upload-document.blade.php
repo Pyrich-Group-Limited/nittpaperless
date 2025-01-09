@@ -29,7 +29,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         {{ Form::label('name', __('Document Name'), ['class' => 'form-label']) }}
-                                        <input type="fie" id="doc_name" wire:model="doc_name"
+                                        <input type="file" id="doc_name" wire:model="doc_name"
                                             class="form-control" placeholder="Document Name" />
                                         @error('doc_name')
                                             <small class="invalid-name" role="alert">
