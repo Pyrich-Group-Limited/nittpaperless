@@ -15,10 +15,15 @@ class ProjectApplicationDocument extends Model
         'document',
         'user_id',
     ];
-    
+
     // document upload belongs to one project application
     public function application()
     {
         return $this->belongsTo(ProjectApplication::class,'project_application_id');
+    }
+
+    public function getDocumentUrlAttribute()
+    {
+        return asset('storage/' . $this->document);
     }
 }
