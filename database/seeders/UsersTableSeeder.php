@@ -5993,6 +5993,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $userPermission = [
+            [   'name' => 'create folder'],
+            [   'name' => 'create document'],
             ['name' => 'view unit documents'],
             ['name' => 'view unit folders'],
             ['name' => 'show invoice'],
@@ -6033,6 +6035,10 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $supervisorPermission = [
+            [   'name' => 'create folder'],
+            [   'name' => 'create document'],
+            [   'name' => 'view unit documents'],
+            [   'name' => 'view unit folders'],
             ['name' => 'raise query'],
             ['name' => 'approve as bursar'],
             ['name' => 'approve leave'],
@@ -6104,7 +6110,10 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liasonPermission = [
-
+            ['name' => 'create folder'],
+            ['name' => 'create document'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders'],
             ['name' => 'liaison approve'],
             ['name' => 'raise query'],
             ['name' => 'liaison approve SRN'],
@@ -6380,7 +6389,10 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $storePermission = [
-
+            ['name' => 'create folder'],
+            ['name' => 'create document'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders'],
             ['name' => 'store approve SRN'],
             ['name' => 'approve as audit'],
             ['name' => 'manage product & service'],
@@ -6425,7 +6437,10 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
-
+            ['name' => 'create folder'],
+            ['name' => 'create document'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders'],
             ['name' => 'final account approve'],
             ['name' => 'report view'],
             ['name' => 'hod approve'],
@@ -6615,6 +6630,10 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $clientPermission = [
+            ['name' => 'create folder'],
+            ['name' => 'create document'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders'],
             ['name' => 'assign query'],
             ['name' => 'manage attendance'],
             ['name' => 'manage attendance report'],
