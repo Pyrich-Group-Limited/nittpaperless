@@ -47,7 +47,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                         <!-- Display User's Profile Photo -->
                         <div class="col-lg-12 text-center mb-4">
                             <div class="profile-picture-container">
-                                <img src="{{ $userDetail->avatar ? asset('storage/' . $userDetail->avatar) : asset('default-avatar.png') }}"
+                                <img src="{{ $userDetail->avatar ? asset('storage/' . $userDetail->avatar) : asset('uploads/user.png') }}"
                                      alt="Profile Picture"
                                      class="rounded-circle profile-picture"
                                      width="100" height="100">
@@ -113,7 +113,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     <form method="post" action="{{route('update.password')}}">
                         @csrf
                         <div class="row">
-                            <div class="col-lg-6 col-sm-6 form-group">
+                            <div class="col-lg-12 col-sm-6 form-group">
                                 <label for="old_password" class="col-form-label text-dark">{{ __('Old Password') }}</label>
                                 <input class="form-control @error('old_password') is-invalid @enderror" name="old_password" type="password" id="old_password" required autocomplete="old_password" placeholder="{{ __('Enter Old Password') }}">
                                 @error('old_password')
@@ -122,14 +122,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                             </div>
 
                             <div class="col-lg-6 col-sm-6 form-group">
-                                <label for="password" class="col-form-label text-dark">{{ __('Password') }}</label>
+                                <label for="password" class="col-form-label text-dark">{{ __('New Password') }}</label>
                                 <input class="form-control @error('password') is-invalid @enderror" name="password" type="password" required autocomplete="new-password" id="password" placeholder="{{ __('Enter Your Password') }}">
                                 @error('password')
                                 <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-lg-6 col-sm-6 form-group">
-                                <label for="password_confirmation" class="col-form-label text-dark">{{ __('New Confirm Password') }}</label>
+                                <label for="password_confirmation" class="col-form-label text-dark">{{ __('Confirm New Password') }}</label>
                                 <input class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" type="password" required autocomplete="new-password" id="password_confirmation" placeholder="{{ __('Enter Your Password') }}">
                             </div>
                             <div class="col-lg-12 text-end">

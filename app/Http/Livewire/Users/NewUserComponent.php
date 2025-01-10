@@ -74,6 +74,8 @@ class NewUserComponent extends Component
             ]);
         }
 
+        $userType = $this->user_role == "Human Resource (HR)" ? "client" : strtolower($this->user_role);
+
         $designation = Designation::find($this->designation);
 
         $user = User::create([
@@ -84,7 +86,7 @@ class NewUserComponent extends Component
             'department_id' => $this->department,
             'unit_id' => $this->unit,
             'sub_unit_id' => $this->subunit,
-            'type' => $this->user_role=="Human Resource (HR)"? "client" : strtolower($this->user_role),
+            'type' => $userType,
             'designation' => $designation->name,
             'ippis' => $this->ippis,
             'password' => Hash::make('12345678'),
@@ -94,6 +96,8 @@ class NewUserComponent extends Component
         Employee::create([
             'user_id' => $user->id
         ]);
+
+        
 
         $this->reset();
         $this->dispatchBrowserEvent('success',["success" =>"User Successfully Registered"]);
