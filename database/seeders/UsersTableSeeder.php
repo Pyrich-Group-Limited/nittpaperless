@@ -5327,6 +5327,7 @@ class UsersTableSeeder extends Seeder
             [   'name' => 'view department documents'],
             [   'name' => 'view unit documents'],
             [   'name' => 'share document'],
+            [   'name' => 'archive document'],
             [   'name' => 'rename document'],
             [   'name' => 'delete document'],
 
@@ -5343,7 +5344,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show accounting setup'],
             ['name' => 'show print setup'],
 
-             ['name' => 'show chart of account'],
+            ['name' => 'show chart of account'],
             ['name' => 'show journal'],
             ['name' => 'show ledger'],
             ['name' => 'show balance sheet'],
@@ -5386,6 +5387,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show crm dashboard'],
             ['name' => 'show hrm dashboard'],
             ['name' => 'show project dashboard'],
+
             ['name' => 'manage user'],
             ['name' => 'create user'],
             ['name' => 'edit user'],
@@ -5400,6 +5402,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'delete permission'],
             ['name' => 'manage company settings'],
             ['name' => 'manage business settings'],
+
             ['name' => 'manage expense'],
             ['name' => 'create expense'],
             ['name' => 'edit expense'],
@@ -5413,6 +5416,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'create product & service'],
             ['name' => 'delete product & service'],
             ['name' => 'edit product & service'],
+
             ['name' => 'manage constant tax'],
             ['name' => 'create constant tax'],
             ['name' => 'edit constant tax'],
@@ -5984,28 +5988,33 @@ class UsersTableSeeder extends Seeder
         $dg->givePermissionTo($dgPermissions);
 
 
+        // Create the 'user' role if it doesn't already exist
+            $userRole = Role::firstOrCreate(
+                ['name' => 'user'],
+                ['created_by' => 0]
+            );
 
-        // user
-        $userRole       = Role::create(
-            [
-                'name' => 'user',
-                'created_by' => 0,
-            ]
-        );
-        $userPermission = [
-            [   'name' => 'create folder'],
-            [   'name' => 'create document'],
-            ['name' => 'view unit documents'],
-            ['name' => 'view unit folders'],
-            ['name' => 'show invoice'],
-            ['name' => 'show proposal'],
-            ['name' => 'show profile'],
-            ['name' => 'request SRN'],
-        ];
-        $userRole->givePermissionTo($userPermission);
+            $userPermissions = [
+                'share document',
+                'archive document',
+                'create folder',
+                'create document',
+                'view unit documents',
+                'view unit folders',
+                'show invoice',
+                'show proposal',
+                'show profile',
+                'request SRN',
+            ];
 
-        $user = User::create(
-            [
+            // Create permissions if they don’t already exist and assign them to the role
+            foreach ($userPermissions as $permissionName) {
+                $permission = Permission::firstOrCreate(['name' => $permissionName]);
+                $userRole->givePermissionTo($permission);
+            }
+
+            // Create a new user
+            $user = User::create([
                 'name' => 'Test User',
                 'email' => 'user@nitt.com',
                 'location_type' => 'Department',
@@ -6021,10 +6030,13 @@ class UsersTableSeeder extends Seeder
                 'avatar' => '',
                 'created_by' => $company->id,
                 'password_changed' => true,
-            ]
-        );
-        Employee::create(['user_id' => $user->id]);
-        $user->assignRole($userRole);
+            ]);
+
+            // Create an employee record linked to the user
+            Employee::create(['user_id' => $user->id]);
+
+            // Assign the 'user' role to the new user (inherits all permissions)
+            $user->assignRole($userRole);
 
 
         // supervisor
@@ -6035,10 +6047,12 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $supervisorPermission = [
-            [   'name' => 'create folder'],
-            [   'name' => 'create document'],
-            [   'name' => 'view unit documents'],
-            [   'name' => 'view unit folders'],
+            ['name' => 'create folder'],
+            ['name' => 'create document'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders'],
+            ['name' => 'share document'],
+            ['name' => 'archive document'],
             ['name' => 'raise query'],
             ['name' => 'approve as bursar'],
             ['name' => 'approve leave'],
@@ -6110,6 +6124,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $liasonPermission = [
+            ['name' => 'share document'],
+            ['name' => 'archive document'],
             ['name' => 'create folder'],
             ['name' => 'create document'],
             ['name' => 'view unit documents'],
@@ -6216,7 +6232,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         Employee::create(['user_id' => $hod->id]);
-        // $hod->assignRole($hodRole);
+        $hod->assignRole($hodRole);
         $hod->givePermissionTo($hodPermission);
 
 
@@ -6389,6 +6405,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $storePermission = [
+            ['name' => 'share document'],
+            ['name' => 'archive document'],
             ['name' => 'create folder'],
             ['name' => 'create document'],
             ['name' => 'view unit documents'],
@@ -6425,7 +6443,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
         Employee::create(['user_id' => $storeKeeper->id]);
-        // $storeKeeper->assignRole($storeKeeperRole);
+        $storeKeeper->assignRole($storeKeeperRole);
         $storeKeeper->givePermissionTo($storePermission);
 
 
@@ -6437,6 +6455,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $accountantPermission = [
+            ['name' => 'share document'],
+            ['name' => 'archive document'],
             ['name' => 'create folder'],
             ['name' => 'create document'],
             ['name' => 'view unit documents'],
@@ -6630,6 +6650,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $clientPermission = [
+            ['name' => 'share document'],
+            ['name' => 'archive document'],
             ['name' => 'create folder'],
             ['name' => 'create document'],
             ['name' => 'view unit documents'],
