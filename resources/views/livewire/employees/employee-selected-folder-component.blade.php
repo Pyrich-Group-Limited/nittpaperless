@@ -15,7 +15,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <li class="breadcrumb-item"> {{ $folder->folder_name }}</li>
 @endsection
 @section('action-btn')
-@can('Upload Employee FIle')
+@can('Upload Employee Document')
     <div class="float-end">
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newfile" data-bs-toggle="tooltip" title="{{__('Create new folder')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-plus">Upload document </i>

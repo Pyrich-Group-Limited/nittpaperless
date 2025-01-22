@@ -847,27 +847,23 @@
                                 <li class="dash-item dash-hasmenu  <?php echo e((Request::segment(1) == 'leave' || Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' :''); ?>">
                                     <a class="dash-link" href="#"><?php echo e(__('Files/Documents')); ?><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                     <ul class="dash-submenu">
-                                        <li class="dash-item">
-                                            <a class="dash-link" href="<?php echo e(route('folders.index')); ?>"><?php echo e(__('Document Folders')); ?></a>
-                                        </li>
-                                        <li class="dash-item">
-                                            <a class="dash-link" href="<?php echo e(route('file.index')); ?>"><?php echo e(__('Documents')); ?></a>
-                                        </li>
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href=<?php echo e(route('sharedfiles.index')); ?>><?php echo e(__('Shared')); ?></a>
-                                        </li>
-                                        <li class="dash-item">
-                                            <a class="dash-link" href="<?php echo e(route('files.newFile')); ?>"><?php echo e(__('New Documents')); ?></a>
-                                        </li>
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href="<?php echo e(route('files.thisMonth')); ?>"><?php echo e(__('This Month')); ?></a>
-                                        </li>
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['view department folders', 'view unit folders'])): ?>
+                                            <li class="dash-item">
+                                                <a class="dash-link" href="<?php echo e(route('folders.index')); ?>"><?php echo e(__('Document Folders')); ?></a>
+                                            </li>
+                                        <?php endif; ?>
 
-                                        <li class="dash-item ">
-                                            <a class="dash-link" href="<?php echo e(route('files.archived')); ?>"><?php echo e(__('Archived')); ?></a>
-                                        </li>
-
-                                       
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['view department documents', 'view unit documents'])): ?>
+                                            <li class="dash-item">
+                                                <a class="dash-link" href="<?php echo e(route('file.index')); ?>"><?php echo e(__('Documents')); ?></a>
+                                            </li>
+                                            <li class="dash-item ">
+                                                <a class="dash-link" href=<?php echo e(route('sharedfiles.index')); ?>><?php echo e(__('Shared')); ?></a>
+                                            </li>
+                                            <li class="dash-item ">
+                                                <a class="dash-link" href="<?php echo e(route('files.archived')); ?>"><?php echo e(__('Archived')); ?></a>
+                                            </li>
+                                        <?php endif; ?>
                                     </ul>
                                 </li>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage document')): ?>

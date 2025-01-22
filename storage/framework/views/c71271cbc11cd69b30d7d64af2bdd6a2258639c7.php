@@ -16,7 +16,7 @@
         ->count();
 
     $internalNotifications = App\Models\InternalNotification::where('user_id', auth()->id())
-        ->where('is_read', false)->get();
+        ->where('is_read', false)->orderBy('created_at','desc')->get();
 
     $unreadCount = $internalNotifications->count();
 ?>
@@ -25,8 +25,8 @@
 
     <style>
         .notification-dropdown {
-            width: 350px;
-            max-height: 400px;
+            width: 500px;
+            max-height: 500px;
             overflow-y: auto;
         }
 
@@ -62,7 +62,8 @@
                 <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                     role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="theme-avtar">
-                        <img src="<?php echo e(!empty(\Auth::user()->avatar) ? $profile . \Auth::user()->avatar : asset('uploads/user.png')); ?>"
+
+                        <img src="<?php echo e(!empty(\Auth::user()->avatar) ? asset('storage/' . Auth::user()->avatar) : asset('uploads/user.png')); ?>"
                             class="img-fluid rounded-circle">
                     </span>
                     <span class="hide-mob ms-2"><?php echo e(__('Hi, ')); ?><?php echo e(\Auth::user()->name); ?> !</span>
@@ -80,10 +81,12 @@
                         <span><?php echo e(__('Profile')); ?></span>
                     </a>
 
-                    <a href="<?php echo e(route('file.index')); ?>" class="dropdown-item">
-                        <i class="ti ti-files"></i>
-                        <span><?php echo e(__('My Documents')); ?></span>
-                    </a>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['view department documents', 'view unit documents'])): ?>
+                        <a href="<?php echo e(route('file.index')); ?>" class="dropdown-item">
+                            <i class="ti ti-files"></i>
+                            <span><?php echo e(__('Documents')); ?></span>
+                        </a>
+                    <?php endif; ?>
 
                     <a href="<?php echo e(route('dta.index')); ?>" class="dropdown-item">
                         <i class="ti ti-cash"></i>
@@ -136,7 +139,7 @@
             <li class="dropdown dash-h-item drp-notification">
                 <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
                     href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i class="ti ti-brand-messenger"></i>
+                    <i class="ti ti-bell"></i>
                     <span class="bg-danger dash-h-badge message-toggle-msg message-counter custom_messanger_counter beep">
                         <?php echo e($unreadCount); ?>
 
