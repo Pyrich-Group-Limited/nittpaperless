@@ -21,6 +21,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 <i class="ti ti-plus">Upload document </i>
             </a>
     </div>
+@endcan
 @endsection
 
 <div>

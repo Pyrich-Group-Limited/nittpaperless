@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Models\SubUnit;
 use App\Models\Employee;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StaffProfileMail;
 use App\Services\DataService;
 use Illuminate\Support\Facades\Hash;
 
@@ -75,6 +77,7 @@ class NewUserComponent extends Component
         }
 
         $designation = Designation::find($this->designation);
+        $password = substr($this->surname, 0, 4).date('s')."#".sprintf('%04s', count(User::all())+1);
 
         $user = User::create([
             'name' => $this->surname. " ".$this->firstname,
@@ -87,7 +90,7 @@ class NewUserComponent extends Component
             'type' => $this->user_role=="Human Resource (HR)"? "client" : strtolower($this->user_role),
             'designation' => $designation->name,
             'ippis' => $this->ippis,
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make($password),
             'level' => $this->level,
         ]);
 
@@ -95,8 +98,18 @@ class NewUserComponent extends Component
             'user_id' => $user->id
         ]);
 
+        $this->sendMail($user,$password);
+
         $this->reset();
         $this->dispatchBrowserEvent('success',["success" =>"User Successfully Registered"]);
+    }
+
+    public function sendMail($user,$password){
+        $url = url('login/');
+        try{
+            Mail::to($user)->queue(new StaffProfileMail($user,$url,$password));
+        }catch (\Exception $e) { }
+
     }
 
     public function updatedLocation(){
