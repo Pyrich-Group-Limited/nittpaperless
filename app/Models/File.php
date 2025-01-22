@@ -9,7 +9,8 @@ class File extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['file_name', 'path', 'user_id', 'folder_id'];
+    protected $fillable = ['file_name', 'path', 'user_id', 'folder_id',
+    'department_id', 'unit_id', 'location_type'];
 
     public function user()
     {
@@ -25,6 +26,16 @@ class File extends Model
     {
         return $this->belongsToMany(User::class, 'file_user')
         ->withPivot(['sharer_id', 'priority', 'created_at'])->withTimestamps();
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
     }
 
     // public function pivotSharer()

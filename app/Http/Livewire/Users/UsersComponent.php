@@ -120,6 +120,8 @@ class UsersComponent extends Component
         $designation = Designation::find($this->designation);
         $password = substr($this->surname, 0, 4).date('s')."#".sprintf('%04s', count(User::all())+1);
 
+        $userType = $this->user_role == "Human Resource (HR)" ? "client" : strtolower($this->user_role);
+
         $user = User::create([
             'name' => $this->surname. " ".$this->firstname,
             'location' => $this->location,
@@ -128,7 +130,7 @@ class UsersComponent extends Component
             'department_id' => $this->department,
             'unit_id' => $this->unit,
             'sub_unit_id' => $this->subunit,
-            'type' => $this->user_role=="Human Resource (HR)"? "client" : strtolower($this->user_role),
+            'type' => $userType,
             'designation' => $designation->name,
             'ippis' => $this->ippis,
             'level' => $this->level,
@@ -136,9 +138,10 @@ class UsersComponent extends Component
             'password_changed' => false,
         ]);
 
-        // Employee::create([
-        //     'user_id' => $user->id
-        // ]);
+        // Assign role and permissions
+        $role = Role::firstOrCreate(['name' => $userType]); // Ensure the role exists
+        assignPermissionsToRole($role, $userType); // Call the helper function
+        $user->assignRole($role); // Assign the role to the user
 
         $this->sendMail($user,$password);
         $this->reset();

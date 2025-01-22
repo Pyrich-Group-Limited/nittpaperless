@@ -16,7 +16,7 @@
         ->count();
 
     $internalNotifications = App\Models\InternalNotification::where('user_id', auth()->id())
-        ->where('is_read', false)->get();
+        ->where('is_read', false)->orderBy('created_at','desc')->get();
 
     $unreadCount = $internalNotifications->count();
 @endphp
@@ -25,8 +25,8 @@
 
     <style>
         .notification-dropdown {
-            width: 350px;
-            max-height: 400px;
+            width: 500px;
+            max-height: 500px;
             overflow-y: auto;
         }
 
@@ -62,7 +62,8 @@
                 <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                     role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="theme-avtar">
-                        <img src="{{ !empty(\Auth::user()->avatar) ? $profile . \Auth::user()->avatar : asset('uploads/user.png') }}"
+
+                        <img src="{{ !empty(\Auth::user()->avatar) ? asset('storage/' . Auth::user()->avatar) : asset('uploads/user.png') }}"
                             class="img-fluid rounded-circle">
                     </span>
                     <span class="hide-mob ms-2">{{ __('Hi, ') }}{{ \Auth::user()->name }} !</span>
@@ -80,10 +81,12 @@
                         <span>{{ __('Profile') }}</span>
                     </a>
 
-                    <a href="{{ route('file.index') }}" class="dropdown-item">
-                        <i class="ti ti-files"></i>
-                        <span>{{ __('My Documents') }}</span>
-                    </a>
+                    @canany(['view department documents', 'view unit documents'])
+                        <a href="{{ route('file.index') }}" class="dropdown-item">
+                            <i class="ti ti-files"></i>
+                            <span>{{ __('Documents') }}</span>
+                        </a>
+                    @endcanany
 
                     <a href="{{ route('dta.index') }}" class="dropdown-item">
                         <i class="ti ti-cash"></i>
@@ -137,7 +140,7 @@
             <li class="dropdown dash-h-item drp-notification">
                 <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
                     href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i class="ti ti-brand-messenger"></i>
+                    <i class="ti ti-bell"></i>
                     <span class="bg-danger dash-h-badge message-toggle-msg message-counter custom_messanger_counter beep">
                         {{ $unreadCount }}
                         {{-- <span class="sr-only"></span> --}}

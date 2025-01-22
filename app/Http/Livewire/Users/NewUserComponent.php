@@ -76,6 +76,8 @@ class NewUserComponent extends Component
             ]);
         }
 
+        $userType = $this->user_role == "Human Resource (HR)" ? "client" : strtolower($this->user_role);
+
         $designation = Designation::find($this->designation);
         $password = substr($this->surname, 0, 4).date('s')."#".sprintf('%04s', count(User::all())+1);
 
@@ -87,7 +89,7 @@ class NewUserComponent extends Component
             'department_id' => $this->department,
             'unit_id' => $this->unit,
             'sub_unit_id' => $this->subunit,
-            'type' => $this->user_role=="Human Resource (HR)"? "client" : strtolower($this->user_role),
+            'type' => $userType,
             'designation' => $designation->name,
             'ippis' => $this->ippis,
             'password' => Hash::make($password),

@@ -8,6 +8,7 @@ use App\Models\RequisitionApprovalRecord;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ChartOfAccount;
+use App\Models\User;
 
 class AuditRequisitionApprovalComponent extends Component
 {
@@ -19,7 +20,7 @@ class AuditRequisitionApprovalComponent extends Component
     public $chartAccount;
     public $secretCode; // To store the secret code input
     public $showSecretCodeModal = false;
-    
+
     public function mount()
     {
         $user = auth()->user();
@@ -30,7 +31,7 @@ class AuditRequisitionApprovalComponent extends Component
             $query->where('approver_id', $user->id)
                 ->where('role', $user->type);
         })->orderBy('created_at', 'desc')->get();
-        
+
         $this->approvedRequisitions = StaffRequisition::with('approvalRecords.approver.signature')
             ->whereHas('approvalRecords', function ($query) use ($user) {
             $query->where('approver_id', $user->id)
@@ -50,7 +51,7 @@ class AuditRequisitionApprovalComponent extends Component
     {
         // Check if the file exists in the public folder
         $filePath = public_path('assets/documents/documents/' . $this->selRequisition->supporting_document);
-        
+
         if (file_exists($filePath)) {
             return response()->download($filePath, $this->selRequisition->supporting_document);
         } else {
@@ -74,6 +75,16 @@ class AuditRequisitionApprovalComponent extends Component
             'secretCode' => 'required',
         ]);
 
+        $approverId = User::where('type', '!=', 'super admin')->where('type', '!=', 'DG')
+            ->whereHas('permissions', function ($query) {
+                $query->where('name', 'approve as cash office');
+            })->first();
+
+        if (!$approverId) {
+            $this->dispatchBrowserEvent('error',["error" =>"No next approver found with the 'Cash Office Approval' permission"]);
+            return;
+        }
+
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
             $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect.!."]);
             return;
@@ -88,6 +99,15 @@ class AuditRequisitionApprovalComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
+        if ($approverId) {
+            createNotification(
+                $approverId->id,
+                'Requsition Approval Request',
+                'A new Requsition from '. Auth::user()->name.' requires your approval.',
+                route('cash-office.requisitions')
+            );
+        }
+        $this->reset(['secretCode', 'comments', 'selRequisition']);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition approved successfully."]);
 
         $this->mount();
@@ -104,7 +124,7 @@ class AuditRequisitionApprovalComponent extends Component
         ]);
         $this->requisition->update(['status' => 'rejected']);
         $this->dispatchBrowserEvent('success',["success" =>"Requisition rejected."]);
-        
+
         $this->mount();
     }
 

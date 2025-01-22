@@ -17,42 +17,127 @@ use PhpOffice\PhpWord\PhpWord;
 
 class FilesController extends Controller
 {
-    public function index(Request $request){
+    // public function index(Request $request){
 
+    //     // Search, filter, and sorting options
+    //     $search = $request->input('search');
+    //     $sortBy = $request->input('sortBy', 'file_name');
+    //     $order = $request->input('order', 'desc');
+
+    //      // Query documents with folders
+    //     $documentsQuery = File::with('folder');
+
+    //     // Search by document name or folder name
+    //     if ($search) {
+    //         $documentsQuery->where('file_name', 'like', "%$search%")
+    //         ->orWhereHas('folder', function($query) use ($search) {
+    //             $query->where('folder_name', 'like', "%$search%");
+    //         });
+    //     }
+
+    //     // Sorting
+    //     $documentsQuery->orderBy($sortBy, $order);
+
+    //     // Fetch grouped documents by folder
+    //     $documents = $documentsQuery->where('department_id', Auth::user()->department_id)
+    //     ->where('location_type', Auth::user()->location_type)
+    //     ->where('is_archived', false)
+    //     ->get()->groupBy('folder.folder_name');
+
+    //     $users = User::all();
+
+    //     // Fetch files that are not in any folder (root-level files)
+    //     $rootFiles = Auth::user()->files()->whereNull('folder_id')->get();
+
+    //     $folders = Folder::where('department_id', Auth::user()->department_id)
+    //     ->where('location_type', Auth::user()->location_type)
+    //     ->get();
+
+    //     return view('filemanagement.index', compact(
+    //     'rootFiles','users',
+    //     'documents', 'search', 'sortBy', 'order','folders'
+    //     ));
+    // }
+
+    public function index(Request $request)
+    {
         // Search, filter, and sorting options
         $search = $request->input('search');
-        $sortBy = $request->input('sortBy', 'file_name'); // Default sort by name
-        $order = $request->input('order', 'desc'); // Default order ascending
+        $sortBy = $request->input('sortBy', 'file_name');
+        $order = $request->input('order', 'desc');
 
-         // Query documents with folders
-        $documentsQuery = File::with('folder');
+        // Get the authenticated user and their attributes
+        $user = Auth::user();
+        $userDepartmentId = $user->department_id;
+        $userUnitId = $user->unit_id;
+        $userLocationType = $user->location_type;
+
+        // Initialize the documents query
+        $documentsQuery = File::with('folder')->where('is_archived', false);
+
+        // Check user permissions
+        if ($user->can('view department documents')) {
+            // User can view department documents
+            $documentsQuery->where('department_id', $userDepartmentId)
+                        ->where('location_type', $userLocationType);
+        } elseif ($user->can('view unit documents')) {
+            // User can view unit documents
+            $documentsQuery->where('unit_id', $userUnitId)
+                ->where('location_type', $userLocationType);
+        } else {
+            // If the user has no relevant permissions, return an empty collection
+            $documents = collect([]);
+            $rootFiles = collect([]);
+            $folders = collect([]);
+            return view('filemanagement.index', compact(
+                'documents', 'search', 'sortBy', 'order', 'folders', 'rootFiles', 'users'
+            ));
+        }
 
         // Search by document name or folder name
         if ($search) {
             $documentsQuery->where('file_name', 'like', "%$search%")
-            ->orWhereHas('folder', function($query) use ($search) {
-                $query->where('folder_name', 'like', "%$search%");
-            });
+                ->orWhereHas('folder', function ($query) use ($search) {
+                    $query->where('folder_name', 'like', "%$search%");
+                });
         }
 
         // Sorting
         $documentsQuery->orderBy($sortBy, $order);
 
         // Fetch grouped documents by folder
-        $documents = $documentsQuery->where('user_id',Auth::user()->id)->get()->groupBy('folder.folder_name');
+        $documents = $documentsQuery->get()->groupBy('folder.folder_name');
 
+        // Fetch all users
         $users = User::all();
 
         // Fetch files that are not in any folder (root-level files)
-        $rootFiles = Auth::user()->files()->whereNull('folder_id')->get();
+        $rootFiles = File::where('department_id', $userDepartmentId)
+            ->whereNull('folder_id')
+            ->where('location_type', $userLocationType)
+            ->where('is_archived', false)
+            ->get();
 
-        $folders = Folder::where('user_id',Auth::user()->id)->get();
+        // Fetch folders
+        $foldersQuery = Folder::query();
+
+        if ($user->can('view department documents')) {
+            $folders = $foldersQuery->where('department_id', $userDepartmentId)
+                ->where('location_type', $userLocationType)
+                ->get();
+        } elseif ($user->can('view unit documents')) {
+            $folders = $foldersQuery->where('unit_id', $userUnitId)
+                    ->where('location_type', $userLocationType)
+                    ->get();
+        } else {
+            $folders = collect([]);
+        }
 
         return view('filemanagement.index', compact(
-        'rootFiles','users',
-        'documents', 'search', 'sortBy', 'order','folders'
-    ));
+            'rootFiles', 'users', 'documents', 'search', 'sortBy', 'order', 'folders'
+        ));
     }
+
 
     public function store(Request $request)
     {
@@ -75,7 +160,7 @@ class FilesController extends Controller
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $filePath = $file->store('files');
-        } 
+        }
         // Handle text content
         elseif ($request->filled('content')) {
             $content = $request->input('content');
@@ -100,7 +185,7 @@ class FilesController extends Controller
 
                 $tempFilePath = tempnam(sys_get_temp_dir(), 'docx');
                 $phpWord->save($tempFilePath, 'Word2007');
-                
+
                 // $tempFilePath = storage_path('files/' . $fileName . '.docx');
                 // $phpWord->save($tempFilePath, 'Word2007');
 
@@ -120,6 +205,9 @@ class FilesController extends Controller
                 'path' => $filePath,
                 'user_id' => Auth::id(),
                 'folder_id' => $request->folder_id,
+                'department_id' => Auth::user()->department_id,
+                'unit_id' => Auth::user()->unit_id ?? null,
+                'location_type' => Auth::user()->location_type,
             ]);
         }
         return redirect()->back()->with('success', 'File saved successfully.');
@@ -222,50 +310,13 @@ class FilesController extends Controller
         return view('filemanagement.modals.share-modal',compact('users','file'));
     }
 
-    // public function share(File $file, Request $request)
-    // {
-    //     // Authorize the user
-    //     // $this->authorize('update', $file);
-    //     if (!($file->user_id === Auth::id() || $file->sharedWith()->where('user_id', Auth::id())->exists())) {
-    //         abort(403, 'This action is unauthorized.');
-    //     }
-
-    //     // Validate input
-    //     $request->validate([
-    //         'user_id' => 'required|array',
-    //         'user_id.*' => 'exists:users,id',
-    //         'secret_code' => 'required|string',
-    //         'priority' => 'required|integer',
-    //     ]);
-
-    //     // Check the secret code
-    //     if (!Hash::check($request->secret_code, Auth::user()->secret_code)) {
-    //         return redirect()->back()->with(['error' => 'Invalid secret code.']);
-    //     }
-
-    //     // Find the users to share the file with
-    //     $users = User::whereIn('id', $request->user_id)->get();
-
-    //     foreach ($users as $user) {
-    //         // Add a new shared entry without detaching existing ones
-    //         $file->sharedWith()->syncWithoutDetaching([
-    //             $user->id => [
-    //                 'sharer_id' => Auth::id(), // Current sharer
-    //                 'priority' => $request->input('priority'),
-    //             ],
-    //         ]);
-    //     }
-
-    //     return redirect()->back()->with('success', 'File shared successfully.');
-    // }
 
     public function share(File $file, Request $request)
     {
-        // Authorize the user
-        // $this->authorize('update', $file);
-        if (!($file->user_id === Auth::id() || $file->sharedWith()->where('user_id', Auth::id())->exists())) {
-            abort(403, 'This action is unauthorized.');
-        }
+
+        // if (!($file->user_id === Auth::id() || $file->sharedWith()->where('user_id', Auth::id())->exists())) {
+        //     abort(403, 'This action is unauthorized.');
+        // }
 
         // Validate input
         $request->validate([
@@ -293,6 +344,13 @@ class FilesController extends Controller
                     'updated_at' => now(),
                 ],
             ]);
+
+            createNotification(
+                $user->id,
+                'File Shared with You',
+                'A file has been shared with you by ' . Auth::user()->name,
+                route('sharedfiles.index')
+            );
         }
 
         return redirect()->back()->with('success', 'File shared successfully.');
@@ -384,8 +442,9 @@ class FilesController extends Controller
     // List all archived files
     public function archived()
     {
-        // Fetch all files for authenticated user where 'is_archived' is 1
-        $files = File::where('user_id',Auth::user()->id)->where('is_archived', 1)->get();
+        $files = File::where('department_id',Auth::user()->department_id)
+        ->where('location_type',Auth::user()->location_type)
+        ->where('is_archived', 1)->get();
 
         return view('filemanagement.archived-files', compact('files'));
     }

@@ -93,10 +93,13 @@
                                                         <td scope="row">{{ $loop->iteration }}</td>
                                                         <td>{{ $applicationDocument->document_name }}</td>
                                                         <td class="text-end">
-                                                            <a href="{{ asset('assets/documents/documents') }}/{{$applicationDocument->document}}" target="_blank"
+                                                            <a href="{{ $applicationDocument->document_url }}" target="_blank" class="btn btn-sm btn-info">View</a>
+                                                                <a href="{{ $applicationDocument->document_url }}" download class="btn btn-sm btn-primary">Download</a>
+
+                                                            {{-- <a href="{{ asset('assets/documents/documents') }}/{{$applicationDocument->document}}" target="_blank"
                                                                 class="btn btn-primary btn-sm"><i
                                                                     class="ti ti-eye"></i></a>
-                                                            <a href="#" wire:click="downloadFile('{{ $applicationDocument->document }}')" class="btn btn-primary btn-sm"><i class="ti ti-download"></i></a>
+                                                            <a href="#" wire:click="downloadFile('{{ $applicationDocument->document }}')" class="btn btn-primary btn-sm"><i class="ti ti-download"></i></a> --}}
                                                         </td>
                                                     </tr>
                                                 @endforeach

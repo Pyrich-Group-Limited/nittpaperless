@@ -60,13 +60,13 @@
                                     <div class="col-md-12">
                                         <p class="margin-bottom-15">{!! $advert->description !!}.</p>
                                     </div>
-                                        <div class="header-navbar-text-1"><a href="{{ route('contractor.register') }}" class="h-donate-btn">Bid</a></div>
+                                        <div class="header-navbar-text-1"><a href="{{ route('contractor.register') }}" class="h-donate-btn">Proceed to Bid</a></div>
                                     <!-- Col -->
                                 </div>
 
                             </div>
                             <!-- Col -->
-                            
+
                             <!-- Col -->
                         </div>
                         <!-- Row -->

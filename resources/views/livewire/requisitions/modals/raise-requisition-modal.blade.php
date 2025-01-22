@@ -94,7 +94,7 @@
                         <div class="col-sm-12 col-md-12">
                             <div class="form-group">
                                 <label for="secretCode">{{ __('Secret Code') }}</label>
-                                <input wire:model="secretCode" type="text" class="form-control @error('secretCode') is-invalid @enderror">
+                                <input wire:model="secretCode" type="password" class="form-control @error('secretCode') is-invalid @enderror">
                                 @error('secretCode') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                         </div>

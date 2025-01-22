@@ -46,7 +46,7 @@
                                 </td>
 
                                 <td class="">
-                                    {{-- {{ $document->projectApplication->project_name }} --}}
+                                    {{ $document->application->project->project_name ?? ''}}
                                 </td>
 
                                 <td class="">
@@ -54,23 +54,18 @@
                                 </td>
                                 <td class="text-end">
                                     <span>
+                                        <a href="{{ $document->document_url }}" target="_blank" class="btn btn-sm btn-info">View</a>
+                                        <a href="{{ $document->document_url }}" download class="btn btn-sm btn-primary">Download</a>
 
                                             {{-- <div class="action-btn bg-warning ms-2">
-                                                <a href="{{ asset('assets/images/documents.png')}}" target="_blank" class="mx-3 btn btn-sm d-inline-flex align-items-center"  data-bs-toggle="tooltip" title="{{__('View Document')}}" data-title="{{__('View Document')}}">
-                                                    <i class="ti ti-eye text-white"></i>
-                                                </a>
-                                            </div> --}}
-                                            <div class="action-btn bg-warning ms-2">
                                                 <a href="{{ asset('assets/documents/documents') }}/{{$document->document}}" target="_blank" class="mx-3 btn btn-sm d-inline-flex align-items-center"  data-bs-toggle="tooltip" title="{{__('View Document')}}" data-title="{{__('View Document')}}">
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>
                                             <div class="action-btn bg-warning ms-2">
-                                                {{-- <a href="{{ route('download.file', $document->document) }}" class="mx-3 btn btn-sm d-inline-flex align-items-center"  data-bs-toggle="tooltip" title="{{__('Download Document')}}" data-title="{{__('Download Document')}}">
-                                                    <i class="ti ti-download text-white"></i>
-                                                </a> --}}
+
                                                 <a href="#" wire:click="downloadFile('{{ $document->document }}')" class="btn btn-primary btn-sm"><i class="ti ti-download"></i></a>
-                                            </div>
+                                            </div> --}}
 
                                     </span>
                                 </td>
