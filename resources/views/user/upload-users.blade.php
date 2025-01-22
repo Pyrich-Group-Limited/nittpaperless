@@ -10,11 +10,11 @@
                     <div class="modal-body">
                         <div class="row">
                             @if($failed_upload)
-                            <div class="alert alert-danger alert-dismissible alert-alt fade show mt-3">
-                                <strong>Attention! </strong> Some records were not uploaded. kindly ensure you <br> entered all records correctly.
-                                <input type="button"  wire:click.prevent="downloadFailedUpload" value="{{__('Donlaod Failed Upload')}}" class="btn  btn-danger">
-                            </div>
-                        @endif
+                                <div class="alert alert-danger alert-dismissible alert-alt fade show mt-3">
+                                    <strong>Attention! </strong> Some records were not uploaded. kindly ensure you <br> entered all records correctly.
+                                    <input type="button"  wire:click.prevent="downloadFailedUpload" value="{{__('Donlaod Failed Upload')}}" class="btn  btn-danger">
+                                </div>
+                            @endif
                             <div class="col-md-8 mt-1">
                                 <div class="form-group">
                                     <input type="file" wire:model="uploadFile" class="form-control">

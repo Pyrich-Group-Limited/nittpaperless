@@ -19,10 +19,11 @@ class StaffProfileMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($user,$url)
+    public function __construct($user,$url,$password)
     {
         $this->user = $user;
         $this->url = $url;
+        $this->password = $password;
     }
 
     /**
@@ -45,6 +46,7 @@ class StaffProfileMail extends Mailable
             with: [
                 'user' => $this->user,
                 'url' => $this->url,
+                'password' => $this->password,
             ],
         );
     }

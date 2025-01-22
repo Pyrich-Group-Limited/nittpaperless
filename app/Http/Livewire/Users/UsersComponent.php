@@ -118,6 +118,7 @@ class UsersComponent extends Component
         }
 
         $designation = Designation::find($this->designation);
+        $password = substr($this->surname, 0, 4).date('s')."#".sprintf('%04s', count(User::all())+1);
 
         $userType = $this->user_role == "Human Resource (HR)" ? "client" : strtolower($this->user_role);
 
@@ -133,7 +134,7 @@ class UsersComponent extends Component
             'designation' => $designation->name,
             'ippis' => $this->ippis,
             'level' => $this->level,
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make($password),
             'password_changed' => false,
         ]);
 
@@ -142,15 +143,15 @@ class UsersComponent extends Component
         assignPermissionsToRole($role, $userType); // Call the helper function
         $user->assignRole($role); // Assign the role to the user
 
-        $this->sendMail($user);
+        $this->sendMail($user,$password);
         $this->reset();
         $this->dispatchBrowserEvent('success',["success" =>"User Successfully Registered"]);
     }
 
-    public function sendMail($user){
+    public function sendMail($user,$password){
         $url = url('login/');
         try{
-            Mail::to($user)->queue(new StaffProfileMail($user,$url));
+            Mail::to($user)->queue(new StaffProfileMail($user,$url,$password));
         }catch (\Exception $e) { }
 
     }
@@ -252,6 +253,13 @@ class UsersComponent extends Component
 
             foreach($staffs[0] as $row){
                 $this->uploadUserRecord($row);
+            }
+
+
+            if(count($this->failed_upload)>0){
+                $this->dispatchBrowserEvent('error',['error'=>'Some staff were not uploaded. Kindly download the failed excel record to ensure they are currently inputed']);
+            }else{
+                $this->dispatchBrowserEvent('success',['success'=>'Upload Successful']);
             }
 
         }catch(Throwable $e){
@@ -370,13 +378,6 @@ class UsersComponent extends Component
 
             }
         }
-
-        if(count($this->failed_upload)>0){
-            $this->dispatchBrowserEvent('error',['error'=>'Some staff were not uploaded. Kindly download the failed excel record to ensure they are currently inputed']);
-        }else{
-            $this->dispatchBrowserEvent('success',['success'=>'Upload Successful']);
-        }
-
     }
 
     public function getUsers(){
