@@ -4,13 +4,13 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modify Requisition Module</h5>
+                        <h5 class="modal-title">Modify Payment Advance Module</h5>
                     </div>
                     <div class="modal-body">
 
                         <div class="col-sm-12 col-md-12">
                             <div class="form-group">
-                                {{ Form::label('value', __('Type of Requisition'), ['class' => 'form-label']) }}<span
+                                {{ Form::label('value', __('Type of Advance'), ['class' => 'form-label']) }}<span
                                     class="text-danger">*</span>
                                 <input type="text" wire:model="type" class="form-control">
                                 @error('type')
@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-sm-12 col-md-12">
                             <div class="form-group">
-                                {{ Form::label('value', __('Purpose of Requisition'), ['class' => 'form-label']) }}<span
+                                {{ Form::label('value', __('Purpose of Advance'), ['class' => 'form-label']) }}<span
                                     class="text-danger">*</span>
                                 <input type="text" wire:model="purpose" class="form-control">
                                 @error('purpose')

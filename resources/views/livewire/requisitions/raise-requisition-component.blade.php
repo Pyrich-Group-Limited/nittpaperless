@@ -1,17 +1,17 @@
 <div>
     @section('page-title')
-        {{__('My Requisitions')}}
+        {{__('My Advances')}}
     @endsection
     @section('breadcrumb')
         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-        <li class="breadcrumb-item">{{__('My Requisitions')}}</li>
+        <li class="breadcrumb-item">{{__('My Advances')}}</li>
     @endsection
     @push('css-page')
         <style>
             @import url({{ asset('css/font-awesome.css') }});
         </style>
     @endpush
-    
+
     @section('action-btn')
         <div class="float-end">
             <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,7 +24,7 @@
                 <a class="dropdown-item" href="#" data-val="created_at-asc">
                     <i class="ti ti-sort-ascending"></i>{{__('Oldest')}}
                 </a>
-    
+
                 <a class="dropdown-item" href="#" data-val="project_name-desc">
                     <i class="ti ti-sort-descending-letters"></i>{{__('From Z-A')}}
                 </a>
@@ -33,12 +33,12 @@
                 </a>
             </div>
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newRequisition" id="toggleOldProject"
-            data-bs-toggle="tooltip" title="{{ __('Create new budget Category') }}" class="btn btn-sm btn-primary">
-            <i class="ti ti-plus text-white"> </i>Raise a Requisition
+            data-bs-toggle="tooltip" title="{{ __('Raise an Advance') }}" class="btn btn-sm btn-primary">
+            <i class="ti ti-plus text-white"> </i>Raise an Advance
             </a>
         </div>
     @endsection
-    
+
         <div class="row">
             <div class="col-md-12 mt-3">
                 <div class="card">
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                 </div>
-    
+
             </div>
         </div>
         @include('livewire.requisitions.modals.raise-requisition-modal')
@@ -130,4 +130,3 @@
         @include('livewire.requisitions.modals.requisition-details')
         <x-toast-notification />
     </div>
-    

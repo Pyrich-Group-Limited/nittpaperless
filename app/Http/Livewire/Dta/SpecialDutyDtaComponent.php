@@ -46,7 +46,7 @@ class SpecialDutyDtaComponent extends Component
     public function specialDutyHeadApproveDta()
     {
         if ($this->selDta->status != 'liaison_head_approved') {
-            $this->dispatchBrowserEvent('error', ["error" => "DTA requires Liaison Head approval first."]);
+            $this->dispatchBrowserEvent('error', ["error" => "DTA requires Liaison Officer approval first."]);
             return;
         }
         $this->showSecretCodeModal = true;

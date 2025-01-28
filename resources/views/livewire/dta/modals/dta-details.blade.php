@@ -147,13 +147,13 @@
 
                                     @can('hod approve')
                                         @if ($selDta->status=='unit_head_approved')
-                                            <input type="button" wire:click="hodApproveDta({{ $selDta->id }})" value="{{ __('Approve as HoD') }}" class="btn  btn-primary btn-sm">
+                                            <input type="button" wire:click="hodApproveDta({{ $selDta->id }})" value="{{ __('Approve as Director') }}" class="btn  btn-primary btn-sm">
                                         @endif
                                     @endcan
 
                                     @can('liaison approve')
                                         @if ($selDta->status=='liaison_head_approval')
-                                            <input type="button" wire:click="liasonHeadApproveDta({{ $selDta->id }})" value="{{ __('Approve as Liason Head') }}" class="btn  btn-primary btn-sm">
+                                            <input type="button" wire:click="liasonHeadApproveDta({{ $selDta->id }})" value="{{ __('Approve as Liason Officer') }}" class="btn  btn-primary btn-sm">
                                         @endif
                                     @endcan
 

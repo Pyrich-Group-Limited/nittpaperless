@@ -170,6 +170,12 @@
                                 <label for="ulevel" class="form-label">Level</label>
                                 <select wire:model.defer="level" id="ulevel" class="form-control">
                                     <option value="" selected>-- Select Level --</option>
+                                    <option value="Level 01">Level 01</option>
+                                    <option value="Level 02">Level 02</option>
+                                    <option value="Level 03">Level 03</option>
+                                    <option value="Level 04">Level 04</option>
+                                    <option value="Level 05">Level 05</option>
+                                    <option value="Level 06">Level 06</option>
                                     <option value="Level 07">Level 07</option>
                                     <option value="Level 08">Level 08</option>
                                     <option value="Level 09">Level 09</option>
@@ -178,6 +184,8 @@
                                     <option value="Level 13">Level 13</option>
                                     <option value="Level 14">Level 14</option>
                                     <option value="Level 15">Level 15</option>
+                                    <option value="Level 16">Level 16</option>
+                                    <option value="Level 17">Level 17</option>
                                 </select>
                                 @error('level')
                                     <small class="invalid-type_of_leave" role="alert">

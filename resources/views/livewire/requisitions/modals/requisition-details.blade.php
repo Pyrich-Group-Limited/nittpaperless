@@ -73,7 +73,7 @@
                                                 </tr>
                                             @endif
                                         </table>
-                                        
+
                                         {{-- @if ($approvals) --}}
                                             <table class="table">
                                                 <thead>
@@ -147,7 +147,7 @@
                                         </div>
                                     @endcan
                                 @endif
-                            <div class="modal-footer"> 
+                            <div class="modal-footer">
                                 <div wire:loading wire:target="specialDutyApproveRequisition"><x-g-loader /></div>
                                 <div wire:loading wire:target="hodApproveRequisition"><x-g-loader /></div>
                                 <div wire:loading wire:target="liaisonHeadApproveRequisition"><x-g-loader /></div>
@@ -161,48 +161,48 @@
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
                                     @can('approve as hod')
                                         @if ($selRequisition->status=='pending')
-                                            <input type="button" wire:click="hodApproveRequisition({{ $selRequisition->id }})" value="{{ __('Approve as HoD') }}" class="btn  btn-primary btn-sm">
+                                            <input type="button" wire:click="hodApproveRequisition({{ $selRequisition->id }})" value="{{ __('Approve as Director') }}" class="btn  btn-primary btn-sm">
                                         @endif
-                                    @endcan 
+                                    @endcan
 
                                     @can('approve as liaison head')
                                         @if ($selRequisition->status=='liaison_head_approval')
-                                            <input type="button" wire:click="liaisonHeadApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Liaison Head') }}" class="btn  btn-primary btn-sm ">
+                                            <input type="button" wire:click="liaisonHeadApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Liaison Officer') }}" class="btn  btn-primary btn-sm ">
                                         @endif
-                                    @endcan 
+                                    @endcan
 
                                     @can('approve as special duty')
                                         @if ($selRequisition->status=='liaison_head_approved')
                                             <input type="button"  wire:click="specialDutyApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as SD Head') }}" class="btn  btn-primary btn-sm ">
                                         @endif
-                                    @endcan 
+                                    @endcan
 
                                     @can('approve as dg')
                                         @if ($selRequisition->status=='hod_approved' || $selRequisition->status=='special_duty_head_approved')
                                             <input type="button"  wire:click="dgApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as DG') }}" class="btn  btn-primary btn-sm ">
                                         @endif
-                                    @endcan 
+                                    @endcan
 
                                     @can('approve as bursar')
                                         @if ($selRequisition->status=='dg_approved')
                                             <input type="button"  wire:click="bursarApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Bursar') }}" class="btn  btn-primary btn-sm ">
                                         @endif
-                                    @endcan 
+                                    @endcan
                                     @can('approve as pv')
                                         @if ($selRequisition->status=='bursar_approved')
                                             <input type="button" wire:click="pvApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as PV') }}" class="btn  btn-primary btn-sm ">
                                         @endif
-                                    @endcan 
+                                    @endcan
                                     @can('approve as audit')
                                         @if ($selRequisition->status=='pv_approved')
                                             <input type="button" wire:click="auditApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Audit') }}" class="btn  btn-primary btn-sm ">
                                         @endif
-                                    @endcan 
+                                    @endcan
                                     @can('approve as cash office')
                                         @if ($selRequisition->status=='audit_approved')
                                             <input type="button" wire:click="cashOfficeApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Pay') }}" class="btn  btn-primary btn-md ">
                                         @endif
-                                    @endcan      
+                                    @endcan
                             </div>
                         @else
                             <label align="center" class="mb-4" style="color: red">Loading...</label>
