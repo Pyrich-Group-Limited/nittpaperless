@@ -25,7 +25,7 @@ class ViewHodsCommentComponent extends Component
     // Fetches all comments for the project
     // public function loadComments()
     // {
-    //     // $this->comments = ProjectComment::with('hod')
+    //     // $this->comments = ProjectComment::with('director')
     //     $this->comments = ProjectComment::where('project_creation_id', $this->project_id)
     //     ->orderBy('created_at', 'desc')->get();
     // }

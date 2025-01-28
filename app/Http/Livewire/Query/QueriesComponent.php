@@ -27,7 +27,7 @@ class QueriesComponent extends Component
 
     public function mount()
     {
-        
+
     }
 
     public function setQuery($queryId)
@@ -99,13 +99,13 @@ class QueriesComponent extends Component
     {
         $user = auth()->user();
 
-        if ($user->can('raise query') && in_array($user->type, ['hod', 'unit head', 'supervisor', 'DG'])) {
+        if ($user->can('raise query') && in_array($user->type, ['director', 'unit head', 'supervisor', 'DG'])) {
             $this->queries = Query::where('raised_by', $user->id)->orderBy('created_at','desc')->simplePaginate(10);
-        } 
+        }
         elseif ($user->can('assign query') && $user->type == 'client') {
             $this->queries = Query::where('assigned_by', $user->id)->orWhere('status', 'Pending')
             ->orderBy('created_at','desc')->simplePaginate(10);
-        } 
+        }
         else {
             $this->queries = Query::where('staff_id', $user->id)->where('status','!=', 'Pending')
             ->orderBy('created_at','desc')->simplePaginate(10);

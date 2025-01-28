@@ -159,7 +159,7 @@
 
                                 <input type="button" id="closeRequisitionDetails" value="{{ __('Close') }}"
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
-                                    @can('approve as hod')
+                                    @can('approve as director')
                                         @if ($selRequisition->status=='pending')
                                             <input type="button" wire:click="hodApproveRequisition({{ $selRequisition->id }})" value="{{ __('Approve as Director') }}" class="btn  btn-primary btn-sm">
                                         @endif

@@ -19,8 +19,8 @@ return new class extends Migration
             // $table->foreign('leave_id')->references('id')->on('leaves')->onDelete('cascade');
             $table->unsignedBigInteger('approver_id');
             // $table->foreign('approver_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('approval_stage')->nullable(); // 'supervisor', 'unit_head', 'hod'
-            $table->string('type')->nullable(); // 'supervisor', 'unit_head', 'hod'
+            $table->string('approval_stage')->nullable(); // 'supervisor', 'unit_head', 'director'
+            $table->string('type')->nullable(); // 'supervisor', 'unit_head', 'director'
             $table->string('status')->default('pending');  // 'pending', 'approved', 'rejected'
             $table->timestamps();
         });

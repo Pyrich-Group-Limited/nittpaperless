@@ -89,7 +89,7 @@ class ItemRequestLiaisonHeadApproval extends Component
         ]);
 
         $dept = Department::where('name','Special Duty Department')->first();
-        $approverId = User::where('type','hod')->where('department_id', $dept->id)->first();
+        $approverId = User::where('type','director')->where('department_id', $dept->id)->first();
 
         if (!$approverId) {
             $this->dispatchBrowserEvent('error',["error" =>"No next approver found for special duty dapartment"]);

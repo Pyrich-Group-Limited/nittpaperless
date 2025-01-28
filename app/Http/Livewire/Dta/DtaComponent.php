@@ -55,7 +55,7 @@ class DtaComponent extends Component
         $unitId = Auth::user()->is_in_liaison_office ? null : Auth::user()->unit_id;
 
         // Get the list of approvers
-    $liaisonHead = User::where('type', 'liason office head')
+    $liaisonHead = User::where('type', 'liaison officer')
         ->where('location_type', Auth::user()->location_type)
         ->first();
 

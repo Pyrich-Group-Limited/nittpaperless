@@ -1368,7 +1368,7 @@ class ReportController extends Controller
             $branch = LiasonOffice::where('status', 'Active')->get()->pluck('name', 'id');
             $branch->prepend('Select Branch', '');
 
-            if(auth()->user()->type=="hod"){
+            if(auth()->user()->type=='director'){
                 $department = Department::where('name', auth()->user()->department->name)->get()->pluck('name', 'id');
                 // $department->prepend('Select Department', '');
             }else{

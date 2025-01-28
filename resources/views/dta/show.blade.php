@@ -4,7 +4,7 @@
         {!! Form::hidden('type', 0) !!}
         {!! Form::submit('Approve', ['class' => 'btn btn-primary btn-sm']) !!}
         {!! Form::close() !!}
-    @elseif(Auth::user()->type=="liason office head" || auth()->user()->type=='hod')
+    @elseif(Auth::user()->type=="liason office head" || auth()->user()->type=='director')
         {{Form::open(array('route'=>['approve.hod',$dta->id],'method'=>'post'))}}
         {!! Form::hidden('type', 0) !!}
         {!! Form::submit('Approve', ['class' => 'btn btn-primary btn-sm']) !!}
