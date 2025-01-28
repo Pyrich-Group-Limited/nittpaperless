@@ -62,7 +62,7 @@
                                 <input type="button" id="closeItemRequisitionApproval" value="{{ __('Close') }}"
                                     class="btn  btn-light btn-sm" data-bs-dismiss="modal">
 
-                                @can('hod approve SRN')
+                                @can('director approve SRN')
                                     @if ($selectedRequisition->status == 'pending_hod_approval' || $selectedRequisition->status == 'liaison_head_approved')
                                         <input type="button"
                                             wire:click="approveRequisition({{ $selectedRequisition->id }})"

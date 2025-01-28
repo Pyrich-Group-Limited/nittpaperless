@@ -23,7 +23,7 @@ class MemoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
+
 
     public function index()
     {
@@ -86,7 +86,7 @@ class MemoController extends Controller
                 return redirect()->back()->with('error', 'File upload failed. Please try again.');
             }
         }
-        
+
         Memo::create([
             'created_by' => Auth::id(),
             'title' => $data['title'],
@@ -143,28 +143,28 @@ class MemoController extends Controller
         }elseif($authUser->type=='unit head'){
             $sameUnitAndDepartmentUsers = User::where('unit_id', $authUser->unit_id)
             ->where('department_id', $authUser->department_id)
-            ->where('type', 'user')->orWhere('type', 'hod')
+            ->where('type', 'user')->orWhere('type', 'director')
             ->get();
 
             $unitHeadsOtherDepartments = User::where('type', 'unit head')
             ->where('department_id', '!=', $authUser->department_id)->get();
             $users = $sameUnitAndDepartmentUsers->merge($unitHeadsOtherDepartments);
 
-        }elseif($authUser->type=='liason office head'){
+        }elseif($authUser->type=='liaison officer'){
             $hQUsers = User::where('location','Headquarters')
             ->where('type', 'DG')
-            ->where('type', 'hod')->get();
+            ->where('type', 'director')->get();
 
             $liasonOfficeUsers = User::where('location', 'Liaison-Offices')
             ->where('location_type', $authUser->location_type)->get();
             $users = $hQUsers->merge($liasonOfficeUsers);
 
-        }elseif($authUser->type=='hod'){
-            $otherHods = User::where('type','hod')
+        }elseif($authUser->type=='director'){
+            $otherHods = User::where('type','director')
             ->get();
 
             $others = User::where('department_id',$authUser->department_id)
-            ->where('type','!=','hod')->get();
+            ->where('type','!=','director')->get();
             $users = $otherHods->merge($others);
 
         }elseif($authUser->type=='DG' || $authUser->type=='super admin'){

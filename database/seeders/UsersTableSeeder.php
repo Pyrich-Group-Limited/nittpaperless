@@ -4817,7 +4817,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
 
-            [   'name' => 'hod approve',
+            [   'name' => 'director approve',
                 'module' => 'DTA',
                 'category' => "Paperless system",
                 'guard_name' => 'web',
@@ -5074,7 +5074,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-            [   'name' => 'approve as hod',
+            [   'name' => 'approve as director',
                 'module' => 'Requsition',
                 'category' => "Paperless system",
                 'guard_name' => 'web',
@@ -5138,7 +5138,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
 
-            [   'name' => 'hod approve SRN',
+            [   'name' => 'director approve SRN',
                 'module' => 'Item Requsition',
                 'category' => "Paperless system",
                 'guard_name' => 'web',
@@ -5296,7 +5296,7 @@ class UsersTableSeeder extends Seeder
 
              // Item Requisition permissions
              [   'name' => 'view item supply'],
-             [   'name' => 'hod approve SRN'],
+             [   'name' => 'director approve SRN'],
              [   'name' => 'liaison approve SRN'],
              [   'name' => 'bursar approve SRN'],
              [   'name' => 'store approve SRN'],
@@ -5310,7 +5310,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'report view'],
             ['name' => 'liaison approve'],
             ['name' => 'unit head approve'],
-            ['name' => 'hod approve'],
+            ['name' => 'director approve'],
             ['name' => 'dg approve'],
             ['name' => 'bursar approve'],
             ['name' => 'pv approve'],
@@ -6119,7 +6119,7 @@ class UsersTableSeeder extends Seeder
          // Liason office head
          $liasonRole = Role::create(
             [
-                'name' => 'liason office head',
+                'name' => 'liaison officer',
                 'created_by' => 0,
             ]
         );
@@ -6149,7 +6149,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Emmanuel John',
                 'email' => 'liason@nitt.com',
                 'password' => Hash::make('1234'),
-                'type' => 'liason office head',
+                'type' => 'liaison officer',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
@@ -6169,7 +6169,7 @@ class UsersTableSeeder extends Seeder
          // Head of Department
          $hodRole = Role::create(
             [
-                'name' => 'hod',
+                'name' => 'director',
                 'created_by' => 0,
             ]
         );
@@ -6190,9 +6190,9 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage report'],
             ['name' => 'raise query'],
             ['name' => 'report view'],
-            ['name' => 'hod approve'],
-            ['name' => 'hod approve SRN'],
-            ['name' => 'approve as hod'],
+            ['name' => 'director approve'],
+            ['name' => 'director approve SRN'],
+            ['name' => 'approve as director'],
             ['name' => 'manage requisition'],
             ['name' => 'manage attendance report'],
             ['name' => 'manage attendance'],
@@ -6215,11 +6215,11 @@ class UsersTableSeeder extends Seeder
         $hod = User::create(
             [
                 'name' => 'Emmanuel Thompson',
-                'email' => 'hod@nitt.com',
+                'email' => 'director@nitt.com',
                 'location_type' => 'Department',
                 'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
-                'type' => 'hod',
+                'type' => 'director',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
@@ -6243,7 +6243,7 @@ class UsersTableSeeder extends Seeder
                 'location_type' => 'Department',
                 'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
-                'type' => 'hod',
+                'type' => 'director',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
@@ -6267,7 +6267,7 @@ class UsersTableSeeder extends Seeder
                 'location_type' => 'Directorate',
                 'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
-                'type' => 'hod',
+                'type' => 'director',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
@@ -6463,7 +6463,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'view unit folders'],
             ['name' => 'final account approve'],
             ['name' => 'report view'],
-            ['name' => 'hod approve'],
+            ['name' => 'director approve'],
             ['name' => 'bursar approve SRN'],
             ['name' => 'approve as cash office'],
             ['name' => 'set budget'],

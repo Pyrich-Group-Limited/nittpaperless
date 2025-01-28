@@ -125,7 +125,7 @@ class LeavesComponent extends Component
                 // Liaison office-specific approval flow
 
                 // Add liaison office head as the first approver
-                $liaisonHead = User::where('type', 'liason office head')
+                $liaisonHead = User::where('type', 'liaison officer')
                     ->where('location', $applicant->location)
                     ->first();
                 if ($liaisonHead) {
@@ -133,7 +133,7 @@ class LeavesComponent extends Component
                 }
 
                 // Add head of special duty department as the next approver
-                $specialDutyHead = User::where('type', 'hod')->where('department_id',$specialDutyDepartment->id)->first();
+                $specialDutyHead = User::where('type', 'director')->where('department_id',$specialDutyDepartment->id)->first();
                 if ($specialDutyHead) {
                     $this->createApproval($leave, $specialDutyHead->id, $specialDutyHead->type, $specialDutyHead->department_id);
                 }
@@ -201,11 +201,11 @@ class LeavesComponent extends Component
                 if (Auth::user()->can('raise sick leave') && $this->leave_for_staff) {
                     $selectedStaff = User::find($this->leave_for_staff);
 
-                    $departmentHead = User::where('type', 'hod')
+                    $departmentHead = User::where('type', 'director')
                         ->where('department_id', $selectedStaff->department_id)
                         ->first();
                 } else {
-                    $departmentHead = User::where('type', 'hod')
+                    $departmentHead = User::where('type', 'director')
                         ->where('department_id', Auth::user()->department_id)
                         ->first();
                 }

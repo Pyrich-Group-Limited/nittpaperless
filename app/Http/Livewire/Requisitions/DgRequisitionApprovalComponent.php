@@ -63,7 +63,7 @@ class DgRequisitionApprovalComponent extends Component
     {
         // Ensure the requisition is valid for DG approval
         if ($this->selRequisition->status == 'pending') {
-            $this->dispatchBrowserEvent('error', ["error" => "Requisition requires HoD approval first."]);
+            $this->dispatchBrowserEvent('error', ["error" => "Requisition requires Director approval first."]);
             return;
         }
 

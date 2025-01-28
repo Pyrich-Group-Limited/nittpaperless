@@ -570,7 +570,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('unit.dashboard');
             }
-            elseif(Auth::user()->type == 'liason office head')
+            elseif(Auth::user()->type == 'liaison officer')
             {
                 return redirect()->route('liason.dashboard');
             }
@@ -586,7 +586,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('supervisor.dashboard');
             }
-            elseif(Auth::user()->type == 'hod')
+            elseif(Auth::user()->type == 'director')
             {
                 return redirect()->route('hod.dashboard');
             }
@@ -705,7 +705,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('unit.dashboard');
             }
-            elseif(Auth::user()->type == 'liason office head')
+            elseif(Auth::user()->type == 'liaison officer')
             {
                 return redirect()->route('liason.dashboard');
             }
@@ -721,7 +721,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('supervisor.dashboard');
             }
-            elseif(Auth::user()->type == 'hod')
+            elseif(Auth::user()->type == 'director')
             {
                 return redirect()->route('hod.dashboard');
             }
@@ -889,7 +889,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('unit.dashboard');
             }
-            elseif(Auth::user()->type == 'liason office head')
+            elseif(Auth::user()->type == 'liaison officer')
             {
                 return redirect()->route('liason.dashboard');
             }
@@ -905,7 +905,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('supervisor.dashboard');
             }
-            elseif(Auth::user()->type == 'hod')
+            elseif(Auth::user()->type == 'director')
             {
                 return redirect()->route('hod.dashboard');
             }
@@ -1024,7 +1024,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('unit.dashboard');
             }
-            elseif(Auth::user()->type == 'liason office head')
+            elseif(Auth::user()->type == 'liaison officer')
             {
                 return redirect()->route('liason.dashboard');
             }
@@ -1040,7 +1040,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('supervisor.dashboard');
             }
-            elseif(Auth::user()->type == 'hod')
+            elseif(Auth::user()->type == 'director')
             {
                 return redirect()->route('hod.dashboard');
             }

@@ -101,11 +101,11 @@ class RaiseRequisitionComponent extends Component
         // Determine if the user belongs to a liaison office
         $isLiaisonOffice = Auth::user()->is_in_liaison_office;
 
-        $liaisonHead = User::where('type', 'liason office head')
+        $liaisonHead = User::where('type', 'liaison officer')
             ->where('location_type', Auth::user()->location_type)
             ->first();
 
-        $departmentHead = User::where('type', 'hod')
+        $departmentHead = User::where('type', 'director')
             ->where('department_id', Auth::user()->department_id)
             ->first();
 

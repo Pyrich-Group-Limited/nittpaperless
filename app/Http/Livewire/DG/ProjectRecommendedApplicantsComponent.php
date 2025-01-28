@@ -48,7 +48,7 @@ class ProjectRecommendedApplicantsComponent extends Component
             $existing = ProjectHod::where('project_id', $this->project_id)
                 ->where('hod_id', $hodId)
                 ->first();
-            
+
             if ($existing) {
                 // Add to duplicate list and skip
                 $duplicates[] = User::find($hodId)->name;
@@ -61,23 +61,23 @@ class ProjectRecommendedApplicantsComponent extends Component
                     'project_id' => $this->project_id,
                     'hod_id' => $hodId,
                 ]);
-                
+
                  // Send notification to HOD
                 // $hod = User::find($hodId);
                 // $hod->notify(new ProjectSharedNotification($project, auth()->user())); // Notify HOD
 
             } catch (QueryException $e) {
-                $this->dispatchBrowserEvent('error',["error" =>"Error sharing project with HOD."]);
+                $this->dispatchBrowserEvent('error',["error" =>"Error sharing project with Director."]);
             }
         }
 
         // If there are duplicates, show a warning message
         if (count($duplicates) > 0) {
-            $this->dispatchBrowserEvent('error',["error" =>"The project has already been shared with the following HODs: ". implode(', ', $duplicates)]);
+            $this->dispatchBrowserEvent('error',["error" =>"The project has already been shared with the following Directors: ". implode(', ', $duplicates)]);
         } else {
-            $this->dispatchBrowserEvent('success',["success" =>"Project shared with selected HODs successfully!"]);
+            $this->dispatchBrowserEvent('success',["success" =>"Project shared with selected Directors successfully!"]);
         }
-    
+
     }
 
 
@@ -119,18 +119,18 @@ class ProjectRecommendedApplicantsComponent extends Component
 
         }
             $filePath = public_path('assets/documents/documents/' . $applicationDocument->document);
-            
+
             if (file_exists($filePath)) {
                 return response()->download($filePath, $applicationDocument->document);
             } else {
                 $this->dispatchBrowserEvent('error',["error" =>"Document not found!."]);
             }
-        
+
     }
 
     public function render()
     {
-        $users = User::where('type','hod')->get();
+        $users = User::where('type','director')->get();
         $projectApplicants = ProjectApplication::where('project_id',$this->project_id)
         ->where('application_status','on_review')->get();
         return view('livewire.d-g.project-recommended-applicants-component',compact('projectApplicants','users'));

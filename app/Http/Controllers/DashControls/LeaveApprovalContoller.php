@@ -27,7 +27,7 @@ class LeaveApprovalContoller extends Controller
         $approval->save();
 
         // If the current stage is HOD and the status is approved, update the leave status to approved
-        if ($approval->approval_stage == 'hod' && $request->status == 'approved') {
+        if ($approval->approval_stage == 'director' && $request->status == 'approved') {
             // Find the corresponding leave
             $leave = Leave::find($approval->leave_id);
             // Update leave status to approved
@@ -40,7 +40,7 @@ class LeaveApprovalContoller extends Controller
             if ($approval->approval_stage == 'supervisor') {
                 $this->createNextApproval($approval->leave_id, 'unit head');
             } elseif ($approval->approval_stage == 'unit head') {
-                $this->createNextApproval($approval->leave_id, 'hod');
+                $this->createNextApproval($approval->leave_id, 'director');
             }
         }
 
@@ -81,9 +81,9 @@ class LeaveApprovalContoller extends Controller
             $approver = User::where('type', 'unit head')
                 ->where('unit_id', $user->unit_id)
                 ->first();
-        } elseif ($stage == 'hod') {
+        } elseif ($stage == 'director') {
             // Fetch the head of department in the same department
-            $approver = User::where('type', 'hod')
+            $approver = User::where('type', 'director')
                 ->where('department_id', $user->department_id)
                 ->first();
         } else {

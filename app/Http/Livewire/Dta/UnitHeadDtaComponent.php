@@ -62,7 +62,7 @@ class UnitHeadDtaComponent extends Component
 
     public function verifyAndApprove()
     {
-        $approverId = User::where('type', 'hod')
+        $approverId = User::where('type', 'director')
         ->where('department_id', Auth::user()->department_id)
         ->first();
 

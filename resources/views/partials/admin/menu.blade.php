@@ -88,11 +88,13 @@
                     </li>
 
                     <li class="dash-item dash-hasmenu ">
-                        <a href="#!" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
-                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
-                            ><span class="dash-mtext">{{__('Payment Advances')}}</span
-                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
-                            ></a>
+                        <a href="#!"
+                        class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
+                        title="Loan, Salary Advance, or Impress">
+                            <span class="dash-micon"><i class="ti ti-cash"></i></span>
+                            <span class="dash-mtext">{{__('Payment Advances')}}</span>
+                            <span class="dash-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
                         <ul class="dash-submenu">
                             @can('final account view')
                                 <li class="dash-item {{ request()->is('manage.requisitions') ? 'active' : '' }}">
@@ -412,11 +414,13 @@
                     @endif
 
                     <li class="dash-item dash-hasmenu ">
-                        <a href="#!" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
-                        ><span class="dash-micon"><i class="ti ti-cash"></i></span
-                            ><span class="dash-mtext">{{__('Payment Advances')}}</span
-                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
-                            ></a>
+                        <a href="#!"
+                        class="dash-link {{ (Request::segment(1) == 'business') ? 'active' : '' }}"
+                        title="Loan, Salary Advance, or Impress">
+                            <span class="dash-micon"><i class="ti ti-cash"></i></span>
+                            <span class="dash-mtext">{{ __('Payment Advances') }}</span>
+                            <span class="dash-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
                         <ul class="dash-submenu">
                             <li class="dash-item {{ request()->is('requisition.raise') ? 'active' : '' }}">
                                 <a class="dash-link" href="{{ route('requisition.raise') }}">{{__('My Advances')}}</a>
@@ -426,7 +430,7 @@
                                     <a class="dash-link" href="{{ route('manage.requisitions') }}">{{__('Manage Advances')}}</a>
                                 </li>
                             @endcan
-                            @can('approve as hod')
+                            @can('approve as director')
                                 <li class="dash-item {{ request()->is('hod.requisitions') ? 'active' : '' }}">
                                     <a class="dash-link" href="{{ route('hod.requisitions') }}">{{__('Director Approval')}}</a>
                                 </li>
@@ -1040,7 +1044,7 @@
                         @endcan
                     @endif
 
-                    @if(\Auth::user()->type == 'liason office head' || \Auth::user()->type == 'unit head')
+                    @if(\Auth::user()->type == 'liaison officer' || \Auth::user()->type == 'unit head')
                         @can('create budget plan')
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
                             <a href="{{ route('budget.create')}}" class="dash-link">
@@ -1083,7 +1087,7 @@
                                             <li class="dash-item {{ (Request::route()->getName() == 'users.index' || Request::route()->getName() == 'users.create' || Request::route()->getName() == 'users.edit' || Request::route()->getName() == 'user.userlog') ? ' active' : '' }}">
                                                 <a class="dash-link" href="{{ route('hrm.leave') }}">{{__('Leave')}}</a>
                                             </li>
-                                            @if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'liason office head' || \Auth::user()->type == 'hod' || \Auth::user()->type == 'client')
+                                            @if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'liaison officer' || \Auth::user()->type == 'director' || \Auth::user()->type == 'client')
                                                 @can('view leave report')
                                                     <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }}">
                                                         <a class="dash-link" href="{{ route('report.leave') }}">{{__('Leave Report')}}</a>
@@ -1133,7 +1137,7 @@
                                                 <a class="dash-link" href="{{ route('dtaApproval.unit-head') }}">{{__('Unit Head Approval')}}</a>
                                             </li>
                                         @endcan
-                                        @can('hod approve')
+                                        @can('director approve')
                                             <li class="dash-item {{ request()->is('dtaApproval.hod') ? 'active' : '' }}">
                                                 <a class="dash-link" href="{{ route('dtaApproval.hod') }}">{{__('Director Approval')}}</a>
                                             </li>
@@ -1227,7 +1231,7 @@
                                 <a class="dash-link" href="{{ route('itemRequisition.index') }}">{{__('Store Requisition Note')}}</a>
                             </li>
 
-                            @can('hod approve SRN')
+                            @can('director approve SRN')
                                 <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('itemRequisition.hodApproval') }}">{{__('Director SRN approval')}}</a>
                                 </li>

@@ -145,7 +145,7 @@
                                         @endif
                                     @endcan
 
-                                    @can('hod approve')
+                                    @can('director approve')
                                         @if ($selDta->status=='unit_head_approved')
                                             <input type="button" wire:click="hodApproveDta({{ $selDta->id }})" value="{{ __('Approve as Director') }}" class="btn  btn-primary btn-sm">
                                         @endif

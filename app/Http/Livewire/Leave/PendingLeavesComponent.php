@@ -45,22 +45,22 @@ class PendingLeavesComponent extends Component
             }
 
             // For Normal HOD: only allow approval if Unit Head approval exists
-                if ($user->type == 'hod' && $user->department_id != $specialDutyDepartment->id) {
+                if ($user->type == 'director' && $user->department_id != $specialDutyDepartment->id) {
                     $query->whereHas('approvals', function ($subQuery) {
                         $subQuery->where('type', 'unit head')->where('status', 'Approved');
                     });
                 }
 
-            if ($user->department_id == $specialDutyDepartment->id && $user->type == 'hod') {
+            if ($user->department_id == $specialDutyDepartment->id && $user->type == 'director') {
                 $query->whereHas('approvals', function ($subQuery) {
-                    $subQuery->where('type', 'liason office head')->where('status', 'Approved');
+                    $subQuery->where('type', 'liaison officer')->where('status', 'Approved');
                 });
             }
 
             // For Registrar: only allow approval if HOD approval exists
             if ($user->type == 'client') {
                 $query->whereHas('approvals', function ($subQuery) {
-                    $subQuery->where('type', 'hod')->where('status', 'Approved');
+                    $subQuery->where('type', 'director')->where('status', 'Approved');
                 });
             }
         })
