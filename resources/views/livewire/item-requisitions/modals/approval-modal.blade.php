@@ -66,7 +66,7 @@
                                     @if ($selectedRequisition->status == 'pending_hod_approval' || $selectedRequisition->status == 'liaison_head_approved')
                                         <input type="button"
                                             wire:click="approveRequisition({{ $selectedRequisition->id }})"
-                                            value="{{ __('HOD Approve') }}" class="btn  btn-primary btn-sm">
+                                            value="{{ __('Director Approve') }}" class="btn  btn-primary btn-sm">
                                         <input type="button"
                                             wire:click="rejectRequisition({{ $selectedRequisition->id }})"
                                             value="{{ __('Reject') }}" class="btn  btn-danger btn-sm">

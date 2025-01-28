@@ -1,10 +1,10 @@
 <div>
     @section('page-title')
-        Requisitions for Liaison Head Approval.
+        Requisitions for Liaison Officer Approval.
     @endsection
     @section('breadcrumb')
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
-        <li class="breadcrumb-item">{{ __('Requisitions for  Liaison Head Approval') }}</li>
+        <li class="breadcrumb-item">{{ __('Requisitions for  Liaison Officer Approval') }}</li>
     @endsection
     @push('css-page')
         <style>
@@ -131,7 +131,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                               
+
                                     <div class="tab-pane fade fade table-responsive" id="approvedRequisitions"
                                         role="tabpanel" aria-labelledby="profile-tab3" wire:ignore.self>
                                         <table class="table table-flush" id="report-dataTable" wire:ignore.self>

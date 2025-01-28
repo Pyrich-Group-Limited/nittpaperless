@@ -1426,7 +1426,7 @@ Route::middleware(['XSS', 'revalidate'])->prefix('requisitions')->group(function
      Route::get('/raise-requisition', RaiseRequisitionComponent::class)->name('requisition.raise');
      Route::get('/manage-requisition', AllRaisedRequisitionsComponent::class)->name('manage.requisitions');
      Route::get('/hod-approvals', HodRequisitionsComponent::class)->name('hod.requisitions');
-     Route::get('/liaison-head-approvals', LiaisonHeadApprovalComponent::class)->name('liaison.requisitions');
+     Route::get('/liaison-officer-approvals', LiaisonHeadApprovalComponent::class)->name('liaison.requisitions');
      Route::get('/special-duty-approvals', SpecialDutyHeadApprovalComponent::class)->name('sd.requisitions');
      Route::get('/dg-approvals', DgRequisitionApprovalComponent::class)->name('dg.requisitions');
      Route::get('/bursar-approvals', BursarRequisitionApprovalComponent::class)->name('bursar.requisitions');

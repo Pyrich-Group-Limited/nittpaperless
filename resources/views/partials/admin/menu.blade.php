@@ -18,7 +18,7 @@
 @endif
     <div class="navbar-wrapper">
         <div class="m-header main-logo">
-            <a href="#" class="b-brand">
+            <a href="{{ route('dashboard') }}" class="b-brand">
                 <img src="{{  asset('logo-dark.png') }}" alt="NITTs" class="logo logo-lg">
             </a>
 
@@ -90,7 +90,7 @@
                     <li class="dash-item dash-hasmenu ">
                         <a href="#!" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
                         ><span class="dash-micon"><i class="ti ti-cash"></i></span
-                            ><span class="dash-mtext">{{__('Payment Requisition')}}</span
+                            ><span class="dash-mtext">{{__('Payment Advances')}}</span
                             ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                             ></a>
                         <ul class="dash-submenu">
@@ -201,7 +201,7 @@
                                             </ul>
                                         </li>
                                     @endcan
-                                    @if( Gate::check('manage indicator') || Gate::check('manage appraisal') || Gate::check('manage goal tracking'))
+                                    {{-- @if( Gate::check('manage indicator') || Gate::check('manage appraisal') || Gate::check('manage goal tracking'))
                                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'active dash-trigger' : ''}}" href="#navbar-performance" data-toggle="collapse" role="button" aria-expanded="{{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'true' : 'false'}}">
                                             <a class="dash-link" href="#">{{__('Performance Management')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                             <ul class="dash-submenu {{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'show' : 'collapse'}}">
@@ -222,7 +222,7 @@
                                                 @endcan
                                             </ul>
                                         </li>
-                                    @endif
+                                    @endif --}}
                                     @if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'HR')
                                     <li class="dash-item {{ (Request::segment(1) == 'leavetype' || Request::segment(1) == 'document' || Request::segment(1) == 'performanceType' || Request::segment(1) == 'branch' || Request::segment(1) == 'department'
                                                               || Request::segment(1) == 'designation' || Request::segment(1) == 'job-stage'|| Request::segment(1) == 'performanceType'  || Request::segment(1) == 'job-category' || Request::segment(1) == 'terminationtype' ||
@@ -414,26 +414,26 @@
                     <li class="dash-item dash-hasmenu ">
                         <a href="#!" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
                         ><span class="dash-micon"><i class="ti ti-cash"></i></span
-                            ><span class="dash-mtext">{{__('Payment Requisition')}}</span
+                            ><span class="dash-mtext">{{__('Payment Advances')}}</span
                             ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
                             ></a>
                         <ul class="dash-submenu">
                             <li class="dash-item {{ request()->is('requisition.raise') ? 'active' : '' }}">
-                                <a class="dash-link" href="{{ route('requisition.raise') }}">{{__('My Requisitions')}}</a>
+                                <a class="dash-link" href="{{ route('requisition.raise') }}">{{__('My Advances')}}</a>
                             </li>
                             @can('final account view')
                                 <li class="dash-item {{ request()->is('manage.requisitions') ? 'active' : '' }}">
-                                    <a class="dash-link" href="{{ route('manage.requisitions') }}">{{__('Manage Requisitions')}}</a>
+                                    <a class="dash-link" href="{{ route('manage.requisitions') }}">{{__('Manage Advances')}}</a>
                                 </li>
                             @endcan
                             @can('approve as hod')
                                 <li class="dash-item {{ request()->is('hod.requisitions') ? 'active' : '' }}">
-                                    <a class="dash-link" href="{{ route('hod.requisitions') }}">{{__('HoD Approval')}}</a>
+                                    <a class="dash-link" href="{{ route('hod.requisitions') }}">{{__('Director Approval')}}</a>
                                 </li>
                             @endcan
                             @can('approve as liaison head')
                                 <li class="dash-item {{ request()->is('liaison.requisitions') ? 'active' : '' }}">
-                                    <a class="dash-link" href="{{ route('liaison.requisitions') }}">{{__('LiaisonHead Approval')}}</a>
+                                    <a class="dash-link" href="{{ route('liaison.requisitions') }}">{{__('Liaison Officer Approval')}}</a>
                                 </li>
                             @endcan
                             @can('approve as special duty')
@@ -1135,13 +1135,13 @@
                                         @endcan
                                         @can('hod approve')
                                             <li class="dash-item {{ request()->is('dtaApproval.hod') ? 'active' : '' }}">
-                                                <a class="dash-link" href="{{ route('dtaApproval.hod') }}">{{__('HOD Approval')}}</a>
+                                                <a class="dash-link" href="{{ route('dtaApproval.hod') }}">{{__('Director Approval')}}</a>
                                             </li>
                                         @endcan
 
                                         @can('liaison approve')
                                             <li class="dash-item {{ request()->is('dtaApproval.liason') ? 'active' : '' }}">
-                                                <a class="dash-link" href="{{ route('dtaApproval.liason') }}">{{__('Liason Head Approval')}}</a>
+                                                <a class="dash-link" href="{{ route('dtaApproval.liason') }}">{{__('Liason Officer Approval')}}</a>
                                             </li>
                                         @endcan
 
@@ -1229,7 +1229,7 @@
 
                             @can('hod approve SRN')
                                 <li class="dash-item {{ (Request::route()->getName() == 'itemRequisition.hodApproval' || Request::route()->getName() == 'purchase.show') ? ' active' : '' }}">
-                                    <a class="dash-link" href="{{ route('itemRequisition.hodApproval') }}">{{__('HoD SRN approval')}}</a>
+                                    <a class="dash-link" href="{{ route('itemRequisition.hodApproval') }}">{{__('Director SRN approval')}}</a>
                                 </li>
                             @endcan
                             @can('liaison approve SRN')
