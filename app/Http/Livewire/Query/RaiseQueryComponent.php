@@ -57,15 +57,46 @@ class RaiseQueryComponent extends Component
         ]);
 
 
-        // Notify HRM (optional: use notification or event)
         $this->dispatchBrowserEvent('success', ['success' => 'Query raised successfully!']);
         $this->reset();
         return redirect()->route('query.index');
     }
 
+    public function getStaffRecords()
+    {
+        $authUser = Auth::user();
+
+        $staff = User::query()->where('type', '!=', 'contractor');
+
+        // Check user role and apply filtering conditions
+        if ($authUser->type === 'DG') {
+            return $staff->get();
+        }
+
+        if ($authUser->type === 'director') {
+            $staff->where('department_id', $authUser->department_id);
+        }
+
+        if ($authUser->type === 'unit head') {
+            $staff->where('department_id', $authUser->department_id)
+                ->where('unit_id', $authUser->unit_id);
+        }
+
+        if ($authUser->type === 'liaison officer') {
+            $staff->where('location', $authUser->location)
+                ->where('location_type', $authUser->location_type);
+        }
+
+        if ($authUser->type === 'supervisor') {
+            $staff->where('department_id', $authUser->department_id);
+        }
+
+        return $staff->get();
+    }
+
     public function render()
     {
-        $staff = User::where('department_id', Auth::user()->department_id)->get();
+        $staff = $this->getStaffRecords();
 
         return view('livewire.query.raise-query-component',compact('staff'));
     }

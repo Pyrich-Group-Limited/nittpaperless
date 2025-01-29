@@ -28,7 +28,10 @@ class UsersComponent extends Component
     use WithFileUploads;
     public $uploadFile;
     public $failed_upload = [];
-    protected $listeners = ['reset-confimred'=>'resetPassword']; // listen to comfirmatio delete and call delete branch function
+    protected $listeners = [
+        'reset-confimred'=>'resetPassword',
+        'reset-code-confimred' => 'resetSecretCode'
+    ]; // listen to comfirmatio delete and call delete branch function
 
     public $actionId;
     public $selUser;
@@ -67,6 +70,28 @@ class UsersComponent extends Component
         ]);
 
         $this->dispatchBrowserEvent('success',['success'=>'Password Successfuly Reset']);
+    }
+
+    public function resetSecretCode()
+    {
+        $user = User::find($this->actionId);
+
+        if (!$user) {
+            $this->dispatchBrowserEvent('error', ['error' => 'User not found.']);
+            return;
+        }
+
+        // Check if the user has a secret code
+        if (!$user->secret_code) {
+            $this->dispatchBrowserEvent('error', ['error' => 'User does not have a secret code to reset.']);
+            return;
+        }
+
+        // Reset secret code
+        $user->update([
+            'secret_code' => null,
+        ]);
+        $this->dispatchBrowserEvent('success', ['success' => 'Secret Code Successfully Reset']);
     }
 
     public function getPermission(User $user){

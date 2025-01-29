@@ -17,7 +17,7 @@
 
                     <div class="form-group">
                         <label for="staff">Staff</label>
-                        <select wire:model="staff_id" id="staff" class="form-control">
+                        <select wire:model.live="staff_id" id="staff" class="form-control">
                             <option value="">Select Staff</option>
                             @foreach($staff as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -64,8 +64,8 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
     </div>
     {{-- @push('script')
         <script>

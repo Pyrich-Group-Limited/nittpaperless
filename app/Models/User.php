@@ -45,6 +45,7 @@ class User extends Authenticatable
         'subunit_id',
         'level',
         'ippis',
+        'secret_code',
     ];
 
     public function companyProfile(){

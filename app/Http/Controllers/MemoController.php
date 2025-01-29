@@ -25,16 +25,57 @@ class MemoController extends Controller
 
 
 
-    public function index()
+     public function index(Request $request)
     {
-        $memos = Memo::where('created_by', Auth::id())->orWhereHas('shares', function ($query) {
-            $query->where('shared_with', Auth::id());
-        })->orderBy('created_at','DESC')->get();
+        $userId = Auth::id(); // Get authenticated user ID
 
-        $incomingMemos = MemoShare::where('shared_with', Auth::id())->orderBy('created_at','DESC')->get();
-        $outgoingMemos = MemoShare::where('shared_by', Auth::id())->orderBy('created_at','DESC')->get();
+        //Query for Main Memos (Created by the user OR Shared with the user)
+        $memos = Memo::where(function ($query) use ($userId) {
+            $query->where('created_by', $userId)
+                ->orWhereHas('shares', function ($q) use ($userId) {
+                    $q->where('shared_with', $userId);
+                });
+        });
 
-        return view('memos.index', compact('memos','outgoingMemos','incomingMemos'));
+        //Apply title filter
+        if ($request->filled('title')) {
+            $memos->where('title', 'like', '%' . $request->input('title') . '%');
+        }
+
+        // Apply created_at filter
+        if ($request->filled('created_at')) {
+            $memos->whereDate('created_at', $request->input('created_at'));
+        }
+
+        $memos = $memos->orderBy('created_at', 'DESC')->get();
+
+        //Query for Incoming Memos (Memos shared with the user)
+        $incomingMemos = MemoShare::where('shared_with', $userId)
+            ->whereHas('memo', function ($q) use ($request) {
+                if ($request->filled('title')) {
+                    $q->where('title', 'like', '%' . $request->input('title') . '%');
+                }
+                if ($request->filled('created_at')) {
+                    $q->whereDate('created_at', $request->input('created_at'));
+                }
+            })
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        //Query for Outgoing Memos (Memos shared by the user)
+        $outgoingMemos = MemoShare::where('shared_by', $userId)
+            ->whereHas('memo', function ($q) use ($request) {
+                if ($request->filled('title')) {
+                    $q->where('title', 'like', '%' . $request->input('title') . '%');
+                }
+                if ($request->filled('created_at')) {
+                    $q->whereDate('created_at', $request->input('created_at'));
+                }
+            })
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('memos.index', compact('memos', 'outgoingMemos', 'incomingMemos'));
     }
 
     public function fetchMemos()

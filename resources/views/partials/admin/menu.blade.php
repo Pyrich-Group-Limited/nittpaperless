@@ -1004,26 +1004,26 @@
                                         </a>
                                     </li>
                                 @endif
-                                @can('manage warehouse')
-                                 <!---   <li class="dash-item {{ (Request::route()->getName() == 'goodsReceived.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
+                                {{-- @can('manage warehouse')
+                                   <li class="dash-item {{ (Request::route()->getName() == 'goodsReceived.list' || Request::route()->getName() == 'warehouse.show') ? ' active' : '' }}">
                                         <a class="dash-link" href="{{ route('goodsReceived.list') }}">{{__('Goods Recieved Notes')}}</a>
-                                    </li>   --->
-                                @endcan
-                            @can('manage pos')
-                          <!---      <li class="dash-item {{ (Request::route()->getName() == 'pos.index' ) ? ' active' : '' }}">
+                                    </li>
+                                @endcan --}}
+                            {{-- @can('manage pos')
+                                <li class="dash-item {{ (Request::route()->getName() == 'pos.index' ) ? ' active' : '' }}">
                                     <a class="dash-link" href="{{  ('pos.index') }}">{{__(' Add Assets')}}</a>
-                                </li>   --->
+                                </li>
 
-                             <!---   <li class="dash-item {{ (Request::route()->getName() == 'pos.report' || Request::route()->getName() == 'pos.show') ? ' active' : '' }}">
+                               <li class="dash-item {{ (Request::route()->getName() == 'pos.report' || Request::route()->getName() == 'pos.show') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('pos.report') }}">{{__('Stock/Inventory')}}</a>
-                                </li> ---->
-                            @endcan
+                               </li>
+                            @endcan --}}
                                 @can('manage warehouse')
                                     <li class="dash-item {{ (Request::route()->getName() == 'warehouse-transfer.index' || Request::route()->getName() == 'warehouse-transfer.show') ? ' active' : '' }}">
                                         <a class="dash-link" href="{{ route('warehouse-transfer.index') }}">{{__('Transfer')}}</a>
                                     </li>
                                 @endcan
-                            @can('create barcode')
+                            {{-- @can('create barcode')
                                 <li class="dash-item {{ (Request::route()->getName() == 'pos.barcode'  || Request::route()->getName() == 'pos.print') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('pos.barcode') }}">{{__('Print Barcode')}}</a>
                                 </li>
@@ -1032,7 +1032,7 @@
                                 <li class="dash-item {{ (Request::route()->getName() == 'pos-print-setting') ? ' active' : '' }}">
                                     <a class="dash-link" href="{{ route('pos.print.setting') }}">{{__('Print Settings')}}</a>
                                 </li>
-                            @endcan
+                            @endcan --}}
                             </ul>
                         </li>
                         @can('manage budgets')
