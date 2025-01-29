@@ -429,6 +429,35 @@ $(document).on("click", '.confirm-reset', function () {
     })
 });
 
+$(document).on("click", '.confirm-reset-code', function () {
+    var form = $(this).closest("form");
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "you want to reset staff secret code?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            Livewire.emit('reset-code-confimred');
+
+        } else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+        }
+    })
+});
+
 $(document).on("click", '.confirm-delete', function () {
     var form = $(this).closest("form");
     const swalWithBootstrapButtons = Swal.mixin({

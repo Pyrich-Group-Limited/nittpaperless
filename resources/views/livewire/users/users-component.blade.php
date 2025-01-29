@@ -106,6 +106,12 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                                                 <i class="ti ti-adjustments"></i>
                                                                 <span>  {{__('Reset Password')}}</span>
                                                             </a>
+
+                                                            <a href="#" wire:click="setActionId('{{ $user->id}}')" class="dropdown-item confirm-reset-code" >
+                                                                <i class="ti ti-settings"></i>
+                                                                <span>  {{__('Reset Secrete Code')}}</span>
+                                                            </a>
+
                                                         </div>
                                                     </div>
                                                 </div>

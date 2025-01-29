@@ -42,6 +42,7 @@ class CreateUsersTable extends Migration
             $table->integer('department_id')->nullable();
             $table->integer('unit_id')->nullable();
             $table->integer('sub_unit_id')->nullable();
+            $table->string('secret_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
         }

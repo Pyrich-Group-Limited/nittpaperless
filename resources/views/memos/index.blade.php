@@ -20,21 +20,47 @@
         <div id="printableArea">
             <div class="col-12" id="invoice-container">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between w-100">
-                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="profile-tab2" data-bs-toggle="pill" href="#memos" role="tab" aria-controls="pills-summary" aria-selected="true"><i class="ti ti-files"> </i> {{__('Memos')}}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab3" data-bs-toggle="pill" href="#incoming" role="tab" aria-controls="pills-summary" aria-selected="false"><i class="ti ti-download"> </i> {{__('Incoming Memos')}}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab4" data-bs-toggle="pill" href="#outgoing" role="tab" aria-controls="pills-invoice" aria-selected="false"><i class="ti ti-upload"> </i> {{__('Outgoing Memos')}}</a>
-                                    </li>
-                                </ul>
+                        {{-- <div class="d-flex justify-content-between w-100"> --}}
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <!-- 🔎 Filter Form -->
+                                    <div class="col-12 col-lg-12 mb-3 mb-lg-4">
+                                        <form method="GET" action="{{ route('memos.index') }}" class="row g-2">
+                                            <div class="col-md-4">
+                                                <input type="text" name="title" class="form-control" placeholder="Search by Title" value="{{ request('title') }}">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="date" name="created_at" class="form-control" value="{{ request('created_at') }}">
+                                            </div>
+                                            <div class="col-md-4 d-flex gap-2">
+                                                <button type="submit" class="btn btn-primary w-100"><i class="ti ti-search"></i> Filter</button>
+                                                <a href="{{ route('memos.index') }}" class="btn btn-secondary w-100">Reset</a>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- 📌 Memo Tabs -->
+                                    <div class="col-12 col-lg-12 text-lg-end">
+                                        <ul class="nav nav-pills justify-content-lg-end">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="profile-tab2" data-bs-toggle="pill" href="#memos" role="tab" aria-controls="pills-summary" aria-selected="true">
+                                                    <i class="ti ti-files"></i> {{ __('Memos') }}
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="profile-tab3" data-bs-toggle="pill" href="#incoming" role="tab" aria-controls="pills-summary" aria-selected="false">
+                                                    <i class="ti ti-download"></i> {{ __('Incoming Memos') }}
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="contact-tab4" data-bs-toggle="pill" href="#outgoing" role="tab" aria-controls="pills-invoice" aria-selected="false">
+                                                    <i class="ti ti-upload"></i> {{ __('Outgoing Memos') }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
                         <div class="card-body">
                             <div class="row">
@@ -241,7 +267,7 @@
                                                                             <i class="ti ti-eye text-white"></i>
                                                                         </a>
                                                                     </div>
-                                                                   
+
                                                                     <div class="action-btn bg-primary ms-2">
                                                                         <a href="{{ route('memos.download',$outgoingMemo->memo->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
                                                                             <i class="ti ti-download text-white"></i>
