@@ -82,86 +82,97 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <div class=" mt-2 " id="multiCollapseExample1">
+            <div class="mt-2" id="multiCollapseExample1">
                 <div class="card">
                     <div class="card-body">
-                        {{ Form::open(array('route' => array('reports.dta'),'method'=>'get','id'=>'report_dta')) }}
+                        {{ Form::open(['route' => 'reports.dta', 'method' => 'get', 'id' => 'report_dta']) }}
                         <div class="row align-items-center justify-content-end">
                             <div class="col-xl-10">
                                 <div class="row">
 
+                                    <!-- Type Selection -->
                                     <div class="col-3 mt-2">
-                                        <label class="form-label">{{__('Type')}}</label> <br>
+                                        <label class="form-label">{{ __('Type') }}</label> <br>
 
                                         <div class="form-check form-check-inline form-group">
-                                            <input type="radio" id="monthly" value="monthly" name="type" class="form-check-input" {{isset($_GET['type']) && $_GET['type']=='monthly' ?'checked':'checked'}}>
-                                            <label class="form-check-label" for="monthly">{{__('Monthly')}}</label>
+                                            <input type="radio" id="monthly" value="monthly" name="type" class="form-check-input"
+                                                {{ request('type', 'monthly') == 'monthly' ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="monthly">{{ __('Monthly') }}</label>
                                         </div>
                                         <div class="form-check form-check-inline form-group">
-                                            <input type="radio" id="daily" value="daily" name="type" class="form-check-input" {{isset($_GET['type']) && $_GET['type']=='daily' ?'checked':''}}>
-                                            <label class="form-check-label" for="daily">{{__('Daily')}}</label>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 month">
-                                        <div class="btn-box">
-                                            {{Form::label('month',__('Month'),['class'=>'form-label'])}}
-                                            {{Form::month('month',isset($_GET['month'])?$_GET['month']:date('Y-m'),array('class'=>'month-btn form-control'))}}
+                                            <input type="radio" id="yearly" value="yearly" name="type" class="form-check-input"
+                                                {{ request('type') == 'yearly' ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="yearly">{{ __('Yearly') }}</label>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 year d-none">
+
+                                    <!-- Month Selection (Visible if Monthly is selected) -->
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 month">
                                         <div class="btn-box">
-                                            {{ Form::label('year', __('Year'),['class'=>'form-label']) }}
-                                            <select class="form-control select" id="year" name="year" tabindex="-1" aria-hidden="true">
-                                                @for($filterYear['starting_year']; $filterYear['starting_year'] <= $filterYear['ending_year']; $filterYear['starting_year']++)
-                                                    <option {{(isset($_GET['year']) && $_GET['year'] == $filterYear['starting_year'] ?'selected':'')}} {{(!isset($_GET['year']) && date('Y') == $filterYear['starting_year'] ?'selected':'')}} value="{{$filterYear['starting_year']}}">{{$filterYear['starting_year']}}</option>
+                                            {{ Form::label('month', __('Month'), ['class' => 'form-label']) }}
+                                            {{ Form::month('month', request('month') ?? date('Y-m'), ['class' => 'month-btn form-control']) }}
+                                        </div>
+                                    </div>
+
+                                    <!-- Year Selection (Visible if Yearly is selected) -->
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 year d-none">
+                                        <div class="btn-box">
+                                            {{ Form::label('year', __('Year'), ['class' => 'form-label']) }}
+                                            <select class="form-control select" id="year" name="year">
+                                                @for ($filterYear['starting_year']; $filterYear['starting_year'] <= $filterYear['ending_year']; $filterYear['starting_year']++)
+                                                    <option value="{{ $filterYear['starting_year'] }}"
+                                                        {{ request('year', date('Y')) == $filterYear['starting_year'] ? 'selected' : '' }}>
+                                                        {{ $filterYear['starting_year'] }}
+                                                    </option>
                                                 @endfor
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+
+                                    <!-- Department Selection -->
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                                         <div class="btn-box">
-                                            {{ Form::label('branch', __('Branch'),['class'=>'form-label']) }}
-                                            {{ Form::select('branch', $branch,isset($_GET['branch'])?$_GET['branch']:'', array('class' => 'form-control select')) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="btn-box">
-                                            {{ Form::label('department', __('Department'),['class'=>'form-label'])}}
-                                            {{ Form::select('department', $department,isset($_GET['department'])?$_GET['department']:'', array('class' => 'form-control select')) }}
+                                            {{ Form::label('department', __('Department'), ['class' => 'form-label']) }}
+
+                                            @if(Auth::user()->type === 'super admin')
+                                                {{ Form::select('department', $departments, request('department'), ['class' => 'form-control select']) }}
+                                            @else
+                                                {{ Form::select('department', $departments, Auth::user()->department_id, ['class' => 'form-control select', 'readonly' => true]) }}
+                                            @endif
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
+
+                            <!-- Search & Reset Buttons -->
                             <div class="col-auto mt-4">
                                 <div class="row">
                                     <div class="col-auto">
-
-                                        <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('report_dta').submit(); return false;" data-bs-toggle="tooltip" title="{{__('Apply')}}" data-original-title="{{__('apply')}}">
+                                        <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('report_dta').submit(); return false;"
+                                        data-bs-toggle="tooltip" title="{{ __('Apply') }}">
                                             <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
                                         </a>
 
-                                        <a href="{{route('reports.dta')}}" class="btn btn-sm btn-danger " data-bs-toggle="tooltip"  title="{{ __('Reset') }}" data-original-title="{{__('Reset')}}">
-                                            <span class="btn-inner--icon"><i class="ti ti-trash-off text-white-off "></i></span>
+                                        <a href="{{ route('reports.dta') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                        title="{{ __('Reset') }}">
+                                            <span class="btn-inner--icon"><i class="ti ti-trash-off text-white-off"></i></span>
                                         </a>
-
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
+                        {{ Form::close() }}
                     </div>
-                    {{ Form::close() }}
                 </div>
             </div>
         </div>
     </div>
+
+
     <div id="printableArea" class="">
         <div class="row">
-            <div class="col">
+            {{-- <div class="col">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="d-flex align-items-center justify-content-between">
@@ -185,8 +196,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            @if ($filterYear['branch'] != 'All')
+            </div> --}}
+            {{-- @if ($filterYear['branch'] != 'All')
                 <div class="col">
                     <div class="card">
                         <div class="card-body p-3">
@@ -206,7 +217,7 @@
                         </div>
                     </div>
                 </div>
-            @endif
+            @endif --}}
             @if ($filterYear['department'] != 'All')
                 <div class="col">
                     <div class="card">
