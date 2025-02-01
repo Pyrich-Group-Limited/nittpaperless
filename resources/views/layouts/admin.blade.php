@@ -1,5 +1,6 @@
 @php
-    $logo=asset(Storage::url('uploads/logo/'));
+    // $logo=asset(Storage::url('uploads/logo/'));
+    $logo = asset('uploads/logo/');
     $company_favicon=Utility::getValByName('company_favicon');
     $SITE_RTL = Utility::getValByName('SITE_RTL');
     $setting = \App\Models\Utility::colorset();
@@ -20,7 +21,7 @@
 <html lang="en" dir="{{$SITE_RTL == 'on'?'rtl':''}}">
 <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 <head>
-    <title>{{(Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'ERPGO')}} - @yield('page-title')</title>
+    <title>{{(Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'NITT')}} - @yield('page-title')</title>
 
     <meta name="title" content="{{$metatitle}}">
     <meta name="description" content="{{$metsdesc}}">
@@ -49,7 +50,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="url" content="{{ url('').'/'.config('chatify.path') }}" data-user="{{ Auth::user()->id }}">
-    <link rel="icon" href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}" type="image" sizes="16x16">
+    {{-- <link rel="icon" href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}" type="image" sizes="16x16"> --}}
+    <link rel="icon" href="{{ asset('uploads/logo/' . ($company_favicon ?? 'favicon.png')) }}" type="image/png" sizes="16x16">
+
 
     <!-- Favicon icon -->
    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon"/>
@@ -76,7 +79,8 @@
     @endif
 
 
-    @if($setting['cust_darklayout'] == 'on')
+    {{-- @if($setting['cust_darklayout'] == 'on') --}}
+    @if(isset($setting['cust_darklayout']) && $setting['cust_darklayout'] == 'on')
         <link rel="stylesheet" href="{{ asset('assets/css/style-dark.css') }}" id="main-style">
     @else
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style">
@@ -93,7 +97,8 @@
     @stack('css-page')
     @livewireStyles
 </head>
-<body class="{{ $color }}">
+{{-- <body class="{{ $color }}"> --}}
+<body class="{{ isset($color) ? $color : 'theme-default' }}">
 <!-- [ Pre-loader ] start -->
 <div class="loader-bg">
     <div class="loader-track">
@@ -247,6 +252,7 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                @yield('modal-content')
             </div>
         </div>
     </div>
@@ -261,7 +267,13 @@
         </div>
     </div>
 </div>
-
+<script>
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+</script>
 
 @include('partials.admin.secret-code-modal')
 

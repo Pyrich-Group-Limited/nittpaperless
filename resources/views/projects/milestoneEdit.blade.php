@@ -27,7 +27,7 @@
         <div class="form-group  col-md-6">
             {{ Form::label('status', __('Status'),['class' => 'form-label']) }}
             {!! Form::select('status',\App\Models\Project::$project_status, null,array('class' => 'form-control selectric select','required'=>'required')) !!}
-            @error('client')
+            @error('registrar')
             <span class="invalid-client" role="alert">
                 <strong class="text-danger">{{ $message }}</strong>
             </span>

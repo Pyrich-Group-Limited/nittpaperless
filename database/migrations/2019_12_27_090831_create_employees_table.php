@@ -16,7 +16,7 @@ class CreateEmployeesTable extends Migration
         Schema::create(
             'employees', function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->integer('user_id')->default('0');
+            $table->integer('user_id')->nullable();
             $table->string('name')->nullable();
             $table->date('dob')->nullable();
             $table->string('gender')->nullable();
@@ -25,12 +25,18 @@ class CreateEmployeesTable extends Migration
             $table->string('email')->nullable();
             $table->string('password')->nullable();
 
-            $table->string('employee_id')->default('0');;
-            $table->integer('branch_id')->default('0');;
-            $table->integer('department_id')->default('0');;
-            $table->integer('designation_id')->default('0');;
+            $table->string('employee_id')->default('0');
+            $table->integer('branch_id')->default('0');
+            $table->integer('department_id')->nullable();
+            $table->integer('unit_id')->nullable();
+            $table->integer('sub_unit_id')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('location')->nullable();
+            $table->string('location_type')->nullable();
             $table->string('company_doj')->nullable();
             $table->string('documents')->nullable();
+            $table->string('ippis')->nullable();
+            $table->string('level')->nullable();
 
             $table->string('account_holder_name')->nullable();
             $table->string('account_number')->nullable();

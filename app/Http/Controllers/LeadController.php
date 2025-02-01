@@ -103,7 +103,7 @@ class LeadController extends Controller
 
         if(\Auth::user()->can('create lead'))
         {
-            $users = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'super admin')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
+            $users = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'registrar')->where('type', '!=', 'super admin')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
             $users->prepend(__('Select User'), '');
 
             return view('leads.create', compact('users'));
@@ -338,7 +338,7 @@ class LeadController extends Controller
                 $pipelines->prepend(__('Select Pipeline'), '');
                 $sources        = Source::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
                 $products       = ProductService::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
-                $users          = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'super admin')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
+                $users          = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'registrar')->where('type', '!=', 'super admin')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
                 $lead->sources  = explode(',', $lead->sources);
                 $lead->products = explode(',', $lead->products);
 
@@ -720,7 +720,7 @@ class LeadController extends Controller
 
             if($lead->created_by == \Auth::user()->creatorId())
             {
-                $users = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'super admin')->whereNOTIn(
+                $users = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'registrar')->where('type', '!=', 'super admin')->whereNOTIn(
                     'id', function ($q) use ($lead){
                     $q->select('user_id')->from('user_leads')->where('lead_id', '=', $lead->id);
                 }
@@ -1138,8 +1138,8 @@ class LeadController extends Controller
     {
 
         $lead         = Lead::findOrFail($id);
-        $exist_client = User::where('type', '=', 'client')->where('email', '=', $lead->email)->where('created_by', '=', \Auth::user()->creatorId())->first();
-        $clients      = User::where('type', '=', 'client')->where('created_by', '=', \Auth::user()->creatorId())->get();
+        $exist_client = User::where('type', '=', 'registrar')->where('email', '=', $lead->email)->where('created_by', '=', \Auth::user()->creatorId())->first();
+        $clients      = User::where('type', '=', 'registrar')->where('created_by', '=', \Auth::user()->creatorId())->get();
 
         return view('leads.convert', compact('lead', 'exist_client', 'clients'));
     }
@@ -1165,7 +1165,7 @@ class LeadController extends Controller
                 return redirect()->back()->with('error', $messages->first());
             }
 
-            $client = User::where('type', '=', 'client')->where('email', '=', $request->clients)->where('created_by', '=', $usr->creatorId())->first();
+            $client = User::where('type', '=', 'registrar')->where('email', '=', $request->clients)->where('created_by', '=', $usr->creatorId())->first();
 
             if(empty($client))
             {
@@ -1189,13 +1189,13 @@ class LeadController extends Controller
                 return redirect()->back()->with('error', $messages->first());
             }
 
-            $role   = Role::findByName('client');
+            $role   = Role::findByName('registrar');
             $client = User::create(
                 [
                     'name' => $request->client_name,
                     'email' => $request->client_email,
                     'password' => \Hash::make($request->client_password),
-                    'type' => 'client',
+                    'type' => 'registrar',
                     'lang' => 'en',
                     'created_by' => $usr->creatorId(),
                 ]

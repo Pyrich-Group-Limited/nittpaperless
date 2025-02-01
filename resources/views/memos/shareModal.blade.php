@@ -9,10 +9,10 @@
                     <input type="text" disabled value="{{ $memo->title }}" name="file_id" class="form-control" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="">Share with</label>
-                    <select name="shared_with" id="shared_with" class="form-control">
-                        <option value="#">---Select---</option>
-                        @foreach($users as $user)
+                    <label for="">Share with: (<span class="text-xs text-muted">{{ __('You can select one or more staff to send memo')}}</span>) </label>
+                    <select name="shared_with[]" id="choices-multiple1" class="form-control select2" multiple>
+                        <option value="#">Select one or more Staff</option>
+                        @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
                     </select>
@@ -34,6 +34,7 @@
         </div>
     </form>
 </div>
+
 
 
 

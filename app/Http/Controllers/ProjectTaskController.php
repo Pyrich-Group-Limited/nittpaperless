@@ -185,11 +185,11 @@ class ProjectTaskController extends Controller
         else
         {
             $usr = Auth::user();
-            if (\Auth::user()->type == 'client')
+            if (\Auth::user()->type == 'registrar')
             {
                 $user_projects = Project::where('client_id', \Auth::user()->id)->pluck('id', 'id')->toArray();
             }
-            elseif (\Auth::user()->type != 'client')
+            elseif (\Auth::user()->type != 'registrar')
             {
                 $user_projects = $usr->projects()->pluck('project_id', 'project_id')->toArray();
             }
@@ -197,7 +197,7 @@ class ProjectTaskController extends Controller
             $tasks = ProjectTask::whereIn('project_id', $user_projects);
             if (\Auth::user()->type != 'super admin')
             {
-                if (\Auth::user()->type == 'client')
+                if (\Auth::user()->type == 'registrar')
                 {
                     $tasks->where('created_by', \Auth::user()->creatorId());
 
@@ -226,9 +226,9 @@ class ProjectTaskController extends Controller
     {
 
         $usr = Auth::user();
-        if (\Auth::user()->type == 'client') {
+        if (\Auth::user()->type == 'registrar') {
             $user_projects = Project::where('client_id', \Auth::user()->id)->pluck('id', 'id')->toArray();
-        } elseif (\Auth::user()->type != 'client') {
+        } elseif (\Auth::user()->type != 'registrar') {
             $user_projects = $usr->projects()->pluck('project_id', 'project_id')->toArray();
         }
         if ($request->ajax() && $request->has('view') && $request->has('sort')) {
@@ -236,7 +236,7 @@ class ProjectTaskController extends Controller
 //            $task = ProjectTask::whereIn('project_id', $user_projects)->get();
             $tasks = ProjectTask::whereIn('project_id', $user_projects)->orderBy($sort[0], $sort[1]);
             if (\Auth::user()->type != 'super admin') {
-                if (\Auth::user()->type == 'client') {
+                if (\Auth::user()->type == 'registrar') {
                     $tasks->where('created_by', \Auth::user()->creatorId());
 
                 } else {
@@ -305,7 +305,7 @@ class ProjectTaskController extends Controller
             $bugs = Bug::where('created_by',\Auth::user()->creatorId())->get();
           }
           elseif(Auth::user()->type != 'super admin'){
-            if(\Auth::user()->type == 'client'){
+            if(\Auth::user()->type == 'registrar'){
               $user_projects = Project::where('client_id',\Auth::user()->id)->pluck('id','id')->toArray();
               $bugs = Bug::whereIn('project_id', $user_projects)->where('created_by',\Auth::user()->creatorId())->get();
             }
@@ -1022,7 +1022,7 @@ class ProjectTaskController extends Controller
 
         if($usr->type != 'admin')
         {
-            if(\Auth::user()->type == 'client'){
+            if(\Auth::user()->type == 'registrar'){
               $user_projects = Project::where('client_id',\Auth::user()->id)->pluck('id','id')->toArray();
             }else{
               $user_projects = $usr->projects()->pluck('project_id','project_id')->toArray();
@@ -1032,14 +1032,14 @@ class ProjectTaskController extends Controller
               $tasks = ProjectTask::whereIn('project_id', $user_projects);
             }
             elseif(\Auth::user()->type != 'super admin'){
-              if(\Auth::user()->type == 'client'){
+              if(\Auth::user()->type == 'registrar'){
                 $tasks = ProjectTask::whereIn('project_id', $user_projects);
               }
               else{
                 $tasks = ProjectTask::whereIn('project_id', $user_projects)->whereRaw("find_in_set('" . \Auth::user()->id . "',assign_to)");
               }
             }
-            if(\Auth::user()->type  == 'client'){
+            if(\Auth::user()->type  == 'registrar'){
               if($task_by == 'all')
               {
                   $tasks->where('created_by',\Auth::user()->creatorId());
@@ -1127,7 +1127,7 @@ class ProjectTaskController extends Controller
         }
         else
         {
-            if(Auth::user()->type == 'client')
+            if(Auth::user()->type == 'registrar')
             {
                 $user_projects = Project::where('client_id',\Auth::user()->id)->pluck('id','id')->toArray();
                 $data = ProjectTask::whereIn('project_id', $user_projects)->get();

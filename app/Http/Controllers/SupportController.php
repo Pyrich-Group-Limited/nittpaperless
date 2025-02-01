@@ -198,7 +198,7 @@ class SupportController extends Controller
         ];
 //        $status = Support::$status;
         $status = Support::status();
-        $users = User::where('created_by', \Auth::user()->creatorId())->where('type', '!=', 'client')->get()->pluck('name', 'id');
+        $users = User::where('created_by', \Auth::user()->creatorId())->where('type', '!=', 'registrar')->get()->pluck('name', 'id');
 
         return view('support.edit', compact('priority', 'users', 'support','status'));
     }

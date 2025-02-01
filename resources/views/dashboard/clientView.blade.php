@@ -512,7 +512,7 @@
 
                     {{-- <div class="row">
                         <div
-                            class="{{ Auth::user()->type == 'client' ? 'col-xl-6 col-lg-6 col-md-6' : 'col-xl-8 col-lg-8 col-md-8' }} col-sm-12">
+                            class="{{ Auth::user()->type == 'registrar' ? 'col-xl-6 col-lg-6 col-md-6' : 'col-xl-8 col-lg-8 col-md-8' }} col-sm-12">
                             <div class="card bg-none min-410 mx-410">
                                 <div class="card-header">
                                     <h5>{{ __('Top Due Project') }}</h5>

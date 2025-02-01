@@ -48,6 +48,16 @@ class User extends Authenticatable
         'secret_code',
     ];
 
+    public function isInDepartment($departmentName)
+    {
+        return $this->department?->name === $departmentName;
+    }
+
+    public function isInUnit($unitName)
+    {
+        return $this->unit?->name === $unitName;
+    }
+
     public function companyProfile(){
         return $this->hasOne(ProjectApplicant::class,'user_id')->ofMany();
     }
@@ -336,8 +346,8 @@ class User extends Authenticatable
             }
             $this->save();
 
-            $users     = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'super admin')->where('type', '!=', 'super admin')->where('type', '!=', 'client')->get();
-            $clients   = User::where('type', 'client')->get();
+            $users     = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'super admin')->where('type', '!=', 'super admin')->where('type', '!=', 'registrar')->get();
+            $clients   = User::where('type', 'registrar')->get();
             $customers = Customer::where('created_by', '=', $this->id)->get();
             $venders   = Vender::where('created_by', '=', $this->id)->get();
 
@@ -478,7 +488,7 @@ class User extends Authenticatable
 
     public function countUsers()
     {
-        return User::where('type', '!=', 'super admin')->where('type', '!=', 'super admin')->where('type', '!=', 'client')->where('created_by', '=', $this->creatorId())->count();
+        return User::where('type', '!=', 'super admin')->where('type', '!=', 'super admin')->where('type', '!=', 'registrar')->where('created_by', '=', $this->creatorId())->count();
     }
 
     public function countCompany()
@@ -1008,9 +1018,9 @@ class User extends Authenticatable
         {
             return Lead::where('created_by', '=', $this->creatorId())->count();
         }
-        elseif(\Auth::user()->type == 'client')
+        elseif(\Auth::user()->type == 'registrar')
         {
-            return Lead::where('client', '=', $this->authId())->count();
+            return Lead::where('registrar', '=', $this->authId())->count();
         }
         else
         {
@@ -1025,7 +1035,7 @@ class User extends Authenticatable
 
     public function user_project()
     {
-        if(\Auth::user()->type != 'client')
+        if(\Auth::user()->type != 'registrar')
         {
             return $this->belongsToMany('App\Models\Project', 'project_users', 'user_id', 'project_id')->count();
         }
@@ -1041,7 +1051,7 @@ class User extends Authenticatable
         {
             return ProjectTask::join('projects', 'projects.id', '=', 'project_tasks.project_id')->where('projects.created_by', '=', $this->creatorId())->count();
         }
-        elseif(\Auth::user()->type == 'client')
+        elseif(\Auth::user()->type == 'registrar')
         {
             return ProjectTask::join('projects', 'projects.id', '=', 'project_tasks.project_id')->where('projects.client_id', '=', $this->authId())->count();
         }
@@ -1058,7 +1068,7 @@ class User extends Authenticatable
         {
             return ProjectTask::join('projects', 'projects.id', '=', 'project_tasks.project_id')->where('projects.created_by', '=', $this->creatorId())->where('project_tasks.stage_id', '=', $project_last_stage)->count();
         }
-        elseif(\Auth::user()->type == 'client')
+        elseif(\Auth::user()->type == 'registrar')
         {
             $user_projects = Project::where('client_id', \Auth::user()->id)->pluck('id', 'id')->toArray();
 
@@ -1076,7 +1086,7 @@ class User extends Authenticatable
         {
             return ProjectTask::select('projects.*', 'project_tasks.id as task_id', 'project_tasks.name', 'project_tasks.end_date as task_due_date', 'project_tasks.assign_to', 'projectstages.name as stage_name')->join('projects', 'projects.id', '=', 'project_tasks.project_id')->join('projectstages', 'project_tasks.stage_id', '=', 'projectstages.id')->where('projects.created_by', '=', \Auth::user()->creatorId())->where('project_tasks.end_date', '>', date('Y-m-d'))->limit(5)->orderBy('task_due_date', 'ASC')->get();
         }
-        elseif(\Auth::user()->type == 'client')
+        elseif(\Auth::user()->type == 'registrar')
         {
             $user_projects = Project::where('client_id', \Auth::user()->id)->pluck('id', 'id')->toArray();
 
@@ -1181,7 +1191,7 @@ class User extends Authenticatable
 
     public function isClient()
     {
-        return $this->type == 'client' ? 1 : 0;
+        return $this->type == 'registrar' ? 1 : 0;
     }
 
     // For Email template Module

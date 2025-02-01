@@ -262,7 +262,7 @@
                data-ajax-popup="true" data-bs-toggle="tooltip" data-title="{{__('Add signature')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-pencil text-white"></i>
             </a>
-        @elseif(\Auth::user()->type == 'client' && ($contract->status == 'accept'))
+        @elseif(\Auth::user()->type == 'registrar' && ($contract->status == 'accept'))
             <a href="#" class="btn btn-sm btn-primary btn-icon m-1" data-size="lg" data-url="{{ route('signature',$contract->id) }}"
                data-ajax-popup="true" data-bs-toggle="tooltip" data-title="{{__('Add signature')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-pencil text-white"></i>
@@ -276,7 +276,7 @@
             $status = App\Models\Contract::status();
         @endphp
 
-        @if(\Auth::user()->type == 'client' )
+        @if(\Auth::user()->type == 'registrar' )
             <ul class="list-unstyled m-0 ">
                 <li class="dropdown dash-h-item status-drp">
                     <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
@@ -409,7 +409,7 @@
                             @if(\Auth::user()->type=='super admin')
                                 <div class="col-md-12 dropzone top-5-scroll browse-file" id="dropzonewidget"></div>
 
-                            @elseif(\Auth::user()->type == 'client' && $contract->status=='accept' )
+                            @elseif(\Auth::user()->type == 'registrar' && $contract->status=='accept' )
                                 <div class="col-md-12 dropzone top-5-scroll browse-file" id="dropzonewidget"></div>
                             @endif
                         </div>
@@ -477,7 +477,7 @@
                                 </div>
                                 <button id="comment_submit" class="btn btn-send mt-2"><i class="f-16 text-primary ti ti-brand-telegram"></i></button>
                             </div>
-                        @elseif(\Auth::user()->type == 'client' && $contract->status=='accept' )
+                        @elseif(\Auth::user()->type == 'registrar' && $contract->status=='accept' )
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
                                     <form method="post" class="card-comment-box" id="form-comment" data-action="{{route('comment.store', [$contract->id])}}">
@@ -561,7 +561,7 @@
                                     {{ Form::close() }}
                                 </div>
                             </div>
-                        @elseif(\Auth::user()->type == 'client' && $contract->status=='accept' )
+                        @elseif(\Auth::user()->type == 'registrar' && $contract->status=='accept' )
                             <div class="col-12 d-flex">
                                 <div class="form-group mb-0 form-send w-100">
                                     {{ Form::open(['route' => ['note_store.store', $contract->id]]) }}

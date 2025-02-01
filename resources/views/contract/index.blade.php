@@ -32,8 +32,8 @@
                             <tr>
                                 <th scope="col">{{__('#')}}</th>
                                 <th scope="col">{{__('Subject')}}</th>
-                                @if(\Auth::user()->type!='client')
-                                    <th scope="col">{{__('Client')}}</th>
+                                @if(\Auth::user()->type!='registrar')
+                                    <th scope="col">{{__('registrar')}}</th>
                                 @endif
                                 <th scope="col">{{__('Project')}}</th>
 
@@ -53,7 +53,7 @@
                                         <a href="{{route('contract.show',$contract->id)}}" class="btn btn-outline-primary">{{\Auth::user()->contractNumberFormat($contract->id)}}</a>
                                     </td>
                                     <td>{{ $contract->subject}}</td>
-                                    @if(\Auth::user()->type!='client')
+                                    @if(\Auth::user()->type!='registrar')
                                         <td>{{ !empty($contract->clients)?$contract->clients->name:'-' }}</td>
                                     @endif
                                     <td>{{ !empty($contract->projects)?$contract->projects->project_name:'-' }}</td>

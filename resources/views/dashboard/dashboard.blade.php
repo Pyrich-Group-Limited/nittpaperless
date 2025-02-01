@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('page-title')
-        {{'Dashboard'}}
+    {{ 'Dashboard' . ' - ' . ' ' . Ucfirst(Auth::user()->type) }}
         {{-- <i class="ti ti-user"></i> ({{ Ucfirst(Auth::user()->designation) }})<br>
         <i class="ti ti-location"></i> {{ Ucfirst(Auth::user()->location)}} --}}
 @endsection
@@ -227,7 +227,7 @@
     </div>
 </div>
 
-    @if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'DG')
+    @if(\Auth::user()->type != 'registrar' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'DG')
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">

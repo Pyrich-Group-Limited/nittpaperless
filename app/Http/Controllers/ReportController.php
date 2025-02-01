@@ -1536,138 +1536,128 @@ class ReportController extends Controller
 
 
     }
+
+    public function getEmployeesByDepartment(Request $request)
+    {
+        $employees = Employee::where('department_id', $request->department_id)->pluck('name', 'id');
+
+        return response()->json(['employees' => $employees]);
+    }
+
     public function monthlyAttendance(Request $request)
     {
-        if(\Auth::user()->can('manage report') || \Auth::user()->can('manage attendance report'))
-        {
-            // $branch      = Branch::all();
-            $branch      = LiasonOffice::all();
-            $department = Department::all();
+        if (\Auth::user()->can('manage report') || \Auth::user()->can('manage attendance report')) {
+            $user = \Auth::user();
 
-            $data['branch']     = __('All');
+            // Super admin can select departments, others see their department only
+            $departments = ($user->type === 'super admin')
+                ? Department::all()
+                : Department::where('id', $user->department_id)->get();
+
             $data['department'] = __('All');
 
+            // Determine department and location filters
+            $selectedDepartment = $request->department ?? $user->department_id;
+            $selectedLocationType = $user->type === 'super admin' ? null : $user->location_type;
 
-            $employees = Employee::select('id', 'name');
-            if(!empty($request->employee_id) && $request->employee_id[0]!=0){
+            // Fetch employees based on department and location type
+            $employees = Employee::select('id', 'name')->where('department_id', $selectedDepartment);
+
+            if ($selectedLocationType !== null) {
+                $employees->where('location_type', $selectedLocationType);
+            }
+
+            // Apply employee selection filter if provided
+            if (!empty($request->employee_id) && $request->employee_id[0] != 0) {
                 $employees->whereIn('id', $request->employee_id);
             }
-            $employees=$employees->where('created_by', \Auth::user()->creatorId());
 
-            if(!empty($request->branch))
-            {
-                $employees->where('branch_id', $request->branch);
-                $data['branch'] = !empty(Branch::find($request->branch)) ? Branch::find($request->branch)->name : '';
-            }
-
-            if(!empty($request->department))
-            {
-                $employees->where('department_id', $request->department);
-                $data['department'] = !empty(Department::find($request->department)) ? Department::find($request->department)->name : '';
-            }
-
+            // Fetch employees list
             $employees = $employees->get()->pluck('name', 'id');
 
-            if(!empty($request->month))
-            {
+            // Set department name in data
+            $data['department'] = Department::find($selectedDepartment)->name ?? '';
+
+            // Determine month and year
+            if (!empty($request->month)) {
                 $currentdate = strtotime($request->month);
-                $month       = date('m', $currentdate);
-                $year        = date('Y', $currentdate);
-                $curMonth    = date('M-Y', strtotime($request->month));
-
-            }
-            else
-            {
-                $month    = date('m');
-                $year     = date('Y');
-                $curMonth = date('M-Y', strtotime($year . '-' . $month));
+                $month = date('m', $currentdate);
+                $year = date('Y', $currentdate);
+                $curMonth = date('M-Y', $currentdate);
+            } else {
+                $month = date('m');
+                $year = date('Y');
+                $curMonth = date('M-Y', strtotime("$year-$month"));
             }
 
-
+            // Generate days of the selected month
             $num_of_days = date('t', mktime(0, 0, 0, $month, 1, $year));
-            for($i = 1; $i <= $num_of_days; $i++)
-            {
+            $dates = [];
+            for ($i = 1; $i <= $num_of_days; $i++) {
                 $dates[] = str_pad($i, 2, '0', STR_PAD_LEFT);
             }
 
+            // Initialize attendance data
             $employeesAttendance = [];
-            $totalPresent        = $totalLeave = $totalEarlyLeave = 0;
-            $ovetimeHours        = $overtimeMins = $earlyleaveHours = $earlyleaveMins = $lateHours = $lateMins = 0;
-            foreach($employees as $id => $employee)
-            {
+            $totalPresent = $totalLeave = 0;
+            $ovetimeHours = $overtimeMins = $earlyleaveHours = $earlyleaveMins = $lateHours = $lateMins = 0;
+
+            foreach ($employees as $id => $employee) {
                 $attendances['name'] = $employee;
+                $attendanceStatus = [];
 
-                foreach($dates as $date)
-                {
-                    $dateFormat = $year . '-' . $month . '-' . $date;
+                foreach ($dates as $date) {
+                    $dateFormat = "$year-$month-$date";
+                    $attendanceStatus[$date] = '';
 
-                    if($dateFormat <= date('Y-m-d'))
-                    {
-                        $employeeAttendance = AttendanceEmployee::where('employee_id', $id)->where('date', $dateFormat)->first();
+                    if ($dateFormat <= date('Y-m-d')) {
+                        $employeeAttendance = AttendanceEmployee::where('employee_id', $id)
+                            ->where('date', $dateFormat)
+                            ->first();
 
-                        if(!empty($employeeAttendance) && $employeeAttendance->status == 'Present')
-                        {
-                            $attendanceStatus[$date] = 'P';
-                            $totalPresent            += 1;
+                        if (!empty($employeeAttendance)) {
+                            if ($employeeAttendance->status == 'Present') {
+                                $attendanceStatus[$date] = 'P';
+                                $totalPresent++;
 
-                            if($employeeAttendance->overtime > 0)
-                            {
-                                $ovetimeHours += date('h', strtotime($employeeAttendance->overtime));
-                                $overtimeMins += date('i', strtotime($employeeAttendance->overtime));
+                                if ($employeeAttendance->overtime > 0) {
+                                    $ovetimeHours += date('h', strtotime($employeeAttendance->overtime));
+                                    $overtimeMins += date('i', strtotime($employeeAttendance->overtime));
+                                }
+
+                                if ($employeeAttendance->early_leaving > 0) {
+                                    $earlyleaveHours += date('h', strtotime($employeeAttendance->early_leaving));
+                                    $earlyleaveMins += date('i', strtotime($employeeAttendance->early_leaving));
+                                }
+
+                                if ($employeeAttendance->late > 0) {
+                                    $lateHours += date('h', strtotime($employeeAttendance->late));
+                                    $lateMins += date('i', strtotime($employeeAttendance->late));
+                                }
+                            } elseif ($employeeAttendance->status == 'Leave') {
+                                $attendanceStatus[$date] = 'A';
+                                $totalLeave++;
                             }
-
-                            if($employeeAttendance->early_leaving > 0)
-                            {
-                                $earlyleaveHours += date('h', strtotime($employeeAttendance->early_leaving));
-                                $earlyleaveMins  += date('i', strtotime($employeeAttendance->early_leaving));
-                            }
-
-                            if($employeeAttendance->late > 0)
-                            {
-                                $lateHours += date('h', strtotime($employeeAttendance->late));
-                                $lateMins  += date('i', strtotime($employeeAttendance->late));
-                            }
-
-
-                        }
-                        elseif(!empty($employeeAttendance) && $employeeAttendance->status == 'Leave')
-                        {
-                            $attendanceStatus[$date] = 'A';
-                            $totalLeave              += 1;
-                        }
-                        else
-                        {
-                            $attendanceStatus[$date] = '';
                         }
                     }
-                    else
-                    {
-                        $attendanceStatus[$date] = '';
-                    }
-
                 }
+
                 $attendances['status'] = $attendanceStatus;
                 $employeesAttendance[] = $attendances;
             }
 
-            $totalOverTime   = $ovetimeHours + ($overtimeMins / 60);
-            $totalEarlyleave = $earlyleaveHours + ($earlyleaveMins / 60);
-            $totalLate       = $lateHours + ($lateMins / 60);
+            // Calculate overtime, early leave, and late hours
+            $data['totalOvertime'] = $ovetimeHours + ($overtimeMins / 60);
+            $data['totalEarlyLeave'] = $earlyleaveHours + ($earlyleaveMins / 60);
+            $data['totalLate'] = $lateHours + ($lateMins / 60);
+            $data['totalPresent'] = $totalPresent;
+            $data['totalLeave'] = $totalLeave;
+            $data['curMonth'] = $curMonth;
 
-            $data['totalOvertime']   = $totalOverTime;
-            $data['totalEarlyLeave'] = $totalEarlyleave;
-            $data['totalLate']       = $totalLate;
-            $data['totalPresent']    = $totalPresent;
-            $data['totalLeave']      = $totalLeave;
-            $data['curMonth']        = $curMonth;
-
-            return view('report.monthlyAttendance', compact('employeesAttendance', 'branch', 'department', 'dates', 'data'));
-        }
-        else
-        {
+            return view('report.monthlyAttendance', compact('employeesAttendance', 'departments', 'dates', 'data', 'employees'));
+        } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
-
     }
 
     public function payroll(Request $request)

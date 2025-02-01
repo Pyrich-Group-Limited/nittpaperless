@@ -8,6 +8,7 @@
 @endsection
 @push('script-page')
     <script type="text/javascript" src="{{ asset('js/html2pdf.bundle.min.js') }}"></script>
+
     <script>
         var filename = $('#filename').val();
 
@@ -23,8 +24,30 @@
             html2pdf().set(opt).from(element).save();
         }
     </script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+    $(document).ready(function() {
+        $('#department').on('change', function() {
+            var departmentId = $(this).val();
+
+            $.ajax({
+                url: "{{ route('getEmployeesByDepartment') }}",
+                type: "GET",
+                data: { department_id: departmentId },
+                success: function(response) {
+                    $('#employee_id').empty();
+                    $('#employee_id').append('<option value="0">All Employees</option>');
+
+                    $.each(response.employees, function(id, name) {
+                        $('#employee_id').append('<option value="' + id + '">' + name + '</option>');
+                    });
+                }
+            });
+        });
+    });
+    </script>
+
+    {{-- <script>
 
         $(document).ready(function () {
             var b_id = $('#branch_id').val();
@@ -98,7 +121,7 @@
                 }
             });
         }
-    </script>
+    </script> --}}
 @endpush
 
 
@@ -127,46 +150,49 @@
                         <div class="row align-items-center justify-content-end">
                             <div class="col-xl-10">
                                 <div class="row">
-                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
                                         <div class="btn-box">
-                                            {{Form::label('month',__('Month'),['class'=>'form-label'])}}
+                                            <label for="department">{{ __('Month') }}</label>
                                             {{Form::month('month',isset($_GET['month'])?$_GET['month']:date('Y-m'),array('class'=>'month-btn form-control'))}}
                                         </div>
+                                        </div>
                                     </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="btn-box">
-                                            {{ Form::label('branch', __('Branch'),['class'=>'form-label']) }}
-                                            {{--                                            {{ Form::select('branch', $branch,isset($_GET['branch'])?$_GET['branch']:'', array('class' => 'form-control select')) }}--}}
+                                    @if(Auth::user()->type === 'super admin')
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 btn-box">
+                                            <div class="form-group">
+                                                <label for="department">{{ __('Select Department') }}</label>
+                                                <select name="department" id="department" class="form-control">
+                                                    <option value="">{{ __('All Departments') }}</option>
+                                                    @foreach($departments as $department)
+                                                        <option value="{{ $department->id }}" {{ request('department') == $department->id ? 'selected' : '' }}>
+                                                            {{ $department->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    @endif
 
-                                            <select class="form-control select" name="branch_id" id="branch_id"  placeholder="Select Branch" required>
-                                                <option value="">{{__('Select Branch')}}</option>
-                                                <option value="0">{{__('All Branch')}}</option>
-                                                @foreach($branch as $branch)
-                                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 btn-box">
+                                        <div class="form-group">
+                                            <label for="employee_id">{{ __('Select Employee') }}</label>
+                                            <select name="employee_id[]" id="employee_id" class="form-control select2" multiple>
+                                                <option value="0">{{ __('All Employees') }}</option>
+                                                @foreach($employees as $id => $name)
+                                                    <option value="{{ $id }}" {{ in_array($id, (array) request('employee_id', [])) ? 'selected' : '' }}>
+                                                        {{ $name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="btn-box" id="department_div">
-                                            {{ Form::label('department', __('Department'),['class'=>'form-label']) }}
-                                            {{--                                            {{ Form::select('department', $department,isset($_GET['department'])?$_GET['department']:'', array('class' => 'form-control select')) }}--}}
-                                            <select class="form-control select" name="department_id[]" id="department_id" required="required" placeholder="Select Department" >
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                                        <div class="btn-box" id="employee_div">
-                                            {{ Form::label('employee', __('Employee'),['class'=>'form-label']) }}
-                                            <select class="form-control select" name="employee_id[]" id="employee_id" placeholder="Select Employee" >
-                                            </select>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-auto">
                                 <div class="row">
-                                    <div class="col-auto mt-4">
+                                    <div class="col-auto mt-1">
                                         <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('report_monthly_attendance').submit(); return false;" data-bs-toggle="tooltip" title="{{__('Apply')}}" data-original-title="{{__('apply')}}">
                                             <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
                                         </a>
@@ -187,20 +213,20 @@
     <div id="printableArea">
         <div class="row">
             <div class="col">
-                <input type="hidden" value="{{  $data['branch'] .' '.__('Branch') .' '.$data['curMonth'].' '.__('Attendance Report of').' '. $data['department'].' '.'Department'}}" id="filename">
+                <input type="hidden" value="{{ $data['curMonth'].' '.__('Attendance Report of').' '. $data['department'].' '.'Department'}}" id="filename">
                 <div class="card p-4 mb-4">
                     <h6 class="mb-0">{{__('Report')}} :</h6>
                     <h7 class="text-sm mb-0">{{__('Attendance Summary')}}</h7>
                 </div>
             </div>
-            @if($data['branch']!='All')
+            {{-- @if($data['branch']!='All')
                 <div class="col">
                     <div class="card p-4 mb-4">
                         <h6 class=" mb-0">{{__('Branch')}} :</h6>
                         <h7 class="text-sm mb-0">{{$data['branch']}}</h7>
                     </div>
                 </div>
-            @endif
+            @endif --}}
             @if($data['department']!='All')
                 <div class="col">
                     <div class="card p-4 mb-4">
@@ -292,3 +318,69 @@
     </div>
 
 @endsection
+{{-- <script>
+    $(document).ready(function () {
+        var userType = '{{ Auth::user()->type }}';
+        var departmentId = '{{ Auth::user()->department_id }}';
+
+        // Load departments on page load
+        getDepartments(userType, departmentId);
+
+        // Load employees if a department is already selected
+        if (departmentId) {
+            getEmployees(departmentId);
+        }
+    });
+
+    function getDepartments(userType, departmentId) {
+        $.ajax({
+            url: '{{ route('report.attendance.getdepartments') }}',
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "user_type": userType,
+                "department_id": departmentId
+            },
+            success: function (data) {
+                $('#department_id').empty();
+                $('#department_id').append('<option value="">{{__('Select Department')}}</option>');
+
+                if (userType === 'super admin') {
+                    $('#department_id').append('<option value="0">{{__('All Departments')}}</option>');
+                }
+
+                $.each(data, function (key, value) {
+                    $('#department_id').append('<option value="' + key + '">' + value + '</option>');
+                });
+            }
+        });
+    }
+
+    $(document).on('change', '#department_id', function () {
+        var department_id = $(this).val();
+        getEmployees(department_id);
+    });
+
+    function getEmployees(departmentId) {
+        $.ajax({
+            url: '{{ route('report.attendance.getemployees') }}',
+            type: 'POST',
+            data: {
+                "department_id": departmentId,
+                "_token": "{{ csrf_token() }}"
+            },
+            success: function (data) {
+                $('#employee_id').empty();
+                $('#employee_id').append('<option value="">{{__('Select Employee')}}</option>');
+
+                if (departmentId === "0") {
+                    $('#employee_id').append('<option value="0"> {{__('All Employees')}} </option>');
+                }
+
+                $.each(data, function (key, value) {
+                    $('#employee_id').append('<option value="' + key + '">' + value + '</option>');
+                });
+            }
+        });
+    }
+</script> --}}

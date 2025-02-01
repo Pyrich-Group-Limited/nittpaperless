@@ -94,7 +94,7 @@
 
             var html = document.createElement('div');
             html.appendChild(download);
-            @if(Auth::user()->type != 'client')
+            @if(Auth::user()->type != 'registrar')
             @can('edit deal')
             html.appendChild(del);
             @endcan

@@ -45,8 +45,8 @@
         </div>
         <div class="col-sm-6 col-md-6">
             <div class="form-group">
-                {{ Form::label('client', __('Client'),['class'=>'form-label']) }}<span class="text-danger">*</span>
-                {!! Form::select('client', $clients, null,array('class' => 'form-control','required'=>'required')) !!}
+                {{ Form::label('registrar', __('registrar'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+                {!! Form::select('registrar', $clients, null,array('class' => 'form-control','required'=>'required')) !!}
             </div>
         </div>
         <div class="col-sm-6 col-md-6">

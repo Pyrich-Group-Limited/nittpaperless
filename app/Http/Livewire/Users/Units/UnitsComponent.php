@@ -22,7 +22,7 @@ class UnitsComponent extends Component
     public $searchBy = null;
 
     public function mount(){
-    $this->paginate = 10; //set default search criterial
+    $this->paginate = 10;
     }
     public function deleteUnit(){
 

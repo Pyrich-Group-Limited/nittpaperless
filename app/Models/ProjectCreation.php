@@ -440,7 +440,7 @@ class ProjectCreation extends Model
             $projectData['on_hold']   = ($total != 0 ? number_format(($on_hold / $total) * 100, 2) : 0);
             $projectData['completed'] = ($total != 0 ? number_format(($completed / $total) * 100, 2) : 0);
         }
-        else if(\Auth::user()->type == 'client')
+        else if(\Auth::user()->type == 'registrar')
         {
             $pending  = ProjectCreation::where('status', '=', 'pending')->where('client_id', '=', \Auth::user()->id)->count();
             $on_going  = ProjectCreation::where('status', '=', 'in_progress')->where('client_id', '=', \Auth::user()->id)->count();

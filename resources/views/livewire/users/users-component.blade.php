@@ -10,7 +10,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 @endpush
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Client')}}</li>
+    <li class="breadcrumb-item">{{__('registrar')}}</li>
 @endsection
 @section('action-btn')
     <div class="float-end">
@@ -54,15 +54,15 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 
                             <tbody>
                                 @if (count($users)>0)
-                                    @foreach ($users as $user)
+                                    @foreach ($users as $sn => $user)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $sn + 1 }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->location=="Headquarters" ? $user->location : $user->location_type." ".$user->location_type }}</td>
                                             <td>@if($user->department){{ $user->department->name ? : '-' }} @else - @endif</td>
                                             <td>@if($user->unit){{ $user->unit->name ? : '-' }} @else - @endif</td>
                                             <td>
-                                                @if($user->type=='client')
+                                                @if($user->type=='registrar')
                                                     HR
                                                 @else
                                                 {{ $user->type }}
@@ -102,15 +102,17 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 
                                                                 {!! Form::close() !!}
                                                             @endcan
-                                                            <a href="#" wire:click="setActionId('{{ $user->id}}')" class="dropdown-item confirm-reset" >
-                                                                <i class="ti ti-adjustments"></i>
-                                                                <span>  {{__('Reset Password')}}</span>
-                                                            </a>
+                                                            @can('manage employee')
+                                                                <a href="#" wire:click="setActionId('{{ $user->id}}')" class="dropdown-item confirm-reset" >
+                                                                    <i class="ti ti-adjustments"></i>
+                                                                    <span>  {{__('Reset Password')}}</span>
+                                                                </a>
 
-                                                            <a href="#" wire:click="setActionId('{{ $user->id}}')" class="dropdown-item confirm-reset-code" >
-                                                                <i class="ti ti-settings"></i>
-                                                                <span>  {{__('Reset Secrete Code')}}</span>
-                                                            </a>
+                                                                <a href="#" wire:click="setActionId('{{ $user->id}}')" class="dropdown-item confirm-reset-code" >
+                                                                    <i class="ti ti-settings"></i>
+                                                                    <span>  {{__('Reset Secrete Code')}}</span>
+                                                                </a>
+                                                            @endcan
 
                                                         </div>
                                                     </div>

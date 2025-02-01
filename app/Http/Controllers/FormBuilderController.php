@@ -520,7 +520,7 @@ class FormBuilderController extends Controller
                 $formField = FormFieldResponse::where('form_id', '=', $form_id)->first();
 
                 // Get Users
-                $users = User::where('created_by', '=', $usr->creatorId())->where('type', '!=', 'client')->get()->pluck('name', 'id');
+                $users = User::where('created_by', '=', $usr->creatorId())->where('type', '!=', 'registrar')->get()->pluck('name', 'id');
 
                 // Pipelines
                 $pipelines = Pipeline::where('created_by', '=', $usr->creatorId())->get()->pluck('name', 'id');

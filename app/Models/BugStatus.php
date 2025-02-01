@@ -16,7 +16,7 @@ class BugStatus extends Model
     {
       if(\Auth::user()->type == 'super admin')
         return Bug::where('status', '=', $this->id)->where('project_id', '=', $project_id)->orderBy('order')->get();
-      elseif(\Auth::user()->type == 'client'){
+      elseif(\Auth::user()->type == 'registrar'){
         return Bug::where('status', '=', $this->id)->where('project_id', '=', $project_id)->orderBy('order')->get();
       }
       else

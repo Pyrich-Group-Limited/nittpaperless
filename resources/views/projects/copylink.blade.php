@@ -593,7 +593,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <span class="text-white text-sm">{{__('Client')}}</span>
+                                                <span class="text-white text-sm">{{__('registrar')}}</span>
                                                 <h5 class="text-white text-nowrap">{{ (!empty($project->client)?$project->client->name: '-') }}</h5>
                                             </div>
                                         </div>

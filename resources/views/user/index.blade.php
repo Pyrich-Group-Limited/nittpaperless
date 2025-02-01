@@ -16,7 +16,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 @endsection
 @section('action-btn')
     <div class="float-end">
-        @if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'HR' || \Auth::user()->type == 'client')
+        @if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'HR' || \Auth::user()->type == 'registrar')
             <a href="{{ route('user.userlog') }}" class="btn btn-primary btn-sm {{ Request::segment(1) == 'user' }}"
                data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('User Logs History') }}"><i class="ti ti-user-check"></i>
             </a>

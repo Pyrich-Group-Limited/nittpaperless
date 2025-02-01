@@ -10,7 +10,7 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 @endpush
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item">{{__('Client')}}</li>
+    <li class="breadcrumb-item">{{__('registrar')}}</li>
 @endsection
 @section('action-btn')
     <div class="float-end">

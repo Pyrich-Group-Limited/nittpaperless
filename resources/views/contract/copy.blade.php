@@ -8,8 +8,8 @@
             {{ Form::text('subject', null, array('class' => 'form-control','required'=>'required')) }}
         </div>
         <div class="form-group col-md-6">
-                {{ Form::label('client', __('Client'),['class'=>'form-label'])}}
-                {{ Form::select('client', $clients, null, ['class' => 'form-control select client_select', 'id' => 'client_select']) }}
+                {{ Form::label('registrar', __('registrar'),['class'=>'form-label'])}}
+                {{ Form::select('registrar', $clients, null, ['class' => 'form-control select client_select', 'id' => 'client_select']) }}
             </div>
 
             <div class="col-md-6 form-group">

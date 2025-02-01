@@ -6,7 +6,7 @@
             <input type="hidden" name="contract_id" value="{{$contract->id}}">
             <div class="form-control" >
                 <canvas id="signature-pad" class="signature-pad" height=200 ></canvas>
-                <input type="hidden" @if(Auth::user()->type == 'super admin')name="company_signature" @elseif(Auth::user()->type == 'client' ) name="client_signature" @endif id="SignupImage1">
+                <input type="hidden" @if(Auth::user()->type == 'super admin')name="company_signature" @elseif(Auth::user()->type == 'registrar' ) name="client_signature" @endif id="SignupImage1">
             </div>
             <div class="mt-1">
                <button type="button" class="btn-sm btn-danger" id="clearSig">{{__('Clear')}}</button>

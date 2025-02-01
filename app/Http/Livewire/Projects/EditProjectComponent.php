@@ -99,9 +99,9 @@ class EditProjectComponent extends Component
         $view = 'grid';
         $categories = ProjectCategory::all();
         $projects = ProjectCreation::all();
-        $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'client')->get()->pluck('name', 'id');
+        $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'registrar')->get()->pluck('name', 'id');
         $clients->prepend('Select Client', '');
-        $users   = User::where('type', '!=', 'client')->get();
+        $users   = User::where('type', '!=', 'registrar')->get();
         return view('livewire.projects.edit-project-component',compact('view','projects','clients','users','categories'));
     }
 }

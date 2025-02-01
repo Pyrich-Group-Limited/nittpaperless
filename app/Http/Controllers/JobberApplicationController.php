@@ -523,7 +523,7 @@ class JobberApplicationController extends Controller
             return redirect()->back()->withInput()->with('error', $messages->first());
         }
         $objUser = \Auth::user();
-        $employees        = User::where('type','!=','client')->where('type','!=','super admin')->where('created_by',\Auth::user()->creatorId())->get();
+        $employees        = User::where('type','!=','registrar')->where('type','!=','super admin')->where('created_by',\Auth::user()->creatorId())->get();
 
         $total_employee = $employees->count();
         $user = User::create(

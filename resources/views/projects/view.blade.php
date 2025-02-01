@@ -184,7 +184,7 @@
                 {{__('Gantt Chart')}}
             </a>
         @endcan
-        @if(\Auth::user()->type!='client' || (\Auth::user()->type=='client' ))
+        @if(\Auth::user()->type!='registrar' || (\Auth::user()->type=='registrar' ))
             <a href="{{ route('projecttime.tracker',$project->id) }}" class="btn btn-sm btn-primary">
                 {{__('Tracker')}}
             </a>
@@ -194,7 +194,7 @@
                 {{__('Expense')}}
             </a>
         @endcan
-        @if(\Auth::user()->type != 'client')
+        @if(\Auth::user()->type != 'registrar')
             @can('view timesheet')
                 <a href="{{ route('timesheet.index',$project->id) }}" class="btn btn-sm btn-primary">
                     {{__('Timesheet')}}
@@ -268,7 +268,7 @@
                 </div>
             </div>
         </div>
-        @if(Auth::user()->type !='client')
+        @if(Auth::user()->type !='registrar')
             <div class="col-lg-4 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -335,7 +335,7 @@
 
                             </div>
                             <div class="row">
-                                <span class="text-white text-sm">{{__('Client')}}</span>
+                                <span class="text-white text-sm">{{__('registrar')}}</span>
                                 <h5 class="text-white text-nowrap">{{ (!empty($project->client)?$project->client->name: '-') }}</h5>
                             </div>
                         </div>

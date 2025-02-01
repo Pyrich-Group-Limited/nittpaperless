@@ -67,7 +67,7 @@ class TaskStage extends Model
 
             return $arrTaskData;
         }
-        elseif($usr->type == 'client')
+        elseif($usr->type == 'registrar')
         {
             foreach($stages as $key => $stage)
             {

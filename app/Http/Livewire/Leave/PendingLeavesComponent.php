@@ -58,7 +58,7 @@ class PendingLeavesComponent extends Component
             }
 
             // For Registrar: only allow approval if HOD approval exists
-            if ($user->type == 'client') {
+            if ($user->type == 'registrar') {
                 $query->whereHas('approvals', function ($subQuery) {
                     $subQuery->where('type', 'director')->where('status', 'Approved');
                 });

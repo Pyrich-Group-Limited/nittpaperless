@@ -2,7 +2,7 @@
     {{ Form::model($estimation, array('route' => array('estimations.update', $estimation->id), 'method' => 'PUT')) }}
     <div class="row">
         <div class="col-6 form-group">
-            {{ Form::label('client_id', __('Client'),['class'=>'form-label']) }}
+            {{ Form::label('client_id', __('registrar'),['class'=>'form-label']) }}
             {{ Form::select('client_id', $client,null, array('class' => 'form-control select2','required'=>'required')) }}
         </div>
         <div class="col-6 form-group">

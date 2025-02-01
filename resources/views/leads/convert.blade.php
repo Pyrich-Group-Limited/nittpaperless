@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="col-6 exist_client d-none form-group">
-            {{ Form::label('clients', __('Client'),['class'=>'form-label']) }}
+            {{ Form::label('clients', __('registrar'),['class'=>'form-label']) }}
             <select name="clients" id="clients" class="form-control select">
                 <option value="">{{ __('Select Client') }}</option>
                 @foreach($clients as $client)

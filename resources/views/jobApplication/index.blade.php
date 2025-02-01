@@ -236,7 +236,7 @@
                                         <div class="card-header border-0 pb-0 position-relative">
                                             <h5><a href="{{ route('job-application.show',\Crypt::encrypt($application->id)) }}">{{$application->name}}</a></h5>
                                             <div class="card-header-right">
-                                                @if(Auth::user()->type != 'client')
+                                                @if(Auth::user()->type != 'registrar')
                                                     <div class="btn-group card-option">
                                                         <button type="button" class="btn dropdown-toggle"
                                                                 data-bs-toggle="dropdown" aria-haspopup="true"

@@ -49,11 +49,11 @@
                             <thead>
                             <tr>
                                 <th>{{__('Estimate')}}</th>
-                                <th>{{__('Client')}}</th>
+                                <th>{{__('registrar')}}</th>
                                 <th>{{__('Issue Date')}}</th>
                                 <th>{{__('Value')}}</th>
                                 <th>{{__('Status')}}</th>
-                                @if(Auth::user()->type != 'client')
+                                @if(Auth::user()->type != 'registrar')
                                     <th width="250px">{{__('Action')}}</th>
                                 @endif
                             </tr>
@@ -84,7 +84,7 @@
                                             <span class="badge badge-pill badge-info">{{ __(\App\Models\Estimation::$statues[$estimate->status]) }}</span>
                                         @endif
                                     </td>
-                                    @if(Auth::user()->type != 'client')
+                                    @if(Auth::user()->type != 'registrar')
                                         <td class="Action">
                                             <span>
                                             @can('view estimation')

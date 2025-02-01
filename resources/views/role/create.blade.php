@@ -51,7 +51,7 @@
                 <li class="nav-item">
                     <a class="nav-link" id="pills-crm-tab" data-bs-toggle="pill" href="#crm" role="tab" aria-controls="pills-profile" aria-selected="false">{{__('CRM')}}</a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link" id="pills-hrmpermission-tab" data-bs-toggle="pill" href="#hrmpermission" role="tab" aria-controls="pills-contact" aria-selected="false">{{__('HRM')}}</a>
                 </li>
@@ -720,7 +720,7 @@
                 </div>
                 <div class="tab-pane fade show active" id="staff" role="tabpanel" aria-labelledby="pills-home-tab">
                     @php
-                        $modules=['user','role','client','product & service','constant unit','constant tax','constant category','company settings'];
+                        $modules=['user','role','registrar','product & service','constant unit','constant tax','constant category','company settings'];
                        if(\Auth::user()->type == 'super admin'){
                            $modules[] = 'permission';
                        }
