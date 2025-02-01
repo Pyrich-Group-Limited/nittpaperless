@@ -65,8 +65,8 @@
             </div>
             <div class="form-group m-2">
                 <div class="form-check">
-                    {{ Form::checkbox('client[]','client','', ['class' => 'form-check-input checkbox','id'=>"client"]) }}
-                    {{ Form::label('client', __('Client'),['class'=>'form-check-label'])}}
+                    {{ Form::checkbox('client[]','registrar','', ['class' => 'form-check-input checkbox','id'=>"client"]) }}
+                    {{ Form::label('registrar', __('registrar'),['class'=>'form-check-label'])}}
                 </div>
             </div>
             <div class="form-group m-2">

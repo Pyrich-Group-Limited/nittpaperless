@@ -114,7 +114,7 @@ class DashboardController extends Controller
                 $posesArray = Pos::getPosReportChart();
 
                 $user = Auth::user();
-                if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+                if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
                 {
                     $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -190,7 +190,7 @@ class DashboardController extends Controller
 
      public function unit_dashboard(){
         $user = Auth::user();
-        if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -265,7 +265,7 @@ class DashboardController extends Controller
 
      public function user_dashboard(){
         $user = Auth::user();
-        if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
             $announcements = [];
@@ -365,7 +365,7 @@ class DashboardController extends Controller
 
      public function store_dashboard(){
         $user = Auth::user();
-        if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -420,7 +420,7 @@ class DashboardController extends Controller
 
      public function supervisor_dashboard(){
         $user = Auth::user();
-        if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -503,7 +503,7 @@ class DashboardController extends Controller
         });
 
         $user = Auth::user();
-        if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -562,7 +562,7 @@ class DashboardController extends Controller
 
         if(Auth::check())
         {
-           if(Auth::user()->type == 'client')
+           if(Auth::user()->type == 'registrar')
             {
                 return redirect()->route('hrm.dashboard');
             }
@@ -697,7 +697,7 @@ class DashboardController extends Controller
 
         if(Auth::check())
         {
-           if(Auth::user()->type == 'client')
+           if(Auth::user()->type == 'registrar')
             {
                 return redirect()->route('hrm.dashboard');
             }
@@ -881,7 +881,7 @@ class DashboardController extends Controller
 
         if(Auth::check())
         {
-           if(Auth::user()->type == 'client')
+           if(Auth::user()->type == 'registrar')
             {
                 return redirect()->route('hrm.dashboard');
             }
@@ -1016,7 +1016,7 @@ class DashboardController extends Controller
 
         if(Auth::check())
         {
-           if(Auth::user()->type == 'client')
+           if(Auth::user()->type == 'registrar')
             {
                 return redirect()->route('hrm.dashboard');
             }
@@ -1249,7 +1249,7 @@ class DashboardController extends Controller
             if(\Auth::user()->can('show hrm dashboard'))
             {
                 $user = Auth::user();
-                if($user->type != 'client' && $user->type != 'super admin' && $user->type != 'DG')
+                if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
                 {
                     $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -1319,10 +1319,10 @@ class DashboardController extends Controller
                     $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->where('created_by', '=', \Auth::user()->creatorId())->get();
 
 
-                    $emp           = User::where('type', '!=', 'client')->where('type', '!=', 'super admin')->where('created_by', '=', \Auth::user()->creatorId())->get();
+                    $emp           = User::where('type', '!=', 'registrar')->where('type', '!=', 'super admin')->where('created_by', '=', \Auth::user()->creatorId())->get();
                     $countEmployee = count($emp);
 
-                    $user      = User::where('type', '!=', 'client')->where('type', '!=', 'super admin')->where('created_by', '=', \Auth::user()->creatorId())->get();
+                    $user      = User::where('type', '!=', 'registrar')->where('type', '!=', 'super admin')->where('created_by', '=', \Auth::user()->creatorId())->get();
                     $countUser = count($user);
 
 
@@ -1332,7 +1332,7 @@ class DashboardController extends Controller
 
                     $currentDate = date('Y-m-d');
 
-                    $employees   = User::where('type', '=', 'client')->where('created_by', '=', \Auth::user()->creatorId())->get();
+                    $employees   = User::where('type', '=', 'registrar')->where('created_by', '=', \Auth::user()->creatorId())->get();
                     $countClient = count($employees);
                     $notClockIn  = AttendanceEmployee::where('date', '=', $currentDate)->get()->pluck('employee_id');
 
@@ -1512,7 +1512,7 @@ class DashboardController extends Controller
         if(Auth::check())
         {
 
-            if(Auth::user()->type == 'client')
+            if(Auth::user()->type == 'registrar')
             {
                 $transdate = date('Y-m-d', time());
                 $currentYear  = date('Y');
@@ -1612,7 +1612,7 @@ class DashboardController extends Controller
                 $top_due_invoice                    = array();
                 $pay_amount                         = 0;
 
-                if(Auth::user()->type == 'client')
+                if(Auth::user()->type == 'registrar')
                 {
                     if(!empty($project['project_budget']))
                     {
@@ -1627,8 +1627,8 @@ class DashboardController extends Controller
 
                 $top_tasks       = Auth::user()->created_top_due_task();
                 $users['staff']  = User::where('created_by', '=', Auth::user()->creatorId())->count();
-                $users['user']   = User::where('created_by', '=', Auth::user()->creatorId())->where('type', '!=', 'client')->count();
-                $users['client'] = User::where('created_by', '=', Auth::user()->creatorId())->where('type', '=', 'client')->count();
+                $users['user']   = User::where('created_by', '=', Auth::user()->creatorId())->where('type', '!=', 'registrar')->count();
+                $users['registrar'] = User::where('created_by', '=', Auth::user()->creatorId())->where('type', '=', 'registrar')->count();
                 $project_status  = array_values(Project::$project_status);
                 $projectData     = \App\Models\Project::getProjectStatus();
 

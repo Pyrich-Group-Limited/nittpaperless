@@ -102,7 +102,7 @@ class QueriesComponent extends Component
         if ($user->can('raise query') && in_array($user->type, ['director', 'unit head', 'supervisor', 'DG'])) {
             $this->queries = Query::where('raised_by', $user->id)->orderBy('created_at','desc')->simplePaginate(10);
         }
-        elseif ($user->can('assign query') && $user->type == 'client') {
+        elseif ($user->can('assign query') && $user->type == 'registrar') {
             $this->queries = Query::where('assigned_by', $user->id)->orWhere('status', 'Pending')
             ->orderBy('created_at','desc')->simplePaginate(10);
         }

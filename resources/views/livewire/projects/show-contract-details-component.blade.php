@@ -61,7 +61,7 @@
                 }
             })
         });
-        
+
     </script>
     <script>
         Dropzone.autoDiscover = true;
@@ -260,7 +260,7 @@
                data-ajax-popup="true" data-bs-toggle="tooltip" data-title="{{__('Add signature')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-pencil text-white"></i>
             </a>
-        @elseif(\Auth::user()->type == 'client' && ($contract->status == 'accept'))
+        @elseif(\Auth::user()->type == 'registrar' && ($contract->status == 'accept'))
             <a href="#" class="btn btn-sm btn-primary btn-icon m-1" data-size="lg" data-url="{{ route('signature',$contract->id) }}"
                data-ajax-popup="true" data-bs-toggle="tooltip" data-title="{{__('Add signature')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-pencil text-white"></i>
@@ -442,10 +442,10 @@
                                         <dd class="col-sm-8 text-sm">{{ Auth::user()->dateFormat($contract->end_date) }}</dd>
                                     </dl>
                                     <div class="col-md-12 text-end mb-4">
-                                        
+
                                     </div>
                                 </address>
-                                
+
                             </div>
                         </div>
                     </div>

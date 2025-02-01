@@ -35,7 +35,7 @@ class ClientController extends Controller
         if(\Auth::user()->can('manage client'))
         {
             $user    = \Auth::user();
-            $clients = User::where('created_by', '=', $user->creatorId())->where('type', '=', 'client')->get();
+            $clients = User::where('created_by', '=', $user->creatorId())->where('type', '=', 'registrar')->get();
 
             return view('clients.index', compact('clients'));
         }
@@ -56,7 +56,7 @@ class ClientController extends Controller
             }
             else
             {
-                $customFields = CustomField::where('module', '=', 'client')->get();
+                $customFields = CustomField::where('module', '=', 'registrar')->get();
 
                 return view('clients.create', compact('customFields'));
             }
@@ -94,15 +94,15 @@ class ClientController extends Controller
             }
             $objCustomer    = \Auth::user();
             $creator        = User::find($objCustomer->creatorId());
-            $total_client = User::where('created_by', '=', \Auth::user()->creatorId())->where('type','client')->count();
-            $role = Role::findByName('client');
+            $total_client = User::where('created_by', '=', \Auth::user()->creatorId())->where('type','registrar')->count();
+            $role = Role::findByName('registrar');
             $client = User::create(
                             [
                                 'name' => $request->name,
                                 'email' => $request->email,
                                 'job_title' => $request->job_title,
                                 'password' => Hash::make($request->password),
-                                'type' => 'client',
+                                'type' => 'registrar',
                                 'lang' => !empty($default_language) ? $default_language->value : 'en',
                                 'created_by' => $user->creatorId(),
                             ]
@@ -113,7 +113,7 @@ class ClientController extends Controller
 
             if($setings['new_client'] == 1)
             {
-                $role_r = Role::findByName('client');
+                $role_r = Role::findByName('registrar');
                 $client->assignRole($role_r);
                 $client->password = $request->password;
 
@@ -143,7 +143,7 @@ class ClientController extends Controller
     public function show(User $client)
     {
         $usr = Auth::user();
-        if(!empty($client) && $usr->id == $client->creatorId() && $client->id != $usr->id && $client->type == 'client')
+        if(!empty($client) && $usr->id == $client->creatorId() && $client->id != $usr->id && $client->type == 'registrar')
         {
             // For Estimations
             $estimations = $client->clientEstimations()->orderByDesc('id')->get();
@@ -190,7 +190,7 @@ class ClientController extends Controller
             $cnt_contract['cnt_this_week']   = $curr_week->count();
             $cnt_contract['cnt_last_30days'] = $last_30days->count();
 
-            return view('clients.show', compact('client', 'estimations', 'cnt_estimation', 'contracts', 'cnt_contract'));
+            return view('clients.show', compact('registrar', 'estimations', 'cnt_estimation', 'contracts', 'cnt_contract'));
         }
         else
         {
@@ -205,10 +205,10 @@ class ClientController extends Controller
             $user = \Auth::user();
             if($client->created_by == $user->creatorId())
             {
-                $client->customField = CustomField::getData($client, 'client');
-                $customFields        = CustomField::where('module', '=', 'client')->get();
+                $client->customField = CustomField::getData($client, 'registrar');
+                $customFields        = CustomField::where('module', '=', 'registrar')->get();
 
-                return view('clients.edit', compact('client', 'customFields'));
+                return view('clients.edit', compact('registrar', 'customFields'));
             }
             else
             {
@@ -295,10 +295,10 @@ class ClientController extends Controller
     {
         $eId        = \Crypt::decrypt($id);
         $user = User::find($eId);
-        $client = User::where('created_by', '=', $user->creatorId())->where('type', '=', 'client')->first();
+        $client = User::where('created_by', '=', $user->creatorId())->where('type', '=', 'registrar')->first();
 
 
-        return view('clients.reset', compact('user', 'client'));
+        return view('clients.reset', compact('user', 'registrar'));
     }
 
     public function clientPasswordReset(Request $request, $id)

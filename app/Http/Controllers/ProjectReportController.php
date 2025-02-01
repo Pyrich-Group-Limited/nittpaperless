@@ -28,7 +28,7 @@ class ProjectReportController extends Controller
     {
         $user = \Auth::user();
 
-        if($user->type == 'client')
+        if($user->type == 'registrar')
         {
             $projects = Project::where('client_id', '=', $user->id);
             $users=[];
@@ -60,7 +60,7 @@ class ProjectReportController extends Controller
 
             }
 
-            $users = User::where('created_by', '=', $user->creatorId())->where('type', '!=', 'client')->get();
+            $users = User::where('created_by', '=', $user->creatorId())->where('type', '!=', 'registrar')->get();
             $status = Project::$project_status;
 
         }
@@ -87,10 +87,10 @@ class ProjectReportController extends Controller
             }
             else
             {
-                $users = User::where('created_by', '=', $user->creatorId())->where('type', '!=', 'client')->get();
+                $users = User::where('created_by', '=', $user->creatorId())->where('type', '!=', 'registrar')->get();
             }
 
-            if($user->type == 'client')
+            if($user->type == 'registrar')
             {
                 $project = Project::where('client_id', '=', $user->id)->where('id',$id)->first();
             }

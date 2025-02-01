@@ -60,7 +60,7 @@
                                                     </a>
                                                 @endforeach
                                             </td>
-                                            @if(Auth::user()->type != 'Client')
+                                            @if(Auth::user()->type != 'registrar')
                                                 <td class="Action">
                                                     <span>
                                                     @can('view lead')

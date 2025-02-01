@@ -197,7 +197,7 @@
                                         <div class="card-header border-0 pb-0 position-relative">
                                             <h5><a href="@can('view deal')@if($deal->is_active){{route('deals.show',$deal->id)}}@else#@endif @else#@endcan">{{$deal->name}}</a></h5>
                                             <div class="card-header-right">
-                                                @if(Auth::user()->type != 'client')
+                                                @if(Auth::user()->type != 'registrar')
                                                     <div class="btn-group card-option">
                                                         <button type="button" class="btn dropdown-toggle"
                                                                 data-bs-toggle="dropdown" aria-haspopup="true"

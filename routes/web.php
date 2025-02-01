@@ -1298,6 +1298,11 @@ Route::post('reports-payroll/getdepartment', [ReportController::class, 'getPayro
 Route::post('reports-payroll/getemployee', [ReportController::class, 'getPayrollEmployee'])->name('report.payroll.getemployee')->middleware(['auth', 'XSS']);
 
 Route::get('reports-monthly-attendance', [ReportController::class, 'monthlyAttendance'])->name('report.monthly.attendance')->middleware(['auth', 'XSS']);
+// Route::post('/report/attendance/get-departments', [ReportController::class, 'getDepartments'])->name('report.attendance.getdepartments')->middleware(['auth', 'XSS']);
+Route::get('/get-employees-by-department', [ReportController::class, 'getEmployeesByDepartment'])->name('getEmployeesByDepartment')->middleware(['auth', 'XSS']);
+
+Route::post('/report/attget-employees', [ReportController::class, 'getEmployees'])->name('getEmployees')->middleware(['auth', 'XSS']);
+
 Route::get('report/attendance/{month}/{branch}/{department}', [ReportController::class, 'exportCsv'])->name('report.attendance')->middleware(['auth', 'XSS']);
 
 

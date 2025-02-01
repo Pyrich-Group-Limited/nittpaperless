@@ -79,11 +79,11 @@
                                     </div>
                                 </div>
                             </li>
-                            @if(\Auth::user()->type!='client')
+                            @if(\Auth::user()->type!='registrar')
                                 <li class="list-group-item px-0">
                                     <div class="row align-items-center">
                                         <div class="col-6">
-                                            <span class="form-label">{{__('Client')}}:</span>
+                                            <span class="form-label">{{__('registrar')}}:</span>
                                         </div>
                                         <div class="col-6 text-end">
                                             {{ !empty($contract->clients)?$contract->clients->name:'' }}

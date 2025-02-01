@@ -32,7 +32,7 @@
                             </thead>
                             <tbody>
                             @foreach ($roles as $role)
-                                @if($role->name != 'client')
+                                @if($role->name != 'registrar')
                                     <tr class="font-style">
                                         <td class="Role">{{ $role->name }}</td>
                                         <td class="Permission">

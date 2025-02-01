@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    @if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin')
+    @if(\Auth::user()->type != 'registrar' && \Auth::user()->type != 'super admin')
         <div class="row mt-5">
             <div class="col-lg-6">
                 <div class="card">

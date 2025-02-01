@@ -19,7 +19,7 @@
             {{ Form::text('subject', '', array('class' => 'form-control','required'=>'required')) }}
         </div>
         <div class="form-group col-md-6">
-            {{ Form::label('client_name', __('Client'),['class'=>'form-label']) }}
+            {{ Form::label('client_name', __('registrar'),['class'=>'form-label']) }}
             {{--            {{ Form::select('client_name', $clients,null, array('class' => 'form-control','data-toggle="select"','required'=>'required')) }}--}}
             {{ Form::select('client_name', $clients, null, ['class' => 'form-control select client_select', 'id' => 'client_select']) }}
 

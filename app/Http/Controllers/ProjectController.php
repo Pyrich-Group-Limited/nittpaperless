@@ -51,8 +51,8 @@ class ProjectController extends Controller
     {
         if(\Auth::user()->can('create project'))
         {
-          $users   = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->get()->pluck('name', 'id');
-          $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'client')->get()->pluck('name', 'id');
+          $users   = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'registrar')->get()->pluck('name', 'id');
+          $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'registrar')->get()->pluck('name', 'id');
           $clients->prepend('Select Client', '');
           $users->prepend('Select User', '');
             return view('projects.create', compact('clients','users'));
@@ -208,7 +208,7 @@ class ProjectController extends Controller
         {
 
             $usr           = Auth::user();
-            if(\Auth::user()->type == 'client'){
+            if(\Auth::user()->type == 'registrar'){
               $user_projects = Project::where('client_id',\Auth::user()->id)->pluck('id','id')->toArray();;
             }else{
               $user_projects = $usr->projects->pluck('id')->toArray();
@@ -361,7 +361,7 @@ class ProjectController extends Controller
     {
         if(\Auth::user()->can('edit project'))
         {
-          $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'client')->get()->pluck('name', 'id');
+          $clients = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'registrar')->get()->pluck('name', 'id');
           $project = Project::findOrfail($project->id);
           if($project->created_by == \Auth::user()->creatorId())
           {
@@ -455,7 +455,7 @@ class ProjectController extends Controller
 
         $user_project = $project->users->pluck('id')->toArray();
 
-        $user_contact = User::where('created_by', \Auth::user()->creatorId())->where('type','!=','client')->whereNOTIn('id', $user_project)->pluck('id')->toArray();
+        $user_contact = User::where('created_by', \Auth::user()->creatorId())->where('type','!=','registrar')->whereNOTIn('id', $user_project)->pluck('id')->toArray();
         $arrUser      = array_unique($user_contact);
         $users        = User::whereIn('id', $arrUser)->get();
 
@@ -677,7 +677,7 @@ class ProjectController extends Controller
         if(\Auth::user()->can('manage project'))
         {
             $usr           = Auth::user();
-            if(\Auth::user()->type == 'client'){
+            if(\Auth::user()->type == 'registrar'){
               $user_projects = Project::where('client_id',\Auth::user()->id)->where('created_by',\Auth::user()->creatorId())->pluck('id','id')->toArray();;
             }else{
               $user_projects = $usr->projects()->pluck('project_id', 'project_id')->toArray();
@@ -807,7 +807,7 @@ class ProjectController extends Controller
 
                 if($user->type != 'super admin')
                 {
-                    if(\Auth::user()->type == 'client'){
+                    if(\Auth::user()->type == 'registrar'){
                       $bugs = Bug::where('project_id',$project->id)->get();
                     }else{
                       $bugs = Bug::where('project_id',$project->id)->whereRaw("find_in_set('" . $user->id . "',assign_to)")->get();
@@ -1033,7 +1033,7 @@ class ProjectController extends Controller
                     $bugStatus = BugStatus::where('created_by', '=', Auth::user()->creatorId())->orderBy('order', 'ASC')->get();
                 }
 
-                if($user->type == 'super admin' || $user->type == 'client')
+                if($user->type == 'super admin' || $user->type == 'registrar')
                 {
                     $bugStatus = BugStatus::where('created_by', '=', Auth::user()->creatorId())->orderBy('order', 'ASC')->get();
                 }
@@ -1480,7 +1480,7 @@ class ProjectController extends Controller
         $data['basic_details']  = isset($request->basic_details) ? 'on' : 'off';
         $data['member']  = isset($request->member) ? 'on' : 'off';
         $data['milestone']  = isset($request->milestone) ? 'on' : 'off';
-        $data['client']  = isset($request->client) ? 'on' : 'off';
+        $data['registrar']  = isset($request->client) ? 'on' : 'off';
         $data['progress']  = isset($request->progress) ? 'on' : 'off';
         $data['activity']  = isset($request->activity) ? 'on' : 'off';
         $data['attachment']  = isset($request->attachment) ? 'on' : 'off';

@@ -401,7 +401,7 @@ class Project extends Model
             $projectData['on_hold']   = ($total != 0 ? number_format(($on_hold / $total) * 100, 2) : 0);
             $projectData['completed'] = ($total != 0 ? number_format(($completed / $total) * 100, 2) : 0);
         }
-        else if(\Auth::user()->type == 'client')
+        else if(\Auth::user()->type == 'registrar')
         {
             $on_going  = Project::where('status', '=', 'in_progress')->where('client_id', '=', \Auth::user()->id)->count();
             $on_hold   = Project::where('status', '=', 'on_hold')->where('client_id', '=', \Auth::user()->id)->count();

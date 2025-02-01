@@ -425,7 +425,7 @@ class UsersComponent extends Component
                 $query->whereIn('unit_id', $unit);
             }
          })
-         ->latest()->paginate(20);
+         ->latest()->paginate(10);
          return $users;
     }
 

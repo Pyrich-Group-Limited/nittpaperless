@@ -388,6 +388,30 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+                'name' => 'show mrm',
+                'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'show risk management',
+                'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'show business intelligence',
+                'module' => 'Dashboard',
+                'category' => "Super Admin/ICT permissions",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
                 'name' => 'show unithead dashboard',
                 'module' => 'Dashboard',
                 'category' => "Super Admin/ICT permissions",
@@ -1621,7 +1645,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'manage client',
-                'module' => 'Client',
+                'module' => 'registrar',
                 'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -1629,7 +1653,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'create client',
-                'module' => 'Client',
+                'module' => 'registrar',
                 'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -1637,7 +1661,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'edit client',
-                'module' => 'Client',
+                'module' => 'registrar',
                 'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -1645,7 +1669,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Manage Goods Recieve Note',
-                'module' => 'Client',
+                'module' => 'registrar',
                 'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -1653,7 +1677,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Upload Good Reicieved',
-                'module' => 'Client',
+                'module' => 'registrar',
                 'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -1661,7 +1685,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'delete client',
-                'module' => 'Client',
+                'module' => 'registrar',
                 'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -4774,7 +4798,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [   'name' => 'manage client',
-                'module' => 'Client',
+                'module' => 'registrar',
                 'category' => "Procurement/Physical Planing and Project related",
                 'guard_name' => 'web',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -5916,8 +5940,8 @@ class UsersTableSeeder extends Seeder
                 'name' => 'SuperAdmin/Paperless',
                 'email' => 'spadmin@nitt.com',
                 'designation' => Designation::first()->name,
-                'department_id' => Department::first()->id,
-                'unit_id' => Department::first()->units->first()->id,
+                'department_id' => Department::where('name','ICT Department')->first()->id,
+                'unit_id' => Unit::where('name','Software Unit')->first()->id,
                 'level' => "Level 08",
                 'email' => 'spadmin@nitt.com',
                 'password' => Hash::make('1234'),
@@ -6033,7 +6057,16 @@ class UsersTableSeeder extends Seeder
             ]);
 
             // Create an employee record linked to the user
-            Employee::create(['user_id' => $user->id]);
+            Employee::create([
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'location_type' => $user->location_type,
+                'location' => $user->location,
+                'department_id' => $user->department_id,
+                'unit_id' => $user->unit_id,
+                'level' => $user->level,
+                'designation' => $user->designation
+            ]);
 
             // Assign the 'user' role to the new user (inherits all permissions)
             $user->assignRole($userRole);
@@ -6111,7 +6144,16 @@ class UsersTableSeeder extends Seeder
                 'password_changed' => true,
             ]
         );
-        Employee::create(['user_id' => $supervisor->id]);
+        Employee::create([
+            'user_id' => $supervisor->id,
+            'name' => $supervisor->name,
+            'location_type' => $supervisor->location_type,
+            'location' => $supervisor->location,
+            'department_id' => $supervisor->department_id,
+            'unit_id' => $supervisor->unit_id,
+            'level' => $supervisor->level,
+            'designation' => $supervisor->designation
+        ]);
         // $supervisor->assignRole($supervisorRole);
         $supervisor->givePermissionTo($supervisorPermission);
 
@@ -6161,7 +6203,16 @@ class UsersTableSeeder extends Seeder
                 'password_changed' => true,
             ]
         );
-        Employee::create(['user_id' => $liason->id]);
+        Employee::create([
+            'user_id' => $liason->id,
+            'name' => $liason->name,
+            'location_type' => $liason->location_type,
+            'location' => $liason->location,
+            'department_id' => $liason->department_id,
+            'unit_id' => $liason->unit_id,
+            'level' => $liason->level,
+            'designation' => $liason->designation
+        ]);
         $liason->assignRole($liasonRole);
         $liason->givePermissionTo($liasonPermission);
 
@@ -6231,7 +6282,16 @@ class UsersTableSeeder extends Seeder
                 'password_changed' => true,
             ]
         );
-        Employee::create(['user_id' => $hod->id]);
+        Employee::create([
+            'user_id' => $hod->id,
+            'name' => $hod->name,
+            'location_type' => $hod->location_type,
+            'location' => $hod->location,
+            'department_id' => $hod->department_id,
+            'unit_id' => $hod->unit_id,
+            'level' => $hod->level,
+            'designation' => $hod->designation
+        ]);
         $hod->assignRole($hodRole);
         $hod->givePermissionTo($hodPermission);
 
@@ -6255,7 +6315,16 @@ class UsersTableSeeder extends Seeder
                 'password_changed' => true,
             ]
         );
-        Employee::create(['user_id' => $hodSd->id]);
+        Employee::create([
+            'user_id' => $hodSd->id,
+            'name' => $hodSd->name,
+            'location_type' => $hodSd->location_type,
+            'location' => $hodSd->location,
+            'department_id' => $hodSd->department_id,
+            'unit_id' => $hodSd->unit_id,
+            'level' => $hodSd->level,
+            'designation' => $hodSd->designation
+        ]);
         $hodSd->assignRole($hodRole);
         $hodSd->givePermissionTo($hodPermission);
 
@@ -6279,7 +6348,16 @@ class UsersTableSeeder extends Seeder
                 'password_changed' => true,
             ]
         );
-        Employee::create(['user_id' => $hodServi->id]);
+        Employee::create([
+            'user_id' => $hodServi->id,
+            'name' => $hodServi->name,
+            'location_type' => $hodServi->location_type,
+            'location' => $hodServi->location,
+            'department_id' => $hodServi->department_id,
+            'unit_id' => $hodServi->unit_id,
+            'level' => $hodServi->level,
+            'designation' => $hodServi->designation
+        ]);
         $hodServi->assignRole($hodRole);
         $hodServi->givePermissionTo($hodPermission);
 
@@ -6393,7 +6471,16 @@ class UsersTableSeeder extends Seeder
                 'password_changed' => true,
             ]
         );
-        Employee::create(['user_id' => $unitHead->id]);
+        Employee::create([
+            'user_id' => $unitHead->id,
+            'name' => $unitHead->name,
+            'location_type' => $unitHead->location_type,
+            'location' => $unitHead->location,
+            'department_id' => $unitHead->department_id,
+            'unit_id' => $unitHead->unit_id,
+            'level' => $unitHead->level,
+            'designation' => $unitHead->designation
+        ]);
         $unitHead->assignRole($unitHeadRole);
 
 
@@ -6442,7 +6529,16 @@ class UsersTableSeeder extends Seeder
                 'password_changed' => true,
             ]
         );
-        Employee::create(['user_id' => $storeKeeper->id]);
+        Employee::create([
+            'user_id' => $storeKeeper->id,
+            'name' => $storeKeeper->name,
+            'location_type' => $storeKeeper->location_type,
+            'location' => $storeKeeper->location,
+            'department_id' => $storeKeeper->department_id,
+            'unit_id' => $storeKeeper->unit_id,
+            'level' => $storeKeeper->level,
+            'designation' => $storeKeeper->designation
+        ]);
         $storeKeeper->assignRole($storeKeeperRole);
         $storeKeeper->givePermissionTo($storePermission);
 
@@ -6626,7 +6722,16 @@ class UsersTableSeeder extends Seeder
                 'password_changed' => true,
             ]
         );
-        Employee::create(['user_id' => $accountant->id]);
+        Employee::create([
+            'user_id' => $accountant->id,
+            'name' => $accountant->name,
+            'location_type' => $accountant->location_type,
+            'location' => $accountant->location,
+            'department_id' => $accountant->department_id,
+            'unit_id' => $accountant->unit_id,
+            'level' => $accountant->level,
+            'designation' => $accountant->designation
+        ]);
         $accountant->assignRole($accountantRole);
         $accountant->givePermissionTo($accountantPermission);
 
@@ -6642,14 +6747,14 @@ class UsersTableSeeder extends Seeder
             ]
         );
 
-        // accountant
-        $clientRole       = Role::create(
+        // registrar
+        $registrarRole       = Role::create(
             [
-                'name' => 'client',
+                'name' => 'registrar',
                 'created_by' => $company->id,
             ]
         );
-        $clientPermission = [
+        $registrarPermission = [
             ['name' => 'share document'],
             ['name' => 'archive document'],
             ['name' => 'create folder'],
@@ -6696,16 +6801,16 @@ class UsersTableSeeder extends Seeder
 
         ];
 
-        $clientRole->givePermissionTo($clientPermission);
+        $registrarRole->givePermissionTo($registrarPermission);
 
-        $client = User::create(
+        $registrar = User::create(
             [
                 'name' => 'HRM/Registra',
-                'email' => 'hrm@nitt.com',
+                'email' => 'registrar@nitt.com',
                 'location_type' => 'Department',
                 'location' => 'Headquarters',
                 'password' => Hash::make('1234'),
-                'type' => 'client',
+                'type' => 'registrar',
                 'default_pipeline' => 1,
                 'lang' => 'en',
                 'avatar' => '',
@@ -6717,9 +6822,34 @@ class UsersTableSeeder extends Seeder
                 'password_changed' => true,
             ]
         );
-        Employee::create(['user_id' => $client->id]);
-        $client->assignRole($clientRole);
-        $client->givePermissionTo($clientPermission);
+        Employee::create([
+            'user_id' => $registrar->id,
+            'name' => $registrar->name,
+            'location_type' => $registrar->location_type,
+            'location' => $registrar->location,
+            'department_id' => $registrar->department_id,
+            'unit_id' => $registrar->unit_id,
+            'level' => $registrar->level,
+            'designation' => $registrar->designation
+        ]);
+        $registrar->assignRole($registrarRole);
+        $registrar->givePermissionTo($registrarPermission);
+
+        // assistant registrar
+        $asstRegistrarRole = Role::create(
+            [
+                'name' => 'assistant registrar',
+                'created_by' => $company->id,
+            ]
+        );
+
+        // deputy bursar
+        $deputyBursarRole = Role::create(
+            [
+                'name' => 'deputy bursar',
+                'created_by' => $company->id,
+            ]
+        );
 
         // contractor
         $contractorRole       = Role::create(
@@ -6754,7 +6884,7 @@ class UsersTableSeeder extends Seeder
         $user->givePermissionTo($contractorPermission);
 
         Utility::employeeDetails($accountant->id, $company->id);
-        // Utility::employeeDetails($client->id,$company->id);
+        // Utility::employeeDetails($registrar->id,$company->id);
         Utility::chartOfAccountTypeData($company->id);
         Utility::chartOfAccountData($company);
         Utility::pipeline_lead_deal_Stage($company->id);

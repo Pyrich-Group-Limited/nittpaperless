@@ -142,7 +142,7 @@ class AuthenticatedSessionController extends Controller
 
 
 
-        if($user->type =='super admin' || $user->type =='client')
+        if($user->type =='super admin' || $user->type =='registrar')
         {
             return redirect()->intended(RouteServiceProvider::HOME);
 

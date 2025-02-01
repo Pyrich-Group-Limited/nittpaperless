@@ -352,11 +352,11 @@ class MessagesController extends Controller
         $objUser = Auth::user();
         if($objUser->type == 'super admin')
         {
-            $members = User::where('type', '!=', 'client')->where('created_by', '=', $objUser->creatorId())->get();
+            $members = User::where('type', '!=', 'registrar')->where('created_by', '=', $objUser->creatorId())->get();
         }
         else
         {
-            $members = User::where('type', '!=', 'client')->where('created_by', '=', $objUser->creatorId())->where('id', '!=', $objUser->id)->orWhere('id', '=', $objUser->creatorId())->get();
+            $members = User::where('type', '!=', 'registrar')->where('created_by', '=', $objUser->creatorId())->where('id', '!=', $objUser->id)->orWhere('id', '=', $objUser->creatorId())->get();
         }
 
         $getRecords = null;
@@ -477,7 +477,7 @@ class MessagesController extends Controller
         $getRecords = null;
         $input      = trim(filter_var($request['input'], FILTER_SANITIZE_STRING));
 
-        $records = User::where('created_by', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('name', 'LIKE', "%{$input}%")->get();
+        $records = User::where('created_by', \Auth::user()->creatorId())->where('type', '!=', 'registrar')->where('name', 'LIKE', "%{$input}%")->get();
 
         foreach($records as $record)
         {

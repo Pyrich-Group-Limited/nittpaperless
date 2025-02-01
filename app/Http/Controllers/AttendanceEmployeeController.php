@@ -27,7 +27,7 @@ class AttendanceEmployeeController extends Controller
             $department = Department::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
             $department->prepend('Select Department', '');
 
-            if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin')
+            if(\Auth::user()->type != 'registrar' && \Auth::user()->type != 'super admin')
             {
                 $emp = !empty(\Auth::user()->employee) ? \Auth::user()->employee->id : 0;
 

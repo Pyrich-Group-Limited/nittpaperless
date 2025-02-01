@@ -34,7 +34,7 @@
                             <tr>
                                 <th>{{__('Employee ID')}}</th>
                                 <th>{{__('Name')}}</th>
-                                <th>{{__('EmaLil')}}</th>
+                                <th>{{__('Email')}}</th>
                                 <th>{{__('Location') }}</th>
                                 <th>{{__('Department') }}</th>
                                 <th>{{__('Designation') }}</th>
@@ -65,7 +65,7 @@
                                             @elseif ($employee->user->location==='Liaison Office')
                                             {{ $employee->user->location_type }}
                                             @endif
-                                            
+
                                         </td>
                                     @endif
                                     @if($employee->user->department!=null)

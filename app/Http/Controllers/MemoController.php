@@ -221,30 +221,33 @@ class MemoController extends Controller
     public function share(Request $request, $id)
     {
         $request->validate([
-            'shared_with' => 'required|exists:users,id',
-            'comment' => 'nullable',
+            'shared_with' => 'required|array', // Expect an array of user IDs
+            'shared_with.*' => 'exists:users,id', // Ensure all IDs exist in users table
+            'comment' => 'nullable|string',
             'secret_code' => 'required|string',
         ]);
 
         // Check if the provided secret code matches the user's stored secret code
         $user = Auth::user();
-
         if (!Hash::check($request->secret_code, $user->secret_code)) {
             return redirect()->back()->with(['error' => 'The secret code is incorrect.']);
         }
 
-        $memoShare = MemoShare::create([
-            'memo_id' => $id,
-            'shared_with' => $request->shared_with,
-            'shared_by' => Auth::id(),
-            'comment' => $request->comment,
-        ]);
+        // Loop through each user ID and create a MemoShare and MemoComment
+        foreach ($request->shared_with as $sharedUserId) {
+            MemoShare::create([
+                'memo_id' => $id,
+                'shared_with' => $sharedUserId,
+                'shared_by' => Auth::id(),
+                'comment' => $request->comment,
+            ]);
 
-        MemoComment::create([
-            'memo_id' => $id,
-            'user_id' => Auth::id(),
-            'comment' => $request->comment,
-        ]);
+            MemoComment::create([
+                'memo_id' => $id,
+                'user_id' => Auth::id(),
+                'comment' => $request->comment,
+            ]);
+        }
 
         return redirect()->route('memos.index')->with('success', 'Memo shared successfully.');
     }

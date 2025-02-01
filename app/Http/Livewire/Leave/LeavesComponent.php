@@ -139,7 +139,7 @@ class LeavesComponent extends Component
                 }
 
                 // Add registrar as the final approver
-                $registrar = User::where('type', 'client')->first();
+                $registrar = User::where('type', 'registrar')->first();
                 if ($registrar) {
                     $this->createApproval($leave, $registrar->id, $registrar->type, $registrar->department_id ?? '');
                 }
@@ -225,7 +225,7 @@ class LeavesComponent extends Component
                     $this->createApproval($leave, $departmentHead->id, $departmentHead->type, $departmentHead->department_id); // Add department head as final approver
                 }
 
-                $registrar = User::where('type', 'client')->first();
+                $registrar = User::where('type', 'registrar')->first();
                 if ($registrar) {
                     $this->createApproval($leave, $registrar->id, $registrar->type, $registrar->department_id ?? ''); // Add registrar as final approver
                 }

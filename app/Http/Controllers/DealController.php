@@ -53,7 +53,7 @@ class DealController extends Controller
 
             $pipelines = Pipeline::where('created_by', '=', $usr->ownerId())->get()->pluck('name', 'id');
 
-            if($usr->type == 'client')
+            if($usr->type == 'registrar')
             {
                 $id_deals = $usr->clientDeals->pluck('id');
             }
@@ -106,7 +106,7 @@ class DealController extends Controller
 
             $pipelines = Pipeline::where('created_by', '=', $usr->ownerId())->get()->pluck('name', 'id');
 
-            if($usr->type == 'client')
+            if($usr->type == 'registrar')
             {
                 $id_deals = $usr->clientDeals->pluck('id');
             }
@@ -133,7 +133,7 @@ class DealController extends Controller
             $cnt_deal['last_30days'] = Deal::getDealSummary($last_30days);
 
             // Deals
-            if($usr->type == 'client')
+            if($usr->type == 'registrar')
             {
                 $deals = Deal::select('deals.*')->join('client_deals', 'client_deals.deal_id', '=', 'deals.id')->where('client_deals.client_id', '=', $usr->id)->where('deals.pipeline_id', '=', $pipeline->id)->orderBy('deals.order')->get();
             }
@@ -159,7 +159,7 @@ class DealController extends Controller
     {
         if(\Auth::user()->can('create deal'))
         {
-            $clients      = User::where('created_by', '=', \Auth::user()->ownerId())->where('type', 'client')->get()->pluck('name', 'id');
+            $clients      = User::where('created_by', '=', \Auth::user()->ownerId())->where('type', 'registrar')->get()->pluck('name', 'id');
             $customFields = CustomField::where('module', '=', 'deal')->get();
 
             return view('deals.create', compact('clients', 'customFields'));
@@ -656,7 +656,7 @@ class DealController extends Controller
             $deal = Deal::find($id);
             if($deal->created_by == \Auth::user()->ownerId())
             {
-                $users = User::where('created_by', '=', \Auth::user()->ownerId())->where('type','!=','client')->whereNOTIn(
+                $users = User::where('created_by', '=', \Auth::user()->ownerId())->where('type','!=','registrar')->whereNOTIn(
                     'id', function ($q) use ($deal){
                     $q->select('user_id')->from('user_deals')->where('deal_id', '=', $deal->id);
                 }
@@ -777,7 +777,7 @@ class DealController extends Controller
             $deal = Deal::find($id);
             if($deal->created_by == \Auth::user()->ownerId())
             {
-                $clients = User::where('created_by', '=', \Auth::user()->ownerId())->where('type', 'client')->whereNOTIn(
+                $clients = User::where('created_by', '=', \Auth::user()->ownerId())->where('type', 'registrar')->whereNOTIn(
                     'id', function ($q) use ($deal){
                     $q->select('client_id')->from('client_deals')->where('deal_id', '=', $deal->id);
                 }
@@ -1603,7 +1603,7 @@ class DealController extends Controller
             }
             $permissions = Deal::$permissions;
 
-            return view('deals.permissions', compact('deal', 'client', 'selected', 'permissions'));
+            return view('deals.permissions', compact('deal', 'registrar', 'selected', 'permissions'));
         }
         else
         {

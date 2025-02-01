@@ -89,7 +89,7 @@ class TimesheetController extends Controller
         $timesheet_type   = 'task';
         if($request->has('week') && $request->has('project_id'))
         {
-          if($authuser->type == 'client'){
+          if($authuser->type == 'registrar'){
             $project_ids = Project::where('client_id',\Auth::user()->id)->pluck('id','id')->toArray();
           }else{
             $project_ids = $authuser->projects()->pluck('project_id','project_id')->toArray();

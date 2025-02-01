@@ -35,22 +35,18 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        if(\Auth::user()->can('manage employee'))
-        {
-            if(Auth::user()->type == 'Employee')
-            {
-                $employees = Employee::where('user_id', '=', Auth::user()->id)->get();
-            }
-            else
-            {
-                // $employees = Employee::where('created_by', \Auth::user()->creatorId())->get();
-                $employees = Employee::all();
+        if (\Auth::user()->can('manage employee')) {
+            if (Auth::user()->type == 'Employee') {
+                $employees = Employee::where('user_id', Auth::user()->id)
+                                    ->orderBy('id', 'desc')
+                                    ->get();
+            } else {
+                // $employees = Employee::where('created_by', \Auth::user()->creatorId())->orderBy('id', 'desc')->get();
+                $employees = Employee::orderBy('id', 'desc')->get();
             }
 
             return view('employee.index', compact('employees'));
-        }
-        else
-        {
+        } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
     }
@@ -149,7 +145,13 @@ class EmployeeController extends Controller
                     'employee_id' => $this->employeeNumber(),
                     'branch_id' => $request['branch_id'],
                     'department_id' => $request['department_id'],
-                    'designation_id' => $request['designation_id'],
+                    'unit_id' => $request['unit_id'],
+                    'sub_unit_id' => $request['sub_unit_id'],
+                    'location' => $request['location'],
+                    'location_type' => $request['location_type'],
+                    'designation' => $request['designation'],
+                    'ippis' => $request['ippis'],
+                    'level' => $request['level'],
                     'company_doj' => $request['company_doj'],
                     'documents' => $document_implode,
                     'account_holder_name' => $request['account_holder_name'],
@@ -290,13 +292,20 @@ class EmployeeController extends Controller
 
                 Employee::create([
                     'user_id' => $user->id,
-                    'name' => $user->name, // Assuming you have a 'name' field in employees
-                    'email' => $user->email, // Assuming you have an 'email' field in employees
+                    'name' => $user->name,
+                    'email' => $user->email,
                     'branch_id' => $user->location,
+                    'location' => $user->location,
+                    'location_type' => $user->location_type,
                     'department_id' => $user->department_id,
-                    'designation_id' => $user->designation,
+                    'unit_id' => $user->unit_id,
+                    'sub_unit_id' => $user->sub_unit_id,
+                    'ippis' => $user->ippis,
+                    'level' => $user->level,
+                    'designation' => $user->designation,
                     'employee_id' => $employeeID,
                     'password' => $user->password,
+                    'company_doj' => now()->format('d M Y'),
                 ]);
             }
 

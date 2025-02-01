@@ -47,7 +47,7 @@ class  UserController extends Controller
         {
             $roles = [];
             $users = User::where('type','!=','contractor')->paginate(12);
-            // $users = User::where('created_by', '=', $user->creatorId())->where('type', '!=', 'client')->get();
+            // $users = User::where('created_by', '=', $user->creatorId())->where('type', '!=', 'registrar')->get();
             $customFields = CustomField::where('created_by', '=', \Auth::user()->creatorId())->where('module', '=', 'user')->get();
             $user  = \Auth::user();
             $allRoles = Role::all();
@@ -189,7 +189,7 @@ class  UserController extends Controller
         ]);
 
         // Call utility function to handle additional employee details
-        if($request['type'] != 'client') {
+        if($request['type'] != 'registrar') {
             \App\Models\Utility::employeeDetails($user->id, \Auth::user()->creatorId());
         }
 

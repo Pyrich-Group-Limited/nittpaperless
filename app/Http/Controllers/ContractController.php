@@ -45,7 +45,7 @@ class ContractController extends Controller
 
                 return view('contract.index', compact('contracts', 'cnt_contract'));
             }
-            elseif(\Auth::user()->type=='client')
+            elseif(\Auth::user()->type=='registrar')
             {
                 $contracts   = Contract::where('client_name', '=', \Auth::user()->id)->get();
                 $curr_month  = Contract::where('client_name', '=', \Auth::user()->id)->whereMonth('start_date', '=', date('m'))->get();
@@ -82,7 +82,7 @@ class ContractController extends Controller
     public function create()
     {
         $contractTypes = ContractType::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
-        $clients       = User::where('type', 'client')->where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+        $clients       = User::where('type', 'registrar')->where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
         $clients->prepend(__('Select Client'),0);
         $project       = Project::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('project_name', 'id');
         return view('contract.create', compact('contractTypes', 'clients','project'));
@@ -203,7 +203,7 @@ class ContractController extends Controller
             if($contract->created_by == \Auth::user()->creatorId())
             {
                 $client   = $contract->client;
-                return view('contract.show', compact('contract', 'client'));
+                return view('contract.show', compact('contract', 'registrar'));
             }
             else
             {
@@ -220,7 +220,7 @@ class ContractController extends Controller
     public function edit(Contract $contract)
     {
         $contractTypes = ContractType::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
-        $clients       = User::where('type', 'client')->where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+        $clients       = User::where('type', 'registrar')->where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
         $project       = Project::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('project_name','id');
 
 
@@ -293,7 +293,7 @@ class ContractController extends Controller
 
     public function grid()
     {
-        if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'client')
+        if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'registrar')
         {
             if(\Auth::user()->type == 'super admin')
             {
@@ -321,7 +321,7 @@ class ContractController extends Controller
     public function fileUpload($id, Request $request)
     {
 
-        if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'client' )
+        if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'registrar' )
         {
             $contract = Contract::find($id);
             $request->validate(['file' => 'required']);
@@ -569,7 +569,7 @@ class ContractController extends Controller
     public function copycontract($id)
     {
         $contract = Contract::find($id);
-        $clients       = User::where('type', '=', 'Client')->get()->pluck('name', 'id');
+        $clients       = User::where('type', '=', 'registrar')->get()->pluck('name', 'id');
         $contractTypes = ContractType::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
         $project       = Project::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('title','id');
         $date         = $contract->start_date . ' to ' . $contract->end_date;
@@ -586,7 +586,7 @@ class ContractController extends Controller
         if(\Auth::user()->type == 'super admin')
         {
             $rules = [
-                'client' => 'required',
+                'registrar' => 'required',
                 'subject' => 'required',
                 'project_id' => 'required',
                 'type' => 'required',
@@ -701,7 +701,7 @@ class ContractController extends Controller
         if(\Auth::user()->type == 'super admin'){
             $contract->company_signature       = $request->company_signature;
         }
-        if(\Auth::user()->type == 'client'){
+        if(\Auth::user()->type == 'registrar'){
             $contract->client_signature       = $request->client_signature;
         }
 

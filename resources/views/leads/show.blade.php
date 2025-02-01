@@ -91,7 +91,7 @@
 
             var html = document.createElement('div');
             html.appendChild(download);
-            @if(Auth::user()->type != 'client')
+            @if(Auth::user()->type != 'registrar')
             @can('edit lead')
             html.appendChild(del);
             @endcan
@@ -179,39 +179,39 @@
                 <div class="col-xl-3">
                     <div class="card sticky-top" style="top:30px">
                         <div class="list-group list-group-flush" id="lead-sidenav">
-                            @if(Auth::user()->type != 'client')
+                            @if(Auth::user()->type != 'registrar')
                                 <a href="#general" class="list-group-item list-group-item-action border-0">{{__('General')}}
                                     <div class="float-end"><i class="ti ti-chevron-right"></i></div>
                                 </a>
                             @endif
 
-                            @if(Auth::user()->type != 'client')
+                            @if(Auth::user()->type != 'registrar')
                                 <a href="#users_products" class="list-group-item list-group-item-action border-0">{{__('Users').' | '.__('Products')}}
                                     <div class="float-end"><i class="ti ti-chevron-right"></i></div>
                                 </a>
                             @endif
 
-                            @if(Auth::user()->type != 'client')
+                            @if(Auth::user()->type != 'registrar')
                                 <a href="#sources_emails" class="list-group-item list-group-item-action border-0">{{__('Sources').' | '.__('Emails')}}
                                     <div class="float-end"><i class="ti ti-chevron-right"></i></div>
                                 </a>
                             @endif
-                            @if(Auth::user()->type != 'client')
+                            @if(Auth::user()->type != 'registrar')
                                 <a href="#discussion_note" class="list-group-item list-group-item-action border-0">{{__('Discussion').' | '.__('Notes')}}
                                     <div class="float-end"><i class="ti ti-chevron-right"></i></div>
                                 </a>
                             @endif
-                            @if(Auth::user()->type != 'client')
+                            @if(Auth::user()->type != 'registrar')
                                 <a href="#files" class="list-group-item list-group-item-action border-0">{{__('Files')}}
                                     <div class="float-end"><i class="ti ti-chevron-right"></i></div>
                                 </a>
                             @endif
-                            @if(Auth::user()->type != 'client')
+                            @if(Auth::user()->type != 'registrar')
                                 <a href="#calls" class="list-group-item list-group-item-action border-0">{{__('Calls')}}
                                     <div class="float-end"><i class="ti ti-chevron-right"></i></div>
                                 </a>
                             @endif
-                            @if(Auth::user()->type != 'client')
+                            @if(Auth::user()->type != 'registrar')
                                 <a href="#activity" class="list-group-item list-group-item-action border-0">{{__('Activity')}}
                                     <div class="float-end"><i class="ti ti-chevron-right"></i></div>
                                 </a>
