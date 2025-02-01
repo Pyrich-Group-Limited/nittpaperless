@@ -16,48 +16,54 @@ class DtaReportController extends Controller
 {
     public function dta(Request $request)
     {
+        if (\Auth::user()->can('manage report')) {
+            $user = \Auth::user();
 
-        if(\Auth::user()->can('manage report'))
-        {
-            $branch = Branch::all()->pluck('name', 'id');
-            $branch->prepend('Select Branch', '');
+            // Super admin can select any department, while directors are restricted to their own department
+            if ($user->type === 'super admin') {
+                $departments = Department::all()->pluck('name', 'id');
+            } else {
+                $departments = Department::where('id', $user->department_id)->pluck('name', 'id');
+            }
+            $departments->prepend('Select Department', '');
 
-            $department = Department::all()->pluck('name', 'id');
-            $department->prepend('Select Department', '');
-
-            $filterYear['branch']        = __('All');
+            // Default Filters
             $filterYear['department']    = __('All');
             $filterYear['type']          = __('Monthly');
             $filterYear['dateYearRange'] = date('M-Y');
-            $employees                   = User::where('type','!=','contractor')->get();
-            if(!empty($request->branch))
-            {
-                $employees->where('branch_id', $request->branch);
-                $filterYear['branch'] = !empty(Branch::find($request->branch)) ? Branch::find($request->branch)->name : '';
+
+            // Employee Query (Super Admin sees all, Directors see only their department)
+            $employees = User::where('type', '!=', 'contractor');
+
+            if ($user->type !== 'super admin') {
+                $employees->where('department_id', $user->department_id); // Restrict directors to their department
             }
-            if(!empty($request->department))
-            {
+
+            // Apply department filter (Only for Super Admin)
+            if (!empty($request->department) && $user->type === 'super admin') {
                 $employees->where('department_id', $request->department);
-                $filterYear['department'] = !empty(Department::find($request->department)) ? Department::find($request->department)->name : '';
+                $filterYear['department'] = Department::find($request->department)?->name ?? '';
+            } elseif ($user->type !== 'super admin') {
+                $filterYear['department'] = Department::find($user->department_id)?->name ?? '';
             }
 
-            // $employees = $employees->get();
+            $employees = $employees->get();
 
-            $dtas        = [];
+            $dtas          = [];
             $totalApproved = $totalReject = $totalPending = 0;
-            foreach($employees as $employee)
-            {
 
+            foreach ($employees as $employee) {
                 $employeeLeave['id']          = $employee->id;
                 $employeeLeave['employee_id'] = $employee->employee_id;
                 $employeeLeave['employee']    = $employee->name;
 
+                // Leave Status Queries
                 $approved = Dta::where('user_id', $employee->id)->where('status', 'Approved');
-                $rejected   = Dta::where('user_id', $employee->id)->where('status', 'Rejected');
+                $rejected = Dta::where('user_id', $employee->id)->where('status', 'Rejected');
                 $pending  = Dta::where('user_id', $employee->id)->where('status', 'Pending');
 
-                if($request->type == 'monthly' && !empty($request->month))
-                {
+                // Monthly Filter
+                if ($request->type == 'monthly' && !empty($request->month)) {
                     $month = date('m', strtotime($request->month));
                     $year  = date('Y', strtotime($request->month));
 
@@ -67,68 +73,53 @@ class DtaReportController extends Controller
 
                     $filterYear['dateYearRange'] = date('M-Y', strtotime($request->month));
                     $filterYear['type'] = __('Monthly');
-
-                }
-                elseif(!isset($request->type))
-                {
-                    $month     = date('m');
-                    $year      = date('Y');
-                    $monthYear = date('Y-m');
-
+                } elseif (!isset($request->type)) {
+                    $month = date('m');
+                    $year  = date('Y');
                     $approved->whereMonth('created_at', $month)->whereYear('created_at', $year);
                     $rejected->whereMonth('created_at', $month)->whereYear('created_at', $year);
                     $pending->whereMonth('created_at', $month)->whereYear('created_at', $year);
 
-                    $filterYear['dateYearRange'] = date('M-Y', strtotime($monthYear));
+                    $filterYear['dateYearRange'] = date('M-Y');
                     $filterYear['type']          = __('Monthly');
                 }
 
-
-                if($request->type == 'yearly' && !empty($request->year))
-                {
+                // Yearly Filter
+                if ($request->type == 'yearly' && !empty($request->year)) {
                     $approved->whereYear('created_at', $request->year);
                     $rejected->whereYear('created_at', $request->year);
                     $pending->whereYear('created_at', $request->year);
-
 
                     $filterYear['dateYearRange'] = $request->year;
                     $filterYear['type']          = __('Yearly');
                 }
 
-                $approved = $approved->count();
-                $rejected   = $rejected->count();
-                $pending  = $pending->count();
+                // Count Records
+                $employeeLeave['approved'] = $approved->count();
+                $employeeLeave['rejected'] = $rejected->count();
+                $employeeLeave['pending']  = $pending->count();
 
-                $totalApproved += $approved;
-                $totalReject   += $rejected;
-                $totalPending  += $pending;
-
-                $employeeLeave['approved'] = $approved;
-                $employeeLeave['rejected']   = $rejected;
-                $employeeLeave['pending']  = $pending;
-
+                $totalApproved += $employeeLeave['approved'];
+                $totalReject   += $employeeLeave['rejected'];
+                $totalPending  += $employeeLeave['pending'];
 
                 $dtas[] = $employeeLeave;
             }
 
-            $starting_year = date('Y', strtotime('-5 year'));
-            $ending_year   = date('Y', strtotime('+5 year'));
-
-            $filterYear['starting_year'] = $starting_year;
-            $filterYear['ending_year']   = $ending_year;
+            // Year Range for Selection
+            $filterYear['starting_year'] = date('Y', strtotime('-5 year'));
+            $filterYear['ending_year']   = date('Y', strtotime('+5 year'));
 
             $filter['totalApproved'] = $totalApproved;
             $filter['totalReject']   = $totalReject;
             $filter['totalPending']  = $totalPending;
 
-
-            return view('dta.reports', compact('department', 'branch', 'dtas', 'filterYear', 'filter'));
-        }
-        else
-        {
+            return view('dta.reports', compact('departments', 'dtas', 'filterYear', 'filter'));
+        } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
     }
+
 
 
     public function employeeDta(Request $request, $employee_id, $status, $type, $month, $year)
