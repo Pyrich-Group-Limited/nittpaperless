@@ -6012,6 +6012,56 @@ class UsersTableSeeder extends Seeder
         $dg->givePermissionTo($dgPermissions);
 
 
+        $dgCePaRole = Role::create(
+            [
+                'name' => 'DG/CE`s Personal Assistant',
+                'created_by' => $company->id,
+            ]
+        );
+
+        $dgCePa = User::create(
+            [
+                'name' => 'Yakubu Dogara',
+                'designation' => Designation::first()->name,
+                'department_id' => Department::first()->id,
+                'unit_id' => Department::first()->units->first()->id,
+                'level' => "Level 15",
+                'email' => 'dgpa@nitt.com',
+                'password' => Hash::make('1234'),
+                'type' => 'DG/CE`s Personal Assistant',
+                'default_pipeline' => 1,
+                'plan' => 1,
+                'lang' => 'en',
+                'avatar' => '',
+                'created_by' => 1,
+                'password_changed' => true,
+            ]
+        );
+        $dgCePa->assignRole($dgCePaRole);
+        $dgCePa->givePermissionTo($dgPermissions);
+
+        $dgCeAdmin = Role::create(
+            [
+                'name' => 'DG/CE`s Admin Officer',
+                'created_by' => $company->id,
+            ]
+        );
+
+        $dgCeSecretary = Role::create(
+            [
+                'name' => 'DG/CE`s Secretary',
+                'created_by' => $company->id,
+            ]
+        );
+
+        $dgCeSpAssistant = Role::create(
+            [
+                'name' => 'DG/CE`s Speacial Assistant',
+                'created_by' => $company->id,
+            ]
+        );
+
+
         // Create the 'user' role if it doesn't already exist
             $userRole = Role::firstOrCreate(
                 ['name' => 'user'],
@@ -6492,6 +6542,8 @@ class UsersTableSeeder extends Seeder
             ]
         );
         $storePermission = [
+            ['name' => 'view item supply'],
+            ['name' => 'request purchase requisition'],
             ['name' => 'share document'],
             ['name' => 'archive document'],
             ['name' => 'create folder'],
@@ -6524,7 +6576,7 @@ class UsersTableSeeder extends Seeder
                 'created_by' => $company->id,
                 'designation' => Designation::first()->name,
                 'department_id' => Department::first()->id,
-                'unit_id' => Department::first()->units->first()->id,
+                'unit_id' => Unit::where('name','Stores')->first()->id,
                 'level' => "Level 08",
                 'password_changed' => true,
             ]
@@ -6816,9 +6868,9 @@ class UsersTableSeeder extends Seeder
                 'avatar' => '',
                 'created_by' => $company->id,
                 'designation' => Designation::first()->name,
-                'department_id' => Department::first()->id,
-                'unit_id' => Department::first()->units->first()->id,
-                'level' => "Level 08",
+                'department_id' => Department::where('name','Registry Department')->first()->id,
+                'unit_id' => Unit::where('name','Personel Unit')->first()->id,
+                'level' => "Level 12",
                 'password_changed' => true,
             ]
         );

@@ -29,7 +29,7 @@
                     <i class="ti ti-list"></i>{{__('Rejected')}}
                 </a>
             </div>
-       
+
         </div> --}}
     {{-- @endsection --}}
     @section('action-btn')
@@ -55,37 +55,44 @@
                                 <tr>
                                     <th>{{ __('Employee Name') }}</th>
                                     <th>{{ __('Employee Department') }}</th>
-                                    <th>{{ __(' Request Date') }}</th>
+                                    <th>{{ __('Request Date') }}</th>
                                     <th>{{ __('Status') }}</th>
                                     <th>{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($itemRequisitions as $itemRequisition)
+                                @forelse ($itemRequisitions as $itemRequisition)
                                     <tr class="font-style">
-                                        <td>{{ $itemRequisition->staff->name }}</td>
-                                        <td>{{ $itemRequisition->department->name }}</td>
-                                        <td>{{ $itemRequisition->created_at }}</td>
+                                        <td>{{ $itemRequisition->staff?->name ?? __('N/A') }}</td>
+                                        <td>{{ $itemRequisition->department?->name ?? __('N/A') }}</td>
+                                        <td>{{ $itemRequisition->created_at->format('d M, Y') }}</td>
                                         <td>
-                                            <span
-                                                class="badge @if ($itemRequisition->status == 'Pending') bg-warning
-                                                    @elseif ($itemRequisition->status == 'Approved') bg-primary
-                                                    @elseif ($itemRequisition->status == 'Rejected') bg-danger
-                                                    @else bg-warning
-                                                    p-2 px-3 rounded">{{ $itemRequisition->status }}
-                                                    @endif
+                                            <span class="badge
+                                                {{ $itemRequisition->status == 'Pending' ? 'bg-warning' : '' }}
+                                                {{ $itemRequisition->status == 'Approved' ? 'bg-primary' : '' }}
+                                                {{ $itemRequisition->status == 'Rejected' ? 'bg-danger' : '' }}
+                                                p-2 px-3 rounded">
+                                                {{ __($itemRequisition->status) }}
                                             </span>
                                         </td>
                                         <td class="Action">
                                             <div class="action-btn bg-primary ms-2">
-                                                <a href="#" wire:click="setRequisitionItem('{{ $itemRequisition->id }}')" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" 
-                                                    data-bs-target="#viewItemRequisitionDetails" data-size="lg" data-bs-toggle="tooltip" title="{{__('Item Requisition Details')}}">
+                                                <a href="#" wire:click="setRequisitionItem('{{ $itemRequisition->id }}')"
+                                                   class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#viewItemRequisitionDetails"
+                                                   data-bs-toggle="tooltip"
+                                                   title="{{ __('Item Requisition Details') }}">
                                                     <i class="ti ti-eye text-white"></i>
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center text-muted">{{ __('No item requisitions found.') }}</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

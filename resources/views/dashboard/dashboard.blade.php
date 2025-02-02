@@ -226,8 +226,7 @@
         </div>
     </div>
 </div>
-
-    @if(\Auth::user()->type != 'registrar' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'DG')
+    @if(\Auth::user()->type != 'registrar' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'DG' && \Auth::user()->type != 'DG/CE`s Personal Assistant' && \Auth::user()->type != 'DG/CE`s Admin Officer' && \Auth::user()->type != 'DG/CE`s Secretary' && \Auth::user()->type != 'DG/CE`s Speacial Assistant')
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">
