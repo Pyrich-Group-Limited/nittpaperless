@@ -35,7 +35,7 @@
 
 
         <div class="navbar-content">
-            @if(\Auth::user()->type =='DG')
+            @if(\Auth::user()->type =='DG' || \Auth::user()->type == 'DG/CE`s Personal Assistant' || \Auth::user()->type == 'DG/CE`s Admin Officer' || \Auth::user()->type == 'DG/CE`s Secretary' || \Auth::user()->type == 'DG/CE`s Speacial Assistant')
                 <ul class="dash-navbar">
                     <li class="dash-item dash-hasmenu ">
                         <a href="{{ route('dg.dashboard') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
@@ -154,197 +154,195 @@
                     @endif
 
                     @if(Auth::user()->isInDepartment('Registry Department'))
-                        @if( Gate::check('manage lead') || Gate::check('manage deal') || Gate::check('manage form builder') || Gate::check('manage contract'))
-                            <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'holiday-calender' || Request::segment(1) == 'reports-monthly-attendance' ||
-                                Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll' || Request::segment(1) == 'leavetype' || Request::segment(1) == 'leave' ||
-                                Request::segment(1) == 'attendanceemployee' || Request::segment(1) == 'document-upload' || Request::segment(1) == 'document' || Request::segment(1) == 'performanceType'  ||
-                                    Request::segment(1) == 'branch' || Request::segment(1) == 'department' || Request::segment(1) == 'designation' || Request::segment(1) == 'employee'
-                                    || Request::segment(1) == 'leave_requests' || Request::segment(1) == 'holidays' || Request::segment(1) == 'policies' || Request::segment(1) == 'leave_calender'
-                                    || Request::segment(1) == 'award' || Request::segment(1) == 'transfer' || Request::segment(1) == 'resignation' || Request::segment(1) == 'training' || Request::segment(1) == 'travel' ||
-                                    Request::segment(1) == 'promotion' || Request::segment(1) == 'complaint' || Request::segment(1) == 'warning'
-                                     || Request::segment(1) == 'termination' || Request::segment(1) == 'announcement' || Request::segment(1) == 'job' || Request::segment(1) == 'job-application' ||
-                                      Request::segment(1) == 'candidates-job-applications' || Request::segment(1) == 'job-onboard' || Request::segment(1) == 'custom-question'
-                                       || Request::segment(1) == 'interview-schedule' || Request::segment(1) == 'career' || Request::segment(1) == 'holiday' || Request::segment(1) == 'setsalary' ||
-                                       Request::segment(1) == 'payslip' || Request::segment(1) == 'paysliptype' || Request::segment(1) == 'company-policy' || Request::segment(1) == 'job-stage'
-                                       || Request::segment(1) == 'job-category' || Request::segment(1) == 'terminationtype' || Request::segment(1) == 'awardtype' || Request::segment(1) == 'trainingtype' ||
-                                       Request::segment(1) == 'goaltype' || Request::segment(1) == 'paysliptype' || Request::segment(1) == 'allowanceoption' || Request::segment(1) == 'competencies' || Request::segment(1) == 'loanoption'
-                                       || Request::segment(1) == 'deductionoption')?'active dash-trigger':''}}">
-                                <a href="#!" class="dash-link"
-                                ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
-                                    ><span class="dash-mtext">{{__('HRM System')}}</span
-                                    ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
-                                    ></a>
-                                <ul class="dash-submenu {{ (Request::segment(1) == 'stages' || Request::segment(1) == 'labels' || Request::segment(1) == 'sources' || Request::segment(1) == 'lead_stages' || Request::segment(1) == 'leads'  || Request::segment(1) == 'form_builder' || Request::segment(1) == 'form_response' || Request::segment(1) == 'deals' || Request::segment(1) == 'pipelines')?'show':''}}">
-                                    @can('show hrm dashboard')
-                                    <li class="dash-item {{ (\Request::route()->getName()=='hrm.dashboard') ? ' active' : '' }}">
-                                        <a class="dash-link" href="{{route('hrm.dashboard')}}">{{__(' Overview')}}</a>
-                                    </li>
-                                    @endcan
-                                    @can('manage payment')
-                                    <li class="dash-item {{ request()->is('reports-payroll') ? 'active' : '' }}">
-                                        <a class="dash-link" href="{{ route('report.payroll') }}">{{__('Payroll')}}</a>
-                                    </li>
-                                    @endcan
-                                    @can('manage payment')
-                                    <li class="dash-item {{ request()->is('employees-files') ? 'active' : '' }}">
-                                        <a class="dash-link" href="{{ route('employees.files') }}">{{__('Employee Files')}}</a>
-                                    </li>
-                                    @endcan
-                                    @can('manage report')
-                                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'active dash-trigger' : ''}}" href="#hr-report" data-toggle="collapse" role="button" aria-expanded="{{(Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'true' : 'false'}}">
-                                            <a class="dash-link" href="#">{{__('Reports/Analytics')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
-                                            <ul class="dash-submenu">
-                                                <li class="dash-item {{ request()->is('reports-lead') ? 'active' : '' }}">
-                                                    <a class="dash-link" href="{{ route('report.lead') }}">{{__('Lead')}}</a>
-                                                </li>
-                                                <li class="dash-item {{ request()->is('reports-deal') ? 'active' : '' }}">
-                                                    <a class="dash-link" href="{{ route('report.deal') }}">{{__('Deal')}}</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    @endcan
-                                    {{-- @if( Gate::check('manage indicator') || Gate::check('manage appraisal') || Gate::check('manage goal tracking'))
-                                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'active dash-trigger' : ''}}" href="#navbar-performance" data-toggle="collapse" role="button" aria-expanded="{{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'true' : 'false'}}">
-                                            <a class="dash-link" href="#">{{__('Performance Management')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
-                                            <ul class="dash-submenu {{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'show' : 'collapse'}}">
-                                                @can('manage indicator')
-                                                    <li class="dash-item {{ (request()->is('indicator*') ? 'active' : '')}}">
-                                                        <a class="dash-link" href="{{route('indicator.index')}}">{{__('Indicator')}}</a>
-                                                    </li>
-                                                @endcan
-                                                @can('manage appraisal')
-                                                    <li class="dash-item {{ (request()->is('appraisal*') ? 'active' : '')}}">
-                                                        <a class="dash-link" href="{{route('appraisal.index')}}">{{__('Appraisal')}}</a>
-                                                    </li>
-                                                @endcan
-                                                @can('manage goal tracking')
-                                                    <li class="dash-item  {{ (request()->is('goaltracking*') ? 'active' : '')}}">
-                                                        <a class="dash-link" href="{{route('goaltracking.index')}}">{{__('Goal Tracking')}}</a>
-                                                    </li>
-                                                @endcan
-                                            </ul>
-                                        </li>
-                                    @endif --}}
-                                    @if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'HR')
-                                    <li class="dash-item {{ (Request::segment(1) == 'leavetype' || Request::segment(1) == 'document' || Request::segment(1) == 'performanceType' || Request::segment(1) == 'branch' || Request::segment(1) == 'department'
-                                                              || Request::segment(1) == 'designation' || Request::segment(1) == 'job-stage'|| Request::segment(1) == 'performanceType'  || Request::segment(1) == 'job-category' || Request::segment(1) == 'terminationtype' ||
-                                                               Request::segment(1) == 'awardtype' || Request::segment(1) == 'trainingtype' || Request::segment(1) == 'goaltype' || Request::segment(1) == 'paysliptype' ||
-                                                               Request::segment(1) == 'allowanceoption' || Request::segment(1) == 'loanoption' || Request::segment(1) == 'deductionoption') ? 'active dash-trigger' : ''}}">
-                                        <a class="dash-link" href="{{route('branch.index')}}">{{__('HRM System Setup')}}</a>
-                                    </li>
-                                    @endif
-                                    <li class="dash-item  {{ (Request::segment(1) == 'employee' ? 'active dash-trigger' : '')}}   ">
-                                        @if(\Auth::user()->type =='Employee')
-                                            @php
-                                                $employee=App\Models\Employee::where('user_id',\Auth::user()->id)->first();
-                                            @endphp
-                                            <a class="dash-link" href="{{route('employee.show',\Illuminate\Support\Facades\Crypt::encrypt($employee->id))}}">{{__('Employee')}}</a>
-                                        @else
-                                            <a href="{{route('employee.index')}}" class="dash-link">
-                                                {{ __('Employee Info Management') }}
-                                            </a>
-                                        @endif
-                                    </li>
-                                    @if( Gate::check('manage training') || Gate::check('manage trainer'))
-                                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'trainer' || Request::segment(1) == 'training') ? 'active dash-trigger' : ''}}" href="#navbar-training" data-toggle="collapse" role="button" aria-expanded="{{ (Request::segment(1) == 'trainer' || Request::segment(1) == 'training') ? 'true' : 'false'}}">
-                                        <a class="dash-link" href="#">{{__('Training Setup')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'holiday-calender' || Request::segment(1) == 'reports-monthly-attendance'
+                                || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll' || Request::segment(1) == 'leavetype' || Request::segment(1) == 'leave'
+                                || Request::segment(1) == 'attendanceemployee' || Request::segment(1) == 'document-upload' || Request::segment(1) == 'document' || Request::segment(1) == 'performanceType'
+                                || Request::segment(1) == 'branch' || Request::segment(1) == 'department' || Request::segment(1) == 'designation' || Request::segment(1) == 'employee'
+                                || Request::segment(1) == 'leave_requests' || Request::segment(1) == 'policies' || Request::segment(1) == 'leave_calender'
+                                || Request::segment(1) == 'award' || Request::segment(1) == 'transfer' || Request::segment(1) == 'resignation' || Request::segment(1) == 'training' || Request::segment(1) == 'travel'
+                                || Request::segment(1) == 'promotion' || Request::segment(1) == 'complaint' || Request::segment(1) == 'warning'
+                                || Request::segment(1) == 'announcement' || Request::segment(1) == 'job' || Request::segment(1) == 'job-application'
+                                || Request::segment(1) == 'candidates-job-applications' || Request::segment(1) == 'job-onboard' || Request::segment(1) == 'custom-question'
+                                || Request::segment(1) == 'interview-schedule' || Request::segment(1) == 'career' || Request::segment(1) == 'holiday' || Request::segment(1) == 'setsalary'
+                                || Request::segment(1) == 'job-stage' || Request::segment(1) == 'job-category' || Request::segment(1) == 'trainingtype'
+                                || Request::segment(1) == 'competencies' || Request::segment(1) == 'loanoption'
+                                || Request::segment(1) == 'deductionoption')?'active dash-trigger':''}}">
+                            <a href="#!" class="dash-link"
+                            ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
+                                ><span class="dash-mtext">{{__('HRM System')}}</span
+                                ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                                ></a>
+                            <ul class="dash-submenu {{ (Request::segment(1) == 'stages' || Request::segment(1) == 'labels' || Request::segment(1) == 'sources' || Request::segment(1) == 'lead_stages' || Request::segment(1) == 'leads'  || Request::segment(1) == 'form_builder' || Request::segment(1) == 'form_response' || Request::segment(1) == 'deals' || Request::segment(1) == 'pipelines')?'show':''}}">
+                                @can('show hrm dashboard')
+                                <li class="dash-item {{ (\Request::route()->getName()=='hrm.dashboard') ? ' active' : '' }}">
+                                    <a class="dash-link" href="{{route('hrm.dashboard')}}">{{__(' Overview')}}</a>
+                                </li>
+                                @endcan
+                                @can('manage payment')
+                                <li class="dash-item {{ request()->is('reports-payroll') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('report.payroll') }}">{{__('Payroll')}}</a>
+                                </li>
+                                @endcan
+                                @can('manage payment')
+                                <li class="dash-item {{ request()->is('employees-files') ? 'active' : '' }}">
+                                    <a class="dash-link" href="{{ route('employees.files') }}">{{__('Employee Files')}}</a>
+                                </li>
+                                @endcan
+                                @can('manage report')
+                                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'active dash-trigger' : ''}}" href="#hr-report" data-toggle="collapse" role="button" aria-expanded="{{(Request::segment(1) == 'reports-monthly-attendance' || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll') ? 'true' : 'false'}}">
+                                        <a class="dash-link" href="#">{{__('Reports/Analytics')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu">
-                                            @can('manage training')
-                                                <li class="dash-item {{ (request()->is('training*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('training.index')}}">{{__('Training List')}}</a>
+                                            <li class="dash-item {{ request()->is('reports-lead') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('report.lead') }}">{{__('Lead')}}</a>
+                                            </li>
+                                            <li class="dash-item {{ request()->is('reports-deal') ? 'active' : '' }}">
+                                                <a class="dash-link" href="{{ route('report.deal') }}">{{__('Deal')}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endcan
+                                {{-- @if( Gate::check('manage indicator') || Gate::check('manage appraisal') || Gate::check('manage goal tracking'))
+                                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'active dash-trigger' : ''}}" href="#navbar-performance" data-toggle="collapse" role="button" aria-expanded="{{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'true' : 'false'}}">
+                                        <a class="dash-link" href="#">{{__('Performance Management')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                        <ul class="dash-submenu {{ (Request::segment(1) == 'indicator' || Request::segment(1) == 'appraisal' || Request::segment(1) == 'goaltracking') ? 'show' : 'collapse'}}">
+                                            @can('manage indicator')
+                                                <li class="dash-item {{ (request()->is('indicator*') ? 'active' : '')}}">
+                                                    <a class="dash-link" href="{{route('indicator.index')}}">{{__('Indicator')}}</a>
                                                 </li>
                                             @endcan
-                                            @can('manage trainer')
-                                                <li class="dash-item {{ (request()->is('trainer*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('trainer.index')}}">{{__('Trainer')}}</a>
+                                            @can('manage appraisal')
+                                                <li class="dash-item {{ (request()->is('appraisal*') ? 'active' : '')}}">
+                                                    <a class="dash-link" href="{{route('appraisal.index')}}">{{__('Appraisal')}}</a>
                                                 </li>
                                             @endcan
-                                            @can('manage meeting')
-                                                <li class="dash-item {{ (request()->is('meeting*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('meeting.index')}}">{{__('Meeting')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage announcement')
-                                                <li class="dash-item {{ (request()->is('announcement*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('announcement.index')}}">{{__('Announcement')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage event')
-                                                <li class="dash-item {{ (request()->is('event*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('event.index')}}">{{__('Event Setup')}}</a>
+                                            @can('manage goal tracking')
+                                                <li class="dash-item  {{ (request()->is('goaltracking*') ? 'active' : '')}}">
+                                                    <a class="dash-link" href="{{route('goaltracking.index')}}">{{__('Goal Tracking')}}</a>
                                                 </li>
                                             @endcan
                                         </ul>
                                     </li>
+                                @endif --}}
+                                @if (\Auth::user()->type == 'super admin' || \Auth::user()->type == 'registrar')
+                                <li class="dash-item {{ (Request::segment(1) == 'leavetype' || Request::segment(1) == 'document' || Request::segment(1) == 'performanceType' || Request::segment(1) == 'branch' || Request::segment(1) == 'department'
+                                                            || Request::segment(1) == 'designation' || Request::segment(1) == 'job-stage'|| Request::segment(1) == 'performanceType'  || Request::segment(1) == 'job-category' || Request::segment(1) == 'terminationtype' ||
+                                                            Request::segment(1) == 'awardtype' || Request::segment(1) == 'trainingtype' || Request::segment(1) == 'goaltype' || Request::segment(1) == 'paysliptype' ||
+                                                            Request::segment(1) == 'allowanceoption' || Request::segment(1) == 'loanoption' || Request::segment(1) == 'deductionoption') ? 'active dash-trigger' : ''}}">
+                                    <a class="dash-link" href="{{route('branch.index')}}">{{__('HRM System Setup')}}</a>
+                                </li>
+                                @endif
+                                <li class="dash-item  {{ (Request::segment(1) == 'employee' ? 'active dash-trigger' : '')}}   ">
+                                    @if(\Auth::user()->type =='Employee')
+                                        @php
+                                            $employee=App\Models\Employee::where('user_id',\Auth::user()->id)->first();
+                                        @endphp
+                                        <a class="dash-link" href="{{route('employee.show',\Illuminate\Support\Facades\Crypt::encrypt($employee->id))}}">{{__('Employee')}}</a>
+                                    @else
+                                        <a href="{{route('employee.index')}}" class="dash-link">
+                                            {{ __('Employee Info Management') }}
+                                        </a>
                                     @endif
-                                    @if( Gate::check('manage job') || Gate::check('create job') || Gate::check('manage job application') || Gate::check('manage custom question') || Gate::check('show interview schedule') || Gate::check('show career') )
-                                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'job' || Request::segment(1) == 'job-application' || Request::segment(1) == 'candidates-job-applications' || Request::segment(1) == 'job-onboard' || Request::segment(1) == 'custom-question' || Request::segment(1) == 'interview-schedule' || Request::segment(1) == 'career') ? 'active dash-trigger' : ''}}    ">
-                                        <a class="dash-link" href="#">{{__('Recruitments & Onboarding')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
-                                        <ul class="dash-submenu">
-                                            @can('manage job')
-                                                <li class="dash-item {{ (Request::route()->getName() == 'job.index' || Request::route()->getName() == 'job.create' || Request::route()->getName() == 'job.edit' || Request::route()->getName() == 'job.show'   ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('job.index')}}">{{__('Jobs')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('create job')
-                                                <li class="dash-item {{ ( Request::route()->getName() == 'job.create' ? 'active' : '')}} ">
-                                                    <a class="dash-link" href="{{route('job.create')}}">{{__('Job Posting')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage job application')
-                                                <li class="dash-item {{ (request()->is('job-application*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('job-application.index')}}">{{__('Job Application')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage job application')
-                                                <li class="dash-item {{ (request()->is('job-onboard*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('job.on.board')}}">{{__('Employee Onboarding')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage custom question')
-                                            <!----    <li class="dash-item  {{ (request()->is('custom-question*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('custom-question.index')}}">{{__('Custom Question')}}</a>
-                                                </li> ---->
-                                            @endcan
-                                            @can('show interview schedule')
-                                                <li class="dash-item {{ (request()->is('interview-schedule*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('interview-schedule.index')}}">{{__('Interview Schedule')}}</a>
-                                                </li>
-                                            @endcan
+                                </li>
+                                @if( Gate::check('manage training') || Gate::check('manage trainer'))
+                                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'trainer' || Request::segment(1) == 'training') ? 'active dash-trigger' : ''}}" href="#navbar-training" data-toggle="collapse" role="button" aria-expanded="{{ (Request::segment(1) == 'trainer' || Request::segment(1) == 'training') ? 'true' : 'false'}}">
+                                    <a class="dash-link" href="#">{{__('Training Setup')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                    <ul class="dash-submenu">
+                                        @can('manage training')
+                                            <li class="dash-item {{ (request()->is('training*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('training.index')}}">{{__('Training List')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage trainer')
+                                            <li class="dash-item {{ (request()->is('trainer*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('trainer.index')}}">{{__('Trainer')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage meeting')
+                                            <li class="dash-item {{ (request()->is('meeting*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('meeting.index')}}">{{__('Meeting')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage announcement')
+                                            <li class="dash-item {{ (request()->is('announcement*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('announcement.index')}}">{{__('Announcement')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage event')
+                                            <li class="dash-item {{ (request()->is('event*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('event.index')}}">{{__('Event Setup')}}</a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </li>
+                                @endif
+                                @if( Gate::check('manage job') || Gate::check('create job') || Gate::check('manage job application') || Gate::check('manage custom question') || Gate::check('show interview schedule') || Gate::check('show career') )
+                                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'job' || Request::segment(1) == 'job-application' || Request::segment(1) == 'candidates-job-applications' || Request::segment(1) == 'job-onboard' || Request::segment(1) == 'custom-question' || Request::segment(1) == 'interview-schedule' || Request::segment(1) == 'career') ? 'active dash-trigger' : ''}}    ">
+                                    <a class="dash-link" href="#">{{__('Recruitments & Onboarding')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                    <ul class="dash-submenu">
+                                        @can('manage job')
+                                            <li class="dash-item {{ (Request::route()->getName() == 'job.index' || Request::route()->getName() == 'job.create' || Request::route()->getName() == 'job.edit' || Request::route()->getName() == 'job.show'   ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('job.index')}}">{{__('Jobs')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('create job')
+                                            <li class="dash-item {{ ( Request::route()->getName() == 'job.create' ? 'active' : '')}} ">
+                                                <a class="dash-link" href="{{route('job.create')}}">{{__('Job Posting')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage job application')
+                                            <li class="dash-item {{ (request()->is('job-application*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('job-application.index')}}">{{__('Job Application')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage job application')
+                                            <li class="dash-item {{ (request()->is('job-onboard*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('job.on.board')}}">{{__('Employee Onboarding')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage custom question')
+                                        <!----    <li class="dash-item  {{ (request()->is('custom-question*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('custom-question.index')}}">{{__('Custom Question')}}</a>
+                                            </li> ---->
+                                        @endcan
+                                        @can('show interview schedule')
+                                            <li class="dash-item {{ (request()->is('interview-schedule*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('interview-schedule.index')}}">{{__('Interview Schedule')}}</a>
+                                            </li>
+                                        @endcan
 
 
 
-                                        {{---    @can('manage job')
-                                                <li class="dash-item {{ (Request::route()->getName() == 'jobber.index' || Request::route()->getName() == 'jobber.create' || Request::route()->getName() == 'jobber.edit' || Request::route()->getName() == 'jobber.show'   ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('jobber.index')}}">{{__('Contracts')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('create job')
-                                                <li class="dash-item {{ ( Request::route()->getName() == 'jobber.create' ? 'active' : '')}} ">
-                                                    <a class="dash-link" href="{{route('jobber.create')}}">{{__('Contracts Posting')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage job application')
-                                                <li class="dash-item {{ (request()->is('jobber-application*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('jobber-application.index')}}">{{__('Contracts Application')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage job application')
-                                                <li class="dash-item {{ (request()->is('jobber-onboard*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('job.on.board')}}">{{__('Contract Onboarding')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage custom question')
-                                            <!----    <li class="dash-item  {{ (request()->is('custom-question*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('custom-question.index')}}">{{__('Custom Question')}}</a>
-                                                </li> ---->
-                                            @endcan
-                                            @can('show interview schedule')
-                                                <li class="dash-item {{ (request()->is('interview-schedule*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('interview-schedule.index')}}">{{__('Contract Meeting Schedule')}}</a>
-                                                </li>
-                                            @endcan
-                                            -----}}
+                                    {{---    @can('manage job')
+                                            <li class="dash-item {{ (Request::route()->getName() == 'jobber.index' || Request::route()->getName() == 'jobber.create' || Request::route()->getName() == 'jobber.edit' || Request::route()->getName() == 'jobber.show'   ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('jobber.index')}}">{{__('Contracts')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('create job')
+                                            <li class="dash-item {{ ( Request::route()->getName() == 'jobber.create' ? 'active' : '')}} ">
+                                                <a class="dash-link" href="{{route('jobber.create')}}">{{__('Contracts Posting')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage job application')
+                                            <li class="dash-item {{ (request()->is('jobber-application*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('jobber-application.index')}}">{{__('Contracts Application')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage job application')
+                                            <li class="dash-item {{ (request()->is('jobber-onboard*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('job.on.board')}}">{{__('Contract Onboarding')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage custom question')
+                                        <!----    <li class="dash-item  {{ (request()->is('custom-question*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('custom-question.index')}}">{{__('Custom Question')}}</a>
+                                            </li> ---->
+                                        @endcan
+                                        @can('show interview schedule')
+                                            <li class="dash-item {{ (request()->is('interview-schedule*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('interview-schedule.index')}}">{{__('Contract Meeting Schedule')}}</a>
+                                            </li>
+                                        @endcan
+                                        -----}}
 
 
 
@@ -353,64 +351,63 @@
 
 
 
-                                            {{-- @can('show career')
-                                                <li class="dash-item {{ (request()->is('career*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('career',[\Auth::user()->creatorId(),$lang])}}">{{__('Career')}}</a></li>
-                                            @endcan --}}
-                                        </ul>
+                                        {{-- @can('show career')
+                                            <li class="dash-item {{ (request()->is('career*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('career',[\Auth::user()->creatorId(),$lang])}}">{{__('Career')}}</a></li>
+                                        @endcan --}}
+                                    </ul>
+                                </li>
+                                @endif
+                                @if( Gate::check('manage award') || Gate::check('manage transfer') || Gate::check('manage resignation') || Gate::check('manage travel') || Gate::check('manage promotion') || Gate::check('manage complaint') || Gate::check('manage warning') || Gate::check('manage termination') || Gate::check('manage announcement') || Gate::check('manage holiday') )
+                                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'holiday-calender' || Request::segment(1) == 'holiday' || Request::segment(1) == 'policies' || Request::segment(1) == 'award' || Request::segment(1) == 'transfer' || Request::segment(1) == 'resignation' || Request::segment(1) == 'travel' || Request::segment(1) == 'promotion' || Request::segment(1) == 'complaint' || Request::segment(1) == 'warning' || Request::segment(1) == 'termination' || Request::segment(1) == 'announcement' || Request::segment(1) == 'competencies') ? 'active dash-trigger' : ''}}">
+                                    <a class="dash-link" href="#">{{__('HR/Employee Benefits')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                    <ul class="dash-submenu">
+                                        @can('manage award')
+                                            <li class="dash-item {{ (request()->is('award*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('award.index')}}">{{__('Award')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage transfer')
+                                            <li class="dash-item  {{ (request()->is('transfer*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('transfer.index')}}">{{__('Transfer')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage resignation')
+                                            <li class="dash-item {{ (request()->is('resignation*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('resignation.index')}}">{{__('Resignation')}}</a>
+                                            </li>
+                                        @endcan
+
+                                        @can('manage promotion')
+                                            <li class="dash-item {{ (request()->is('promotion*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('promotion.index')}}">{{__('Promotion')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage termination')
+                                            <li class="dash-item {{ (request()->is('termination*') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('termination.index')}}">{{__('Termination')}}</a>
+                                            </li>
+                                        @endcan
+                                        @can('manage holiday')
+                                            <li class="dash-item {{ (request()->is('holiday*') || request()->is('holiday-calender') ? 'active' : '')}}">
+                                                <a class="dash-link" href="{{route('holiday.index')}}">{{__('Holidays')}}</a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </li>
+                                @endif
+                                @can('manage assets')
+                                    <li class="dash-item {{ (request()->is('account-assets*') ? 'active' : '')}}">
+                                        <a class="dash-link" href="{{route('account-assets.index')}}">{{__('Employees Asset Setup ')}}</a>
                                     </li>
-                                    @endif
-                                    @if( Gate::check('manage award') || Gate::check('manage transfer') || Gate::check('manage resignation') || Gate::check('manage travel') || Gate::check('manage promotion') || Gate::check('manage complaint') || Gate::check('manage warning') || Gate::check('manage termination') || Gate::check('manage announcement') || Gate::check('manage holiday') )
-                                        <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'holiday-calender' || Request::segment(1) == 'holiday' || Request::segment(1) == 'policies' || Request::segment(1) == 'award' || Request::segment(1) == 'transfer' || Request::segment(1) == 'resignation' || Request::segment(1) == 'travel' || Request::segment(1) == 'promotion' || Request::segment(1) == 'complaint' || Request::segment(1) == 'warning' || Request::segment(1) == 'termination' || Request::segment(1) == 'announcement' || Request::segment(1) == 'competencies') ? 'active dash-trigger' : ''}}">
-                                        <a class="dash-link" href="#">{{__('HR/Employee Benefits')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
-                                        <ul class="dash-submenu">
-                                            @can('manage award')
-                                                <li class="dash-item {{ (request()->is('award*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('award.index')}}">{{__('Award')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage transfer')
-                                                <li class="dash-item  {{ (request()->is('transfer*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('transfer.index')}}">{{__('Transfer')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage resignation')
-                                                <li class="dash-item {{ (request()->is('resignation*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('resignation.index')}}">{{__('Resignation')}}</a>
-                                                </li>
-                                            @endcan
-
-                                            @can('manage promotion')
-                                                <li class="dash-item {{ (request()->is('promotion*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('promotion.index')}}">{{__('Promotion')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage termination')
-                                                <li class="dash-item {{ (request()->is('termination*') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('termination.index')}}">{{__('Termination')}}</a>
-                                                </li>
-                                            @endcan
-                                            @can('manage holiday')
-                                                <li class="dash-item {{ (request()->is('holiday*') || request()->is('holiday-calender') ? 'active' : '')}}">
-                                                    <a class="dash-link" href="{{route('holiday.index')}}">{{__('Holidays')}}</a>
-                                                </li>
-                                            @endcan
-                                        </ul>
+                                @endcan
+                                @can('manage company policy')
+                                    <li class="dash-item {{ (request()->is('company-policy*') ? 'active' : '')}}">
+                                        <a class="dash-link" href="{{route('company-policy.index')}}">{{__('Company policy')}}</a>
                                     </li>
-                                    @endif
-                                    @can('manage assets')
-                                        <li class="dash-item {{ (request()->is('account-assets*') ? 'active' : '')}}">
-                                            <a class="dash-link" href="{{route('account-assets.index')}}">{{__('Employees Asset Setup ')}}</a>
-                                        </li>
-                                    @endcan
-                                    @can('manage company policy')
-                                        <li class="dash-item {{ (request()->is('company-policy*') ? 'active' : '')}}">
-                                            <a class="dash-link" href="{{route('company-policy.index')}}">{{__('Company policy')}}</a>
-                                        </li>
-                                    @endcan
-                                </ul>
-                            </li>
-                        @endif
+                                @endcan
+                            </ul>
+                        </li>
                     @endif
 
                     <li class="dash-item dash-hasmenu ">

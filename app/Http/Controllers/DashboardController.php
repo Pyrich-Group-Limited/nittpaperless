@@ -114,7 +114,7 @@ class DashboardController extends Controller
                 $posesArray = Pos::getPosReportChart();
 
                 $user = Auth::user();
-                if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
+                if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
                 {
                     $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -190,7 +190,7 @@ class DashboardController extends Controller
 
      public function unit_dashboard(){
         $user = Auth::user();
-        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
+        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -265,7 +265,7 @@ class DashboardController extends Controller
 
      public function user_dashboard(){
         $user = Auth::user();
-        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
+        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
             $announcements = [];
@@ -365,7 +365,7 @@ class DashboardController extends Controller
 
      public function store_dashboard(){
         $user = Auth::user();
-        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
+        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -420,7 +420,7 @@ class DashboardController extends Controller
 
      public function supervisor_dashboard(){
         $user = Auth::user();
-        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
+        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -477,7 +477,7 @@ class DashboardController extends Controller
     //     return view('dashboard.account-dashboard');
     //  }
 
-     public function dg_dashboard(){
+    public function dg_dashboard(){
 
         $pos_data=[];
         $pos_data['monthlyPosAmount'] = Pos::totalPosAmount(true);
@@ -491,7 +491,7 @@ class DashboardController extends Controller
         $dta = Dta::all();
         $leave = Leave::all();
         return view('dashboard.dg-dashboard',compact('pos_data','purchasesArray','posesArray','dta','leave'));
-     }
+    }
 
      public function hod_dashboard(){
         $hod = Auth::user();
@@ -503,7 +503,7 @@ class DashboardController extends Controller
         });
 
         $user = Auth::user();
-        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
+        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
         {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
@@ -590,7 +590,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif(Auth::user()->type == 'DG')
+            elseif(Auth::user()->type == 'DG' || Auth::user()->type == 'DG/CE`s Personal Assistant' || Auth::user()->type == 'DG/CE`s Admin Officer' || Auth::user()->type == 'DG/CE`s Secretary' || Auth::user()->type == 'DG/CE`s Speacial Assistant')
             {
                 return redirect()->route('dg.dashboard');
             }
@@ -725,7 +725,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif(Auth::user()->type == 'DG')
+            elseif(Auth::user()->type == 'DG' || Auth::user()->type == 'DG/CE`s Personal Assistant' || Auth::user()->type == 'DG/CE`s Admin Officer' || Auth::user()->type == 'DG/CE`s Secretary' || Auth::user()->type == 'DG/CE`s Speacial Assistant')
             {
                 return redirect()->route('dg.dashboard');
             }
@@ -909,7 +909,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif(Auth::user()->type == 'DG')
+            elseif(Auth::user()->type == 'DG' || Auth::user()->type == 'DG/CE`s Personal Assistant' || Auth::user()->type == 'DG/CE`s Admin Officer' || Auth::user()->type == 'DG/CE`s Secretary' || Auth::user()->type == 'DG/CE`s Speacial Assistant')
             {
                 return redirect()->route('dg.dashboard');
             }
@@ -1044,7 +1044,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif(Auth::user()->type == 'DG')
+            elseif(Auth::user()->type == 'DG' || Auth::user()->type == 'DG/CE`s Personal Assistant' || Auth::user()->type == 'DG/CE`s Admin Officer' || Auth::user()->type == 'DG/CE`s Secretary' || Auth::user()->type == 'DG/CE`s Speacial Assistant')
             {
                 return redirect()->route('dg.dashboard');
             }
@@ -1249,7 +1249,7 @@ class DashboardController extends Controller
             if(\Auth::user()->can('show hrm dashboard'))
             {
                 $user = Auth::user();
-                if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG')
+                if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
                 {
                     $emp = Employee::where('user_id', '=', $user->id)->first();
 
