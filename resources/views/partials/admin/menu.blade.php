@@ -35,7 +35,11 @@
 
 
         <div class="navbar-content">
-            @if(\Auth::user()->type =='DG' || \Auth::user()->type == 'DG/CE`s Personal Assistant' || \Auth::user()->type == 'DG/CE`s Admin Officer' || \Auth::user()->type == 'DG/CE`s Secretary' || \Auth::user()->type == 'DG/CE`s Speacial Assistant')
+            @php
+                $allowedRoles = ['DG', "DG/CE's Personal Assistant", "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"];
+            @endphp
+
+            @if(in_array(Auth::user()->type, $allowedRoles))
                 <ul class="dash-navbar">
                     <li class="dash-item dash-hasmenu ">
                         <a href="{{ route('dg.dashboard') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"

@@ -733,7 +733,7 @@ use Spatie\Permission\Models\Role;
                  'manage contract',
                  'view recommended payment',
             ],
-            'DG/CE`s Personal Assistant' => [
+            "DG/CE's Personal Assistant" => [
                  'manage requisition',
                  'manage project',
                  'reject budget',
@@ -745,7 +745,7 @@ use Spatie\Permission\Models\Role;
                  'comment on contract',
                  'manage contract',
             ],
-            'DG/CE`s Admin Officer' => [
+            "DG/CE's Admin Officer" => [
                  'manage requisition',
                  'manage project',
                  'reject budget',
@@ -757,7 +757,7 @@ use Spatie\Permission\Models\Role;
                  'comment on contract',
                  'manage contract',
             ],
-            'DG/CE`s Secretary' => [
+            "DG/CE's Secretary" => [
                  'manage requisition',
                  'manage project',
                  'reject budget',
@@ -769,7 +769,7 @@ use Spatie\Permission\Models\Role;
                  'comment on contract',
                  'manage contract',
             ],
-            'DG/CE`s Speacial Assistant' => [
+            "DG/CE's Speacial Assistant" => [
                  'manage requisition',
                  'manage project',
                  'reject budget',
