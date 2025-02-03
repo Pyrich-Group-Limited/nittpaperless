@@ -6014,7 +6014,7 @@ class UsersTableSeeder extends Seeder
 
         $dgCePaRole = Role::create(
             [
-                'name' => 'DG/CE`s Personal Assistant',
+                'name' => "DG/CE's Personal Assistant",
                 'created_by' => $company->id,
             ]
         );
@@ -6023,12 +6023,12 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Yakubu Dogara',
                 'designation' => Designation::first()->name,
-                'department_id' => Department::first()->id,
+                'department_id' => Department::where('name',"DG's Office")->first()->id,
                 'unit_id' => Department::first()->units->first()->id,
                 'level' => "Level 15",
                 'email' => 'dgpa@nitt.com',
                 'password' => Hash::make('1234'),
-                'type' => 'DG/CE`s Personal Assistant',
+                'type' => "DG/CE's Personal Assistant",
                 'default_pipeline' => 1,
                 'plan' => 1,
                 'lang' => 'en',
@@ -6042,21 +6042,21 @@ class UsersTableSeeder extends Seeder
 
         $dgCeAdmin = Role::create(
             [
-                'name' => 'DG/CE`s Admin Officer',
+                'name' => "DG/CE's Admin Officer",
                 'created_by' => $company->id,
             ]
         );
 
         $dgCeSecretary = Role::create(
             [
-                'name' => 'DG/CE`s Secretary',
+                'name' => "DG/CE's Secretary",
                 'created_by' => $company->id,
             ]
         );
 
         $dgCeSpAssistant = Role::create(
             [
-                'name' => 'DG/CE`s Speacial Assistant',
+                'name' => "DG/CE's Speacial Assistant",
                 'created_by' => $company->id,
             ]
         );

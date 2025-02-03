@@ -114,8 +114,12 @@ class DashboardController extends Controller
                 $posesArray = Pos::getPosReportChart();
 
                 $user = Auth::user();
-                if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
-                {
+                $excludedRoles = [
+                    'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
+                    "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
+                ];
+
+                if (!in_array($user->type, $excludedRoles)) {
                     $emp = Employee::where('user_id', '=', $user->id)->first();
 
                     $announcements = [];
@@ -190,8 +194,12 @@ class DashboardController extends Controller
 
      public function unit_dashboard(){
         $user = Auth::user();
-        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
-        {
+        $excludedRoles = [
+            'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
+            "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
+        ];
+
+        if (!in_array($user->type, $excludedRoles)) {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
             $announcements = [];
@@ -265,8 +273,12 @@ class DashboardController extends Controller
 
      public function user_dashboard(){
         $user = Auth::user();
-        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
-        {
+        $excludedRoles = [
+            'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
+            "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
+        ];
+
+        if (!in_array($user->type, $excludedRoles)) {
             $emp = Employee::where('user_id', '=', $user->id)->first();
             $announcements = [];
             if (isset($emp->id)) {
@@ -365,8 +377,12 @@ class DashboardController extends Controller
 
      public function store_dashboard(){
         $user = Auth::user();
-        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
-        {
+        $excludedRoles = [
+            'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
+            "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
+        ];
+
+        if (!in_array($user->type, $excludedRoles)) {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
             $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
@@ -420,8 +436,12 @@ class DashboardController extends Controller
 
      public function supervisor_dashboard(){
         $user = Auth::user();
-        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
-        {
+        $excludedRoles = [
+            'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
+            "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
+        ];
+
+        if (!in_array($user->type, $excludedRoles)) {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
             $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
@@ -503,8 +523,12 @@ class DashboardController extends Controller
         });
 
         $user = Auth::user();
-        if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
-        {
+        $excludedRoles = [
+            'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
+            "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
+        ];
+
+        if (!in_array($user->type, $excludedRoles)) {
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
             $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
@@ -590,8 +614,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif(Auth::user()->type == 'DG' || Auth::user()->type == 'DG/CE`s Personal Assistant' || Auth::user()->type == 'DG/CE`s Admin Officer' || Auth::user()->type == 'DG/CE`s Secretary' || Auth::user()->type == 'DG/CE`s Speacial Assistant')
-            {
+            elseif (in_array(Auth::user()->type, ['DG', "DG/CE's Personal Assistant", "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"])) {
                 return redirect()->route('dg.dashboard');
             }
             else
@@ -725,8 +748,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif(Auth::user()->type == 'DG' || Auth::user()->type == 'DG/CE`s Personal Assistant' || Auth::user()->type == 'DG/CE`s Admin Officer' || Auth::user()->type == 'DG/CE`s Secretary' || Auth::user()->type == 'DG/CE`s Speacial Assistant')
-            {
+            elseif (in_array(Auth::user()->type, ['DG', "DG/CE's Personal Assistant", "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"])) {
                 return redirect()->route('dg.dashboard');
             }
             else
@@ -909,8 +931,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif(Auth::user()->type == 'DG' || Auth::user()->type == 'DG/CE`s Personal Assistant' || Auth::user()->type == 'DG/CE`s Admin Officer' || Auth::user()->type == 'DG/CE`s Secretary' || Auth::user()->type == 'DG/CE`s Speacial Assistant')
-            {
+            elseif (in_array(Auth::user()->type, ['DG', "DG/CE's Personal Assistant", "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"])) {
                 return redirect()->route('dg.dashboard');
             }
             else
@@ -1044,8 +1065,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif(Auth::user()->type == 'DG' || Auth::user()->type == 'DG/CE`s Personal Assistant' || Auth::user()->type == 'DG/CE`s Admin Officer' || Auth::user()->type == 'DG/CE`s Secretary' || Auth::user()->type == 'DG/CE`s Speacial Assistant')
-            {
+            elseif (in_array(Auth::user()->type, ['DG', "DG/CE's Personal Assistant", "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"])) {
                 return redirect()->route('dg.dashboard');
             }
             else
@@ -1249,8 +1269,14 @@ class DashboardController extends Controller
             if(\Auth::user()->can('show hrm dashboard'))
             {
                 $user = Auth::user();
-                if($user->type != 'registrar' && $user->type != 'super admin' && $user->type != 'DG' && $user->type != 'DG/CE`s Personal Assistant' && $user->type != 'DG/CE`s Admin Officer' && $user->type != 'DG/CE`s Secretary' && $user->type != 'DG/CE`s Speacial Assistant')
-                {
+
+                $excludedRoles = [
+                    'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
+                    "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
+                ];
+
+                if (!in_array($user->type, $excludedRoles)) {
+
                     $emp = Employee::where('user_id', '=', $user->id)->first();
 
                     $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
