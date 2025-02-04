@@ -159,7 +159,7 @@ class UsersComponent extends Component
             'designation' => $designation->name,
             'ippis' => $this->ippis,
             'level' => $this->level,
-            'password' => Hash::make($password),
+            'password' => Hash::make("12345678"),
             'password_changed' => false,
         ]);
 

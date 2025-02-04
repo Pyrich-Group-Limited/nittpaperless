@@ -205,7 +205,7 @@
                                                                                                                                 <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;">You have been created a profile on NITT paperless system.</p>
                                                                                                                                 <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;">Kindly find below your login details.</p>
                                                                                                                                 <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;"><b>Email: </b> {{ $user->email }} </p>
-                                                                                                                                <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;"><b>Password: </b> {{ $password }} </p>
+                                                                                                                                <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;"><b>Password: </b> 12345678 </p>
                                                                                                                                 <p style="font-size: 15px; color: #808080; mso-ansi-font-size: 14px;">Kindly ensure you change your PASSWORD and upload your SIGNATURE after successful login. Thanks</p>
                                                                                                                             </div>
                                                                                                                         </div>
