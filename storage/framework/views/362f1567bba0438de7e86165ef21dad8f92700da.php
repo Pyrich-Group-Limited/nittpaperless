@@ -1,5 +1,6 @@
 <?php
-    $logo=asset(Storage::url('uploads/logo/'));
+    // $logo=asset(Storage::url('uploads/logo/'));
+    $logo = asset('uploads/logo/');
     $company_favicon=Utility::getValByName('company_favicon');
     $SITE_RTL = Utility::getValByName('SITE_RTL');
     $setting = \App\Models\Utility::colorset();
@@ -20,7 +21,7 @@
 <html lang="en" dir="<?php echo e($SITE_RTL == 'on'?'rtl':''); ?>">
 <meta name="csrf-token" id="csrf-token" content="<?php echo e(csrf_token()); ?>">
 <head>
-    <title><?php echo e((Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'ERPGO')); ?> - <?php echo $__env->yieldContent('page-title'); ?></title>
+    <title><?php echo e((Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'NITT')); ?> - <?php echo $__env->yieldContent('page-title'); ?></title>
 
     <meta name="title" content="<?php echo e($metatitle); ?>">
     <meta name="description" content="<?php echo e($metsdesc); ?>">
@@ -49,7 +50,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="url" content="<?php echo e(url('').'/'.config('chatify.path')); ?>" data-user="<?php echo e(Auth::user()->id); ?>">
-    <link rel="icon" href="<?php echo e($logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')); ?>" type="image" sizes="16x16">
+    
+    <link rel="icon" href="<?php echo e(asset('uploads/logo/' . ($company_favicon ?? 'favicon.png'))); ?>" type="image/png" sizes="16x16">
+
 
     <!-- Favicon icon -->
    <link rel="icon" href="<?php echo e(asset('assets/images/favicon.png')); ?>" type="image/x-icon"/>
@@ -76,7 +79,8 @@
     <?php endif; ?>
 
 
-    <?php if($setting['cust_darklayout'] == 'on'): ?>
+    
+    <?php if(isset($setting['cust_darklayout']) && $setting['cust_darklayout'] == 'on'): ?>
         <link rel="stylesheet" href="<?php echo e(asset('assets/css/style-dark.css')); ?>" id="main-style">
     <?php else: ?>
         <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>" id="main-style">
@@ -94,7 +98,8 @@
     <?php echo \Livewire\Livewire::styles(); ?>
 
 </head>
-<body class="<?php echo e($color); ?>">
+
+<body class="<?php echo e(isset($color) ? $color : 'theme-default'); ?>">
 <!-- [ Pre-loader ] start -->
 <div class="loader-bg">
     <div class="loader-track">
@@ -248,6 +253,7 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <?php echo $__env->yieldContent('modal-content'); ?>
             </div>
         </div>
     </div>
@@ -262,7 +268,13 @@
         </div>
     </div>
 </div>
-
+<script>
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+</script>
 
 <?php echo $__env->make('partials.admin.secret-code-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
