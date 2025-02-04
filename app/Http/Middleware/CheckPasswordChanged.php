@@ -18,10 +18,10 @@ class CheckPasswordChanged
     public function handle(Request $request, Closure $next)
     {
          // Check if the user is authenticated and if their password has been changed
-         if (Auth::check() && Auth::user()->password_changed == false) {
+        //  if (Auth::check() && Auth::user()->password_changed == false) {
 
-            return redirect()->route('profile')->with('error', 'Please change your password to continue.');
-        }
+        //     return redirect()->route('profile')->with('error', 'Please change your password to continue.');
+        // }
         return $next($request);
     }
 }

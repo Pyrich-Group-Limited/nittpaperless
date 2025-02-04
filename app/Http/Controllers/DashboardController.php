@@ -614,7 +614,7 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif (in_array(Auth::user()->type, ['DG', "DG/CE's Personal Assistant", "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"])) {
+            elseif (in_array(Auth::user()->type, ['dg', "dg/ce's secretary", "dg/ce's admin officer", "dg/ce's secretary", "dg/ce's special assistant"])) {
                 return redirect()->route('dg.dashboard');
             }
             else

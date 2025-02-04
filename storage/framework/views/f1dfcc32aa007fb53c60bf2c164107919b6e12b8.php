@@ -1,5 +1,5 @@
 <?php $__env->startSection('page-title'); ?>
-        <?php echo e('Dashboard'); ?>
+    <?php echo e('Dashboard' . ' - ' . ' ' . Ucfirst(Auth::user()->type)); ?>
 
         
 <?php $__env->stopSection(); ?>
@@ -225,8 +225,7 @@
         </div>
     </div>
 </div>
-
-    <?php if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'DG'): ?>
+    <?php if(\Auth::user()->type != 'registrar' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'DG' && \Auth::user()->type != 'DG/CE`s Personal Assistant' && \Auth::user()->type != 'DG/CE`s Admin Officer' && \Auth::user()->type != 'DG/CE`s Secretary' && \Auth::user()->type != 'DG/CE`s Speacial Assistant'): ?>
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">

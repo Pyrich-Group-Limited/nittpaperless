@@ -97,6 +97,17 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for=""  class="form-label">Duration(Days)</label>
+                                <input type="text" wire:model.defer="duration" class="form-control" placeholder="Leave Duration" required>
+                                @error('duration')
+                                <small class="invalid-password" role="alert">
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                </small>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- <div class="col-md-6">
+                            <div class="form-group">
                                 <label for=""  class="form-label">End Date</label>
                                 <input type="date" wire:model.defer="end_date" class="form-control" placeholder="Date" required>
                                 @error('end_date')
@@ -105,7 +116,7 @@
                                 </small>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-12">
                             <div class="form-group">
