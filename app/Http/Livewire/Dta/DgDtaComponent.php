@@ -90,8 +90,9 @@ class DgDtaComponent extends Component
                 $this->dispatchBrowserEvent('error',["error" =>"Attempted to create a notification for a non-existing user ID: $approverId"]);
             }
         }
-
-        $this->dispatchBrowserEvent('success',["success" =>"DTA approved successfully."]);
+        $msg = sprintf("Your approval is successful and forwarded to %s for the next approval stage.", $approverId->name);
+        $this->dispatchBrowserEvent('success', ["success" => $msg]);
+        // $this->dispatchBrowserEvent('success',["success" =>"DTA approved successfully."]);
         $this->mount();
         $this->reset('secretCode');
     }

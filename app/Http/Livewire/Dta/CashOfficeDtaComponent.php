@@ -86,7 +86,7 @@ class CashOfficeDtaComponent extends Component
             'status' => 'approved',
             'comments' => $this->comments,
         ]);
-        $this->dispatchBrowserEvent('success',["success" =>"DTA approved successfully."]);
+        $this->dispatchBrowserEvent('success',["success" =>"DTA payment approved successfully."]);
         $this->mount();
     }
 

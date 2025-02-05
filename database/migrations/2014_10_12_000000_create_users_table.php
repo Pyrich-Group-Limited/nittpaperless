@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->integer('plan')->nullable();
             $table->date('plan_expire_date')->nullable();
-            $table->string('type', 20)->nullable();
+            $table->string('type')->nullable();
             $table->string('avatar')->default('');
             $table->string('messenger_color')->default('#2180f3');
             $table->string('lang', 100)->nullable();
