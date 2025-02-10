@@ -25,7 +25,9 @@ return new class extends Migration
             $table->bigInteger('folder_id')->unsigned()->nullable();
             $table->foreign('folder_id')->references('id')->on('folders')->onDelete('cascade');
 
-            $table->boolean('is_archived')->default(0);  // 0 for active, 1 for archived
+            $table->boolean('is_archived')->default(0);
+
+            $table->enum('visibility', ['department', 'unit', 'personal'])->default('personal');
             $table->timestamps();
         });
     }

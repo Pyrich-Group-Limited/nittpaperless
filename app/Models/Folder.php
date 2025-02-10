@@ -9,7 +9,15 @@ class Folder extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['folder_name', 'user_id', 'parent_id','department_id', 'unit_id', 'location_type'];
+    protected $fillable = [
+        'folder_name',
+        'user_id',
+        'parent_id',
+        'department_id',
+        'unit_id',
+        'location_type',
+        'visibility',
+    ];
 
     public function parent()
     {

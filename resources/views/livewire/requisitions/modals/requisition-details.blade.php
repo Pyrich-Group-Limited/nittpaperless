@@ -165,7 +165,7 @@
                                         @endif
                                     @endcan
 
-                                    @can('approve as liaison head')
+                                    @can('approve as liaison officer')
                                         @if ($selRequisition->status=='liaison_head_approval')
                                             <input type="button" wire:click="liaisonHeadApproveRequisition('{{ $selRequisition->id }}')" value="{{ __('Approve as Liaison Officer') }}" class="btn  btn-primary btn-sm ">
                                         @endif

@@ -385,6 +385,26 @@ class DepartmentSeeder extends Seeder
                 'department_id' => $department->id,
                 'name' => "Physical Planing Unit"
             ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Legal"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Servicom"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Special Duty"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Annexes"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "DG's Office"
+            ]);
 
         $department = Department::create([
             'name' => "ICT Department",

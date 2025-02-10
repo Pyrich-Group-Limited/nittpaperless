@@ -12,6 +12,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
 
 
@@ -56,6 +57,11 @@ class User extends Authenticatable
     public function isInUnit($unitName)
     {
         return $this->unit?->name === $unitName;
+    }
+
+    public function setTypeAttribute($value)
+    {
+        $this->attributes['type'] = Str::lower($value);
     }
 
     public function companyProfile(){

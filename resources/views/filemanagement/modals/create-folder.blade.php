@@ -17,6 +17,16 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="visibility">Folder Visibility</label>
+                    <select name="visibility" id="visibility" class="form-control" required>
+                        <option value="personal">Personal (Only you can see this folder)</option>
+                        <option value="department">Department (Users in your department can see this folder)</option>
+                        <option value="unit">Unit (Users in your unit can see this folder)</option>
+                    </select>
+                </div>
+
             </div>
         </div>
 
