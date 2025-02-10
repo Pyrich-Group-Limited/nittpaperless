@@ -24,29 +24,47 @@ class FolderController extends Controller
         // Initialize the query
         $query = Folder::query();
 
-        // Check permissions and adjust the query
-        if ($user->can('view department folders')) {
-            $query->where('department_id', $userDepartmentId)
-                ->where('location_type', $userLocationType);
-        } elseif ($user->can('view unit folders')) {
-            $query->where('unit_id', $userUnitId)
-                ->where('location_type', $userLocationType);
-        } else {
-            $folders = collect([]);
-            return view('filemanagement.folders', compact('folders', 'sortOrder'));
-        }
+        // Apply visibility and permissions logic
+        $query->where(function ($q) use ($user, $userDepartmentId, $userUnitId, $userLocationType) {
+            // Personal folders: Only the user can see their own personal folders
+            $q->where(function ($subQuery) use ($user) {
+                $subQuery->where('visibility', 'personal')
+                    ->where('user_id', $user->id);
+            });
 
+            // Department folders: Only users within the same department and location can see
+            if ($user->can('view department folders')) {
+                $q->orWhere(function ($subQuery) use ($userDepartmentId, $userLocationType) {
+                    $subQuery->where('visibility', 'department')
+                        ->where('department_id', $userDepartmentId)
+                        ->where('location_type', $userLocationType);
+                });
+            }
+
+            // Unit folders: Only users within the same unit and location can see
+            if ($user->can('view unit folders')) {
+                $q->orWhere(function ($subQuery) use ($userUnitId, $userLocationType) {
+                    $subQuery->where('visibility', 'unit')
+                        ->where('unit_id', $userUnitId)
+                        ->where('location_type', $userLocationType);
+                });
+            }
+        });
+
+        // Apply search filter
         if ($search) {
             $query->where('folder_name', 'LIKE', "%{$search}%");
         }
 
+        // Apply sorting order
         if ($sortOrder === 'newest') {
             $query->orderBy('created_at', 'desc');
         } else {
             $query->orderBy('created_at', 'asc');
         }
 
-        $folders = $query->where('parent_id', null)->paginate(12);
+        // Retrieve only top-level folders (parent_id is null)
+        $folders = $query->whereNull('parent_id')->paginate(12);
 
         return view('filemanagement.folders', compact('folders', 'sortOrder'));
     }
@@ -65,6 +83,7 @@ class FolderController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'parent_id' => 'nullable|exists:folders,id',
+            'visibility' => 'required|in:department,unit,personal',
         ]);
 
         // Check if the folder is already at the 3rd level
@@ -73,13 +92,20 @@ class FolderController extends Controller
             return redirect()->back()->with('error', 'You cannot create more than 3 layers of folders.');
         }
 
+        $user = Auth::user();
+
+        // Assign department or unit based on the selected visibility
+        $departmentId = $request->visibility === 'department' ? $user->department_id : null;
+        $unitId = $request->visibility === 'unit' ? $user->unit_id : null;
+
         Folder::create([
             'folder_name' => $request->name,
-            'user_id' => Auth::id(),
+            'user_id' => $user->id,
             'parent_id' => $request->parent_id,
-            'department_id' => Auth::user()->department_id,
-            'unit_id' => Auth::user()->unit_id ?? null,
-            'location_type' => Auth::user()->location_type,
+            'department_id' => $departmentId,
+            'unit_id' => $unitId ?? null,
+            'location_type' => $user->location_type,
+            'visibility' => $request->visibility,
         ]);
 
         return redirect()->back()->with('success', 'Folder created successfully.');

@@ -80,7 +80,7 @@ use Spatie\Permission\Models\Role;
                 'show balance sheet',
                 'show profit and loss',
                 'show trial balance',
-                'approve as liaison head',
+                'approve as liaison officer',
                 'manage requisition',
                 'request purchase requisition',
                 'manage contract',
@@ -769,7 +769,7 @@ use Spatie\Permission\Models\Role;
                  'comment on contract',
                  'manage contract',
             ],
-            "DG/CE's Speacial Assistant" => [
+            "DG/CE's Special Assistant" => [
                  'manage requisition',
                  'manage project',
                  'reject budget',
@@ -993,7 +993,28 @@ use Spatie\Permission\Models\Role;
                 'view budget plan',
                 'create barcode',
             ],
+            'deputy bursar' => [
+                'show account dashboard',
+                'manage ergp',
+                'view ergp',
+            ],
             'registrar' => [
+                'create employee',
+                'manage employee',
+                'manage trainer',
+                'create trainer',
+                'edit trainer',
+                'manage training',
+                'create training',
+                'manage training type',
+                'create training type',
+                'edit meeting',
+                'create meeting',
+                'manage meeting',
+                'delete meeting',
+                'create announcement',
+                'manage announcement',
+                'edit announcement',
                 'share document',
                 'archive document',
                 'create folder',
@@ -1011,7 +1032,6 @@ use Spatie\Permission\Models\Role;
                 'manage indicator',
                 'manage appraisal',
                 'manage goal tracking',
-                'manage training',
                 'manage job',
                 'create job',
                 'manage job application',
@@ -1025,10 +1045,8 @@ use Spatie\Permission\Models\Role;
                 'manage complaint',
                 'manage warning',
                 'manage termination',
-                'manage announcement',
                 'manage holiday',
                 'manage event',
-                'manage meeting',
                 'manage assets',
                 'manage document',
                 'manage company policy',
@@ -1132,4 +1150,90 @@ function markAllAsRead()
     return InternalNotification::where('user_id', auth()->id())
         ->where('is_read', false)
         ->update(['is_read' => true]);
+}
+
+if (!function_exists('getDepartmentPermissions')) {
+    function getDepartmentPermissions($departmentName)
+    {
+        $permissions = [
+            'Bursary Department' => [
+                    'show reports',
+                    'statement report',
+                    'invoice report',
+                    'bill report',
+                    'stock report',
+                    'loss & profit report',
+                    'manage transaction',
+                    'income report',
+                    'expense report',
+                    'income vs expense report',
+                    'tax report',
+                    'show banking',
+                    'show voucher',
+                    'show purchases',
+                    'show double entry',
+                    'show budget planner',
+                    'show financial goal',
+                    'show accounting setup',
+                    'show print setup'
+                ],
+            'Registry Department' => [
+                'create employee',
+                'manage employee',
+                'create meeting',
+                'manage meeting',
+                'create announcement',
+                'manage announcement',
+                'show hrm dashboard',
+                'manage payment',
+                'manage report',
+                'manage training',
+                'manage trainer',
+                'manage event',
+                'manage job',
+                'create job',
+                'manage job application',
+                'manage custom question',
+                'show interview schedule',
+                'manage award',
+                'manage transfer',
+                'manage assets',
+                'manage company policy',
+                'manage trainer',
+                'create trainer',
+                'manage training',
+                'create training',
+                'manage training type',
+                'create training type',
+            ],
+        ];
+
+        // Return the permissions for the given department or an empty array
+        return $permissions[$departmentName] ?? [];
+    }
+}
+
+if (!function_exists('getUnitPermissions')) {
+    function getUnitPermissions($unitName)
+    {
+        $permissions = [
+            'Physical Planing Unit' => [
+                'manage project',
+                'manage contract',
+            ],
+            'Procurement Unit' => [
+                'manage project',
+                'manage client',
+                'manage contract',
+            ],
+            'Stores' => [
+                'manage stock',
+                'view stock',
+                'manage warehouse',
+            ],
+        ];
+
+        // Return the permissions for the given unit or an empty array if not found
+        return $permissions[$unitName] ?? [];
+    }
 }

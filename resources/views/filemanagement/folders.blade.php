@@ -15,7 +15,7 @@
 @section('action-btn')
     <div class="float-end">
         {{-- ---------- Start Filter -------------- --}}
-        <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown"
+        <a href="#" class="btn btn-md btn-primary action-item" role="button" data-bs-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <i class="ti ti-filter"></i>
         </a>
@@ -33,8 +33,8 @@
         {{-- ---------- End Filter -------------- --}}
         @can('create folder')
             <a href="#" data-size="lg" data-url="{{ route('folder.new') }}" data-ajax-popup="true"
-                data-bs-toggle="tooltip" title="{{ __('Create new folder') }}" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus">New </i>
+                data-bs-toggle="tooltip" title="{{ __('Create new folder') }}" class="btn btn-md btn-primary">
+                <i class="ti ti-plus"> </i>New
             </a>
         @endcan
     </div>

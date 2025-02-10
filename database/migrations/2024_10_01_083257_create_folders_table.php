@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('folder_name');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->enum('visibility', ['department', 'unit', 'personal'])->default('personal');
             $table->timestamps();
         });
     }
