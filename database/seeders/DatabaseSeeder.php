@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             $this->call(ProjectApplicationSeeder::class);
             $this->call(JobCategorySeeder::class);
             $this->call(TrainingTypeSeeder::class);
+            $this->call(ImportChartOfAccountSeeder::class);
 
        /*  }else{
             Utility::languagecreate();
