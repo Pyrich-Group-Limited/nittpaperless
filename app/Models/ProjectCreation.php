@@ -118,14 +118,29 @@ class ProjectCreation extends Model
 
     public function project_progress()
     {
-
         $percentage = 0;
-        $last_task      = TaskStage::orderBy('order', 'DESC')->where('created_by',\Auth::user()->creatorId())->first();
-        $total_task     = $this->tasks->count();
-        $completed_task = $this->tasks()->where('stage_id', '=', $last_task->id)->where('is_complete', '=', 1)->count();
-//dd($last_task,$total_task,$completed_task);
-        if($total_task > 0)
-        {
+
+        // Get the last task stage (Check if it exists)
+        $last_task = TaskStage::where('created_by', \Auth::user()->creatorId())
+                        ->orderBy('order', 'DESC')
+                        ->first();
+
+        // Prevent accessing $last_task->id if null
+        if (!$last_task) {
+            return [
+                'color' => 'gray', // Default color
+                'percentage' => '0%',
+            ];
+        }
+
+        // Ensure $this->tasks is not null
+        $total_task = $this->tasks ? $this->tasks->count() : 0;
+        $completed_task = $this->tasks()
+            ->where('stage_id', '=', $last_task->id)
+            ->where('is_complete', '=', 1)
+            ->count();
+
+        if ($total_task > 0) {
             $percentage = intval(($completed_task / $total_task) * 100);
         }
 
@@ -136,6 +151,7 @@ class ProjectCreation extends Model
             'percentage' => $percentage . '%',
         ];
     }
+
 
     //for share project
     public function project_progress_copy($user_id)
