@@ -45,7 +45,8 @@
                             <!-- Upload Document Field -->
                             <div class="form-group upload-field">
                                 <label for="file">Document Upload</label>
-                                <input type="file" name="file" aria-multiselectable="" value="{{ old('file') }}" class="form-control">
+                                <input type="file" name="files[]" multiple class="form-control">
+                                {{-- <input type="file" name="file" aria-multiselectable="" value="{{ old('file') }}" class="form-control"> --}}
                                 @error('file')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror

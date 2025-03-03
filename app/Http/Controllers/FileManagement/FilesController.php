@@ -217,37 +217,52 @@ class FilesController extends Controller
         ));
     }
 
-
-
     public function store(Request $request)
     {
         $request->validate([
             'filename' => 'required|string|max:255',
-            'file' => 'nullable|file|mimes:jpg,png,pdf,docx,xlsx,txt|max:2048',
+            'files' => 'nullable|array', // Ensure files is an array
+            'files.*' => 'nullable|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048', // Validate each file
             'content' => 'nullable|string',
             'folder_id' => 'nullable|exists:folders,id',
             'visibility' => 'required|in:personal,unit,department',
         ]);
 
-        // Ensure either a file or content is provided
-        if (!$request->hasFile('file') && !$request->filled('content')) {
+        $user = Auth::user();
+        $uploadedFiles = [];
+
+        // Ensure either files or content is provided
+        if (!$request->hasFile('files') && !$request->filled('content')) {
             return redirect()->back()->with(['error' => 'Please provide either a file or document content.']);
         }
 
-        $filePath = null; // Path to store the file
-        $fileName = $request->filename;
+        // Handle uploaded files
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $filePath = $file->store('files', 'public'); // Store files in public storage
+                $fileName = $file->getClientOriginalName();
 
-        $user = Auth::user();
+                // Save file metadata in the database
+                $fileEntry = File::create([
+                    'file_name' => $fileName,
+                    'path' => $filePath,
+                    'user_id' => $user->id,
+                    'folder_id' => $request->folder_id,
+                    'department_id' => $request->visibility === 'department' ? $user->department_id : null,
+                    'unit_id' => $request->visibility === 'unit' ? $user->unit_id : null,
+                    'location_type' => $user->location_type,
+                    'visibility' => $request->visibility,
+                ]);
 
-        // Handle uploaded file
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $filePath = $file->store('files');
+                $uploadedFiles[] = $fileEntry;
+            }
         }
-        // Handle text content
-        elseif ($request->filled('content')) {
+
+        // Handle text content (PDF/DOCX)
+        if ($request->filled('content')) {
             $content = $request->input('content');
             $format = $request->input('format', 'pdf'); // Default format is PDF
+            $filePath = 'files/' . $request->filename . '.' . $format;
 
             if ($format === 'pdf') {
                 // Generate PDF
@@ -255,11 +270,7 @@ class FilesController extends Controller
                 $dompdf->loadHtml($content);
                 $dompdf->setPaper('A4', 'portrait');
                 $dompdf->render();
-                $output = $dompdf->output();
-
-                // Save PDF to storage
-                $filePath = 'files/' . $fileName . '.pdf';
-                Storage::put($filePath, $output);
+                Storage::put($filePath, $dompdf->output());
             } elseif ($format === 'docx') {
                 // Generate DOCX
                 $phpWord = new PhpWord();
@@ -270,33 +281,28 @@ class FilesController extends Controller
                 $phpWord->save($tempFilePath, 'Word2007');
 
                 // Save DOCX to storage
-                $filePath = 'files/' . $fileName . '.docx';
                 Storage::put($filePath, file_get_contents($tempFilePath));
-
-                // Clean up temp file
                 unlink($tempFilePath);
             }
-        }
 
-        // Assign department or unit based on the selected visibility
-        $departmentId = $request->visibility === 'department' ? $user->department_id : null;
-        $unitId = $request->visibility === 'unit' ? $user->unit_id : null;
-
-        // Save file metadata in the database
-        if ($filePath) {
-            File::create([
-                'file_name' => $fileName,
+            // Save content file metadata
+            $fileEntry = File::create([
+                'file_name' => $request->filename,
                 'path' => $filePath,
                 'user_id' => $user->id,
                 'folder_id' => $request->folder_id,
-                'department_id' => $departmentId,
-                'unit_id' => $unitId ?? null,
+                'department_id' => $request->visibility === 'department' ? $user->department_id : null,
+                'unit_id' => $request->visibility === 'unit' ? $user->unit_id : null,
                 'location_type' => $user->location_type,
                 'visibility' => $request->visibility,
             ]);
+
+            $uploadedFiles[] = $fileEntry;
         }
-        return redirect()->back()->with('success', 'File saved successfully.');
+
+        return redirect()->back()->with('success', count($uploadedFiles) . ' file(s) uploaded successfully.');
     }
+
 
     public function download(File $file)
     {
