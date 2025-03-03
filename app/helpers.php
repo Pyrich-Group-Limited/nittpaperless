@@ -1220,11 +1220,13 @@ if (!function_exists('getUnitPermissions')) {
             'Physical Planing Unit' => [
                 'manage project',
                 'manage contract',
+                'create project',
             ],
             'Procurement Unit' => [
                 'manage project',
                 'manage client',
                 'manage contract',
+                'create project',
             ],
             'Stores' => [
                 'manage stock',
