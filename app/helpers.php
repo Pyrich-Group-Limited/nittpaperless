@@ -642,6 +642,8 @@ use Spatie\Permission\Models\Role;
                 'show proposal',
                 'show profile',
                 'request SRN',
+                'view department documents',
+                'view department folders'
             ],
             'director' => [
                 'create folder',
@@ -651,6 +653,7 @@ use Spatie\Permission\Models\Role;
                 'delete folder',
                 'create document',
                 'view department documents',
+                'view department folders',
                 'view unit documents',
                 'share document',
                 'rename document',
@@ -696,6 +699,8 @@ use Spatie\Permission\Models\Role;
                 'reject dta',
                 'view leave report',
                 'show unithead dashboard',
+                'view department documents',
+                'view department folders',
             ],
             'store keeper' => [
                 'view item supply',
@@ -714,6 +719,8 @@ use Spatie\Permission\Models\Role;
                 'manage pos',
                 'manage warehouse',
                 'show unithead dashboard',
+                'view department documents',
+                'view department folders',
             ],
             'DG' => [
                  'dg approve',
@@ -732,6 +739,10 @@ use Spatie\Permission\Models\Role;
                  'comment on contract',
                  'manage contract',
                  'view recommended payment',
+                 'view department documents',
+                 'view department folders',
+                 'view unit documents',
+                 'view unit folders',
             ],
             "DG/CE's Personal Assistant" => [
                  'manage requisition',
@@ -744,6 +755,10 @@ use Spatie\Permission\Models\Role;
                  'print voucher',
                  'comment on contract',
                  'manage contract',
+                 'view department documents',
+                 'view department folders',
+                 'view unit documents',
+                 'view unit folders',
             ],
             "DG/CE's Admin Officer" => [
                  'manage requisition',
@@ -756,6 +771,10 @@ use Spatie\Permission\Models\Role;
                  'print voucher',
                  'comment on contract',
                  'manage contract',
+                 'view department documents',
+                 'view department folders',
+                 'view unit documents',
+                 'view unit folders',
             ],
             "DG/CE's Secretary" => [
                  'manage requisition',
@@ -768,6 +787,10 @@ use Spatie\Permission\Models\Role;
                  'print voucher',
                  'comment on contract',
                  'manage contract',
+                 'view department documents',
+                 'view department folders',
+                 'view unit documents',
+                 'view unit folders',
             ],
             "DG/CE's Special Assistant" => [
                  'manage requisition',
@@ -780,6 +803,10 @@ use Spatie\Permission\Models\Role;
                  'print voucher',
                  'comment on contract',
                  'manage contract',
+                 'view department documents',
+                 'view department folders',
+                 'view unit documents',
+                 'view unit folders',
             ],
             'supervisor' => [
                 'create folder',
@@ -824,6 +851,8 @@ use Spatie\Permission\Models\Role;
                 'manage stage',
                 'manage contract',
                 'show contract',
+                'view department documents',
+                'view department folders',
             ],
             'liaison officer' => [
                 'share document',
@@ -842,6 +871,8 @@ use Spatie\Permission\Models\Role;
                 'show proposal',
                 'show profile',
                 'manage client dashboard',
+                'view department documents',
+                'view department folders',
             ],
             'accountant' => [
                 'share document',
@@ -992,11 +1023,17 @@ use Spatie\Permission\Models\Role;
                 'delete budget plan',
                 'view budget plan',
                 'create barcode',
+                'view department documents',
+                'view department folders',
             ],
             'deputy bursar' => [
                 'show account dashboard',
                 'manage ergp',
                 'view ergp',
+                'view department documents',
+                'view department folders',
+                'view unit documents',
+                'view unit folders',
             ],
             'registrar' => [
                 'create employee',
@@ -1055,6 +1092,8 @@ use Spatie\Permission\Models\Role;
                 'manage user',
                 'manage role',
                 'manage client',
+                'view department documents',
+                'view department folders',
             ],
             'assistant registrar' => [
                 'share document',
@@ -1100,6 +1139,8 @@ use Spatie\Permission\Models\Role;
                 'manage user',
                 'manage role',
                 'manage client',
+                'view department documents',
+                'view department folders',
             ],
 
             'contractor' => [

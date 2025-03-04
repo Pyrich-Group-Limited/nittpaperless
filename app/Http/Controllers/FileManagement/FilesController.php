@@ -366,14 +366,22 @@ class FilesController extends Controller
             $users = $unitHeads->merge($otherUsers);
 
         }elseif($authUser->type=='unit head'){
-            $sameUnitAndDepartmentUsers = User::where('unit_id', $authUser->unit_id)
-            ->where('department_id', $authUser->department_id)
-            ->where('type', 'user')->orWhere('type', 'director')
-            ->get();
+            $users = User::where('department_id', $authUser->department_id)
+                ->where(function ($query) use ($authUser) {
+                    $query->where('unit_id', $authUser->unit_id)
+                        ->whereNotIn('type', ['unit head', 'director'])
+                        ->orWhereIn('type', ['unit head', 'director']);
+                })
+                ->get();
 
-            $unitHeadsOtherDepartments = User::where('type', 'unit head')
-            ->where('department_id', '!=', $authUser->department_id)->get();
-            $users = $sameUnitAndDepartmentUsers->merge($unitHeadsOtherDepartments);
+            // $sameUnitAndDepartmentUsers = User::where('unit_id', $authUser->unit_id)
+            // ->where('department_id', $authUser->department_id)
+            // ->where('type','!=','unit head')->where('type','!=','director')
+            // ->get();
+
+            // $unitHeadsOtherDepartments = User::where('type', 'unit head')
+            // ->where('department_id', '!=', $authUser->department_id)->get();
+            // $users = $sameUnitAndDepartmentUsers->merge($unitHeadsOtherDepartments);
 
         }elseif($authUser->type=='liaison officer'){
             $hQUsers = User::where('location','Headquarters')
@@ -386,14 +394,14 @@ class FilesController extends Controller
 
         }elseif($authUser->type=='director'){
             $otherHods = User::where('type','director')
-            ->get();
+            ->orWhere('type', 'DG')->get();
 
             $others = User::where('department_id',$authUser->department_id)
             ->where('type','!=','director')->get();
             $users = $otherHods->merge($others);
 
         }elseif($authUser->type=='DG' || $authUser->type=='super admin'){
-            $users = User::all();
+            $users = User::where('type','!=','contractor')->get();
         }else {
             return redirect()->back()->with('error', 'You are not authorized to view this page.');
         }
