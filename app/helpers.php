@@ -629,6 +629,10 @@ use Spatie\Permission\Models\Role;
                 'create employee',
                 'edit employee',
                 'delete employee',
+                'create unit document',
+                'create department document',
+                'create unit folder',
+                'create department folder',
             ],
 
             'user' => [
@@ -679,6 +683,10 @@ use Spatie\Permission\Models\Role;
                 'show proposal',
                 'show profile',
                 'manage client dashboard',
+                'create unit document',
+                'create department document',
+                'create unit folder',
+                'create department folder',
             ],
             'unit head' => [
                 'create folder',
@@ -701,6 +709,8 @@ use Spatie\Permission\Models\Role;
                 'show unithead dashboard',
                 'view department documents',
                 'view department folders',
+                'create unit document',
+                'create unit folder',
             ],
             'store keeper' => [
                 'view item supply',

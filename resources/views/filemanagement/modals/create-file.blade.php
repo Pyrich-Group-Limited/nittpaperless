@@ -84,8 +84,12 @@
                                 <label for="visibility">Document Visibility</label>
                                 <select name="visibility" id="visibility" class="form-control" required>
                                     <option value="personal">Personal (Only you can see this file)</option>
-                                    <option value="department">Department (Users in your department can see this file)</option>
-                                    <option value="unit">Unit (Users in your unit can see this file)</option>
+                                    @can('create department document')
+                                        <option value="department">Department (Staff in your department can see this file)</option>
+                                    @endcan
+                                    @can('create unit document')
+                                        <option value="unit">Unit (Staff in your unit can see this file)</option>
+                                    @endcan
                                 </select>
                             </div>
 

@@ -22,8 +22,12 @@
                     <label for="visibility">Folder Visibility</label>
                     <select name="visibility" id="visibility" class="form-control" required>
                         <option value="personal">Personal (Only you can see this folder)</option>
-                        <option value="department">Department (Users in your department can see this folder)</option>
-                        <option value="unit">Unit (Users in your unit can see this folder)</option>
+                        @can('create department folder')
+                            <option value="department">Department (Staff in your department can see this folder)</option>
+                        @endcan
+                        @can('create unit folder')
+                            <option value="unit">Unit (Staff in your unit can see this folder)</option>
+                        @endcan
                     </select>
                 </div>
 
