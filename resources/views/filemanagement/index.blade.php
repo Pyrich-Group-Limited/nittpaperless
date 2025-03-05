@@ -54,29 +54,37 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="btn-box">
-                                        <form method="GET" action="{{ route('file.index') }}" class="mb-3">
+                                        <form method="GET" action="{{ route('file.index') }}">
                                             <div class="row">
+                                                <!-- Search Box -->
                                                 <div class="col-md-3">
-                                                    <input type="text" name="search" class="form-control" placeholder="Search file, folder..." value="{{ request('search') }}">
+                                                    <input type="text" name="search" value="{{ request('search') }}" class="form-control"
+                                                           placeholder="Search files...">
                                                 </div>
+
+                                                <!-- Visibility Filter -->
                                                 <div class="col-md-3">
-                                                    <select name="sortBy" class="form-select form-control">
-                                                        <option value="file_name" {{ request('sortBy') == 'file_name' ? 'selected' : '' }}>Sort by Name</option>
-                                                        <option value="created_at" {{ request('sortBy') == 'created_at' ? 'selected' : '' }}>Sort by Date</option>
+                                                    <select name="visibility" class="form-control" onchange="this.form.submit()">
+                                                        <option value="all" {{ request('visibility') == 'all' ? 'selected' : '' }}>All</option>
+                                                        <option value="personal" {{ request('visibility') == 'personal' ? 'selected' : '' }}>Personal</option>
+                                                        <option value="department" {{ request('visibility') == 'department' ? 'selected' : '' }}>Department</option>
+                                                        <option value="unit" {{ request('visibility') == 'unit' ? 'selected' : '' }}>Unit</option>
                                                     </select>
                                                 </div>
+
+                                                <!-- Sorting -->
                                                 <div class="col-md-3">
-                                                    <select name="order" class="form-select form-control">
-                                                        <option value="asc" {{ request('order') == 'asc' ? 'selected' : '' }}>Ascending</option>
-                                                        <option value="desc" {{ request('order') == 'desc' ? 'selected' : '' }}>Descending</option>
+                                                    <select name="sortBy" class="form-control" onchange="this.form.submit()">
+                                                        <option value="file_name" {{ request('sortBy') == 'file_name' ? 'selected' : '' }}>File Name</option>
+                                                        <option value="created_at" {{ request('sortBy') == 'created_at' ? 'selected' : '' }}>Date Created</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                        <button type="submit" class="btn btn-primary form-control">Search & Filter</button>
+                                                    <button type="submit" class="btn btn-primary">Apply</button>
+                                                    <a href="{{ route('file.index') }}" class="btn btn-primary">Reset</a>
                                                 </div>
                                             </div>
-
                                         </form>
                                     </div>
 

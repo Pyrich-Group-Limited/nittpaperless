@@ -10,10 +10,70 @@ use App\Models\Folder;
 
 class FolderController extends Controller
 {
+    // public function index(Request $request)
+    // {
+    //     $search = $request->query('search');
+    //     $sortOrder = $request->get('sort', 'newest');
+
+    //     // Get the authenticated user's details
+    //     $user = Auth::user();
+    //     $userDepartmentId = $user->department_id;
+    //     $userUnitId = $user->unit_id;
+    //     $userLocationType = $user->location_type;
+
+    //     // Initialize the query
+    //     $query = Folder::query();
+
+    //     // Apply visibility and permissions logic
+    //     $query->where(function ($q) use ($user, $userDepartmentId, $userUnitId, $userLocationType) {
+    //         // Personal folders: Only the user can see their own personal folders
+    //         $q->where(function ($subQuery) use ($user) {
+    //             $subQuery->where('visibility', 'personal')
+    //                 ->where('user_id', $user->id);
+    //         });
+
+    //         // Department folders: Only users within the same department and location can see
+    //         if ($user->can('view department folders')) {
+    //             $q->orWhere(function ($subQuery) use ($userDepartmentId, $userLocationType) {
+    //                 $subQuery->where('visibility', 'department')
+    //                     ->where('department_id', $userDepartmentId)
+    //                     ->where('location_type', $userLocationType);
+    //             });
+    //         }
+
+    //         // Unit folders: Only users within the same unit and location can see
+    //         if ($user->can('view unit folders')) {
+    //             $q->orWhere(function ($subQuery) use ($userUnitId, $userLocationType) {
+    //                 $subQuery->where('visibility', 'unit')
+    //                     ->where('unit_id', $userUnitId)
+    //                     ->where('location_type', $userLocationType);
+    //             });
+    //         }
+    //     });
+
+    //     // Apply search filter
+    //     if ($search) {
+    //         $query->where('folder_name', 'LIKE', "%{$search}%");
+    //     }
+
+    //     // Apply sorting order
+    //     if ($sortOrder === 'newest') {
+    //         $query->orderBy('created_at', 'desc');
+    //     } else {
+    //         $query->orderBy('created_at', 'asc');
+    //     }
+
+    //     // Retrieve only top-level folders (parent_id is null)
+    //     $folders = $query->whereNull('parent_id')->paginate(12);
+
+    //     return view('filemanagement.folders', compact('folders', 'sortOrder'));
+    // }
+
     public function index(Request $request)
     {
         $search = $request->query('search');
         $sortOrder = $request->get('sort', 'newest');
+        $filter = $request->query('filter', 'all'); // Default: Show all folders
 
         // Get the authenticated user's details
         $user = Auth::user();
@@ -24,16 +84,19 @@ class FolderController extends Controller
         // Initialize the query
         $query = Folder::query();
 
-        // Apply visibility and permissions logic
-        $query->where(function ($q) use ($user, $userDepartmentId, $userUnitId, $userLocationType) {
+        // Apply filter based on user selection
+        $query->where(function ($q) use ($user, $userDepartmentId, $userUnitId, $userLocationType, $filter) {
+
             // Personal folders: Only the user can see their own personal folders
-            $q->where(function ($subQuery) use ($user) {
-                $subQuery->where('visibility', 'personal')
-                    ->where('user_id', $user->id);
-            });
+            if ($filter === 'personal' || $filter === 'all') {
+                $q->orWhere(function ($subQuery) use ($user) {
+                    $subQuery->where('visibility', 'personal')
+                        ->where('user_id', $user->id);
+                });
+            }
 
             // Department folders: Only users within the same department and location can see
-            if ($user->can('view department folders')) {
+            if (($filter === 'department' || $filter === 'all') && $user->can('view department folders')) {
                 $q->orWhere(function ($subQuery) use ($userDepartmentId, $userLocationType) {
                     $subQuery->where('visibility', 'department')
                         ->where('department_id', $userDepartmentId)
@@ -42,7 +105,7 @@ class FolderController extends Controller
             }
 
             // Unit folders: Only users within the same unit and location can see
-            if ($user->can('view unit folders')) {
+            if (($filter === 'unit' || $filter === 'all') && $user->can('view unit folders')) {
                 $q->orWhere(function ($subQuery) use ($userUnitId, $userLocationType) {
                     $subQuery->where('visibility', 'unit')
                         ->where('unit_id', $userUnitId)
@@ -57,17 +120,14 @@ class FolderController extends Controller
         }
 
         // Apply sorting order
-        if ($sortOrder === 'newest') {
-            $query->orderBy('created_at', 'desc');
-        } else {
-            $query->orderBy('created_at', 'asc');
-        }
+        $query->orderBy('created_at', $sortOrder === 'newest' ? 'desc' : 'asc');
 
         // Retrieve only top-level folders (parent_id is null)
         $folders = $query->whereNull('parent_id')->paginate(12);
 
-        return view('filemanagement.folders', compact('folders', 'sortOrder'));
+        return view('filemanagement.folders', compact('folders', 'sortOrder', 'filter'));
     }
+
 
 
 
