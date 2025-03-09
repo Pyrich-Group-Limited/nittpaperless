@@ -115,6 +115,9 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                 </div>
                 @endif
             </div>
+            <div class="d-flex justify-content-center mt-3">
+                {{ $files->appends(['visibility' => request('visibility')])->links() }}
+            </div>
         </div>
     </div>
 @endsection

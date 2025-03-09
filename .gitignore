@@ -43,8 +43,13 @@ npm-debug.log
 yarn-error.log
 /.fleet
 /.idea
-/storage/logs  
-# Below is the code of c:\laragon\www\nittdig\.gitignore    
+/storage
+/storage/*
+!/storage/app
+!/storage/app/public
+!/storage/framework
+!/storage/framework/**
+!/storage/logs
 /.phpunit.cache
 /node_modules
 /public/build

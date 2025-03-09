@@ -122,6 +122,7 @@ class UsersComponent extends Component
     }
 
     public function registerUser(){
+
         $this->validate([
             'surname' => ['required','max:120'],
             'firstname' => ['required','max:120'],
@@ -291,6 +292,7 @@ class UsersComponent extends Component
 
     public function uploadUser()
     {
+        set_time_limit(0);
         $this->validate([
             'uploadFile' => ['required','file','mimes:xlsx,csv,xls'],
         ]);
@@ -340,7 +342,7 @@ class UsersComponent extends Component
     }
 
     public function uploadUserRecord($row){
-
+        set_time_limit(0);
         $subunit = null;
         $units = null;
         $departments = Department::where('name',$row['4'])->first();
