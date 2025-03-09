@@ -15,50 +15,39 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
 @endsection
 
 @section('content')
-{{-- <div class="row">
+<div class="row">
     <div class="col-sm-12">
         <div class="mt-2 " id="multiCollapseExample1">
             <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-8">
+                        <div class="col-xl-12">
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="btn-box">
-                                        <input type="text" class="form-control" placeholder="Search files, folder">
+                                        <form method="GET" action="{{ route('files.archived') }}" class="mb-3">
+                                            <label for="visibility" class="fw-bold">Filter by Visibility:</label>
+                                            <select name="visibility" id="visibility" class="form-control w-25 d-inline-block">
+                                                <option value="">All</option>
+                                                <option value="personal" {{ request('visibility') === 'personal' ? 'selected' : '' }}>Personal</option>
+                                                <option value="unit" {{ request('visibility') === 'unit' ? 'selected' : '' }}>Unit</option>
+                                                <option value="department" {{ request('visibility') === 'department' ? 'selected' : '' }}>Department</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-primary">Filter</button>
+                                            <a href="{{ route('files.archived') }}" class="btn btn-secondary">Reset</a>
+                                        </form>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto mt-2">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-plus"></i> <span>Create</span></a>
-                                    <div class="dropdown-menu dropdown-menu-end">
 
-                                        <a href="#!" data-size="lg" data-url="{{ route('file.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create File')}}">
-                                            <i class="ti ti-file-plus"></i>
-                                            <span>{{__('Create File')}}</span>
-                                        </a>
-                                        <a href="#!" data-url="{{ route('folder.create') }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Create Folder')}}">
-                                            <i class="ti ti-folder-plus"></i>
-                                            <span>  {{__('Create Folder')}}</span>
-                                        </a>
-                                    </div>
-
-                                    <a href="#" class="btn btn-primary btn-sm" data-url="{{ route('file.upload') }}" data-ajax-popup="true"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Upload Files') }}"><i class="ti ti-cloud-upload"></i> Upload
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                {{ Form::close() }}
             </div>
         </div>
     </div>
-</div> --}}
+</div>
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">
@@ -125,6 +114,9 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                     <p class="mt-2 text-danger">No archived Documents found!</p>
                 </div>
                 @endif
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                {{ $files->appends(['visibility' => request('visibility')])->links() }}
             </div>
         </div>
     </div>

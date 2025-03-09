@@ -81,6 +81,7 @@
         <script>
             tinymce.init({
                 selector: '#message',
+                branding: false,
                 setup: function(editor) {
                     editor.on('init change', function() {
                         editor.save();
