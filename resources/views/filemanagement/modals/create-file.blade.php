@@ -18,7 +18,7 @@
                             </div>
                         @endif
                         <div class="row">
-                                        
+
                             <!-- Document Name -->
                             <div class="form-group">
                                 <label for="filename">Document Name</label>
@@ -41,16 +41,17 @@
                                     </label>
                                 </div>
                             </div>
-            
+
                             <!-- Upload Document Field -->
                             <div class="form-group upload-field">
                                 <label for="file">Document Upload</label>
-                                <input type="file" name="file" aria-multiselectable="" value="{{ old('file') }}" class="form-control">
+                                <input type="file" name="files[]" multiple class="form-control">
+                                {{-- <input type="file" name="file" aria-multiselectable="" value="{{ old('file') }}" class="form-control"> --}}
                                 @error('file')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-            
+
                             <!-- Type Content Fields -->
                             <div class="type-content-field" style="display: none;">
                                 <div class="form-group">
@@ -65,8 +66,7 @@
                                     </select>
                                 </div>
                             </div>
-            
-                            <!-- Document Folder -->
+
                             <div class="form-group">
                                 <label for="folder_id">Document Folder</label>
                                 <select name="folder_id" id="folder_id" class="form-control">
@@ -79,9 +79,23 @@
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label for="visibility">Document Visibility</label>
+                                <select name="visibility" id="visibility" class="form-control" required>
+                                    <option value="personal">Personal (Only you can see this file)</option>
+                                    @can('create department document')
+                                        <option value="department">Department (Staff in your department can see this file)</option>
+                                    @endcan
+                                    @can('create unit document')
+                                        <option value="unit">Unit (Staff in your unit can see this file)</option>
+                                    @endcan
+                                </select>
+                            </div>
+
                         </div>
                     </div>
-            
+
                     <div class="modal-footer">
                         <input type="button" value="{{ __('Cancel') }}" class="btn btn-light" data-bs-dismiss="modal">
                         <input type="submit" value="{{ __('Upload Document') }}" class="btn btn-primary">

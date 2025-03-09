@@ -17,56 +17,145 @@ use PhpOffice\PhpWord\PhpWord;
 
 class FilesController extends Controller
 {
-    // public function index(Request $request){
 
+    // public function index(Request $request)
+    // {
     //     // Search, filter, and sorting options
     //     $search = $request->input('search');
     //     $sortBy = $request->input('sortBy', 'file_name');
     //     $order = $request->input('order', 'desc');
 
-    //      // Query documents with folders
-    //     $documentsQuery = File::with('folder');
+    //     // Get the authenticated user and their attributes
+    //     $user = Auth::user();
+    //     $userDepartmentId = $user->department_id;
+    //     $userUnitId = $user->unit_id;
+    //     $userLocationType = $user->location_type;
 
-    //     // Search by document name or folder name
+    //     // Initialize the documents query
+    //     $documentsQuery = File::with('folder')->where('is_archived', false);
+
+    //     // Apply visibility and permissions logic
+    //     $documentsQuery->where(function ($query) use ($user, $userDepartmentId, $userUnitId, $userLocationType) {
+    //         // Personal files (Only the owner can see them)
+    //         $query->where(function ($q) use ($user) {
+    //             $q->where('visibility', 'personal')
+    //             ->where('user_id', $user->id);
+    //         });
+
+    //         // Department files (Users in the same department can see)
+    //         if ($user->can('view department documents')) {
+    //             $query->orWhere(function ($q) use ($userDepartmentId, $userLocationType) {
+    //                 $q->where('visibility', 'department')
+    //                 ->where('department_id', $userDepartmentId)
+    //                 ->where('location_type', $userLocationType);
+    //             });
+    //         }
+
+    //         // Unit files (Users in the same unit can see)
+    //         if ($user->can('view unit documents')) {
+    //             $query->orWhere(function ($q) use ($userUnitId, $userLocationType) {
+    //                 $q->where('visibility', 'unit')
+    //                 ->where('unit_id', $userUnitId)
+    //                 ->where('location_type', $userLocationType);
+    //             });
+    //         }
+    //     });
+
+    //     // Apply search filter if needed
     //     if ($search) {
-    //         $documentsQuery->where('file_name', 'like', "%$search%")
-    //         ->orWhereHas('folder', function($query) use ($search) {
-    //             $query->where('folder_name', 'like', "%$search%");
+    //         $documentsQuery->where(function ($query) use ($search) {
+    //             $query->where('file_name', 'like', "%$search%")
+    //                 ->orWhereHas('folder', function ($q) use ($search) {
+    //                     $q->where('folder_name', 'like', "%$search%");
+    //                 });
     //         });
     //     }
 
-    //     // Sorting
+    //     // Apply sorting
     //     $documentsQuery->orderBy($sortBy, $order);
 
-    //     // Fetch grouped documents by folder
-    //     $documents = $documentsQuery->where('department_id', Auth::user()->department_id)
-    //     ->where('location_type', Auth::user()->location_type)
-    //     ->where('is_archived', false)
-    //     ->get()->groupBy('folder.folder_name');
+    //     // Get files grouped by folder
+    //     $documents = $documentsQuery->get()->groupBy('folder.folder_name');
 
+    //     // Get all users
     //     $users = User::all();
 
-    //     // Fetch files that are not in any folder (root-level files)
-    //     $rootFiles = Auth::user()->files()->whereNull('folder_id')->get();
+    //     // Get root-level files that match visibility
+    //     $rootFilesQuery = File::whereNull('folder_id')
+    //         ->where('is_archived', false);
 
-    //     $folders = Folder::where('department_id', Auth::user()->department_id)
-    //     ->where('location_type', Auth::user()->location_type)
-    //     ->get();
+    //     $rootFilesQuery->where(function ($query) use ($user, $userDepartmentId, $userUnitId, $userLocationType) {
+    //         // Personal files (Only the owner can see)
+    //         $query->where(function ($q) use ($user) {
+    //             $q->where('visibility', 'personal')
+    //             ->where('user_id', $user->id);
+    //         });
+
+    //         // Department files
+    //         if ($user->can('view department documents')) {
+    //             $query->orWhere(function ($q) use ($userDepartmentId, $userLocationType) {
+    //                 $q->where('visibility', 'department')
+    //                 ->where('department_id', $userDepartmentId)
+    //                 ->where('location_type', $userLocationType);
+    //             });
+    //         }
+
+    //         // Unit files
+    //         if ($user->can('view unit documents')) {
+    //             $query->orWhere(function ($q) use ($userUnitId, $userLocationType) {
+    //                 $q->where('visibility', 'unit')
+    //                 ->where('unit_id', $userUnitId)
+    //                 ->where('location_type', $userLocationType);
+    //             });
+    //         }
+    //     });
+
+    //     $rootFiles = $rootFilesQuery->get();
+
+    //     // Get folders based on visibility
+    //     $foldersQuery = Folder::query();
+
+    //     $foldersQuery->where(function ($query) use ($user, $userDepartmentId, $userUnitId, $userLocationType) {
+    //         // Personal folders
+    //         $query->where(function ($q) use ($user) {
+    //             $q->where('visibility', 'personal')
+    //             ->where('user_id', $user->id);
+    //         });
+
+    //         // Department folders
+    //         if ($user->can('view department documents')) {
+    //             $query->orWhere(function ($q) use ($userDepartmentId, $userLocationType) {
+    //                 $q->where('visibility', 'department')
+    //                 ->where('department_id', $userDepartmentId)
+    //                 ->where('location_type', $userLocationType);
+    //             });
+    //         }
+
+    //         // Unit folders
+    //         if ($user->can('view unit documents')) {
+    //             $query->orWhere(function ($q) use ($userUnitId, $userLocationType) {
+    //                 $q->where('visibility', 'unit')
+    //                 ->where('unit_id', $userUnitId)
+    //                 ->where('location_type', $userLocationType);
+    //             });
+    //         }
+    //     });
+
+    //     $folders = $foldersQuery->get();
 
     //     return view('filemanagement.index', compact(
-    //     'rootFiles','users',
-    //     'documents', 'search', 'sortBy', 'order','folders'
+    //         'rootFiles', 'users', 'documents', 'search', 'sortBy', 'order', 'folders'
     //     ));
     // }
 
     public function index(Request $request)
     {
-        // Search, filter, and sorting options
+        // Get search, sorting, and filter options
         $search = $request->input('search');
         $sortBy = $request->input('sortBy', 'file_name');
-        $order = $request->input('order', 'desc');
+        $visibilityFilter = $request->input('visibility', 'all'); // Default to "all"
 
-        // Get the authenticated user and their attributes
+        // Get authenticated user details
         $user = Auth::user();
         $userDepartmentId = $user->department_id;
         $userUnitId = $user->unit_id;
@@ -75,67 +164,96 @@ class FilesController extends Controller
         // Initialize the documents query
         $documentsQuery = File::with('folder')->where('is_archived', false);
 
-        // Check user permissions
-        if ($user->can('view department documents')) {
-            // User can view department documents
-            $documentsQuery->where('department_id', $userDepartmentId)
-                        ->where('location_type', $userLocationType);
-        } elseif ($user->can('view unit documents')) {
-            // User can view unit documents
-            $documentsQuery->where('unit_id', $userUnitId)
-                ->where('location_type', $userLocationType);
-        } else {
-            // If the user has no relevant permissions, return an empty collection
-            $documents = collect([]);
-            $rootFiles = collect([]);
-            $folders = collect([]);
-            return view('filemanagement.index', compact(
-                'documents', 'search', 'sortBy', 'order', 'folders', 'rootFiles', 'users'
-            ));
-        }
+        // Apply visibility filter and permissions
+        $documentsQuery->where(function ($query) use ($user, $userDepartmentId, $userUnitId, $userLocationType, $visibilityFilter) {
 
-        // Search by document name or folder name
-        if ($search) {
-            $documentsQuery->where('file_name', 'like', "%$search%")
-                ->orWhereHas('folder', function ($query) use ($search) {
-                    $query->where('folder_name', 'like', "%$search%");
+            // Personal files (Only the owner can see them)
+            if ($visibilityFilter === 'personal' || $visibilityFilter === 'all') {
+                $query->orWhere(function ($q) use ($user) {
+                    $q->where('visibility', 'personal')
+                        ->where('user_id', $user->id);
                 });
+            }
+
+            // Department files (Only users in the same department can see)
+            if (($visibilityFilter === 'department' || $visibilityFilter === 'all') && $user->can('view department documents')) {
+                $query->orWhere(function ($q) use ($userDepartmentId, $userLocationType) {
+                    $q->where('visibility', 'department')
+                        ->where('department_id', $userDepartmentId)
+                        ->where('location_type', $userLocationType);
+                });
+            }
+
+            // Unit files (Only users in the same unit can see)
+            if (($visibilityFilter === 'unit' || $visibilityFilter === 'all') && $user->can('view unit documents')) {
+                $query->orWhere(function ($q) use ($userUnitId, $userLocationType) {
+                    $q->where('visibility', 'unit')
+                        ->where('unit_id', $userUnitId)
+                        ->where('location_type', $userLocationType);
+                });
+            }
+        });
+
+        // Apply search filter
+        if ($search) {
+            $documentsQuery->where(function ($query) use ($search) {
+                $query->where('file_name', 'like', "%$search%")
+                    ->orWhereHas('folder', function ($q) use ($search) {
+                        $q->where('folder_name', 'like', "%$search%");
+                    });
+            });
         }
 
-        // Sorting
-        $documentsQuery->orderBy($sortBy, $order);
+        // Apply sorting (Only descending order)
+        $documentsQuery->orderBy($sortBy, 'desc');
 
-        // Fetch grouped documents by folder
+        // Get files grouped by folder
         $documents = $documentsQuery->get()->groupBy('folder.folder_name');
 
-        // Fetch all users
+        // Get all users
         $users = User::all();
 
-        // Fetch files that are not in any folder (root-level files)
-        $rootFiles = File::where('department_id', $userDepartmentId)
-            ->whereNull('folder_id')
-            ->where('location_type', $userLocationType)
-            ->where('is_archived', false)
-            ->get();
+        // Get root-level files based on visibility filter
+        $rootFilesQuery = File::whereNull('folder_id')->where('is_archived', false);
+        $this->applyVisibilityFilter($rootFilesQuery, $user, $userDepartmentId, $userUnitId, $userLocationType, $visibilityFilter);
+        $rootFiles = $rootFilesQuery->get();
 
-        // Fetch folders
+        // Get folders based on visibility filter
         $foldersQuery = Folder::query();
-
-        if ($user->can('view department documents')) {
-            $folders = $foldersQuery->where('department_id', $userDepartmentId)
-                ->where('location_type', $userLocationType)
-                ->get();
-        } elseif ($user->can('view unit documents')) {
-            $folders = $foldersQuery->where('unit_id', $userUnitId)
-                    ->where('location_type', $userLocationType)
-                    ->get();
-        } else {
-            $folders = collect([]);
-        }
+        $this->applyVisibilityFilter($foldersQuery, $user, $userDepartmentId, $userUnitId, $userLocationType, $visibilityFilter);
+        $folders = $foldersQuery->get();
 
         return view('filemanagement.index', compact(
-            'rootFiles', 'users', 'documents', 'search', 'sortBy', 'order', 'folders'
+            'rootFiles', 'users', 'documents', 'search', 'sortBy', 'folders', 'visibilityFilter'
         ));
+    }
+
+    private function applyVisibilityFilter($query, $user, $userDepartmentId, $userUnitId, $userLocationType, $visibilityFilter)
+    {
+        $query->where(function ($q) use ($user, $userDepartmentId, $userUnitId, $userLocationType, $visibilityFilter) {
+
+            if ($visibilityFilter === 'personal' || $visibilityFilter === 'all') {
+                $q->orWhere(function ($subQuery) use ($user) {
+                    $subQuery->where('visibility', 'personal')->where('user_id', $user->id);
+                });
+            }
+
+            if (($visibilityFilter === 'department' || $visibilityFilter === 'all') && $user->can('view department documents')) {
+                $q->orWhere(function ($subQuery) use ($userDepartmentId, $userLocationType) {
+                    $subQuery->where('visibility', 'department')
+                        ->where('department_id', $userDepartmentId)
+                        ->where('location_type', $userLocationType);
+                });
+            }
+
+            if (($visibilityFilter === 'unit' || $visibilityFilter === 'all') && $user->can('view unit documents')) {
+                $q->orWhere(function ($subQuery) use ($userUnitId, $userLocationType) {
+                    $subQuery->where('visibility', 'unit')
+                        ->where('unit_id', $userUnitId)
+                        ->where('location_type', $userLocationType);
+                });
+            }
+        });
     }
 
 
@@ -143,28 +261,48 @@ class FilesController extends Controller
     {
         $request->validate([
             'filename' => 'required|string|max:255',
-            'file' => 'nullable|file|mimes:jpg,png,pdf,docx,xlsx,txt|max:2048',
+            'files' => 'nullable|array', // Ensure files is an array
+            'files.*' => 'nullable|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048', // Validate each file
             'content' => 'nullable|string',
             'folder_id' => 'nullable|exists:folders,id',
+            'visibility' => 'required|in:personal,unit,department',
         ]);
 
-        // Ensure either a file or content is provided
-        if (!$request->hasFile('file') && !$request->filled('content')) {
+        $user = Auth::user();
+        $uploadedFiles = [];
+
+        // Ensure either files or content is provided
+        if (!$request->hasFile('files') && !$request->filled('content')) {
             return redirect()->back()->with(['error' => 'Please provide either a file or document content.']);
         }
 
-        $filePath = null; // Path to store the file
-        $fileName = $request->filename;
+        // Handle uploaded files
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $filePath = $file->store('files', 'public'); // Store files in public storage
+                $fileName = $file->getClientOriginalName();
 
-        // Handle uploaded file
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $filePath = $file->store('files');
+                // Save file metadata in the database
+                $fileEntry = File::create([
+                    'file_name' => $fileName,
+                    'path' => $filePath,
+                    'user_id' => $user->id,
+                    'folder_id' => $request->folder_id,
+                    'department_id' => $request->visibility === 'department' ? $user->department_id : null,
+                    'unit_id' => $request->visibility === 'unit' ? $user->unit_id : null,
+                    'location_type' => $user->location_type,
+                    'visibility' => $request->visibility,
+                ]);
+
+                $uploadedFiles[] = $fileEntry;
+            }
         }
-        // Handle text content
-        elseif ($request->filled('content')) {
+
+        // Handle text content (PDF/DOCX)
+        if ($request->filled('content')) {
             $content = $request->input('content');
             $format = $request->input('format', 'pdf'); // Default format is PDF
+            $filePath = 'files/' . $request->filename . '.' . $format;
 
             if ($format === 'pdf') {
                 // Generate PDF
@@ -172,11 +310,7 @@ class FilesController extends Controller
                 $dompdf->loadHtml($content);
                 $dompdf->setPaper('A4', 'portrait');
                 $dompdf->render();
-                $output = $dompdf->output();
-
-                // Save PDF to storage
-                $filePath = 'files/' . $fileName . '.pdf';
-                Storage::put($filePath, $output);
+                Storage::put($filePath, $dompdf->output());
             } elseif ($format === 'docx') {
                 // Generate DOCX
                 $phpWord = new PhpWord();
@@ -186,32 +320,29 @@ class FilesController extends Controller
                 $tempFilePath = tempnam(sys_get_temp_dir(), 'docx');
                 $phpWord->save($tempFilePath, 'Word2007');
 
-                // $tempFilePath = storage_path('files/' . $fileName . '.docx');
-                // $phpWord->save($tempFilePath, 'Word2007');
-
                 // Save DOCX to storage
-                $filePath = 'files/' . $fileName . '.docx';
                 Storage::put($filePath, file_get_contents($tempFilePath));
-
-                // Clean up temp file
                 unlink($tempFilePath);
             }
+
+            // Save content file metadata
+            $fileEntry = File::create([
+                'file_name' => $request->filename,
+                'path' => $filePath,
+                'user_id' => $user->id,
+                'folder_id' => $request->folder_id,
+                'department_id' => $request->visibility === 'department' ? $user->department_id : null,
+                'unit_id' => $request->visibility === 'unit' ? $user->unit_id : null,
+                'location_type' => $user->location_type,
+                'visibility' => $request->visibility,
+            ]);
+
+            $uploadedFiles[] = $fileEntry;
         }
 
-        // Save file metadata in the database
-        if ($filePath) {
-            File::create([
-                'file_name' => $fileName,
-                'path' => $filePath,
-                'user_id' => Auth::id(),
-                'folder_id' => $request->folder_id,
-                'department_id' => Auth::user()->department_id,
-                'unit_id' => Auth::user()->unit_id ?? null,
-                'location_type' => Auth::user()->location_type,
-            ]);
-        }
-        return redirect()->back()->with('success', 'File saved successfully.');
+        return redirect()->back()->with('success', count($uploadedFiles) . ' file(s) uploaded successfully.');
     }
+
 
     public function download(File $file)
     {
@@ -275,14 +406,13 @@ class FilesController extends Controller
             $users = $unitHeads->merge($otherUsers);
 
         }elseif($authUser->type=='unit head'){
-            $sameUnitAndDepartmentUsers = User::where('unit_id', $authUser->unit_id)
-            ->where('department_id', $authUser->department_id)
-            ->where('type', 'user')->orWhere('type', 'director')
-            ->get();
-
-            $unitHeadsOtherDepartments = User::where('type', 'unit head')
-            ->where('department_id', '!=', $authUser->department_id)->get();
-            $users = $sameUnitAndDepartmentUsers->merge($unitHeadsOtherDepartments);
+            $users = User::where('department_id', $authUser->department_id)
+                ->where(function ($query) use ($authUser) {
+                    $query->where('unit_id', $authUser->unit_id)
+                        ->whereNotIn('type', ['unit head', 'director'])
+                        ->orWhereIn('type', ['unit head', 'director']);
+                })
+                ->get();
 
         }elseif($authUser->type=='liaison officer'){
             $hQUsers = User::where('location','Headquarters')
@@ -295,14 +425,14 @@ class FilesController extends Controller
 
         }elseif($authUser->type=='director'){
             $otherHods = User::where('type','director')
-            ->get();
+            ->orWhere('type', 'DG')->get();
 
             $others = User::where('department_id',$authUser->department_id)
             ->where('type','!=','director')->get();
             $users = $otherHods->merge($others);
 
         }elseif($authUser->type=='DG' || $authUser->type=='super admin'){
-            $users = User::all();
+            $users = User::where('type','!=','contractor')->get();
         }else {
             return redirect()->back()->with('error', 'You are not authorized to view this page.');
         }

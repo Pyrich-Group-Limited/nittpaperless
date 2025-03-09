@@ -114,12 +114,12 @@ class DashboardController extends Controller
                 $posesArray = Pos::getPosReportChart();
 
                 $user = Auth::user();
-                $excludedRoles = [
+
+                $excludedRoles = array_map('strtolower', [
                     'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
                     "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
-                ];
-
-                if (!in_array($user->type, $excludedRoles)) {
+                ]);
+                if (!in_array(strtolower($user->type), $excludedRoles)){
                     $emp = Employee::where('user_id', '=', $user->id)->first();
 
                     $announcements = [];
@@ -194,12 +194,11 @@ class DashboardController extends Controller
 
      public function unit_dashboard(){
         $user = Auth::user();
-        $excludedRoles = [
+        $excludedRoles = array_map('strtolower', [
             'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
             "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
-        ];
-
-        if (!in_array($user->type, $excludedRoles)) {
+        ]);
+        if (!in_array(strtolower($user->type), $excludedRoles)){
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
             $announcements = [];
@@ -273,12 +272,11 @@ class DashboardController extends Controller
 
      public function user_dashboard(){
         $user = Auth::user();
-        $excludedRoles = [
+        $excludedRoles = array_map('strtolower', [
             'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
             "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
-        ];
-
-        if (!in_array($user->type, $excludedRoles)) {
+        ]);
+        if (!in_array(strtolower($user->type), $excludedRoles)){
             $emp = Employee::where('user_id', '=', $user->id)->first();
             $announcements = [];
             if (isset($emp->id)) {
@@ -377,31 +375,49 @@ class DashboardController extends Controller
 
      public function store_dashboard(){
         $user = Auth::user();
-        $excludedRoles = [
+        $excludedRoles = array_map('strtolower', [
             'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
             "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
-        ];
-
-        if (!in_array($user->type, $excludedRoles)) {
+        ]);
+        if (!in_array(strtolower($user->type), $excludedRoles)){
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
-            $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
-                }
-            )->get();
+            $announcements = [];
+            if (isset($emp->id)) {
+                $announcements = Announcement::orderBy('announcements.id', 'desc')
+                    ->take(5)
+                    ->leftJoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')
+                    ->where('announcement_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('announcements.department_id', '["0"]')
+                            ->where('announcements.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
 
             $employees = Employee::get();
-            $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
-                }
-            )->get();
-            $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
-                }
-            )->get();
+            $meetings = [];
+            if (isset($emp->id)) {
+                $meetings = Meeting::orderBy('meetings.id', 'desc')
+                    ->take(5)
+                    ->leftJoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')
+                    ->where('meeting_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('meetings.department_id', '["0"]')
+                            ->where('meetings.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
+            $events = [];
+            if (isset($emp->id)) {
+                $events = Event::leftJoin('event_employees', 'events.id', '=', 'event_employees.event_id')
+                    ->where('event_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('events.department_id', '["0"]')
+                            ->where('events.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
 
             $arrEvents = [];
             foreach($events as $event)
@@ -436,31 +452,48 @@ class DashboardController extends Controller
 
      public function supervisor_dashboard(){
         $user = Auth::user();
-        $excludedRoles = [
+        $excludedRoles = array_map('strtolower', [
             'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
             "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
-        ];
-
-        if (!in_array($user->type, $excludedRoles)) {
+        ]);
+        if (!in_array(strtolower($user->type), $excludedRoles)){
             $emp = Employee::where('user_id', '=', $user->id)->first();
-
-            $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
-                }
-            )->get();
+            $announcements = [];
+            if (isset($emp->id)) {
+                $announcements = Announcement::orderBy('announcements.id', 'desc')
+                    ->take(5)
+                    ->leftJoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')
+                    ->where('announcement_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('announcements.department_id', '["0"]')
+                            ->where('announcements.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
 
             $employees = Employee::get();
-            $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
-                }
-            )->get();
-            $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
-                }
-            )->get();
+            $meetings = [];
+            if (isset($emp->id)) {
+                $meetings = Meeting::orderBy('meetings.id', 'desc')
+                    ->take(5)
+                    ->leftJoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')
+                    ->where('meeting_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('meetings.department_id', '["0"]')
+                            ->where('meetings.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
+            $events = [];
+            if (isset($emp->id)) {
+                $events = Event::leftJoin('event_employees', 'events.id', '=', 'event_employees.event_id')
+                    ->where('event_employees.employee_id', '=', $emp->id)
+                    ->orWhere(function ($q) {
+                        $q->where('events.department_id', '["0"]')
+                            ->where('events.employee_id', '["0"]');
+                    })
+                    ->get();
+            }
 
             $arrEvents = [];
             foreach($events as $event)
@@ -523,31 +556,45 @@ class DashboardController extends Controller
         });
 
         $user = Auth::user();
-        $excludedRoles = [
+        $excludedRoles = array_map('strtolower', [
             'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
             "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
-        ];
-
-        if (!in_array($user->type, $excludedRoles)) {
+        ]);
+        if (!in_array(strtolower($user->type), $excludedRoles)){
             $emp = Employee::where('user_id', '=', $user->id)->first();
 
-            $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
-                }
-            )->get();
+            $empId = optional($emp)->id;
 
-            $employees = Employee::get();
-            $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
-                }
-            )->get();
-            $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
-                function ($q){
-                    $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
-                }
-            )->get();
+            $announcements = Announcement::orderBy('announcements.id', 'desc')
+                ->leftJoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')
+                ->where('announcement_employees.employee_id', '=', $empId)
+                ->where(function ($q) {
+                    $q->where('announcements.department_id', '["0"]')
+                    ->where('announcements.employee_id', '["0"]');
+                })
+                ->take(5)
+                ->get();
+
+                $employees = Employee::get();
+                $empId = optional($emp)->id; // Prevents null error
+
+                $meetings = Meeting::orderBy('meetings.id', 'desc')
+                    ->take(5)
+                    ->leftJoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')
+                    ->where('meeting_employees.employee_id', '=', $empId)
+                    ->orWhere(function ($q) {
+                        $q->where('meetings.department_id', '["0"]')
+                          ->where('meetings.employee_id', '["0"]');
+                    })
+                    ->get();
+
+                $events = Event::leftJoin('event_employees', 'events.id', '=', 'event_employees.event_id')
+                    ->where('event_employees.employee_id', '=', $empId)
+                    ->orWhere(function ($q) {
+                        $q->where('events.department_id', '["0"]')
+                          ->where('events.employee_id', '["0"]');
+                    })
+                    ->get();
 
             $arrEvents = [];
             foreach($events as $event)
@@ -614,7 +661,9 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif (in_array(Auth::user()->type, ['DG', "dg/ce's secretary", "dg/ce's admin officer", "dg/ce's secretary", "dg/ce's special assistant"])) {
+            elseif (in_array(strtolower(Auth::user()->type), [
+                'dg', "dg/ce's secretary", "dg/ce's admin officer", "dg/ce's personal assistant", "dg/ce's special assistant"
+            ])) {
                 return redirect()->route('dg.dashboard');
             }
             else
@@ -748,7 +797,9 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif (in_array(Auth::user()->type, ['DG', "DG/CE's Personal Assistant", "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"])) {
+            elseif (in_array(strtolower(Auth::user()->type), [
+                'dg', "dg/ce's secretary", "dg/ce's admin officer", "dg/ce's personal assistant", "dg/ce's special assistant"
+            ])) {
                 return redirect()->route('dg.dashboard');
             }
             else
@@ -931,7 +982,9 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif (in_array(Auth::user()->type, ['DG', "DG/CE's Personal Assistant", "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"])) {
+            elseif (in_array(strtolower(Auth::user()->type), [
+                'dg', "dg/ce's secretary", "dg/ce's admin officer", "dg/ce's personal assistant", "dg/ce's special assistant"
+            ])) {
                 return redirect()->route('dg.dashboard');
             }
             else
@@ -1065,7 +1118,9 @@ class DashboardController extends Controller
             {
                 return redirect()->route('hod.dashboard');
             }
-            elseif (in_array(Auth::user()->type, ['DG', "DG/CE's Personal Assistant", "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"])) {
+            elseif (in_array(strtolower(Auth::user()->type), [
+                'dg', "dg/ce's secretary", "dg/ce's admin officer", "dg/ce's personal assistant", "dg/ce's special assistant"
+            ])) {
                 return redirect()->route('dg.dashboard');
             }
             else
@@ -1270,32 +1325,49 @@ class DashboardController extends Controller
             {
                 $user = Auth::user();
 
-                $excludedRoles = [
+                $excludedRoles = array_map('strtolower', [
                     'registrar', 'super admin', 'DG', "DG/CE's Personal Assistant",
                     "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
-                ];
-
-                if (!in_array($user->type, $excludedRoles)) {
+                ]);
+                if (!in_array(strtolower($user->type), $excludedRoles)){
 
                     $emp = Employee::where('user_id', '=', $user->id)->first();
-
-                    $announcements = Announcement::orderBy('announcements.id', 'desc')->take(5)->leftjoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')->where('announcement_employees.employee_id', '=', $emp->id)->orWhere(
-                        function ($q){
-                            $q->where('announcements.department_id', '["0"]')->where('announcements.employee_id', '["0"]');
-                        }
-                    )->get();
+                    $announcements = [];
+                    if (isset($emp->id)) {
+                        $announcements = Announcement::orderBy('announcements.id', 'desc')
+                            ->take(5)
+                            ->leftJoin('announcement_employees', 'announcements.id', '=', 'announcement_employees.announcement_id')
+                            ->where('announcement_employees.employee_id', '=', $emp->id)
+                            ->orWhere(function ($q) {
+                                $q->where('announcements.department_id', '["0"]')
+                                    ->where('announcements.employee_id', '["0"]');
+                            })
+                            ->get();
+                    }
 
                     $employees = Employee::get();
-                    $meetings  = Meeting::orderBy('meetings.id', 'desc')->take(5)->leftjoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')->where('meeting_employees.employee_id', '=', $emp->id)->orWhere(
-                        function ($q){
-                            $q->where('meetings.department_id', '["0"]')->where('meetings.employee_id', '["0"]');
-                        }
-                    )->get();
-                    $events    = Event::leftjoin('event_employees', 'events.id', '=', 'event_employees.event_id')->where('event_employees.employee_id', '=', $emp->id)->orWhere(
-                        function ($q){
-                            $q->where('events.department_id', '["0"]')->where('events.employee_id', '["0"]');
-                        }
-                    )->get();
+                    $meetings = [];
+                    if (isset($emp->id)) {
+                        $meetings = Meeting::orderBy('meetings.id', 'desc')
+                            ->take(5)
+                            ->leftJoin('meeting_employees', 'meetings.id', '=', 'meeting_employees.meeting_id')
+                            ->where('meeting_employees.employee_id', '=', $emp->id)
+                            ->orWhere(function ($q) {
+                                $q->where('meetings.department_id', '["0"]')
+                                    ->where('meetings.employee_id', '["0"]');
+                            })
+                            ->get();
+                    }
+                    $events = [];
+                    if (isset($emp->id)) {
+                        $events = Event::leftJoin('event_employees', 'events.id', '=', 'event_employees.event_id')
+                            ->where('event_employees.employee_id', '=', $emp->id)
+                            ->orWhere(function ($q) {
+                                $q->where('events.department_id', '["0"]')
+                                    ->where('events.employee_id', '["0"]');
+                            })
+                            ->get();
+                    }
 
                     $arrEvents = [];
                     foreach($events as $event)

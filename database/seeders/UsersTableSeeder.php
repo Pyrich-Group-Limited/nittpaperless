@@ -78,6 +78,38 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+                'name' => 'create unit document',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'create department document',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'create unit folder',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'create department folder',
+                'module' => 'Folder/Document',
+                'category' => "Paperless system",
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
                 'name' => 'view department documents',
                 'module' => 'Folder/Document',
                 'category' => "Paperless system",
@@ -5105,7 +5137,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-            [   'name' => 'approve as liaison head',
+            [   'name' => 'approve as liaison officer',
                 'module' => 'Requsition',
                 'category' => "Paperless system",
                 'guard_name' => 'web',
@@ -5375,7 +5407,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show profit and loss'],
             ['name' => 'show trial balance'],
 
-            ['name' => 'approve as liaison head'],
+            ['name' => 'approve as liaison officer'],
             ['name' => 'manage requisition'],
             ['name' => 'request purchase requisition'],
             ['name' => 'manage contract'],
@@ -6056,7 +6088,7 @@ class UsersTableSeeder extends Seeder
 
         $dgCeSpAssistant = Role::create(
             [
-                'name' => "DG/CE's Speacial Assistant",
+                'name' => "DG/CE's Special Assistant",
                 'created_by' => $company->id,
             ]
         );

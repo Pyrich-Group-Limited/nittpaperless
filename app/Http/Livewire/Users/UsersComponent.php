@@ -169,9 +169,33 @@ class UsersComponent extends Component
         assignPermissionsToRole($role, $userType); // Call the helper function
         $user->assignRole($role); // Assign the role to the user
 
+        // Get department name
+        // $department = Department::find($this->department);
+        // if ($department) {
+        //     $permissions = getDepartmentPermissions($department->name);
+        //     if (!empty($permissions)) {
+        //         $user->givePermissionTo($permissions);
+        //     }
+        // }
+
+        $department = Department::find($user->department_id);
+        $unit = Unit::find($user->unit_id);
+
+        // Get permissions for department & unit
+        $departmentPermissions = getDepartmentPermissions($department->name ?? '');
+        $unitPermissions = getUnitPermissions($unit->name ?? '');
+
+        // Merge both department and unit permissions
+        $allPermissions = array_merge($departmentPermissions, $unitPermissions);
+
+        // Assign permissions to user
+        if (!empty($allPermissions)) {
+            $user->givePermissionTo($allPermissions);
+        }
+
         $this->sendMail($user,$password);
         $this->reset();
-        $this->dispatchBrowserEvent('success',["success" =>"User Successfully Registered"]);
+        $this->dispatchBrowserEvent('success',["success" =>"User created successfully with assigned default permissions."]);
     }
 
     public function sendMail($user,$password){

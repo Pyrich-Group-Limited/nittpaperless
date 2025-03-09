@@ -13,7 +13,9 @@
                     <select name="user_id[]" id="choices-multiple1" class="form-control select2" multiple>
                         <option value="#">Select one or more Users</option>
                         @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->employee->id ?? 'No employee ID yet' }})
+                                || {{ $user->type }} || {{ $user->department->name ?? '' }}
+                            </option>
                         @endforeach
                     </select>
                 </div>

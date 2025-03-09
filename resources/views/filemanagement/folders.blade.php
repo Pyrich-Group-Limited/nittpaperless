@@ -15,7 +15,7 @@
 @section('action-btn')
     <div class="float-end">
         {{-- ---------- Start Filter -------------- --}}
-        <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown"
+        <a href="#" class="btn btn-md btn-primary action-item" role="button" data-bs-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <i class="ti ti-filter"></i>
         </a>
@@ -33,8 +33,8 @@
         {{-- ---------- End Filter -------------- --}}
         @can('create folder')
             <a href="#" data-size="lg" data-url="{{ route('folder.new') }}" data-ajax-popup="true"
-                data-bs-toggle="tooltip" title="{{ __('Create new folder') }}" class="btn btn-sm btn-primary">
-                <i class="ti ti-plus">New </i>
+                data-bs-toggle="tooltip" title="{{ __('Create new folder') }}" class="btn btn-md btn-primary">
+                <i class="ti ti-plus"> </i>New
             </a>
         @endcan
     </div>
@@ -146,16 +146,31 @@
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="btn-box">
-                                            <form action="{{ route('folders.index') }}" method="GET">
+                                            <form method="GET" action="{{ route('folders.index') }}">
                                                 <div class="row">
-                                                    <div class="col-md-9">
-                                                        <input type="text" name="search" class="form-control"
-                                                            placeholder="Search folders by name"
-                                                            value="{{ request('search') }}">
+                                                    <div class="col-md-4">
+                                                        <input type="text" name="search" value="{{ request('search') }}" class="form-control"
+                                                               placeholder="Search folders...">
                                                     </div>
+
                                                     <div class="col-md-3">
-                                                        <button type="submit"
-                                                            class="btn btn-primary form-control">Search</button>
+                                                        <select name="filter" class="form-control" onchange="this.form.submit()">
+                                                            <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>All</option>
+                                                            <option value="personal" {{ request('filter') == 'personal' ? 'selected' : '' }}>Personal</option>
+                                                            <option value="department" {{ request('filter') == 'department' ? 'selected' : '' }}>Department</option>
+                                                            <option value="unit" {{ request('filter') == 'unit' ? 'selected' : '' }}>Unit</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <select name="sort" class="form-control" onchange="this.form.submit()">
+                                                            <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
+                                                            <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Oldest</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <button type="submit" class="btn btn-primary">Apply</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -185,6 +200,7 @@
                                 <a href="{{ route('folders.display', $folder->id) }}">
                                     <span>{{ $folder->folder_name }}</span>
                                 </a>
+                                <p class="card-text">{{ ucfirst($folder->visibility) }}</p>
                             </div>
                             <div class="btn-group card-option">
                                 <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

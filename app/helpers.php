@@ -80,7 +80,7 @@ use Spatie\Permission\Models\Role;
                 'show balance sheet',
                 'show profit and loss',
                 'show trial balance',
-                'approve as liaison head',
+                'approve as liaison officer',
                 'manage requisition',
                 'request purchase requisition',
                 'manage contract',
@@ -629,6 +629,10 @@ use Spatie\Permission\Models\Role;
                 'create employee',
                 'edit employee',
                 'delete employee',
+                'create unit document',
+                'create department document',
+                'create unit folder',
+                'create department folder',
             ],
 
             'user' => [
@@ -642,6 +646,8 @@ use Spatie\Permission\Models\Role;
                 'show proposal',
                 'show profile',
                 'request SRN',
+                'view department documents',
+                'view department folders'
             ],
             'director' => [
                 'create folder',
@@ -651,6 +657,7 @@ use Spatie\Permission\Models\Role;
                 'delete folder',
                 'create document',
                 'view department documents',
+                'view department folders',
                 'view unit documents',
                 'share document',
                 'rename document',
@@ -676,6 +683,10 @@ use Spatie\Permission\Models\Role;
                 'show proposal',
                 'show profile',
                 'manage client dashboard',
+                'create unit document',
+                'create department document',
+                'create unit folder',
+                'create department folder',
             ],
             'unit head' => [
                 'create folder',
@@ -696,6 +707,10 @@ use Spatie\Permission\Models\Role;
                 'reject dta',
                 'view leave report',
                 'show unithead dashboard',
+                'view department documents',
+                'view department folders',
+                'create unit document',
+                'create unit folder',
             ],
             'store keeper' => [
                 'view item supply',
@@ -714,6 +729,8 @@ use Spatie\Permission\Models\Role;
                 'manage pos',
                 'manage warehouse',
                 'show unithead dashboard',
+                'view department documents',
+                'view department folders',
             ],
             'DG' => [
                  'dg approve',
@@ -732,6 +749,10 @@ use Spatie\Permission\Models\Role;
                  'comment on contract',
                  'manage contract',
                  'view recommended payment',
+                 'view department documents',
+                 'view department folders',
+                 'view unit documents',
+                 'view unit folders',
             ],
             "DG/CE's Personal Assistant" => [
                  'manage requisition',
@@ -744,6 +765,10 @@ use Spatie\Permission\Models\Role;
                  'print voucher',
                  'comment on contract',
                  'manage contract',
+                 'view department documents',
+                 'view department folders',
+                 'view unit documents',
+                 'view unit folders',
             ],
             "DG/CE's Admin Officer" => [
                  'manage requisition',
@@ -756,6 +781,10 @@ use Spatie\Permission\Models\Role;
                  'print voucher',
                  'comment on contract',
                  'manage contract',
+                 'view department documents',
+                 'view department folders',
+                 'view unit documents',
+                 'view unit folders',
             ],
             "DG/CE's Secretary" => [
                  'manage requisition',
@@ -768,8 +797,12 @@ use Spatie\Permission\Models\Role;
                  'print voucher',
                  'comment on contract',
                  'manage contract',
+                 'view department documents',
+                 'view department folders',
+                 'view unit documents',
+                 'view unit folders',
             ],
-            "DG/CE's Speacial Assistant" => [
+            "DG/CE's Special Assistant" => [
                  'manage requisition',
                  'manage project',
                  'reject budget',
@@ -780,6 +813,10 @@ use Spatie\Permission\Models\Role;
                  'print voucher',
                  'comment on contract',
                  'manage contract',
+                 'view department documents',
+                 'view department folders',
+                 'view unit documents',
+                 'view unit folders',
             ],
             'supervisor' => [
                 'create folder',
@@ -824,6 +861,8 @@ use Spatie\Permission\Models\Role;
                 'manage stage',
                 'manage contract',
                 'show contract',
+                'view department documents',
+                'view department folders',
             ],
             'liaison officer' => [
                 'share document',
@@ -842,6 +881,8 @@ use Spatie\Permission\Models\Role;
                 'show proposal',
                 'show profile',
                 'manage client dashboard',
+                'view department documents',
+                'view department folders',
             ],
             'accountant' => [
                 'share document',
@@ -992,8 +1033,35 @@ use Spatie\Permission\Models\Role;
                 'delete budget plan',
                 'view budget plan',
                 'create barcode',
+                'view department documents',
+                'view department folders',
+            ],
+            'deputy bursar' => [
+                'show account dashboard',
+                'manage ergp',
+                'view ergp',
+                'view department documents',
+                'view department folders',
+                'view unit documents',
+                'view unit folders',
             ],
             'registrar' => [
+                'create employee',
+                'manage employee',
+                'manage trainer',
+                'create trainer',
+                'edit trainer',
+                'manage training',
+                'create training',
+                'manage training type',
+                'create training type',
+                'edit meeting',
+                'create meeting',
+                'manage meeting',
+                'delete meeting',
+                'create announcement',
+                'manage announcement',
+                'edit announcement',
                 'share document',
                 'archive document',
                 'create folder',
@@ -1011,7 +1079,6 @@ use Spatie\Permission\Models\Role;
                 'manage indicator',
                 'manage appraisal',
                 'manage goal tracking',
-                'manage training',
                 'manage job',
                 'create job',
                 'manage job application',
@@ -1025,10 +1092,8 @@ use Spatie\Permission\Models\Role;
                 'manage complaint',
                 'manage warning',
                 'manage termination',
-                'manage announcement',
                 'manage holiday',
                 'manage event',
-                'manage meeting',
                 'manage assets',
                 'manage document',
                 'manage company policy',
@@ -1037,6 +1102,8 @@ use Spatie\Permission\Models\Role;
                 'manage user',
                 'manage role',
                 'manage client',
+                'view department documents',
+                'view department folders',
             ],
             'assistant registrar' => [
                 'share document',
@@ -1082,6 +1149,8 @@ use Spatie\Permission\Models\Role;
                 'manage user',
                 'manage role',
                 'manage client',
+                'view department documents',
+                'view department folders',
             ],
 
             'contractor' => [
@@ -1132,4 +1201,92 @@ function markAllAsRead()
     return InternalNotification::where('user_id', auth()->id())
         ->where('is_read', false)
         ->update(['is_read' => true]);
+}
+
+if (!function_exists('getDepartmentPermissions')) {
+    function getDepartmentPermissions($departmentName)
+    {
+        $permissions = [
+            'Bursary Department' => [
+                    'show reports',
+                    'statement report',
+                    'invoice report',
+                    'bill report',
+                    'stock report',
+                    'loss & profit report',
+                    'manage transaction',
+                    'income report',
+                    'expense report',
+                    'income vs expense report',
+                    'tax report',
+                    'show banking',
+                    'show voucher',
+                    'show purchases',
+                    'show double entry',
+                    'show budget planner',
+                    'show financial goal',
+                    'show accounting setup',
+                    'show print setup'
+                ],
+            'Registry Department' => [
+                'create employee',
+                'manage employee',
+                'create meeting',
+                'manage meeting',
+                'create announcement',
+                'manage announcement',
+                'show hrm dashboard',
+                'manage payment',
+                'manage report',
+                'manage training',
+                'manage trainer',
+                'manage event',
+                'manage job',
+                'create job',
+                'manage job application',
+                'manage custom question',
+                'show interview schedule',
+                'manage award',
+                'manage transfer',
+                'manage assets',
+                'manage company policy',
+                'manage trainer',
+                'create trainer',
+                'manage training',
+                'create training',
+                'manage training type',
+                'create training type',
+            ],
+        ];
+
+        // Return the permissions for the given department or an empty array
+        return $permissions[$departmentName] ?? [];
+    }
+}
+
+if (!function_exists('getUnitPermissions')) {
+    function getUnitPermissions($unitName)
+    {
+        $permissions = [
+            'Physical Planing Unit' => [
+                'manage project',
+                'manage contract',
+                'create project',
+            ],
+            'Procurement Unit' => [
+                'manage project',
+                'manage client',
+                'manage contract',
+                'create project',
+            ],
+            'Stores' => [
+                'manage stock',
+                'view stock',
+                'manage warehouse',
+            ],
+        ];
+
+        // Return the permissions for the given unit or an empty array if not found
+        return $permissions[$unitName] ?? [];
+    }
 }

@@ -36,10 +36,13 @@
 
         <div class="navbar-content">
             @php
-                $allowedRoles = ['DG', "DG/CE's Personal Assistant", "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"];
+                $allowedRoles = array_map('strtolower', [
+                    'DG', "DG/CE's Personal Assistant",
+                    "DG/CE's Admin Officer", "DG/CE's Secretary", "DG/CE's Special Assistant"
+                ]);
             @endphp
 
-            @if(in_array(Auth::user()->type, $allowedRoles))
+            @if(in_array(strtolower(Auth::user()->type), $allowedRoles))
                 <ul class="dash-navbar">
                     <li class="dash-item dash-hasmenu ">
                         <a href="{{ route('dg.dashboard') }}" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
@@ -126,9 +129,6 @@
                             ><span class="dash-mtext">{{__('ERGP')}}</span
                             ></a>
                     </li>
-
-
-
                 </ul>
             @else
 
@@ -160,16 +160,14 @@
                     @if(Auth::user()->isInDepartment('Registry Department'))
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'holiday-calender' || Request::segment(1) == 'reports-monthly-attendance'
                                 || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll' || Request::segment(1) == 'leavetype' || Request::segment(1) == 'leave'
-                                || Request::segment(1) == 'attendanceemployee' || Request::segment(1) == 'document-upload' || Request::segment(1) == 'document' || Request::segment(1) == 'performanceType'
+                                || Request::segment(1) == 'attendanceemployee' || Request::segment(1) == 'document-upload' || Request::segment(1) == 'document'
                                 || Request::segment(1) == 'branch' || Request::segment(1) == 'department' || Request::segment(1) == 'designation' || Request::segment(1) == 'employee'
                                 || Request::segment(1) == 'leave_requests' || Request::segment(1) == 'policies' || Request::segment(1) == 'leave_calender'
-                                || Request::segment(1) == 'award' || Request::segment(1) == 'transfer' || Request::segment(1) == 'resignation' || Request::segment(1) == 'training' || Request::segment(1) == 'travel'
-                                || Request::segment(1) == 'promotion' || Request::segment(1) == 'complaint' || Request::segment(1) == 'warning'
+                                || Request::segment(1) == 'training' || Request::segment(1) == 'travel'
                                 || Request::segment(1) == 'announcement' || Request::segment(1) == 'job' || Request::segment(1) == 'job-application'
-                                || Request::segment(1) == 'candidates-job-applications' || Request::segment(1) == 'job-onboard' || Request::segment(1) == 'custom-question'
-                                || Request::segment(1) == 'interview-schedule' || Request::segment(1) == 'career' || Request::segment(1) == 'holiday' || Request::segment(1) == 'setsalary'
+                                || Request::segment(1) == 'candidates-job-applications' || Request::segment(1) == 'job-onboard'
+                                || Request::segment(1) == 'interview-schedule' || Request::segment(1) == 'career' || Request::segment(1) == 'holiday'
                                 || Request::segment(1) == 'job-stage' || Request::segment(1) == 'job-category' || Request::segment(1) == 'trainingtype'
-                                || Request::segment(1) == 'competencies' || Request::segment(1) == 'loanoption'
                                 || Request::segment(1) == 'deductionoption')?'active dash-trigger':''}}">
                             <a href="#!" class="dash-link"
                             ><span class="dash-micon"><i class="ti ti-layers-difference"></i></span
@@ -347,14 +345,6 @@
                                             </li>
                                         @endcan
                                         -----}}
-
-
-
-
-
-
-
-
                                         {{-- @can('show career')
                                             <li class="dash-item {{ (request()->is('career*') ? 'active' : '')}}">
                                                 <a class="dash-link" href="{{route('career',[\Auth::user()->creatorId(),$lang])}}">{{__('Career')}}</a></li>
@@ -436,7 +426,7 @@
                                     <a class="dash-link" href="{{ route('hod.requisitions') }}">{{__('Director Approval')}}</a>
                                 </li>
                             @endcan
-                            @can('approve as liaison head')
+                            @can('approve as liaison officer')
                                 <li class="dash-item {{ request()->is('liaison.requisitions') ? 'active' : '' }}">
                                     <a class="dash-link" href="{{ route('liaison.requisitions') }}">{{__('Liaison Officer Approval')}}</a>
                                 </li>
@@ -713,7 +703,6 @@
                                     {{-- @endif --}}
                                 @endcan
                                 @can('show banking')
-                                    {{-- @if( Gate::check('manage bank account') ||  Gate::check('manage bank transfer')) --}}
                                     <li class="dash-item dash-hasmenu {{(Request::segment(1) == 'bank-account' || Request::segment(1) == 'bank-transfer')? 'active dash-trigger' :''}}">
                                         <a class="dash-link" href="#">{{__('Banking')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu">
@@ -725,10 +714,8 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    {{-- @endif --}}
                                 @endcan
                                 @can('show voucher')
-                                    {{-- @if( Gate::check('manage invoice') ||  Gate::check('manage revenue') ||  Gate::check('manage credit note')) --}}
                                     <li class="dash-item dash-hasmenu {{(Request::segment(1) == 'customer' || Request::segment(1) == 'proposal'|| Request::segment(1) == 'invoice' || Request::segment(1) == 'revenue' || Request::segment(1) == 'credit-note')? 'active dash-trigger' :''}}">
                                         <a class="dash-link" href="#">{{__('Voucher')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                         <ul class="dash-submenu">
@@ -753,7 +740,6 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    {{-- @endif --}}
                                 @endcan
                                 @can('show purchases')
                                     {{-- @if( Gate::check('manage bill')  ||  Gate::check('manage payment') ||  Gate::check('manage debit note')) --}}

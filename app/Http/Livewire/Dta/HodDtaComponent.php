@@ -103,8 +103,10 @@ class HodDtaComponent extends Component
                 $this->dispatchBrowserEvent('error',["error" =>"Attempted to create a notification for a non-existing user ID: $approverId"]);
             }
         }
+        $msg = sprintf("Your approval is successful and forwarded to %s for the next approval stage.", $approverId->name);
+        $this->dispatchBrowserEvent('success', ["success" => $msg]);
 
-        $this->dispatchBrowserEvent('success', ["success" => "DTA approved successfully."]);
+        // $this->dispatchBrowserEvent('success', ["success" => "DTA approved successfully."]);
         $this->mount();
         $this->reset('secretCode');
     }
