@@ -6123,6 +6123,7 @@ class UsersTableSeeder extends Seeder
                 'view department folders',
                 'view unit documents',
                 'view unit folders'
+
             ];
 
             // Create permissions if they don’t already exist and assign them to the role

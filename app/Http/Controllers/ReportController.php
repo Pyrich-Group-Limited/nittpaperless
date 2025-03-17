@@ -1298,59 +1298,129 @@ class ReportController extends Controller
         }
     }
 
+    // public function trialBalanceSummary(Request $request)
+    // {
+    //     if(\Auth::user()->can('trial balance report'))
+    //     {
+    //         if(!empty($request->start_date) && !empty($request->end_date))
+    //         {
+    //             $start = $request->start_date;
+    //             $end   = $request->end_date;
+    //         }
+    //         else
+    //         {
+    //             $start = date('Y-m-01');
+    //             $end   = date('Y-m-t');
+    //         }
+
+    //         $types         = ChartOfAccountType::where('created_by',\Auth::user()->creatorId())->get();
+    //         $chartAccounts = [];
+
+    //             $totalAccounts = [];
+
+    //         foreach($types as $type)
+    //         {
+    //             $total = Utility::trialBalance($type->id,$start,$end);
+    //             $name = $type->name;
+    //             if (isset($totalAccount[$name])) {
+    //                 $totalAccount[$name]["totalCredit"] += $total["totalCredit"];
+    //                 $totalAccount[$name]["totalDebit"] += $total["totalDebit"];
+    //             } else {
+    //                 $totalAccount[$name] = $total;
+    //             }
+
+    //         }
+
+    //         foreach ($totalAccount as $category => $entries) {
+    //             foreach ($entries as $entry) {
+    //                 $name = $entry['name'];
+
+    //                 if (!isset($totalAccounts[$category][$name])) {
+    //                     $totalAccounts[$category][$name] = [
+    //                         'id'=>$entry['id'],
+    //                         'code' => $entry['code'],
+    //                         'name' => $name,
+    //                         'totalDebit' => 0,
+    //                         'totalCredit' => 0,
+    //                     ];
+    //                 }
+    //                 $totalAccounts[$category][$name]['totalDebit'] += $entry['totalDebit'];
+    //                 $totalAccounts[$category][$name]['totalCredit'] += $entry['totalCredit'];
+    //             }
+    //         }
+
+    //         $filter['startDateRange'] = $start;
+    //         $filter['endDateRange']   = $end;
+    //         return view('report.trial_balance', compact('filter', 'totalAccounts'));
+    //     }
+    //     else
+    //     {
+    //         return redirect()->back()->with('error', __('Permission Denied.'));
+    //     }
+    // }
+
     public function trialBalanceSummary(Request $request)
     {
-        if(\Auth::user()->can('trial balance report'))
+        if (\Auth::user()->can('trial balance report'))
         {
-            if(!empty($request->start_date) && !empty($request->end_date))
-            {
-                $start = $request->start_date;
-                $end   = $request->end_date;
-            }
-            else
-            {
-                $start = date('Y-m-01');
-                $end   = date('Y-m-t');
-            }
+            // Handle date range
+            $start = !empty($request->start_date) ? $request->start_date : date('Y-m-01');
+            $end = !empty($request->end_date) ? $request->end_date : date('Y-m-t');
 
-            $types         = ChartOfAccountType::where('created_by',\Auth::user()->creatorId())->get();
-            $chartAccounts = [];
+            $types = ChartOfAccountType::where('created_by', \Auth::user()->creatorId())->get();
 
-                $totalAccounts = [];
+            // Initialize the totalAccount variable to prevent undefined variable errors
+            $totalAccount = [];
+            $totalAccounts = [];
 
-            foreach($types as $type)
+            // Loop through account types and calculate totals
+            foreach ($types as $type)
             {
-                $total = Utility::trialBalance($type->id,$start,$end);
+                $total = Utility::trialBalance($type->id, $start, $end);
                 $name = $type->name;
+
                 if (isset($totalAccount[$name])) {
                     $totalAccount[$name]["totalCredit"] += $total["totalCredit"];
                     $totalAccount[$name]["totalDebit"] += $total["totalDebit"];
                 } else {
                     $totalAccount[$name] = $total;
                 }
-
             }
 
-            foreach ($totalAccount as $category => $entries) {
-                foreach ($entries as $entry) {
-                    $name = $entry['name'];
+            // Ensure that $totalAccount is not empty before looping
+            if (!empty($totalAccount))
+            {
+                foreach ($totalAccount as $category => $entries)
+                {
+                    if (!is_array($entries)) continue; // Ensure we are iterating over an array
 
-                    if (!isset($totalAccounts[$category][$name])) {
-                        $totalAccounts[$category][$name] = [
-                            'id'=>$entry['id'],
-                            'code' => $entry['code'],
-                            'name' => $name,
-                            'totalDebit' => 0,
-                            'totalCredit' => 0,
-                        ];
+                    foreach ($entries as $entry)
+                    {
+                        if (!is_array($entry) || !isset($entry['name'], $entry['id'], $entry['code'], $entry['totalDebit'], $entry['totalCredit'])) {
+                            continue; // Skip invalid entries
+                        }
+
+                        $name = $entry['name'];
+
+                        if (!isset($totalAccounts[$category][$name])) {
+                            $totalAccounts[$category][$name] = [
+                                'id' => $entry['id'],
+                                'code' => $entry['code'],
+                                'name' => $name,
+                                'totalDebit' => 0,
+                                'totalCredit' => 0,
+                            ];
+                        }
+
+                        $totalAccounts[$category][$name]['totalDebit'] += $entry['totalDebit'];
+                        $totalAccounts[$category][$name]['totalCredit'] += $entry['totalCredit'];
                     }
-                    $totalAccounts[$category][$name]['totalDebit'] += $entry['totalDebit'];
-                    $totalAccounts[$category][$name]['totalCredit'] += $entry['totalCredit'];
                 }
             }
 
             $filter['startDateRange'] = $start;
-            $filter['endDateRange']   = $end;
+            $filter['endDateRange'] = $end;
+
             return view('report.trial_balance', compact('filter', 'totalAccounts'));
         }
         else
@@ -1358,6 +1428,7 @@ class ReportController extends Controller
             return redirect()->back()->with('error', __('Permission Denied.'));
         }
     }
+
 
     public function leave(Request $request)
     {
