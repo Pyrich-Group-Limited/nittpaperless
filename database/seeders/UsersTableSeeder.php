@@ -6922,8 +6922,16 @@ class UsersTableSeeder extends Seeder
             ['name' => 'view department documents'],
             ['name' => 'view department folders'],
             ['name' => 'view unit documents'],
-            ['name' => 'view unit folders']
+            ['name' => 'view unit folders'],
 
+            ['name' => 'create meeting'],
+            ['name' => 'manage meeting'],
+            ['name' => 'edit meeting'],
+            ['name' => 'delete meeting'],
+            ['name' => 'manage announcement'],
+            ['name' => 'create announcement'],
+            ['name' => 'edit announcement'],
+            ['name' => 'delete announcement'],
         ];
 
         $registrarRole->givePermissionTo($registrarPermission);
