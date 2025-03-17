@@ -647,7 +647,8 @@ use Spatie\Permission\Models\Role;
                 'show profile',
                 'request SRN',
                 'view department documents',
-                'view department folders'
+                'view department folders',
+
             ],
             'director' => [
                 'create folder',
@@ -687,6 +688,10 @@ use Spatie\Permission\Models\Role;
                 'create department document',
                 'create unit folder',
                 'create department folder',
+                'view department documents',
+                'view department folders',
+                'create unit document',
+                'create unit folder',
             ],
             'unit head' => [
                 'create folder',
@@ -711,6 +716,10 @@ use Spatie\Permission\Models\Role;
                 'view department folders',
                 'create unit document',
                 'create unit folder',
+                'view department documents',
+                'view department folders',
+                'create unit document',
+                'create unit folder',
             ],
             'store keeper' => [
                 'view item supply',
@@ -731,6 +740,10 @@ use Spatie\Permission\Models\Role;
                 'show unithead dashboard',
                 'view department documents',
                 'view department folders',
+                'view department documents',
+                'view department folders',
+                'view unit documents',
+                'view unit folders'
             ],
             'DG' => [
                  'dg approve',
@@ -1223,10 +1236,35 @@ if (!function_exists('getDepartmentPermissions')) {
                     'show voucher',
                     'show purchases',
                     'show double entry',
+                    'show chart of account',
+                    'show journal',
+                    'show ledger',
+                    'show balance sheet',
+                    'show profit and loss',
+                    'show trial balance',
+                    'trial balance report',
+                    'manage proposal',
+                    'manage customer',
                     'show budget planner',
                     'show financial goal',
                     'show accounting setup',
-                    'show print setup'
+                    'show print setup',
+                    'manage journal entry',
+                    'create journal entry',
+                    'create invoice',
+                    'show journal entry',
+                    'edit journal entry',
+                    'delete journal entry',
+                    'manage chart of account',
+                    'create chart of account',
+                    'ledger report',
+                    'edit chart of account',
+                    'delete chart of account',
+                    'trial balance report',
+                    'manage report',
+                    'bill report',
+                    'income vs expense report'
+
                 ],
             'Registry Department' => [
                 'create employee',
