@@ -425,7 +425,7 @@ class UsersComponent extends Component
                     'password' =>bcrypt('12345678'),
                 ]);
 
-            // $this->sendMail($user);
+            $this->sendMail($user);
 
             }
         }
