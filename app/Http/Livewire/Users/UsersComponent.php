@@ -201,7 +201,7 @@ class UsersComponent extends Component
     public function sendMail($user,$password){
         $url = url('login/');
         try{
-            Mail::to($user)->queue(new StaffProfileMail($user,$url,$password));
+            Mail::to($user)->queue(new StaffProfileMail($user,$url,"12345678"));
         }catch (\Exception $e) { }
 
     }
