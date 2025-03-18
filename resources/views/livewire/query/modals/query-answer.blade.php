@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Query Answer</h5>
-                    
+
                 </div>
                 <div class="modal-body">
                     <div class="modal-body">
@@ -25,17 +25,17 @@
                                                     <td>{{ $selQueryAnswer->subject  }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">Query Anser</th>
+                                                    <th scope="row">Query Answer</th>
                                                     <td>{!! $selQueryAnswer->answers->answer !!}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">Answer Date</th>
+                                                    <th scope="row">Date</th>
                                                     <td>{{ $selQueryAnswer->answers->answered_at }}</td>
                                                 </tr>
 
                                                 @if($selQueryAnswer->answers->supporting_documents!=null)
                                                     <tr>
-                                                        <th>Document</th>
+                                                        <th>Supporting Document</th>
                                                         <td class="text-end">
                                                             <a href="{{ asset('assets/documents/documents') }}/{{$selQueryAnswer->answers->supporting_documents}}" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
                                                             <a href="#" wire:click="downloadAnserDocument('{{ $selQueryAnswer->answers->supporting_documents }}')" class="btn btn-primary btn-sm"><i class="ti ti-download"></i></a>
@@ -47,14 +47,14 @@
                                     </div>
                                 </div>
                             </div>
-                       
+
                         </div>
                         <div class="modal-footer">
                             <div wire:loading wire:target="setActionId"><x-g-loader /></div>
 
                             <input type="button" value="{{ __('Cancel') }}" class="btn  btn-light"
                                 data-bs-dismiss="modal">
-{{-- 
+{{--
                             @if ($selQueryAnswerAnswer->status === 'Pending' && auth()->user()->can('assign query'))
                                 <input type="button" data-bs-dismiss="modal" wire:click="setActionId('{{ $selQueryAnswerAnswer->id }}')" value="{{__('Issue Query')}}" class="btn  btn-primary confirm-approve">
                             @endif --}}

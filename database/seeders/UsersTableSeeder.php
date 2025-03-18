@@ -5963,6 +5963,10 @@ class UsersTableSeeder extends Seeder
             ['name' => 'create employee'],
             ['name' => 'edit employee'],
             ['name' => 'delete employee'],
+            ['name' => 'view department documents'],
+            ['name' => 'view department folders'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders']
         ];
 
         $companyRole->givePermissionTo($companyPermissions);
@@ -6017,6 +6021,10 @@ class UsersTableSeeder extends Seeder
             ['name' => 'comment on contract'],
             ['name' => 'manage contract'],
             ['name' => 'view recommended payment'],
+            ['name' => 'view department documents'],
+            ['name' => 'view department folders'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders']
         ];
 
         // $dgRole->givePermissionTo($dgPermissions);
@@ -6111,6 +6119,11 @@ class UsersTableSeeder extends Seeder
                 'show proposal',
                 'show profile',
                 'request SRN',
+                'view department documents',
+                'view department folders',
+                'view unit documents',
+                'view unit folders'
+
             ];
 
             // Create permissions if they don’t already exist and assign them to the role
@@ -6204,6 +6217,10 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage stage'],
             ['name' => 'manage contract'],
             ['name' => 'show contract'],
+            ['name' => 'view department documents'],
+            ['name' => 'view department folders'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders']
         ];
         $supervisorRole->givePermissionTo($supervisorPermission);
 
@@ -6264,6 +6281,10 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
             ['name' => 'manage client dashboard'],
+            ['name' => 'view department documents'],
+            ['name' => 'view department folders'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders']
 
         ];
         $liasonRole->givePermissionTo($liasonPermission);
@@ -6341,6 +6362,10 @@ class UsersTableSeeder extends Seeder
             ['name' => 'show proposal'],
             ['name' => 'show profile'],
             ['name' => 'manage client dashboard'],
+            ['name' => 'view department documents'],
+            ['name' => 'view department folders'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders']
 
         ];
         // $hodRole->givePermissionTo($hodPermission);
@@ -6523,6 +6548,10 @@ class UsersTableSeeder extends Seeder
             ['name' => 'reject dta'],
             ['name' => 'view leave report'],
             ['name' => 'show unithead dashboard'],
+            ['name' => 'view department documents'],
+            ['name' => 'view department folders'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders']
         ];
 
         $unitHeadRole = Role::create(
@@ -6590,6 +6619,10 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage pos'],
             ['name' => 'manage warehouse'],
             ['name' => 'show unithead dashboard'],
+            ['name' => 'view department documents'],
+            ['name' => 'view department folders'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders']
         ];
 
         // $storeKeeperRole->givePermissionTo($storePermission);
@@ -6783,6 +6816,10 @@ class UsersTableSeeder extends Seeder
             ['name' => 'delete budget plan'],
             ['name' => 'view budget plan'],
             ['name' => 'create barcode'],
+            ['name' => 'view department documents'],
+            ['name' => 'view department folders'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders']
 
         ];
         // $accountantRole->givePermissionTo($accountantPermission);
@@ -6882,7 +6919,19 @@ class UsersTableSeeder extends Seeder
             ['name' => 'manage user'],
             ['name' => 'manage role'],
             ['name' => 'manage client'],
+            ['name' => 'view department documents'],
+            ['name' => 'view department folders'],
+            ['name' => 'view unit documents'],
+            ['name' => 'view unit folders'],
 
+            ['name' => 'create meeting'],
+            ['name' => 'manage meeting'],
+            ['name' => 'edit meeting'],
+            ['name' => 'delete meeting'],
+            ['name' => 'manage announcement'],
+            ['name' => 'create announcement'],
+            ['name' => 'edit announcement'],
+            ['name' => 'delete announcement'],
         ];
 
         $registrarRole->givePermissionTo($registrarPermission);

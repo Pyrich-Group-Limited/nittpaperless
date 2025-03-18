@@ -41,8 +41,10 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Query Subject</th>
-                                    <th>Raised By</th>
-                                    <th>Staff</th>
+                                    @canany(['raise query', 'assign query'])
+                                        <th>Raised By</th>
+                                    @endcanany
+                                    <th>Query For</th>
                                     <th>Status</th>
                                     <th>Signature</th>
                                     <th>Date/Time</th>
@@ -54,7 +56,9 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $query->subject }}</td>
-                                        <td>{{ $query->raiser->name ?? 'N/A' }}</td>
+                                        @canany(['raise query', 'assign query'])
+                                            <td>{{ $query->raiser->name ?? 'N/A' }}</td>
+                                        @endcanany
                                         <td>{{ $query->staff->name ?? 'N/A' }}</td>
                                         <td>
                                             @if ($query->status === 'Pending')

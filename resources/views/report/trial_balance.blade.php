@@ -142,8 +142,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="account-main-title mb-5">
-                        <h5>{{ 'Trial Balance of ' . $user->name . ' as of ' . $filter['startDateRange'] . ' to ' . $filter['endDateRange'] }}
-                            </h4>
+                        {{-- <h5>{{ 'Trial Balance of ' . $user->name . ' as of ' . $filter['startDateRange'] . ' to ' . $filter['endDateRange'] }}
+                            </h4> --}}
+
+                            <h5>{{ 'Trial Balance of ' . ($user->name ?? 'Unknown User') . ' as of ' . ($filter['startDateRange'] ?? 'N/A') . ' to ' . ($filter['endDateRange'] ?? 'N/A') }}</h5>
                     </div>
                     <div
                         class="aacount-title d-flex align-items-center justify-content-between border-top border-bottom py-2">
@@ -157,7 +159,7 @@
                     $totalCredit = 0;
                     $totalDebit = 0;
                     @endphp
-                    
+
                     @foreach ($totalAccounts as $type => $accounts)
                         <div class="account-main-inner border-bottom py-2">
                             <p class="fw-bold ps-2 mb-2">{{ $type }}</p>

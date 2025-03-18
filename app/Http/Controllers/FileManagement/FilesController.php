@@ -331,8 +331,8 @@ class FilesController extends Controller
                 'path' => $filePath,
                 'user_id' => $user->id,
                 'folder_id' => $request->folder_id,
-                'department_id' => $request->visibility === 'department' ? $user->department_id : null,
-                'unit_id' => $request->visibility === 'unit' ? $user->unit_id : null,
+                'department_id' => Auth::user()->department_id ?? null,
+                'unit_id' => Auth::user()->unit_id ?? null,
                 'location_type' => $user->location_type,
                 'visibility' => $request->visibility,
             ]);
@@ -558,11 +558,8 @@ class FilesController extends Controller
     {
         // Check if the file is already archived
         if ($file->is_archived) {
-            // Return an error response if the file is already archived
             return redirect()->back()->with('error', 'This file is already archived.');
         }
-
-        // Mark the file as archived
         $file->is_archived = 1;
         $file->save();
 
@@ -570,14 +567,93 @@ class FilesController extends Controller
     }
 
     // List all archived files
-    public function archived()
-    {
-        $files = File::where('department_id',Auth::user()->department_id)
-        ->where('location_type',Auth::user()->location_type)
-        ->where('is_archived', 1)->get();
+    // public function archived()
+    // {
+    //     $files = File::where('department_id',Auth::user()->department_id)
+    //     ->where('location_type',Auth::user()->location_type)
+    //     ->where('is_archived', 1)->get();
 
-        return view('filemanagement.archived-files', compact('files'));
+    //     return view('filemanagement.archived-files', compact('files'));
+    // }
+
+    // public function archived()
+    // {
+    //     $user = Auth::user(); // Get the authenticated user
+
+    //     $files = File::where('is_archived', 1) // Only archived files
+    //         ->where(function ($query) use ($user) {
+    //             // Personal files (only the owner can see)
+    //             $query->where(function ($q) use ($user) {
+    //                 $q->where('visibility', 'personal')
+    //                     ->where('user_id', $user->id);
+    //             });
+
+    //             // Department files (only users in the same department can see)
+    //             if ($user->can('view department documents')) {
+    //                 $query->orWhere(function ($q) use ($user) {
+    //                     $q->where('visibility', 'department')
+    //                         ->where('department_id', $user->department_id)
+    //                         ->where('location_type', $user->location_type);
+    //                 });
+    //             }
+
+    //             // Unit files (only users in the same unit can see)
+    //             if ($user->can('view unit documents')) {
+    //                 $query->orWhere(function ($q) use ($user) {
+    //                     $q->where('visibility', 'unit')
+    //                         ->where('unit_id', $user->unit_id)
+    //                         ->where('location_type', $user->location_type);
+    //                 });
+    //             }
+    //         })
+    //         ->get();
+
+    //     return view('filemanagement.archived-files', compact('files'));
+    // }
+    public function archived(Request $request)
+    {
+        $user = Auth::user(); // Get the authenticated user
+
+        // Get filter values from request
+        $visibilityFilter = $request->query('visibility'); // 'personal', 'unit', 'department'
+
+        // Query archived files
+        $filesQuery = File::where('is_archived', 1)
+            ->where(function ($query) use ($user, $visibilityFilter) {
+                // Personal files (only the owner can see)
+                if ($visibilityFilter === 'personal' || !$visibilityFilter) {
+                    $query->orWhere(function ($q) use ($user) {
+                        $q->where('visibility', 'personal')
+                            ->where('user_id', $user->id);
+                    });
+                }
+
+                // Department files (only users in the same department)
+                if (($visibilityFilter === 'department' || !$visibilityFilter) && $user->can('view department documents')) {
+                    $query->orWhere(function ($q) use ($user) {
+                        $q->where('visibility', 'department')
+                            ->where('department_id', $user->department_id)
+                            ->where('location_type', $user->location_type);
+                    });
+                }
+
+                // Unit files (only users in the same unit)
+                if (($visibilityFilter === 'unit' || !$visibilityFilter) && $user->can('view unit documents')) {
+                    $query->orWhere(function ($q) use ($user) {
+                        $q->where('visibility', 'unit')
+                            ->where('unit_id', $user->unit_id)
+                            ->where('location_type', $user->location_type);
+                    });
+                }
+            });
+
+        // Paginate results (10 per page)
+        $files = $filesQuery->paginate(12);
+
+        return view('filemanagement.archived-files', compact('files', 'visibilityFilter'));
     }
+
+
 
 
 

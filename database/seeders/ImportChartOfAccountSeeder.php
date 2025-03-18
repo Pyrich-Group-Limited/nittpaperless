@@ -18,6 +18,11 @@ class ImportChartOfAccountSeeder extends Seeder
     {
         $filePath = storage_path('app/chartOfAccounts.xlsx');
 
+        if (!file_exists($filePath)) {
+            $this->command->error("File not found: $filePath");
+            return;
+        }
+
         // Load the Excel file
         $data = Excel::toArray([], $filePath);
 

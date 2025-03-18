@@ -798,7 +798,7 @@
                                                     <a class="dash-link" href="{{route('report.profit.loss')}}">{{__('Profit & Loss')}}</a>
                                                 </li>
                                             @endcan
-                                            @can('trial balance')
+                                            @can('show trial balance')
                                                 <li class="dash-item {{ (Request::route()->getName() == 'trial.balance' ) ? ' active' : '' }}">
                                                     <a class="dash-link" href="{{route('trial.balance')}}">{{__('Trial Balance')}}</a>
                                                 </li>
@@ -822,11 +822,11 @@
                                         <a class="dash-link" href="{{ route('taxes.index') }}">{{__('Accounting Setup')}}</a>
                                     </li>
                                 @endcan
-                                @can('show print setup')
+                                {{-- @can('show print setup')
                                     <li class="dash-item {{ (Request::route()->getName() == 'print-setting') ? ' active' : '' }}">
                                         <a class="dash-link" href="{{ route('print.setting') }}">{{__('Print Settings')}}</a>
                                     </li>
-                                @endcan
+                                @endcan --}}
                             </ul>
                         </li>
                     @endif

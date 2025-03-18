@@ -50,13 +50,13 @@
                 function callback() {
                     var start_date = $(".startDate").val();
                     var end_date = $(".endDate").val();
-    
+
                     $('.start_date').val(start_date);
                     $('.end_date').val(end_date);
-    
+
                 }
                 });
-    
+
         </script>
 
 
@@ -82,7 +82,7 @@
         {{ Form::close() }}
     </div>
 
-    
+
 
     <div class="float-end me-2" id="filter">
         <button id="filter" class="btn btn-sm btn-primary"><i class="ti ti-filter"></i></button>
@@ -183,7 +183,7 @@
                                                     $totalCredit = 0;
                                                     $totalDebit = 0;
                                                     $totalBalance = 0;
-                                                    
+
                                                     $totalCredit += $record['totalCredit'];
                                                     $totalDebit += $record['totalDebit'];
                                                     $getAccount = \App\Models\ChartOfAccount::where('name', $record['account_name'])->first();
@@ -215,8 +215,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="account-main-title mb-5">
-                            <h5>{{ 'Balance Sheet of ' . $user->name . ' as of ' . $filter['startDateRange'] . ' to ' . $filter['endDateRange'] }}
-                                </h4>
+                            {{-- <h5>{{ 'Balance Sheet of ' . $user->name . ' as of ' . $filter['startDateRange'] . ' to ' . $filter['endDateRange'] }}
+                                </h5> --}}
+                                <h5>{{ 'Balance Sheet of ' . ($user->name ?? 'Unknown User') . ' as of ' . ($filter['startDateRange'] ?? 'N/A') . ' to ' . ($filter['endDateRange'] ?? 'N/A') }}</h5>
+
                         </div>
                         <div
                             class="aacount-title d-flex align-items-center justify-content-between border-top border-bottom py-2">

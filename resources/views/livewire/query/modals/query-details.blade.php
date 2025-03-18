@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Query Details</h5>
-                    
+
                 </div>
                 <div class="modal-body">
                     <div class="modal-body">
@@ -20,10 +20,12 @@
                                                         width: 200px !important;
                                                     }
                                                 </style>
+                                                @canany(['raise query', 'assign query'])
                                                 <tr>
                                                     <th scope="row">Raiser Name</th>
                                                     <td>{{ $selQuery->raiser->name ?? '' }}</td>
                                                 </tr>
+                                                @endcanany
                                                 <tr>
                                                     <th scope="row">Query For: </th>
                                                     <td>{{ $selQuery->staff->name ?? ''}}</td>
@@ -72,7 +74,7 @@
                                 </div>
 
                             </div>
-                       
+
                         </div>
                         <div class="modal-footer">
                             <div wire:loading wire:target="setActionId"><x-g-loader /></div>

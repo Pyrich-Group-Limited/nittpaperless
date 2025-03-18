@@ -18,7 +18,7 @@ class AuditRequisitionApprovalComponent extends Component
     public $actionId;
 
     public $chartAccount;
-    public $secretCode; // To store the secret code input
+    public $secretCode;
     public $showSecretCodeModal = false;
 
     public function mount()
