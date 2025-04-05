@@ -169,15 +169,6 @@ class UsersComponent extends Component
         assignPermissionsToRole($role, $userType); // Call the helper function
         $user->assignRole($role); // Assign the role to the user
 
-        // Get department name
-        // $department = Department::find($this->department);
-        // if ($department) {
-        //     $permissions = getDepartmentPermissions($department->name);
-        //     if (!empty($permissions)) {
-        //         $user->givePermissionTo($permissions);
-        //     }
-        // }
-
         $department = Department::find($user->department_id);
         $unit = Unit::find($user->unit_id);
 
@@ -242,8 +233,6 @@ class UsersComponent extends Component
             'ippis' => $this->ippis,
             'level' => $this->level,
         ]);
-
-
         // $this->reset();
         $this->dispatchBrowserEvent('success',["success" =>"User Successfully Updated"]);
     }
@@ -290,33 +279,84 @@ class UsersComponent extends Component
         $this->user_role = ucwords($this->selUser->type);
     }
 
+    // public function uploadUser()
+    // {
+    //     set_time_limit(0);
+    //     $this->validate([
+    //         'uploadFile' => ['required','file','mimes:xlsx,csv,xls'],
+    //     ]);
+
+    //     $sn = 0;
+
+    //     try{
+    //         $staffs  = Excel::toArray(new UsersImport, $this->uploadFile);
+
+    //         foreach($staffs[0] as $row){
+    //             $this->uploadUserRecord($row);
+    //         }
+
+    //         if(count($this->failed_upload)>0){
+    //             $this->dispatchBrowserEvent('error',['error'=>'Some staff were not uploaded. Kindly download the failed excel record to ensure they are currently inputed']);
+    //         }else{
+    //             $this->dispatchBrowserEvent('success',['success'=>'Upload Successful']);
+    //         }
+
+    //     }catch(Throwable $e){
+    //         return back()->with('error','There was an error uploading record kindly ensure your data is properly arranged and upload again');
+    //     }
+    // }
+
     public function uploadUser()
     {
         set_time_limit(0);
+
         $this->validate([
             'uploadFile' => ['required','file','mimes:xlsx,csv,xls'],
         ]);
 
-        $sn = 0;
+        try {
+            $staffs = Excel::toArray(new UsersImport, $this->uploadFile);
 
-        try{
-            $staffs  = Excel::toArray(new UsersImport, $this->uploadFile);
+            foreach ($staffs[0] as $row) {
+                $user = $this->uploadUserRecord($row); // Make sure this returns the created user
 
-            foreach($staffs[0] as $row){
-                $this->uploadUserRecord($row);
+                if ($user) {
+                    $userType = $user->type ?? 'Staff'; // or however your user type is set
+
+                    // Assign role
+                    $role = Role::firstOrCreate(['name' => $userType]);
+                    assignPermissionsToRole($role, $userType);
+                    $user->assignRole($role);
+
+                    $department = Department::find($user->department_id);
+                    $unit = Unit::find($user->unit_id);
+
+                    $departmentPermissions = getDepartmentPermissions($department->name ?? '');
+                    $unitPermissions = getUnitPermissions($unit->name ?? '');
+
+                    $allPermissions = array_merge($departmentPermissions, $unitPermissions);
+
+                    if (!empty($allPermissions)) {
+                        $user->givePermissionTo($allPermissions);
+                    }
+                }
             }
 
-
-            if(count($this->failed_upload)>0){
-                $this->dispatchBrowserEvent('error',['error'=>'Some staff were not uploaded. Kindly download the failed excel record to ensure they are currently inputed']);
-            }else{
-                $this->dispatchBrowserEvent('success',['success'=>'Upload Successful']);
+            if (count($this->failed_upload) > 0) {
+                $this->dispatchBrowserEvent('error', [
+                    'error' => 'Some staff were not uploaded. Kindly download the failed excel record to ensure they are correctly inputted.'
+                ]);
+            } else {
+                $this->dispatchBrowserEvent('success', [
+                    'success' => 'Upload Successful'
+                ]);
             }
 
-        }catch(Throwable $e){
-            return back()->with('error','There was an error uploading record kindly ensure your data is properly arranged and upload again');
+        } catch (Throwable $e) {
+            return back()->with('error', 'There was an error uploading record. Kindly ensure your data is properly arranged and try again.');
         }
     }
+
 
     //to download failed upload records
     public function downloadFailedUpload(){
@@ -341,95 +381,189 @@ class UsersComponent extends Component
         ];
     }
 
-    public function uploadUserRecord($row){
+    // public function uploadUserRecord($row){
+    //     set_time_limit(0);
+    //     $subunit = null;
+    //     $units = null;
+    //     $departments = Department::where('name',$row['4'])->first();
+    //     $designations = Designation::where('name',$row['8'])->first();
+    //     if($designations==null){
+    //         $designations = Designation::Create([
+    //             'name' => $row['8']
+    //         ]);
+    //     }
+    //     if($departments!=null){
+    //         $units = Unit::where('name',$row[5])->first();
+    //         // $units = Unit::where('name',$row[5])->where('department_id',$departments->id)->first();
+    //     }else{
+    //         $departments = Department::create([
+    //             'name' => $row['4'],
+    //             'category' => "department",
+    //         ]);
+    //     }
+
+    //     if($units!=null){
+    //         $subunit = SubUnit::where('name',$row[6])->first();
+    //         // $subunit = SubUnit::where('name',$row[6])->where('unit_id',$units->id)->first();
+    //     }else{
+    //         $units = Unit::create([
+    //             'department_id' => $departments->id,
+    //             'name' => $row[5]
+    //         ]);
+
+    //         $subunit = SubUnit::where('name',$row[5])->first();
+
+    //         if($subunit!=null){
+    //             $subunit = Subunit::create([
+    //                 'unit_id' => $units->id,
+    //                 'name' => $row[6]
+    //             ]);
+    //         }
+
+    //     }
+    //     $lisasonOffice = null;
+    //     $location = strtolower($row[2]);
+    //     $location_type = strtolower($row[3]);
+    //     $selRole = $row[7]=="Human Resource (HR)"? "client" : strtolower($row[7]);
+    //     $role = Role::where('name',$row[7])->first();
+
+    //     if(($location == "headquarters" && $location_type=="department") || ($location == "headquarters" && $location_type=="directorate")){
+    //         $lisasonOffice = strtolower($row[3]);
+    //     }else{
+    //         $lisasonOffice = strtolower($row[3]);
+    //         // $lisasonOffice = LiasonOffice::where('id',strtolower($row[3]))->first()->name;
+
+    //     }
+
+    //     if($departments==null){
+    //         $this->setFailedUpload($row,"Invalid Department");
+    //     }elseif($designations==null){
+    //         $this->setFailedUpload($row,"Invalid Designation");
+    //     }elseif($lisasonOffice==null){
+    //         $this->setFailedUpload($row,"Invalid Liason Office");
+    //     }elseif($location_type==null){
+    //         $this->setFailedUpload($row,"Invalid Office Category");
+    //     }elseif($units==null){
+    //         $this->setFailedUpload($row,"Invalid Department Unit");
+    //     }elseif($role==null){
+    //         $this->setFailedUpload($row,"Invalid User Role");
+    //     }else{
+    //         $valUser = User::where('email',$row[1])->first();
+    //         if($valUser==null){
+    //             $user = User::create([
+    //                 'ippis'  =>"",
+    //                 'designation'  => $row[8],
+    //                 'name' => $row[0],
+    //                 'email' => $row[1],
+    //                 'type' => $role->name,
+    //                 'location' => ucwords($location),
+    //                 'location_type' =>   ucwords($lisasonOffice),
+    //                 'department_id' => $departments->id,
+    //                 'unit_id' => $units,
+    //                 'sub_unit_id' => $subunit!=null? $subunit->id : null ,
+    //                 'level' => $row[9],
+    //                 'password' =>bcrypt('12345678'),
+    //             ]);
+
+    //              // Assign role and permissions
+    //             assignPermissionsToRole($role, $role->name); // Custom helper function (if available)
+    //             $user->assignRole($role);
+
+    //             $departmentPermissions = getDepartmentPermissions($departments->name ?? '');
+    //             $unitPermissions = getUnitPermissions($units->name ?? '');
+
+    //             $allPermissions = array_merge($departmentPermissions, $unitPermissions);
+
+    //             if (!empty($allPermissions)) {
+    //                 $user->givePermissionTo($allPermissions);
+    //             }
+    //             // $this->sendMail($user);
+
+    //         }
+    //     }
+    // }
+
+    public function uploadUserRecord($row)
+    {
         set_time_limit(0);
+
         $subunit = null;
         $units = null;
-        $departments = Department::where('name',$row['4'])->first();
-        $designations = Designation::where('name',$row['8'])->first();
-        if($designations==null){
-            $designations = Designation::Create([
-                'name' => $row['8']
-            ]);
-        }
-        if($departments!=null){
-            $units = Unit::where('name',$row[5])->first();
-            // $units = Unit::where('name',$row[5])->where('department_id',$departments->id)->first();
-        }else{
+
+        $departments = Department::where('name', $row[4])->first();
+        $designations = Designation::firstOrCreate(['name' => $row[8]]);
+
+        if (!$departments) {
             $departments = Department::create([
-                'name' => $row['4'],
+                'name' => $row[4],
                 'category' => "department",
             ]);
         }
 
-        if($units!=null){
-            $subunit = SubUnit::where('name',$row[6])->first();
-            // $subunit = SubUnit::where('name',$row[6])->where('unit_id',$units->id)->first();
-        }else{
+        if ($departments) {
+            $units = Unit::where('name', $row[5])->first();
+        }
+
+        if (!$units) {
             $units = Unit::create([
                 'department_id' => $departments->id,
-                'name' => $row[5]
+                'name' => $row[5],
             ]);
-
-            $subunit = SubUnit::where('name',$row[5])->first();
-
-            if($subunit==null){
-                $subunit = Subunit::create([
-                    'unit_id' => $units->id,
-                    'name' => $row[6]
-                ]);
-            }
-
         }
-        $lisasonOffice = null;
+
+        $subunit = SubUnit::firstOrCreate([
+            'unit_id' => $units->id,
+            'name' => $row[6] ?? '',
+        ]);
+
         $location = strtolower($row[2]);
         $location_type = strtolower($row[3]);
-        $selRole = $row[7]=="Human Resource (HR)"? "client" : strtolower($row[7]);
-        $role = Role::where('name',$row[7])->first();
+        $lisasonOffice = strtolower($row[3]);
 
-        if(($location == "headquarters" && $location_type=="department") || ($location == "headquarters" && $location_type=="directorate")){
-            $lisasonOffice = strtolower($row[3]);
-        }else{
-            $lisasonOffice = strtolower($row[3]);
-            // $lisasonOffice = LiasonOffice::where('id',strtolower($row[3]))->first()->name;
+        $roleName = $row[7] === "Human Resource (HR)" ? "client" : strtolower($row[7]);
+        $role = Role::firstOrCreate(['name' => $row[7]]);
 
+        if (!$departments || !$designations || !$lisasonOffice || !$location_type || !$units || !$role) {
+            $this->setFailedUpload($row, "Invalid Data: Check department, designation, location or role");
+            return null;
         }
 
-        if($departments==null){
-            $this->setFailedUpload($row,"Invalid Department");
-        }elseif($designations==null){
-            $this->setFailedUpload($row,"Invalid Designation");
-        }elseif($lisasonOffice==null){
-            $this->setFailedUpload($row,"Invalid Liason Office");
-        }elseif($location_type==null){
-            $this->setFailedUpload($row,"Invalid Office Category");
-        }elseif($units==null){
-            $this->setFailedUpload($row,"Invalid Department Unit");
-        }elseif($role==null){
-            $this->setFailedUpload($row,"Invalid User Role");
-        }else{
-            $valUser = User::where('email',$row[1])->first();
-            if($valUser==null){
-                $user = User::create([
-                    'ippis'  =>"",
-                    'designation'  => $row[8],
-                    'name' => $row[0],
-                    'email' => $row[1],
-                    'type' => $role->name,
-                    'location' => ucwords($location),
-                    'location_type' =>   ucwords($lisasonOffice),
-                    'department_id' => $departments->id,
-                    'unit_id' => $units,
-                    'sub_unit_id' => $subunit!=null? $subunit->id : null ,
-                    'level' => $row[9],
-                    'password' =>bcrypt('12345678'),
-                ]);
+        $valUser = User::where('email', $row[1])->first();
 
-            // $this->sendMail($user);
+        if (!$valUser) {
+            $user = User::create([
+                'ippis' => "",
+                'designation' => $row[8],
+                'name' => $row[0],
+                'email' => $row[1],
+                'type' => $role->name,
+                'location' => ucwords($location),
+                'location_type' => ucwords($lisasonOffice),
+                'department_id' => $departments->id,
+                'unit_id' => $units->id,
+                'sub_unit_id' => $subunit->id ?? null,
+                'level' => $row[9],
+                'password' => bcrypt('12345678'),
+            ]);
 
+            assignPermissionsToRole($role, $role->name);
+            $user->assignRole($role);
+
+            $departmentPermissions = getDepartmentPermissions($departments->name ?? '');
+            $unitPermissions = getUnitPermissions($units->name ?? '');
+
+            $allPermissions = array_merge($departmentPermissions, $unitPermissions);
+
+            if (!empty($allPermissions)) {
+                $user->givePermissionTo($allPermissions);
             }
+
+            return $user;
         }
+
+        return null;
     }
+
 
     public function getUsers(){
         $users = User::query()

@@ -593,7 +593,6 @@
                                         <a class="dash-link" href="{{ route('get-all-designations') }}">{{__('Designations')}}</a>
                                     </li>
                                 @endcan
-
                                 {{-- @can('manage role')
                                     <li class="dash-item {{ (Request::route()->getName() == 'roles.index' || Request::route()->getName() == 'roles.create' || Request::route()->getName() == 'roles.edit') ? ' active' : '' }} ">
                                         <a class="dash-link" href="{{route('roles.index')}}">{{__('Role')}}</a>

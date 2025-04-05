@@ -1319,6 +1319,12 @@ if (!function_exists('getDepartmentPermissions')) {
                 'edit announcement',
                 'delete announcement',
             ],
+
+            'ICT Department' => [
+                'manage user',
+                'create department',
+                'manage department',
+            ]
         ];
 
         // Return the permissions for the given department or an empty array

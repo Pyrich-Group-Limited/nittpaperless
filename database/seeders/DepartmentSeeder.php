@@ -333,45 +333,45 @@ class DepartmentSeeder extends Seeder
                     'name' => "Machine Tools"
                 ]);
 
-        $department = Department::create([
-            'name' => "Legal",
-            'category' => "directorate",
-        ]);
+        // $department = Department::create([
+        //     'name' => "Legal",
+        //     'category' => "directorate",
+        // ]);
 
-        $department = Department::create([
-            'name' => "Servicom",
-            'category' => "directorate",
-        ]);
+        // $department = Department::create([
+        //     'name' => "Servicom",
+        //     'category' => "directorate",
+        // ]);
 
-        $department = Department::create([
-            'name' => "Annexes",
-            'category' => "directorate",
-        ]);
+        // $department = Department::create([
+        //     'name' => "Annexes",
+        //     'category' => "directorate",
+        // ]);
 
-        $department = Department::create([
-            'name' => "Procurements",
-            'category' => "directorate",
-        ]);
+        // $department = Department::create([
+        //     'name' => "Procurements",
+        //     'category' => "directorate",
+        // ]);
 
-        $department = Department::create([
-            'name' => "Procurements",
-            'category' => "directorate",
-        ]);
+        // $department = Department::create([
+        //     'name' => "Procurements",
+        //     'category' => "directorate",
+        // ]);
 
-        $department = Department::create([
-            'name' => "DG's Office",
-            'category' => "directorate",
-        ]);
+        // $department = Department::create([
+        //     'name' => "DG's Office",
+        //     'category' => "directorate",
+        // ]);
 
-        $department = Department::create([
-            'name' => "Special Duty",
-            'category' => "directorate",
-        ]);
+        // $department = Department::create([
+        //     'name' => "Special Duty",
+        //     'category' => "directorate",
+        // ]);
 
-        $department = Department::create([
-            'name' => "Special Duty Department",
-            'category' => "department",
-        ]);
+        // $department = Department::create([
+        //     'name' => "Special Duty Department",
+        //     'category' => "department",
+        // ]);
 
         $department = Department::create([
             'name' => "DG's Office",
