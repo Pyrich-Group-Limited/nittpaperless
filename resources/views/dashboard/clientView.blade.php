@@ -297,7 +297,7 @@
                                                 </div>
                                                 <div class="ms-2">
                                                     <p class="text-muted text-sm mb-0">Total Staff</p>
-                                                    <h4 class="mb-0 text-success">7</h4>
+                                                    <h4 class="mb-0 text-success">{{ App\Models\User::where('type', '!=', 'contractor')->count() }}</h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -308,7 +308,7 @@
                                                 </div>
                                                 <div class="ms-2">
                                                     <p class="text-muted text-sm mb-0">Total Employee</p>
-                                                    <h4 class="mb-0 text-primary">6</h4>
+                                                    <h4 class="mb-0 text-primary">{{ App\Models\Employee::count()}}</h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -319,7 +319,7 @@
                                                 </div>
                                                 <div class="ms-2">
                                                     <p class="text-muted text-sm mb-0">Total Client</p>
-                                                    <h4 class="mb-0 text-danger">1</h4>
+                                                    <h4 class="mb-0 text-danger">{{ App\Models\User::where('type', 'contractor')->count() }}</h4>
 
                                                 </div>
                                             </div>

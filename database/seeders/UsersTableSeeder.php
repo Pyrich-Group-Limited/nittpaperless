@@ -6416,8 +6416,8 @@ class UsersTableSeeder extends Seeder
                 'avatar' => '',
                 'created_by' => $company->id,
                 'designation' => Designation::first()->name,
-                'department_id' => Department::where('name','Special Duty Department')->first()->id,
-                'unit_id' => '',
+                'department_id' => Department::where('name',"DG's Office")->first()->id,
+                'unit_id' => Unit::where('name','Special Duty')->first()->id,
                 'level' => "Level 10",
                 'password_changed' => true,
             ]
@@ -6449,8 +6449,8 @@ class UsersTableSeeder extends Seeder
                 'avatar' => '',
                 'created_by' => $company->id,
                 'designation' => Designation::first()->name,
-                'department_id' => Department::where('name','Servicom')->first()->id,
-                'unit_id' => '',
+                'department_id' => Department::where('name',"DG's Office")->first()->id,
+                'unit_id' => Unit::where('name','Servicom')->first()->id,
                 'level' => "Level 10",
                 'password_changed' => true,
             ]
