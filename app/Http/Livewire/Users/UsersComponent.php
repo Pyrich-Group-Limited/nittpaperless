@@ -192,7 +192,7 @@ class UsersComponent extends Component
     public function sendMail($user,$password){
         $url = url('login/');
         try{
-            Mail::to($user)->queue(new StaffProfileMail($user,$url,$password));
+            Mail::to($user)->queue(new StaffProfileMail($user,$url,"12345678"));
         }catch (\Exception $e) { }
 
     }
@@ -545,9 +545,10 @@ class UsersComponent extends Component
                 'level' => $row[9],
                 'password' => bcrypt('12345678'),
             ]);
-
             assignPermissionsToRole($role, $role->name);
             $user->assignRole($role);
+          
+            $this->sendMail($user,"12345678");
 
             $departmentPermissions = getDepartmentPermissions($departments->name ?? '');
             $unitPermissions = getUnitPermissions($units->name ?? '');

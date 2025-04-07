@@ -15,6 +15,7 @@ class StaffProfileMail extends Mailable
 
     public $user;
     public $url;
+    public $password;
 
     /**
      * Create a new message instance.
