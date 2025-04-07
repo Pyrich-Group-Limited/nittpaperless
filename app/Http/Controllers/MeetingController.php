@@ -43,141 +43,242 @@ class MeetingController extends Controller
         }
     }
 
+    // public function create()
+    // {
+    //     if(\Auth::user()->can('create meeting'))
+    //     {
+    //         if(Auth::user()->type == 'Employee')
+    //         {
+    //             $employees = Employee::where('created_by', '=', \Auth::user()->creatorId())->where('user_id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
+    //             $settings = Utility::settings();
+    //         }
+    //         else
+    //         {
+    //             $branch      = Branch::where('created_by', '=', \Auth::user()->creatorId())->get();
+    //             $departments = Department::where('created_by', '=', Auth::user()->creatorId())->get();
+    //             $employees   = Employee::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+    //             $settings = Utility::settings();
+    //         }
+
+    //         return view('meeting.create', compact('employees', 'departments', 'branch','settings'));
+    //     }
+    //     else
+    //     {
+    //         return response()->json(['error' => __('Permission denied.')], 401);
+    //     }
+    // }
+
+    // public function store(Request $request)
+    // {
+
+    //     $validator = \Validator::make(
+    //         $request->all(), [
+    //             'branch_id' => 'required',
+    //             'department_id' => 'required',
+    //             'employee_id' => 'required',
+    //             'department_id' => 'required',
+    //             'title' => 'required',
+    //             'date' => 'required',
+    //             'time' => 'required',
+    //         ]
+    //     );
+    //     if($validator->fails())
+    //     {
+    //         $messages = $validator->getMessageBag();
+
+    //         return redirect()->back()->with('error', $messages->first());
+    //     }
+
+    //     if(\Auth::user()->can('create meeting'))
+    //     {
+    //         $meeting                = new Meeting();
+    //         $meeting->branch_id     = $request->branch_id;
+    //         $meeting->department_id = json_encode($request->department_id);
+    //         $meeting->employee_id   = json_encode($request->employee_id);
+    //         $meeting->title         = $request->title;
+    //         $meeting->date          = $request->date;
+    //         $meeting->time          = $request->time;
+    //         $meeting->note          = $request->note;
+    //         $meeting->created_by    = \Auth::user()->creatorId();
+
+    //         $meeting->save();
+
+    //         if(in_array('0', $request->employee_id))
+    //         {
+    //             $departmentEmployee = Employee::whereIn('department_id', $request->department_id)->get()->pluck('id');
+    //             $departmentEmployee = $departmentEmployee;
+    //         }
+    //         else
+    //         {
+
+    //             $departmentEmployee = $request->employee_id;
+    //         }
+    //         foreach($departmentEmployee as $employee)
+    //         {
+    //             $meetingEmployee              = new MeetingEmployee();
+    //             $meetingEmployee->meeting_id  = $meeting->id;
+    //             $meetingEmployee->employee_id = $employee;
+    //             $meetingEmployee->created_by  = \Auth::user()->creatorId();
+    //             $meetingEmployee->save();
+    //         }
+
+    //         //For Google Calendar
+    //         if($request->get('synchronize_type')  == 'google_calender')
+    //         {
+    //             $type ='meeting';
+    //             $request1=new Meeting();
+    //             $request1->title=$request->title;
+    //             $request1->start_date=$request->date;
+    //             $request1->end_date=$request->date;
+    //             Utility::addCalendarData($request1 , $type);
+    //         }
+
+    //         //webhook
+    //         $module ='New Meeting';
+    //         $webhook =  Utility::webhookSetting($module);
+    //         if($webhook)
+    //         {
+    //             $parameter = json_encode($meetingEmployee);
+    //             $status = Utility::WebhookCall($webhook['url'],$parameter,$webhook['method']);
+    //             if($status == true)
+    //             {
+    //                 return redirect()->route('meeting.index')->with('success', __('Meeting  successfully created.'));
+    //             }
+    //             else
+    //             {
+    //                 return redirect()->back()->with('error', __('Webhook call failed.'));
+    //             }
+    //         }
+
+    //         return redirect()->route('meeting.index')->with('success', __('Meeting  successfully created.'));
+    //     }
+    //     else
+    //     {
+    //         return redirect()->back()->with('error', __('Permission denied.'));
+    //     }
+    // }
+
+    // public function getDepartmentEmployees(Request $request)
+    // {
+    //     $departmentIds = $request->department_ids;
+
+    //     // Return employees only if departments are selected
+    //     if (!empty($departmentIds)) {
+    //         $employees = Employee::whereIn('department_id', $departmentIds)->pluck('name', 'id');
+    //         return response()->json(['employees' => $employees]);
+    //     }
+        
+    //     return response()->json(['employees' => []]);
+    // }
+
+    public function getDepartmentEmployees(Request $request)
+    {
+        $employees = Employee::whereIn('department_id', $request->department_ids)->pluck('name', 'id')->toArray();
+
+        return response()->json([
+            'success' => true,
+            'employees' => $employees
+        ]);
+    }
+
+
+
     public function create()
     {
-        if(\Auth::user()->can('create meeting'))
-        {
-            if(Auth::user()->type == 'Employee')
-            {
-                $employees = Employee::where('created_by', '=', \Auth::user()->creatorId())->where('user_id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
-                $settings = Utility::settings();
-            }
-            else
-            {
-                $branch      = Branch::where('created_by', '=', \Auth::user()->creatorId())->get();
-                $departments = Department::where('created_by', '=', Auth::user()->creatorId())->get();
-                $employees   = Employee::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
-                $settings = Utility::settings();
-            }
+        if (\Auth::user()->can('create meeting')) {
+            $departments = Department::all();
+            $employees = Employee::pluck('name', 'id');
+            $settings = Utility::settings();
 
-            return view('meeting.create', compact('employees', 'departments', 'branch','settings'));
-        }
-        else
-        {
+            return view('meeting.create', compact('employees', 'departments', 'settings'));
+        } else {
             return response()->json(['error' => __('Permission denied.')], 401);
         }
     }
-
+    
     public function store(Request $request)
     {
-
         $validator = \Validator::make(
             $request->all(), [
-                'branch_id' => 'required',
-                'department_id' => 'required',
-                'employee_id' => 'required',
-                'department_id' => 'required',
+                'department_id' => 'required|array',
+                'employee_id' => 'required|array',
                 'title' => 'required',
-                'date' => 'required',
+                'date' => 'required|date',
                 'time' => 'required',
             ]
         );
-        if($validator->fails())
-        {
-            $messages = $validator->getMessageBag();
 
-            return redirect()->back()->with('error', $messages->first());
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->getMessageBag()->first());
         }
 
-        if(\Auth::user()->can('create meeting'))
-        {
-            $meeting                = new Meeting();
-            $meeting->branch_id     = $request->branch_id;
-            $meeting->department_id = json_encode($request->department_id);
-            $meeting->employee_id   = json_encode($request->employee_id);
-            $meeting->title         = $request->title;
-            $meeting->date          = $request->date;
-            $meeting->time          = $request->time;
-            $meeting->note          = $request->note;
-            $meeting->created_by    = \Auth::user()->creatorId();
-
-            $meeting->save();
-
-            if(in_array('0', $request->employee_id))
-            {
-                $departmentEmployee = Employee::whereIn('department_id', $request->department_id)->get()->pluck('id');
-                $departmentEmployee = $departmentEmployee;
-            }
-            else
-            {
-
-                $departmentEmployee = $request->employee_id;
-            }
-            foreach($departmentEmployee as $employee)
-            {
-                $meetingEmployee              = new MeetingEmployee();
-                $meetingEmployee->meeting_id  = $meeting->id;
-                $meetingEmployee->employee_id = $employee;
-                $meetingEmployee->created_by  = \Auth::user()->creatorId();
-                $meetingEmployee->save();
-            }
-
-
-            //For Notification
-            // $setting  = Utility::settings(\Auth::user()->creatorId());
-            // $branch = Branch::find($request->branch_id);
-            // $meetingNotificationArr = [
-            //     'meeting_title' =>  $request->title,
-            //     'branch_name' =>  $branch->name ?? '',
-            //     'meeting_date' =>  $request->date,
-            //     'meeting_time' =>  $request->time,
-            // ];
-            // //Slack Notification
-            // if(isset($setting['support_notification']) && $setting['support_notification'] ==1)
-            // {
-            //     Utility::send_slack_msg('new_meeting', $meetingNotificationArr);
-            // }
-            // //Telegram Notification
-            // if(isset($setting['telegram_meeting_notification']) && $setting['telegram_meeting_notification'] ==1)
-            // {
-            //     Utility::send_telegram_msg('new_meeting', $meetingNotificationArr);
-            // }
-
-            //For Google Calendar
-            if($request->get('synchronize_type')  == 'google_calender')
-            {
-                $type ='meeting';
-                $request1=new Meeting();
-                $request1->title=$request->title;
-                $request1->start_date=$request->date;
-                $request1->end_date=$request->date;
-                Utility::addCalendarData($request1 , $type);
-            }
-
-            //webhook
-            $module ='New Meeting';
-            $webhook =  Utility::webhookSetting($module);
-            if($webhook)
-            {
-                $parameter = json_encode($meetingEmployee);
-                $status = Utility::WebhookCall($webhook['url'],$parameter,$webhook['method']);
-                if($status == true)
-                {
-                    return redirect()->route('meeting.index')->with('success', __('Meeting  successfully created.'));
-                }
-                else
-                {
-                    return redirect()->back()->with('error', __('Webhook call failed.'));
-                }
-            }
-
-            return redirect()->route('meeting.index')->with('success', __('Meeting  successfully created.'));
-        }
-        else
-        {
+        if (!\Auth::user()->can('create meeting')) {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
+
+        // Handle "All Departments" (id = 0)
+        $selectedDepartments = $request->department_id;
+        if (in_array(0, $selectedDepartments)) {
+            // $selectedDepartments = Department::where('created_by', \Auth::user()->creatorId())->pluck('id')->toArray();
+            $selectedDepartments = Department::pluck('id')->toArray();
+        }
+
+        // Handle "All Employees" (id = 0)
+        $selectedEmployees = $request->employee_id;
+        if (in_array(0, $selectedEmployees)) {
+            $selectedEmployees = Employee::whereIn('department_id', $selectedDepartments)->pluck('id')->toArray();
+        }
+
+        // Create Meeting
+        $meeting = new Meeting();
+        $meeting->department_id = json_encode($selectedDepartments);
+        $meeting->employee_id = json_encode($selectedEmployees);
+        $meeting->title = $request->title;
+        $meeting->date = $request->date;
+        $meeting->time = $request->time;
+        $meeting->note = $request->note;
+        $meeting->created_by = \Auth::user()->creatorId();
+        $meeting->save();
+
+        // Insert into MeetingEmployee table
+        foreach ($selectedEmployees as $employeeId) {
+            MeetingEmployee::create([
+                'meeting_id' => $meeting->id,
+                'employee_id' => $employeeId,
+                'created_by' => \Auth::user()->creatorId(),
+            ]);
+        }
+
+        // Google Calendar Sync
+        if ($request->get('synchronize_type') == 'google_calender') {
+            $type = 'meeting';
+            $request1 = new Meeting();
+            $request1->title = $request->title;
+            $request1->start_date = $request->date;
+            $request1->end_date = $request->date;
+            Utility::addCalendarData($request1, $type);
+        }
+
+        // Webhook
+        $module = 'New Meeting';
+        $webhook = Utility::webhookSetting($module);
+        if ($webhook) {
+            $parameter = json_encode([
+                'meeting_id' => $meeting->id,
+                'employees' => $selectedEmployees,
+            ]);
+            $status = Utility::WebhookCall($webhook['url'], $parameter, $webhook['method']);
+            if ($status) {
+                return redirect()->route('meeting.index')->with('success', __('Meeting successfully created.'));
+            } else {
+                return redirect()->back()->with('error', __('Webhook call failed.'));
+            }
+        }
+
+        return redirect()->route('meeting.index')->with('success', __('Meeting successfully created.'));
     }
+
+
 
     public function show(Meeting $meeting)
     {

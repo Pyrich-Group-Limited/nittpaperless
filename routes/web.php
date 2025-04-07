@@ -1186,6 +1186,7 @@ Route::resource('event', EventController::class)->middleware(['auth', 'XSS']);
 Route::post('meeting/getdepartment', [MeetingController::class, 'getdepartment'])->name('meeting.getdepartment')->middleware(['auth','XSS']);
 Route::post('meeting/getemployee', [MeetingController::class, 'getemployee'])->name('meeting.getemployee')->middleware(['auth','XSS']);
 Route::resource('meeting', MeetingController::class)->middleware(['auth', 'XSS']);
+Route::post('/get-department-employees', [\App\Http\Controllers\MeetingController::class, 'getDepartmentEmployees'])->name('get.department.employees');
 
 Route::resource('trainingtype', TrainingTypeController::class)->middleware(['auth', 'XSS']);
 Route::resource('trainer', TrainerController::class)->middleware(['auth', 'XSS']);

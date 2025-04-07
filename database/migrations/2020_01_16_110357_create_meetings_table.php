@@ -16,7 +16,7 @@ class CreateMeetingsTable extends Migration
         Schema::create(
             'meetings', function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->integer('branch_id');
+            $table->integer('branch_id')->nullable();
             $table->longText('department_id');
             $table->longText('employee_id');
             $table->string('title');

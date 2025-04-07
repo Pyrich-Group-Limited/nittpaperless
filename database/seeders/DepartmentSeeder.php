@@ -260,6 +260,56 @@ class DepartmentSeeder extends Seeder
 
             Unit::create([
                 'department_id' => $department->id,
+                'name' => "Environmental and Energy Engineering"
+            ]);
+
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Civil and Highway Engineering"
+            ]);
+
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Electrical and Electronics Engineering"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Mechatronics Engineering"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Welding and Fabrication Engineering"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Health and Safety"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Computer and ICT"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Shipping and Logistics"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Driving Academy"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Skill Acquisition and Entrepreneurship"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "National Vocational Certificate"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
+                'name' => "Multi-Lingual"
+            ]);
+            Unit::create([
+                'department_id' => $department->id,
                 'name' => "Laboratories"
             ]);
 
@@ -293,15 +343,19 @@ class DepartmentSeeder extends Seeder
                 ]);
                 Subunit::create([
                     'unit_id' => $unit->id,
-                    'name' => "  Dynamometer Laboratory"
+                    'name' => " Dynamometer Laboratory"
                 ]);
                 Subunit::create([
                     'unit_id' => $unit->id,
-                    'name' => " Artificial Intelligence/ UAV"
+                    'name' => "Artificial Intelligence/ UAV"
                 ]);
                 Subunit::create([
                     'unit_id' => $unit->id,
-                    'name' => " Simulator Laboratory"
+                    'name' => "Simulator Laboratory"
+                ]);
+                Subunit::create([
+                    'unit_id' => $unit->id,
+                    'name' => "Dynamometer Laboratory"
                 ]);
 
             Unit::create([
