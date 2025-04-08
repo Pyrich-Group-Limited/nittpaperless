@@ -1285,8 +1285,6 @@
                         </a>
                     </li>
                 </ul>
-            {{-- @endif --}}
-            {{-- @endif --}}
             @endif
         </div>
     </div>
