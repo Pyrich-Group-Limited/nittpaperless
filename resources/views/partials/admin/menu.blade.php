@@ -73,6 +73,47 @@
                         </li>
                     {{-- @endcan --}}
 
+                    <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'memos' || Request::segment(1) == 'files'
+                            || Request::segment(1) == 'folders'  || Request::segment(1) == 'archived')?' active dash-trigger':''}}">
+                        <a href="#!" class="dash-link active dash-trigger"
+                        ><span class="dash-micon"><i class="ti ti-files"></i></span
+                            ><span class="dash-mtext">{{__('Document Mgt')}}</span
+                            ><span class="dash-arrow"><i data-feather="chevron-right"></i></span
+                            ></a>
+                            <ul class="dash-submenu">
+                                <li class="dash-item">
+                                    <a class="dash-link" href="{{ route('memos.index') }}">{{__('Memo/Letters')}}</a>
+                                </li>
+                                <li class="dash-item dash-hasmenu  {{ (Request::segment(1) == 'leave' || Request::segment(1) == 'attendanceemployee') ? 'active dash-trigger' :''}}">
+                                    <a class="dash-link" href="#">{{__('Files/Documents')}}<span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                    <ul class="dash-submenu">
+                                        @canany(['view department folders', 'view unit folders'])
+                                            <li class="dash-item">
+                                                <a class="dash-link" href="{{ route('folders.index') }}">{{__('Document Folders')}}</a>
+                                            </li>
+                                        @endcanany
+
+                                        @canany(['view department documents', 'view unit documents'])
+                                            <li class="dash-item">
+                                                <a class="dash-link" href="{{ route('file.index') }}">{{__('Documents')}}</a>
+                                            </li>
+                                            <li class="dash-item ">
+                                                <a class="dash-link" href={{ route('sharedfiles.index') }}>{{__('Shared')}}</a>
+                                            </li>
+                                            <li class="dash-item ">
+                                                <a class="dash-link" href="{{ route('files.archived') }}">{{__('Archived')}}</a>
+                                            </li>
+                                        @endcanany
+                                    </ul>
+                                </li>
+                                @can('manage document')
+                                    <li class="dash-item {{ (request()->is('document-upload*') ? 'active' : '')}}">
+                                        <a class="dash-link" href="{{route('document-upload.index')}}">{{__('Document Setup')}}</a>
+                                    </li>
+                                @endcan
+                            </ul>
+                    </li>
+
                     <li class="dash-item dash-hasmenu  ">
                         <a href="#!" class="dash-link {{ (Request::segment(1) == 'business')?'active':'' }}"
                         ><span class="dash-micon"><i class="ti ti-cash"></i></span
@@ -129,6 +170,7 @@
                             ><span class="dash-mtext">{{__('ERGP')}}</span
                             ></a>
                     </li>
+                    
                 </ul>
             @else
 
