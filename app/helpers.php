@@ -1324,6 +1324,7 @@ if (!function_exists('getDepartmentPermissions')) {
     {
         $permissions = [
             'Bursary Department' => [
+                    'view bursary tab',
                     'show reports',
                     'statement report',
                     'invoice report',
@@ -1370,6 +1371,7 @@ if (!function_exists('getDepartmentPermissions')) {
 
                 ],
             'Registry Department' => [
+                'view registry tab',
                 'create employee',
                 'manage employee',
                 'create meeting',
@@ -1411,6 +1413,7 @@ if (!function_exists('getDepartmentPermissions')) {
                 'manage user',
                 'create department',
                 'manage department',
+                'view user management tab'
             ]
         ];
 
@@ -1427,17 +1430,20 @@ if (!function_exists('getUnitPermissions')) {
                 'manage project',
                 'manage contract',
                 'create project',
+                'view pp tab'
             ],
             'Procurement Unit' => [
                 'manage project',
                 'manage client',
                 'manage contract',
                 'create project',
+                'view procurement tab'
             ],
             'Stores' => [
                 'manage stock',
                 'view stock',
                 'manage warehouse',
+                'view store tab'
             ],
         ];
 

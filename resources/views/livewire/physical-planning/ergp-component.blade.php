@@ -66,24 +66,29 @@
                                         <td>₦ {{ number_format($ergp->deficit, 2) }}</td>
                                         <td>{{ $ergp->year }}</td>
                                         <td>
-                                            <div class="action-btn bg-warning ms-2">
-                                                <a href="{{ route('dg.showErgp.expense', $ergp->id) }}"
-                                                    class="mx-3 btn btn-sm d-inline-flex align-items-center"
-                                                    data-url="" data-ajax-popup="false" data-size="lg"
-                                                    data-bs-toggle="tooltip" title="{{ __('Show Details') }}"
-                                                    data-title="{{ __('Show Details') }}">
-                                                    <i class="ti ti-eye text-white"></i>
-                                                </a>
-                                            </div>
-                                            <div class="action-btn bg-info ms-2">
-                                                <a href="#" data-size="lg" data-bs-toggle="modal"
-                                                    data-bs-target="#editProject" id="toggleOldProject"
-                                                    wire:click="selProject({{ $ergp->id }})"
-                                                    data-bs-toggle="tooltip" title="{{ __('Modify Project') }}"
-                                                    class="mx-3 btn btn-sm d-inline-flex align-items-center">
-                                                    <i class="ti ti-pencil text-white"></i>
-                                                </a>
-                                            </div>
+                                            @can('view ergp')
+                                                <div class="action-btn bg-warning ms-2">
+                                                    <a href="{{ route('dg.showErgp.expense', $ergp->id) }}"
+                                                        class="mx-3 btn btn-sm d-inline-flex align-items-center"
+                                                        data-url="" data-ajax-popup="false" data-size="lg"
+                                                        data-bs-toggle="tooltip" title="{{ __('Show Details') }}"
+                                                        data-title="{{ __('Show Details') }}">
+                                                        <i class="ti ti-eye text-white"></i>
+                                                    </a>
+                                                </div>
+                                            @endcan
+
+                                            @can('edit ergp')
+                                                <div class="action-btn bg-info ms-2">
+                                                    <a href="#" data-size="lg" data-bs-toggle="modal"
+                                                        data-bs-target="#editErgp" id="toggleOldProject"
+                                                        wire:click="editErgp({{ $ergp->id }})"
+                                                        data-bs-toggle="tooltip" title="{{ __('Edit ERGP') }}"
+                                                        class="mx-3 btn btn-sm d-inline-flex align-items-center">
+                                                        <i class="ti ti-pencil text-white"></i>
+                                                    </a>
+                                                </div>
+                                            @endcan
                                             <div class="action-btn bg-danger ms-2">
                                                 {{-- {!! Form::open(['method' => 'DELETE', 'route' => ['projects.user.destroy', [$project->id,$user->id]]]) !!} --}}
                                                 <a href="#"
@@ -110,5 +115,6 @@
         </div>
     </div>
     @include('livewire.physical-planning.projects.modals.add-ergp')
+    @include('livewire.physical-planning.projects.modals.edit-ergp')
     <x-toast-notification />
 <div>
