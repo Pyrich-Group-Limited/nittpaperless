@@ -199,7 +199,8 @@
                         </li>
                     @endif
 
-                    @if(Auth::user()->isInDepartment('Registry Department') || Auth::user()->type==='super admin')
+                    {{-- @if(Auth::user()->isInDepartment('Registry Department') || Auth::user()->type==='super admin') --}}
+                    @can('view registry tab')
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'holiday-calender' || Request::segment(1) == 'reports-monthly-attendance'
                                 || Request::segment(1) == 'reports-leave' || Request::segment(1) == 'reports-payroll' || Request::segment(1) == 'leavetype' || Request::segment(1) == 'leave'
                                 || Request::segment(1) == 'attendanceemployee' || Request::segment(1) == 'document-upload' || Request::segment(1) == 'document'
@@ -444,7 +445,8 @@
                                 @endcan
                             </ul>
                         </li>
-                    @endif
+                    @endcan
+                    {{-- @endif --}}
 
                     <li class="dash-item dash-hasmenu ">
                         <a href="#!"
@@ -535,7 +537,8 @@
                         </li>
                     @endif
 
-                    @if(Auth::user()->isInUnit('Procurement Unit') || Auth::user()->type==='super admin')
+                    {{-- @if(Auth::user()->isInUnit('Procurement Unit') || Auth::user()->type==='super admin') --}}
+                    @can('view procurement tab')
                         <li class="dash-item dash-hasmenu {{ ( Request::segment(1) == 'project' || Request::segment(1) == 'bugs-report' || Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' || Request::segment(1) == 'calendar' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'timesheet-list' || Request::segment(1) == 'taskboard' || Request::segment(1) == 'project' || Request::segment(1) == 'projects' || Request::segment(1) == 'project_report')
                             ? 'active dash-trigger' : ''}}">
                             <a href="#!" class="dash-link"
@@ -548,6 +551,8 @@
                                         <li class="dash-item  {{Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' ||Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : ''}}">
                                             <a class="dash-link" href="{{route('created-projects')}}">{{__('Projects')}}</a>
                                         </li>
+                                    @endcan
+                                    @can('manage ergp')
                                         <li class="dash-item  {{Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' ||Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : ''}}">
                                             <a class="dash-link" href="{{route('pp.ergp')}}">{{__('ERGP')}}</a>
                                         </li>
@@ -604,9 +609,11 @@
                                     @endif -->
                                 </ul>
                         </li>
-                    @endif
+                    @endcan
+                    {{-- @endif --}}
 
-                    @if(Auth::user()->isInDepartment('ICT Department') && Auth::user()->isInUnit('Software Unit') || Auth::user()->type==='super admin') 
+                    {{-- @if(Auth::user()->isInDepartment('ICT Department') && Auth::user()->isInUnit('Software Unit') || Auth::user()->type==='super admin')  --}}
+                    @can('view user management tab')
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles'
                             || Request::segment(1) == 'clients'  || Request::segment(1) == 'userlogs')?' active dash-trigger':''}}">
                             <a href="#!" class="dash-link {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''}}"
@@ -647,7 +654,8 @@
                                 @endcan --}}
                             </ul>
                         </li>
-                    @endif
+                    @endcan
+                    {{-- @endif --}}
 
                     @can('show crm dashboard')
                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'stages' || Request::segment(1) == 'labels' || Request::segment(1) == 'sources' || Request::segment(1) == 'lead_stages' || Request::segment(1) == 'pipelines' || Request::segment(1) == 'deals' || Request::segment(1) == 'leads'  || Request::segment(1) == 'form_builder' || Request::segment(1) == 'form_response' || Request::segment(1) == 'contract') ?' active dash-trigger':''}}">
@@ -665,7 +673,8 @@
                         </li>
                     @endcan
 
-                    @if(Auth::user()->isInDepartment('Bursary Department') || Auth::user()->type==='super admin')
+                    {{-- @if(Auth::user()->isInDepartment('Bursary Department') || Auth::user()->type==='super admin') --}}
+                    @can('view bursary tab')
                         <li class="dash-item dash-hasmenu {{ (Request::route()->getName() == 'print-setting' || Request::segment(1) == 'customer' || Request::segment(1) == 'vender' || Request::segment(1) == 'proposal' || Request::segment(1) == 'bank-account' || Request::segment(1) == 'bank-transfer' || Request::segment(1) == 'invoice' || Request::segment(1) == 'revenue' || Request::segment(1) == 'credit-note' || Request::segment(1) == 'taxes' || Request::segment(1) == 'product-category' ||
                                 Request::segment(1) == 'product-unit' || Request::segment(1) == 'payment-method' || Request::segment(1) == 'custom-field' || Request::segment(1) == 'chart-of-account-type' || (Request::segment(1) == 'transaction') &&  Request::segment(2) != 'ledger' &&  Request::segment(2) != 'balance-sheet' &&  Request::segment(2) != 'trial-balance' || Request::segment(1) == 'goal' || Request::segment(1) == 'budget'|| Request::segment(1) ==
                                 'chart-of-account' || Request::segment(1) == 'journal-entry' || Request::segment(2) == 'ledger' ||  Request::segment(2) == 'balance-sheet' ||  Request::segment(2) == 'trial-balance' || Request::segment(1) == 'bill' || Request::segment(1) == 'expense' || Request::segment(1) == 'payment' || Request::segment(1) == 'debit-note')?' active dash-trigger':''}}">
@@ -870,9 +879,11 @@
                                 @endcan --}}
                             </ul>
                         </li>
-                    @endif
+                    @endcan
+                    {{-- @endif --}}
 
-                    @if(Auth::user()->isInUnit('Physical Planing Unit') || Auth::user()->type==='super admin')
+                    @can('view pp tab')
+                    {{-- @if(Auth::user()->isInUnit('Physical Planing Unit') || Auth::user()->type==='super admin') --}}
                         <li class="dash-item dash-hasmenu {{Request::segment(1) == 'physical-planning/projects' || request()->is('physical-planning/projects/*') ? 'active' : ''}}">
                             <a href="#!" class="dash-link"
                             ><span class="dash-micon"><i class="ti ti-list"></i></span
@@ -900,7 +911,8 @@
 
                                 </ul>
                         </li>
-                    @endif
+                    {{-- @endif --}}
+                    @endcan
 
                     <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'memos' || Request::segment(1) == 'files'
                             || Request::segment(1) == 'folders'  || Request::segment(1) == 'archived')?' active dash-trigger':''}}">
@@ -942,7 +954,8 @@
                                 @endcan
                             </ul>
                     </li>
-                    @if(Auth::user()->isInUnit('Stores') || Auth::user()->type==='super admin')
+                    {{-- @if(Auth::user()->isInUnit('Stores') || Auth::user()->type==='super admin') --}}
+                    @can('view store tab')
                         <li class="dash-item dash-hasmenu">
                             <a href="#!" class="dash-link ">
                                 <span class="dash-micon"><i class="ti ti-shopping-cart"></i></span><span class="dash-mtext">{{__('Inventory Mgt')}}</span><span class="dash-arrow">
@@ -965,7 +978,8 @@
 
                             </ul>
                         </li>
-                    @endif
+                    @endcan
+                    {{-- @endif --}}
                         @can('manage budgets')
                             <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
                                 <a href="{{ route('hrm.budget') }}" class="dash-link">
