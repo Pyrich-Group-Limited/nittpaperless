@@ -33,12 +33,18 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <div align="center" wire:loading wire:target="updatePermission"><x-g-loader /></div>
                     <button type="button" class="btn btn-primary" wire:click="updatePermission">
                         Save Changes
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="closePermissions"class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    window.addEventListener('success', event => {
+        document.getElementById("closePermissions").click();
+    })
+</script>
