@@ -954,10 +954,8 @@ Route::resource('clients', ClientController::class)->middleware(['auth', 'XSS'])
 
 Route::any('client-reset-password/{id}', [ClientController::class, 'clientPassword'])->name('clients.reset');
 Route::post('client-reset-password/{id}', [ClientController::class, 'clientPasswordReset'])->name('client.password.update');
-// Deal Module
 
 // Deal Module
-
 Route::post('/deals/user', [DealController::class, 'jsonUser'])->name('deal.user.json');
 Route::post('/deals/order', [DealController::class, 'order'])->name('deals.order')->middleware(['auth', 'XSS']);
 Route::post('/deals/change-pipeline', [DealController::class, 'changePipeline'])->name('deals.change.pipeline')->middleware(['auth', 'XSS']);
@@ -995,7 +993,6 @@ Route::get('/deals/list', [DealController::class, 'deal_list'])->name('deals.lis
 
 
 // Deal Calls
-
 Route::get('/deals/{id}/call', [DealController::class, 'callCreate'])->name('deals.calls.create')->middleware(['auth', 'XSS']);
 Route::post('/deals/{id}/call', [DealController::class, 'callStore'])->name('deals.calls.store')->middleware(['auth']);
 Route::get('/deals/{id}/call/{cid}/edit', [DealController::class, 'callEdit'])->name('deals.calls.edit')->middleware(['auth']);
@@ -1084,10 +1081,7 @@ Route::any('email_template_store/{pid}', [EmailTemplateController::class, 'store
 Route::any('email_template_store', [EmailTemplateController::class, 'updateStatus'])->name('status.email.language')->middleware(['auth']);
 Route::resource('email_template', EmailTemplateController::class)->middleware(['auth', 'XSS']);
 
-// End Email Templates
-
 // HRM
-
 Route::get('registered-users', UsersComponent::class)->name('get-all-users')->middleware(['auth', 'XSS']);
 Route::get('user-permissions/{id}', UserPermission::class)->name('user.permission')->middleware(['auth', 'XSS']);
 Route::resource('user', UserController::class)->middleware(['auth', 'XSS']);
