@@ -14,7 +14,7 @@ class UserPermission extends Component
     public $permissions = []; // Available permissions for the selected module
     public $selModule; // Selected module name
     public $selStaff; // Selected user
-    public $selectAll; // Select All checkbox state
+    public $selectAll = false; // Select All checkbox state
     public $modulePermissions;
 
     public function mount($id)
