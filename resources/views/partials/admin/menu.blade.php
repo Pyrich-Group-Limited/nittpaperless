@@ -93,7 +93,7 @@
                                             </li>
                                         @endcanany
 
-                                        @canany(['view department documents', 'view unit documents'])
+                                        {{-- @canany(['view department documents', 'view unit documents']) --}}
                                             <li class="dash-item">
                                                 <a class="dash-link" href="{{ route('file.index') }}">{{__('Documents')}}</a>
                                             </li>
@@ -103,7 +103,7 @@
                                             <li class="dash-item ">
                                                 <a class="dash-link" href="{{ route('files.archived') }}">{{__('Archived')}}</a>
                                             </li>
-                                        @endcanany
+                                        {{-- @endcanany --}}
                                     </ul>
                                 </li>
                                 @can('manage document')
