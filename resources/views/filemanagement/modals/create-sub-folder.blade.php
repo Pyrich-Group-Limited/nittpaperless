@@ -1,6 +1,6 @@
 <div class="modal fade" id="createSubFolderModal" tabindex="-1" role="dialog" aria-labelledby="createSubFolderModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="{{ route('folder.store') }}" method="POST">
+        <form action="{{ route('folders.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">

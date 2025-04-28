@@ -128,48 +128,98 @@ class FolderController extends Controller
         return view('filemanagement.folders', compact('folders', 'sortOrder', 'filter'));
     }
 
+    public function createFolderModal()
+    {
+        $user = auth()->user(); // ✅ Define user first
 
+        $userDepartmentId = $user->department_id;
+        $userUnitId = $user->unit_id;
+        $userLocationType = $user->location_type;
 
+        $query = Folder::query();
 
+        $query->where(function ($q) use ($user, $userDepartmentId, $userUnitId, $userLocationType) {
+            
+            // Always allow user's own personal folders
+            $q->orWhere(function ($subQuery) use ($user) {
+                $subQuery->where('visibility', 'personal')
+                        ->where('user_id', $user->id);
+            });
 
-    public function createFolderModal(){
-        $folders = Folder::where('department_id',Auth::user()->department_id)
-        ->where('location_type',Auth::user()->location_type)->get();
-        return view('filemanagement.modals.create-folder',compact('folders'));
+            // Department folders if user has permission
+            if ($user->can('view department folders')) {
+                $q->orWhere(function ($subQuery) use ($userDepartmentId, $userLocationType) {
+                    $subQuery->where('visibility', 'department')
+                            ->where('department_id', $userDepartmentId)
+                            ->where('location_type', $userLocationType);
+                });
+            }
+
+            // Unit folders if user has permission
+            if ($user->can('view unit folders')) {
+                $q->orWhere(function ($subQuery) use ($userUnitId, $userLocationType) {
+                    $subQuery->where('visibility', 'unit')
+                            ->where('unit_id', $userUnitId)
+                            ->where('location_type', $userLocationType);
+                });
+            }
+        });
+
+        // Retrieve only top-level folders (parent_id is null)
+        $folders = $query->whereNull('parent_id')->get();
+
+        return view('filemanagement.modals.create-folder', compact('folders'));
     }
+
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'parent_id' => 'nullable|exists:folders,id',
-            'visibility' => 'required|in:department,unit,personal',
+            'visibility' => 'nullable|in:department,unit,personal', // visibility can be nullable now
         ]);
 
-        // Check if the folder is already at the 3rd level
+        $user = Auth::user();
+
         $parentFolder = Folder::find($request->parent_id);
+
+        // Check if trying to create beyond 3 levels
         if ($parentFolder && $parentFolder->parent && $parentFolder->parent->parent) {
             return redirect()->back()->with('error', 'You cannot create more than 3 layers of folders.');
         }
 
-        $user = Auth::user();
+        // Determine visibility
+        $visibility = $request->visibility;
 
-        // Assign department or unit based on the selected visibility
-        $departmentId = $request->visibility === 'department' ? $user->department_id : null;
-        $unitId = $request->visibility === 'unit' ? $user->unit_id : null;
+        if ($parentFolder && !$visibility) {
+            // If no visibility was selected, inherit from parent
+            $visibility = $parentFolder->visibility;
+        }
 
-        Folder::create([
+        // Determine department_id and unit_id based on visibility
+        $departmentId = null;
+        $unitId = null;
+
+        if ($visibility === 'department') {
+            $departmentId = $parentFolder ? $parentFolder->department_id : $user->department_id;
+        } elseif ($visibility === 'unit') {
+            $unitId = $parentFolder ? $parentFolder->unit_id : $user->unit_id;
+        }
+
+        $folder = Folder::create([
             'folder_name' => $request->name,
             'user_id' => $user->id,
             'parent_id' => $request->parent_id,
             'department_id' => $departmentId,
-            'unit_id' => $unitId ?? null,
+            'unit_id' => $unitId,
             'location_type' => $user->location_type,
-            'visibility' => $request->visibility,
+            'visibility' => $visibility ?? 'personal',
         ]);
 
         return redirect()->back()->with('success', 'Folder created successfully.');
     }
+
 
     public function move(Request $request)
     {
