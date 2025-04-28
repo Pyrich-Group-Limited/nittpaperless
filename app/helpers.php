@@ -817,6 +817,10 @@ use Spatie\Permission\Models\Role;
                  'view department folders',
                  'view unit documents',
                  'view unit folders',
+                 'create unit document',
+                'create department document',
+                'create unit folder',
+                'create department folder',
             ],
             "DG/CE's Personal Assistant" => [
                  'manage requisition',
@@ -833,6 +837,11 @@ use Spatie\Permission\Models\Role;
                  'view department folders',
                  'view unit documents',
                  'view unit folders',
+                 'create unit document',
+                'create department document',
+                'create unit folder',
+                'create department folder',
+                
             ],
             "DG/CE's Admin Officer" => [
                  'manage requisition',
@@ -849,6 +858,11 @@ use Spatie\Permission\Models\Role;
                  'view department folders',
                  'view unit documents',
                  'view unit folders',
+                 'create unit document',
+                'create department document',
+                'create unit folder',
+                'create department folder',  
+                
             ],
             "DG/CE's Secretary" => [
                  'manage requisition',
@@ -865,6 +879,10 @@ use Spatie\Permission\Models\Role;
                  'view department folders',
                  'view unit documents',
                  'view unit folders',
+                 'create unit document',
+                 'create department document',
+                 'create unit folder',
+                 'create department folder',
             ],
             "DG/CE's Special Assistant" => [
                  'manage requisition',
@@ -881,6 +899,10 @@ use Spatie\Permission\Models\Role;
                  'view department folders',
                  'view unit documents',
                  'view unit folders',
+                 'create unit document',
+                 'create department document',
+                 'create unit folder',
+                 'create department folder',
             ],
             'supervisor' => [
                 'create folder',
