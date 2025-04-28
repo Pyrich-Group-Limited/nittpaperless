@@ -821,6 +821,11 @@ use Spatie\Permission\Models\Role;
                 'create department document',
                 'create unit folder',
                 'create department folder',
+                'create folder',
+                'view unit folders',
+                'rename folder',
+                'delete folder',
+                'create document',
             ],
             "DG/CE's Personal Assistant" => [
                  'manage requisition',
@@ -841,6 +846,11 @@ use Spatie\Permission\Models\Role;
                 'create department document',
                 'create unit folder',
                 'create department folder',
+                'create folder',
+                'view unit folders',
+                'rename folder',
+                'delete folder',
+                'create document',
                 
             ],
             "DG/CE's Admin Officer" => [
@@ -861,7 +871,12 @@ use Spatie\Permission\Models\Role;
                  'create unit document',
                 'create department document',
                 'create unit folder',
-                'create department folder',  
+                'create department folder',
+                'create folder',
+                'view unit folders',
+                'rename folder',
+                'delete folder',
+                'create document',  
                 
             ],
             "DG/CE's Secretary" => [
@@ -883,6 +898,11 @@ use Spatie\Permission\Models\Role;
                  'create department document',
                  'create unit folder',
                  'create department folder',
+                 'create folder',
+                'view unit folders',
+                'rename folder',
+                'delete folder',
+                'create document',
             ],
             "DG/CE's Special Assistant" => [
                  'manage requisition',
@@ -903,6 +923,11 @@ use Spatie\Permission\Models\Role;
                  'create department document',
                  'create unit folder',
                  'create department folder',
+                 'create folder',
+                'view unit folders',
+                'rename folder',
+                'delete folder',
+                'create document',
             ],
             'supervisor' => [
                 'create folder',
