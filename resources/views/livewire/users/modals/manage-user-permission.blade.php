@@ -16,12 +16,17 @@
                                 @foreach ($permissions as $permission)
                                     <div class="col-md-4">
                                         <div class="form-check form-check-inline mt-2">
-                                            <label class="form-check-label">
+                                            {{-- <label class="form-check-label">
                                                 <input type="checkbox" class="form-check-input"
                                                        wire:model="sel_permissions"
                                                        value="{{ $permission }}"
                                                        @if(in_array($permission, $sel_permissions)) checked @endif>
                                                 {{ $permission }}
+                                            </label> --}}
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input"
+                                                wire:model="sel_permissions"
+                                                value="{{ $permission }}"> {{ $permission }}
                                             </label>
                                         </div>
                                     </div>
