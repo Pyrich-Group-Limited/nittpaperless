@@ -99,7 +99,7 @@ class QueriesComponent extends Component
     {
         $user = auth()->user();
 
-        if ($user->can('raise query') && in_array($user->type, ['director', 'unit head', 'supervisor', 'DG'])) {
+        if ($user->can('raise query') && in_array($user->type, ['director', 'unit head', 'supervisor', 'dg'])) {
             $this->queries = Query::where('raised_by', $user->id)->orderBy('created_at','desc')->simplePaginate(10);
         }
         elseif ($user->can('assign query') && $user->type == 'registrar') {

@@ -100,7 +100,7 @@ class HodRequisitionsComponent extends Component
 
     public function verifyAndApprove()
     {
-        $approverId = User::where('type','DG')->first();
+        $approverId = User::where('type','dg')->first();
 
         // Validate the secret code input
         $this->validate([

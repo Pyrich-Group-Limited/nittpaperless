@@ -989,7 +989,7 @@
                         @endcan
 
 
-                    @if(\Auth::user()->type == 'director' || \Auth::user()->type == 'unit head' || \Auth::user()->type == 'DG' || Auth::user()->type==='super admin')
+                    @if(\Auth::user()->type == 'director' || \Auth::user()->type == 'unit head' || \Auth::user()->type == 'dg' || Auth::user()->type==='super admin')
                         @can('create budget plan')
                             <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'chats')?'active':''}}">
                                 <a href="{{ route('budget.create')}}" class="dash-link">

@@ -71,7 +71,7 @@ class SpecialDutyHeadApprovalComponent extends Component
             'secretCode' => 'required',
         ]);
 
-        $approverId = User::where('type','DG')->first();
+        $approverId = User::where('type','dg')->first();
 
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {
             $this->dispatchBrowserEvent('error',["error" =>"The secret code is incorrect!"]);

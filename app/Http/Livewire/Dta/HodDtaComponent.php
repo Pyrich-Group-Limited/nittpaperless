@@ -59,7 +59,7 @@ class HodDtaComponent extends Component
 
     public function verifyAndApprove()
     {
-        $approverId = User::where('type', 'DG')
+        $approverId = User::where('type', 'dg')
         ->first();
 
         $this->validate([

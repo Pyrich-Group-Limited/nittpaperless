@@ -69,7 +69,7 @@ class RaiseQueryComponent extends Component
         $staff = User::query()->where('type', '!=', 'contractor');
 
         // Check user role and apply filtering conditions
-        if ($authUser->type === 'DG') {
+        if ($authUser->type === 'dg') {
             return $staff->get();
         }
 

@@ -12,8 +12,11 @@
                     <label for="">Share with: (<span class="text-xs text-muted">{{ __('You can select one or more staff to send memo')}}</span>) </label>
                     <select name="shared_with[]" id="choices-multiple1" class="form-control select2" multiple>
                         <option value="#">Select one or more Staff</option>
+                        
                         @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->employee->id ?? 'No employee ID yet' }})
+                                || {{ $user->type }} || {{ $user->department->name ?? '' }}
+                            </option>
                         @endforeach
                     </select>
                 </div>

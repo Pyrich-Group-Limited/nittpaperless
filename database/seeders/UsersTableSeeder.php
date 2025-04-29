@@ -6448,7 +6448,7 @@ class UsersTableSeeder extends Seeder
                 'level' => "Level 15",
                 'email' => 'dg@nitt.com',
                 'password' => Hash::make('1234'),
-                'type' => 'DG',
+                'type' => 'dg',
                 'default_pipeline' => 1,
                 'plan' => 1,
                 'lang' => 'en',
