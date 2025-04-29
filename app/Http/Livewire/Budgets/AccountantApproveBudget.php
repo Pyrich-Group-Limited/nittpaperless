@@ -20,7 +20,7 @@ class AccountantApproveBudget extends Component
 
     public function mount()
     {
-        if(Auth::user()->type=='DG'){
+        if(Auth::user()->type=='dg'){
             $this->departmentBudgets = DepartmentBudget::where('status', 'pending_dg_approval')
             ->with('budgetCategory', 'items')
                 ->orderBy('created_at', 'desc')

@@ -190,7 +190,8 @@
     </script>
 @endpush
 @section('breadcrumb')
-    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")" }}</li>
+    {{-- <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). "(" .Auth::user()->department->name. ")" }}</li> --}}
+    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name) }} | {{ Auth::user()->department->name }} | {{ Auth::user()->unit->name ?? ''}}</li>
 @endsection
 @section('content')
 @include('accountant.includes.nav')

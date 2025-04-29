@@ -332,7 +332,7 @@ class FilesController extends Controller
                 'user_id' => $user->id,
                 'folder_id' => $request->folder_id,
                 'department_id' => Auth::user()->department_id ?? null,
-                'unit_id' => Auth::user()->unit_id ?? null,
+                'unit_id' => Auth::user()->unit_id ?: null,
                 'location_type' => $user->location_type,
                 'visibility' => $request->visibility,
             ]);
@@ -416,7 +416,7 @@ class FilesController extends Controller
 
         }elseif($authUser->type=='liaison officer'){
             $hQUsers = User::where('location','Headquarters')
-            ->where('type', 'DG')
+            ->where('type', 'dg')
             ->where('type', 'director')->get();
 
             $liasonOfficeUsers = User::where('location', 'Liaison-Offices')
@@ -425,13 +425,13 @@ class FilesController extends Controller
 
         }elseif($authUser->type=='director'){
             $otherHods = User::where('type','director')
-            ->orWhere('type', 'DG')->get();
+            ->orWhere('type', 'dg')->get();
 
             $others = User::where('department_id',$authUser->department_id)
             ->where('type','!=','director')->get();
             $users = $otherHods->merge($others);
 
-        }elseif($authUser->type=='DG' || $authUser->type=='super admin'){
+        }elseif($authUser->type=='dg' || $authUser->type=='super admin'){
             $users = User::where('type','!=','contractor')->get();
         }else {
             return redirect()->back()->with('error', 'You are not authorized to view this page.');

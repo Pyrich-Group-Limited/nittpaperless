@@ -223,7 +223,7 @@
                                                     </button>
                                                 @endif
 
-                                                @if (Auth::user()->type=='DG' && $recommendation->status == 'recommended')
+                                                @if (Auth::user()->type=='dg' && $recommendation->status == 'recommended')
                                                     @can('approve payment')
                                                         <a href="{{ route('payment-requests.approve', $recommendation->id) }}" class="btn btn-success btn-sm">
                                                             <i class="ti ti-check"></i> Approve Payment

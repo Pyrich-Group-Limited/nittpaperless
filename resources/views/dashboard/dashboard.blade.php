@@ -95,7 +95,8 @@
 @endpush
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
-    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). " (" .Auth::user()->department->name. ")" }}</li>
+    {{-- <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name). " (" .Auth::user()->department->name. ")" }}</li> --}}
+    <li class="breadcrumb-item"><b>Welcome </b>{{ Ucfirst(Auth::user()->name) }} | {{ Auth::user()->department->name }} | {{ Auth::user()->unit->name ?? ''}}</li>
 @endsection
 @php
     $setting = \App\Models\Utility::settings();
@@ -226,7 +227,7 @@
         </div>
     </div>
 </div>
-    @if(\Auth::user()->type != 'registrar' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'DG' && \Auth::user()->type != 'DG/CE`s Personal Assistant' && \Auth::user()->type != 'DG/CE`s Admin Officer' && \Auth::user()->type != 'DG/CE`s Secretary' && \Auth::user()->type != 'DG/CE`s Speacial Assistant')
+    @if(\Auth::user()->type != 'registrar' && \Auth::user()->type != 'super admin' && \Auth::user()->type != 'dg' && \Auth::user()->type != 'DG/CE`s Personal Assistant' && \Auth::user()->type != 'DG/CE`s Admin Officer' && \Auth::user()->type != 'DG/CE`s Secretary' && \Auth::user()->type != 'DG/CE`s Speacial Assistant')
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">

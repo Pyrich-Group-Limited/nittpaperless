@@ -59,7 +59,7 @@ class SpecialDutyDtaComponent extends Component
             'secretCode' => 'required'
         ]);
 
-        $approverId = User::where('type', 'DG')
+        $approverId = User::where('type', 'dg')
         ->first();
 
         if (!Hash::check($this->secretCode, Auth::user()->secret_code)) {

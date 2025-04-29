@@ -255,7 +255,7 @@ class MemoController extends Controller
             $users = $sameUnitAndDepartmentUsers->merge($unitHeadsOtherDepartments);
         } elseif ($authUser->type == 'liaison officer') {
             $hQUsers = User::where('location', 'Headquarters')
-                ->whereIn('type', ['DG', 'director'])
+                ->whereIn('type', ['dg', 'director'])
                 ->get();
 
             $liasonOfficeUsers = User::where('location', 'Liaison-Offices')
@@ -269,7 +269,7 @@ class MemoController extends Controller
                 ->where('type', '!=', 'director')->get();
 
             $users = $otherHods->merge($others);
-        } elseif (in_array($authUser->type, ['DG', 'super admin'])) {
+        } elseif (in_array($authUser->type, ['dg', 'super admin'])) {
             $users = User::all();
         } else {
             // Other user types can share with users in their unit/department

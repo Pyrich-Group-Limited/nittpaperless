@@ -60,7 +60,7 @@ class LiasonOfficeHeadDtaComponent extends Component
             'secretCode' => 'required'
         ]);
 
-        $approverId = User::where('type', '!=', 'super admin')->where('type', '!=', 'DG')
+        $approverId = User::where('type', '!=', 'super admin')->where('type', '!=', 'dg')
             ->whereHas('permissions', function ($query) {
                 $query->where('name', 'special duty approve');
             })->first();
