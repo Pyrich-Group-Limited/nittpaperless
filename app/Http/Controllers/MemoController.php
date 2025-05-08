@@ -117,50 +117,6 @@ class MemoController extends Controller
     //     $filePath = null;
 
     //     if ($data['content_type'] === 'typed') {
-    //         // Generate PDF from the typed content
-    //         $memo = Memo::with(['signedUsers.signature'])->findOrFail($memoId);
-    //         $pdf = Pdf::loadView('memos.template', [
-    //             'memo' => $memo,
-    //             'content' => $data['file_content'],
-    //             'title'   => $data['title'],
-    //             'date'    => Carbon::now()->format('jS F Y'),
-    //         ]);
-    //         $fileName = 'memos/' . uniqid() . '.pdf';
-    //         Storage::put($fileName, $pdf->output());
-    //         $filePath = $fileName;
-    //     } else  {
-    //         if ($request->hasFile('memofile')) {
-    //             $filePath = $request->file('memofile')->store('memos');
-    //         } else {
-    //             return redirect()->back()->with('error', 'File upload failed. Please try again.');
-    //         }
-    //     }
-
-    //     Memo::create([
-    //         'created_by' => Auth::id(),
-    //         'title' => $data['title'],
-    //         'priority' => $data['priority'],
-    //         'description' => $data['description'],
-    //         'file_path' => $filePath,
-    //     ]);
-
-    //     return redirect()->back()->with('success', 'Memo created successfully.');
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     $data = $request->validate([
-    //         'title' => ['required', 'string'],
-    //         'priority' => ['required'],
-    //         'description' => ['required', 'string'],
-    //         'content_type' => ['required', 'in:typed,uploaded'],
-    //         'file_content' => 'required_if:content_type,typed',
-    //         'memofile' => 'required_if:content_type,uploaded|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
-    //     ]);
-
-    //     $filePath = null;
-
-    //     if ($data['content_type'] === 'typed') {
     //         // First, create a memo record to pass into the PDF view
     //         $memo = Memo::create([
     //             'created_by' => Auth::id(),
@@ -242,6 +198,8 @@ class MemoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    
     public function show($id)
     {
 
@@ -254,6 +212,8 @@ class MemoController extends Controller
         $memoShareComment = MemoShare::where('memo_id', $id)->where('shared_with', Auth::id())->first();
 
         $users = User::where('department_id',Auth::user()->department_id)->get();
+
+       
         return view('memos.show', compact('memo', 'signatures','users','isSigned','userSignature','memoApprovals','memoShareComment'));
     }
 

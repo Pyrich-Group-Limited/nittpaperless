@@ -67,14 +67,14 @@
                                 <div class="col-sm-12">
                                     <div class="tab-content" id="myTabContent2">
                                         <div class="tab-pane fade fade show active table-responsive" id="memos" role="tabpanel" aria-labelledby="profile-tab2">
-                                            <table class="table table-flush table datatable">
+                                            <table class="table table-flush datatable">
                                                 <thead>
                                                     <tr>
                                                         <th>{{__('Creator Name')}}</th>
                                                         <th>{{__('Department')}}</th>
                                                         <th>{{__('Memo Title')}}</th>
                                                         <th>{{__('Priority')}}</th>
-                                                        <th>{{__('Description')}}</th>
+                                                        {{-- <th>{{__('Description')}}</th> --}}
                                                         <th>{{__('Date')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
@@ -84,7 +84,7 @@
                                                             <tr class="font-style">
                                                                 <td>{{ $memo->creator->name }}</td>
                                                                 <td>{{ $memo->creator->department->name }}</td>
-                                                                <td>{{ $memo->title }}</td>
+                                                                <td style="white-space: normal;">{{ $memo->title }}</td>
                                                                 <td scope="row">
                                                                     <div class="media align-items-center">
                                                                         <div class="media-body">
@@ -100,7 +100,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td>{{ Str::limit($memo->description, 20, '...') }}</td>
+                                                                {{-- <td>{{ Str::limit($memo->description, 20, '...') }}</td> --}}
                                                                 <td>{{ $memo->created_at->format('d-M-Y') }}</td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">
@@ -128,7 +128,7 @@
                                         </div>
 
                                         <div class="tab-pane fade fade table-responsive" id="incoming" role="tabpanel" aria-labelledby="profile-tab3">
-                                            <table class="table table-flush table datatable" id="report-dataTable">
+                                            <table class="table table-flush datatable" id="report-dataTable">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">{{__('Sender')}}</th>
@@ -158,7 +158,7 @@
                                                                 </td>
                                                                 <td>{{ $incomingMemo->sharedBy->location }}</td>
                                                                 <td>{{ $incomingMemo->sharedBy->department->name }}</td>
-                                                                <td>{{ $incomingMemo->memo->title }}</td>
+                                                                <td style="white-space: pre-wrap;">{{ $incomingMemo->memo->title }}</td>
                                                                 <td scope="row">
                                                                     <div class="media align-items-center">
                                                                         <div class="media-body">
@@ -214,7 +214,7 @@
                                         </div>
 
                                         <div class="tab-pane fade fade table-responsive" id="outgoing" role="tabpanel" aria-labelledby="profile-tab4">
-                                            <table class="table table-flush table datatable" id="report-dataTable">
+                                            <table class="table table-flush datatable" id="report-dataTable">
                                                 <thead>
                                                     <tr>
                                                         <th>{{__('Shared With')}}</th>
@@ -243,7 +243,7 @@
                                                                 </td>
                                                                 <td>{{ $outgoingMemo->sharedWith->location }}</td>
                                                                 <td>{{ $outgoingMemo->sharedWith->department->name }}</td>
-                                                                <td>{{ $outgoingMemo->memo->title }}</td>
+                                                                <td style="white-space: pre-wrap;">{{ $outgoingMemo->memo->title }}</td>
                                                                 <td scope="row">
                                                                     <div class="media align-items-center">
                                                                         <div class="media-body">
