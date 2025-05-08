@@ -15,7 +15,7 @@
                         
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->employee->id ?? 'No employee ID yet' }})
-                                || {{ $user->type }} || {{ $user->department->name ?? '' }}
+                                | {{ strtoupper($user->type) }} | {{ $user->department->name ?? '' }}
                             </option>
                         @endforeach
                     </select>

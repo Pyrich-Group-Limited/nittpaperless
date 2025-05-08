@@ -9,9 +9,11 @@ use App\Models\ItemRequisitionApproval;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Livewire\WithPagination;
 
 class CreateItemRequisition extends Component
 {
+    use WithPagination;
     public $items = [];
     public $comments;
 
@@ -25,13 +27,20 @@ class CreateItemRequisition extends Component
     public $secretCode;
     public $showSecretCodeModal = false;
 
-    public function mount(){
+    public function mount()
+    {
         $this->items = [
-            ['item_name'=> '','item_description' => '', 'item_quantity' => null ]
+            ['item_name'=> '', 'item_description' => '', 'item_quantity' => null]
         ];
-        $this->itemRequisitions = ItemRequisitionRequest::where('user_id',Auth::user()->id)
-        ->orderBy('created_at','desc')->get();
     }
+
+    // public function mount(){
+    //     $this->items = [
+    //         ['item_name'=> '','item_description' => '', 'item_quantity' => null ]
+    //     ];
+    //     $this->itemRequisitions = ItemRequisitionRequest::where('user_id',Auth::user()->id)
+    //     ->orderBy('created_at','desc')->get();
+    // }
 
     public function setRequisitionItem(ItemRequisitionRequest $requisition){
         $this->selRequisitionItem = $requisition;
@@ -136,6 +145,10 @@ class CreateItemRequisition extends Component
 
     public function render()
     {
-        return view('livewire.item-requisitions.create-item-requisition');
+        return view('livewire.item-requisitions.create-item-requisition', [
+            'itemRequisitions' => ItemRequisitionRequest::where('user_id', Auth::id())
+                ->orderBy('created_at', 'desc')
+                ->paginate(10)
+        ]);
     }
 }

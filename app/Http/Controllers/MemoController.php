@@ -14,6 +14,8 @@ use Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use App\Events\MemoSigned;
 
 class MemoController extends Controller
 {
@@ -101,43 +103,138 @@ class MemoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    // public function store(Request $request)
+    // {
+    //     $data = $request->validate([
+    //         'title' => ['required', 'string'],
+    //         'priority' => ['required'],
+    //         'description' => ['required', 'string'],
+    //         'content_type' => ['required', 'in:typed,uploaded'],
+    //         'file_content' => 'required_if:content_type,typed',
+    //         'memofile' => 'required_if:content_type,uploaded|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
+    //     ]);
+
+    //     $filePath = null;
+
+    //     if ($data['content_type'] === 'typed') {
+    //         // Generate PDF from the typed content
+    //         $memo = Memo::with(['signedUsers.signature'])->findOrFail($memoId);
+    //         $pdf = Pdf::loadView('memos.template', [
+    //             'memo' => $memo,
+    //             'content' => $data['file_content'],
+    //             'title'   => $data['title'],
+    //             'date'    => Carbon::now()->format('jS F Y'),
+    //         ]);
+    //         $fileName = 'memos/' . uniqid() . '.pdf';
+    //         Storage::put($fileName, $pdf->output());
+    //         $filePath = $fileName;
+    //     } else  {
+    //         if ($request->hasFile('memofile')) {
+    //             $filePath = $request->file('memofile')->store('memos');
+    //         } else {
+    //             return redirect()->back()->with('error', 'File upload failed. Please try again.');
+    //         }
+    //     }
+
+    //     Memo::create([
+    //         'created_by' => Auth::id(),
+    //         'title' => $data['title'],
+    //         'priority' => $data['priority'],
+    //         'description' => $data['description'],
+    //         'file_path' => $filePath,
+    //     ]);
+
+    //     return redirect()->back()->with('success', 'Memo created successfully.');
+    // }
+
+    // public function store(Request $request)
+    // {
+    //     $data = $request->validate([
+    //         'title' => ['required', 'string'],
+    //         'priority' => ['required'],
+    //         'description' => ['required', 'string'],
+    //         'content_type' => ['required', 'in:typed,uploaded'],
+    //         'file_content' => 'required_if:content_type,typed',
+    //         'memofile' => 'required_if:content_type,uploaded|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
+    //     ]);
+
+    //     $filePath = null;
+
+    //     if ($data['content_type'] === 'typed') {
+    //         // First, create a memo record to pass into the PDF view
+    //         $memo = Memo::create([
+    //             'created_by' => Auth::id(),
+    //             'title' => $data['title'],
+    //             'priority' => $data['priority'],
+    //             'description' => $data['description'],
+    //             'file_path' => null, // temp placeholder
+    //         ]);
+
+    //         // Generate PDF using the created memo data
+    //         $pdf = Pdf::loadView('memos.template', [
+    //             'memo' => $memo,
+    //             'content' => $data['file_content'],
+    //             'title'   => $data['title'],
+    //             'date'    => Carbon::now()->format('jS F Y'),
+    //         ]);
+
+    //         $fileName = 'memos/' . uniqid() . '.pdf';
+    //         Storage::put($fileName, $pdf->output());
+
+    //         // Update memo with file path
+    //         $memo->update(['file_path' => $fileName]);
+
+    //     } else {
+    //         if ($request->hasFile('memofile')) {
+    //             $filePath = $request->file('memofile')->store('memos');
+
+    //             // Create memo with uploaded file
+    //             Memo::create([
+    //                 'created_by' => Auth::id(),
+    //                 'title' => $data['title'],
+    //                 'priority' => $data['priority'],
+    //                 'description' => $data['description'],
+    //                 'file_path' => $filePath,
+    //             ]);
+    //         } else {
+    //             return redirect()->back()->with('error', 'File upload failed. Please try again.');
+    //         }
+    //     }
+
+    //     return redirect()->back()->with('success', 'Memo created successfully.');
+    // }
+
     public function store(Request $request)
     {
         $data = $request->validate([
             'title' => ['required', 'string'],
             'priority' => ['required'],
-            'description' => ['required', 'string'],
-            'content_type' => ['required', 'in:typed,uploaded'],
-            'file_content' => 'required_if:content_type,typed',
-            'memofile' => 'required_if:content_type,uploaded|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
+            'to' => ['required'],
+            'description' => ['nullable', 'string'],
+            'memo_content' => ['nullable', 'string'],
+            'memofile' => ['nullable', 'file', 'mimes:pdf,doc,docx,png,jpg,jpeg', 'max:2048'],
         ]);
 
-        $filePath = null;
-
-        if ($data['content_type'] === 'typed') {
-            // Generate PDF from the typed content
-            $pdf = Pdf::loadView('memos.template', ['content' => $data['file_content']]);
-            $fileName = 'memos/' . uniqid() . '.pdf';
-            Storage::put($fileName, $pdf->output());
-            $filePath = $fileName;
-        } else  {
-            if ($request->hasFile('memofile')) {
-                $filePath = $request->file('memofile')->store('memos');
-            } else {
-                return redirect()->back()->with('error', 'File upload failed. Please try again.');
-            }
+        // Handle supporting document upload if present
+        $supportingFilePath = null;
+        if ($request->hasFile('memofile')) {
+            $supportingFilePath = $request->file('memofile')->store('memos');
         }
 
-        Memo::create([
+        // Save the memo
+        $memo = Memo::create([
             'created_by' => Auth::id(),
             'title' => $data['title'],
             'priority' => $data['priority'],
-            'description' => $data['description'],
-            'file_path' => $filePath,
+            'description' => $data['description'] ?? null,
+            'memo_content' => $data['memo_content'] ?? null,
+            'to' => $data['to'],
+            'file_path' => $supportingFilePath,
         ]);
 
         return redirect()->back()->with('success', 'Memo created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -160,62 +257,6 @@ class MemoController extends Controller
         return view('memos.show', compact('memo', 'signatures','users','isSigned','userSignature','memoApprovals','memoShareComment'));
     }
 
-    // public function shareModal($id)
-    // {
-    //     $memo = Memo::find($id);
-    //     $signatures = Signature::where('user_id', $memo->created_by)->first();
-
-    //     $authUser = Auth::user();
-
-    //     if($authUser->type=='user'){
-    //         $users = User::where('unit_id', $authUser->unit_id)
-    //         ->where('department_id', $authUser->department_id)
-    //         ->where('type', 'supervisor')
-    //         ->orWhere('type', 'user')->get();
-
-    //     }elseif($authUser->type=='supervisor'){
-
-    //         $unitHeads = User::where('type', 'unit head')
-    //         ->where('department_id', $authUser->department_id)->get();
-    //         $otherUsers = User::where('type', 'user')
-    //         ->where('department_id', $authUser->department_id)->get();
-    //         $users = $unitHeads->merge($otherUsers);
-
-    //     }elseif($authUser->type=='unit head'){
-    //         $sameUnitAndDepartmentUsers = User::where('unit_id', $authUser->unit_id)
-    //         ->where('department_id', $authUser->department_id)
-    //         ->where('type', 'user')->orWhere('type', 'director')
-    //         ->get();
-
-    //         $unitHeadsOtherDepartments = User::where('type', 'unit head')
-    //         ->where('department_id', '!=', $authUser->department_id)->get();
-    //         $users = $sameUnitAndDepartmentUsers->merge($unitHeadsOtherDepartments);
-
-    //     }elseif($authUser->type=='liaison officer'){
-    //         $hQUsers = User::where('location','Headquarters')
-    //         ->where('type', 'DG')
-    //         ->where('type', 'director')->get();
-
-    //         $liasonOfficeUsers = User::where('location', 'Liaison-Offices')
-    //         ->where('location_type', $authUser->location_type)->get();
-    //         $users = $hQUsers->merge($liasonOfficeUsers);
-
-    //     }elseif($authUser->type=='director'){
-    //         $otherHods = User::where('type','director')
-    //         ->get();
-
-    //         $others = User::where('department_id',$authUser->department_id)
-    //         ->where('type','!=','director')->get();
-    //         $users = $otherHods->merge($others);
-
-    //     }elseif($authUser->type=='DG' || $authUser->type=='super admin'){
-    //         $users = User::all();
-    //     }else {
-    //         return redirect()->back()->with(['error' => 'You are not authorized to view this page.']);
-    //     }
-
-    //     return view('memos.shareModal', compact('memo', 'signatures','users'));
-    // }
 
     public function shareModal($id)
     {
@@ -243,16 +284,30 @@ class MemoController extends Controller
                 ->where('department_id', $authUser->department_id)->get();
 
             $users = $unitHeads->merge($otherUsers);
+
         } elseif ($authUser->type == 'unit head') {
             $sameUnitAndDepartmentUsers = User::where('unit_id', $authUser->unit_id)
                 ->where('department_id', $authUser->department_id)
                 ->whereIn('type', ['user', 'director'])
                 ->get();
-
+        
             $unitHeadsOtherDepartments = User::where('type', 'unit head')
-                ->where('department_id', '!=', $authUser->department_id)->get();
-
-            $users = $sameUnitAndDepartmentUsers->merge($unitHeadsOtherDepartments);
+                ->where('department_id', '!=', $authUser->department_id)
+                ->get();
+        
+            $departmentDirectors = User::where('type', 'director')
+                ->where('department_id', $authUser->department_id)
+                ->get();
+        
+            $users = $sameUnitAndDepartmentUsers
+                ->merge($unitHeadsOtherDepartments)
+                ->merge($departmentDirectors);
+        
+            // Check if unit head belongs to DG's Office
+            if ($authUser->department?->name === "DG's Office") {
+                $dgUsers = User::where('type', 'dg')->get();
+                $users = $users->merge($dgUsers);
+            }
         } elseif ($authUser->type == 'liaison officer') {
             $hQUsers = User::where('location', 'Headquarters')
                 ->whereIn('type', ['dg', 'director'])
@@ -340,25 +395,27 @@ class MemoController extends Controller
             'memo_id' => $memo->id,
             'user_id' => Auth::id(),
         ]);
+        event(new MemoSigned($memo));
 
         return redirect()->back()->with('success', 'Memo signed successfully.');
     }
 
-
-    // Method to download the file
     public function download(Memo $memo)
     {
-        // Get the file's path from the database
-        $filePath = $memo->file_path;
-        // Check if the file exists in storage
-        if (Storage::exists($filePath)) {
-            // Return the file for download
-            return Storage::download($filePath, $memo->file_name);
-        } else {
-            // Return a 404 response if the file doesn't exist
-            abort(404, 'Memo file not found.');
-        }
+        $memo->load(['signedUsers.signature', 'creator.unit']);
+
+        $pdf = Pdf::loadView('memos.template', [
+            'memo' => $memo,
+            'content' => $memo->memo_content,
+            'title' => $memo->title,
+            'date' => now()->format('jS F Y'),
+            'to' => $memo->to,
+        ])->setPaper('A4', 'portrait');
+
+        return $pdf->stream('memo_'.$memo->id.'.pdf'); 
     }
+
+
     /**
      * Show the form for editing the specified resource.
      *

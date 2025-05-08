@@ -32,6 +32,17 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
+                                <label for="">Address To</label>
+                                <input type="text" name="to" value="{{ old('to')}}" class="form-control">
+                                @error('to')
+                                <small class="invalid-password" role="alert">
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                </small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
                                 <label for="">Memo Priority</label>
                                 <select name="priority" id="" class="form-control">
                                     <option value="0">Low</option>
@@ -58,26 +69,22 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="content_type" class="form-label"><b>Memo Content Type</b></label>
-                            <div>
-                                <input type="radio" name="content_type" value="typed" id="typed_content" checked>
-                                <label for="typed_content">Type Memo Content</label>
-                                &nbsp; &nbsp; &nbsp; &nbsp;
-                                <input type="radio" name="content_type" value="uploaded" id="uploaded_file">
-                                <label for="uploaded_file">Upload Memo Document</label>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="memo_content">Type Memo Content</label>
+                                <textarea name="memo_content" id="memo_content" class="form-control" rows="5"></textarea>
+                                
+                                @error('description')
+                                <small class="invalid-password" role="alert">
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                </small>
+                                @enderror
                             </div>
                         </div>
 
-                        <!-- Text Editor for Typed Content -->
-                        <div id="typedContentSection">
-                            <label for="file_content" class="form-label">Type Memo Content</label>
-                            <textarea name="file_content" id="file_content" class="form-control" rows="5"></textarea>
-                        </div>
-
-                        <div class="col-md-12" id="fileUploadSection" style="display: none;">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Attach Memo Document</label>
+                                <label for="">Supporting Document</label>
                                 <input type="file" name="memofile" id="memofile" aria-multiselectable="" class="form-control" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
                                 @error('memofile')
                                 <small class="invalid-password" role="alert">
@@ -86,6 +93,8 @@
                                 @enderror
                             </div>
                         </div>
+
+                        
                     </div>
 
                 </div>
@@ -100,7 +109,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const typedRadio = document.getElementById('typed_content');
         const uploadedRadio = document.getElementById('uploaded_file');
@@ -117,5 +126,5 @@
             uploadSection.style.display = 'block';
         });
     });
-</script>
+</script> --}}
 

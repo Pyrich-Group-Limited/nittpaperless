@@ -23,8 +23,14 @@
         </style>
     @endpush
 
-    {{-- @section('action-btn') --}}
-        <div class="float">
+        <div class="d-flex justify-content-end gap-2">
+            @can('set budget')
+                <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newBudgetModal" id="toggleOldProject"
+                data-bs-toggle="tooltip" title="{{ __('Create new budget') }}" class="btn btn-sm btn-primary">
+                <i class="ti ti-plus text-white"> </i>New
+                </a>
+            @endcan
+            
             <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="ti ti-filter"></i>
             </a>
@@ -46,14 +52,8 @@
                 </a>
             </div>
 
-        @can('set budget')
-            <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newBudgetModal" id="toggleOldProject"
-            data-bs-toggle="tooltip" title="{{ __('Create new budget') }}" class="btn btn-sm btn-primary">
-            <i class="ti ti-plus text-white"> </i>New
-            </a>
-            @endcan
+            
         </div>
-    {{-- @endsection --}}
             <div class="center">
                 <div wire:loading wire:target="setFilter"><x-g-loader /></div>
             </div>

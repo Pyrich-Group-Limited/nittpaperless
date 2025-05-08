@@ -72,9 +72,7 @@ class DepartmentBudgetRequest extends Component
             return $carry + ($item['quantity'] * $item['unit_price']);
         }, 0);
     }
-
     
-
     public function submitRequest()
     {
         $this->validate([

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Department;
+use App\Models\Unit;
 
 class ItemRequestLiaisonHeadApproval extends Component
 {
@@ -88,11 +89,11 @@ class ItemRequestLiaisonHeadApproval extends Component
             'secretCode' => 'required',
         ]);
 
-        $dept = Department::where('name','Special Duty Department')->first();
-        $approverId = User::where('type','director')->where('department_id', $dept->id)->first();
+        $dept = Unit::where('name','Special Duty')->first();
+        $approverId = User::where('type','unit head')->where('unit_id', $dept->id)->first();
 
         if (!$approverId) {
-            $this->dispatchBrowserEvent('error',["error" =>"No next approver found for special duty dapartment"]);
+            $this->dispatchBrowserEvent('error',["error" =>"No next approver found for special duty unit"]);
             return;
         }
 

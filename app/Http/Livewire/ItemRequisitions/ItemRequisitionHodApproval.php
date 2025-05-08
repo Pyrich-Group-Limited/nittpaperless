@@ -9,6 +9,8 @@ use App\Models\ItemRequisitionApproval;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Department;
+use App\Models\Unit;
 
 class ItemRequisitionHodApproval extends Component
 {
@@ -42,8 +44,8 @@ class ItemRequisitionHodApproval extends Component
 
         $query = ItemRequisitionRequest::with('items'); // Base query
 
-        // Check if the HOD belongs to the Special Duty department
-        if ($user->department->name === 'Special Duty Department') {
+        // Check if the HOD belongs to the Special Duty department.
+        if ($user->unit->name === 'Special Duty') {
 
             if ($this->filter === 'all') {
                 $query->whereIn('status', ['liaison_head_approved', 'special_duty_head_approved']);
@@ -58,7 +60,7 @@ class ItemRequisitionHodApproval extends Component
             $query->where('department_id', $user->department_id);
 
                 if ($this->filter === 'all') {
-                    $query->whereIn('status', ['pending_hod_approval', 'hod_approved', 'rejected']);
+                    $query->whereIn('status', ['pending_hod_approval', 'hod_approved', 'rejected','bursar_approved','store_approved']);
                 } elseif ($this->filter === 'pending') {
                     $query->where('status', 'pending_hod_approval');
                 } elseif ($this->filter === 'approved') {
@@ -113,7 +115,7 @@ class ItemRequisitionHodApproval extends Component
         $user = Auth::user();
 
         // Determine the new status based on the user's department
-        $newStatus = ($user->department->name === 'Special Duty Department')
+        $newStatus = ($user->unit->name === 'Special Duty')
                         ? 'special_duty_head_approved'
                         : 'hod_approved';
 

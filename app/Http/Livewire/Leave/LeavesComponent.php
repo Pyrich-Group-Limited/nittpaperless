@@ -117,7 +117,7 @@ class LeavesComponent extends Component
                 'supporting_document' => Auth::user()->can('raise sick leave') ? $document : null,
             ]);
 
-            $specialDutyDepartment = Department::where('name', 'Special Duty Department')->first();
+            $specialDutyDepartment = Unit::where('name', 'Special Duty')->first();
 
             $applicant = Auth::user()->can('raise sick leave') ? User::find($this->leave_for_staff) : Auth::user();
 
@@ -132,8 +132,8 @@ class LeavesComponent extends Component
                     $this->createApproval($leave, $liaisonHead->id, $liaisonHead->type, $liaisonHead->department_id ?? '');
                 }
 
-                // Add head of special duty department as the next approver
-                $specialDutyHead = User::where('type', 'director')->where('department_id',$specialDutyDepartment->id)->first();
+                // Add head of special duty departmet as the next approver
+                $specialDutyHead = User::where('type', 'unit head')->where('unit_id',$specialDutyDepartment->id)->first();
                 if ($specialDutyHead) {
                     $this->createApproval($leave, $specialDutyHead->id, $specialDutyHead->type, $specialDutyHead->department_id);
                 }

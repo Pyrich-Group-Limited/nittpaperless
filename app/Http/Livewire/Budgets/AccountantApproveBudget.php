@@ -6,9 +6,15 @@ use Livewire\Component;
 use App\Models\DepartmentBudget;
 use App\Models\BudgetCategory;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
 
 class AccountantApproveBudget extends Component
 {
+    use WithPagination;
+
+    public $filterStatus = null;
+    public $perPage = 10;
+
     // public $departmentBudgets;
     public $budget;
     public $selBudget;
@@ -18,21 +24,25 @@ class AccountantApproveBudget extends Component
 
     public $showDetails = null;
 
-    public function mount()
+    // public function mount()
+    // {
+    //     if(Auth::user()->type=='dg'){
+    //         $this->departmentBudgets = DepartmentBudget::with('budgetCategory', 'items')
+    //         ->where('status', 'pending_dg_approval')
+    //         ->orWhere('status', 'approved')
+    //         ->orderBy('created_at', 'desc')
+    //         ->get();
+    //     }else{
+    //         $this->departmentBudgets = DepartmentBudget::
+    //             with('budgetCategory', 'items')
+    //             ->orderBy('created_at', 'desc')
+    //         ->get();
+    //     }
+    // }
+
+    public function updatingFilterStatus()
     {
-        if(Auth::user()->type=='dg'){
-            $this->departmentBudgets = DepartmentBudget::where('status', 'pending_dg_approval')
-            ->with('budgetCategory', 'items')
-                ->orderBy('created_at', 'desc')
-                ->get();
-        }else{
-            // $this->departmentBudgets = DepartmentBudget::where('department_id', auth()->user()->department_id)
-            $this->departmentBudgets = DepartmentBudget::
-            // ->where('status', 'pending')     
-            with('budgetCategory', 'items')
-                ->orderBy('created_at', 'desc')
-                ->get();
-        }
+        $this->resetPage();
     }
 
     public function toggleDetails($budgetId)
@@ -74,7 +84,7 @@ class AccountantApproveBudget extends Component
              $budget->status = 'approved';
              $budget->save();
              $this->dispatchBrowserEvent('success',["success" =>"Budget successfully approved."]);
-        
+            // $this->mount();
     }
 
     public function markPendingDgApproval($budgetId)
@@ -113,11 +123,22 @@ class AccountantApproveBudget extends Component
 
     public function render()
     {
-        // if(Auth::user()->type=='DG'){
-        //     $departmentBudgets = DepartmentBudget::where('status', 'pending_dg_approval')->get();
-        // }else{
-        //     $departmentBudgets = DepartmentBudget::where('status', 'pending')->get();
-        // }
-        return view('livewire.budgets.accountant-approve-budget');
+        $query = DepartmentBudget::with('budgetCategory', 'items')->orderBy('created_at', 'desc');
+
+        if (Auth::user()->type === 'dg') {
+            // If DG is viewing, limit to relevant statuses
+            $query->where(function($q) {
+                $q->where('status', 'pending_dg_approval')
+                  ->orWhere('status', 'approved');
+            });
+        }
+
+        // Apply status filter if selected
+        if ($this->filterStatus) {
+            $query->where('status', $this->filterStatus);
+        }
+        return view('livewire.budgets.accountant-approve-budget', [
+            'departmentBudgets' => $query->paginate($this->perPage),
+        ]);
     }
 }
