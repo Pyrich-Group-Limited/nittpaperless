@@ -12,8 +12,7 @@
         </style>
     @endpush
     
-    @section('action-btn')
-        <div class="float-end">
+        <div class="d-flex justify-content-end gap-2">
             <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="ti ti-filter"></i>
             </a>
@@ -33,7 +32,7 @@
                 </a>
             </div>
         </div>
-    @endsection
+
         
     <div class="row mt-3">
         <div id="printableArea">

@@ -116,7 +116,7 @@
                                                                     </div>
 
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="{{ route('memos.download',$memo->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
+                                                                        <a href="{{ route('memos.download',$memo->id) }}" target="_blank" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
                                                                             <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>
@@ -195,7 +195,7 @@
                                                                         </a>
                                                                     </div>
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="{{ route('memos.download',$incomingMemo->memo->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
+                                                                        <a href="{{ route('memos.download',$incomingMemo->memo->id) }}" target="_blank" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
                                                                             <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>
@@ -269,7 +269,7 @@
                                                                     </div>
 
                                                                     <div class="action-btn bg-primary ms-2">
-                                                                        <a href="{{ route('memos.download',$outgoingMemo->memo->id) }}" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
+                                                                        <a href="{{ route('memos.download',$outgoingMemo->memo->id) }}" target="_blank" class="mx-3 btn btn-sm  align-items-center" data-url="" data-ajax-popup="false"  data-size="lg " data-bs-toggle="tooltip" title="{{__('Download Memo')}}"  data-title="{{__('Download Memo')}}">
                                                                             <i class="ti ti-download text-white"></i>
                                                                         </a>
                                                                     </div>

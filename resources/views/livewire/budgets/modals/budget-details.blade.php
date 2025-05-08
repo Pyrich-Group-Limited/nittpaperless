@@ -64,7 +64,7 @@
                                     <input type="button" wire:click="markPendingDgApproval({{ $budget->id }})" value="{{ __('Forward to DG') }}" class="btn  btn-primary btn-sm">
                                 @endif
                                 @can('approve budget')
-                                    @if(auth()->user()->type=="DG")
+                                    @if(auth()->user()->type=="dg")
                                         <input type="button"  wire:click="approveBudget('{{ $selBudget->id }}')" value="{{ __('Approve') }}" class="btn  btn-primary btn-sm @if ($selBudget->status == 'approved') disabled @endif ">
                                     @endif
                                 @endcan

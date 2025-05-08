@@ -18,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        \App\Events\MemoSigned::class => [
+            \App\Listeners\RegenerateMemoPdf::class,
+        ],
     ];
 
     /**

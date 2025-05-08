@@ -33,7 +33,7 @@ class ItemRequisitionBursarApproval extends Component
     public function loadDepartments()
     {
         // Group only requisitions with statuses 'hod_approved' and 'special_duty_head_approved'
-        $this->departments = ItemRequisitionRequest::whereIn('status', ['hod_approved', 'special_duty_head_approved','bursar_approved'])
+        $this->departments = ItemRequisitionRequest::whereIn('status', ['hod_approved', 'special_duty_head_approved','bursar_approved','store_approved'])
             ->whereHas('department')
             ->with('department')
             ->get()

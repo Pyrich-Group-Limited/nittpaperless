@@ -29,7 +29,7 @@
                                         <td>{{ $requisition->staff->name }}</td>
                                         <td>{{ $requisition->items->count() }}</td>
                                         
-                                        <td class="Action">
+                                        <td class="">
                                             <div class="action-btn bg-primary ms-2">
                                                 <a href="#" wire:click="selectRequisition({{ $requisition->id }})" class="mx-3 btn btn-sm d-inline-flex align-items-center" data-bs-toggle="modal" id="toggleApplicantDetails" 
                                                     data-bs-target="#viewItemToAcknowledge" data-size="lg" data-bs-toggle="tooltip" title="{{__('View')}}">

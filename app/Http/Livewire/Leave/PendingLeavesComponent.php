@@ -8,6 +8,7 @@ use App\Models\LeaveType;
 use App\Models\Leave;
 use App\Models\User;
 use App\Models\Department;
+use App\Models\Unit;
 use App\Models\LeaveApproval;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,7 @@ class PendingLeavesComponent extends Component
     {
         $user = auth()->user();
 
-        $specialDutyDepartment = Department::where('name', 'Special Duty Department')->first();
+        $specialDutyDepartment = Unit::where('name', 'Special Duty')->first();
 
         $this->pendingApprovals = Leave::whereHas('approvals', function ($query) use ($user) {
             $query->where('approver_id', $user->id)

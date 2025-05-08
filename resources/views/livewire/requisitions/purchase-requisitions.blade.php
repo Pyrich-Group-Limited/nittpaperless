@@ -12,16 +12,14 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
     <li class="breadcrumb-item">{{__('Requisition')}}</li>
 @endsection
-@section('action-btn')
-    <div class="float-end">
+    <div class="d-flex justify-content-end gap-2">
         @can('request purchase requisition')
-        <!-- {{-- data-url="{{ route('users.create') }}" --}} -->
             <a href="#" data-size="lg" data-bs-toggle="modal" data-bs-target="#newPurchaseRequisition" id="toggleOldUser"  data-bs-toggle="tooltip" title="{{__('Create')}}"  class="btn btn-sm btn-primary">
                 <i class="ti ti-plus"></i>
             </a>
         @endcan
     </div>
-@endsection
+
 
 <div>
     <div class="row">

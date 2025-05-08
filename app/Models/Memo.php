@@ -9,7 +9,7 @@ class Memo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['created_by', 'title', 'description', 'file_path','priority'];
+    protected $fillable = ['created_by', 'title', 'to', 'description','memo_content', 'file_path','priority'];
 
     // The employee who created the memo
     public function creator()
@@ -32,7 +32,8 @@ class Memo extends Model
     public function signedUsers()
     {
         return $this->belongsToMany(User::class, 'memo_signatures')
-                    ->withTimestamps();
+                ->with('signature');
+                    // ->withTimestamps();
     }
 
     public function sharedWithUsers(): BelongsToMany

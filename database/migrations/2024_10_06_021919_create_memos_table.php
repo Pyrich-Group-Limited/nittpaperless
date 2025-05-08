@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('memos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('created_by'); // Employee who created the memo
+            $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
-            $table->string('title');                 // Title of the memo
-            $table->text('description');             // Description of the memo
-            $table->string('file_path');
+            $table->string('title');                 
+            $table->string('to');                 
+            $table->text('description')->nullable();            
+            $table->longText('memo_content');           
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }

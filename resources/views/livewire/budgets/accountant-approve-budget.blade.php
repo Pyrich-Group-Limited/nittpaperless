@@ -12,28 +12,28 @@
         </style>
     @endpush
 
-    @section('action-btn')
-    <div class="float-end">
-        <a href="#" class="btn btn-sm btn-primary action-item" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ti ti-filter"></i>
-        </a>
-        <div class="dropdown-menu  dropdown-steady" id="project_sort">
-            <a class="dropdown-item active" href="#" data-val="created_at-desc">
-                <i class="ti ti-sort-descending"></i>{{__('Newest')}}
+    <div class="d-flex justify-content-end gap-2">
+        <div class="btn-group">
+            <a href="#" class="btn btn-sm btn-primary action-item dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="ti ti-filter"></i> {{ __('Filter') }}
             </a>
-            <a class="dropdown-item" href="#" data-val="created_at-asc">
-                <i class="ti ti-sort-ascending"></i>{{__('Oldest')}}
-            </a>
-
-            <a class="dropdown-item" href="#" data-val="project_name-desc">
-                <i class="ti ti-sort-descending-letters"></i>{{__('From Z-A')}}
-            </a>
-            <a class="dropdown-item" href="#" data-val="project_name-asc">
-                <i class="ti ti-sort-ascending-letters"></i>{{__('From A-Z')}}
-            </a>
+    
+            <div class="dropdown-menu dropdown-steady" id="project_sort">
+                <a class="dropdown-item {{ $filterStatus === null ? 'active' : '' }}" wire:click.prevent="$set('filterStatus', null)" href="#">
+                    <i class="ti ti-sort-descending"></i> {{ __('All') }}
+                </a>
+                <a class="dropdown-item {{ $filterStatus === 'pending' ? 'active' : '' }}" wire:click.prevent="$set('filterStatus', 'pending')" href="#">
+                    <i class="ti ti-sort-ascending"></i> {{ __('Pending') }}
+                </a>
+                <a class="dropdown-item {{ $filterStatus === 'approved' ? 'active' : '' }}" wire:click.prevent="$set('filterStatus', 'approved')" href="#">
+                    <i class="ti ti-sort-descending-letters"></i> {{ __('Approved') }}
+                </a>
+                <a class="dropdown-item {{ $filterStatus === 'pending_dg_approval' ? 'active' : '' }}" wire:click.prevent="$set('filterStatus', 'pending_dg_approval')" href="#">
+                    <i class="ti ti-sort-ascending-letters"></i> {{ __('Pending DG Approval') }}
+                </a>
+            </div>
         </div>
     </div>
-@endsection
 
     <div class="row">
         <div class="col-md-12 mt-3">
@@ -97,7 +97,7 @@
                                                     @endif
                                                 @endcan
                                                 @can('approve budget')
-                                                    @if(auth()->user()->type=="DG")
+                                                    @if(auth()->user()->type=="dg")
                                                         <div class="action-btn bg-primary ms-2">
                                                             <a href="#" wire:click="approveBudget({{ $budget->id }})"
                                                                 title="{{ __('Approve Budget') }}"
@@ -134,6 +134,9 @@
                                 @endif
                             </tbody>
                         </table>
+                    </div>
+                    <div class="mt-3">
+                        {{ $departmentBudgets->links() }} 
                     </div>
                 </div>
             </div>
