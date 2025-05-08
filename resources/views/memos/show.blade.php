@@ -12,7 +12,7 @@
                             </style>
                             <tr>
                                 <th scope="row">Memo Title</th>
-                                <td>{{ $memo->title }}</td>
+                                <td style="white-space: normal;">{{ $memo->title }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Memo Description</th>
@@ -49,6 +49,23 @@
                                     <th scope="row">Share Comment</th>
                                     <td style="white-space: pre-wrap">{{ $memoShareComment->comment }}</td>
                                 </tr>
+                            @endif
+
+                            @if($memo->file_path==null)
+                                    <tr>
+                                        <th>Supporting Document</th>
+                                        <td class="text-warning">No supporting document uploaded for this memo.</td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <th>Supporting Document</th>
+                                        <td class="text-end">
+                                            <a href="{{ asset('assets/documents/') }}/{{$memo->file_path}}" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye"></i></a>
+                                            <a href="{{ asset('assets/documents/' . $memo->file_path) }}" download class="btn btn-primary btn-sm">
+                                                <i class="ti ti-download"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                             @endif
                             <tr>
                                 <th scope="row">Your Signature</th>
@@ -97,7 +114,7 @@
         </div>
         </div>
         <div class="modal-footer">
-            <a href="{{ route('memos.download',$memo->id) }}" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-download text-white"></i> Download Memo</a>
+            <a href="{{ route('memos.download',$memo->id) }}" target="_blank" class="btn btn-primary btn-sm"><i class="ti ti-eye text-white"></i> View Memo</a>
             <input type="button" value="{{('Close')}}" class="btn  btn-light btn-sm" data-bs-dismiss="modal">
         </div>
     </div>
