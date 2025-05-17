@@ -77,8 +77,11 @@
                 <td class="center-text">
                     <div>NIGERIAN INSTITUTE OF TRANSPORT TECHNOLOGY (NITT), ZARIA</div>
                     <div>INTERNAL MEMO</div>
-                    <div>{{ strtoupper(Auth::user()->department->name ?? '') }}</div>
-                    <div>{{ strtoupper(Auth::user()->unit->name ?? '') }}</div>
+                    <div>{{ strtoupper($memo->creator->department->name ?? '') }}</div>
+                    <div>{{ strtoupper($memo->creator->unit->name ?? '') }}</div>
+
+                    {{-- <div>{{ strtoupper(Auth::user()->department->name ?? '') }}</div>
+                    <div>{{ strtoupper(Auth::user()->unit->name ?? '') }}</div> --}}
                 </td>
             </tr>
         </table>

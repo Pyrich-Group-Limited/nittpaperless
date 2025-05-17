@@ -75,7 +75,7 @@
                                                         <th>{{__('Memo Title')}}</th>
                                                         <th>{{__('Priority')}}</th>
                                                         {{-- <th>{{__('Description')}}</th> --}}
-                                                        <th>{{__('Date')}}</th>
+                                                        <th>{{__('Date/Time')}}</th>
                                                         <th>{{__('Action')}}</th>
                                                     </tr>
                                                     </thead>
@@ -101,7 +101,7 @@
                                                                     </div>
                                                                 </td>
                                                                 {{-- <td>{{ Str::limit($memo->description, 20, '...') }}</td> --}}
-                                                                <td>{{ $memo->created_at->format('d-M-Y') }}</td>
+                                                                <td>{{ $memo->created_at->format('d-M-Y / h:i A') }}</td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">
                                                                         <a href="#" class="mx-3 btn btn-sm align-items-center" data-url="{{ route('memos.show', $memo->id) }}"
@@ -148,7 +148,7 @@
                                                                     <div class="media align-items-center">
                                                                         <div>
                                                                             <div class="avatar-parent-child">
-                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($incomingMemo->createdBy) && !empty($incomingMemo->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$incomingMemo->createdBy->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar')).'/avatar.png'}}" @endif>
+                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($incomingMemo->createdBy) && !empty($incomingMemo->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$incomingMemo->createdBy->avatar}}" @else  src="{{asset('uploads/user.png')}}" @endif>
                                                                             </div>
                                                                         </div>
                                                                         <div class="media-body">
@@ -174,7 +174,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td>{{ $incomingMemo->created_at->format('d-M-Y') }}</td>
+                                                                <td>{{ $incomingMemo->created_at->format('d-M-Y / h:i A') }}</td>
                                                                 <td>
                                                                     @if ($incomingMemo->sharedBy && $incomingMemo->sharedBy->signature)
                                                                         <img src="{{ asset('storage/' . $incomingMemo->sharedBy->signature->signature_path) }}" alt="Signature" height="50">
@@ -233,7 +233,7 @@
                                                                     <div class="media align-items-center">
                                                                         <div>
                                                                             <div class="avatar-parent-child">
-                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($outgoingMemo->createdBy) && !empty($outgoingMemo->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$outgoingMemo->createdBy->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar')).'/avatar.png'}}" @endif>
+                                                                                <img alt="" class="avatar rounded-circle avatar-sm" @if(!empty($outgoingMemo->createdBy) && !empty($outgoingMemo->createdBy->avatar)) src="{{asset(Storage::url('uploads/avatar')).'/'.$outgoingMemo->createdBy->avatar}}" @else  src="{{asset('uploads/user.png')}}" @endif>
                                                                             </div>
                                                                         </div>
                                                                         <div class="media-body">
@@ -259,7 +259,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td>{{ $outgoingMemo->created_at->format('d-M-Y') }}</td>
+                                                                <td>{{ $outgoingMemo->created_at->format('d-M-Y / h:i A') }}</td>
                                                                 <td class="Action">
                                                                     <div class="action-btn bg-success ms-2">
                                                                         <a href="#" class="mx-3 btn btn-sm align-items-center" data-url="{{ route('memos.show', $outgoingMemo->memo_id) }}"

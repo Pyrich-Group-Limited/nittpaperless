@@ -82,7 +82,9 @@ class MemoController extends Controller
 
     public function fetchMemos()
     {
-        $memos = Memo::with('creator.department')->latest()->get();
+        $memo = Memo::with(['creator.department', 'creator.unit'])->latest()->get();
+
+        // $memos = Memo::with('creator.department')->latest()->get();
         return response()->json(['memos' => $memos]);
     }
 
