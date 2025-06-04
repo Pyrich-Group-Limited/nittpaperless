@@ -17,7 +17,7 @@ class SupportController extends Controller
 {
     public function index()
     {
-        $dep = Department::where('name','Servicom')->first()->id;
+        $dep = Department::where('name',"DG's Office")->first()->id;
         if(\Auth::user()->department_id == $dep)
         {
             // $supports = Support::where('created_by', \Auth::user()->creatorId())->get();

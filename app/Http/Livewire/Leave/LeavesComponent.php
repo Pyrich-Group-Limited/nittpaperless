@@ -23,7 +23,7 @@ class LeavesComponent extends Component
     public $start_date;
     public $end_date;
     public $reason;
-
+    // public $duration;
     public $relieving_staff;
     public $leave_for_staff;
     public $unit_id;
